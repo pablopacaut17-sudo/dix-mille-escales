@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dix Mille Escales – Le guide des 10 000 plus grandes villes du monde</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#EEF3F1;--surface:#FFFFFF;--ink:#12313B;--muted:#56707A;--line:#CBD8D5;--sea:#2F7D6D;--buoy:#F2B705;--dot:#8AA39E;--grid:#D7E2DF;--soft:#E2ECE9;--mapbg:#E4EDEA;
+--display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;--text:"Literata",Georgia,"Times New Roman",serif;
+color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1F24;--surface:#16292F;--ink:#E4EEEC;--muted:#93AAB0;--line:#2A434A;--sea:#5FBFA9;--dot:#3E5A60;--grid:#1E353B;--soft:#1B3137;--mapbg:#132A30;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0F1F24;--surface:#16292F;--ink:#E4EEEC;--muted:#93AAB0;--line:#2A434A;--sea:#5FBFA9;--dot:#3E5A60;--grid:#1E353B;--soft:#1B3137;--mapbg:#132A30;color-scheme:dark}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 76px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--text);font-size:1.0625rem;line-height:1.65}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+a{color:var(--sea)}
+:focus-visible{outline:3px solid var(--buoy);outline-offset:2px;border-radius:3px}
+.vh{position:absolute;left:-9999px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 1.25rem}
+
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--bg);border-bottom:1px solid var(--line)}
+.top-in{max-width:1240px;margin:0 auto;padding:.7rem 1.25rem;display:flex;gap:1.4rem;align-items:center;justify-content:space-between}
+.brand{font-family:var(--display);font-weight:800;font-size:1.2rem;letter-spacing:-.02em;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:.5rem;white-space:nowrap}
+.brand svg{width:22px;height:22px;flex-shrink:0}
+.mainnav{display:flex;gap:1.1rem;font-family:var(--display);font-size:.92rem}
+.mainnav a{color:var(--muted);text-decoration:none}.mainnav a:hover,.mainnav a[aria-current]{color:var(--ink)}
+.theme-btn{font-family:var(--display);font-size:.85rem;padding:.4rem .75rem;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;white-space:nowrap}
+
+.hero{padding:2.6rem 0 1rem}
+.hero h1{font-family:var(--display);font-weight:800;font-size:clamp(2.6rem,7vw,5.2rem);line-height:.92;letter-spacing:-.045em;margin:0;max-width:15ch}
+.hero .sub{font-size:1.2rem;max-width:46ch;margin:1.1rem 0 0;font-style:italic}
+.finder{position:relative;max-width:620px;margin-top:1.6rem}
+.finder input{width:100%;font-family:var(--display);font-size:1.15rem;padding:.95rem 1.2rem;border:2px solid var(--ink);border-radius:14px;background:var(--surface);color:var(--ink)}
+.finder ul{position:absolute;z-index:5;left:0;right:0;top:calc(100% + 6px);list-style:none;margin:0;padding:.3rem;background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 30px rgba(18,49,59,.15)}
+.finder ul:empty{display:none}
+.finder li{display:flex;justify-content:space-between;gap:1rem;padding:.55rem .8rem;border-radius:8px;cursor:pointer;font-family:var(--display)}
+.finder li[aria-selected="true"],.finder li:hover{background:var(--soft)}
+.finder li span{color:var(--muted);font-size:.88rem;white-space:nowrap}
+.finder li b{font-weight:600}
+.finder .hint{font-family:var(--display);font-size:.85rem;color:var(--muted);margin:.5rem .2rem 0}
+.tag{display:inline-block;font-size:.72rem;padding:.08rem .45rem;border-radius:999px;margin-left:.4rem;vertical-align:.1em;font-family:var(--display)}
+.tag.full{background:var(--buoy);color:#12313B}
+.tag.phare{border:1px solid var(--sea);color:var(--sea)}
+
+.mapzone{margin-top:1.6rem}
+.zooms{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.7rem}
+.chip{font-family:var(--display);font-size:.88rem;padding:.35rem .85rem;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.mapbox{position:relative;background:var(--mapbg);border-radius:16px;overflow:hidden}
+#map{display:block;width:100%;cursor:crosshair;touch-action:manipulation}
+.tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--bg);font-family:var(--display);font-size:.85rem;padding:.3rem .6rem;border-radius:8px;white-space:nowrap;transform:translate(-50%,calc(-100% - 12px));opacity:0;transition:opacity .1s}
+.legend{display:flex;flex-wrap:wrap;gap:.4rem 1.3rem;font-family:var(--display);font-size:.84rem;color:var(--muted);margin:.7rem .2rem 0}
+.legend span::before{content:"";display:inline-block;width:var(--s);height:var(--s);border-radius:50%;margin-right:.4rem;vertical-align:.05em;background:var(--c)}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:2px solid var(--ink);border-bottom:1px solid var(--line);margin-top:2rem}
+.stats div{padding:1rem .8rem 1rem 0}
+.stats b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(1.6rem,3.6vw,2.5rem);letter-spacing:-.03em;line-height:1.05}
+.stats span{font-family:var(--display);font-size:.9rem;color:var(--muted)}
+
+.card{margin-top:2rem;background:var(--surface);border:1px solid var(--line);border-left:6px solid var(--sea);border-radius:14px;padding:1.4rem 1.5rem;scroll-margin-top:90px}
+.card.full{border-left-color:var(--buoy)}
+.card h2{font-family:var(--display);font-weight:800;font-size:clamp(2rem,5vw,3.2rem);letter-spacing:-.035em;line-height:1;margin:0}
+.card h2 .tag{font-size:.85rem;letter-spacing:0;font-weight:600;vertical-align:.7em;padding:.15rem .6rem}
+.card .where{font-family:var(--display);color:var(--sea);font-weight:600;margin:.4rem 0 0}
+.card dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.2rem 1.5rem;margin:1.2rem 0 0;border-top:1px solid var(--line)}
+.card dl div{padding:.7rem 0;border-bottom:1px solid var(--line)}
+.card dt{font-family:var(--display);font-size:.82rem;color:var(--muted)}
+.card dd{margin:.1rem 0 0;font-family:var(--display);font-weight:600;font-size:1.05rem}
+.card .status{margin:1.1rem 0 0;font-size:.98rem;max-width:70ch}
+.btn{display:inline-block;font-family:var(--display);font-weight:600;font-size:.98rem;padding:.65rem 1.1rem;border-radius:10px;background:var(--ink);color:var(--bg);text-decoration:none;margin-top:1rem}
+.card .empty{color:var(--muted);font-style:italic;margin:0}
+
+section.block{margin-top:4rem}
+h2.sec{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,4vw,2.7rem);letter-spacing:-.03em;line-height:1.05;margin:0 0 .6rem}
+.lead{max-width:62ch;margin:0 0 1.6rem}
+.conts{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.8rem 2.4rem}
+.cont h3{font-family:var(--display);font-weight:600;font-size:1.25rem;margin:0;display:flex;justify-content:space-between;align-items:baseline;gap:1rem;border-bottom:2px solid var(--ink);padding-bottom:.35rem}
+.cont h3 span{font-weight:400;font-size:.88rem;color:var(--muted)}
+.cont ul{list-style:none;padding:0;margin:.6rem 0 0}
+.cont li{display:flex;justify-content:space-between;gap:1rem;padding:.3rem 0;border-bottom:1px solid var(--line);font-size:.97rem}
+.cont li button{all:unset;cursor:pointer;font-family:var(--display)}
+.cont li button:hover{color:var(--sea)}
+.cont li button:focus-visible{outline:3px solid var(--buoy)}
+.cont li span{font-family:var(--display);color:var(--muted);font-size:.85rem}
+.phares{display:flex;flex-wrap:wrap;gap:.45rem}
+.phares button{font-family:var(--display);font-size:.92rem;padding:.35rem .8rem;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.phares button.full{background:var(--buoy);border-color:var(--buoy);color:#12313B;font-weight:600}
+.steps{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.6rem 2.4rem;counter-reset:s}
+.steps li{counter-increment:s;padding-top:.6rem;border-top:2px solid var(--ink)}
+.steps li::before{content:counter(s);font-family:var(--display);font-weight:800;font-size:2.4rem;line-height:1;color:var(--sea);display:block;margin-bottom:.4rem}
+.steps h3{font-family:var(--display);font-weight:600;font-size:1.12rem;margin:0 0 .3rem}
+.steps p{margin:0;font-size:.97rem}
+
+.site-foot{border-top:3px solid var(--ink);background:var(--surface);font-family:var(--display);font-size:.9rem;color:var(--muted);margin-top:4.5rem}
+.site-foot .in{max-width:1240px;margin:0 auto;padding:2.2rem 1.25rem 2.5rem;display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:1.6rem 2rem}
+.site-foot h3{color:var(--ink);font-size:.95rem;margin:0 0 .5rem}
+.site-foot ul{list-style:none;margin:0;padding:0}.site-foot li{margin-bottom:.3rem}
+.site-foot a{color:var(--muted);text-decoration:none}.site-foot a:hover{color:var(--ink)}
+.site-foot .legal{grid-column:1/-1;border-top:1px solid var(--line);padding-top:1rem;font-size:.82rem;margin:0}
+@media (max-width:980px){.mainnav{display:none}}
+@media (max-width:760px){.stats{grid-template-columns:1fr 1fr}.site-foot .in{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.theme-btn{font-size:0;padding:.35rem .6rem}.theme-btn::before{content:"◐";font-size:1.05rem}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M2 12h20M12 2c3 3.2 3 16.8 0 20M12 2c-3 3.2-3 16.8 0 20" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="15.5" cy="8" r="2.6" fill="#F2B705"/></svg>Dix Mille Escales</a>
+    <nav class="mainnav" aria-label="Navigation principale"><a href="#carte" aria-current="page">Carte du monde</a><a href="#continents">Destinations</a><a href="#phares">Villes phares</a><a href="#methode">Notre méthode</a></nav>
+    <button type="button" class="theme-btn" id="theme-btn" aria-label="Changer le thème d’affichage">Thème : auto</button>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero" id="carte">
+    <h1>10 000 villes. Un guide pour chacune.</h1>
+    <p class="sub">Des métropoles aux villes que personne ne raconte : où aller, quoi voir, combien ça coûte, quand partir. Vérifié en continu.</p>
+    <div class="finder" role="combobox" aria-expanded="false" aria-haspopup="listbox" aria-owns="results" id="finder">
+      <label for="q" class="vh">Chercher une ville</label>
+      <input id="q" type="search" autocomplete="off" placeholder="Où voulez-vous aller ?" aria-autocomplete="list" aria-controls="results">
+      <ul id="results" role="listbox"></ul>
+      <p class="hint" id="hint">Essayez Lisbonne, Osaka, Valparaíso ou Tombouctou.</p>
+    </div>
+
+    <div class="mapzone">
+      <div class="zooms" id="zooms" role="group" aria-label="Zone de la carte"></div>
+      <div class="mapbox" id="mapbox">
+        <canvas id="map" role="img" aria-label="Carte du monde des 10 000 villes du guide"></canvas>
+        <div class="tip" id="tip"></div>
+      </div>
+      <div class="legend"><span style="--c:var(--buoy);--s:.8em">Fiche complète</span><span style="--c:var(--sea);--s:.65em">Ville phare, fiche en préparation</span><span style="--c:var(--dot);--s:.45em">Autre ville du guide</span></div>
+    </div>
+
+    <div class="card" id="card" aria-live="polite"><p class="empty">Touchez un point de la carte ou cherchez une ville pour voir sa fiche.</p></div>
+
+    <div class="stats" id="stats"></div>
+  </section>
+
+  <section class="block" id="continents">
+    <h2 class="sec">Par continent</h2>
+    <p class="lead">Les plus grandes villes de chaque continent. Touchez un nom pour le situer sur la carte.</p>
+    <div class="conts" id="conts"></div>
+  </section>
+
+  <section class="block" id="phares">
+    <h2 class="sec">Les villes phares</h2>
+    <p class="lead">Les destinations qui auront la fiche la plus complète : environ 20 000 informations chacune, adresses comprises. Lisbonne est la première disponible.</p>
+    <div class="phares" id="phlist"></div>
+  </section>
+
+  <section class="block" id="methode">
+    <h2 class="sec">Comment le guide reste à jour</h2>
+    <p class="lead">Un guide papier vieillit dès l’impression. Ici, chaque horaire, prix et adresse porte sa date de vérification.</p>
+    <ol class="steps">
+      <li><h3>Des robots collectent</h3><p>Ils interrogent chaque jour des sources ouvertes et officielles : cartes, réseaux de transport, météo, alertes de voyage.</p></li>
+      <li><h3>Les changements sont vérifiés</h3><p>Un changement sans risque est publié seul. Un lieu fermé ou un prix qui s’envole passe d’abord par une vérification humaine.</p></li>
+      <li><h3>Les lecteurs corrigent</h3><p>Chaque information peut être signalée en un clic. Plusieurs signalements déclenchent une vérification prioritaire.</p></li>
+    </ol>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="in">
+    <div><a class="brand" href="#" style="margin-bottom:.6rem"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M2 12h20M12 2c3 3.2 3 16.8 0 20M12 2c-3 3.2-3 16.8 0 20" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="15.5" cy="8" r="2.6" fill="#F2B705"/></svg>Dix Mille Escales</a><p style="margin:0">Le guide de voyage des 10 000 plus grandes villes du monde. Une fiche par ville, des informations vérifiées, une carte pour tout relier.</p></div>
+    <div><h3>Destinations</h3><ul><li><a href="#continents">Europe</a></li><li><a href="#continents">Afrique</a></li><li><a href="#continents">Asie</a></li><li><a href="#continents">Amériques</a></li><li><a href="#continents">Océanie</a></li></ul></div>
+    <div><h3>Le guide</h3><ul><li><a href="#methode">Notre méthode</a></li><li><a href="sources/">Nos sources</a></li><li><a href="etat/">État des robots</a></li></ul></div>
+    <div><h3>À propos</h3><ul><li><a href="sources/">Licences et attributions</a></li><li><a href="etat/">Fraîcheur des données</a></li></ul></div>
+    <p class="legal">Site généré le __DATE__. Liste des villes : GeoNames (CC BY 4.0). Lieux : © contributeurs OpenStreetMap (ODbL). Météo : Open-Meteo (CC BY 4.0). Jours fériés : Nager.Date. Change : Banque centrale européenne. Voir la page <a href="sources/">Nos sources</a>.</p>
+  </div>
+</footer>
+
+<script type="application/json" id="data">__DATA__</script>
+<script>
+(function(){
+  var D=JSON.parse(document.getElementById('data').textContent), TZ=D.tz, CONT=D.cont;
+  var regionName; try{regionName=new Intl.DisplayNames(['fr'],{type:'region'});}catch(e){regionName=null;}
+  function country(cc){try{return regionName?regionName.of(cc):cc;}catch(e){return cc;}}
+  function norm(t){return (t||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[’'\-]/g,' ');}
+  var C=D.c.map(function(r,i){return {i:i,name:r[0],cc:r[1],lat:r[2],lon:r[3],pop:r[4],tz:TZ[r[5]],alts:r[6]?r[6].split('|'):[],ph:r[7]===1,slug:r[8],rank:i+1};});
+  var nonPh=0; C.forEach(function(c){ if(!c.ph){nonPh++; c.tier=nonPh<=1000?2:3;} else c.tier=1; c.full=(c.name==='Lisbonne'); c.key=norm(c.name+' '+c.alts.join(' '));});
+  var fmtN=new Intl.NumberFormat('fr-FR');
+
+  /* ---- thème ---- */
+  var TH=['auto','clair','sombre'],th='auto',thBtn=document.getElementById('theme-btn');
+  try{th=localStorage.getItem('dme-theme')||'auto';}catch(e){}
+  function applyTheme(){var r=document.documentElement;if(th==='clair')r.setAttribute('data-theme','light');else if(th==='sombre')r.setAttribute('data-theme','dark');else r.removeAttribute('data-theme');thBtn.textContent='Thème : '+th;draw();}
+  thBtn.addEventListener('click',function(){th=TH[(TH.indexOf(th)+1)%3];try{localStorage.setItem('dme-theme',th);}catch(e){}applyTheme();});
+
+  /* ---- carte ---- */
+  var cv=document.getElementById('map'),ctx=cv.getContext('2d'),box=document.getElementById('mapbox'),tip=document.getElementById('tip');
+  var VIEWS=[['monde','Monde',[-180,180,80,-58]],['EU','Europe',[-25,45,71,34]],['AF','Afrique',[-20,55,38,-36]],['AS','Asie',[25,150,56,-11]],['NA','Amérique du Nord',[-130,-55,62,7]],['SA','Amérique du Sud',[-85,-33,13,-56]],['OC','Océanie',[110,180,0,-48]]];
+  var view=VIEWS[0], W=0,H=0,dpr=1,sel=null,hover=null,proj;
+  function css(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim();}
+  function setProj(){var b=view[2],lw=b[1]-b[0],lh=b[2]-b[3],s=Math.min(W/lw,H/lh),ox=(W-lw*s)/2,oy=(H-lh*s)/2;proj={s:s,x:function(lon){return ox+(lon-b[0])*s;},y:function(lat){return oy+(b[2]-lat)*s;}};}
+  function resize(){dpr=window.devicePixelRatio||1;W=box.clientWidth;H=Math.round(W*(W<600?0.62:0.44));cv.style.height=H+'px';cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);setProj();draw();}
+  function draw(){
+    if(!W)return; ctx.clearRect(0,0,W,H);
+    var grid=css('--grid'),dot=css('--dot'),sea=css('--sea'),buoy=css('--buoy'),ink=css('--ink');
+    var z=proj.s/(W/360); ctx.strokeStyle=grid;ctx.lineWidth=1;
+    for(var lo=-180;lo<=180;lo+=30){ctx.beginPath();ctx.moveTo(proj.x(lo),0);ctx.lineTo(proj.x(lo),H);ctx.stroke();}
+    for(var la=-60;la<=90;la+=30){ctx.beginPath();ctx.moveTo(0,proj.y(la));ctx.lineTo(W,proj.y(la));ctx.stroke();}
+    var r3=Math.max(1.15,Math.min(2.6,1.15*Math.sqrt(z)))*(W<600?.9:1), r2=r3*1.45, r1=r3*2.3;
+    ctx.fillStyle=dot;C.forEach(function(c){if(c.tier!==3)return;ctx.beginPath();ctx.arc(proj.x(c.lon),proj.y(c.lat),r3,0,6.283);ctx.fill();});
+    ctx.fillStyle=dot;ctx.globalAlpha=1;C.forEach(function(c){if(c.tier!==2)return;ctx.beginPath();ctx.arc(proj.x(c.lon),proj.y(c.lat),r2,0,6.283);ctx.fill();});
+    C.forEach(function(c){if(c.tier!==1)return;ctx.beginPath();ctx.arc(proj.x(c.lon),proj.y(c.lat),c.full?r1*1.5:r1,0,6.283);ctx.fillStyle=c.full?buoy:sea;ctx.fill();if(c.full){ctx.lineWidth=1.5;ctx.strokeStyle=ink;ctx.stroke();}});
+    [hover,sel].forEach(function(c,k){if(!c)return;ctx.beginPath();ctx.arc(proj.x(c.lon),proj.y(c.lat),k?9:7,0,6.283);ctx.lineWidth=2;ctx.strokeStyle=ink;ctx.stroke();});
+    if(sel){ctx.font='600 13px "Bricolage Grotesque", system-ui, sans-serif';var tx=proj.x(sel.lon)+12,ty=proj.y(sel.lat)-10;var tw=ctx.measureText(sel.name).width;if(tx+tw>W-6)tx=proj.x(sel.lon)-12-tw;ctx.fillStyle=ink;ctx.fillText(sel.name,tx,Math.max(14,ty));}
+  }
+  function nearest(mx,my){var best=null,bd=14*14;C.forEach(function(c){var dx=proj.x(c.lon)-mx,dy=proj.y(c.lat)-my,d=dx*dx+dy*dy-(c.tier===1?40:0);if(d<bd){bd=d;best=c;}});return best;}
+  cv.addEventListener('mousemove',function(e){var r=cv.getBoundingClientRect(),c=nearest(e.clientX-r.left,e.clientY-r.top);if(c!==hover){hover=c;draw();}
+    if(c){tip.textContent=c.name+' · '+country(c.cc);tip.style.left=proj.x(c.lon)+'px';tip.style.top=proj.y(c.lat)+'px';tip.style.opacity=1;cv.style.cursor='pointer';}else{tip.style.opacity=0;cv.style.cursor='crosshair';}});
+  cv.addEventListener('mouseleave',function(){hover=null;tip.style.opacity=0;draw();});
+  cv.addEventListener('click',function(e){var r=cv.getBoundingClientRect(),c=nearest(e.clientX-r.left,e.clientY-r.top);if(c)select(c,false);});
+  var zEl=document.getElementById('zooms');
+  VIEWS.forEach(function(v){var b=document.createElement('button');b.type='button';b.className='chip';b.textContent=v[1];b.setAttribute('aria-pressed',v=
