@@ -65,4 +65,3 @@
     else if(e.key==='Enter'){e.preventDefault();var x=a[act>-1?act:0];if(x)location.href=x.getAttribute('href');}else if(e.key==='Escape')res.innerHTML='';});
   q.addEventListener('blur',function(){setTimeout(function(){res.innerHTML='';},200);});
 })();
-      

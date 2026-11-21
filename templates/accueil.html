@@ -217,4 +217,69 @@ h2.sec{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,4vw,2.7
   cv.addEventListener('mouseleave',function(){hover=null;tip.style.opacity=0;draw();});
   cv.addEventListener('click',function(e){var r=cv.getBoundingClientRect(),c=nearest(e.clientX-r.left,e.clientY-r.top);if(c)select(c,false);});
   var zEl=document.getElementById('zooms');
-  VIEWS.forEach(function(v){var b=document.createElement('button');b.type='button';b.className='chip';b.textContent=v[1];b.setAttribute('aria-pressed',v=
+  VIEWS.forEach(function(v){var b=document.createElement('button');b.type='button';b.className='chip';b.textContent=v[1];b.setAttribute('aria-pressed',v===view?'true':'false');b.addEventListener('click',function(){setView(v);});zEl.appendChild(b);});
+  function setView(v){view=v;zEl.querySelectorAll('.chip').forEach(function(b,i){b.setAttribute('aria-pressed',VIEWS[i]===v?'true':'false');});setProj();draw();}
+  window.addEventListener('resize',resize);
+
+  /* ---- fiche ---- */
+  var PAR={lat:48.8566,lon:2.3522};
+  function dist(a,b){var R=6371,t=Math.PI/180,dl=(b.lat-a.lat)*t,dn=(b.lon-a.lon)*t,x=Math.sin(dl/2)*Math.sin(dl/2)+Math.cos(a.lat*t)*Math.cos(b.lat*t)*Math.sin(dn/2)*Math.sin(dn/2);return 2*R*Math.asin(Math.sqrt(x));}
+  function season(c){var m=new Date().getMonth(),a=Math.abs(c.lat);if(a<23.5)return 'Climat tropical : saison sèche et saison humide';var n=c.lat>=0,s=['hiver','hiver','printemps','printemps','printemps','été','été','été','automne','automne','automne','hiver'][m];if(!n)s={hiver:'été',printemps:'automne','été':'hiver',automne:'printemps'}[s];return s.charAt(0).toUpperCase()+s.slice(1)+' en ce moment';}
+  function coord(c){return Math.abs(c.lat).toFixed(2).replace('.',',')+'° '+(c.lat>=0?'N':'S')+' / '+Math.abs(c.lon).toFixed(2).replace('.',',')+'° '+(c.lon>=0?'E':'O');}
+  function localTime(c){try{return new Intl.DateTimeFormat('fr-FR',{timeZone:c.tz,hour:'2-digit',minute:'2-digit'}).format(new Date());}catch(e){return '–';}}
+  function offset(c){try{var now=new Date(),f=function(z){var p=new Intl.DateTimeFormat('en-US',{timeZone:z,hour12:false,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'}).formatToParts(now),o={};p.forEach(function(x){o[x.type]=x.value;});return Date.UTC(+o.year,+o.month-1,+o.day,+o.hour%24,+o.minute);};var d=(f(c.tz)-f('Europe/Paris'))/3600000;if(d===0)return 'Même heure qu’à Paris';var h=Math.abs(d),s=(Math.floor(h)+(h%1?' h '+Math.round(h%1*60):' h'));return 'Paris '+(d>0?'+ ':'− ')+s;}catch(e){return '';}}
+  function select(c,scroll){
+    sel=c; var cont=CONT[c.cn||c.cc];
+    if(view[0]!=='monde'&&view[0]!==CONT[c.cc])setView(VIEWS[0]);
+    draw();
+    var d=Math.round(dist(PAR,c)), travel=d<350?'≈ '+fmtN.format(d)+' km à vol d’oiseau, faisable en train ou en voiture':'≈ '+fmtN.format(Math.round(d/10)*10)+' km à vol d’oiseau, soit ≈ '+Math.max(1,Math.round(d/800+.5))+' h de vol sans compter les escales';
+    var tierTxt=c.full?'Fiche complète disponible':c.tier===1?'Ville phare : fiche complète en préparation':c.tier===2?'Ville intermédiaire : fiche détaillée en préparation':'Fiche essentielle en préparation';
+    var card=document.getElementById('card'); card.className='card'+(c.full?' full':'');
+    card.innerHTML='<h2>'+c.name+(c.full?'<span class="tag full">Fiche complète</span>':c.ph?'<span class="tag phare">Ville phare</span>':'')+'</h2>'+
+      '<p class="where">'+country(c.cc)+'  ·  '+coord(c)+'</p>'+
+      '<dl><div><dt>Habitants</dt><dd>'+fmtN.format(c.pop)+'</dd></div><div><dt>Rang dans le guide</dt><dd>'+fmtN.format(c.rank)+'ᵉ ville</dd></div><div><dt>Heure locale</dt><dd>'+localTime(c)+'</dd></div><div><dt>Décalage</dt><dd>'+offset(c)+'</dd></div><div><dt>Saison</dt><dd>'+season(c)+'</dd></div><div><dt>Depuis Paris</dt><dd>'+travel+'</dd></div></dl>'+
+      '<p class="status"><b style="font-family:var(--display)">'+tierTxt+'.</b> '+(c.full?'Lieux, quartiers, itinéraires, budget, transports et infos pratiques vérifiés.':'Sa fiche rassemble les données de base et ce que les robots ont déjà collecté : lieux, météo, jours fériés, change.')+'</p>'+
+      '<a class="btn" href="villes/'+c.slug+'/">'+(c.full?'Ouvrir la fiche complète':'Ouvrir la fiche de '+c.name)+'</a>';
+    if(scroll)card.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'nearest'});
+  }
+
+  /* ---- recherche ---- */
+  var q=document.getElementById('q'),res=document.getElementById('results'),finder=document.getElementById('finder'),hits=[],act=-1;
+  function search(){var t=norm(q.value).trim();hits=[];act=-1;
+    if(t.length<2){res.innerHTML='';finder.setAttribute('aria-expanded','false');return;}
+    for(var i=0;i<C.length&&hits.length<40;i++){var c=C[i],k=c.key;if(k.indexOf(t)===0||k.indexOf(' '+t)>-1)hits.push(c);}
+    hits.sort(function(a,b){var pa=norm(a.name).indexOf(t)===0?0:1,pb=norm(b.name).indexOf(t)===0?0:1;return pa-pb||(b.full-a.full)||(b.ph-a.ph)||b.pop-a.pop;});
+    hits=hits.slice(0,8);
+    res.innerHTML=hits.length?hits.map(function(c,i){return '<li role="option" id="opt'+i+'" aria-selected="false" data-i="'+i+'"><b>'+c.name+(c.full?'<span class="tag full">Fiche complète</span>':c.ph?'<span class="tag phare">Phare</span>':'')+'</b><span>'+country(c.cc)+' · '+fmtN.format(c.pop)+' hab.</span></li>';}).join(''):'<li aria-disabled="true"><span>Aucune ville parmi les 10 000 ne correspond. Vérifiez l’orthographe ou essayez le nom local.</span></li>';
+    finder.setAttribute('aria-expanded','true');
+    res.querySelectorAll('li[data-i]').forEach(function(li){li.addEventListener('mousedown',function(e){e.preventDefault();pick(+li.getAttribute('data-i'));});});
+  }
+  function pick(i){var c=hits[i];if(!c)return;q.value=c.name;res.innerHTML='';finder.setAttribute('aria-expanded','false');select(c,true);}
+  function mark(){res.querySelectorAll('li[data-i]').forEach(function(li,i){li.setAttribute('aria-selected',i===act?'true':'false');});q.setAttribute('aria-activedescendant',act>-1?'opt'+act:'');}
+  q.addEventListener('input',search);
+  q.addEventListener('keydown',function(e){if(e.key==='ArrowDown'){act=Math.min(hits.length-1,act+1);mark();e.preventDefault();}else if(e.key==='ArrowUp'){act=Math.max(0,act-1);mark();e.preventDefault();}else if(e.key==='Enter'){e.preventDefault();pick(act>-1?act:0);}else if(e.key==='Escape'){res.innerHTML='';}});
+  q.addEventListener('blur',function(){setTimeout(function(){res.innerHTML='';},150);});
+
+  /* ---- chiffres ---- */
+  var nC={},nCont={};C.forEach(function(c){nC[c.cc]=1;nCont[CONT[c.cc]]=1;});
+  var totPop=C.reduce(function(s,c){return s+c.pop;},0);
+  document.getElementById('stats').innerHTML='<div><b>'+fmtN.format(C.length)+'</b><span>villes dans le guide</span></div><div><b>'+Object.keys(nC).length+'</b><span>pays et territoires</span></div><div><b>'+(Math.round(totPop/1e8)/10).toString().replace('.',',')+' milliards</b><span>d’habitants dans ces villes</span></div><div><b>'+C.filter(function(c){return c.ph;}).length+'</b><span>villes phares en préparation</span></div>';
+
+  /* ---- continents ---- */
+  var CN={EU:'Europe',AF:'Afrique',AS:'Asie',NA:'Amérique du Nord et centrale',SA:'Amérique du Sud',OC:'Océanie'};
+  document.getElementById('conts').innerHTML=Object.keys(CN).map(function(k){var l=C.filter(function(c){return CONT[c.cc]===k;});return '<div class="cont"><h3>'+CN[k]+'<span>'+fmtN.format(l.length)+' villes</span></h3><ul>'+l.slice(0,7).map(function(c){return '<li><button type="button" data-i="'+c.i+'">'+c.name+'</button><span>'+country(c.cc)+'</span></li>';}).join('')+'</ul></div>';}).join('');
+  document.querySelectorAll('#conts button,#phlist button').forEach(function(){});
+  function bindGo(scope){document.querySelectorAll(scope+' button[data-i]').forEach(function(b){b.addEventListener('click',function(){var c=C[+b.getAttribute('data-i')];var v=VIEWS.filter(function(v){return v[0]===CONT[c.cc];})[0];if(v)setView(v);select(c,false);document.getElementById('carte').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'});});});}
+  bindGo('#conts');
+
+  /* ---- phares ---- */
+  var ph=C.filter(function(c){return c.ph;}).sort(function(a,b){return (b.full-a.full)||a.name.localeCompare(b.name,'fr');});
+  document.getElementById('phlist').innerHTML=ph.map(function(c){return '<button type="button" class="'+(c.full?'full':'')+'" data-i="'+c.i+'">'+c.name+(c.full?' · disponible':'')+'</button>';}).join('');
+  bindGo('#phlist');
+
+  resize(); applyTheme();
+  var lis=C.filter(function(c){return c.full;})[0]; if(lis)select(lis,false);
+})();
+</script>
+</body>
+</html>

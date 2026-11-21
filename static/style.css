@@ -116,4 +116,3 @@ thead th{font-weight:600;color:var(--muted);font-size:.84rem}
 td.num{font-weight:600;white-space:nowrap}
 @media (max-width:600px){.theme-btn{font-size:0;padding:.35rem .6rem}.theme-btn::before{content:"◐";font-size:1.05rem}.top-in{gap:.6rem}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-           

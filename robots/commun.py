@@ -63,4 +63,3 @@ def journal(robot, etat, **details):
     j = lire("journal.json", {})
     j[robot] = dict(details, etat=etat, dernier_passage=horodatage())
     ecrire("journal.json", j)
-  

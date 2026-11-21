@@ -1,0 +1,1559 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lisbonne – Dix Mille Escales</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EEF3F1; --surface:#FFFFFF; --ink:#12313B; --muted:#56707A;
+  --line:#CBD8D5; --sea:#2F7D6D; --buoy:#F2B705; --dot:#9FB4B0; --grid:#D7E2DF; --soft:#E2ECE9; --water:#CFE3EA; --land:#F7F9F8; --hill3:#D3E2DE; --hill2:#B7CEC8; --facade:1; --azop:1;
+  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --text:"Literata",Georgia,"Times New Roman",serif;
+  color-scheme:light; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1F24;--surface:#16292F;--ink:#E4EEEC;--muted:#93AAB0;--line:#2A434A;--sea:#5FBFA9;--dot:#3F5A60;--grid:#1E353B;--soft:#1B3137;--water:#123A47;--land:#1A2F35;--hill3:#1A3238;--hill2:#22414A;--facade:.72;--azop:.55;color-scheme:dark}}
+:root[data-theme="dark"]{--azop:.55;--water:#123A47;--land:#1A2F35;--hill3:#1A3238;--hill2:#22414A;--facade:.72;--bg:#0F1F24;--surface:#16292F;--ink:#E4EEEC;--muted:#93AAB0;--line:#2A434A;--sea:#5FBFA9;--dot:#3F5A60;--grid:#1E353B;--soft:#1B3137;--water:#123A47;--land:#1A2F35;color-scheme:dark}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 76px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--text);font-size:1.0625rem;line-height:1.65}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+a{color:var(--sea)}
+:focus-visible{outline:3px solid var(--buoy);outline-offset:2px;border-radius:3px}
+img,svg{max-width:100%}
+.vh{position:absolute;left:-9999px}
+
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--bg);border-bottom:1px solid var(--line)}
+.top-in{max-width:1240px;margin:0 auto;padding:.7rem 1.25rem;display:flex;gap:1rem;align-items:center;justify-content:space-between}
+.brand{font-family:var(--display);font-weight:800;font-size:1.2rem;letter-spacing:-.02em;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:.5rem;white-space:nowrap}
+.brand svg{width:22px;height:22px}
+.search{display:flex;flex:1;max-width:360px}
+.search input{flex:1;min-width:0;font-family:var(--display);font-size:.95rem;padding:.45rem .8rem;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink)}
+.search-msg{font-family:var(--display);font-size:.85rem;color:var(--muted);max-width:1240px;margin:0 auto;padding:0 1.25rem .5rem}
+.search-msg:empty{display:none}
+
+.hero{max-width:1240px;margin:0 auto;padding:2.5rem 1.25rem 1.5rem}
+.crumbs{font-family:var(--display);font-size:.9rem;color:var(--muted);margin:0 0 .5rem}
+.crumbs a{color:var(--muted)}
+.city{font-family:var(--display);font-weight:800;font-size:clamp(3.4rem,13vw,9.5rem);line-height:.88;letter-spacing:-.045em;margin:0}
+.coords{font-family:var(--display);font-size:clamp(1rem,2.4vw,1.4rem);color:var(--sea);margin:.6rem 0 0;font-weight:600}
+.tagline{font-size:1.2rem;max-width:44ch;margin:1rem 0 0;font-style:italic}
+.map-wrap{margin:2rem 0 0;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1rem}
+.map-wrap svg{display:block;width:100%;height:auto}
+.map-caption{font-family:var(--display);font-size:.85rem;color:var(--muted);margin:.6rem .2rem 0}
+.ping{transform-origin:center;transform-box:fill-box;animation:ping 2.6s ease-out 3}
+@keyframes ping{0%{transform:scale(1);opacity:.9}100%{transform:scale(4);opacity:0}}
+@media (prefers-reduced-motion:reduce){.ping{animation:none;opacity:0}html{scroll-behavior:auto}}
+
+.facts{max-width:1240px;margin:0 auto;padding:0 1.25rem}
+.facts dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin:0;border-top:2px solid var(--ink);border-bottom:1px solid var(--line)}
+.facts div{padding:.85rem .8rem .85rem 0}
+.facts dt{font-family:var(--display);font-size:.82rem;color:var(--muted)}
+.facts dd{margin:.1rem 0 0;font-family:var(--display);font-weight:600;font-size:1.05rem}
+
+.body{max-width:1240px;margin:0 auto;padding:2.5rem 1.25rem 3rem;display:grid;grid-template-columns:210px minmax(0,1fr);gap:3rem}
+.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 80px);align-self:start;font-family:var(--display);font-size:.92rem;max-height:calc(100vh - 100px);overflow:auto}
+.toc summary{font-weight:600;cursor:pointer;margin-bottom:.4rem}
+.toc ol{list-style:none;margin:0;padding:0;border-left:2px solid var(--line)}
+.toc a{display:block;padding:.22rem 0 .22rem .9rem;color:var(--muted);text-decoration:none;margin-left:-2px;border-left:2px solid transparent}
+.toc a:hover,.toc a.on{color:var(--ink);border-left-color:var(--buoy)}
+main>section{margin-bottom:3.6rem}
+.prose{max-width:70ch}
+h2{font-family:var(--display);font-weight:800;font-size:clamp(1.7rem,3.4vw,2.4rem);letter-spacing:-.025em;line-height:1.1;margin:0 0 1rem}
+h3{font-family:var(--display);font-weight:600;font-size:1.12rem;margin:0;line-height:1.3}
+h4{font-family:var(--display);font-weight:600;font-size:1rem;margin:1.4rem 0 .5rem}
+p{margin:0 0 1rem}
+.lead{font-size:1.15rem}
+.note{font-size:.9rem;color:var(--muted);font-style:italic}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.2rem}
+.cols2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem 2.2rem}
+.small{font-size:.95rem}
+
+.proscons{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem 2rem;margin-top:1.2rem}
+.proscons ul{margin:.4rem 0 0;padding-left:1.1rem}
+.proscons li{margin-bottom:.3rem}
+
+.who{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.6rem 2rem;font-family:var(--display);margin-top:1.4rem}
+.who div{display:flex;justify-content:space-between;gap:1rem;padding:.4rem 0;border-bottom:1px solid var(--line)}
+.stars{color:var(--sea);letter-spacing:.1em}
+.stars i{color:var(--line);font-style:normal}
+
+.timeline{list-style:none;margin:0;padding:0;border-left:2px solid var(--line)}
+.timeline li{position:relative;padding:0 0 1.1rem 1.4rem}
+.timeline li::before{content:"";position:absolute;left:-7px;top:.45rem;width:12px;height:12px;border-radius:50%;background:var(--surface);border:2px solid var(--sea)}
+.timeline li.big::before{background:var(--buoy);border-color:var(--ink)}
+.timeline b{font-family:var(--display);display:block}
+
+.filters{display:flex;flex-wrap:wrap;gap:.4rem;margin:0 0 1rem}
+.chip{font-family:var(--display);font-size:.88rem;padding:.35rem .85rem;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.count{font-family:var(--display);font-size:.88rem;color:var(--muted);margin:0 0 .6rem}
+.sights{list-style:none;padding:0;margin:0}
+.sights li{padding:1rem 0;border-top:1px solid var(--line)}
+.sights li:last-child{border-bottom:1px solid var(--line)}
+.sights .head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.2rem 1rem;align-items:baseline}
+.meta{font-family:var(--display);font-size:.84rem;color:var(--muted)}
+.meta .free{color:var(--sea);font-weight:600}
+.sights p{margin:.35rem 0 0}
+.tip{font-size:.93rem;color:var(--muted)}
+.tip::before{content:"Conseil : ";font-family:var(--display);font-weight:600;color:var(--ink)}
+.must{display:inline-block;width:.6em;height:.6em;border-radius:50%;background:var(--buoy);margin-right:.45rem;vertical-align:.1em}
+
+.tabs{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1rem}
+.days{display:grid;gap:1rem}
+.day{border-left:4px solid var(--sea);padding:.2rem 0 .2rem 1rem}
+.day h3{margin-bottom:.3rem}
+.day dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:.25rem .9rem}
+.day dt{font-family:var(--display);font-size:.85rem;color:var(--muted);padding-top:.15rem}
+.day dd{margin:0}
+
+.hoods{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.6rem 2.2rem}
+.hoods h3{margin-bottom:.25rem}
+.hoods p{margin:0;font-size:.97rem}
+.hoods .for{font-family:var(--display);font-size:.84rem;color:var(--muted);margin-top:.35rem}
+.sleep{font-family:var(--display);font-size:.8rem;padding:.1rem .5rem;border-radius:999px;border:1px solid var(--line);margin-left:.4rem;font-weight:400;white-space:nowrap}
+.sleep.y{border-color:var(--sea);color:var(--sea)}
+
+.months{display:grid;grid-template-columns:repeat(12,1fr);gap:4px;align-items:end;height:170px}
+.months button{all:unset;cursor:pointer;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;gap:4px;font-family:var(--display);font-size:.75rem;color:var(--muted);border-radius:6px}
+.months button:focus-visible{outline:3px solid var(--buoy)}
+.bar{width:100%;max-width:34px;border-radius:5px 5px 2px 2px;background:var(--dot)}
+.months button.good .bar{background:var(--sea)}
+.months button[aria-pressed="true"] .bar{background:var(--buoy)}
+.months button[aria-pressed="true"]{color:var(--ink);font-weight:600}
+.legend{font-family:var(--display);font-size:.85rem;color:var(--muted);margin:.8rem 0 0;display:flex;flex-wrap:wrap;gap:.4rem 1.2rem}
+.legend span::before{content:"";display:inline-block;width:.8em;height:.8em;border-radius:2px;margin-right:.35rem;vertical-align:-.05em;background:var(--c)}
+.month-detail{margin-top:1rem;padding-top:1rem;border-top:1px solid var(--line)}
+.month-detail h3{font-size:1.3rem}
+.mstats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:.6rem;margin:.7rem 0;font-family:var(--display)}
+.mstats div{background:var(--soft);border-radius:8px;padding:.5rem .7rem}
+.mstats span{display:block;font-size:.78rem;color:var(--muted)}
+.mstats b{font-size:1.15rem}
+
+.dishes{columns:2 270px;column-gap:2.2rem}
+.dishes div{break-inside:avoid;margin-bottom:1rem}
+.dishes p{margin:.1rem 0 0;font-size:.96rem;color:var(--muted)}
+.pt{font-style:italic;font-weight:400;color:var(--muted)}
+
+.table-scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-family:var(--display);font-size:.95rem}
+th,td{text-align:left;padding:.6rem .7rem .6rem 0;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{font-weight:600;color:var(--muted);font-size:.84rem}
+td.num{white-space:nowrap;font-weight:600}
+.line-dot{display:inline-block;width:.75em;height:.75em;border-radius:50%;margin-right:.4rem;vertical-align:-.05em}
+
+.calc{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.8rem 1rem;font-family:var(--display)}
+.calc label{font-size:.85rem;color:var(--muted);display:block;margin-bottom:.25rem}
+.calc input,.calc select{width:100%;font:inherit;font-family:var(--display);padding:.45rem .6rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+.result{margin-top:1rem;padding-top:1rem;border-top:1px solid var(--line);font-family:var(--display)}
+.result .total{font-size:2rem;font-weight:800;letter-spacing:-.02em}
+.result ul{margin:.4rem 0 0;padding-left:1.1rem;font-size:.95rem}
+
+.practical{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.1rem 2.2rem;margin:0}
+.practical dt{font-family:var(--display);font-weight:600}
+.practical dd{margin:.15rem 0 0;font-size:.96rem}
+
+.warn{border-left:4px solid var(--buoy);padding:.2rem 0 .2rem 1rem;margin:1.2rem 0}
+.scams{margin:.5rem 0 0;padding-left:1.1rem}
+.scams li{margin-bottom:.5rem}
+
+.lex{width:100%}
+.lex td:first-child{font-weight:600}
+.lex td:nth-child(2){font-family:var(--text);font-style:italic;color:var(--muted)}
+
+.events{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem 2rem}
+.events h3{font-size:1rem;color:var(--sea)}
+.events ul{margin:.3rem 0 0;padding-left:1.1rem;font-size:.95rem}
+
+.trips{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.4rem 2.2rem}
+.trips p{margin:.3rem 0 0;font-size:.96rem}
+
+.facts-list{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem 2.2rem}
+.facts-list li{border-top:2px solid var(--ink);padding-top:.6rem;font-size:.97rem}
+.facts-list b{display:block;font-family:var(--display);font-size:1.5rem;letter-spacing:-.02em}
+
+details.faq{border-top:1px solid var(--line);padding:.8rem 0}
+details.faq:last-of-type{border-bottom:1px solid var(--line)}
+details.faq summary{font-family:var(--display);font-weight:600;cursor:pointer}
+details.faq p{margin:.6rem 0 0}
+
+footer{border-top:1px solid var(--line);font-family:var(--display);font-size:.88rem;color:var(--muted)}
+footer .in{max-width:1240px;margin:0 auto;padding:1.5rem 1.25rem 2.5rem;display:flex;flex-wrap:wrap;gap:1rem 2rem;justify-content:space-between}
+footer p{margin:0;max-width:64ch}
+
+
+/* Carte de la ville */
+.citymap{margin:0 0 1rem;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:.8rem}
+.citymap-bar{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:space-between;align-items:center;margin-bottom:.6rem}
+.citymap svg{display:block;width:100%;height:auto;max-height:70vh;border-radius:8px;touch-action:manipulation}
+.cm-water{fill:var(--water)}
+.cm-land{fill:var(--land);stroke:var(--line);stroke-width:2}
+.cm-label{font-family:var(--display);fill:var(--muted);font-size:22px;pointer-events:none}
+.cm-river{font-family:var(--display);fill:var(--sea);font-size:34px;font-style:italic;opacity:.7;pointer-events:none;letter-spacing:.3em}
+.cm-label.c{display:none;font-size:7.5px}
+.zc .cm-label.c{display:block}
+.zc .cm-label:not(.c),.zc .cm-river{display:none}
+.zc .cm-land{stroke-width:.7}
+.zc .mk circle.dot{stroke-width:1.2}
+.zc .mk .ring{stroke-width:1.2}
+.zc .mk.fav circle.dot{stroke-width:2}
+.mk{cursor:pointer;outline:none}
+.mk circle.dot{stroke:var(--surface);stroke-width:3}
+.mk .ring{fill:none;stroke:var(--ink);stroke-width:3;opacity:0}
+.mk:hover .ring,.mk:focus-visible .ring,.mk.sel .ring{opacity:1}
+.mk.sel circle.dot{stroke:var(--ink)}
+.mk.fav circle.dot{stroke:var(--buoy);stroke-width:5}
+.cm-legend{font-family:var(--display);font-size:.82rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:.3rem 1rem;margin:.6rem .2rem 0}
+.cm-legend span::before{content:"";display:inline-block;width:.75em;height:.75em;border-radius:50%;margin-right:.35rem;vertical-align:-.05em;background:var(--c)}
+.mapcard{border-left:4px solid var(--buoy);padding:.4rem 0 .4rem 1rem;margin:0 0 1.2rem;min-height:2.5rem}
+.mapcard h3{font-size:1.2rem}
+.mapcard p{margin:.3rem 0 0}
+.mapcard .empty{color:var(--muted);font-style:italic;margin:0}
+.actions{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.5rem}
+.btn{font-family:var(--display);font-size:.85rem;padding:.3rem .75rem;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.btn.on{background:var(--buoy);border-color:var(--buoy);color:#12313B}
+.carnet{background:var(--soft);border-radius:12px;padding:.8rem 1rem;margin:0 0 1.2rem;font-family:var(--display);font-size:.92rem}
+.carnet h3{font-size:1rem;margin-bottom:.35rem}
+.carnet .names{display:flex;flex-wrap:wrap;gap:.35rem}
+.carnet .names button{font:inherit;font-size:.85rem;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:.2rem .65rem;cursor:pointer}
+.carnet p{margin:0;color:var(--muted)}
+.totop{position:fixed;right:calc(1rem + env(safe-area-inset-right,0px));bottom:calc(1rem + env(safe-area-inset-bottom,0px));z-index:8;font-family:var(--display);font-size:.88rem;padding:.55rem .9rem;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);text-decoration:none;opacity:0;pointer-events:none;transition:opacity .2s}
+.totop.show{opacity:1;pointer-events:auto}
+@media print{.top,.toc,.filters,.citymap,.mapcard,.carnet,.totop,.actions,.tabs,#c-result,.calc{display:none!important}.body{display:block}body{background:#fff;color:#000}}
+
+
+/* --- Design v4 --- */
+.chapter::after{height:14px!important;border-radius:3px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Crect width='28' height='28' fill='%23F4F7FB'/%3E%3Cpath d='M14 2 L26 14 L14 26 L2 14 Z' fill='none' stroke='%232E5E9E' stroke-width='2'/%3E%3Ccircle cx='14' cy='14' r='4' fill='%232E5E9E'/%3E%3Ccircle cx='0' cy='0' r='5' fill='%232E5E9E'/%3E%3Ccircle cx='28' cy='0' r='5' fill='%232E5E9E'/%3E%3Ccircle cx='0' cy='28' r='5' fill='%232E5E9E'/%3E%3Ccircle cx='28' cy='28' r='5' fill='%232E5E9E'/%3E%3C/svg%3E") repeat-x left center/14px 14px!important;opacity:var(--azop)}
+.azband{height:10px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Crect width='28' height='28' fill='%23F4F7FB'/%3E%3Cpath d='M14 2 L26 14 L14 26 L2 14 Z' fill='none' stroke='%232E5E9E' stroke-width='2'/%3E%3Ccircle cx='14' cy='14' r='4' fill='%232E5E9E'/%3E%3Ccircle cx='0' cy='0' r='5' fill='%232E5E9E'/%3E%3Ccircle cx='28' cy='0' r='5' fill='%232E5E9E'/%3E%3Ccircle cx='0' cy='28' r='5' fill='%232E5E9E'/%3E%3Ccircle cx='28' cy='28' r='5' fill='%232E5E9E'/%3E%3C/svg%3E") repeat-x left center/10px 10px;opacity:var(--azop)}
+
+.sky-wrap{margin-top:1.5rem;border-radius:16px 16px 0 0;overflow:hidden}
+.sky-wrap .skyline{margin-top:0}
+.sky-note{font-family:var(--display);font-size:.8rem;color:var(--muted);text-align:right;margin:.3rem 0 0}
+.live{max-width:1240px;margin:0 auto;padding:1rem 1.25rem 0}
+.live-in{display:flex;flex-wrap:wrap;gap:.6rem 2rem;align-items:center;font-family:var(--display);background:var(--ink);color:var(--bg);border-radius:12px;padding:.8rem 1.1rem}
+.live-in b{font-size:1.25rem;letter-spacing:-.01em}
+.live-in span{font-size:.8rem;opacity:.75;display:block}
+.live-dot{width:10px;height:10px;border-radius:50%;background:var(--buoy);box-shadow:0 0 0 4px rgba(242,183,5,.25);flex-shrink:0}
+.live-note{flex:1 1 220px;font-size:.92rem;opacity:.9}
+.s-tools{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin:0 0 .8rem}
+.s-tools input,.s-tools select{font-family:var(--display);font-size:.92rem;padding:.42rem .75rem;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink)}
+.s-tools input{flex:1 1 220px;min-width:0}
+.sights li{border-left:4px solid var(--cc,transparent);padding-left:1rem}
+.rainrow{display:grid;grid-template-columns:repeat(12,1fr);gap:4px;height:48px;align-items:start;margin-top:6px;border-top:1px dashed var(--line);padding-top:4px}
+.rainrow div{display:flex;justify-content:center}
+.rainrow i{display:block;width:100%;max-width:34px;background:#5B8DC9;opacity:.75;border-radius:2px 2px 5px 5px}
+.media{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.2rem 2rem}
+.media ul{list-style:none;margin:.4rem 0 0;padding:0}
+.media li{padding:.45rem 0;border-top:1px solid var(--line);font-size:.95rem}
+.media li b{font-family:var(--display);font-weight:600}
+.media li span{display:block;color:var(--muted);font-size:.88rem}
+.beach{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem}
+.beach div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1rem}
+.beach .tags{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.5rem}
+.beach .tags span{font-family:var(--display);font-size:.75rem;padding:.12rem .5rem;border-radius:999px;background:var(--soft);color:var(--ink)}
+.beach p{margin:.35rem 0 0;font-size:.94rem}
+.vs td:first-child{color:var(--muted);font-size:.85rem;white-space:nowrap}
+.vs th:nth-child(2),.vs td:nth-child(2){border-left:3px solid var(--sea);padding-left:.7rem}
+.quiz{background:var(--surface);border:2px solid var(--ink);border-radius:14px;padding:1.2rem}
+.quiz .q{font-family:var(--display);font-weight:600;font-size:1.15rem;margin:0 0 .8rem}
+.quiz .opts{display:grid;gap:.5rem}
+.quiz .opts button{text-align:left;font-family:var(--display);font-size:.98rem;padding:.6rem .9rem;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.quiz .opts button.ok{background:#2F7D6D;color:#fff;border-color:#2F7D6D}
+.quiz .opts button.ko{background:#B5485D;color:#fff;border-color:#B5485D}
+.quiz .fb{margin:.8rem 0 0;font-size:.96rem;min-height:1.5rem}
+.quiz .qnav{display:flex;justify-content:space-between;align-items:center;margin-top:.8rem;font-family:var(--display);font-size:.88rem;color:var(--muted)}
+
+.top-in{gap:1.4rem}
+.mainnav{display:flex;gap:1.1rem;font-family:var(--display);font-size:.92rem}
+.mainnav a{color:var(--muted);text-decoration:none}
+.mainnav a:hover{color:var(--ink)}
+.theme-btn{font-family:var(--display);font-size:.85rem;padding:.4rem .75rem;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;white-space:nowrap}
+.progress{position:absolute;left:0;bottom:-1px;height:3px;width:0;background:var(--buoy)}
+.hero{padding-bottom:0}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:2.5rem;align-items:end}
+.hero-grid .map-wrap{margin:0}
+.skyline{display:block;width:100%;height:auto;margin-top:1.5rem}
+.sky-back{fill:var(--hill3)} .sky-mid{fill:var(--hill2)} .sky-mon{fill:var(--ink);opacity:.82}
+.sky-river{fill:var(--water)} .house{opacity:var(--facade)}
+.skyline.night .sky-back{fill:#1D3349}.skyline.night .sky-mid{fill:#253E55}.skyline.night .sky-river{fill:#142B42}.skyline.night .sky-mon{fill:#0A1624;opacity:.9}.skyline.night .house{opacity:.82}
+.chapter{display:flex;align-items:center;gap:1rem;margin:0 0 2rem;font-family:var(--display);font-weight:800;font-size:clamp(2.4rem,6vw,4rem);letter-spacing:-.045em;line-height:1;color:var(--sea)}
+.chapter::after{content:"";flex:1;height:3px;background:var(--ink);border-radius:2px}
+main>.chapter:not(:first-child){margin-top:4.5rem}
+.toc .grp{font-weight:600;color:var(--ink);margin:.9rem 0 .2rem;font-size:.85rem}
+.toc .grp:first-child{margin-top:0}
+.checked{display:inline-block;font-family:var(--display);font-size:.78rem;font-weight:400;letter-spacing:0;color:var(--sea);border:1px solid var(--sea);border-radius:999px;padding:.1rem .55rem;margin-left:.6rem;vertical-align:.45em}
+.quick{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;margin:0 0 2rem;border:2px solid var(--ink);border-radius:14px;overflow:hidden;background:var(--surface)}
+.quick div{padding:1rem 1.1rem;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.quick h3{font-size:.85rem;color:var(--muted);font-weight:600;margin-bottom:.25rem}
+.quick p{margin:0;font-family:var(--display);font-size:1.02rem;line-height:1.4}
+.themes{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
+.theme{background:var(--surface);border:1px solid var(--line);border-top:5px solid var(--c,var(--sea));border-radius:10px;padding:1rem}
+.theme ul{margin:.5rem 0 0;padding-left:1.1rem;font-size:.95rem}
+.theme li{margin-bottom:.25rem}
+.season{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem 2rem}
+.season p{margin:.2rem 0 0;font-size:.95rem}
+.spots{counter-reset:none;list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem 2rem}
+.spots li{border-left:3px solid var(--buoy);padding-left:.9rem;font-size:.96rem}
+.spots b{font-family:var(--display);display:block}
+.donts{list-style:none;padding:0;margin:0}
+.donts li{padding:.7rem 0 .7rem 2rem;border-top:1px solid var(--line);position:relative;font-size:.98rem}
+.donts li::before{content:"✕";position:absolute;left:.2rem;top:.7rem;font-family:var(--display);font-weight:800;color:#B5485D}
+.site-foot{border-top:3px solid var(--ink);background:var(--surface);font-family:var(--display);font-size:.9rem;color:var(--muted);margin-top:2rem}
+.site-foot .in{max-width:1240px;margin:0 auto;padding:2.2rem 1.25rem 2.5rem;display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:1.6rem 2rem}
+.site-foot h3{color:var(--ink);font-size:.95rem;margin-bottom:.5rem}
+.site-foot ul{list-style:none;margin:0;padding:0}
+.site-foot li{margin-bottom:.3rem}
+.site-foot a{color:var(--muted);text-decoration:none}
+.site-foot a:hover{color:var(--ink)}
+.site-foot .brand{margin-bottom:.6rem}
+.site-foot .legal{grid-column:1/-1;border-top:1px solid var(--line);padding-top:1rem;font-size:.82rem}
+@media (max-width:980px){.mainnav{display:none}}
+.brand,.brand svg{flex-shrink:0}
+.search{min-width:0}
+@media (max-width:600px){.theme-btn{font-size:0;padding:.35rem .6rem}.theme-btn::before{content:"◐";font-size:1.05rem}.skyline{min-height:150px}.top-in{gap:.7rem}}
+@media (max-width:860px){.hero-grid{grid-template-columns:1fr;gap:1.5rem}.site-foot .in{grid-template-columns:1fr 1fr}}
+@media (max-width:860px){
+  .body{grid-template-columns:1fr;gap:1.5rem}
+  .toc{position:static;max-height:none}
+  .toc ol{display:flex;flex-wrap:wrap;gap:.3rem;border-left:0}
+  .toc a{border:1px solid var(--line);border-radius:999px;padding:.22rem .7rem;margin:0}
+  .months{height:130px}
+  .months button{font-size:.62rem}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="#">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M2 12h20M12 2c3 3.2 3 16.8 0 20M12 2c-3 3.2-3 16.8 0 20" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="15.5" cy="8" r="2.6" fill="#F2B705"/></svg>
+      Dix Mille Escales
+    </a>
+    <nav class="mainnav" aria-label="Navigation principale"><a href="#">Destinations</a><a href="#">Carte du monde</a><a href="#">Idées de voyage</a><a href="#">Carnets</a></nav>
+    <form class="search" role="search" id="search">
+      <label for="q" class="vh">Chercher une ville</label>
+      <input id="q" type="search" placeholder="Chercher une ville parmi 10 000" autocomplete="off">
+    </form>
+    <button type="button" class="theme-btn" id="theme-btn" aria-label="Changer le thème d’affichage">Thème : auto</button>
+  </div>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <p class="search-msg" id="search-msg" aria-live="polite"></p>
+</header>
+
+<section class="hero" aria-labelledby="city-name">
+  <p class="crumbs"><a href="#">Europe</a> › <a href="#">Portugal</a> › <a href="#">Région de Lisbonne</a> › Lisbonne</p>
+  <div class="hero-grid">
+  <div>
+  <h1 class="city" id="city-name">Lisbonne</h1>
+  <p class="coords">38,72° N  /  9,14° O  ·  Lisboa en portugais</p>
+  <p class="tagline">Sept collines, des tramways jaunes, des façades d’azulejos et l’Atlantique au bout de chaque rue en pente.</p>
+  </div>
+  <figure class="map-wrap">
+    <svg id="worldmap" viewBox="0 0 360 180" role="img" aria-label="Position de Lisbonne sur une carte du monde, parmi d’autres grandes villes"></svg>
+    <figcaption class="map-caption">Chaque point est une grande ville. À terme, les 10 000 escales s’afficheront ici.</figcaption>
+  </figure>
+  </div>
+  <div class="sky-wrap">
+  <svg class="skyline" id="skyline" viewBox="0 0 1200 230" preserveAspectRatio="xMinYMax slice" aria-hidden="true">
+    <defs><linearGradient id="skyg" x1="0" y1="0" x2="0" y2="1"><stop id="sky1" offset="0" stop-color="#8EC5E8"/><stop id="sky2" offset="1" stop-color="#DCEFF7"/></linearGradient></defs>
+    <rect x="0" y="0" width="1200" height="230" fill="url(#skyg)"/>
+    <g id="stars" opacity="0"></g>
+    <circle id="sun" cx="700" cy="40" r="16" fill="#F2B705"/>
+    <path class="sky-back" d="M0 150 C120 92 220 82 330 108 C420 130 470 72 560 76 C650 80 700 118 800 112 C900 106 960 132 1200 118 V230 H0Z"/>
+    <path class="sky-mid" d="M0 178 C90 146 180 126 262 134 C330 140 362 98 422 96 C482 94 522 132 600 142 C700 152 760 128 860 136 C940 142 1000 160 1200 160 V230 H0Z"/>
+    <g class="sky-mon">
+      <path d="M380 100 h84 v-26 h-7 v7 h-8 v-7 h-8 v7 h-8 v-7 h-8 v7 h-8 v-7 h-8 v7 h-8 v-7 h-8 v7 h-7 v-7 h-6 Z"/>
+      <rect x="392" y="56" width="16" height="22"/><rect x="438" y="60" width="16" height="18"/>
+      <path d="M392 56 h4 v-5 h4 v5 h4 v-5 h4 v5 M438 60 h4 v-5 h4 v5 h4 v-5 h4 v5" />
+      <rect x="500" y="104" width="13" height="34"/><rect x="528" y="104" width="13" height="34"/><rect x="510" y="118" width="22" height="20"/>
+      <path d="M500 104 h3 v-4 h3 v4 h3 v-4 h4 v4 M528 104 h3 v-4 h3 v4 h3 v-4 h4 v4"/>
+      <rect x="642" y="116" width="58" height="30"/><path d="M648 116 a23 23 0 0 1 46 0 Z"/><rect x="667" y="84" width="8" height="12"/><path d="M671 78 l3 6 h-6 Z"/>
+    </g>
+    <g id="houses"></g>
+    <g fill="none" stroke="#C0392B" stroke-width="3" stroke-linecap="round">
+      <line x1="960" y1="70" x2="960" y2="212"/><line x1="1130" y1="70" x2="1130" y2="212"/>
+      <path d="M850 160 Q905 150 960 72 Q1045 175 1130 72 Q1170 130 1200 140"/>
+      <line x1="850" y1="172" x2="1200" y2="172" stroke-width="5"/>
+    </g>
+    <g stroke="#C0392B" stroke-width="1" opacity=".7" id="hangers"></g>
+    <rect class="sky-river" x="0" y="206" width="1200" height="24"/>
+    <g transform="translate(232 184) rotate(-4)">
+      <line x1="34" y1="-14" x2="44" y2="-4" stroke="#12313B" stroke-width="2"/>
+      <rect x="0" y="-4" width="78" height="26" rx="5" fill="#F2B705" stroke="#12313B" stroke-width="1.5"/>
+      <rect x="0" y="14" width="78" height="8" rx="2" fill="#FFFFFF" opacity=".9"/>
+      <rect x="7" y="1" width="12" height="9" rx="1.5" fill="#12313B" opacity=".75"/><rect x="24" y="1" width="12" height="9" rx="1.5" fill="#12313B" opacity=".75"/><rect x="41" y="1" width="12" height="9" rx="1.5" fill="#12313B" opacity=".75"/><rect x="58" y="1" width="12" height="9" rx="1.5" fill="#12313B" opacity=".75"/>
+      <text x="39" y="20.5" text-anchor="middle" font-family="Bricolage Grotesque, system-ui, sans-serif" font-size="6.5" font-weight="800" fill="#12313B">28 E</text>
+    </g>
+    <path d="M1010 216 h34 l-5 6 h-24 Z M1024 216 v-14 l10 12 Z" fill="var(--ink)" opacity=".75"/>
+  </svg>
+  </div>
+  <p class="sky-note" id="sky-note">Le ciel de la vignette suit l’heure réelle à Lisbonne. Lever et coucher du soleil calculés à quelques minutes près.</p>
+</section>
+
+<section class="facts" aria-label="Fiche d’identité">
+  <dl>
+    <div><dt>Pays</dt><dd>Portugal (capitale)</dd></div>
+    <div><dt>Habitants</dt><dd>≈ 545 000</dd></div>
+    <div><dt>Agglomération</dt><dd>≈ 2,9 millions</dd></div>
+    <div><dt>Superficie</dt><dd>≈ 100 km²</dd></div>
+    <div><dt>Langue</dt><dd>Portugais</dd></div>
+    <div><dt>Monnaie</dt><dd>Euro (€)</dd></div>
+    <div><dt>Heure</dt><dd>Paris − 1 h toute l’année</dd></div>
+    <div><dt>Indicatif</dt><dd>+351</dd></div>
+    <div><dt>Aéroport</dt><dd>LIS, à 7 km</dd></div>
+    <div><dt>Électricité</dt><dd>230 V, prises françaises</dd></div>
+    <div><dt>Vol depuis Paris</dt><dd>≈ 2 h 30</dd></div>
+    <div><dt>Meilleure période</dt><dd>Avril–juin, sept.–oct.</dd></div>
+  </dl>
+</section>
+
+<div class="live" aria-live="off">
+  <div class="live-in">
+    <span class="live-dot" aria-hidden="true"></span>
+    <div><span>Heure à Lisbonne</span><b id="lv-time">–</b></div>
+    <div><span>Lever du soleil</span><b id="lv-rise">–</b></div>
+    <div><span>Coucher du soleil</span><b id="lv-set">–</b></div>
+    <div><span>Durée du jour</span><b id="lv-day">–</b></div>
+    <p class="live-note" id="lv-note" style="margin:0"></p>
+  </div>
+</div>
+
+<div class="body">
+  <nav class="toc" aria-label="Sommaire">
+    <details id="toc-d"><summary>Sommaire</summary>
+    <ol>
+      <li class="grp">Découvrir</li>
+      <li><a href="#essentiel">L’essentiel</a></li>
+      <li><a href="#histoire">Histoire</a></li>
+      <li><a href="#culture">Culture et art de vivre</a></li>
+      <li><a href="#inspirations">Lire, voir, écouter</a></li>
+      <li class="grp">Visiter</li>
+      <li><a href="#voir">À voir et à faire</a></li>
+      <li><a href="#itineraires">Itinéraires</a></li>
+      <li><a href="#quartiers">Quartiers</a></li>
+      <li><a href="#plages">Plages et nature</a></li>
+      <li class="grp">Préparer</li>
+      <li><a href="#dormir">Où dormir</a></li>
+      <li><a href="#climat">Quand partir</a></li>
+      <li><a href="#agenda">Agenda de l’année</a></li>
+      <li class="grp">Vivre</li>
+      <li><a href="#manger">À table</a></li>
+      <li><a href="#sortir">Sortir</a></li>
+      <li><a href="#shopping">Shopping et marchés</a></li>
+      <li><a href="#activites">Activités</a></li>
+      <li class="grp">S’organiser</li>
+      <li><a href="#arriver">Arriver</a></li>
+      <li><a href="#bouger">Se déplacer</a></li>
+      <li><a href="#budget">Budget</a></li>
+      <li><a href="#pratique">Infos pratiques</a></li>
+      <li><a href="#securite">Sécurité et arnaques</a></li>
+      <li class="grp">Sur mesure</li>
+      <li><a href="#initie">Conseils d’initiés</a></li>
+      <li><a href="#profils">Selon votre voyage</a></li>
+      <li><a href="#lexique">Lexique</a></li>
+      <li class="grp">Plus loin</li>
+      <li><a href="#alentours">Aux alentours</a></li>
+      <li><a href="#savoir">Le saviez-vous ?</a></li>
+      <li><a href="#porto">Lisbonne ou Porto ?</a></li>
+      <li><a href="#quiz">Le quiz</a></li>
+      <li><a href="#faq">Questions fréquentes</a></li>
+    </ol>
+    </details>
+  </nav>
+
+  <main>
+
+    <p class="chapter">Découvrir</p>
+    <section id="essentiel">
+      <h2>L’essentiel</h2>
+      <div class="quick">
+        <div><h3>Idéal pour</h3><p>Week-end, couple, voyage entre amis, premier voyage en solo</p></div>
+        <div><h3>Durée conseillée</h3><p>3 jours en ville, 5 avec Sintra et la côte</p></div>
+        <div><h3>Budget par jour et par personne</h3><p>≈ 100 € serré, 180 € moyen, 370 € confort</p></div>
+        <div><h3>Ne pas manquer</h3><p>Belém, l’Alfama au crépuscule, une soirée fado</p></div>
+        <div><h3>Le petit plus</h3><p>La traversée en ferry vers Cacilhas pour voir la ville depuis le fleuve</p></div>
+        <div><h3>À éviter</h3><p>Le tram 28 en pleine journée d’août</p></div>
+      </div>
+      <div class="prose">
+        <p class="lead">Lisbonne se visite à pied, ou plutôt à mollets. La ville s’étage sur des collines qui descendent vers le Tage, un estuaire si large qu’on le prend pour la mer, avant qu’il ne s’ouvre vraiment sur l’Atlantique quelques kilomètres plus loin.</p>
+        <p>C’est l’une des plus anciennes capitales d’Europe de l’Ouest et pourtant l’une des plus neuves en apparence : le tremblement de terre de 1755 a rasé une grande partie du centre. Les ruelles tortueuses de l’Alfama ont survécu ; la Baixa, reconstruite juste après en damier rationnel, en est l’exact contraire. Entre les deux, une ville de belvédères, de tramways centenaires, de pâtisseries et de mélancolie chantée, le fado.</p>
+        <p>Trois jours suffisent pour les classiques, cinq pour prendre le rythme et ajouter Sintra ou la côte. On mange tard, on boit un café debout au comptoir pour moins d’un euro et demi, et le soir on suit la foule vers les belvédères pour le coucher du soleil.</p>
+      </div>
+      <div class="proscons">
+        <div><h3>On aime</h3><ul class="small"><li>La lumière, réputée parmi les plus belles d’Europe.</li><li>Une ville compacte où presque tout se fait à pied.</li><li>La cuisine simple et généreuse, le poisson, les pâtisseries.</li><li>L’océan et des plages à 30 minutes du centre.</li><li>Un hiver doux, idéal pour un week-end hors saison.</li></ul></div>
+        <div><h3>On aime moins</h3><ul class="small"><li>Les pentes et les pavés glissants, éprouvants pour certains.</li><li>La foule dans le tram 28 et à Belém en été.</li><li>Des prix d’hébergement qui ont beaucoup augmenté.</li><li>Les pickpockets dans les lieux très fréquentés.</li><li>La pluie fréquente de novembre à février.</li></ul></div>
+      </div>
+    </section>
+
+    <section id="histoire">
+      <h2>Histoire</h2>
+      <p class="prose">Trois mille ans d’histoire, un âge d’or maritime, une catastrophe fondatrice et une révolution pacifique. Les dates clés pour comprendre ce que l’on voit dans les rues.</p>
+      <ol class="timeline prose" id="timeline"></ol>
+    </section>
+
+    <section id="culture">
+      <h2>Culture et art de vivre</h2>
+      <div class="cols2">
+        <div><h3>Le fado</h3><p class="small">Chant mélancolique accompagné de la guitare portugaise à douze cordes, né dans les quartiers populaires au XIXᵉ siècle et inscrit au patrimoine culturel immatériel de l’UNESCO en 2011. Amália Rodrigues (1920-1999) en reste la voix mythique. On l’écoute dans les casas de fado de l’Alfama et de la Mouraria, ou en version amateur, le fado vadio, dans de petites tavernes.</p></div>
+        <div><h3>La saudade</h3><p class="small">Mot réputé intraduisible : un mélange de nostalgie, de manque et de douceur, qui irrigue le fado, la littérature et une certaine manière de regarder le fleuve. Les Lisboètes en parlent avec humour, mais le sentiment est bien réel.</p></div>
+        <div><h3>Les azulejos</h3><p class="small">Carreaux de faïence peints, hérités des influences mauresques puis développés à partir du XVIᵉ siècle. Ils couvrent façades, églises, gares et stations de métro. Ne détachez jamais un carreau abîmé : le vol d’azulejos est un vrai fléau et leur commerce est encadré.</p></div>
+        <div><h3>La calçada portuguesa</h3><p class="small">Les trottoirs en mosaïque de calcaire blanc et de basalte noir, posés à la main par des calceteiros. Superbes, mais très glissants par temps de pluie : de bonnes semelles sont indispensables.</p></div>
+        <div><h3>Les écrivains</h3><p class="small">Fernando Pessoa (1888-1935), poète aux multiples hétéronymes, est partout : statue devant le café A Brasileira, maison-musée à Campo de Ourique. José Saramago, prix Nobel de littérature 1998, a sa fondation dans la Casa dos Bicos. À lire avant de partir : <i>Le Livre de l’intranquillité</i> (Pessoa) ou <i>L’Année de la mort de Ricardo Reis</i> (Saramago).</p></div>
+        <div><h3>Le football</h3><p class="small">La ville vit au rythme du derby entre le Benfica (stade da Luz) et le Sporting (stade José Alvalade). Les deux stades se visitent ; assister à un match est une expérience à part, surtout un derby.</p></div>
+        <div><h3>Le rythme de la journée</h3><p class="small">Café au comptoir le matin, déjeuner entre 12 h 30 et 14 h 30, dîner rarement avant 20 h. Le dimanche, beaucoup de petits commerces ferment et les familles se retrouvent à table ou dans les parcs.</p></div>
+        <div><h3>Une ville métissée</h3><p class="small">Les liens avec le Brésil, l’Angola, le Mozambique, le Cap-Vert ou Goa se lisent dans la musique, la cuisine et les quartiers, notamment Mouraria et Arroios, parmi les plus cosmopolites d’Europe.</p></div>
+      </div>
+    </section>
+
+    <section id="inspirations">
+      <h2>Lire, voir, écouter</h2>
+      <p class="prose">Pour arriver à Lisbonne avec déjà un peu de saudade dans les bagages.</p>
+      <div class="media">
+        <div><h3>Écouter</h3><ul>
+          <li><b>Amália Rodrigues</b><span>La reine du fado, à découvrir par ses enregistrements des années 1950 et 1960.</span></li>
+          <li><b>Carlos do Carmo</b><span>Le grand fadiste de Lisbonne, chantre de la ville.</span></li>
+          <li><b>Mariza, Ana Moura, Camané</b><span>Le renouveau du fado depuis les années 2000.</span></li>
+          <li><b>Carminho</b><span>Une voix majeure de la nouvelle génération.</span></li>
+          <li><b>Madredeus</b><span>Musique atmosphérique rendue célèbre par le film <i>Lisbon Story</i>.</span></li>
+          <li><b>António Zambujo</b><span>Entre fado, bossa nova et chant d’Alentejo.</span></li>
+        </ul></div>
+        <div><h3>Lire</h3><ul>
+          <li><b>Fernando Pessoa</b><span><i>Le Livre de l’intranquillité</i>, carnet d’un employé de bureau de la Baixa.</span></li>
+          <li><b>José Saramago</b><span><i>L’Année de la mort de Ricardo Reis</i>, Lisbonne en 1936.</span></li>
+          <li><b>Antonio Tabucchi</b><span><i>Pereira prétend</i> et <i>Requiem</i>, deux romans lisboètes d’un Italien amoureux de la ville.</span></li>
+          <li><b>Pascal Mercier</b><span><i>Train de nuit pour Lisbonne</i>, un best-seller entre Berne et Lisbonne.</span></li>
+          <li><b>Eça de Queirós</b><span><i>Les Maia</i>, la grande fresque de la bourgeoisie lisboète du XIXᵉ siècle.</span></li>
+        </ul></div>
+        <div><h3>Voir</h3><ul>
+          <li><b>Dans la ville blanche</b><span>Alain Tanner, 1983 : un marin suisse se perd dans Lisbonne.</span></li>
+          <li><b>Lisbon Story</b><span>Wim Wenders, 1994 : un ingénieur du son à la recherche des sons de la ville.</span></li>
+          <li><b>Pereira prétend</b><span>Roberto Faenza, 1995, avec Marcello Mastroianni.</span></li>
+          <li><b>Train de nuit pour Lisbonne</b><span>Bille August, 2013, d’après le roman de Pascal Mercier.</span></li>
+        </ul></div>
+      </div>
+    </section>
+
+    <p class="chapter">Visiter</p>
+    <section id="voir">
+      <h2>À voir et à faire</h2>
+      <p class="prose">Monuments, musées, belvédères, églises, parcs et expériences. Filtrez selon vos envies ; un point jaune signale les incontournables d’une première visite.</p>
+      <div class="filters" id="filters" role="group" aria-label="Filtrer les lieux"></div>
+      <figure class="citymap" style="margin-inline:0">
+        <div class="citymap-bar">
+          <div class="tabs" id="zoom" role="group" aria-label="Zone affichée" style="margin:0"></div>
+          <span class="meta" id="mapcount"></span>
+        </div>
+        <svg id="citymap" viewBox="0 0 1170 1100" role="group" aria-label="Carte de Lisbonne avec les lieux à voir"></svg>
+        <figcaption class="cm-legend" id="cm-legend"></figcaption>
+      </figure>
+      <div class="mapcard" id="mapcard" aria-live="polite"><p class="empty">Touchez un point de la carte pour afficher le lieu.</p></div>
+      <div class="carnet" id="carnet" aria-live="polite"></div>
+      <div class="s-tools">
+        <label for="s-q" class="vh">Chercher un lieu</label><input id="s-q" type="search" placeholder="Chercher un lieu, un quartier…">
+        <label for="s-sort" class="vh">Trier</label><select id="s-sort"><option value="rec">Recommandés d’abord</option><option value="quartier">Par quartier</option><option value="duree">Les plus courts d’abord</option><option value="free">Gratuits d’abord</option><option value="az">De A à Z</option></select>
+      </div>
+      <p class="count" id="count" aria-live="polite"></p>
+      <ul class="sights" id="sights"></ul>
+      <p class="note" style="margin-top:.8rem">Beaucoup de musées nationaux ferment le lundi. Horaires et tarifs à vérifier avant la visite : ils changent régulièrement.</p>
+    </section>
+
+    <section id="itineraires">
+      <h2>Itinéraires</h2>
+      <p class="prose">Des programmes testés pour optimiser les déplacements et éviter de monter trois fois la même colline. Choisissez la durée de votre séjour.</p>
+      <div class="tabs" id="tabs" role="group" aria-label="Durée du séjour"></div>
+      <div class="days" id="days"></div>
+      <h4 style="margin-top:2.2rem">Itinéraires à thème</h4>
+      <div class="themes">
+        <div class="theme" style="--c:#2F7D6D"><h3>Lisbonne gratuite</h3><ul><li>Les miradouros, tous gratuits</li><li>L’église des Hiéronymites et la nef de la cathédrale</li><li>Le jardin de la Gulbenkian</li><li>Le toit du MAAT et la rose des vents de Belém</li><li>Les stations de métro décorées</li><li>LX Factory et Feira da Ladra</li></ul></div>
+        <div class="theme" style="--c:#2E6DB4"><h3>Un jour de pluie</h3><ul><li>Gulbenkian le matin</li><li>Déjeuner au Time Out Market</li><li>Musée de l’Azulejo ou Art ancien</li><li>Océanarium en fin d’après-midi</li><li>Dîner et fado au sec, dans l’Alfama</li></ul></div>
+        <div class="theme" style="--c:#5E9E3A"><h3>Avec des enfants</h3><ul><li>Océanarium et téléphérique</li><li>Pavillon de la connaissance</li><li>Tram 28 tôt le matin</li><li>Musée des Carrosses</li><li>Ferry et glace à Cacilhas</li><li>Plage de Carcavelos ou Cascais</li></ul></div>
+        <div class="theme" style="--c:#7B5EA7"><h3>Sur la piste des azulejos</h3><ul><li>Musée national de l’Azulejo</li><li>Cloîtres de São Vicente de Fora</li><li>Façades du quartier d’Alfama et de Graça</li><li>Palais Fronteira</li><li>Stations de métro Parque et Olaias</li></ul></div>
+        <div class="theme" style="--c:#E0A800"><h3>Couchers de soleil</h3><ul><li>Senhora do Monte, le plus panoramique</li><li>Santa Catarina, le plus détendu</li><li>Le toit du MAAT, au ras de l’eau</li><li>Le quai de Cacilhas, face à la ville</li><li>Le Cristo Rei, pour le pont en contre-jour</li></ul></div>
+        <div class="theme" style="--c:#B5485D"><h3>Lisbonne gourmande</h3><ul><li>Pastel de nata à Belém</li><li>Ginjinha au Largo de São Domingos</li><li>Marché de Campo de Ourique</li><li>Bifana au comptoir</li><li>Fruits de mer à Intendente</li><li>Porto tónico en terrasse</li></ul></div>
+      </div>
+    </section>
+
+    <section id="quartiers">
+      <h2>Quartiers</h2>
+      <p class="prose">Lisbonne est une ville de bairros, chacun avec son caractère. L’étiquette indique si le quartier est un bon choix pour loger.</p>
+      <div class="hoods" id="hoods"></div>
+    </section>
+
+    <section id="plages">
+      <h2>Plages et nature</h2>
+      <p class="prose">Lisbonne n’a pas de plage en ville, mais l’océan commence à 25 minutes de train. Drapeaux de baignade : vert, baignade autorisée ; jaune, sans nager ; rouge, interdite. Les courants sont forts sur la côte atlantique.</p>
+      <div class="beach">
+        <div><h3>Carcavelos</h3><div class="tags"><span>≈ 25 min en train</span><span>Surf</span><span>Familles</span></div><p>La grande plage de sable la plus proche, au pied d’un fort du XVIᵉ siècle. Nombreuses écoles de surf, ambiance jeune.</p></div>
+        <div><h3>Cascais : Rainha et Conceição</h3><div class="tags"><span>≈ 40 min en train</span><span>Eau calme</span><span>Enfants</span></div><p>Petites criques abritées en pleine ville, parfaites avec des enfants, très fréquentées l’été.</p></div>
+        <div><h3>Guincho</h3><div class="tags"><span>Bus depuis Cascais</span><span>Kitesurf</span><span>Sauvage</span></div><p>Plage sauvage face à l’océan, adossée à la Serra de Sintra. Vent fort, vagues et courants : pour admirer ou pour les sportifs.</p></div>
+        <div><h3>Costa da Caparica</h3><div class="tags"><span>≈ 40 min en bus</span><span>Immense</span><span>Bars de plage</span></div><p>Des kilomètres de sable sur la rive sud, avec des bars de plage. Plus on va vers le sud, plus c’est calme.</p></div>
+        <div><h3>Praia Grande et Adraga</h3><div class="tags"><span>Côte de Sintra</span><span>Falaises</span><span>Voiture conseillée</span></div><p>Plages encadrées de falaises spectaculaires. À Praia Grande, des empreintes de dinosaures sont visibles sur la falaise.</p></div>
+        <div><h3>Arrábida : Portinho et Galapinhos</h3><div class="tags"><span>≈ 45 min en voiture</span><span>Eau turquoise</span><span>Accès réglementé l’été</span></div><p>Les plus belles plages de la région, au pied d’une montagne couverte de maquis. En été, l’accès en voiture est limité : renseignez-vous sur les navettes.</p></div>
+      </div>
+      <div class="cols2" style="margin-top:1.4rem">
+        <div><h3>Monsanto</h3><p class="small">Le parc forestier de la ville, environ 900 hectares, soit près de trois fois Central Park. Sentiers, pistes cyclables, belvédères et aires de pique-nique.</p></div>
+        <div><h3>Le bord du Tage</h3><p class="small">Une promenade continue, à pied ou à vélo, du Cais do Sodré à Belém et au-delà. Au Parque das Nações, des kilomètres de quais aménagés et des jardins.</p></div>
+      </div>
+    </section>
+
+    <p class="chapter">Préparer</p>
+    <section id="dormir">
+      <h2>Où dormir</h2>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th scope="col">Votre profil</th><th scope="col">Quartiers conseillés</th><th scope="col">Pourquoi</th></tr></thead>
+          <tbody>
+            <tr><td>Premier séjour</td><td>Baixa, Chiado</td><td>Au centre de tout, plat (pour Baixa), métro et trams à proximité.</td></tr>
+            <tr><td>Couple, charme</td><td>Alfama, Príncipe Real, Lapa</td><td>Ruelles, vues sur le Tage, hôtels de caractère.</td></tr>
+            <tr><td>Famille</td><td>Avenida da Liberdade, Parque das Nações, Campo de Ourique</td><td>Calme, espace, parcs, accès faciles en métro.</td></tr>
+            <tr><td>Petit budget</td><td>Arroios, Anjos, Intendente</td><td>Prix plus doux, quartiers vivants, métro vert.</td></tr>
+            <tr><td>Fête</td><td>Cais do Sodré, en bordure du Bairro Alto</td><td>Sorties à pied, mais choisissez une rue calme.</td></tr>
+            <tr><td>Voyage d’affaires</td><td>Saldanha, Marquês de Pombal, Parque das Nações</td><td>Bureaux, centre de congrès, accès aéroport rapide.</td></tr>
+            <tr><td>Escale courte</td><td>Près d’une station de la ligne rouge</td><td>Liaison directe avec l’aéroport.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="warn prose small"><b>À savoir.</b> Une taxe touristique municipale de 4 € par personne et par nuit s’ajoute au prix de la chambre, pour les plus de 13 ans et dans la limite de 7 nuits. Dans l’Alfama et le Bairro Alto, demandez une chambre côté cour : le bruit nocturne est réel. Beaucoup d’immeubles anciens n’ont pas d’ascenseur.</div>
+    </section>
+
+    <section id="climat">
+      <h2>Quand partir</h2>
+      <div class="panel">
+        <div class="months" id="months" role="group" aria-label="Températures maximales moyennes par mois"></div>
+        <div class="rainrow" id="rainrow" aria-hidden="true"></div>
+        <p class="legend"><span style="--c:var(--sea)">Période idéale</span><span style="--c:var(--dot)">Possible</span><span style="--c:var(--buoy)">Mois sélectionné</span><span style="--c:#5B8DC9">Pluie (barres du bas)</span></p>
+        <div class="month-detail" id="month-detail" aria-live="polite"></div>
+      </div>
+      <div class="cols2" style="margin-top:1.4rem">
+        <div><h3>Le climat en bref</h3><p class="small">Climat méditerranéen sous influence atlantique : étés chauds et secs, hivers doux et pluvieux, gel quasi inconnu. Le vent du nord (nortada) rafraîchit souvent les soirées d’été. Lors des épisodes de chaleur, le thermomètre peut dépasser 35 °C.</p></div>
+        <div><h3>L’océan</h3><p class="small">L’Atlantique reste frais toute l’année, autour de 19 à 20 °C au mieux en fin d’été. Les plages de la côte de Cascais sont plus abritées, celles de la Costa da Caparica plus vastes et plus exposées aux vagues.</p></div>
+      </div>
+      <h4>Que mettre dans sa valise</h4>
+      <div class="season">
+        <div><h3>Hiver (déc.–fév.)</h3><p>Imperméable, pull, chaussures étanches à semelles adhérentes. Les logements anciens sont mal chauffés : prévoyez de quoi dormir au chaud.</p></div>
+        <div><h3>Printemps (mars–mai)</h3><p>Tenue en couches, coupe-vent pour les belvédères, lunettes de soleil, un parapluie compact.</p></div>
+        <div><h3>Été (juin–août)</h3><p>Vêtements légers, chapeau, crème solaire, gourde, et une petite laine : les soirées ventées surprennent.</p></div>
+        <div><h3>Automne (sept.–nov.)</h3><p>Tenue de mi-saison, veste de pluie à partir d’octobre, maillot de bain en septembre.</p></div>
+      </div>
+      <p class="note" style="margin-top:.8rem">Moyennes climatiques indicatives.</p>
+    </section>
+
+    <section id="agenda">
+      <h2>Agenda de l’année</h2>
+      <div class="events" id="events"></div>
+      <h4>Jours fériés au Portugal</h4>
+      <div class="table-scroll">
+        <table>
+          <tbody>
+            <tr><td class="num">1ᵉʳ janvier</td><td>Jour de l’an</td><td class="num">10 juin</td><td>Fête nationale (jour du Portugal et de Camões)</td></tr>
+            <tr><td class="num">Variable</td><td>Vendredi saint, Pâques, Fête-Dieu</td><td class="num">13 juin</td><td>Saint-Antoine, férié à Lisbonne seulement</td></tr>
+            <tr><td class="num">25 avril</td><td>Jour de la Liberté (révolution des Œillets)</td><td class="num">15 août</td><td>Assomption</td></tr>
+            <tr><td class="num">1ᵉʳ mai</td><td>Fête du Travail</td><td class="num">5 octobre</td><td>Proclamation de la République</td></tr>
+            <tr><td class="num">1ᵉʳ novembre</td><td>Toussaint</td><td class="num">1ᵉʳ décembre</td><td>Restauration de l’indépendance</td></tr>
+            <tr><td class="num">8 décembre</td><td>Immaculée Conception</td><td class="num">25 décembre</td><td>Noël</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note" style="margin-top:.6rem">Le mardi gras (Carnaval) est souvent chômé sans être officiellement férié.</p>
+    </section>
+
+    <p class="chapter">Vivre</p>
+    <section id="manger">
+      <h2>À table</h2>
+      <p class="prose">Une cuisine de produits : poisson grillé, morue sous toutes ses formes, porc, riz crémeux, huile d’olive et pâtisseries aux jaunes d’œufs héritées des couvents.</p>
+      <h4>Plats salés</h4>
+      <div class="dishes" id="dishes-main"></div>
+      <h4>Douceurs</h4>
+      <div class="dishes" id="dishes-sweet"></div>
+      <h4>Boissons</h4>
+      <div class="dishes" id="dishes-drink"></div>
+      <h4>Commander un café comme un Lisboète</h4>
+      <div class="table-scroll">
+        <table>
+          <tbody>
+            <tr><td><b>Uma bica</b></td><td>L’expresso, le café de base à Lisbonne.</td></tr>
+            <tr><td><b>Um pingado</b></td><td>Un expresso avec une goutte de lait.</td></tr>
+            <tr><td><b>Um garoto</b></td><td>Petit café au lait, plus de lait que de café.</td></tr>
+            <tr><td><b>Uma meia de leite</b></td><td>Moitié café, moitié lait, en tasse.</td></tr>
+            <tr><td><b>Um galão</b></td><td>Café au lait servi dans un grand verre.</td></tr>
+            <tr><td><b>Um abatanado</b></td><td>Café allongé à l’eau chaude, proche de l’americano.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h4>Les codes du restaurant</h4>
+      <div class="cols2 small">
+        <p><b>Le couvert.</b> Pain, beurre, olives, fromage ou pâté arrivent souvent sans être demandés. Ils sont facturés si vous y touchez ; vous pouvez les refuser poliment ou les laisser de côté.</p>
+        <p><b>Le prato do dia.</b> Le plat du jour, servi le midi en semaine dans les tascas, est la meilleure affaire de la ville. Il comprend parfois boisson et café.</p>
+        <p><b>Les horaires.</b> Déjeuner de 12 h 30 à 15 h, dîner de 19 h 30 à 22 h 30. Entre les deux, beaucoup de cuisines ferment ; les pastelarias prennent le relais.</p>
+        <p><b>L’addition.</b> On la demande (« a conta, se faz favor »). Elle n’arrive pas sans demande, ce n’est pas de la lenteur mais de la politesse.</p>
+        <p><b>Les fruits de mer.</b> Ils se paient souvent au poids, indiqué au kilo sur la carte. Demandez le poids avant de commander pour éviter les surprises.</p>
+        <p><b>Les tables du centre.</b> Méfiez-vous des rabatteurs avec menus plastifiés en plusieurs langues rue Augusta : qualité inégale et prix gonflés.</p>
+      </div>
+      <h4>Des institutions</h4>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th scope="col">Adresse</th><th scope="col">Quartier</th><th scope="col">Pour quoi</th></tr></thead>
+          <tbody>
+            <tr><td>Pastéis de Belém</td><td>Belém</td><td>La recette historique des pastéis, depuis 1837.</td></tr>
+            <tr><td>Manteigaria</td><td>Chiado et ailleurs</td><td>Des pastéis de nata parmi les plus réputés du centre.</td></tr>
+            <tr><td>Confeitaria Nacional</td><td>Praça da Figueira</td><td>L’une des plus anciennes pâtisseries de la ville (1829).</td></tr>
+            <tr><td>Café A Brasileira</td><td>Chiado</td><td>Café historique de 1905, statue de Pessoa en terrasse.</td></tr>
+            <tr><td>A Ginjinha</td><td>Largo de São Domingos</td><td>Minuscule comptoir de ginjinha ouvert depuis le XIXᵉ siècle.</td></tr>
+            <tr><td>Cervejaria Ramiro</td><td>Intendente</td><td>Le temple des fruits de mer, avec une prego en dessert.</td></tr>
+            <tr><td>Time Out Market</td><td>Cais do Sodré</td><td>Halle gourmande avec des stands de chefs, pratique en groupe.</td></tr>
+            <tr><td>Casa do Alentejo</td><td>Restauradores</td><td>Cuisine de l’Alentejo dans un palais néo-mauresque caché.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note" style="margin-top:.6rem">Une sélection volontairement limitée à des adresses anciennes et stables. Les adresses récentes seront mises à jour régulièrement.</p>
+    </section>
+
+    <section id="sortir">
+      <h2>Sortir</h2>
+      <div class="cols2">
+        <div><h3>Écouter du fado</h3><p class="small">Dans l’Alfama, la Mouraria et le Bairro Alto. Les casas de fado professionnelles proposent dîner-spectacle (plus cher, mais les meilleurs fadistes) ; les tascas de fado vadio accueillent des amateurs de quartier, ambiance plus authentique. Silence obligatoire pendant le chant.</p></div>
+        <div><h3>Bairro Alto</h3><p class="small">À partir de 22 h, les rues se remplissent : on achète un verre au comptoir et on boit dehors. Très animé le jeudi, vendredi et samedi, bruyant et parfois débordant.</p></div>
+        <div><h3>Cais do Sodré</h3><p class="small">L’ancien quartier des marins, autour de la rue Nova do Carvalho et de sa chaussée peinte en rose. Bars, clubs et concerts jusqu’à l’aube.</p></div>
+        <div><h3>Les rooftops et miradouros</h3><p class="small">Pour l’apéritif au coucher du soleil : terrasses d’hôtels, kiosques des belvédères (São Pedro de Alcântara, Graça, Santa Catarina) et toits-terrasses de la Baixa.</p></div>
+        <div><h3>Clubs</h3><p class="small">Lux Frágil, face au Tage près de Santa Apolónia, est l’un des clubs les plus célèbres d’Europe. La scène électronique se joue aussi à Marvila et Cais do Sodré.</p></div>
+        <div><h3>Culture</h3><p class="small">Opéra au Teatro Nacional de São Carlos, théâtre au D. Maria II sur le Rossio, concerts classiques à la Fondation Gulbenkian, grandes salles au Coliseu dos Recreios et à l’arène du Parque das Nações.</p></div>
+      </div>
+    </section>
+
+    <section id="shopping">
+      <h2>Shopping et marchés</h2>
+      <div class="cols2">
+        <div><h3>Que rapporter</h3><p class="small">Conserves de poisson aux emballages illustrés, azulejos neufs ou reproductions, objets en liège, porcelaine Vista Alegre, savons Claus Porto, vin de Porto et vinho verde, fleur de sel de l’Algarve, coqs de Barcelos, produits du terroir.</p></div>
+        <div><h3>Feira da Ladra</h3><p class="small">Le marché aux puces le plus célèbre, au Campo de Santa Clara, derrière São Vicente : mardi et samedi, du matin au début d’après-midi. Bric-à-brac, vinyles, azulejos (attention à leur provenance).</p></div>
+        <div><h3>Les marchés couverts</h3><p class="small">Mercado da Ribeira (Cais do Sodré) pour les produits frais le matin, Mercado de Campo de Ourique pour un déjeuner de quartier, Mercado de Arroios pour une ambiance locale.</p></div>
+        <div><h3>Les rues commerçantes</h3><p class="small">Rua Augusta et Chiado pour les enseignes, Avenida da Liberdade pour le luxe, Príncipe Real pour les créateurs (dont la galerie Embaixada dans un palais), LX Factory pour les concept stores.</p></div>
+        <div><h3>Les librairies</h3><p class="small">La Livraria Bertrand du Chiado, fondée en 1732, est reconnue comme la plus ancienne librairie encore en activité au monde. Ler Devagar, à la LX Factory, occupe une ancienne imprimerie.</p></div>
+        <div><h3>Les horaires</h3><p class="small">Commerces de 10 h à 19 h environ, souvent fermés le dimanche. Les centres commerciaux (Colombo, Amoreiras, Vasco da Gama) ouvrent tous les jours jusqu’à 23 h.</p></div>
+      </div>
+    </section>
+
+    <section id="activites">
+      <h2>Activités</h2>
+      <div class="cols2">
+        <div><h3>Surfer</h3><p class="small">Cours pour débutants toute l’année à Carcavelos et à la Costa da Caparica, combinaison fournie. Ericeira, plus au nord, est réservée aux surfeurs confirmés.</p></div>
+        <div><h3>Pédaler le long du Tage</h3><p class="small">Une piste cyclable plate relie le centre à Belém et au-delà vers Algés. Vélos Gira ou location à la journée ; vers Cascais, la piste longe l’océan.</p></div>
+        <div><h3>Naviguer au coucher du soleil</h3><p class="small">Balades en voilier sur le Tage au départ des marinas de Belém et de Santo Amaro, avec passage sous le pont du 25-Avril.</p></div>
+        <div><h3>Cuisiner</h3><p class="small">Ateliers de pastel de nata ou de cuisine portugaise, souvent suivis d’une dégustation. Une bonne idée pour un jour de pluie.</p></div>
+        <div><h3>Peindre un azulejo</h3><p class="small">Des ateliers proposent de peindre son propre carreau, cuit puis récupéré quelques jours plus tard.</p></div>
+        <div><h3>Courir</h3><p class="small">Le bord du Tage à l’aube, les allées de Monsanto ou le grand parc Eduardo VII. En octobre, le marathon traverse la ville.</p></div>
+        <div><h3>Voir un match</h3><p class="small">Benfica au stade da Luz, Sporting à Alvalade : billets en ligne ou aux guichets, visite des stades et musées les autres jours.</p></div>
+        <div><h3>Suivre une visite guidée</h3><p class="small">Visites thématiques à pied (histoire, street art, fado, cuisine) et visites gratuites au pourboire au départ de la Praça do Comércio ou du Largo de Camões.</p></div>
+      </div>
+    </section>
+
+    <p class="chapter">S’organiser</p>
+    <section id="arriver">
+      <h2>Arriver</h2>
+      <div class="cols2">
+        <div><h3>En avion</h3><p class="small">L’aéroport Humberto Delgado (LIS) est l’un des plus proches d’un centre-ville en Europe. La ligne rouge du métro part du terminal 1 : environ 20 minutes jusqu’à Alameda ou Saldanha, avec correspondances vers le reste du réseau. Taxis et VTC devant les terminaux ; le terminal 2, réservé à certaines compagnies à bas prix, est relié au terminal 1 par navette gratuite.</p></div>
+        <div><h3>En train</h3><p class="small">Gares principales : Santa Apolónia (centre, au bord du Tage) et Oriente (Parque das Nações), pour Porto, Coimbra, l’Algarve. Pas de liaison directe depuis la France : comptez plusieurs correspondances via l’Espagne.</p></div>
+        <div><h3>En car</h3><p class="small">Les compagnies internationales arrivent surtout à Sete Rios (métro Jardim Zoológico) et à Oriente.</p></div>
+        <div><h3>En voiture</h3><p class="small">Autoroutes à péage électronique. Inutile en ville : circulation dense, stationnement rare et cher, rues très étroites. Louez plutôt pour les excursions, au départ de l’aéroport.</p></div>
+        <div><h3>En bateau</h3><p class="small">Les paquebots de croisière accostent au terminal de Santa Apolónia, à deux pas de l’Alfama. Une taxe de 2 € par passager en escale est prélevée.</p></div>
+      </div>
+    </section>
+
+    <section id="bouger">
+      <h2>Se déplacer <span class="checked">Vérifié en novembre 2026</span></h2>
+      <p class="prose">Un réseau simple une fois qu’on a compris la carte Navegante : une carte rechargeable de 0,50 €, valable un an, qui sert pour le métro, les bus, les tramways, les funiculaires, les ferries et les trains de banlieue.</p>
+      <h4>Les tarifs en 2026</h4>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th scope="col">Titre</th><th scope="col">Prix</th><th scope="col">Validité</th></tr></thead>
+          <tbody>
+            <tr><td>Carte Navegante occasionnelle</td><td class="num">0,50 €</td><td>Rechargeable, valable 1 an</td></tr>
+            <tr><td>Ticket Carris/Métro</td><td class="num">1,90 €</td><td>1 h de trajet</td></tr>
+            <tr><td>Zapping (crédit sur la carte), trajet métro ou bus</td><td class="num">1,72 €</td><td>Le moins cher au trajet</td></tr>
+            <tr><td>Pass 24 h Carris/Métro</td><td class="num">7,25 €</td><td>Métro, bus, trams, funiculaires</td></tr>
+            <tr><td>Pass 24 h Carris/Métro/Transtejo</td><td class="num">10,35 €</td><td>+ ferry Cais do Sodré–Cacilhas</td></tr>
+            <tr><td>Pass 24 h Carris/Métro/trains CP</td><td class="num">11,40 €</td><td>+ trains de Sintra, Cascais, Azambuja</td></tr>
+            <tr><td>Ticket acheté dans le tram</td><td class="num">≈ 3,30 €</td><td>À éviter : nettement plus cher</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note" style="margin-top:.5rem">Tarifs en vigueur depuis le 1ᵉʳ janvier 2026, susceptibles d’évoluer.</p>
+      <h4>De l’aéroport au centre</h4>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th scope="col">Moyen</th><th scope="col">Durée</th><th scope="col">Coût</th><th scope="col">Pour qui</th></tr></thead>
+          <tbody>
+            <tr><td>Métro, ligne rouge</td><td class="num">≈ 20 à 30 min</td><td class="num">1,90 € + carte 0,50 €</td><td>Bagages légers, tout le monde jusqu’à 1 h du matin</td></tr>
+            <tr><td>Taxi</td><td class="num">≈ 15 à 25 min</td><td class="num">≈ 15 à 25 €</td><td>Arrivée tardive, gros bagages, familles</td></tr>
+            <tr><td>VTC (Uber, Bolt)</td><td class="num">≈ 15 à 25 min</td><td class="num">Variable selon l’heure</td><td>Prix fixé à l’avance dans l’application</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note" style="margin-top:.5rem">Taxi et VTC : estimations hors heures de pointe. Prenez les taxis à la station officielle, jamais un chauffeur qui vous aborde dans le hall.</p>
+      <h4>Le métro</h4>
+      <p class="prose small">Quatre lignes, de 6 h 30 à 1 h (heure de départ des derniers trains). De nombreuses stations sont décorées par des artistes, un musée souterrain gratuit.</p>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th scope="col">Ligne</th><th scope="col">Utile pour</th></tr></thead>
+          <tbody>
+            <tr><td><span class="line-dot" style="background:#2E6DB4"></span>Bleue (Gaivota)</td><td>Baixa-Chiado, Restauradores, Avenida da Liberdade, Marquês de Pombal, Jardim Zoológico (gare routière Sete Rios)</td></tr>
+            <tr><td><span class="line-dot" style="background:#E6B10E"></span>Jaune (Girassol)</td><td>Marquês de Pombal, Saldanha, Campo Grande, Rato (Príncipe Real)</td></tr>
+            <tr><td><span class="line-dot" style="background:#1E9B6B"></span>Verte (Caravela)</td><td>Cais do Sodré, Baixa-Chiado, Rossio, Martim Moniz, Anjos, Arroios, Alameda</td></tr>
+            <tr><td><span class="line-dot" style="background:#D63B3B"></span>Rouge (Oriente)</td><td>Aéroport, Oriente (Parque das Nações), Alameda, Saldanha, São Sebastião (Gulbenkian)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h4>Les tramways et funiculaires</h4>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th scope="col">Ligne</th><th scope="col">Parcours et intérêt</th></tr></thead>
+          <tbody>
+            <tr><td class="num">28E</td><td>La ligne mythique : Martim Moniz, Graça, Alfama, Baixa, Chiado, Estrela, Campo de Ourique. Bondée en journée : partez tôt ou montez au terminus.</td></tr>
+            <tr><td class="num">15E</td><td>Tram moderne de la Praça da Figueira à Belém par le bord du Tage : le plus pratique pour les monuments de Belém.</td></tr>
+            <tr><td class="num">12E</td><td>Petite boucle autour du château, de Martim Moniz à l’Alfama, moins prise d’assaut que le 28.</td></tr>
+            <tr><td class="num">24E</td><td>De Praça Luís de Camões (Chiado) à Campolide via Príncipe Real et Amoreiras.</td></tr>
+            <tr><td class="num">18E et 25E</td><td>Lignes moins touristiques vers Ajuda et Campo de Ourique, par Santos et Lapa.</td></tr>
+            <tr><td>Elevador de Santa Justa</td><td>Ascenseur métallique de 1902 entre la Baixa et le Carmo.</td></tr>
+            <tr><td>Elevador da Bica</td><td>Le funiculaire le plus photographié, entre la rue de São Paulo et le Bairro Alto.</td></tr>
+            <tr><td>Elevador da Lavra</td><td>Le plus ancien funiculaire de la ville (1884), près de Restauradores.</td></tr>
+            <tr><td>Elevador da Glória</td><td>Restauradores–Bairro Alto. Gravement accidenté en septembre 2025 : vérifiez sa remise en service avant de compter dessus.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h4>Monter sans souffrir</h4>
+      <p class="prose small">Les collines sont le vrai défi de Lisbonne. Plusieurs ascenseurs publics gratuits, peu connus des visiteurs, épargnent les plus rudes montées.</p>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th scope="col">Pour monter</th><th scope="col">Solution</th><th scope="col">Prix</th></tr></thead>
+          <tbody>
+            <tr><td>De la Baixa au château</td><td>Ascenseur public de la rua dos Fanqueiros, puis l’ascenseur du bâtiment du supermarché jusqu’au pied du château</td><td class="num">Gratuit</td></tr>
+            <tr><td>Vers le belvédère de Senhora do Monte</td><td>Ascenseur public de la Graça, depuis la rua dos Lagares (Mouraria)</td><td class="num">Gratuit</td></tr>
+            <tr><td>De la Baixa au Chiado</td><td>Escaliers mécaniques et ascenseurs intérieurs de la station de métro Baixa-Chiado</td><td class="num">Gratuit</td></tr>
+            <tr><td>Du Rossio au Carmo</td><td>Elevador de Santa Justa</td><td class="num">Pass ou billet</td></tr>
+            <tr><td>Vers le Bairro Alto</td><td>Funiculaires de la Bica ou de la Glória</td><td class="num">Pass ou billet</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note" style="margin-top:.5rem">Les ascenseurs publics gratuits ont des horaires limités et ferment parfois pour maintenance.</p>
+      <div class="cols2" style="margin-top:1.2rem">
+        <div><h3>Les trains de banlieue</h3><p class="small">Gare du Rossio pour Sintra (environ 40 minutes), gare de Cais do Sodré pour Cascais en longeant la mer, gare d’Oriente et de Santa Apolónia pour les grandes lignes.</p></div>
+        <div><h3>Les ferries</h3><p class="small">Depuis Cais do Sodré, traversée vers Cacilhas en une dizaine de minutes : l’une des plus belles vues sur la ville, pour le prix d’un ticket. Point de départ vers le Cristo Rei.</p></div>
+        <div><h3>Taxis et VTC</h3><p class="small">Taxis beige ou noir et vert, au compteur. Les VTC (Uber, Bolt) sont nombreux et souvent moins chers. Le soir, pratique pour éviter les montées.</p></div>
+        <div><h3>Vélo et trottinette</h3><p class="small">Vélos en libre-service Gira, la plupart à assistance électrique : idéal le long du Tage, vers Belém (piste cyclable). Les collines restent un défi. Trottinettes en libre-service : casque conseillé, pavés traîtres.</p></div>
+        <div><h3>Tuk-tuks</h3><p class="small">Omniprésents dans les quartiers historiques. Pratiques pour les personnes peu mobiles ; négociez le prix et la durée avant de monter. Leur circulation est de plus en plus encadrée.</p></div>
+        <div><h3>À pied</h3><p class="small">Le meilleur moyen. Prévoyez des chaussures à semelles adhérentes et repérez les ascenseurs publics gratuits (Castelo, Baixa) qui évitent certaines montées.</p></div>
+      </div>
+    </section>
+
+    <section id="budget">
+      <h2>Budget <span class="checked">Vérifié en novembre 2026</span></h2>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th scope="col">Dépense</th><th scope="col">Prix indicatif</th></tr></thead>
+          <tbody>
+            <tr><td>Bica (expresso) au comptoir</td><td class="num">≈ 1 à 1,50 €</td></tr>
+            <tr><td>Pastel de nata</td><td class="num">≈ 1,30 à 1,80 €</td></tr>
+            <tr><td>Bifana au comptoir</td><td class="num">≈ 3 à 5 €</td></tr>
+            <tr><td>Prato do dia dans une tasca</td><td class="num">≈ 10 à 15 €</td></tr>
+            <tr><td>Dîner au restaurant (plat, verre de vin)</td><td class="num">≈ 20 à 35 €</td></tr>
+            <tr><td>Bière pression (imperial)</td><td class="num">≈ 2 à 4 €</td></tr>
+            <tr><td>Ticket métro/bus</td><td class="num">1,90 €</td></tr>
+            <tr><td>Pass transports 24 h</td><td class="num">7,25 €</td></tr>
+            <tr><td>Taxe touristique</td><td class="num">4 € / nuit / pers.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note" style="margin-top:.5rem">Prix moyens observés, sauf transports et taxe (tarifs officiels 2026). Les prix montent nettement dans les zones touristiques.</p>
+      <h4>Estimer son séjour</h4>
+      <div class="panel">
+        <div class="calc">
+          <div><label for="c-nights">Nuits</label><input id="c-nights" type="number" min="1" max="30" value="4"></div>
+          <div><label for="c-adults">Adultes et ados (13 ans et +)</label><input id="c-adults" type="number" min="1" max="10" value="2"></div>
+          <div><label for="c-kids">Enfants (moins de 13 ans)</label><input id="c-kids" type="number" min="0" max="10" value="0"></div>
+          <div><label for="c-style">Style de voyage</label><select id="c-style"><option value="eco">Petit budget</option><option value="mid" selected>Intermédiaire</option><option value="lux">Confort</option></select></div>
+        </div>
+        <div class="result" id="c-result" aria-live="polite"></div>
+      </div>
+      <p class="note" style="margin-top:.5rem">Estimation hors transport aller-retour jusqu’à Lisbonne. Hébergement calculé pour une chambre partagée à deux, très variable selon la saison.</p>
+    </section>
+
+    <section id="pratique">
+      <h2>Infos pratiques <span class="checked">Vérifié en novembre 2026</span></h2>
+      <dl class="practical">
+        <div><dt>Formalités</dt><dd>Espace Schengen : carte d’identité ou passeport en cours de validité pour les citoyens de l’UE et les Suisses. Autres nationalités : vérifier les conditions avant le départ.</dd></div>
+        <div><dt>Santé</dt><dd>Pensez à la carte européenne d’assurance maladie. Pharmacies signalées par une croix verte, une pharmacie de garde par quartier. Eau du robinet potable.</dd></div>
+        <div><dt>Argent</dt><dd>Carte bancaire acceptée presque partout, mais gardez un peu d’espèces pour les petits cafés. Préférez les distributeurs Multibanco aux distributeurs indépendants qui facturent des frais élevés. Si votre carte n’est pas en euros, refusez la conversion proposée par l’appareil : le taux est défavorable.</dd></div>
+        <div><dt>Téléphone et internet</dt><dd>Itinérance sans surcoût pour les forfaits de l’UE. Wi-fi gratuit dans la plupart des cafés et dans certains espaces publics.</dd></div>
+        <div><dt>Horaires</dt><dd>Commerces 10 h–19 h, banques en semaine en journée. Musées souvent fermés le lundi. Beaucoup de petites boutiques ferment le dimanche.</dd></div>
+        <div><dt>Pourboire</dt><dd>Non obligatoire. On arrondit au café ; au restaurant, 5 à 10 % si le service est bon.</dd></div>
+        <div><dt>Langues</dt><dd>Anglais très répandu chez les jeunes et dans le tourisme ; le français est souvent compris. Évitez de parler espagnol par défaut, mal perçu par certains.</dd></div>
+        <div><dt>Électricité</dt><dd>230 V, prises de type F identiques aux prises françaises.</dd></div>
+        <div><dt>Tabac</dt><dd>Interdit dans les lieux publics fermés. Toléré sur de nombreuses terrasses.</dd></div>
+        <div><dt>Accessibilité</dt><dd>Ville difficile en fauteuil : pentes, pavés, trottoirs étroits. Le métro est en grande partie équipé d’ascenseurs, la Baixa, Belém et le Parque das Nações sont plats. Tramway 15E à plancher bas.</dd></div>
+        <div><dt>Voyageurs LGBT+</dt><dd>Ville très ouverte. Le mariage entre personnes de même sexe est légal au Portugal depuis 2010. Marche des fiertés en juin, vie nocturne autour de Príncipe Real.</dd></div>
+        <div><dt>Toilettes</dt><dd>Toilettes publiques rares : cafés, centres commerciaux et musées sont les solutions habituelles. Consommer un café est le geste attendu.</dd></div>
+        <div><dt>Tenue</dt><dd>Épaules et genoux couverts appréciés dans les églises. Chaussures plates et adhérentes indispensables.</dd></div>
+        <div><dt>Ambassade de France</dt><dd>Située dans le quartier de Santos-o-Velho (Lapa). Coordonnées à vérifier sur le site officiel avant le départ.</dd></div>
+      </dl>
+    </section>
+
+    <section id="securite">
+      <h2>Sécurité et arnaques</h2>
+      <div class="prose">
+        <p>Lisbonne est l’une des capitales les plus sûres d’Europe. Les agressions sont rares ; le risque principal est le vol à la tire dans les lieux bondés.</p>
+        <ul class="scams">
+          <li><b>Pickpockets.</b> Tram 28, tram 15E, Elevador de Santa Justa, Rua Augusta, Bairro Alto la nuit, Feira da Ladra. Sac fermé devant soi, téléphone jamais dans la poche arrière.</li>
+          <li><b>Les vendeurs de « drogue ».</b> Dans la Baixa et au Bairro Alto, des hommes proposent haschich ou cocaïne à voix basse. C’est le plus souvent du laurier ou de la farine, et la vente reste illégale. Ignorez simplement.</li>
+          <li><b>Le couvert.</b> Pas une arnaque, mais une surprise : ce que vous mangez est facturé, ce que vous laissez ne l’est pas.</li>
+          <li><b>Les tuk-tuks sans prix affiché.</b> Fixez le tarif et la durée avant de monter.</li>
+          <li><b>Les distributeurs à frais élevés.</b> Choisissez un distributeur Multibanco et refusez la conversion de devise.</li>
+          <li><b>Le faux vol de sac.</b> Ne laissez pas un sac accroché au dossier de la chaise en terrasse.</li>
+          <li><b>Les pavés.</b> Le premier danger réel, surtout sous la pluie : chevilles foulées fréquentes.</li>
+        </ul>
+        <div class="warn"><b>Numéros utiles.</b> Urgences : 112 (police, pompiers, ambulance). La police touristique est installée au Palácio Foz, place des Restauradores. Pour un vol, une déclaration à la police est nécessaire pour l’assurance.</div>
+      </div>
+    </section>
+
+    <p class="chapter">Sur mesure</p>
+    <section id="initie">
+      <h2>Conseils d’initiés</h2>
+      <h4 style="margin-top:0">Les plus beaux points de vue pour la photo</h4>
+      <ul class="spots">
+        <li><b>Portas do Sol, au lever du soleil</b>Les toits de l’Alfama et le dôme du Panthéon dans la lumière rasante, sans la foule.</li>
+        <li><b>Rua da Bica, en bas de la pente</b>Le funiculaire jaune qui monte entre les façades, avec le Tage dans le dos.</li>
+        <li><b>Calçada de São Francisco</b>La perspective plongeante sur la Baixa et le Tage.</li>
+        <li><b>Arco da Rua Augusta</b>L’arche encadrant la statue équestre et le fleuve, idéalement à l’heure bleue.</li>
+        <li><b>Largo das Portas do Sol avec le tram 28</b>Attendez le passage du tram dans le virage, le cliché classique.</li>
+        <li><b>Depuis le ferry</b>La ville entière étagée sur ses collines, et le pont du 25-Avril.</li>
+        <li><b>Escadinhas de São Cristóvão</b>Les escaliers de la Mouraria couverts d’une fresque dédiée au fado.</li>
+        <li><b>Les jacarandas, fin mai</b>Largo do Carmo et Avenida D. Carlos I se couvrent de violet.</li>
+      </ul>
+      <h4>Les erreurs à éviter</h4>
+      <ul class="donts prose">
+        <li>Prévoir trop de choses par jour : les collines ralentissent tout, comptez deux fois plus de temps qu’à plat.</li>
+        <li>Venir en chaussures lisses ou en talons sur les pavés de calcaire.</li>
+        <li>Attendre une heure le tram 28 à la Praça da Figueira en plein après-midi.</li>
+        <li>Acheter son ticket à bord du tram, presque deux fois plus cher qu’avec la carte Navegante.</li>
+        <li>Réserver une chambre sur rue au Bairro Alto en espérant dormir le week-end.</li>
+        <li>Faire Sintra en voiture un week-end d’été.</li>
+        <li>Visiter Belém un lundi, quand la plupart des monuments sont fermés.</li>
+        <li>Penser que tous les Portugais parlent espagnol, ou leur répondre en espagnol.</li>
+      </ul>
+    </section>
+
+    <section id="profils">
+      <h2>Selon votre voyage</h2>
+      <div class="who" aria-label="Lisbonne selon le type de voyageur">
+        <div><span>En couple</span><span class="stars">★★★★★</span></div>
+        <div><span>En famille</span><span class="stars">★★★★<i>★</i></span></div>
+        <div><span>En solo</span><span class="stars">★★★★★</span></div>
+        <div><span>Petit budget</span><span class="stars">★★★<i>★★</i></span></div>
+        <div><span>Fête</span><span class="stars">★★★★★</span></div>
+        <div><span>Culture</span><span class="stars">★★★★<i>★</i></span></div>
+        <div><span>Plages</span><span class="stars">★★★★<i>★</i></span></div>
+        <div><span>Mobilité réduite</span><span class="stars">★★<i>★★★</i></span></div>
+      </div>
+      <div class="cols2" style="margin-top:1.4rem">
+        <div><h3>Avec des enfants</h3><p class="small">L’Océanarium, le Pavillon de la connaissance (musée des sciences) et le téléphérique du Parque das Nações, le zoo, le tram, les ferries, les plages de Cascais. Poussette déconseillée dans l’Alfama : préférez un porte-bébé. Les Portugais adorent les enfants, bien accueillis partout, y compris tard au restaurant.</p></div>
+        <div><h3>En solo</h3><p class="small">Ville facile et sûre, auberges de jeunesse parmi les mieux notées d’Europe, visites guidées gratuites (au pourboire) au départ de la Praça do Comércio et dîners collectifs dans les auberges.</p></div>
+        <div><h3>Voyager plus léger</h3><p class="small">Arriver en train pour les trajets européens possibles, privilégier marche, tram et métro, boire l’eau du robinet, choisir des tascas de produits locaux et visiter hors de l’été pour soulager les quartiers saturés.</p></div>
+        <div><h3>Pour un week-end</h3><p class="small">Visez une arrivée le vendredi matin, logez dans la Baixa ou au Chiado, suivez l’itinéraire « 2 jours » et gardez le samedi matin pour la Feira da Ladra, qui n’a lieu que le mardi et le samedi. Le dimanche, préférez Belém ou la LX Factory.</p></div>
+      </div>
+    </section>
+
+    <section id="lexique">
+      <h2>Lexique</h2>
+      <p class="prose small">Le portugais du Portugal se prononce de façon plus fermée que celui du Brésil : les voyelles finales sont souvent avalées et le « s » final se prononce « ch ». Un simple « obrigado » fait toujours plaisir.</p>
+      <div class="table-scroll">
+        <table class="lex">
+          <thead><tr><th scope="col">Portugais</th><th scope="col">Prononciation</th><th scope="col">Français</th></tr></thead>
+          <tbody id="lex"></tbody>
+        </table>
+      </div>
+      <p class="note" style="margin-top:.5rem">« Obrigado » est dit par un homme, « obrigada » par une femme.</p>
+      <h4>Prononcer les noms de lieux</h4>
+      <div class="table-scroll">
+        <table class="lex">
+          <tbody id="lex-places"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <p class="chapter">Plus loin</p>
+    <section id="alentours">
+      <h2>Aux alentours</h2>
+      <div class="trips" id="trips"></div>
+    </section>
+
+    <section id="savoir">
+      <h2>Le saviez-vous ?</h2>
+      <ul class="facts-list">
+        <li><b>1ᵉʳ novembre 1755</b>Un séisme suivi d’un tsunami et d’incendies détruit une grande partie de la ville un jour de Toussaint. La catastrophe nourrit la réflexion de Voltaire dans son <i>Poème sur le désastre de Lisbonne</i> puis <i>Candide</i>.</li>
+        <li><b>1732</b>Année de fondation de la Livraria Bertrand, la plus ancienne librairie encore en activité au monde.</li>
+        <li><b>2 277 m</b>Longueur du pont du 25-Avril, inauguré en 1966 sous le nom de pont Salazar et rebaptisé après la révolution. Sa ressemblance avec le Golden Gate n’est pas un hasard : il a été construit par l’entreprise américaine qui avait bâti le pont d’Oakland Bay.</li>
+        <li><b>≈ 12 km</b>Longueur du pont Vasco da Gama, ouvert en 1998, parmi les plus longs d’Europe.</li>
+        <li><b>Eiffel ?</b>L’Elevador de Santa Justa est souvent attribué à Gustave Eiffel. Il a en réalité été conçu par Raoul Mesnier du Ponsard, ingénieur né à Porto.</li>
+        <li><b>Obras de Santa Engrácia</b>L’église qui abrite le Panthéon national a mis près de trois siècles à être achevée. L’expression désigne depuis des travaux qui n’en finissent pas.</li>
+        <li><b>25 avril 1974</b>La révolution des Œillets renverse la dictature presque sans un coup de feu ; les soldats glissent des œillets dans le canon de leurs fusils.</li>
+        <li><b>La Fontaine en azulejos</b>Le monastère de São Vicente de Fora expose des dizaines de panneaux d’azulejos illustrant les <i>Fables</i> de La Fontaine.</li>
+      </ul>
+    </section>
+
+    <section id="porto">
+      <h2>Lisbonne ou Porto ?</h2>
+      <div class="table-scroll">
+        <table class="vs">
+          <thead><tr><th scope="col"></th><th scope="col">Lisbonne</th><th scope="col">Porto</th></tr></thead>
+          <tbody>
+            <tr><td>Taille</td><td>Capitale, ≈ 545 000 habitants</td><td>Deuxième ville, ≈ 230 000 habitants</td></tr>
+            <tr><td>Ambiance</td><td>Lumineuse, cosmopolite, festive</td><td>Plus intime, granitique, mélancolique</td></tr>
+            <tr><td>Climat</td><td>Plus chaud et plus sec</td><td>Plus frais et nettement plus pluvieux</td></tr>
+            <tr><td>Budget</td><td>Plus cher, surtout pour dormir</td><td>Un peu plus abordable</td></tr>
+            <tr><td>Incontournables</td><td>Belém, Alfama, Sintra</td><td>Ribeira, caves de porto, vallée du Douro</td></tr>
+            <tr><td>Plages</td><td>Cascais, Caparica, Arrábida</td><td>Foz do Douro, Matosinhos</td></tr>
+            <tr><td>À goûter</td><td>Pastel de nata, sardines, ginjinha</td><td>Francesinha, tripes, vin de Porto</td></tr>
+            <tr><td>Durée idéale</td><td>3 à 5 jours</td><td>2 à 3 jours</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="prose small" style="margin-top:1rem">Le plus simple est de ne pas choisir : environ trois heures de train rapide les séparent, et un séjour d’une semaine permet de voir les deux.</p>
+    </section>
+
+    <section id="quiz">
+      <h2>Le quiz de Lisbonne</h2>
+      <div class="quiz" id="quizbox" aria-live="polite"></div>
+    </section>
+
+    <section id="faq">
+      <h2>Questions fréquentes</h2>
+      <div class="prose">
+        <details class="faq"><summary>Combien de jours faut-il pour visiter Lisbonne ?</summary><p>Trois jours pour l’essentiel de la ville, quatre ou cinq pour ajouter Sintra et une journée sur la côte (Cascais ou Arrábida). Un week-end permet déjà de voir Belém, l’Alfama et la Baixa.</p></details>
+        <details class="faq"><summary>Lisbonne est-elle chère ?</summary><p>Moins que Paris, Londres ou Amsterdam pour la nourriture et les transports, mais l’hébergement a beaucoup augmenté. Un repas simple reste abordable, surtout le midi avec le plat du jour.</p></details>
+        <details class="faq"><summary>Faut-il acheter la Lisboa Card ?</summary><p>Elle inclut transports et entrées de nombreux musées. Elle est rentable si vous enchaînez plusieurs monuments payants par jour ; pour un rythme tranquille, le pass transport 24 h suffit souvent.</p></details>
+        <details class="faq"><summary>Peut-on se baigner à Lisbonne ?</summary><p>Pas dans le Tage en ville, mais les plages de Carcavelos et Cascais (train depuis Cais do Sodré) et de la Costa da Caparica sont à moins d’une heure. L’eau reste fraîche, même en août.</p></details>
+        <details class="faq"><summary>Le tram 28 vaut-il vraiment le coup ?</summary><p>Oui pour l’expérience, à condition de le prendre tôt le matin ou en soirée, idéalement au terminus de Martim Moniz ou de Campo de Ourique. Le 12E offre une version plus courte et moins bondée.</p></details>
+        <details class="faq"><summary>Quel est le meilleur moment de la journée pour les belvédères ?</summary><p>Le matin pour la lumière douce et le calme, le coucher du soleil pour l’ambiance (Senhora do Monte, Santa Catarina, São Pedro de Alcântara), mais il faut alors partager la vue.</p></details>
+        <details class="faq"><summary>Peut-on visiter Sintra en une journée ?</summary><p>Oui, en se limitant à deux ou trois sites (par exemple Pena et la Quinta da Regaleira). Partez tôt, réservez les billets à l’avance en saison et évitez la voiture : le stationnement y est un cauchemar.</p></details>
+        <details class="faq"><summary>Lisbonne est-elle adaptée aux personnes âgées ?</summary><p>Oui, en choisissant un hébergement plat (Baixa, Avenida da Liberdade) et en utilisant trams, funiculaires, ascenseurs publics et taxis pour les montées.</p></details>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<a href="#city-name" class="totop" id="totop">↑ Haut de page</a>
+
+<footer class="site-foot">
+  <div class="in">
+    <div>
+      <a class="brand" href="#"><svg viewBox="0 0 24 24" aria-hidden="true" style="width:22px;height:22px"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M2 12h20M12 2c3 3.2 3 16.8 0 20M12 2c-3 3.2-3 16.8 0 20" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="15.5" cy="8" r="2.6" fill="#F2B705"/></svg>Dix Mille Escales</a>
+      <p style="margin:0">Le guide de voyage des 10 000 plus grandes villes du monde. Une fiche par ville, des informations pratiques vérifiées, une carte pour tout relier.</p>
+    </div>
+    <div><h3>Destinations</h3><ul><li><a href="#">Europe</a></li><li><a href="#">Afrique</a></li><li><a href="#">Asie</a></li><li><a href="#">Amériques</a></li><li><a href="#">Océanie</a></li></ul></div>
+    <div><h3>Autour de Lisbonne</h3><ul><li><a href="#">Porto</a></li><li><a href="#">Sintra</a></li><li><a href="#">Setúbal</a></li><li><a href="#">Évora</a></li><li><a href="#">Séville</a></li></ul></div>
+    <div><h3>Le guide</h3><ul><li><a href="#">À propos</a></li><li><a href="#">Nos sources</a></li><li><a href="#">Signaler une erreur</a></li><li><a href="#">Contact</a></li></ul></div>
+    <p class="legal">Prototype de fiche « ville phare », mise à jour en novembre 2026. Sources prévues pour la version complète : GeoNames, Wikidata, OpenStreetMap, Wikivoyage (CC BY-SA), sites officiels des transports et de la ville. Tarifs de transport et taxe touristique : valeurs officielles 2026 ; autres prix indicatifs.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* ---------- Carte du monde ---------- */
+  var svg = document.getElementById('worldmap'), NS = 'http://www.w3.org/2000/svg';
+  function el(n,a){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);return e;}
+  for (var lo=0; lo<=360; lo+=30) svg.appendChild(el('line',{x1:lo,y1:0,x2:lo,y2:180,stroke:'var(--grid)','stroke-width':.4}));
+  for (var la=0; la<=180; la+=30) svg.appendChild(el('line',{x1:0,y1:la,x2:360,y2:la,stroke:'var(--grid)','stroke-width':.4}));
+  svg.appendChild(el('line',{x1:0,y1:90,x2:360,y2:90,stroke:'var(--grid)','stroke-width':.9}));
+  var C=[[48.86,2.35],[51.5,-.13],[40.4,-3.7],[41.9,12.5],[52.5,13.4],[55.75,37.6],[41,28.97],[30.04,31.24],[6.5,3.4],[-4.3,15.3],[-1.29,36.8],[-26.2,28.05],[-33.9,18.4],[33.6,-7.6],[14.7,-17.45],[9,38.75],[24.7,46.7],[25.2,55.3],[35.7,51.4],[24.86,67],[28.6,77.2],[19.08,72.88],[22.57,88.36],[23.8,90.4],[13.75,100.5],[1.35,103.8],[-6.2,106.8],[14.6,121],[22.3,114.2],[31.2,121.5],[39.9,116.4],[37.57,126.98],[35.68,139.7],[34.7,135.5],[-33.87,151.2],[-37.8,144.96],[-31.95,115.86],[-36.85,174.76],[34.05,-118.24],[37.77,-122.42],[49.28,-123.12],[19.43,-99.13],[29.76,-95.37],[41.88,-87.63],[43.65,-79.38],[40.71,-74],[25.76,-80.19],[4.71,-74.07],[-12.05,-77.04],[-33.45,-70.67],[-34.6,-58.38],[-23.55,-46.63],[-22.9,-43.2],[23.11,-82.37],[45.5,-73.57],[61.2,-149.9],[64.15,-21.94],[59.33,18.07],[55,82.9],[43.24,76.9],[10.8,106.7],[25.03,121.56],[45.76,4.84],[50.85,4.35],[52.37,4.9],[48.2,16.37],[50.06,19.94],[37.98,23.73],[33.89,35.5],[31.77,35.21],[36.8,10.18],[5.6,-.19],[-8.84,13.23],[-18.9,47.5],[-6.8,39.28],[15.5,32.56],[33.7,73.05],[27.7,85.3],[6.93,79.86],[21.03,105.85],[3.14,101.69],[43.06,141.35],[-27.47,153.03],[-41.29,174.78],[21.3,-157.86],[47.6,-122.33],[39.74,-104.99],[33.75,-84.39],[38.9,-77.04],[20.97,-89.62],[9.93,-84.08],[10.48,-66.9],[-.18,-78.47],[-16.5,-68.15],[-25.3,-57.6],[-34.9,-56.16],[-8.05,-34.9],[-3.12,-60.02],[41.15,-8.61],[37.39,-5.98],[39.47,-.38],[41.39,2.17],[43.3,5.37],[45.46,9.19],[40.85,14.27],[44.43,26.1],[50.45,30.52],[53.9,27.57],[59.94,30.31],[60.17,24.94],[55.68,12.57],[59.91,10.75],[53.35,-6.26],[55.95,-3.19],[36.72,3.06],[32.89,13.19],[12.37,-1.52],[3.87,11.52],[-15.4,28.28],[-25.97,32.57],[29.38,47.99],[33.31,44.36],[41.31,69.28],[34.53,69.17],[17.39,78.49],[12.97,77.59],[13.08,80.27],[16.84,96.17],[11.56,104.92],[10.32,123.89],[-9.44,147.18],[13.44,144.79],[-17.73,168.32],[-22.27,166.45],[64.84,-147.72],[53.55,-113.49],[51.05,-114.07],[49.9,-97.14],[46.81,-71.21],[44.65,-63.57],[47.56,-52.71],[32.72,-117.16],[33.45,-112.07],[36.17,-115.14],[29.95,-90.07],[39.95,-75.17],[42.36,-71.06],[18.47,-66.1],[18.54,-72.34],[14.63,-90.51],[8.98,-79.52],[-2.17,-79.92],[-31.42,-64.18],[-1.46,-48.5],[-12.97,-38.5],[-15.79,-47.88],[-30.03,-51.23]];
+  C.forEach(function(c){svg.appendChild(el('circle',{cx:c[1]+180,cy:90-c[0],r:1.4,fill:'var(--dot)'}));});
+  var X=-9.14+180, Y=90-38.72;
+  svg.appendChild(el('circle',{cx:X,cy:Y,r:3,fill:'none',stroke:'var(--buoy)','stroke-width':1,'class':'ping'}));
+  svg.appendChild(el('circle',{cx:X,cy:Y,r:3,fill:'var(--buoy)',stroke:'var(--ink)','stroke-width':.6}));
+  var t=el('text',{x:X-5,y:Y-6,'text-anchor':'end','font-family':'Bricolage Grotesque, system-ui, sans-serif','font-size':7,'font-weight':700,fill:'var(--ink)'});
+  t.textContent='Lisbonne'; svg.appendChild(t);
+
+  /* Façades de la vignette */
+  var hs=document.getElementById('houses'), seed=7;
+  function rnd(){seed=(seed*9301+49297)%233280;return seed/233280;}
+  var FAC=['#F2C14E','#E8A598','#9CC5D9','#F4EBD9','#B8D8BA','#E9D985','#D9A6C2','#FFFFFF','#7FB7BE','#F0B37E'];
+  for(var hx=-4; hx<800;){
+    var w=26+Math.round(rnd()*26), hh=34+Math.round(rnd()*44), top=208-hh, col=FAC[Math.floor(rnd()*FAC.length)];
+    var g=el('g',{'class':'house'});
+    g.appendChild(el('rect',{x:hx,y:top,width:w,height:hh,fill:col,stroke:'rgba(18,49,59,.25)','stroke-width':1}));
+    g.appendChild(el('path',{d:'M'+(hx-2)+' '+top+' L'+(hx+w/2)+' '+(top-9)+' L'+(hx+w+2)+' '+top+' Z',fill:'#B65A3C'}));
+    for(var wy=top+7; wy<200; wy+=13){for(var wx=hx+5; wx<hx+w-8; wx+=10){g.appendChild(el('rect',{x:wx,y:wy,width:5,height:7,fill:'#12313B',opacity:.55,'class':rnd()<.4?'win lit':'win'}));}}
+    hs.appendChild(g); hx+=w+1;
+  }
+  var hg=document.getElementById('hangers');
+  for(var cx=974; cx<1125; cx+=14){var t=(cx-960)/170, cy=(1-t)*(1-t)*72+2*(1-t)*t*175+t*t*72; hg.appendChild(el('line',{x1:cx,y1:cy.toFixed(1),x2:cx,y2:172}));}
+
+  /* Thème */
+  var TH=['auto','clair','sombre'], thBtn=document.getElementById('theme-btn'), th='auto';
+  try{th=localStorage.getItem('dme-theme')||'auto';}catch(e){}
+  function applyTheme(){var r=document.documentElement;if(th==='clair')r.setAttribute('data-theme','light');else if(th==='sombre')r.setAttribute('data-theme','dark');else r.removeAttribute('data-theme');thBtn.textContent='Thème : '+th;}
+  thBtn.addEventListener('click',function(){th=TH[(TH.indexOf(th)+1)%3];try{localStorage.setItem('dme-theme',th);}catch(e){}applyTheme();});
+  applyTheme();
+
+  if(window.matchMedia('(max-width:600px)').matches)document.getElementById('q').placeholder='Une ville…';
+
+  /* Progression de lecture */
+  var pr=document.getElementById('progress');
+  function prog(){var m=document.documentElement.scrollHeight-window.innerHeight;pr.style.width=(m>0?Math.min(100,window.scrollY/m*100):0)+'%';}
+  window.addEventListener('scroll',prog,{passive:true});prog();
+
+  /* ---------- Histoire ---------- */
+  var TL=[
+    ['Vers le VIIIᵉ siècle av. J.-C.','Comptoir phénicien sur la colline du château, sur un site occupé depuis bien plus longtemps.',0],
+    ['IIᵉ siècle av. J.-C.','Conquête romaine : la ville devient Olisipo. Vestiges d’un théâtre romain visibles près de la cathédrale.',0],
+    ['Vᵉ siècle','Invasions germaniques : Suèves puis Wisigoths.',0],
+    ['711–714','Conquête musulmane. Al-Ushbuna prospère pendant plus de quatre siècles ; l’Alfama et la Mouraria en gardent le tracé.',0],
+    ['1147','Afonso Henriques, premier roi du Portugal, prend la ville avec l’aide de croisés.',1],
+    ['1256','Lisbonne devient la capitale du royaume.',0],
+    ['1498','Vasco da Gama atteint l’Inde par la mer. Commence l’âge d’or : épices, or et style manuélin.',1],
+    ['1580–1640','Union avec la couronne d’Espagne, puis restauration de l’indépendance le 1ᵉʳ décembre 1640.',0],
+    ['1755','Le 1ᵉʳ novembre, séisme, tsunami et incendies ravagent la ville. Le marquis de Pombal la reconstruit avec la Baixa en damier et des immeubles parasismiques.',1],
+    ['1807–1821','Invasions napoléoniennes ; la cour s’exile au Brésil.',0],
+    ['1908','Assassinat du roi Carlos Iᵉʳ sur la Praça do Comércio.',0],
+    ['1910','Proclamation de la République le 5 octobre.',0],
+    ['1933–1974','Estado Novo, la dictature de Salazar puis de Caetano.',0],
+    ['1974','Révolution des Œillets le 25 avril, retour de la démocratie et fin des guerres coloniales.',1],
+    ['1986','Le Portugal entre dans la Communauté économique européenne.',0],
+    ['1988','Un incendie détruit une partie du Chiado, reconstruit sous la direction de l’architecte Álvaro Siza.',0],
+    ['1998','Exposition universelle : naissance du Parque das Nações et du pont Vasco da Gama.',1],
+    ['2007','Signature du traité de Lisbonne, qui réforme le fonctionnement de l’Union européenne.',0],
+    ['Années 2010–2020','Essor touristique spectaculaire, débat sur la crise du logement et la place des locations de courte durée.',0]
+  ];
+  document.getElementById('timeline').innerHTML = TL.map(function(e){return '<li'+(e[2]?' class="big"':'')+'><b>'+e[0]+'</b>'+e[1]+'</li>';}).join('');
+
+  /* ---------- Lieux ---------- */
+  var CAT={monument:'Monuments',musee:'Musées',belvedere:'Belvédères',eglise:'Églises',parc:'Parcs et jardins',experience:'Expériences'};
+  var S=[
+    ['Monastère des Hiéronymites','Belém','monument','1 h 30',0,1,'Chef-d’œuvre du style manuélin financé par le commerce des épices, classé à l’UNESCO avec la tour de Belém. L’église abrite les tombeaux de Vasco da Gama et du poète Camões.','L’église est en accès libre, seul le cloître est payant. Venez à l’ouverture.'],
+    ['Tour de Belém','Belém','monument','45 min',0,1,'Forteresse du XVIᵉ siècle qui gardait l’entrée du Tage, devenue le symbole de la ville, avec un rhinocéros sculpté sur sa façade.','Escaliers très étroits à sens alterné : la vue extérieure, au coucher du soleil, suffit souvent.'],
+    ['Monument des Découvertes','Belém','monument','30 min',0,0,'Proue de pierre de 1960 dédiée aux navigateurs, avec Henri le Navigateur en tête. Au sol, une immense rose des vents et une mappemonde de marbre.','La rose des vents est gratuite ; le belvédère au sommet est payant.'],
+    ['Château Saint-Georges','Castelo','monument','1 h 30',0,1,'Forteresse d’origine mauresque au sommet de la plus haute colline du centre. Remparts, paons et la plus belle vue d’ensemble sur la ville.','Montez en fin de journée et redescendez à pied par l’Alfama.'],
+    ['Praça do Comércio','Baixa','monument','30 min',1,1,'L’immense place royale ouverte sur le Tage, entourée d’arcades jaunes, avec l’arc de la rue Augusta.','Le belvédère au sommet de l’arc (payant) offre une vue rare sur la Baixa.'],
+    ['Rossio et Praça da Figueira','Baixa','monument','30 min',1,0,'Le cœur populaire de la ville depuis le Moyen Âge, pavé de vagues noires et blanches, avec la gare du Rossio à la façade néomanuéline.','Jetez un œil à la gare : son entrée en forme de fers à cheval est spectaculaire.'],
+    ['Elevador de Santa Justa','Baixa','monument','30 min',0,0,'Ascenseur néogothique en fer de 1902 qui relie la Baixa au Carmo, avec plateforme panoramique.','La file est longue ; on peut atteindre la plateforme du haut à pied depuis le Carmo.'],
+    ['Aqueduc des Eaux Libres','Campolide','monument','1 h',0,0,'Aqueduc du XVIIIᵉ siècle dont les arches franchissent la vallée d’Alcântara. Il a survécu au séisme de 1755.','La promenade sur l’aqueduc offre une vue inattendue sur la ville.'],
+    ['Pont du 25-Avril et Pilar 7','Alcântara','monument','1 h',0,0,'Le grand pont suspendu rouge. L’espace Pilar 7 permet de monter dans un pilier jusqu’à une plateforme vitrée.','Le pont est encore plus beau vu du ferry ou de la LX Factory.'],
+    ['Cristo Rei','Almada (rive sud)','monument','1 h 30',0,0,'Statue du Christ inspirée de celle de Rio, inaugurée en 1959, avec belvédère face à Lisbonne.','Ferry jusqu’à Cacilhas puis bus : la traversée fait partie du plaisir.'],
+    ['Palais national d’Ajuda','Ajuda','monument','1 h 30',0,0,'Palais royal néoclassique resté inachevé pendant deux siècles, aux salons intacts. Son aile ouest abrite le Trésor royal.','À combiner avec Belém et le jardin botanique d’Ajuda.'],
+    ['Cathédrale (Sé)','Alfama','eglise','30 min',0,1,'Cathédrale romane fortifiée du XIIᵉ siècle, la plus ancienne église de la ville. Fouilles romaines et mauresques dans le cloître.','La nef est accessible gratuitement, le cloître et le trésor sont payants.'],
+    ['Couvent do Carmo','Chiado','eglise','45 min',0,1,'Les arcs gothiques de cette église sans toit, laissée en ruines depuis 1755, forment l’un des lieux les plus émouvants de la ville. Petit musée archéologique.','La place do Carmo, sous les jacarandas, est parfaite pour une pause.'],
+    ['Église São Roque','Bairro Alto','eglise','30 min',0,0,'Église jésuite à la façade sobre et à l’intérieur somptueux. Sa chapelle Saint-Jean-Baptiste a été construite à Rome puis démontée et expédiée à Lisbonne.','Église gratuite, petit musée d’art sacré payant à côté.'],
+    ['Monastère de São Vicente de Fora','Graça','eglise','1 h',0,0,'Monastère baroque aux cloîtres tapissés d’azulejos, dont des panneaux illustrant les Fables de La Fontaine. Toits accessibles avec vue sur le Tage.','À combiner avec la Feira da Ladra le mardi ou le samedi.'],
+    ['Panthéon national','Alfama','eglise','45 min',0,0,'L’église Santa Engrácia, au dôme blanc, abrite les tombes de grandes figures portugaises dont Amália Rodrigues et Eusébio.','La terrasse sous le dôme offre l’un des panoramas les plus complets.'],
+    ['Basilique da Estrela','Estrela','eglise','30 min',0,0,'Basilique néoclassique du XVIIIᵉ siècle au dôme visible de loin, avec une crèche de plusieurs centaines de figurines.','On peut monter sur le toit ; le jardin da Estrela est juste en face.'],
+    ['Musée Calouste Gulbenkian','Avenidas Novas','musee','2 h 30',0,1,'L’une des plus belles collections privées d’Europe : art égyptien, islamique, européen, jusqu’aux bijoux de René Lalique. Le Centre d’art moderne voisin a été rénové par l’architecte Kengo Kuma.','Le jardin, gratuit, est une oasis pour pique-niquer.'],
+    ['Musée national de l’Azulejo','Xabregas','musee','1 h 30',0,1,'Cinq siècles de carreaux de faïence dans un ancien couvent, avec une église dorée à la feuille et un panorama de Lisbonne avant le séisme.','Un peu excentré : bus depuis Santa Apolónia ou taxi.'],
+    ['Musée national d’Art ancien','Lapa','musee','2 h',0,0,'Le grand musée des beaux-arts du pays : les panneaux de Saint-Vincent, les Tentations de saint Antoine de Jérôme Bosch, des paravents japonais namban.','Le café du musée a un jardin avec vue sur le Tage.'],
+    ['MAAT','Belém','musee','1 h 30',0,0,'Musée d’art, d’architecture et de technologie dans un bâtiment ondulant face au fleuve, à côté d’une ancienne centrale électrique.','Son toit en pente, accessible librement, est un belvédère au ras de l’eau.'],
+    ['MAC/CCB (art contemporain)','Belém','musee','1 h 30',0,0,'Au Centre culturel de Belém, une collection d’art moderne et contemporain : surréalisme, pop art, art portugais.','Idéal en cas de pluie, juste à côté des Hiéronymites.'],
+    ['Musée national des Carrosses','Belém','musee','1 h',0,0,'L’une des plus grandes collections de carrosses royaux au monde, dorés et sculptés.','Plaît beaucoup aux enfants.'],
+    ['Musée de la Marine','Belém','musee','1 h 30',0,0,'Dans une aile des Hiéronymites, maquettes de caravelles, instruments de navigation et barques royales.','Très bon complément pour comprendre l’époque des Découvertes.'],
+    ['Musée du Fado','Alfama','musee','1 h',0,0,'Histoire du fado, guitares portugaises, enregistrements et portraits des grandes voix.','À faire avant une soirée fado pour mieux l’apprécier.'],
+    ['Musée de l’Orient','Alcântara','musee','1 h 30',0,0,'Collections asiatiques liées à la présence portugaise en Asie : Macao, Goa, Japon, Chine.','Dans un ancien entrepôt à morue réhabilité.'],
+    ['Océanarium','Parque das Nações','musee','2 h',0,0,'Un des plus grands aquariums d’Europe, construit pour l’Expo 1998, autour d’un bassin central qui figure l’océan.','Venez en semaine et tôt ; complétez avec le téléphérique au bord du Tage.'],
+    ['Miradouro de Santa Luzia et Portas do Sol','Alfama','belvedere','20 min',1,1,'Terrasse fleurie avec bancs d’azulejos et vue sur les toits de l’Alfama et le Tage.','Le matin, la lumière sur l’Alfama est idéale pour les photos.'],
+    ['Miradouro da Senhora do Monte','Graça','belvedere','20 min',1,1,'Le plus haut belvédère de la ville, vue à 180° sur le château, la Baixa et le pont.','Le coucher du soleil y est superbe ; arrivez tôt.'],
+    ['Miradouro da Graça','Graça','belvedere','20 min',1,0,'Sous les pins, face au château, avec un kiosque pour boire un verre.','Le tram 28 s’arrête à côté.'],
+    ['Miradouro de São Pedro de Alcântara','Bairro Alto','belvedere','20 min',1,0,'Jardin en terrasse face au château, idéal avant une soirée au Bairro Alto.','Accessible par l’Elevador da Glória quand il circule.'],
+    ['Miradouro de Santa Catarina','Santa Catarina','belvedere','20 min',1,0,'Le belvédère des jeunes Lisboètes, avec vue sur le pont du 25-Avril.','Au coucher du soleil, musiciens et ambiance détendue.'],
+    ['Alfama','Alfama','experience','2 à 3 h',1,1,'Le plus vieux quartier, labyrinthe d’escaliers, de linge aux fenêtres et de petites places. À parcourir sans plan.','Perdez-vous volontairement, puis remontez vers le château.'],
+    ['Tramway 28','Centre','experience','1 h',0,1,'Ses voitures des années 1930 grincent dans les rues les plus étroites de la ville, de Martim Moniz à Campo de Ourique.','Montez au terminus avant 9 h ou en soirée.'],
+    ['Ferry pour Cacilhas','Cais do Sodré','experience','1 h',0,0,'Une traversée courte et bon marché pour voir Lisbonne depuis le fleuve, puis déjeuner de poisson sur l’autre rive.','Prenez la place côté ville, à l’arrière du bateau.'],
+    ['LX Factory','Alcântara','experience','1 h 30',1,0,'Ancienne usine textile reconvertie en quartier créatif : boutiques, restaurants, street art, librairie Ler Devagar.','Le dimanche, marché de créateurs.'],
+    ['Time Out Market','Cais do Sodré','experience','1 h',1,0,'Halle gourmande avec des stands de cuisiniers renommés, à côté du marché traditionnel de la Ribeira.','Le matin, visitez le marché frais avant l’ouverture des stands.'],
+    ['Feira da Ladra','Graça','experience','1 h 30',1,0,'Le grand marché aux puces, le mardi et le samedi.','Venez avant midi, la plupart des stands remballent tôt l’après-midi.'],
+    ['Soirée fado','Alfama et Mouraria','experience','2 h',0,1,'Dîner ou verre dans une casa de fado, au son de la guitare portugaise.','Réservez les adresses connues, surtout le week-end.'],
+    ['Jardin da Estrela','Estrela','parc','45 min',1,0,'Jardin romantique avec kiosque à musique, bassins et café sous les arbres.','À combiner avec la basilique et le tram 28.'],
+    ['Parc Eduardo VII et Estufa Fria','Marquês de Pombal','parc','1 h',0,0,'Grande pelouse en pente avec vue jusqu’au Tage ; l’Estufa Fria est une serre tropicale ombragée.','La serre est payante, le parc est libre.'],
+    ['Jardin botanique tropical','Belém','parc','1 h',0,0,'Jardin colonial avec palmiers, paons et plantes des anciennes colonies.','Une pause au calme entre deux monuments de Belém.'],
+    ['Palais Fronteira','Benfica','parc','1 h 30',0,0,'Palais du XVIIᵉ siècle aux jardins couverts d’azulejos, parmi les plus beaux du pays.','Visites guidées à horaires fixes : réservez.'],
+    ['Parc forestier de Monsanto','Monsanto','parc','2 h et +',1,0,'Le poumon vert de la ville, avec sentiers, belvédères et pistes cyclables.','Le belvédère de Monsanto offre une vue originale sur la ville.']
+  ];
+  var XY={
+    'Monastère des Hiéronymites':[38.6979,-9.2068],'Tour de Belém':[38.6916,-9.2160],'Monument des Découvertes':[38.6936,-9.2057],
+    'Château Saint-Georges':[38.7139,-9.1335],'Praça do Comércio':[38.7076,-9.1365],'Rossio et Praça da Figueira':[38.7139,-9.1394],
+    'Elevador de Santa Justa':[38.7121,-9.1394],'Aqueduc des Eaux Libres':[38.7300,-9.1730],'Pont du 25-Avril et Pilar 7':[38.7010,-9.1770],
+    'Cristo Rei':[38.6788,-9.1712],'Palais national d’Ajuda':[38.7075,-9.1977],'Cathédrale (Sé)':[38.7098,-9.1335],
+    'Couvent do Carmo':[38.7120,-9.1405],'Église São Roque':[38.7136,-9.1433],'Monastère de São Vicente de Fora':[38.7154,-9.1268],
+    'Panthéon national':[38.7149,-9.1249],'Basilique da Estrela':[38.7130,-9.1600],'Musée Calouste Gulbenkian':[38.7375,-9.1545],
+    'Musée national de l’Azulejo':[38.7247,-9.1137],'Musée national d’Art ancien':[38.7046,-9.1606],'MAAT':[38.6957,-9.1945],
+    'MAC/CCB (art contemporain)':[38.6955,-9.2083],'Musée national des Carrosses':[38.6973,-9.1983],'Musée de la Marine':[38.6975,-9.2095],
+    'Musée du Fado':[38.7112,-9.1272],'Musée de l’Orient':[38.7038,-9.1747],'Océanarium':[38.7635,-9.0937],
+    'Miradouro de Santa Luzia et Portas do Sol':[38.7118,-9.1300],'Miradouro da Senhora do Monte':[38.7190,-9.1328],'Miradouro da Graça':[38.7163,-9.1315],
+    'Miradouro de São Pedro de Alcântara':[38.7155,-9.1440],'Miradouro de Santa Catarina':[38.7093,-9.1478],'Alfama':[38.7115,-9.1290],
+    'Tramway 28':[38.7160,-9.1365],'Ferry pour Cacilhas':[38.7056,-9.1450],'LX Factory':[38.7034,-9.1785],'Time Out Market':[38.7070,-9.1458],
+    'Feira da Ladra':[38.7166,-9.1255],'Soirée fado':[38.7105,-9.1282],'Jardin da Estrela':[38.7142,-9.1592],
+    'Parc Eduardo VII et Estufa Fria':[38.7290,-9.1540],'Jardin botanique tropical':[38.6968,-9.2035],'Palais Fronteira':[38.7413,-9.1838],
+    'Parc forestier de Monsanto':[38.7300,-9.1950]
+  };
+  var COL={monument:'#2F7D6D',musee:'#7B5EA7',belvedere:'#E0A800',eglise:'#B5485D',parc:'#5E9E3A',experience:'#2E6DB4'};
+  var W0=-9.235,N0=38.775;
+  function px(lon){return (lon-W0)*7800;} function py(lat){return (N0-lat)*10000;}
+  function pts(a){return a.map(function(q){return px(q[0]).toFixed(1)+','+py(q[1]).toFixed(1);}).join(' ');}
+  var map=document.getElementById('citymap');
+  var north=[[-9.235,38.775],[-9.235,38.6950],[-9.2160,38.6912],[-9.2057,38.6930],[-9.1945,38.6952],[-9.1775,38.6998],[-9.1600,38.7040],[-9.1450,38.7052],[-9.1365,38.7068],[-9.1230,38.7128],[-9.1100,38.7220],[-9.1020,38.7330],[-9.0980,38.7450],[-9.0915,38.7600],[-9.0890,38.7700],[-9.0880,38.775]];
+  var south=[[-9.235,38.665],[-9.235,38.6705],[-9.2050,38.6772],[-9.1780,38.6835],[-9.1600,38.6868],[-9.1480,38.6880],[-9.1380,38.6830],[-9.1250,38.6700],[-9.1180,38.665]];
+  map.appendChild(el('rect',{x:0,y:0,width:1170,height:1100,'class':'cm-water'}));
+  map.appendChild(el('polygon',{points:pts(north),'class':'cm-land'}));
+  map.appendChild(el('polygon',{points:pts(south),'class':'cm-land'}));
+  map.appendChild(el('line',{x1:px(-9.1776),y1:py(38.7000),x2:px(-9.1768),y2:py(38.6840),stroke:'#C0392B','stroke-width':7,'stroke-linecap':'round',opacity:.75}));
+  function lab(txt,lon,lat,cls){var e=el('text',{x:px(lon),y:py(lat),'class':cls||'cm-label','text-anchor':'middle'});e.textContent=txt;map.appendChild(e);}
+  lab('Tage',-9.112,38.690,'cm-river');lab('Almada',-9.158,38.676);lab('Belém',-9.205,38.7025);lab('Alcântara',-9.182,38.7085);
+  lab('Campo de Ourique',-9.168,38.7205);lab('Avenidas Novas',-9.143,38.746);lab('Monsanto',-9.205,38.7385);lab('Parque das Nações',-9.112,38.771);
+  lab('Graça',-9.124,38.7205);lab('Aéroport ↑',-9.135,38.770);
+  [['Baixa',-9.1365,38.7104],['Bairro Alto',-9.1478,38.7124],['Alfama',-9.1278,38.7134],['Graça',-9.1292,38.7182],['Estrela',-9.1610,38.7160],['Cais do Sodré',-9.1460,38.7038],['Chiado',-9.1420,38.7100]].forEach(function(q){lab(q[0],q[1],q[2],'cm-label c');});
+  var mkLayer=el('g',{});map.appendChild(mkLayer);
+  var VB={city:'0 0 1170 1100',centre:[px(-9.168),py(38.7215),px(-9.118)-px(-9.168),py(38.7030)-py(38.7215)].map(function(v){return v.toFixed(0);}).join(' ')};
+  var zoom='city';
+
+  var sightsEl=document.getElementById('sights'), countEl=document.getElementById('count'), filtersEl=document.getElementById('filters');
+  var cardEl=document.getElementById('mapcard'), carnetEl=document.getElementById('carnet');
+  var cur='all', sel=null, KEY='dme-lisbonne-carnet', fav=[];
+  try{fav=JSON.parse(localStorage.getItem(KEY)||'[]');if(!Array.isArray(fav))fav=[];}catch(e){fav=[];}
+  function saveFav(){try{localStorage.setItem(KEY,JSON.stringify(fav));}catch(e){}}
+  function isFav(n){return fav.indexOf(n)>-1;}
+  function toggleFav(n){var i=fav.indexOf(n);if(i>-1)fav.splice(i,1);else fav.push(n);saveFav();renderAll();}
+  function byName(n){for(var i=0;i<S.length;i++)if(S[i][0]===n)return S[i];}
+  function favBtn(n){return '<button type="button" class="btn'+(isFav(n)?' on':'')+'" data-fav="'+n.replace(/"/g,'&quot;')+'">'+(isFav(n)?'★ Dans mon carnet':'☆ Ajouter au carnet')+'</button>';}
+  function norm(t){return (t||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');}
+  function mins(d){var m=d.match(/(\d+)\s*h(?:\s*(\d+))?/);if(m)return +m[1]*60+(+m[2]||0);m=d.match(/(\d+)\s*min/);return m?+m[1]:999;}
+  function filtered(){var q=norm(document.getElementById('s-q').value);return S.filter(function(s){return (cur==='all'||(cur==='free'?s[4]:cur==='fav'?isFav(s[0]):s[2]===cur))&&(!q||norm(s[0]+' '+s[1]+' '+s[6]+' '+CAT[s[2]]).indexOf(q)>-1);});}
+  function sorted(list){var k=document.getElementById('s-sort').value, l=list.slice();
+    if(k==='rec')l.sort(function(a,b){return b[5]-a[5];});
+    if(k==='quartier')l.sort(function(a,b){return a[1].localeCompare(b[1],'fr');});
+    if(k==='duree')l.sort(function(a,b){return mins(a[3])-mins(b[3]);});
+    if(k==='free')l.sort(function(a,b){return b[4]-a[4];});
+    if(k==='az')l.sort(function(a,b){return a[0].localeCompare(b[0],'fr');});
+    return l;}
+  function renderMap(list){
+    mkLayer.innerHTML='';
+    var r=zoom==='centre'?6:12;
+    list.forEach(function(s){
+      var c=XY[s[0]];if(!c)return;
+      var g=el('g',{'class':'mk'+(sel===s[0]?' sel':'')+(isFav(s[0])?' fav':''),tabindex:0,role:'button','aria-label':s[0]+', '+CAT[s[2]]});
+      g.appendChild(el('circle',{cx:px(c[1]),cy:py(c[0]),r:r*1.9,'class':'ring'}));
+      g.appendChild(el('circle',{cx:px(c[1]),cy:py(c[0]),r:s[5]?r*1.25:r,fill:COL[s[2]],'class':'dot'}));
+      var tt=el('title',{});tt.textContent=s[0];g.appendChild(tt);
+      g.addEventListener('click',function(){select(s[0]);});
+      g.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();select(s[0]);}});
+      mkLayer.appendChild(g);
+    });
+    var shown=list.filter(function(s){return XY[s[0]];}).length;
+    document.getElementById('mapcount').textContent=shown+' lieu'+(shown>1?'x':'')+' sur la carte';
+  }
+  function renderCard(){
+    var s=sel&&byName(sel);
+    if(!s){cardEl.innerHTML='<p class="empty">Touchez un point de la carte pour afficher le lieu.</p>';return;}
+    cardEl.innerHTML='<h3>'+(s[5]?'<span class="must"></span>':'')+s[0]+'</h3><p class="meta">'+s[1]+'  ·  '+CAT[s[2]]+'  ·  '+s[3]+'  ·  '+(s[4]?'<span class="free">Gratuit</span>':'Payant')+'</p><p>'+s[6]+'</p><p class="tip">'+s[7]+'</p><div class="actions">'+favBtn(s[0])+'</div>';
+  }
+  function renderCarnet(){
+    if(!fav.length){carnetEl.innerHTML='<h3>Mon carnet</h3><p>Ajoutez des lieux avec ☆ pour préparer votre visite. Le carnet reste enregistré sur cet appareil.</p>';return;}
+    carnetEl.innerHTML='<h3>Mon carnet · '+fav.length+' lieu'+(fav.length>1?'x':'')+'</h3><div class="names">'+fav.map(function(n){return '<button type="button" data-goto="'+n.replace(/"/g,'&quot;')+'">'+n+'</button>';}).join('')+'</div><div class="actions"><button type="button" class="btn" id="fav-only">Afficher seulement mon carnet</button><button type="button" class="btn" id="fav-clear">Vider le carnet</button></div>';
+    carnetEl.querySelectorAll('[data-goto]').forEach(function(b){b.addEventListener('click',function(){select(b.getAttribute('data-goto'),true);});});
+    document.getElementById('fav-clear').addEventListener('click',function(){fav=[];saveFav();if(cur==='fav')setFilter('all');else renderAll();});
+    document.getElementById('fav-only').addEventListener('click',function(){setFilter('fav');});
+  }
+  function renderSights(){
+    var list=sorted(filtered());
+    countEl.textContent=list.length+' lieu'+(list.length>1?'x':'')+(cur==='fav'&&!list.length?' : votre carnet est vide':'');
+    sightsEl.innerHTML=list.map(function(s){
+      var n=s[0].replace(/"/g,'&quot;');
+      return '<li style="--cc:'+COL[s[2]]+'"><div class="head"><h3>'+(s[5]?'<span class="must" title="Incontournable"></span>':'')+s[0]+'</h3><span class="meta">'+s[1]+'  ·  '+CAT[s[2]]+'  ·  '+s[3]+'  ·  '+(s[4]?'<span class="free">Gratuit</span>':'Payant')+'</span></div><p>'+s[6]+'</p><p class="tip">'+s[7]+'</p><div class="actions">'+favBtn(s[0])+(XY[s[0]]?'<button type="button" class="btn" data-goto="'+n+'">Voir sur la carte</button>':'')+'</div></li>';
+    }).join('');
+    sightsEl.querySelectorAll('[data-goto]').forEach(function(b){b.addEventListener('click',function(){select(b.getAttribute('data-goto'),true);});});
+    renderMap(list);
+  }
+  function renderAll(){renderSights();renderCard();renderCarnet();
+    document.querySelectorAll('[data-fav]').forEach(function(b){b.onclick=function(){toggleFav(b.getAttribute('data-fav'));};});}
+  function select(n,scroll){
+    sel=n;var c=XY[n];
+    if(c&&zoom==='centre'){var x=px(c[1]),y=py(c[0]),v=VB.centre.split(' ').map(Number);if(x<v[0]||x>v[0]+v[2]||y<v[1]||y>v[1]+v[3])setZoom('city');}
+    var s=byName(n);if(s&&cur!=='all'&&!(cur==='free'?s[4]:cur==='fav'?isFav(n):s[2]===cur)){setFilter('all');}
+    renderAll();
+    if(scroll)document.querySelector('.citymap').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'start'});
+  }
+  function setFilter(k){cur=k;filtersEl.querySelectorAll('.chip').forEach(function(x){x.setAttribute('aria-pressed',x.getAttribute('data-k')===k?'true':'false');});renderAll();}
+  var F=[['all','Tout']].concat(Object.keys(CAT).map(function(k){return [k,CAT[k]];})).concat([['free','Gratuit'],['fav','Mon carnet']]);
+  F.forEach(function(f){
+    var b=document.createElement('button');b.type='button';b.className='chip';b.textContent=f[1];b.setAttribute('data-k',f[0]);
+    b.setAttribute('aria-pressed',f[0]==='all'?'true':'false');
+    b.addEventListener('click',function(){setFilter(f[0]);});
+    filtersEl.appendChild(b);
+  });
+  var zEl=document.getElementById('zoom');
+  function setZoom(z){zoom=z;map.setAttribute('viewBox',VB[z]);map.classList.toggle('zc',z==='centre');zEl.querySelectorAll('.chip').forEach(function(x){x.setAttribute('aria-pressed',x.getAttribute('data-z')===z?'true':'false');});renderMap(filtered());}
+  [['city','Toute la ville'],['centre','Centre historique']].forEach(function(z){
+    var b=document.createElement('button');b.type='button';b.className='chip';b.textContent=z[1];b.setAttribute('data-z',z[0]);
+    b.setAttribute('aria-pressed',z[0]==='city'?'true':'false');b.addEventListener('click',function(){setZoom(z[0]);});zEl.appendChild(b);
+  });
+  document.getElementById('s-q').addEventListener('input',renderAll);document.getElementById('s-sort').addEventListener('change',renderAll);
+  document.getElementById('cm-legend').innerHTML=Object.keys(CAT).map(function(k){return '<span style="--c:'+COL[k]+'">'+CAT[k]+'</span>';}).join('')+'<span style="--c:transparent">Gros point : incontournable · contour jaune : dans votre carnet</span>';
+  renderAll();
+
+  /* ---------- Itinéraires ---------- */
+  var D=[
+    ['Jour 1 · Le cœur historique',[
+      ['Matin','Praça do Comércio, rue Augusta et son arc, Rossio. Café et pastel de nata à la Confeitaria Nacional.'],
+      ['Midi','Montée au Chiado par l’Elevador de Santa Justa ou à pied, ruines du Carmo, déjeuner dans une tasca.'],
+      ['Après-midi','Tram 28 ou montée à pied vers la cathédrale, Santa Luzia, Portas do Sol puis le château Saint-Georges.'],
+      ['Soir','Descente dans l’Alfama, dîner et soirée fado.']]],
+    ['Jour 2 · Belém et le fleuve',[
+      ['Matin','Tram 15E jusqu’à Belém. Monastère des Hiéronymites à l’ouverture, pastéis à la pâtisserie historique.'],
+      ['Midi','Monument des Découvertes, tour de Belém, déjeuner au bord du Tage.'],
+      ['Après-midi','MAAT et son toit, puis remontée vers la LX Factory pour la fin de journée.'],
+      ['Soir','Coucher du soleil au Miradouro de Santa Catarina, soirée au Bairro Alto.']]],
+    ['Jour 3 · Musées et quartiers vivants',[
+      ['Matin','Musée Gulbenkian et son jardin.'],
+      ['Midi','Métro jusqu’à Rato, Príncipe Real, déjeuner et boutiques, jardin botanique.'],
+      ['Après-midi','Graça : Senhora do Monte, São Vicente de Fora, Panthéon national.'],
+      ['Soir','Dîner à Cais do Sodré, verre sur la rue rose.']]],
+    ['Jour 4 · Sintra',[
+      ['Matin','Train depuis le Rossio dès l’ouverture. Palais de Pena (billet réservé à l’avance).'],
+      ['Midi','Déjeuner au centre historique, travesseiros chez une pâtisserie locale.'],
+      ['Après-midi','Quinta da Regaleira et son puits initiatique, ou château des Maures.'],
+      ['Soir','Retour à Lisbonne, dîner tranquille à Campo de Ourique.']]],
+    ['Jour 5 · Azulejos et Lisbonne moderne',[
+      ['Matin','Musée national de l’Azulejo.'],
+      ['Midi','Parque das Nações : déjeuner au bord du Tage.'],
+      ['Après-midi','Océanarium et téléphérique, ou train pour les plages de Cascais.'],
+      ['Soir','Dernier coucher de soleil au Miradouro da Graça.']]]
+  ];
+  var tabsEl=document.getElementById('tabs'), daysEl=document.getElementById('days');
+  function renderDays(n){
+    daysEl.innerHTML=D.slice(0,n).map(function(d){
+      return '<article class="day"><h3>'+d[0]+'</h3><dl>'+d[1].map(function(r){return '<dt>'+r[0]+'</dt><dd>'+r[1]+'</dd>';}).join('')+'</dl></article>';
+    }).join('');
+  }
+  [[1,'1 jour'],[2,'2 jours'],[3,'3 jours'],[4,'4 jours'],[5,'5 jours']].forEach(function(o){
+    var b=document.createElement('button');b.type='button';b.className='chip';b.textContent=o[1];
+    b.setAttribute('aria-pressed',o[0]===3?'true':'false');
+    b.addEventListener('click',function(){tabsEl.querySelectorAll('.chip').forEach(function(x){x.setAttribute('aria-pressed','false');});b.setAttribute('aria-pressed','true');renderDays(o[0]);});
+    tabsEl.appendChild(b);
+  });
+  renderDays(3);
+
+  /* ---------- Quartiers ---------- */
+  var H=[
+    ['Alfama',1,'Le quartier le plus ancien, ruelles médiévales, escaliers, linge aux fenêtres et maisons de fado.','Ambiance, fado, photographes'],
+    ['Mouraria',0,'Berceau du fado et quartier le plus cosmopolite, en pleine transformation. Authentique et un peu brut.','Curieux, cuisines du monde'],
+    ['Graça',1,'Village perché, belvédères, vie de quartier préservée et tram 28.','Séjour calme avec vue'],
+    ['Castelo',0,'Le minuscule quartier enserré dans les murs du château, très calme le soir.','Une balade hors du temps'],
+    ['Baixa',1,'Le centre reconstruit après 1755, plat et quadrillé, rues commerçantes et grandes places.','Premier séjour, logistique facile'],
+    ['Chiado',1,'Le quartier élégant des cafés littéraires, théâtres et librairies.','Couples, amateurs de culture'],
+    ['Bairro Alto',0,'Calme et charmant le jour, saturé de bars la nuit, jusqu’au petit matin.','Sortir (moins pour dormir)'],
+    ['Príncipe Real',1,'Le quartier chic et vert : jardins, palais, créateurs, terrasses.','Séjour raffiné et tranquille'],
+    ['Cais do Sodré',1,'L’ancien port des marins devenu repaire de la nuit, avec le marché de la Ribeira et les ferries.','Fêtards, voyageurs pratiques'],
+    ['Santos et Madragoa',1,'Rues de designers, petits restaurants de quartier, entre le centre et Belém.','Ambiance locale'],
+    ['Lapa et Estrela',1,'Quartier résidentiel des ambassades, maisons bourgeoises, jardin da Estrela.','Calme, charme, familles'],
+    ['Campo de Ourique',1,'Quartier de vie locale avec un excellent marché couvert, terminus du tram 28.','Vivre comme un Lisboète'],
+    ['Alcântara',0,'Ancien quartier industriel sous le pont : LX Factory, docks et vie nocturne.','Sorties, créatifs'],
+    ['Belém',1,'Monuments, jardins et pâtisseries au bord du Tage, très calme le soir.','Culture, familles'],
+    ['Avenida da Liberdade',1,'Le grand boulevard arboré aux boutiques de luxe et aux hôtels confortables.','Confort, familles'],
+    ['Avenidas Novas et Saldanha',1,'Quartier moderne de bureaux et d’avenues, proche de la Gulbenkian, très bien desservi.','Affaires, séjours pratiques'],
+    ['Arroios et Anjos',1,'Quartiers populaires et multiculturels, prix plus doux, bars et restaurants du monde.','Petits budgets'],
+    ['Marvila et Beato',0,'Les anciens entrepôts de l’est, devenus le repaire des brasseries artisanales et des galeries.','Bière artisanale, art'],
+    ['Parque das Nações',1,'Le quartier né de l’Expo 1998, architecture contemporaine et promenade de plusieurs kilomètres au bord de l’eau.','Familles, affaires']
+  ];
+  document.getElementById('hoods').innerHTML=H.map(function(q){
+    return '<div><h3>'+q[0]+'<span class="sleep'+(q[1]?' y':'')+'">'+(q[1]?'Bon pour loger':'Plutôt à visiter')+'</span></h3><p>'+q[2]+'</p><p class="for">Pour qui : '+q[3]+'</p></div>';
+  }).join('');
+
+  /* ---------- Climat ---------- */
+  var M=['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+  var HI=[15,16,18,20,22,26,28,28,26,22,18,15], LO=[8,9,11,12,14,17,18,19,18,15,12,9];
+  var RA=[100,90,60,65,50,15,5,5,30,95,110,110], RD=[11,10,8,9,6,3,1,1,4,9,11,12];
+  var SUN=[5,6,7,8,10,11,12,11,9,7,5,5], SEA=[15,15,15,16,17,18,19,20,20,19,17,16];
+  var GOOD=[3,4,5,8,9];
+  var MN=['Doux mais pluvieux. Peu de monde, prix bas : idéal pour les musées.','Encore humide, journées plus longues. Le Carnaval tombe parfois ce mois-ci.','Printemps précoce, amandiers et premières terrasses, averses passagères.','Très agréable : doux, fleuri, encore peu de foule hors Pâques.','Idéal pour marcher toute la journée. Premières baignades pour les courageux.','Chaud et très animé : fêtes de la Saint-Antoine, sardines grillées et rues décorées.','Chaud et sec, beaucoup de visiteurs. Plages et soirées en terrasse.','Le mois le plus chargé et le plus chaud. Réservez tôt et visitez tôt le matin.','Encore estival, la foule diminue. Excellent compromis, eau la plus chaude.','Doux, lumière dorée, premières pluies d’automne.','Pluvieux mais lumineux entre deux averses. Basse saison, prix bas.','Doux pour la saison, illuminations de Noël et ambiance de fêtes.'];
+  var mw=document.getElementById('months'), md=document.getElementById('month-detail');
+  function showM(i){
+    mw.querySelectorAll('button').forEach(function(b,j){b.setAttribute('aria-pressed',j===i?'true':'false');});
+    md.innerHTML='<h3>'+M[i]+(GOOD.indexOf(i)>-1?' – période idéale':'')+'</h3><div class="mstats">'+
+      '<div><span>Max. moyenne</span><b>'+HI[i]+' °C</b></div><div><span>Min. moyenne</span><b>'+LO[i]+' °C</b></div>'+
+      '<div><span>Pluie</span><b>≈ '+RA[i]+' mm</b></div><div><span>Jours de pluie</span><b>≈ '+RD[i]+'</b></div>'+
+      '<div><span>Soleil par jour</span><b>≈ '+SUN[i]+' h</b></div><div><span>Mer</span><b>≈ '+SEA[i]+' °C</b></div></div><p>'+MN[i]+'</p>';
+  }
+  M.forEach(function(n,i){
+    var b=document.createElement('button');b.type='button';if(GOOD.indexOf(i)>-1)b.className='good';
+    b.setAttribute('aria-label',n+', '+HI[i]+' degrés');
+    b.innerHTML='<span style="font-size:.7rem;color:var(--ink)">'+HI[i]+'°</span><span class="bar" style="height:'+Math.round(HI[i]/30*100)+'%"></span><span>'+n.slice(0,3)+'</span>';
+    b.addEventListener('click',function(){showM(i);});mw.appendChild(b);
+  });
+  showM(new Date().getMonth());
+  document.getElementById('rainrow').innerHTML=RA.map(function(r){return '<div><i style="height:'+Math.max(3,Math.round(r/110*44))+'px"></i></div>';}).join('');
+
+  /* ---------- Agenda ---------- */
+  var E=[
+    ['Janvier – février',['Soldes d’hiver','Carnaval (dates variables), défilés dans la région, notamment à Torres Vedras']],
+    ['Mars – avril',['Semaine sainte et processions','25 avril : célébrations de la révolution des Œillets, défilé sur l’Avenida da Liberdade']],
+    ['Mai',['IndieLisboa, festival international de cinéma indépendant','Floraison des jacarandas violets à partir de fin mai']],
+    ['Juin',['Festas de Lisboa tout le mois : guirlandes, bals de rue et sardines','Nuit de la Saint-Antoine du 12 au 13 juin, marches populaires sur l’Avenida da Liberdade','Marche des fiertés','Rock in Rio Lisboa (les années paires)']],
+    ['Juillet – août',['NOS Alive, grand festival de rock et pop à Algés','Concerts en plein air et cinéma dans les jardins','Plages de Cascais et Costa da Caparica bondées']],
+    ['Septembre – octobre',['Rentrée culturelle, saison de la Gulbenkian et de São Carlos','Marathon et semi-marathon de Lisbonne, le parcours passe par le bord du Tage','Moda Lisboa, semaine de la mode (mars et octobre)']],
+    ['Novembre',['Web Summit, grand salon technologique au Parque das Nações','Fête de la Saint-Martin (11 novembre) : châtaignes grillées et vin nouveau']],
+    ['Décembre',['Illuminations et marchés de Noël (Rossio, Campo Pequeno)','Réveillon et feu d’artifice sur la Praça do Comércio']]
+  ];
+  document.getElementById('events').innerHTML=E.map(function(e){return '<div><h3>'+e[0]+'</h3><ul>'+e[1].map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul></div>';}).join('');
+
+  /* ---------- Cuisine ---------- */
+  function dish(arr){return arr.map(function(d){return '<div><h3>'+d[0]+(d[1]?' <span class="pt">'+d[1]+'</span>':'')+'</h3><p>'+d[2]+'</p></div>';}).join('');}
+  document.getElementById('dishes-main').innerHTML=dish([
+    ['Bacalhau à Brás','','Morue effilochée, oignons, pommes paille et œufs brouillés, persil et olives noires. Le plat de morue le plus populaire.'],
+    ['Pastéis de bacalhau','','Beignets de morue et pomme de terre, à grignoter au comptoir.'],
+    ['Sardinhas assadas','','Sardines grillées au charbon, sur une tranche de pain qui s’imbibe. La star de juin.'],
+    ['Polvo à lagareiro','','Poulpe rôti, pommes de terre écrasées au poing et beaucoup d’huile d’olive à l’ail.'],
+    ['Arroz de marisco','','Riz crémeux aux fruits de mer, servi en marmite pour deux.'],
+    ['Amêijoas à Bulhão Pato','','Palourdes à l’ail, huile d’olive, coriandre et citron. Gardez du pain pour la sauce.'],
+    ['Caldo verde','','Soupe de chou vert finement émincé, pomme de terre et rondelle de chouriço.'],
+    ['Bifana','','Fines tranches de porc mariné à l’ail et au vin blanc, dans un petit pain. Moutarde au comptoir.'],
+    ['Prego','','Le même principe avec du bœuf, souvent servi en fin de repas dans les brasseries de fruits de mer.'],
+    ['Cozido à portuguesa','','Pot-au-feu de plusieurs viandes, saucisses, chou et légumes. Plat du dimanche.'],
+    ['Frango piri-piri','','Poulet grillé au piment, héritage des liens avec l’Afrique.'],
+    ['Peixe grelhado','','Poisson du jour grillé entier : dorade, bar, chinchard, servi avec pommes de terre et salade.'],
+    ['Conservas','','Sardines, thon, maquereau en conserve de qualité, servis avec du pain dans des bars spécialisés.'],
+    ['Queijo da Serra','','Fromage de brebis crémeux de la Serra da Estrela, qu’on mange à la cuillère.']
+  ]);
+  document.getElementById('dishes-sweet').innerHTML=dish([
+    ['Pastel de nata','','Flan aux œufs dans une pâte feuilletée croustillante, à manger tiède avec cannelle et sucre glace.'],
+    ['Travesseiro','','L’« oreiller » de Sintra : feuilleté fourré à la crème d’amande et d’œuf.'],
+    ['Queijada','','Petite tarte au fromage frais, spécialité de Sintra.'],
+    ['Bola de Berlim','','Beignet fourré à la crème aux œufs, vendu sur les plages en été.'],
+    ['Arroz doce','','Riz au lait parfumé au citron et dessiné à la cannelle.'],
+    ['Pão de Deus','','Brioche couverte de noix de coco râpée, au petit-déjeuner.'],
+    ['Pastel de Tentúgal','','Pâte très fine et croustillante fourrée de crème d’œufs, héritée des couvents.'],
+    ['Castanhas assadas','','Châtaignes grillées vendues dans la rue en automne et en hiver.']
+  ]);
+  document.getElementById('dishes-drink').innerHTML=dish([
+    ['Ginjinha','','Liqueur de griotte, avec ou sans fruit (« com ou sem elas »).'],
+    ['Vinho verde','','Vin blanc jeune et légèrement pétillant du nord, parfait l’été.'],
+    ['Porto','','Vin muté du Douro : tawny, ruby, blanc en apéritif avec tonic (« Porto tónico »).'],
+    ['Vins de l’Alentejo et du Douro','','Rouges puissants, souvent excellents à petit prix.'],
+    ['Imperial','','Bière pression servie en petit verre. Sagres et Super Bock se partagent le pays.'],
+    ['Licor Beirão','','Liqueur aux plantes, digestif national.']
+  ]);
+
+  /* ---------- Budget ---------- */
+  var PER={eco:{name:'Petit budget',lodge:45,food:30,act:15,trans:7},mid:{name:'Intermédiaire',lodge:85,food:55,act:30,trans:10},lux:{name:'Confort',lodge:180,food:100,act:60,trans:30}};
+  function calc(){
+    var n=Math.max(1,+document.getElementById('c-nights').value||1), a=Math.max(1,+document.getElementById('c-adults').value||1), k=Math.max(0,+document.getElementById('c-kids').value||0), p=PER[document.getElementById('c-style').value];
+    var days=n+1, lodge=p.lodge*a*n+p.lodge*.3*k*n, food=p.food*(a+k*.6)*days, act=p.act*(a+k*.5)*days, trans=p.trans*(a+k*.5)*days, tax=4*a*Math.min(n,7);
+    var tot=lodge+food+act+trans+tax; function f(x){return Math.round(x).toLocaleString('fr-FR')+' €';}
+    document.getElementById('c-result').innerHTML='<span class="meta">Estimation pour '+(a+k)+' personne'+(a+k>1?'s':'')+', '+n+' nuit'+(n>1?'s':'')+', style '+p.name.toLowerCase()+'</span><div class="total">≈ '+f(tot)+'</div><ul><li>Hébergement : '+f(lodge)+'</li><li>Repas et boissons : '+f(food)+'</li><li>Visites et sorties : '+f(act)+'</li><li>Transports sur place : '+f(trans)+'</li><li>Taxe touristique : '+f(tax)+' (4 € × '+a+' × '+Math.min(n,7)+' nuits)</li></ul>';
+  }
+  ['c-nights','c-adults','c-kids','c-style'].forEach(function(id){document.getElementById(id).addEventListener('input',calc);});
+  calc();
+
+  /* ---------- Lexique ---------- */
+  var L=[['Olá','o-la','Bonjour (familier)'],['Bom dia','bon’ dia','Bonjour (le matin)'],['Boa tarde','boa tard’','Bonjour (l’après-midi)'],['Boa noite','boa noït’','Bonsoir, bonne nuit'],['Adeus / Tchau','a-dé-ouch / tchaou','Au revoir'],['Obrigado / Obrigada','o-bri-ga-dou / o-bri-ga-da','Merci'],['Se faz favor','s’ fach fa-vor','S’il vous plaît'],['Desculpe','dech-coulp’','Pardon, excusez-moi'],['Com licença','con li-cén-sa','Pardon (pour passer)'],['Sim / Não','sin / naon','Oui / Non'],['Fala francês ?','fa-la fran-sèch','Parlez-vous français ?'],['Não percebo','naon peur-cé-bou','Je ne comprends pas'],['Quanto custa ?','kouan-tou kouch-ta','Combien ça coûte ?'],['A conta, se faz favor','a con-ta…','L’addition, s’il vous plaît'],['Uma mesa para dois','ou-ma mé-za pa-ra doïch','Une table pour deux'],['Água com / sem gás','a-goua con / saïn gach','Eau gazeuse / plate'],['Uma bica','ou-ma bi-ca','Un expresso'],['Onde fica… ?','on-d’ fi-ca','Où se trouve… ?'],['Casa de banho','ca-za d’ ba-gnou','Toilettes'],['Elétrico','i-lé-tri-cou','Tramway'],['Autocarro','ao-tô-ca-rrou','Bus'],['Comboio','con-boï-ou','Train'],['Paragem','pa-ra-jaïn','Arrêt'],['Bilhete','bi-lyét’','Ticket'],['Aberto / Fechado','a-bèr-tou / fi-cha-dou','Ouvert / Fermé'],['Entrada / Saída','in-tra-da / sa-i-da','Entrée / Sortie'],['Esquerda / Direita','ich-kér-da / di-raï-ta','Gauche / Droite'],['Farmácia','far-ma-sia','Pharmacie'],['Ajuda !','a-jou-da','À l’aide !'],['Saúde !','sa-oud’','Santé !']];
+  document.getElementById('lex').innerHTML=L.map(function(r){return '<tr><td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+r[2]+'</td></tr>';}).join('');
+
+  var LP=[['Belém','bé-laïn'],['Jerónimos','jé-ro-ni-mouch'],['Alfama','al-fa-ma'],['Mouraria','mo-ra-ri-a'],['Graça','gra-ssa'],['Chiado','chi-a-dou'],['Rossio','rou-si-ou'],['Bairro Alto','baï-rrou al-tou'],['Cais do Sodré','kaïch dou sou-dré'],['Castelo de São Jorge','kach-té-lou d’ saon jorj’'],['Tejo (le Tage)','té-jou'],['Cascais','kach-kaïch'],['Sintra','sin-tra'],['Intendente','in-tèn-dent’']];
+  document.getElementById('lex-places').innerHTML=LP.map(function(r){return '<tr><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>';}).join('');
+
+  /* ---------- Quiz ---------- */
+  var QZ=[
+    ['En quelle année un séisme a-t-il détruit une grande partie de Lisbonne ?',['1492','1755','1834','1908'],1,'Le 1ᵉʳ novembre 1755, suivi d’un tsunami et d’incendies.'],
+    ['Quel fleuve traverse Lisbonne ?',['Le Douro','Le Guadiana','Le Tage','Le Mondego'],2,'Le Tage, Tejo en portugais, prend sa source en Espagne.'],
+    ['Comment s’appelle la liqueur de griotte lisboète ?',['Ginjinha','Medronho','Aguardente','Licor Beirão'],0,'On la boit au comptoir, « com ou sem elas », avec ou sans cerises.'],
+    ['Que célèbre-t-on le 25 avril ?',['La fin de la monarchie','La révolution des Œillets','L’entrée dans l’Europe','La Saint-Antoine'],1,'Le 25 avril 1974, la dictature tombe presque sans violence.'],
+    ['Quel record détient la Livraria Bertrand du Chiado ?',['La plus grande librairie d’Europe','La plus ancienne librairie en activité au monde','La première librairie en ligne','La plus petite librairie du monde'],1,'Elle a été fondée en 1732.'],
+    ['Pour quel événement le Parque das Nações a-t-il été construit ?',['Les Jeux olympiques','La Coupe du monde','L’Exposition universelle de 1998','Le traité de Lisbonne'],2,'L’Expo 98 a aussi donné naissance à l’Océanarium et au pont Vasco da Gama.']
+  ];
+  var qi=0, qs=0, qa=false, qb=document.getElementById('quizbox');
+  function qRender(){
+    if(qi>=QZ.length){qb.innerHTML='<p class="q">Score : '+qs+' / '+QZ.length+'</p><p>'+(qs===QZ.length?'Parfait, vous êtes prêt à partir !':qs>=4?'Très bien, Lisbonne vous attend.':'Relisez la fiche, et retentez votre chance.')+'</p><div class="actions"><button type="button" class="btn" id="q-re">Recommencer</button></div>';document.getElementById('q-re').onclick=function(){qi=0;qs=0;qRender();};return;}
+    var q=QZ[qi];qa=false;
+    qb.innerHTML='<p class="q">'+q[0]+'</p><div class="opts">'+q[1].map(function(o,i){return '<button type="button" data-i="'+i+'">'+o+'</button>';}).join('')+'</div><p class="fb" id="q-fb"></p><div class="qnav"><span>Question '+(qi+1)+' sur '+QZ.length+'</span><button type="button" class="btn" id="q-next" hidden>Question suivante</button></div>';
+    qb.querySelectorAll('.opts button').forEach(function(b){b.onclick=function(){
+      if(qa)return;qa=true;var i=+b.getAttribute('data-i');
+      qb.querySelectorAll('.opts button')[q[2]].classList.add('ok');
+      if(i===q[2]){qs++;document.getElementById('q-fb').textContent='Bonne réponse. '+q[3];}else{b.classList.add('ko');document.getElementById('q-fb').textContent='Raté. '+q[3];}
+      var nx=document.getElementById('q-next');nx.hidden=false;nx.textContent=qi===QZ.length-1?'Voir mon score':'Question suivante';nx.onclick=function(){qi++;qRender();};nx.focus();
+    };});
+  }
+  qRender();
+
+  /* ---------- Soleil, heure locale et ciel ---------- */
+  var LAT=38.7223, LON=-9.1393, RAD=Math.PI/180;
+  function sunTimes(d){
+    var jd=d.getTime()/86400000+2440587.5, n=Math.round(jd-2451545-0.0009+LON/360);
+    var Js=n+0.0009-LON/360, M=(357.5291+0.98560028*Js)%360, Cc=1.9148*Math.sin(M*RAD)+0.02*Math.sin(2*M*RAD)+0.0003*Math.sin(3*M*RAD);
+    var L=(M+Cc+180+102.9372)%360, Jt=2451545+Js+0.0053*Math.sin(M*RAD)-0.0069*Math.sin(2*L*RAD);
+    var sd=Math.sin(L*RAD)*Math.sin(23.4397*RAD), cd=Math.cos(Math.asin(sd));
+    var cw=(Math.sin(-0.833*RAD)-Math.sin(LAT*RAD)*sd)/(Math.cos(LAT*RAD)*cd), w=Math.acos(Math.max(-1,Math.min(1,cw)))/RAD;
+    function toD(j){return new Date((j-2440587.5)*86400000);}
+    return {rise:toD(Jt-w/360),set:toD(Jt+w/360)};
+  }
+  var fmt=new Intl.DateTimeFormat('fr-FR',{timeZone:'Europe/Lisbon',hour:'2-digit',minute:'2-digit'});
+  var mFmt=new Intl.DateTimeFormat('fr-FR',{timeZone:'Europe/Lisbon',month:'numeric'});
+  var st=document.getElementById('stars');
+  for(var k2=0;k2<40;k2++){st.appendChild(el('circle',{cx:(k2*137)%1200,cy:(k2*53)%110+6,r:k2%3?1:1.6,fill:'#fff'}));}
+  function mix(a,b,t){var pa=[1,3,5].map(function(i){return parseInt(a.substr(i,2),16);}),pb=[1,3,5].map(function(i){return parseInt(b.substr(i,2),16);});return '#'+pa.map(function(v,i){return ('0'+Math.round(v+(pb[i]-v)*t).toString(16)).slice(-2);}).join('');}
+  function live(){
+    var now=new Date(), t=sunTimes(now), dl=(t.set-t.rise)/60000;
+    document.getElementById('lv-time').textContent=fmt.format(now);
+    document.getElementById('lv-rise').textContent=fmt.format(t.rise);
+    document.getElementById('lv-set').textContent=fmt.format(t.set);
+    document.getElementById('lv-day').textContent=Math.floor(dl/60)+' h '+('0'+Math.round(dl%60)).slice(-2);
+    var mi=+mFmt.format(now)-1;
+    document.getElementById('lv-note').textContent=M[mi]+' : '+MN[mi];
+    var nowM=now.getTime(), r=t.rise.getTime(), s2=t.set.getTime(), H=3600000, c1,c2,stars=0,sunY,sunX,sunC='#F2B705',lit=false;
+    var dayFrac=(nowM-r)/(s2-r);
+    if(nowM<r-H||nowM>s2+H){c1='#0B1A2B';c2='#1E3550';stars=1;lit=true;sunX=900;sunY=40;sunC='#F1EEDC';}
+    else if(nowM<r+H||nowM>s2-H){var e=nowM<r+H?(nowM-(r-H))/(2*H):1-(nowM-(s2-H))/(2*H);c1=mix('#22345A','#8EC5E8',e);c2=mix('#F08A5D','#DCEFF7',e);stars=Math.max(0,1-e*2);lit=e<.35;sunX=nowM<r+H?150:1050;sunY=150-e*90;sunC=mix('#F06B3C','#F2B705',e);}
+    else{c1='#8EC5E8';c2='#DCEFF7';sunX=150+dayFrac*900;sunY=110-Math.sin(Math.PI*dayFrac)*85;}
+    document.getElementById('sky1').setAttribute('stop-color',c1);document.getElementById('sky2').setAttribute('stop-color',c2);
+    document.getElementById('skyline').classList.toggle('night',lit);
+    st.setAttribute('opacity',stars);var sun=document.getElementById('sun');sun.setAttribute('cx',sunX);sun.setAttribute('cy',sunY);sun.setAttribute('fill',sunC);
+    document.querySelectorAll('#houses .lit').forEach(function(w){w.setAttribute('fill',lit?'#F7CF5B':'#12313B');w.setAttribute('opacity',lit?.95:.55);});
+  }
+  live(); setInterval(live,60000);
+
+  /* ---------- Excursions ---------- */
+  var T=[
+    ['Sintra','≈ 40 min en train depuis le Rossio','Ville de palais romantiques dans une forêt de montagne, classée à l’UNESCO : palais de Pena, Quinta da Regaleira, château des Maures, Monserrate, palais national au centre. Une journée minimum, deux idéalement.'],
+    ['Cascais et Estoril','≈ 40 min en train depuis Cais do Sodré','Ancien village de pêcheurs devenu station chic, plages, promenade en bord de mer, Boca do Inferno. À vélo, la piste longe la côte jusqu’à la plage du Guincho.'],
+    ['Cabo da Roca','Bus depuis Sintra ou Cascais','Le point le plus occidental du continent européen, falaises de 140 m au-dessus de l’océan. Très venteux.'],
+    ['Costa da Caparica','≈ 30 à 45 min en bus','Une trentaine de kilomètres de plages sur la rive sud, prisées des Lisboètes et des surfeurs.'],
+    ['Serra da Arrábida et Setúbal','≈ 45 min en voiture','Montagnes plongeant dans une mer turquoise, plages abritées (Portinho da Arrábida), dauphins dans l’estuaire du Sado et seiches frites à Setúbal.'],
+    ['Sesimbra','≈ 45 min en voiture','Village de pêcheurs avec château et poisson grillé sur le port.'],
+    ['Mafra','≈ 45 min en voiture ou bus','Palais-couvent baroque gigantesque, classé à l’UNESCO, avec une bibliothèque somptueuse.'],
+    ['Ericeira','≈ 50 min en bus','Village blanc et bleu au bord de falaises, réserve mondiale de surf.'],
+    ['Óbidos','≈ 1 h en bus','Cité médiévale fortifiée, ruelles fleuries et ginjinha dans un gobelet en chocolat.'],
+    ['Évora','≈ 1 h 30 en train','Capitale de l’Alentejo classée à l’UNESCO : temple romain, cathédrale, chapelle des Os.'],
+    ['Fátima','≈ 1 h 30 en bus','Haut lieu de pèlerinage catholique, immense sanctuaire.'],
+    ['Tomar, Batalha et Alcobaça','≈ 1 h 30 à 2 h','Trois monuments classés à l’UNESCO : couvent du Christ des Templiers, monastère de Batalha, abbaye d’Alcobaça. Idéal en voiture.'],
+    ['Nazaré','≈ 1 h 30','Village de pêcheurs célèbre pour les vagues géantes de l’hiver, parmi les plus hautes jamais surfées.'],
+    ['Porto','≈ 3 h en train rapide','Pour un séjour plus long : la grande rivale du nord, ses caves de porto et la vallée du Douro.']
+  ];
+  document.getElementById('trips').innerHTML=T.map(function(x){return '<div><h3>'+x[0]+'</h3><p class="meta">'+x[1]+'</p><p>'+x[2]+'</p></div>';}).join('');
+
+  /* ---------- Recherche ---------- */
+  document.getElementById('search').addEventListener('submit',function(e){
+    e.preventDefault();var v=document.getElementById('q').value.trim();
+    document.getElementById('search-msg').textContent=v?'« '+v+' » : dans ce prototype, seule la fiche de Lisbonne existe.':'';
+  });
+
+  var tt=document.getElementById('totop');window.addEventListener('scroll',function(){tt.classList.toggle('show',window.scrollY>900);},{passive:true});
+
+  /* ---------- Sommaire ---------- */
+  var tocD=document.getElementById('toc-d');
+  function setToc(){ if (window.matchMedia('(min-width:861px)').matches) tocD.open=true; }
+  setToc(); window.addEventListener('resize',setToc);
+  var links=document.querySelectorAll('.toc a');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){links.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+x.target.id);});}});},{rootMargin:'-25% 0px -65% 0px'});
+    document.querySelectorAll('main>section').forEach(function(s){io.observe(s);});
+  }
+})();
+</script>
+</body>
+</html>

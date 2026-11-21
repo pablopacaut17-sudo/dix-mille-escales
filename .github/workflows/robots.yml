@@ -100,4 +100,3 @@ jobs:
           path: site
       - id: deploy
         uses: actions/deploy-pages@v4
-        
