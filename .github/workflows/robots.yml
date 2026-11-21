@@ -1,0 +1,103 @@
+name: Robots et publication
+
+on:
+  schedule:
+    - cron: "30 1 * * *"     # chaque nuit à 1 h 30 (heure UTC)
+  workflow_dispatch:          # bouton « Run workflow » pour lancer à la main
+  push:
+    branches: [main]          # republie le site quand vous modifiez un fichier
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: robots
+  cancel-in-progress: false
+
+jobs:
+  robots:
+    if: github.event_name != 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Liste des villes et des pays (première fois seulement)
+        run: |
+          pip install babel
+          python3 robots/robot_villes.py
+      - name: Robot Change
+        run: python3 robots/robot_change.py
+        continue-on-error: true
+      - name: Robot Jours fériés
+        run: python3 robots/robot_feries.py
+        continue-on-error: true
+      - name: Robot Météo
+        run: python3 robots/robot_meteo.py
+        continue-on-error: true
+        env:
+          OPENMETEO_KEY: ${{ secrets.OPENMETEO_KEY }}
+      - name: Robot Sécurité
+        run: python3 robots/robot_securite.py
+        continue-on-error: true
+      - name: Robot Formalités
+        run: python3 robots/robot_formalites.py
+        continue-on-error: true
+      - name: Robot Coût de la vie
+        run: python3 robots/robot_cout.py
+        continue-on-error: true
+      - name: Robot Climat
+        run: python3 robots/robot_climat.py --max-villes ${{ vars.MAX_CLIMAT || 30 }}
+        continue-on-error: true
+        env:
+          OPENMETEO_KEY: ${{ secrets.OPENMETEO_KEY }}
+      - name: Robot Encyclopédie
+        run: python3 robots/robot_encyclopedie.py --max-villes ${{ vars.MAX_ENCYCLO || 300 }}
+        continue-on-error: true
+      - name: Robot Lieux
+        run: python3 robots/robot_lieux.py --max-villes ${{ vars.MAX_VILLES || 60 }}
+        continue-on-error: true
+      - name: Robot Rédaction
+        run: python3 robots/robot_redaction.py --max-villes ${{ vars.MAX_REDACTION || 40 }}
+        continue-on-error: true
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CLAUDE_MODEL: ${{ vars.CLAUDE_MODEL }}
+      - name: Enregistrer les données collectées
+        run: |
+          git config user.name "robot-dix-mille-escales"
+          git config user.email "robot-dix-mille-escales@users.noreply.github.com"
+          git add data
+          git commit -m "Données du $(date -u +%F)" || echo "Aucune donnée nouvelle"
+          git pull --rebase
+          git push
+
+  publier:
+    needs: robots
+    if: always()
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Générer le site
+        run: python3 build.py
+        env:
+          SITE_URL: ${{ vars.SITE_URL }}
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deploy
+        uses: actions/deploy-pages@v4
+        
