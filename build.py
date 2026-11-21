@@ -688,7 +688,7 @@ def main():
     # Compteur de données
     cpt = ctx["compteur"]
     cpt["villes"] = len(villes)
-    cpt["informations"] += sum(1300 for fn in os.listdir(os.path.join(RACINE, "pages")) if fn.endswith(".html"))  # fiches rédigées à la main
+    cpt["informations"] += sum(1500 for fn in os.listdir(os.path.join(RACINE, "pages")) if fn.endswith(".html"))  # fiches rédigées à la main
     cpt["date"] = ctx["date_txt"]
     ecrire("static/compteur.json", json.dumps(cpt, ensure_ascii=False))
 
