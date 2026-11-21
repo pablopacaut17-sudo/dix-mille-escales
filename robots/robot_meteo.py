@@ -74,7 +74,7 @@ def main():
             rep = json.loads(brut)
             if isinstance(rep, dict):
                 rep = [rep]
-        air = qualite_air(lot, a.demo)
+        air = qualite_air([v for v in lot if v["niveau"] == "phare"], a.demo)  # qualité de l'air : villes phares (quota gratuit)
         for v, r in zip(lot, rep):
             d = r.get("daily") or {}
             if not d.get("time"):

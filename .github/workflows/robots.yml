@@ -64,7 +64,7 @@ jobs:
         env: { OPENMETEO_KEY: "${{ secrets.OPENMETEO_KEY }}" }
       - name: Climat
         continue-on-error: true
-        run: python3 robots/robot_climat.py --max-villes ${{ vars.MAX_CLIMAT || 100 }}
+        run: python3 robots/robot_climat.py --max-villes ${{ vars.MAX_CLIMAT || 80 }}
         env: { OPENMETEO_KEY: "${{ secrets.OPENMETEO_KEY }}" }
       - name: Enregistrer
         if: always()

@@ -48,7 +48,7 @@ def normales(d):
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("--max-villes", type=int, default=100, help="nombre maximal d'appels à l'archive météo par nuit")
+    p.add_argument("--max-villes", type=int, default=80, help="nombre maximal d'appels à l'archive météo par nuit")
     p.add_argument("--demo", action="store_true")
     a = p.parse_args()
     V = c.villes()
