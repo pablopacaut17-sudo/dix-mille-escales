@@ -191,12 +191,12 @@ def page(root, titre, description, corps, recherche=True):
 <title>{E(titre)}</title><meta name="description" content="{E(description)}">
 {FONTS}<link rel="stylesheet" href="{root}static/style.css"></head>
 <body data-root="{root}">
-<header class="top"><div class="top-in"><a class="brand" href="{root}">{LOGO}Dix Mille Escales</a>{rech}
+<header class="top"><div class="top-in"><a class="brand" href="{root}">{LOGO}Dix Mille Escales</a><a class="nav-pays" href="{root}pays/">Pays</a>{rech}
 <button type="button" class="theme-btn" id="theme-btn" aria-label="Changer le thème d’affichage">Thème : auto</button></div></header>
 <main class="wrap">{corps}</main>
 <footer class="foot"><div class="in"><p>Dix Mille Escales, le guide de toutes les villes du monde de plus de 5 000 habitants. Données mises à jour chaque nuit par nos robots.</p>
 <p><span data-compteur>…</span> informations dans le guide · <a href="{root}sources/">Nos sources</a> · <a href="{root}etat/">État des robots</a></p></div></footer>
-<script src="{root}static/app.js"></script><script src="{root}static/fiche.js"></script><script src="{root}static/questions.js"></script><script src="{root}static/lieux.js"></script></body></html>"""
+<script src="{root}static/app.js"></script><script src="{root}static/fiche.js"></script><script src="{root}static/questions.js"></script><script src="{root}static/lieux.js"></script><script src="{root}static/onglets.js"></script></body></html>"""
 
 
 def carte_lieux(v, lieux, rayon):
@@ -332,7 +332,7 @@ def page_ville(v, ctx):
         photo = (f'<figure class="hero-photo"><img src="{E(ph["url"])}" alt="Vue de {E(v["nom"])}" loading="eager" decoding="async">'
                  f'<figcaption>Photo : <a href="{E(ph["page"])}" rel="noopener" target="_blank">{E(credit or "Wikimedia Commons")}</a></figcaption></figure>')
     blason = (f'<img class="blason" src="{E(enc["blason"]["url"])}" alt="Blason de {E(v["nom"])}" loading="lazy">' if enc.get("blason") else "")
-    corps = [photo + f'''<section class="hero"><p class="crumbs"><a href="../../">Accueil</a> › {E(cont)} › {E(nom_pays)}</p>
+    corps = [photo + f'''<section class="hero"><p class="crumbs"><a href="../../">Accueil</a> › <a href="../../pays/#{pays.get("continent", "")}">{E(cont)}</a> › <a href="../../pays/{v["pays"].lower()}/">{E(nom_pays)}</a></p>
 <h1 class="city">{blason}{E(v["nom"])}{badge}</h1><p class="coords">{coords}{(" · " + E(v["nom_local"])) if v["nom_local"] != v["nom"] else ""}</p>
 <p class="tagline">{E(v["nom"])}, {nombre(v["population"])} habitants, {E(nom_pays)}. {nombre(total_infos)} informations dans cette fiche, collectées et vérifiées automatiquement.</p></section>
 <section class="facts" aria-label="Fiche d’identité"><dl>{dl}</dl></section>''']
@@ -389,7 +389,7 @@ def page_ville(v, ctx):
                         f'<p class="t" style="margin:0">{round(j["max"])}°</p><p class="d" style="margin:0">{round(j["min"])}°</p>'
                         f'<p class="r" style="margin:0">{(str(j["pluie_mm"]).replace(".", ",") + " mm") if j["pluie_mm"] else "&nbsp;"}</p></div>'
                         for j in meteo["jours"])
-        corps.append(f'<section class="block"><h2>Météo des 7 prochains jours</h2><div class="weather">{jours}</div>'
+        corps.append(f'<section class="block" id="meteo"><h2>Météo des 7 prochains jours</h2><div class="weather">{jours}</div>'
                      + (f'<p class="lead" style="margin-top:1rem">Qualité de l’air : <b>{qualite_air(meteo["air"]["indice"])}</b> '
                         f'(indice européen {meteo["air"]["indice"]}, particules fines PM2,5 : {meteo["air"]["pm25"]} µg/m³).</p>' if meteo.get("air") else "")
                      + f'<p class="note">Prévisions Open-Meteo, mises à jour le {date_fr(meteo["date"])}.</p></section>')
@@ -419,7 +419,7 @@ def page_ville(v, ctx):
 
     # Lieux
     if lieux:
-        corps.append(f'<section class="block"><h2>Les lieux de {E(v["nom"])}</h2><p class="lead">{nombre(len(lieux))} lieux recensés dans un rayon de '
+        corps.append(f'<section class="block" id="carte-lieux"><h2>Les lieux de {E(v["nom"])} sur la carte</h2><p class="lead">{nombre(len(lieux))} lieux recensés dans un rayon de '
                      f'{str(rubs.get("rayon_km", "")).replace(".", ",")} km autour du centre, et {nombre(len(autour))} sites notables aux alentours. Données vérifiées le {date_fr(rubs["date"])}.</p>'
                      + carte_lieux(v, lieux, rubs.get("rayon_km", 3)) + "</section>")
         for rub, titre, desc in RUBRIQUES:
@@ -429,7 +429,7 @@ def page_ville(v, ctx):
     if autour or v["proches"]:
         corps.append(section_alentours(v, autour, rubs))
     if not lieux:
-        corps.append(f'<section class="block"><h2>Lieux, adresses et visites</h2><p class="empty">Les robots n’ont pas encore exploré {E(v["nom"])}. '
+        corps.append(f'<section class="block" id="lieux"><h2>Lieux, adresses et visites</h2><p class="empty">Les robots n’ont pas encore exploré {E(v["nom"])}. '
                      f'Les villes de ce niveau sont visitées {FREQ[v["niveau"]]} : monuments, musées, restaurants, hôtels et boutiques '
                      f'apparaîtront ici après leur premier passage.</p></section>')
 
@@ -488,13 +488,13 @@ def page_ville(v, ctx):
         a_venir = [j for j in feries["jours"] if j["date"] >= auj][:12]
         if a_venir:
             lignes = "".join(f'<tr><td>{date_fr(j["date"])}</td><td>{E(j["nom_local"])}</td><td>{E(j["nom"])}</td></tr>' for j in a_venir)
-            corps.append(f'<section class="block"><h2>Jours fériés à venir</h2><div class="table-scroll"><table><thead><tr><th>Date</th>'
+            corps.append(f'<section class="block" id="feries"><h2>Jours fériés à venir</h2><div class="table-scroll"><table><thead><tr><th>Date</th>'
                          f'<th>Nom local</th><th>Nom anglais</th></tr></thead><tbody>{lignes}</tbody></table></div>'
                          f'<p class="note">Jours fériés nationaux, source Nager.Date. Commerces et musées peuvent être fermés.</p></section>')
 
     # Villes proches
     proches = "".join(f'<a href="../{w["slug"]}/">{E(w["nom"])}<span>{nombre(round(d))} km</span></a>' for d, w in v["proches"])
-    corps.append(f'<section class="block"><h2>Villes proches</h2><div class="near">{proches}</div></section>')
+    corps.append(f'<section class="block" id="proches"><h2>Villes proches</h2><div class="near">{proches}</div></section>')
     ancres = [("en-bref", "En bref"), ("avis", "Notre avis"), ("histoire", "Histoire"), ("quand-partir", "Quand partir"), ("budget", "Budget"), ("formalites", "Formalités"),
               ("faire", "Activités"), ("alentours", "Aux alentours"), ("voir", "À voir"), ("manger", "Manger et boire"), ("dormir", "Dormir"),
               ("acheter", "Acheter"), ("patrimoine", "Patrimoine"), ("culture", "Culture"), ("gastronomie", "Gastronomie"),
@@ -594,7 +594,7 @@ def page_ville(v, ctx):
                                              "patrimoine_mondial": f.get("patrimoine_mondial", False), "id": f["id"]} for f in autour[:100]],
                               "facts": [(k, val) for k, val in facts]}
         ecrire_gz(f"villes/{v['slug']}/donnees.json.gz", donnees)
-        leger = (f'<section class="hero"><p class="crumbs"><a href="../../">Accueil</a> › {E(cont)} › {E(nom_pays)}</p>'
+        leger = (f'<section class="hero"><p class="crumbs"><a href="../../">Accueil</a> › <a href="../../pays/#{pays.get("continent", "")}">{E(cont)}</a> › <a href="../../pays/{v["pays"].lower()}/">{E(nom_pays)}</a></p>'
                  f'<h1 class="city">{E(v["nom"])}</h1><p class="coords">{coords}</p>'
                  f'<p class="tagline">{E(v["nom"])}, {nombre(v["population"])} habitants, {E(nom_pays)}. {nombre(total_infos)} informations dans cette fiche.</p></section>'
                  f'<div id="fiche-dyn" data-slug="{v["slug"]}" data-niveau="{v["niveau"]}"><p class="note">Chargement de la fiche…</p></div>'
@@ -651,8 +651,20 @@ def duree(km):
 def avec_robots(txt):
     """Ajoute à une fiche rédigée à la main le bloc des données collectées par les robots (rendu dans le navigateur)."""
     bloc = ('<section id="donnees-robots" data-root="../../" aria-label="Données mises à jour chaque nuit"></section>'
-            '<script src="../../static/robots-fiche.js" defer></script>')
+            '<script src="../../static/robots-fiche.js" defer></script><script src="../../static/onglets.js" defer></script>')
     return txt.replace("</main>", bloc + "</main>", 1) if "</main>" in txt else txt.replace("</body>", bloc + "</body>", 1)
+
+
+PAYS_JS = """<script>
+(function(){var q=document.getElementById('pays-q');if(!q)return;var box=document.getElementById('pays-liste'),note=document.getElementById('pays-note'),nomp=box.getAttribute('data-pays'),L=null;
+function n(t){return (t||'').toLowerCase().normalize('NFD').replace(/[\\u0300-\\u036f]/g,'');}
+function E(t){return String(t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function rendre(){var t=n(q.value.trim()),l=L.filter(function(r){return !t||n(r[0]+' '+r[4]).indexOf(t)>-1;});
+box.innerHTML=l.slice(0,300).map(function(r){return '<a href="../../villes/'+r[1]+'/">'+E(r[0])+'<span>'+new Intl.NumberFormat('fr-FR').format(r[3])+' hab.</span></a>';}).join('');
+note.textContent=l.length>300?'300 premières villes sur '+l.length+' : affinez la recherche.':(l.length?'':'Aucune ville ne correspond.');}
+fetch('../../static/index.json').then(function(r){return r.json();}).then(function(d){L=d.filter(function(r){return r[2]===nomp;});rendre();});
+q.addEventListener('input',function(){if(L)rendre();});})();
+</script>"""
 
 
 def proches(villes, n=6):
@@ -773,6 +785,49 @@ def main():
     ecrire("index.html", accueil.replace("__DATA__", donnees).replace("__DATE__", ctx["date_txt"])
            .replace("__INFOS__", str(cpt["informations"])).replace("__LIEUX__", nombre(cpt["lieux"]))
            .replace("__TEXTES__", nombre(cpt["textes"])).replace("__ENRICHIES__", nombre(cpt["villes_enrichies"])))
+
+    # Pages Pays : toutes les villes d'un pays, et l'index des pays par continent
+    par_pays = {}
+    for v in villes:
+        par_pays.setdefault(v["pays"], []).append(v)
+    blocs_cont = {}
+    for cc, lv in par_pays.items():
+        pz = pays.get(cc, {})
+        nomp = pz.get("nom", cc)
+        blocs_cont.setdefault(pz.get("continent", ""), []).append((nomp, cc, len(lv)))
+        phares = [v for v in lv if v["niveau"] == "phare"]
+        grandes = [v for v in lv if v["niveau"] != "phare"][:60]
+        visa = formalite_fr(ctx["formalites"].get("FR", {}).get(cc, ""), "FR", cc) if ctx["formalites"] else ""
+        alerte = ctx["securite"].get("pays", {}).get(cc)
+        cout = ctx["cout"].get("pays", {}).get(cc)
+        faits = [("Continent", CONTINENTS.get(pz.get("continent", ""), "")), ("Capitale", ctx["capitales"].get(cc, pz.get("capitale", ""))),
+                 ("Langues", maj(", ".join(pz.get("langues", [])))), ("Monnaie", maj(pz.get("monnaie_nom", ""))), ("Indicatif", pz.get("indicatif", "")),
+                 ("Villes dans le guide", nombre(len(lv))), ("Visa (passeport français)", visa)]
+        if alerte:
+            faits.append(("Sécurité", f'{alerte["niveau"]} sur 4, {NIVEAU_ALERTE[alerte["niveau"]][0].lower()}'))
+        if cout:
+            faits.append(("Niveau des prix", f'{round(cout["indice"] * 100)} % de la France'))
+        dl = "".join(f"<div><dt>{E(k)}</dt><dd>{E(x)}</dd></div>" for k, x in faits if x)
+        lien = lambda w: f'<a href="../../villes/{w["slug"]}/">{E(w["nom"])}<span>{nombre(w["population"])} hab.</span></a>'
+        corps = (f'<section class="hero"><p class="crumbs"><a href="../../">Accueil</a> › <a href="../#{pz.get("continent", "")}">{E(CONTINENTS.get(pz.get("continent", ""), ""))}</a></p>'
+                 f'<h1 class="city">{E(nomp)}</h1><p class="tagline">{nombre(len(lv))} villes de plus de 5 000 habitants dans le guide.</p></section>'
+                 f'<section class="facts"><dl>{dl}</dl></section>'
+                 + (f'<section class="block"><h2>Villes phares</h2><div class="near">{"".join(lien(w) for w in phares)}</div></section>' if phares else "")
+                 + f'<section class="block"><h2>Les plus grandes villes</h2><div class="near">{"".join(lien(w) for w in grandes)}</div></section>'
+                 + (f'<section class="block"><h2>Toutes les villes ({nombre(len(lv))})</h2><div class="chips"><input type="search" class="recherche-lieux" id="pays-q" '
+                    f'placeholder="Chercher parmi les {nombre(len(lv))} villes de ce pays…" aria-label="Chercher une ville du pays"></div>'
+                    f'<div class="near" id="pays-liste" data-pays="{E(nomp)}"></div><p class="note" id="pays-note"></p></section>' if len(lv) > len(phares) + len(grandes) else ""))
+        ecrire(f"pays/{cc.lower()}/index.html", page("../../", f"{nomp} : toutes les villes – Dix Mille Escales",
+               f"Guide de voyage {nomp} : {len(lv)} villes, visa, sécurité, monnaie, langues.", corps).replace("</body>", PAYS_JS + "</body>"))
+    cont_html = ""
+    for code in ("EU", "AS", "AF", "NA", "SA", "OC", "AN"):
+        l = sorted(blocs_cont.get(code, []))
+        if l:
+            cont_html += (f'<section class="block" id="{code}"><h2>{CONTINENTS[code]}</h2><div class="near">'
+                          + "".join(f'<a href="{cc.lower()}/">{E(n)}<span>{nombre(k)} villes</span></a>' for n, cc, k in l) + "</div></section>")
+    ecrire("pays/index.html", page("../", "Tous les pays – Dix Mille Escales", "Les pays du guide et leurs villes, par continent.",
+           f'<section class="hero"><h1 class="city" style="font-size:clamp(2.4rem,7vw,4.5rem)">Tous les pays</h1>'
+           f'<p class="tagline">{len(par_pays)} pays et territoires, {nombre(len(villes))} villes. Choisissez un pays pour voir toutes ses villes.</p></section>' + cont_html))
 
     # Page Sources
     sources = [("GeoNames", "https://www.geonames.org/", "Liste des villes, population, coordonnées, fuseaux horaires", "CC BY 4.0"),

@@ -334,10 +334,10 @@ main>.chapter:not(:first-child){margin-top:4.5rem}
       <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M2 12h20M12 2c3 3.2 3 16.8 0 20M12 2c-3 3.2-3 16.8 0 20" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="15.5" cy="8" r="2.6" fill="#F2B705"/></svg>
       Dix Mille Escales
     </a>
-    <nav class="mainnav" aria-label="Navigation principale"><a href="#">Destinations</a><a href="#">Carte du monde</a><a href="#">Idées de voyage</a><a href="#">Carnets</a></nav>
+    <nav class="mainnav" aria-label="Navigation principale"><a href="../../pays/">Pays</a><a href="../../#carte">Carte du monde</a><a href="../../#phares">Villes phares</a><a href="../../pays/pt/">Portugal</a></nav>
     <form class="search" role="search" id="search">
       <label for="q" class="vh">Chercher une ville</label>
-      <input id="q" type="search" placeholder="Chercher une ville parmi 10 000" autocomplete="off">
+      <input id="q" type="search" placeholder="Chercher une ville" autocomplete="off">
     </form>
     <button type="button" class="theme-btn" id="theme-btn" aria-label="Changer le thème d’affichage">Thème : auto</button>
   </div>
@@ -346,7 +346,7 @@ main>.chapter:not(:first-child){margin-top:4.5rem}
 </header>
 
 <section class="hero" aria-labelledby="city-name">
-  <p class="crumbs"><a href="#">Europe</a> › <a href="#">Portugal</a> › <a href="#">Région de Lisbonne</a> › Lisbonne</p>
+  <p class="crumbs"><a href="../../">Accueil</a> › <a href="../../pays/#EU">Europe</a> › <a href="../../pays/pt/">Portugal</a> › Lisbonne</p>
   <div class="hero-grid">
   <div>
   <h1 class="city" id="city-name">Lisbonne</h1>
@@ -355,7 +355,7 @@ main>.chapter:not(:first-child){margin-top:4.5rem}
   </div>
   <figure class="map-wrap">
     <svg id="worldmap" viewBox="0 0 360 180" role="img" aria-label="Position de Lisbonne sur une carte du monde, parmi d’autres grandes villes"></svg>
-    <figcaption class="map-caption">Chaque point est une grande ville. À terme, les 10 000 escales s’afficheront ici.</figcaption>
+    <figcaption class="map-caption">Chaque point est une grande ville du guide.</figcaption>
   </figure>
   </div>
   <div class="sky-wrap">
@@ -1536,13 +1536,18 @@ main>.chapter:not(:first-child){margin-top:4.5rem}
   ];
   document.getElementById('trips').innerHTML=T.map(function(x){return '<div><h3>'+x[0]+'</h3><p class="meta">'+x[1]+'</p><p>'+x[2]+'</p></div>';}).join('');
 
-  /* ---------- Recherche ---------- */
+  /* ---------- Recherche : n'importe quelle ville du guide ---------- */
+  var idx=null;
+  function nrm(t){return (t||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[’'\-|]/g,' ');}
   document.getElementById('search').addEventListener('submit',function(e){
-    e.preventDefault();var v=document.getElementById('q').value.trim();
-    document.getElementById('search-msg').textContent=v?'« '+v+' » : dans ce prototype, seule la fiche de Lisbonne existe.':'';
+    e.preventDefault();var v=nrm(document.getElementById('q').value.trim()),msg=document.getElementById('search-msg');
+    if(v.length<2){msg.textContent='';return;}
+    msg.textContent='Recherche…';
+    (idx?Promise.resolve(idx):fetch('../../static/index.json').then(function(r){return r.json();}).then(function(d){idx=d;return d;})).then(function(d){
+      var best=null;for(var i=0;i<d.length;i++){var k=nrm(d[i][0]+' '+d[i][4]);if(k.indexOf(v)===0||k.indexOf(' '+v)>-1){if(!best||d[i][3]>best[3])best=d[i];}}
+      if(best)location.href='../../villes/'+best[1]+'/';else msg.textContent='Aucune ville du guide ne correspond à « '+document.getElementById('q').value.trim()+' ».';
+    }).catch(function(){msg.textContent='Recherche indisponible pour le moment.';});
   });
-
-  var tt=document.getElementById('totop');window.addEventListener('scroll',function(){tt.classList.toggle('show',window.scrollY>900);},{passive:true});
 
   /* ---------- Sommaire ---------- */
   var tocD=document.getElementById('toc-d');

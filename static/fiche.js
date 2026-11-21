@@ -106,6 +106,8 @@
     zone.innerHTML = h;
     if (window.DME_initVivant) window.DME_initVivant(zone);
     if (window.DME_lierBoutons) window.DME_lierBoutons(zone);
+    zone.dataset.pret = '1';
+    if (window.DME_onglets) window.DME_onglets();
   }).catch(function () {
     zone.innerHTML = '<p class="empty">Cette fiche n’a pas pu être chargée. Votre navigateur est peut-être trop ancien : essayez une version récente de Chrome, Firefox, Safari ou Edge.</p>';
   });
