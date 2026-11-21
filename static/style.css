@@ -134,5 +134,7 @@ td.num{font-weight:600;white-space:nowrap}
 .q-texte p{margin:.4rem 0}
 .q-vide{color:var(--muted);font-style:italic;margin:0}
 .q-infos{color:var(--muted);font-size:.9rem}
+.tout-voir{font-family:var(--display);font-weight:600;font-size:.95rem;padding:.6rem 1rem;border-radius:10px;border:1px solid var(--ink);background:var(--surface);color:var(--ink);cursor:pointer;margin-top:.8rem}
+.recherche-lieux{flex:1 1 220px;min-width:0;font-family:var(--display);font-size:.92rem;padding:.4rem .8rem;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink)}
 @media (max-width:600px){.theme-btn{font-size:0;padding:.35rem .6rem}.theme-btn::before{content:"◐";font-size:1.05rem}.top-in{gap:.6rem}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}

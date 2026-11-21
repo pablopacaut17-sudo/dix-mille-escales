@@ -2,6 +2,7 @@
 """
 Robot Climat : normales mensuelles de chaque ville (températures, pluie, jours de pluie, ensoleillement),
 calculées sur les 5 dernières années complètes de l'archive météo ERA5.
+Les villes à moins de 15 km d'une ville déjà calculée reprennent son climat (même maille météo).
 Le climat change peu : chaque ville n'est calculée qu'une fois, puis recalculée tous les 2 ans.
 Source : Open-Meteo, API d'archive (CC BY 4.0). Usage commercial : clé OPENMETEO_KEY obligatoire.
 Les appels d'archive sont « lourds » pour Open-Meteo : on traite peu de villes par nuit.
@@ -43,12 +44,37 @@ def normales(d):
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("--max-villes", type=int, default=30)
+    p.add_argument("--max-villes", type=int, default=150, help="nombre maximal d'appels à l'archive météo par nuit")
     p.add_argument("--demo", action="store_true")
     a = p.parse_args()
     V = c.villes()
     an = date.today().year
     debut, fin = f"{an - 5}-01-01", f"{an - 1}-12-31"
+    # Index des climats déjà calculés (pour les partager avec les villes voisines)
+    calcules = {}
+    import os, math
+    dossier = os.path.join(c.DATA, "climat")
+    if os.path.isdir(dossier):
+        for fn in os.listdir(dossier):
+            if fn.endswith(".json"):
+                calcules[int(fn[:-5])] = None
+    par_id = {v["id"]: v for v in V}
+    grille = {}
+    for i in calcules:
+        if i in par_id:
+            w = par_id[i]
+            grille.setdefault((round(w["lat"] / 0.2), round(w["lon"] / 0.2)), []).append(w)
+
+    def voisin_calcule(v):
+        gi, gj = round(v["lat"] / 0.2), round(v["lon"] / 0.2)
+        for di in (-1, 0, 1):
+            for dj in (-1, 0, 1):
+                for w in grille.get((gi + di, gj + dj), []):
+                    d = math.hypot((w["lat"] - v["lat"]) * 110.57, (w["lon"] - v["lon"]) * 111.32 * math.cos(math.radians(v["lat"])))
+                    if d < 15:
+                        return w
+        return None
+
     if a.demo:
         lot = [v for v in V if v["slug"] in ("lisbonne-pt", "porto-pt", "tokyo-jp")]
     else:
@@ -57,10 +83,19 @@ def main():
             ancien = c.lire(f"climat/{v['id']}.json")
             if not ancien or (c.maintenant() - datetime.fromisoformat(ancien["date"].replace("Z", "+00:00"))).days > 730:
                 lot.append(v)
-            if len(lot) >= a.max_villes:
-                break
-    ok = ech = 0
+    ok = ech = partages = appels = 0
     for v in lot:
+        if not a.demo:
+            w = voisin_calcule(v)
+            if w and w["id"] != v["id"]:
+                ref = c.lire(f"climat/{w['id']}.json")
+                if ref and "mois" in ref:
+                    c.ecrire(f"climat/{v['id']}.json", dict(ref, partage_avec=w["nom"]), compact=True)
+                    partages += 1
+                    continue
+            if appels >= a.max_villes:
+                continue
+            appels += 1
         if a.demo:
             base = [15, 16, 18, 20, 22, 26, 28, 28, 26, 22, 18, 15]
             mois = [{"tmax": t, "tmin": t - 7, "pluie_mm": [100, 90, 60, 65, 50, 15, 5, 5, 30, 95, 110, 110][k],
@@ -77,11 +112,12 @@ def main():
                 continue
             mois = normales(d)
         c.ecrire(f"climat/{v['id']}.json", {"date": c.horodatage(), "periode": f"{an - 5}-{an - 1}", "mois": mois}, compact=True)
+        grille.setdefault((round(v["lat"] / 0.2), round(v["lon"] / 0.2)), []).append(v)
         ok += 1
         print(f"{v['nom']} : normales calculées")
         if not a.demo:
             time.sleep(5)
-    c.journal("climat", "ok" if ech == 0 else "partiel", villes_calculees=ok, echecs=ech, mode="démo" if a.demo else "réel")
+    c.journal("climat", "ok" if ech == 0 else "partiel", villes_calculees=ok, villes_partagees=partages, echecs=ech, mode="démo" if a.demo else "réel")
 
 
 if __name__ == "__main__":

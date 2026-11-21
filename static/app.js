@@ -8,18 +8,19 @@
   if(btn)btn.addEventListener('click',function(){th=TH[(TH.indexOf(th)+1)%3];try{localStorage.setItem('dme-theme',th);}catch(e){}apply();});
   apply();
 
+  function initVivant(scope){
   /* Heure locale et décalage */
-  document.querySelectorAll('[data-tz]').forEach(function(el){
+  scope.querySelectorAll('[data-tz]').forEach(function(el){
     var tz=el.getAttribute('data-tz');
     function tick(){try{el.textContent=new Intl.DateTimeFormat('fr-FR',{timeZone:tz,hour:'2-digit',minute:'2-digit'}).format(new Date());}catch(e){el.textContent='–';}}
     tick();setInterval(tick,30000);
   });
-  document.querySelectorAll('[data-offset]').forEach(function(el){
+  scope.querySelectorAll('[data-offset]').forEach(function(el){
     try{var now=new Date();function f(z){var o={};new Intl.DateTimeFormat('en-US',{timeZone:z,hour12:false,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'}).formatToParts(now).forEach(function(x){o[x.type]=x.value;});return Date.UTC(+o.year,+o.month-1,+o.day,+o.hour%24,+o.minute);}
       var d=(f(el.getAttribute('data-offset'))-f('Europe/Paris'))/3600000;
       if(d===0)el.textContent='Même heure qu’à Paris';else{var h=Math.abs(d);el.textContent='Paris '+(d>0?'+ ':'− ')+Math.floor(h)+' h'+(h%1?' '+Math.round(h%1*60):'');}}catch(e){el.textContent='–';}
   });
-  document.querySelectorAll('[data-season]').forEach(function(el){
+  scope.querySelectorAll('[data-season]').forEach(function(el){
     var lat=+el.getAttribute('data-season'),m=new Date().getMonth();
     if(Math.abs(lat)<23.5){el.textContent='Tropical : saisons sèche et humide';return;}
     var s=['hiver','hiver','printemps','printemps','printemps','été','été','été','automne','automne','automne','hiver'][m];
@@ -28,7 +29,7 @@
   });
 
   /* Lever et coucher du soleil (calcul astronomique, à quelques minutes près) */
-  document.querySelectorAll('[data-sun]').forEach(function(el){
+  scope.querySelectorAll('[data-sun]').forEach(function(el){
     var p=el.getAttribute('data-sun').split(','),LAT=+p[0],LON=+p[1],R=Math.PI/180,tz=el.getAttribute('data-suntz');
     var jd=Date.now()/864e5+2440587.5,n=Math.round(jd-2451545-0.0009+LON/360),Js=n+0.0009-LON/360;
     var M=(357.5291+0.98560028*Js)%360,C=1.9148*Math.sin(M*R)+0.02*Math.sin(2*M*R)+0.0003*Math.sin(3*M*R);
@@ -41,7 +42,7 @@
   });
 
   /* Filtres des listes de lieux */
-  document.querySelectorAll('[data-filter-for]').forEach(function(box){
+  scope.querySelectorAll('[data-filter-for]').forEach(function(box){
     var list=document.getElementById(box.getAttribute('data-filter-for'));if(!list)return;
     var types={};list.querySelectorAll('li[data-type]').forEach(function(li){var t=li.getAttribute('data-type');types[t]=(types[t]||0)+1;});
     var keys=Object.keys(types).sort(function(a,b){return types[b]-types[a];});if(keys.length<2)return;
@@ -51,10 +52,14 @@
     mk('Tout',''); keys.slice(0,10).forEach(function(k){mk(k+' ('+types[k]+')',k);});
   });
 
+  }
+  window.DME_initVivant=initVivant;
+  initVivant(document);
+
   /* Compteur de données du guide */
   document.querySelectorAll('[data-compteur]').forEach(function(el){fetch(base+'static/compteur.json').then(function(r){return r.json();}).then(function(c){el.textContent=new Intl.NumberFormat('fr-FR').format(c.informations);}).catch(function(){el.textContent='–';});});
 
-  /* Recherche parmi les 10 000 villes (index chargé à la première frappe) */
+  /* Recherche parmi toutes les villes (index chargé à la première frappe) */
   var q=document.getElementById('q'),res=document.getElementById('results');if(!q)return;
   var idx=null,hits=[],act=-1;
   function norm(t){return (t||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[’'\-|]/g,' ');}

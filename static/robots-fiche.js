@@ -9,6 +9,16 @@
   var RUB = [['manger', 'Manger et boire'], ['dormir', 'Dormir'], ['voir', 'À voir'], ['faire', 'Activités'], ['acheter', 'Acheter'], ['alentours', 'Aux alentours']];
   var COUL = { manger: '#B5485D', dormir: '#2E6DB4', voir: '#2F7D6D', faire: '#C9761E', acheter: '#7B5EA7', alentours: '#4E7D3A' };
   var JOURS = { Mo: 'lun', Tu: 'mar', We: 'mer', Th: 'jeu', Fr: 'ven', Sa: 'sam', Su: 'dim', PH: 'fériés', off: 'fermé' };
+  function lireJson(url) {  // fichiers .json.gz : décompressés dans le navigateur
+    return fetch(url).then(function (r) { if (!r.ok) throw new Error(r.status); return r.arrayBuffer(); }).then(function (b) {
+      var o = new Uint8Array(b);
+      if (o[0] === 0x1f && o[1] === 0x8b) {
+        if (!('DecompressionStream' in window)) throw new Error('navigateur trop ancien');
+        return new Response(new Blob([b]).stream().pipeThrough(new DecompressionStream('gzip'))).json();
+      }
+      return JSON.parse(new TextDecoder().decode(o));
+    });
+  }
   function E(t) { return String(t == null ? '' : t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function nb(n) { return new Intl.NumberFormat('fr-FR').format(n); }
   function norm(t) { return (t || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
@@ -39,8 +49,8 @@
   }
 
   Promise.all([
-    fetch(root + 'villes/' + slug + '/donnees.json').then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }),
-    fetch(root + 'villes/' + slug + '/lieux.json').then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; })
+    lireJson(root + 'villes/' + slug + '/donnees.json.gz').catch(function () { return null; }),
+    lireJson(root + 'villes/' + slug + '/lieux.json.gz').catch(function () { return null; })
   ]).then(function (res) {
     var d = res[0], L = res[1], h = '<h2>Mis à jour chaque nuit par nos robots</h2>';
     if (d && d.meteo) {

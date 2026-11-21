@@ -1,10 +1,16 @@
 #!/usr/bin/env python3
 """
-Robot Villes : fabrique la liste des 10 000 villes du guide (data/villes.json) et la fiche de chaque
-pays (data/pays.json), à partir des fichiers officiels de GeoNames (CC BY 4.0).
-Il ne tourne qu'une fois : si data/villes.json existe déjà, il ne fait rien (les adresses des pages
-restent ainsi stables). Pour forcer une reconstruction : --forcer.
-Noms des pays, langues et monnaies en français : bibliothèque Babel (données Unicode CLDR).
+Robot Villes : fabrique la liste des villes du guide (data/villes.json) et la fiche de chaque pays (data/pays.json),
+à partir des fichiers officiels de GeoNames (CC BY 4.0).
+
+Règle du guide : toutes les villes du monde de 5 000 habitants et plus (environ 65 000), plus quelques villes
+ajoutées à la main (EXTRAS). Trois niveaux :
+  - villes phares (liste PHARES) : fiche la plus riche, revisitée chaque semaine ;
+  - villes intermédiaires : les 3 000 plus peuplées après les phares ;
+  - autres villes : toutes les autres.
+
+Les adresses des pages ne changent jamais : une ville déjà présente garde son « slug ».
+Le robot ne reconstruit la liste que si elle est absente, trop petite (ancienne version à 10 000 villes) ou avec --forcer.
 
   pip install babel
   python3 robots/robot_villes.py
@@ -12,9 +18,12 @@ Noms des pays, langues et monnaies en français : bibliothèque Babel (données 
 import argparse, io, os, re, unicodedata, zipfile
 import commun as c
 
-VILLES_URL = "https://download.geonames.org/export/dump/cities15000.zip"
+VILLES_URL = "https://download.geonames.org/export/dump/cities5000.zip"
+VILLES_FICHIER = "cities5000.txt"
 PAYS_URL = "https://download.geonames.org/export/dump/countryInfo.txt"
-NB = 10000
+POPULATION_MINI = 5000
+NB_INTERMEDIAIRES = 3000
+TAILLE_ATTENDUE = 30000  # en dessous, la liste existante est l'ancienne version : on la reconstruit
 PHARES = {1261481, 1273874, 1279259} | set([148730, 184745, 250441, 264371, 281184, 290030, 292223, 292968, 293397, 360630, 498817, 524901, 658225, 745044, 756135, 993800, 1153671, 1269515, 1273294, 1275339, 1283240, 1566083, 1581130, 1609350, 1642911, 1645528, 1668341, 1701668, 1735161, 1796236, 1816670, 1819729, 1835848, 1850147, 1853909, 1857910, 1880252, 2147714, 2158177, 2193733, 2253354, 2267057, 2464470, 2509954, 2510911, 2542997, 2548885, 2553604, 2618425, 2643743, 2650225, 2657896, 2660646, 2673730, 2735943, 2759794, 2761369, 2800866, 2800931, 2867714, 2950159, 2964574, 2988507, 2990440, 2995469, 2996944, 3031582, 3054643, 3067696, 3094802, 3117735, 3128760, 3143244, 3164603, 3169070, 3172394, 3173435, 3176959, 3190261, 3369157, 3413829, 3435910, 3448439, 3451190, 3530597, 3531673, 3553478, 3687238, 3688689, 3871336, 3936456, 3941584, 4140963, 4164138, 4335045, 4887398, 4930956, 5128581, 5368361, 5391959, 5506956, 6077243, 6167865, 6173331, 6325494])
 # Villes de moins de 15 000 habitants ajoutées à la main (absentes du fichier GeoNames utilisé)
 EXTRAS = [{"id": 99000001, "nom": "Manali", "nom_local": "Manali", "pays": "IN", "lat": 32.2432, "lon": 77.1892, "population": 8096,
@@ -29,74 +38,57 @@ def slugifier(s):
     return re.sub(r"[^a-z0-9]+", "-", s).strip("-") or "ville"
 
 
-def main():
-    p = argparse.ArgumentParser()
-    p.add_argument("--forcer", action="store_true")
-    a = p.parse_args()
-    if c.lire("villes.json") and not a.forcer:
-        print("La liste des villes existe déjà : rien à faire.")
-        return
-    try:
-        from babel import Locale
-        fr = Locale("fr")
-    except ImportError:
-        raise SystemExit("Installez d’abord Babel : pip install babel")
-
-    brut = c.http(VILLES_URL, timeout=300)
-    if not brut:
-        raise SystemExit("GeoNames injoignable : réessayez plus tard.")
-    texte = zipfile.ZipFile(io.BytesIO(brut)).read("cities15000.txt").decode("utf-8")
-    villes = []
+def lire_geonames(brut):
+    texte = zipfile.ZipFile(io.BytesIO(brut)).read(VILLES_FICHIER).decode("utf-8")
     latin = re.compile(r"^[A-Za-zÀ-ÖØ-öø-ÿĀ-ž' .\-]+$")
+    villes = []
     for ligne in texte.splitlines():
         x = ligne.split("\t")
         if len(x) < 18:
             continue
-        gid = int(x[0])
+        gid, pop = int(x[0]), int(x[14] or 0)
+        if pop < POPULATION_MINI and gid not in PHARES:
+            continue
         villes.append({"id": gid, "nom_local": x[1], "pays": x[8], "lat": round(float(x[4]), 4), "lon": round(float(x[5]), 4),
-                       "population": int(x[14] or 0), "fuseau": x[17],
+                       "population": pop, "fuseau": x[17],
                        "alts_brut": [n for n in x[3].split(",") if n and latin.match(n) and len(n) < 28]})
+    return villes
+
+
+def construire(villes, anciennes):
+    """Liste finale : niveaux, noms français, slugs stables (ceux des anciennes fiches sont conservés)."""
+    ancien_slug = {v["id"]: v["slug"] for v in anciennes}
     villes.sort(key=lambda v: -v["population"])
-    garder = villes[:NB]
-    ids = {v["id"] for v in garder}
-    garder += [v for v in villes[NB:] if v["id"] in PHARES and v["id"] not in ids]
-    while len(garder) > NB:  # place pour les villes phares plus petites : on retire les plus petites des autres
-        for i in range(len(garder) - 1, -1, -1):
-            if garder[i]["id"] not in PHARES:
-                del garder[i]
-                break
-    garder.sort(key=lambda v: -v["population"])
-    sortie, pris, rang = [], set(), 0
-    for v in garder:
+    pris = set(ancien_slug.values())
+    sortie, rang = [], 0
+    for v in villes:
         nom = NOMS_FR.get(v["id"], v["nom_local"])
         if v["id"] in PHARES:
             niveau = "phare"
         else:
             rang += 1
-            niveau = "intermediaire" if rang <= 1000 else "autre"
-        slug = slugifier(nom) + "-" + v["pays"].lower()
-        if slug in pris:
-            slug += "-" + str(v["id"])
-        pris.add(slug)
+            niveau = "intermediaire" if rang <= NB_INTERMEDIAIRES else "autre"
+        slug = ancien_slug.get(v["id"])
+        if not slug:
+            slug = slugifier(nom) + "-" + v["pays"].lower()
+            if slug in pris:
+                slug += "-" + str(v["id"])
+            pris.add(slug)
         alts = [n for n in v["alts_brut"] if n not in (nom, v["nom_local"])][:5]
         if nom != v["nom_local"]:
             alts = [v["nom_local"]] + alts
+        alts = ALTS_EN_PLUS.get(v["id"], []) + alts
         sortie.append({"id": v["id"], "nom": nom, "nom_local": v["nom_local"], "pays": v["pays"], "lat": v["lat"], "lon": v["lon"],
                        "population": v["population"], "fuseau": v["fuseau"], "niveau": niveau, "slug": slug, "alts": alts})
-    for v in sortie:
-        v["alts"] = ALTS_EN_PLUS.get(v["id"], []) + v["alts"]
     for x in EXTRAS:
         if not any(v["slug"] == x["slug"] for v in sortie):
-            for i in range(len(sortie) - 1, -1, -1):
-                if sortie[i]["niveau"] == "autre":
-                    del sortie[i]
-                    break
             sortie.append(x)
-    c.ecrire("villes.json", sortie, compact=True)
+    return sortie
 
-    brut = c.http(PAYS_URL)
-    if not brut:
-        raise SystemExit("Liste des pays injoignable : relancez le robot.")
+
+def pays_fr(brut):
+    from babel import Locale
+    fr = Locale("fr")
     pays = {}
     for ligne in brut.decode("utf-8").splitlines():
         if ligne.startswith("#") or not ligne.strip():
@@ -112,9 +104,34 @@ def main():
                     "monnaie": monnaie, "monnaie_nom": (fr.currencies.get(monnaie) or x[11]) if monnaie else "",
                     "langues": langues[:3], "indicatif": ("+" + x[12].lstrip("+")) if x[12] else "",
                     "superficie_km2": float(x[6]) if x[6] else None}
-    c.ecrire("pays.json", pays)
-    c.journal("villes", "ok", villes=len(sortie), pays=len(pays))
-    print(f"{len(sortie)} villes et {len(pays)} pays enregistrés.")
+    return pays
+
+
+def main():
+    p = argparse.ArgumentParser()
+    p.add_argument("--forcer", action="store_true")
+    a = p.parse_args()
+    anciennes = c.lire("villes.json", []) or []
+    if len(anciennes) >= TAILLE_ATTENDUE and not a.forcer:
+        print(f"La liste des villes est à jour ({len(anciennes)} villes) : rien à faire.")
+        return
+    try:
+        import babel  # noqa: F401
+    except ImportError:
+        raise SystemExit("Installez d’abord Babel : pip install babel")
+    brut = c.http(VILLES_URL, timeout=600)
+    if not brut:
+        raise SystemExit("GeoNames injoignable : la liste actuelle est conservée.")
+    sortie = construire(lire_geonames(brut), anciennes)
+    if len(sortie) < len(anciennes):
+        raise SystemExit("La nouvelle liste est plus courte que l’ancienne : par prudence, rien n’est remplacé.")
+    c.ecrire("villes.json", sortie, compact=True)
+    brut = c.http(PAYS_URL)
+    if brut:
+        c.ecrire("pays.json", pays_fr(brut))
+    niv = {n: sum(1 for v in sortie if v["niveau"] == n) for n in ("phare", "intermediaire", "autre")}
+    c.journal("villes", "ok", villes=len(sortie), **niv)
+    print(f"{len(sortie)} villes : {niv}.")
 
 
 if __name__ == "__main__":

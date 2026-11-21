@@ -1,101 +1,164 @@
 name: Robots et publication
 
+# Chaque nuit, plusieurs groupes de robots travaillent en parallèle (environ 5 h 30 maximum chacun),
+# enregistrent leurs données dans des branches « donnees-… » (sans historique, pour que le dépôt ne grossisse pas),
+# puis le site est regénéré et publié. Une modification des fichiers du site le republie aussitôt.
+
 on:
   schedule:
-    - cron: "30 1 * * *"     # chaque nuit à 1 h 30 (heure UTC)
+    - cron: "30 0 * * *"     # chaque nuit à 0 h 30 (heure UTC)
   workflow_dispatch:          # bouton « Run workflow » pour lancer à la main
   push:
-    branches: [main]          # republie le site quand vous modifiez un fichier
+    branches: [main]
 
 permissions:
   contents: write
   pages: write
   id-token: write
 
+env:
+  DME_DONNEES: ${{ github.workspace }}/donnees
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
-  robots:
+  villes:
     if: github.event_name != 'push'
-    concurrency:
-      group: robots
-      cancel-in-progress: false
     runs-on: ubuntu-latest
-    timeout-minutes: 340
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Liste des villes et des pays (première fois seulement)
+      - name: Liste des villes de 5 000 habitants et plus
         run: |
           pip install babel
           python3 robots/robot_villes.py
-      - name: Robot Change
-        run: python3 robots/robot_change.py
+      - name: Retirer les anciennes données déjà migrées
+        run: python3 robots/preparer.py --nettoyer-main
+      - name: Enregistrer
+        run: python3 robots/sauver.py --principal
+
+  base:
+    needs: villes
+    if: github.event_name != 'push'
+    concurrency: { group: robots-base, cancel-in-progress: false }
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Réunir les données
+        run: python3 robots/preparer.py
+      - name: Change, jours fériés, sécurité, formalités, coût de la vie
         continue-on-error: true
-      - name: Robot Jours fériés
-        run: python3 robots/robot_feries.py
+        run: |
+          python3 robots/robot_change.py || true
+          python3 robots/robot_feries.py || true
+          python3 robots/robot_securite.py || true
+          python3 robots/robot_formalites.py || true
+          python3 robots/robot_cout.py || true
+      - name: Météo et qualité de l'air
         continue-on-error: true
-      - name: Robot Météo
         run: python3 robots/robot_meteo.py
+        env: { OPENMETEO_KEY: "${{ secrets.OPENMETEO_KEY }}" }
+      - name: Climat
         continue-on-error: true
-        env:
-          OPENMETEO_KEY: ${{ secrets.OPENMETEO_KEY }}
-      - name: Robot Sécurité
-        run: python3 robots/robot_securite.py
-        continue-on-error: true
-      - name: Robot Formalités
-        run: python3 robots/robot_formalites.py
-        continue-on-error: true
-      - name: Robot Coût de la vie
-        run: python3 robots/robot_cout.py
-        continue-on-error: true
-      - name: Robot Climat
-        run: python3 robots/robot_climat.py --max-villes ${{ vars.MAX_CLIMAT || 80 }}
-        continue-on-error: true
-        env:
-          OPENMETEO_KEY: ${{ secrets.OPENMETEO_KEY }}
-      - name: Sauvegarde intermédiaire
+        run: python3 robots/robot_climat.py --max-villes ${{ vars.MAX_CLIMAT || 150 }}
+        env: { OPENMETEO_KEY: "${{ secrets.OPENMETEO_KEY }}" }
+      - name: Enregistrer
         if: always()
-        run: python3 robots/sauver.py
-      - name: Robot Encyclopédie
-        run: python3 robots/robot_encyclopedie.py --max-villes ${{ vars.MAX_ENCYCLO || 300 }}
+        run: >
+          python3 robots/sauver.py --branche donnees-base --chemins change.json feries securite.json formalites.json
+          cout.json meteo climat journal/change.json journal/feries.json journal/securite.json journal/formalites.json
+          journal/cout.json journal/meteo.json journal/climat.json
+
+  encyclopedie:
+    needs: villes
+    if: github.event_name != 'push'
+    concurrency: { group: robots-encyclopedie, cancel-in-progress: false }
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Réunir les données
+        run: python3 robots/preparer.py
+      - name: Encyclopédie
         continue-on-error: true
-      - name: Sauvegarde intermédiaire
+        run: python3 robots/robot_encyclopedie.py --max-villes ${{ vars.MAX_ENCYCLO || 3000 }} --duree-max 320
+      - name: Enregistrer
         if: always()
-        run: python3 robots/sauver.py
-      - name: Robot Lieux
-        run: python3 robots/robot_lieux.py --max-villes ${{ vars.MAX_VILLES || 150 }} --duree-max 200
+        run: python3 robots/sauver.py --branche donnees-encyclopedie --chemins encyclo journal/encyclopedie.json
+
+  lieux:
+    needs: villes
+    if: github.event_name != 'push'
+    strategy:
+      fail-fast: false
+      matrix:
+        part: [0, 1, 2]
+    concurrency: { group: "robots-lieux-${{ matrix.part }}", cancel-in-progress: false }
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Réunir les données
+        run: python3 robots/preparer.py
+      - name: Lieux (robot ${{ matrix.part }})
         continue-on-error: true
-      - name: Sauvegarde intermédiaire
+        run: python3 robots/robot_lieux.py --part ${{ matrix.part }} --parts 3 --max-villes ${{ vars.MAX_VILLES || 1500 }} --duree-max 320
+      - name: Enregistrer
         if: always()
-        run: python3 robots/sauver.py
-      - name: Robot Rédaction
+        run: >
+          python3 robots/sauver.py --branche donnees-lieux-${{ matrix.part }} --chemins lieux/${{ matrix.part }}
+          lieux/_suivi_${{ matrix.part }}.json journal/lieux_${{ matrix.part }}.json
+
+  redaction:
+    needs: [base, encyclopedie, lieux]
+    if: always() && github.event_name != 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Réunir les données
+        run: python3 robots/preparer.py
+      - name: Rédaction (si une clé API Claude est fournie)
+        continue-on-error: true
         run: python3 robots/robot_redaction.py --max-villes ${{ vars.MAX_REDACTION || 40 }}
-        continue-on-error: true
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           CLAUDE_MODEL: ${{ vars.CLAUDE_MODEL }}
-      - name: Enregistrer les données collectées
+      - name: Enregistrer
         if: always()
-        run: python3 robots/sauver.py
+        run: python3 robots/sauver.py --branche donnees-redaction --chemins redaction journal/redaction.json
 
   publier:
-    needs: robots
+    needs: [villes, base, encyclopedie, lieux, redaction]
     if: always()
-    concurrency:
-      group: publication
-      cancel-in-progress: true
+    concurrency: { group: publication, cancel-in-progress: true }
     runs-on: ubuntu-latest
+    timeout-minutes: 60
     environment:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: main
+        with: { ref: main }
       - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
+        with: { python-version: "3.12" }
+      - name: Réunir les données
+        run: python3 robots/preparer.py
       - name: Générer le site
         run: python3 build.py
         env:

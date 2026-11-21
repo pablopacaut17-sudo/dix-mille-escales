@@ -1,9 +1,16 @@
 """Outils partagés par tous les robots de Dix Mille Escales."""
-import json, os, sys, time, urllib.request
+import gzip, json, os, sys, time, urllib.request
 from datetime import datetime, timezone
 
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATA = os.path.join(RACINE, "data")
+CONFIG = os.path.join(RACINE, "data")  # liste des villes et des pays : dans le dépôt principal
+# Données des robots : dans un dossier à part (branches « donnees-… » du dépôt), jamais dans l'historique principal
+DATA = os.environ.get("DME_DONNEES") or CONFIG
+FICHIERS_CONFIG = ("villes.json", "pays.json")
+
+
+def _chemin(nom):
+    return os.path.join(CONFIG if nom in FICHIERS_CONFIG else DATA, nom)
 USER_AGENT = "DixMilleEscales/1.0 (+https://github.com/ ; robots du guide)"
 
 
@@ -16,7 +23,7 @@ def horodatage():
 
 
 def lire(chemin, defaut=None):
-    chemin = os.path.join(DATA, chemin)
+    chemin = _chemin(chemin)
     if not os.path.exists(chemin):
         return defaut
     with open(chemin, encoding="utf-8") as f:
@@ -24,7 +31,7 @@ def lire(chemin, defaut=None):
 
 
 def ecrire(chemin, donnees, compact=False):
-    chemin = os.path.join(DATA, chemin)
+    chemin = _chemin(chemin)
     os.makedirs(os.path.dirname(chemin), exist_ok=True)
     tmp = chemin + ".tmp"
     with open(tmp, "w", encoding="utf-8") as f:
@@ -33,6 +40,28 @@ def ecrire(chemin, donnees, compact=False):
         else:
             json.dump(donnees, f, ensure_ascii=False, indent=1)
     os.replace(tmp, chemin)  # jamais de fichier à moitié écrit
+
+
+def ecrire_gz(chemin, donnees):
+    """JSON compressé : 5 à 10 fois moins de place dans le dépôt."""
+    chemin = _chemin(chemin)
+    os.makedirs(os.path.dirname(chemin), exist_ok=True)
+    with open(chemin + ".tmp", "wb") as f:
+        f.write(gzip.compress(json.dumps(donnees, ensure_ascii=False, separators=(",", ":")).encode(), 9, mtime=0))
+    os.replace(chemin + ".tmp", chemin)
+
+
+def lire_lieux(ville_id):
+    """Fichier des lieux d'une ville, où qu'il soit rangé (lieux/<n°>/<id>.json.gz, ou anciens formats non compressés)."""
+    base = os.path.join(DATA, "lieux")
+    if os.path.isdir(base):
+        for d in os.listdir(base):
+            for ext, ouvrir in ((".json.gz", gzip.open), (".json", open)):
+                p = os.path.join(base, d, f"{ville_id}{ext}")
+                if os.path.isfile(p):
+                    with ouvrir(p, "rt", encoding="utf-8") as f:
+                        return json.load(f)
+    return lire(f"lieux/{ville_id}.json")
 
 
 def villes():
@@ -59,7 +88,5 @@ def http(url, donnees=None, essais=3, delai=30, timeout=120):
 
 
 def journal(robot, etat, **details):
-    """Note le résultat du passage, affiché sur la page « État des robots » du site."""
-    j = lire("journal.json", {})
-    j[robot] = dict(details, etat=etat, dernier_passage=horodatage())
-    ecrire("journal.json", j)
+    """Note le résultat du passage (un fichier par robot), affiché sur la page « État des robots » du site."""
+    ecrire(f"journal/{robot}.json", dict(details, etat=etat, dernier_passage=horodatage()))

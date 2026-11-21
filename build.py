@@ -3,7 +3,7 @@
 Dix Mille Escales – générateur du site.
 
 Lit les données (data/) produites par les robots et fabrique le site complet dans le dossier site/ :
-  - la page d'accueil avec la carte des 10 000 villes ;
+  - la page d'accueil avec la carte des villes ;
   - une page par ville (villes/<nom-pays>/), ou la page rédigée à la main si elle existe dans pages/ ;
   - l'index de recherche, les pages « Nos sources » et « État des robots », le plan du site.
 
@@ -11,11 +11,15 @@ Lit les données (data/) produites par les robots et fabrique le site complet da
   python3 build.py --limite 50      # seulement les 50 premières villes (test rapide)
 Variable facultative : SITE_URL (ex. https://dixmilleescales.fr) pour le plan du site.
 """
-import argparse, html, json, math, os, shutil, sys
+import argparse, gzip, html, json, math, os, shutil, sys
 from datetime import date, datetime, timezone
 
 RACINE = os.path.dirname(os.path.abspath(__file__))
 DATA, SITE = os.path.join(RACINE, "data"), os.path.join(RACINE, "site")
+DONNEES = os.environ.get("DME_DONNEES") or os.path.join(RACINE, "donnees")  # données des robots (branches donnees-…)
+LIMITE_SITE = 950 * 1024 * 1024  # GitHub Pages accepte 1 Go : alerte au-delà de 950 Mo
+EN_LIGNE = {"phare": 30, "intermediaire": 15, "autre": 8}  # adresses écrites dans la page par rubrique ; la suite se charge à la demande
+SECTIONS_AUTRES = ("histoire", "patrimoine", "gastronomie")  # petites villes : sections Wikipédia gardées dans la page
 E = html.escape
 CONTINENTS = {"EU": "Europe", "AF": "Afrique", "AS": "Asie", "NA": "Amérique du Nord et centrale",
               "SA": "Amérique du Sud", "OC": "Océanie", "AN": "Antarctique"}
@@ -48,8 +52,20 @@ FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="
 
 
 def lire(nom, defaut=None):
-    p = os.path.join(DATA, nom)
-    return json.load(open(p, encoding="utf-8")) if os.path.exists(p) else defaut
+    for base in (DONNEES, DATA):
+        p = os.path.join(base, nom)
+        if os.path.exists(p):
+            with open(p, encoding="utf-8") as f:
+                return json.load(f)
+    return defaut
+
+
+def ecrire_gz(chemin, objet):
+    """Fichier JSON compressé (5 à 10 fois plus léger), décompressé par le navigateur."""
+    p = os.path.join(SITE, chemin)
+    os.makedirs(os.path.dirname(p), exist_ok=True)
+    with open(p, "wb") as f:
+        f.write(gzip.compress(json.dumps(objet, ensure_ascii=False, separators=(",", ":")).encode(), 9, mtime=0))
 
 
 def ecrire(chemin, texte):
@@ -167,7 +183,7 @@ def meteo_fr(code):
 def page(root, titre, description, corps, recherche=True):
     """Gabarit commun à toutes les pages générées. root = chemin relatif vers la racine du site."""
     rech = ('<form class="search" role="search" onsubmit="return false"><label for="q" class="vh">Chercher une ville</label>'
-            '<input id="q" type="search" autocomplete="off" placeholder="Chercher une ville parmi 10 000">'
+            '<input id="q" type="search" autocomplete="off" placeholder="Chercher une ville">'
             '<ul id="results"></ul></form>') if recherche else ""
     return f"""<!DOCTYPE html>
 <html lang="fr"><head><meta charset="utf-8">
@@ -178,9 +194,9 @@ def page(root, titre, description, corps, recherche=True):
 <header class="top"><div class="top-in"><a class="brand" href="{root}">{LOGO}Dix Mille Escales</a>{rech}
 <button type="button" class="theme-btn" id="theme-btn" aria-label="Changer le thème d’affichage">Thème : auto</button></div></header>
 <main class="wrap">{corps}</main>
-<footer class="foot"><div class="in"><p>Dix Mille Escales, le guide des 10 000 plus grandes villes du monde. Données mises à jour en continu par nos robots.</p>
+<footer class="foot"><div class="in"><p>Dix Mille Escales, le guide de toutes les villes du monde de plus de 5 000 habitants. Données mises à jour chaque nuit par nos robots.</p>
 <p><span data-compteur>…</span> informations dans le guide · <a href="{root}sources/">Nos sources</a> · <a href="{root}etat/">État des robots</a></p></div></footer>
-<script src="{root}static/app.js"></script><script src="{root}static/questions.js"></script></body></html>"""
+<script src="{root}static/app.js"></script><script src="{root}static/fiche.js"></script><script src="{root}static/questions.js"></script><script src="{root}static/lieux.js"></script></body></html>"""
 
 
 def carte_lieux(v, lieux, rayon):
@@ -213,7 +229,7 @@ def carte_lieux(v, lieux, rayon):
             '<span style="--c:var(--faire)">Activités</span><span style="--c:var(--acheter)">Acheter</span></figcaption></figure>')
 
 
-def liste_lieux(rub, items):
+def liste_lieux(rub, items, niveau="phare"):
     items = sorted(items, key=lambda f: (-f["infos"], f["nom"]))
     def li(f):
         meta = " · ".join(x for x in (f["type"], f.get("cuisine"), (f["etoiles"] + " étoiles") if f.get("etoiles") else "",
@@ -234,10 +250,11 @@ def liste_lieux(rub, items):
         liens.append(f'<a href="https://www.openstreetmap.org/{typ}/{ident}" rel="nofollow noopener" target="_blank">Carte</a>')
         return (f'<li data-type="{E(f["type"])}" style="--c:var(--{rub})"><h3>{E(f["nom"])}</h3><div class="m">{E(meta)}</div>'
                 + "".join(f'<div class="i">{x}</div>' for x in infos) + f'<div class="i">{" · ".join(liens)}</div></li>')
-    visibles = items[:MAX_PAR_RUBRIQUE]
-    html_ = f'<div class="chips" data-filter-for="l-{rub}"></div><ul class="places" id="l-{rub}">' + "".join(li(f) for f in visibles) + "</ul>"
+    visibles = items[:EN_LIGNE.get(niveau, 15)]
+    html_ = f'<ul class="places" id="l-{rub}">' + "".join(li(f) for f in visibles) + "</ul>"
     if len(items) > len(visibles):
-        html_ += f'<p class="note">Et {nombre(len(items) - len(visibles))} autres lieux recensés, classés après les fiches les plus complètes.</p>'
+        html_ += (f'<button type="button" class="tout-voir" data-rub="{rub}" data-n="{len(items)}">Voir les {nombre(len(items))} adresses, '
+                  f'avec recherche et filtres</button>')
     return html_
 
 
@@ -257,6 +274,8 @@ def page_ville(v, ctx):
     cout = ctx["cout"].get("pays", {}).get(v["pays"])
     wp = enc.get("wikipedia") or {}
     wps = wp.get("sections", {})
+    if v["niveau"] == "autre":
+        wps = {k: x for k, x in wps.items() if k in SECTIONS_AUTRES}
     feries = ctx["feries"].get(v["pays"])
     d_paris = dist((48.8566, 2.3522), (v["lat"], v["lon"]))
     trajet = (f"≈ {nombre(round(d_paris))} km, train ou voiture" if d_paris < 350
@@ -406,7 +425,7 @@ def page_ville(v, ctx):
         for rub, titre, desc in RUBRIQUES:
             items = [f for f in lieux if f["rubrique"] == rub]
             if items:
-                corps.append(f'<section class="block" id="{rub}"><h2>{titre}</h2><p class="lead">{desc} {nombre(len(items))} adresse{"s" if len(items) > 1 else ""}.</p>{liste_lieux(rub, items)}</section>')
+                corps.append(f'<section class="block" id="{rub}"><h2>{titre}</h2><p class="lead">{desc} {nombre(len(items))} adresse{"s" if len(items) > 1 else ""}.</p>{liste_lieux(rub, items, v["niveau"])}</section>')
     if autour or v["proches"]:
         corps.append(section_alentours(v, autour, rubs))
     if not lieux:
@@ -548,14 +567,16 @@ def page_ville(v, ctx):
     red_ok = {k: red[k] for k in ("accroche", "conseils", "a_eviter", "quand_partir", "un_jour") if red.get(k)}
     if red_ok:
         donnees["avis"] = red_ok
-    ecrire(f"villes/{v['slug']}/donnees.json", json.dumps(donnees, ensure_ascii=False, separators=(",", ":")))
+    ecrire_gz(f"villes/{v['slug']}/donnees.json.gz", donnees)
     if tous:
         cles = ("nom", "type", "rubrique", "adresse", "horaires", "cuisine", "etoiles", "payant", "site", "telephone",
                 "fauteuil", "terrasse", "distance_km", "direction", "patrimoine_mondial", "id")
         export = [{k: f[k] for k in cles if f.get(k)} for f in sorted(tous, key=lambda f: (f["rubrique"], -f["infos"], f["nom"]))]
-        ecrire(f"villes/{v['slug']}/lieux.json", json.dumps({"date": rubs["date"], "rayon_km": rubs.get("rayon_km"),
-                                                             "rayon_alentours_km": rubs.get("rayon_alentours_km"), "lieux": export},
-                                                            ensure_ascii=False, separators=(",", ":")))
+        if v["niveau"] == "autre":
+            gardes = {}
+            export = [f for f in export if gardes.setdefault(f["rubrique"], []).append(1) or len(gardes[f["rubrique"]]) <= 60]
+        ecrire_gz(f"villes/{v['slug']}/lieux.json.gz", {"date": rubs["date"], "rayon_km": rubs.get("rayon_km"),
+                                                         "rayon_alentours_km": rubs.get("rayon_alentours_km"), "lieux": export})
     cpt = ctx["compteur"]
     cpt["informations"] += total_infos
     cpt["lieux"] += len(tous)
@@ -564,6 +585,21 @@ def page_ville(v, ctx):
     cpt["villes_enrichies"] += 1 if (tous or enc) else 0
 
     desc = f"Guide de voyage de {v['nom']} ({nom_pays}) : lieux à voir, où manger, où dormir, météo, jours fériés et infos pratiques."
+    if v["niveau"] == "autre" and not ctx.get("pages_completes"):
+        # Page légère : le reste de la fiche est construit dans le navigateur à partir des fichiers compressés
+        donnees["complet"] = {"textes": {k: x["texte"] for k, x in wps.items()}, "resume": wp.get("resume", ""),
+                              "wikipedia": {"titre": wp.get("titre"), "url": wp.get("url")} if wp else None,
+                              "evenements": enc.get("evenements", []), "photo": enc.get("photo"), "blason": enc.get("blason"),
+                              "alentours": [{"nom": f["nom"], "type": f["type"], "km": f.get("distance_km"), "direction": f.get("direction"),
+                                             "patrimoine_mondial": f.get("patrimoine_mondial", False), "id": f["id"]} for f in autour[:100]],
+                              "facts": [(k, val) for k, val in facts]}
+        ecrire_gz(f"villes/{v['slug']}/donnees.json.gz", donnees)
+        leger = (f'<section class="hero"><p class="crumbs"><a href="../../">Accueil</a> › {E(cont)} › {E(nom_pays)}</p>'
+                 f'<h1 class="city">{E(v["nom"])}</h1><p class="coords">{coords}</p>'
+                 f'<p class="tagline">{E(v["nom"])}, {nombre(v["population"])} habitants, {E(nom_pays)}. {nombre(total_infos)} informations dans cette fiche.</p></section>'
+                 f'<div id="fiche-dyn" data-slug="{v["slug"]}" data-niveau="{v["niveau"]}"><p class="note">Chargement de la fiche…</p></div>'
+                 + BOITE_QUESTIONS.format(nom=E(v["nom"]), slug=v["slug"]))
+        return page("../../", f"{v['nom']} ({nom_pays}) – Dix Mille Escales", desc, leger)
     return page("../../", f"{v['nom']} ({nom_pays}) – Dix Mille Escales", desc, "\n".join(corps))
 
 
@@ -591,7 +627,8 @@ def section_alentours(v, autour, rubs):
             types[f["type"]] = types.get(f["type"], 0) + 1
         h += (f'<h3 style="margin-top:1.6rem">Tous les sites notables à moins de {rubs.get("rayon_alentours_km", 50)} km</h3>'
               f'<div class="chips" data-filter-for="l-alentours"></div><ul class="places" id="l-alentours">')
-        for f in autour[:300]:
+        limite_ = {"phare": 60, "intermediaire": 25, "autre": 12}.get(v["niveau"], 25)
+        for f in autour[:limite_]:
             typ, ident = f["id"][4:].split("/")
             h += (f'<li data-type="{E(f["type"])}" style="--c:var(--alentours)"><h3>{E(f["nom"])}</h3>'
                   f'<div class="m">{E(f["type"])} · {str(f["distance_km"]).replace(".", ",")} km {E(f["direction"])}'
@@ -599,6 +636,8 @@ def section_alentours(v, autour, rubs):
                   + (f'<div class="i">Horaires : {E(horaires_fr(f["horaires"]))}</div>' if f.get("horaires") else "")
                   + f'<div class="i"><a href="https://www.openstreetmap.org/{typ}/{ident}" rel="nofollow noopener" target="_blank">Carte</a></div></li>')
         h += "</ul>"
+        if len(autour) > limite_:
+            h += f'<button type="button" class="tout-voir" data-rub="alentours" data-n="{len(autour)}">Voir les {nombre(len(autour))} sites des alentours</button>'
     return h + "</section>"
 
 
@@ -648,21 +687,33 @@ def main():
            "date_txt": date_fr(date.today().isoformat())}
     # Lieux et jours fériés déjà collectés
     ctx["lieux"] = {}
-    dl = os.path.join(DATA, "lieux")
-    if os.path.isdir(dl):
-        for fn in os.listdir(dl):
-            if fn.endswith(".json") and not fn.startswith("_"):
-                d = lire(f"lieux/{fn}")
+    for base in (DATA, DONNEES):  # ancien rangement d'abord, puis le nouveau (qui l'emporte)
+        dl = os.path.join(base, "lieux")
+        for racine, _, fichiers in (os.walk(dl) if os.path.isdir(dl) else []):
+            for fn in fichiers:
+                if fn.startswith("_") or not (fn.endswith(".json") or fn.endswith(".json.gz")):
+                    continue
+                ouvrir = gzip.open if fn.endswith(".gz") else open
+                with ouvrir(os.path.join(racine, fn), "rt", encoding="utf-8") as f:
+                    d = json.load(f)
                 ctx["lieux"][d["ville"]] = d
     ctx["securite"] = lire("securite.json", {}) or {}
     ctx["cout"] = lire("cout.json", {}) or {}
     ctx["formalites"] = (lire("formalites.json", {}) or {}).get("passeports", {})
     ctx["compteur"] = {"informations": 0, "lieux": 0, "textes": 0, "photos": 0, "villes_enrichies": 0}
     ctx["feries"] = {}
-    df = os.path.join(DATA, "feries")
-    if os.path.isdir(df):
-        for fn in os.listdir(df):
-            ctx["feries"][fn[:-5]] = lire(f"feries/{fn}")
+    for base in (DATA, DONNEES):
+        df = os.path.join(base, "feries")
+        if os.path.isdir(df):
+            for fn in os.listdir(df):
+                ctx["feries"][fn[:-5]] = lire(f"feries/{fn}")
+    journal = dict(ctx["journal"])
+    dj = os.path.join(DONNEES, "journal")
+    if os.path.isdir(dj):
+        for fn in os.listdir(dj):
+            if fn.endswith(".json"):
+                journal[fn[:-5]] = lire(f"journal/{fn}")
+    ctx["journal"] = journal
     # Capitales en français quand la ville est dans le guide
     ctx["capitales"] = {}
     for cc, pz in pays.items():
@@ -675,7 +726,8 @@ def main():
     shutil.copytree(os.path.join(RACINE, "static"), os.path.join(SITE, "static"))
 
     # Index de recherche
-    index = [[v["nom"], v["slug"], pays.get(v["pays"], {}).get("nom", v["pays"]), v["population"], "|".join(v["alts"])] for v in villes]
+    index = [[v["nom"], v["slug"], pays.get(v["pays"], {}).get("nom", v["pays"]), v["population"],
+              "|".join(v["alts"]) if (v["population"] >= 30000 or v["niveau"] != "autre") else "|".join(v["alts"][:1])] for v in villes]
     ecrire("static/index.json", json.dumps(index, ensure_ascii=False, separators=(",", ":")))
 
     # Pages de villes
@@ -710,7 +762,7 @@ def main():
 
     # Accueil
     tzs, tzi, rows = [], {}, []
-    for v in villes:
+    for v in [w for w in villes if w["rang"] <= 15000 or w["niveau"] == "phare"]:
         if v["fuseau"] not in tzi:
             tzi[v["fuseau"]] = len(tzs); tzs.append(v["fuseau"])
         rows.append([v["nom"], v["pays"], v["lat"], v["lon"], v["population"], tzi[v["fuseau"]], "|".join(v["alts"]),
@@ -744,8 +796,16 @@ def main():
            f'<div class="table-scroll"><table><thead><tr><th>Source</th><th>Ce qu’elle apporte</th><th>Licence</th></tr></thead><tbody>{lignes}</tbody></table></div>'))
 
     # Page État des robots
-    suivi = lire("lieux/_suivi.json", {}) or {}
-    noms = {"redaction": "Rédaction (IA)", "climat": "Climat (Open-Meteo ERA5)", "securite": "Sécurité (Département d’État)",
+    suivi = {}
+    for base in (DATA, DONNEES):
+        dl = os.path.join(base, "lieux")
+        if os.path.isdir(dl):
+            for fn in os.listdir(dl):
+                if fn.startswith("_suivi") and fn.endswith(".json"):
+                    with open(os.path.join(dl, fn), encoding="utf-8") as f:
+                        suivi.update(json.load(f))
+    noms = {"villes": "Liste des villes (GeoNames)", "lieux_0": "Lieux, robot 1 (OpenStreetMap)", "lieux_1": "Lieux, robot 2 (OpenStreetMap)",
+            "lieux_2": "Lieux, robot 3 (OpenStreetMap)", "meteo": "Météo (Open-Meteo)", "redaction": "Rédaction (IA)", "climat": "Climat (Open-Meteo ERA5)", "securite": "Sécurité (Département d’État)",
             "formalites": "Formalités (Passport Index)", "cout": "Coût de la vie (Banque mondiale)", "encyclopedie": "Encyclopédie (Wikidata, Wikipédia)", "lieux": "Lieux (OpenStreetMap)", "meteo": "Météo (Open-Meteo)", "feries": "Jours fériés (Nager.Date)", "change": "Change (BCE)"}
     lignes = ""
     for k, n in noms.items():
@@ -778,6 +838,11 @@ def main():
     else:
         ecrire("robots.txt", "User-agent: *\nAllow: /\n")
 
+    taille = sum(os.path.getsize(os.path.join(r, f)) for r, _, fs in os.walk(SITE) for f in fs)
+    print(f"Taille du site : {taille / 1024 / 1024:.0f} Mo sur 1 024 Mo autorisés par GitHub Pages.")
+    if taille > LIMITE_SITE:
+        print("ATTENTION : le site approche la limite de 1 Go de GitHub Pages. Réduire EN_LIGNE ou SECTIONS_AUTRES dans build.py.")
+    ctx["taille_site"] = taille
     nb = len(lot) + (perso if a.limite else 0)
     print(f"Site généré dans site/ : accueil + {nombre(len(lot))} pages de villes ({perso} rédigées à la main), "
           f"{len(ctx['lieux'])} villes avec des lieux, en {(datetime.now() - t0).seconds} s.")

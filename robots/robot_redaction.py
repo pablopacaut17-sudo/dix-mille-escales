@@ -34,7 +34,7 @@ Réponds uniquement avec un objet JSON valide, sans texte autour, de la forme :
 def faits(v, pays):
     enc = c.lire(f"encyclo/{v['id']}.json") or {}
     wp = enc.get("wikipedia") or {}
-    lieux = (c.lire(f"lieux/{v['id']}.json") or {}).get("lieux", [])
+    lieux = (c.lire_lieux(v["id"]) or {}).get("lieux", [])
     clim = (c.lire(f"climat/{v['id']}.json") or {}).get("mois")
     cout = (c.lire("cout.json") or {}).get("pays", {}).get(v["pays"])
     voir = sorted([l for l in lieux if l["rubrique"] == "voir"], key=lambda l: -l["infos"])[:40]
@@ -89,7 +89,7 @@ def main():
                 continue
             anc = c.lire(f"redaction/{v['id']}.json")
             if not anc or (c.maintenant() - datetime.fromisoformat(anc["date"].replace("Z", "+00:00"))).days >= 30:
-                if c.lire(f"encyclo/{v['id']}.json") or c.lire(f"lieux/{v['id']}.json"):  # il faut des faits
+                if c.lire(f"encyclo/{v['id']}.json") or c.lire_lieux(v["id"]):  # il faut des faits
                     lot.append(v)
             if len(lot) >= a.max_villes:
                 break

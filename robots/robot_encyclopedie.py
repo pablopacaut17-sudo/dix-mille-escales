@@ -25,7 +25,7 @@ SPARQL = "https://query.wikidata.org/sparql"
 WIKIDATA = "https://www.wikidata.org/w/api.php"
 WIKIPEDIA = "https://fr.wikipedia.org/w/api.php"
 COMMONS = "https://commons.wikimedia.org/w/api.php"
-FREQUENCE = {"phare": 30, "intermediaire": 90, "autre": 180}
+FREQUENCE = {"phare": 30, "intermediaire": 90, "autre": 240}
 LONGUEUR = {"phare": 14000, "intermediaire": 5000, "autre": 2000}  # caractères max par section
 SECTIONS = {  # rubrique du guide -> mots qui peuvent ouvrir la section dans l'article Wikipédia
     "histoire": ("histoire", "historique"),
@@ -309,7 +309,8 @@ def demo(v):
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("--max-villes", type=int, default=300)
+    p.add_argument("--max-villes", type=int, default=3000)
+    p.add_argument("--duree-max", type=float, default=320, help="minutes : au-delà, arrêt propre")
     p.add_argument("--ville")
     p.add_argument("--demo", action="store_true")
     a = p.parse_args()
@@ -332,7 +333,11 @@ def main():
     print(f"{len(lot)} ville(s) à traiter.")
     table = {} if a.demo else correspondances(lot)
     ok = sans = ech = 0
+    debut = time.monotonic()
     for n, v in enumerate(lot, 1):
+        if time.monotonic() - debut > a.duree_max * 60:
+            print("Durée maximale atteinte : la suite passera la nuit prochaine.")
+            break
         qid = table.get(str(v["id"]))
         if not a.demo and not qid:
             sans += 1
@@ -353,7 +358,7 @@ def main():
         print(f"[{n}/{len(lot)}] {v['nom']} : {len(fiche.get('evenements', []))} événements, "
               f"{len(fiche.get('wikipedia', {}).get('sections', {}))} sections Wikipédia")
         if not a.demo:
-            time.sleep(1)
+            time.sleep(0.3)
     c.journal("encyclopedie", "ok" if ech == 0 else "partiel", villes_a_jour=ok, sans_wikidata=sans, echecs=ech,
               villes_couvertes=len(suivi), mode="démo" if a.demo else "réel")
     print(f"Encyclopédie : {ok} villes à jour, {sans} sans fiche Wikidata, {ech} échecs.")

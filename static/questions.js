@@ -53,9 +53,19 @@
     return null;
   }
 
+  function lireJson(url) {  // fichiers .json.gz : décompressés dans le navigateur
+    return fetch(url).then(function (r) { if (!r.ok) throw new Error(r.status); return r.arrayBuffer(); }).then(function (b) {
+      var o = new Uint8Array(b);
+      if (o[0] === 0x1f && o[1] === 0x8b) {
+        if (!('DecompressionStream' in window)) throw new Error('navigateur trop ancien');
+        return new Response(new Blob([b]).stream().pipeThrough(new DecompressionStream('gzip'))).json();
+      }
+      return JSON.parse(new TextDecoder().decode(o));
+    });
+  }
   function charger(slug, cb) {
     if (cache[slug]) return cb(cache[slug]);
-    fetch(root + 'villes/' + slug + '/donnees.json').then(function (r) { if (!r.ok) throw 0; return r.json(); })
+    lireJson(root + 'villes/' + slug + '/donnees.json.gz')
       .then(function (d) { cache[slug] = d; cb(d); }).catch(function () { cb(null); });
   }
 

@@ -1,6 +1,6 @@
 # Dix Mille Escales
 
-Le guide de voyage des 10 000 plus grandes villes du monde, mis à jour chaque nuit par des robots.
+Le guide de voyage de toutes les villes du monde de plus de 5 000 habitants (environ 65 000), mis à jour chaque nuit par des robots.
 
 Ce dossier contient **tout le site** : les données des 10 000 villes, les robots, le générateur de pages et la tâche automatique qui fait tourner l’ensemble. Une fois en ligne, vous n’avez plus rien à faire : chaque nuit, les robots collectent de nouvelles données et le site se met à jour tout seul.
 
@@ -112,3 +112,13 @@ Chaque modification déposée sur GitHub republie le site automatiquement en que
 ## Sources et licences
 
 Villes : GeoNames (CC BY 4.0). Histoire et faits : Wikidata (CC0). Textes : Wikipédia (CC BY-SA 4.0). Photos : Wikimedia Commons (licence propre à chaque image). Lieux : © contributeurs OpenStreetMap (ODbL). Météo : Open-Meteo (CC BY 4.0). Jours fériés : Nager.Date. Change : Banque centrale européenne. Visas : Passport Index Data (MIT). Sécurité : U.S. Department of State. Niveau des prix : Banque mondiale (CC BY 4.0). Noms de pays, langues et monnaies : CLDR (Unicode). Ces mentions figurent sur la page « Nos sources » du site et doivent y rester.
+
+---
+
+## Organisation depuis l'extension à toutes les villes de 5 000 habitants et plus
+
+- **Liste des villes** : `robots/robot_villes.py` (GeoNames, fichier cities5000). Les adresses des pages existantes ne changent jamais.
+- **Robots en parallèle chaque nuit** (tâche `.github/workflows/robots.yml`) : un groupe « base » (change, jours fériés, sécurité, formalités, coût de la vie, météo, climat), un groupe « encyclopédie », trois robots « lieux » qui se partagent les villes, puis la rédaction et la publication.
+- **Données des robots** : rangées dans des branches `donnees-base`, `donnees-encyclopedie`, `donnees-lieux-0/1/2`, `donnees-redaction`, qui ne gardent que la dernière version (le dépôt ne grossit pas). `robots/preparer.py` les réunit, `robots/sauver.py` les enregistre.
+- **Pages** : les villes phares et intermédiaires (environ 3 100) ont des pages entièrement écrites ; les autres ont une page légère complétée dans le navigateur à partir de fichiers compressés (`static/fiche.js`), pour rester sous la limite de 1 Go de GitHub Pages.
+- **Climat** : une ville à moins de 15 km d'une ville déjà calculée reprend son climat.

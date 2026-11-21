@@ -19,7 +19,8 @@ from datetime import datetime
 import commun as c
 
 OVERPASS = "https://overpass-api.de/api/interpreter"
-FREQUENCE = {"phare": 7, "intermediaire": 30, "autre": 90}
+FREQUENCE = {"phare": 7, "intermediaire": 30, "autre": 120}
+PAUSE = {"phare": 8, "intermediaire": 6, "autre": 2}  # secondes entre deux villes (politesse envers Overpass)
 CIBLES = {
     "amenity": ("restaurant|cafe|bar|pub|fast_food|ice_cream|marketplace", None),
     "tourism": ("hotel|hostel|guest_house|museum|attraction|viewpoint|gallery|zoo|aquarium", None),
@@ -84,7 +85,9 @@ def rayon_km(v):
     if v["niveau"] == "phare":
         r = max(r, 7)
     elif v["niveau"] == "intermediaire":
-        r = max(r, 4)
+        r = max(r, 5)
+    else:
+        r = max(r, 3)
     return min(15.0, r)
 
 
@@ -191,15 +194,21 @@ def demo_alentours(v):
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("--max-villes", type=int, default=150)
+    p.add_argument("--max-villes", type=int, default=1500)
+    p.add_argument("--part", type=int, default=0, help="numéro de ce robot quand plusieurs travaillent en parallèle")
+    p.add_argument("--parts", type=int, default=1, help="nombre de robots Lieux en parallèle")
     p.add_argument("--ville", help="slug d'une ville, ex. lisbonne-pt")
     p.add_argument("--pause", type=float, default=15)
     p.add_argument("--demo", action="store_true", help="hors ligne : données factices pour 3 villes")
-    p.add_argument("--duree-max", type=float, default=200, help="minutes : au-delà, le robot s'arrête proprement")
+    p.add_argument("--duree-max", type=float, default=320, help="minutes : au-delà, le robot s'arrête proprement")
     a = p.parse_args()
 
-    V = c.villes()
-    suivi = c.lire("lieux/_suivi.json", {})
+    V = [v for v in c.villes() if v["id"] % a.parts == a.part]
+    fsuivi = f"lieux/_suivi_{a.part}.json"
+    suivi = c.lire(fsuivi)
+    if suivi is None:  # reprise de l'ancien suivi commun
+        ancien = c.lire("lieux/_suivi.json", {}) or {}
+        suivi = {k: x for k, x in ancien.items() if int(k) % a.parts == a.part}
     t = c.maintenant()
     if a.ville:
         lot = [v for v in V if v["slug"] == a.ville]
@@ -237,7 +246,7 @@ def main():
         if a.demo:
             autour = demo_alentours(v)
         else:
-            time.sleep(5)
+            time.sleep(2)
             brut2 = c.http(OVERPASS, urllib.parse.urlencode({"data": requete_alentours(v)}).encode(), delai=60, timeout=300)
             autour = json.loads(brut2).get("elements", []) if brut2 else []
         r_urbain = rayon_km(v)
@@ -246,26 +255,25 @@ def main():
             if f and f["distance_km"] > r_urbain:
                 fiches.append(f)
         vus = set(); fiches = [f for f in fiches if not (f["id"] in vus or vus.add(f["id"]))]
-        avant = c.lire(f"lieux/{v['id']}.json", {}).get("lieux", [])
+        avant = (c.lire_lieux(v["id"]) or {}).get("lieux", [])
         if avant and len(fiches) < 0.5 * len(avant):
             print(f"    suspect : {len(fiches)} lieux contre {len(avant)}, données conservées")
             sus += 1
-            suivi[str(v["id"])] = dict(suivi.get(str(v["id"]), {}), suspect=True)
+            suivi[str(v["id"])] = dict(suivi.get(str(v["id"]), {}), suspect=True, dernier_passage=t.isoformat())
             continue
         ch = comparer(avant, fiches) if avant else []
-        c.ecrire(f"lieux/{v['id']}.json", {"ville": v["id"], "date": date, "rayon_km": round(rayon_km(v), 1),
-                                            "rayon_alentours_km": rayon_alentours_km(v),
-                                            "lieux": fiches, "changements": ch}, compact=True)
+        c.ecrire_gz(f"lieux/{a.part}/{v['id']}.json.gz", {"ville": v["id"], "date": date, "rayon_km": round(rayon_km(v), 1),
+                                                    "rayon_alentours_km": rayon_alentours_km(v), "lieux": fiches, "changements": ch})
         suivi[str(v["id"])] = {"dernier_passage": t.isoformat(), "lieux": len(fiches),
                                "infos": sum(f["infos"] for f in fiches),
                                "critiques": sum(1 for x in ch if x["niveau"] == "critique")}
-        c.ecrire("lieux/_suivi.json", suivi, compact=True)
+        c.ecrire(fsuivi, suivi, compact=True)
         ok += 1
         print(f"    {len(fiches)} lieux, {suivi[str(v['id'])]['infos']} informations")
         if not a.demo and n < len(lot):
-            time.sleep(a.pause)
+            time.sleep(PAUSE[v["niveau"]])
     couvertes = len(suivi)
-    c.journal("lieux", "ok" if ech == 0 else "partiel", villes_traitees=ok, echecs=ech, suspects=sus,
+    c.journal(f"lieux_{a.part}", "ok" if ech == 0 else "partiel", villes_traitees=ok, echecs=ech, suspects=sus,
               villes_couvertes=couvertes, mode="démo" if a.demo else "réel")
     print(f"Terminé : {ok} villes à jour, {ech} échecs, {sus} suspectes. {couvertes} villes couvertes au total.")
 
