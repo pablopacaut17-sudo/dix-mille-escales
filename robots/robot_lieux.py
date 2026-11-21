@@ -191,10 +191,11 @@ def demo_alentours(v):
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("--max-villes", type=int, default=60)
+    p.add_argument("--max-villes", type=int, default=150)
     p.add_argument("--ville", help="slug d'une ville, ex. lisbonne-pt")
     p.add_argument("--pause", type=float, default=15)
     p.add_argument("--demo", action="store_true", help="hors ligne : données factices pour 3 villes")
+    p.add_argument("--duree-max", type=float, default=200, help="minutes : au-delà, le robot s'arrête proprement")
     a = p.parse_args()
 
     V = c.villes()
@@ -216,7 +217,11 @@ def main():
 
     print(f"{len(lot)} ville(s) à traiter.")
     ok = ech = sus = 0
+    debut = time.monotonic()
     for n, v in enumerate(lot, 1):
+        if time.monotonic() - debut > a.duree_max * 60:
+            print(f"Durée maximale atteinte : arrêt propre, les {len(lot) - n + 1} villes restantes passeront la nuit prochaine.")
+            break
         print(f"[{n}/{len(lot)}] {v['nom']} ({v['pays']}, {v['niveau']})")
         if a.demo:
             elements = demo_elements(v)

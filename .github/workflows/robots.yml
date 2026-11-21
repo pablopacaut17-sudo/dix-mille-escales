@@ -50,7 +50,7 @@ jobs:
         run: python3 robots/robot_cout.py
         continue-on-error: true
       - name: Robot Climat
-        run: python3 robots/robot_climat.py --max-villes ${{ vars.MAX_CLIMAT || 30 }}
+        run: python3 robots/robot_climat.py --max-villes ${{ vars.MAX_CLIMAT || 80 }}
         continue-on-error: true
         env:
           OPENMETEO_KEY: ${{ secrets.OPENMETEO_KEY }}
@@ -64,7 +64,7 @@ jobs:
         if: always()
         run: python3 robots/sauver.py
       - name: Robot Lieux
-        run: python3 robots/robot_lieux.py --max-villes ${{ vars.MAX_VILLES || 60 }}
+        run: python3 robots/robot_lieux.py --max-villes ${{ vars.MAX_VILLES || 150 }} --duree-max 200
         continue-on-error: true
       - name: Sauvegarde intermédiaire
         if: always()
