@@ -833,7 +833,12 @@ def main():
             tzi[v["fuseau"]] = len(tzs); tzs.append(v["fuseau"])
         rows.append([v["nom"], v["pays"], v["lat"], v["lon"], v["population"], tzi[v["fuseau"]], "|".join(v["alts"]),
                      1 if v["niveau"] == "phare" else 0, v["slug"]])
-    donnees = json.dumps({"c": rows, "tz": tzs, "cont": {cc: pz["continent"] for cc, pz in pays.items()}},
+    cont_n = {}
+    for v in villes:
+        k = pays.get(v["pays"], {}).get("continent", "")
+        cont_n[k] = cont_n.get(k, 0) + 1
+    tot = {"villes": len(villes), "pays": len({v["pays"] for v in villes}), "habitants": sum(v["population"] for v in villes), "continents": cont_n}
+    donnees = json.dumps({"c": rows, "tz": tzs, "cont": {cc: pz["continent"] for cc, pz in pays.items()}, "tot": tot},
                          ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
     accueil = open(os.path.join(RACINE, "templates", "accueil.html"), encoding="utf-8").read()
     ecrire("index.html", accueil.replace("__DATA__", donnees).replace("__DATE__", ctx["date_txt"])

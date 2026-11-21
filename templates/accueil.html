@@ -168,7 +168,7 @@ h2.sec{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,4vw,2.7
         <canvas id="map" role="img" aria-label="Carte du monde des villes du guide"></canvas>
         <div class="tip" id="tip"></div>
       </div>
-      <div class="legend"><span style="--c:var(--buoy);--s:.8em">Fiche complète</span><span style="--c:var(--sea);--s:.65em">Ville phare, fiche en préparation</span><span style="--c:var(--dot);--s:.45em">Autre ville du guide</span></div>
+      <div class="legend"><span style="--c:var(--buoy);--s:.8em">Fiche complète</span><span style="--c:var(--sea);--s:.65em">Ville phare, fiche en préparation</span><span style="--c:var(--dot);--s:.45em">Autre ville du guide</span><span style="--c:transparent;--s:0">La carte montre les 15 000 plus grandes villes. Toutes les autres sont dans la recherche et sur les <a href="pays/">pages Pays</a>.</span></div>
     </div>
 
     <div class="card" id="card" aria-live="polite"><p class="empty">Touchez un point de la carte ou cherchez une ville pour voir sa fiche.</p></div>
@@ -304,11 +304,11 @@ h2.sec{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,4vw,2.7
   /* ---- chiffres ---- */
   var nC={},nCont={};C.forEach(function(c){nC[c.cc]=1;nCont[CONT[c.cc]]=1;});
   var totPop=C.reduce(function(s,c){return s+c.pop;},0);
-  document.getElementById('stats').innerHTML='<div><b>'+fmtN.format(C.length)+'</b><span>villes dans le guide</span></div><div><b>'+Object.keys(nC).length+'</b><span>pays et territoires</span></div><div><b>'+(Math.round(totPop/1e8)/10).toString().replace('.',',')+' milliards</b><span>d’habitants dans ces villes</span></div><div><b>'+C.filter(function(c){return c.ph;}).length+'</b><span>villes phares en préparation</span></div>';
+  var TOT=D.tot||{};document.getElementById('stats').innerHTML='<div><b>'+fmtN.format(TOT.villes||C.length)+'</b><span>villes dans le guide</span></div><div><b>'+(TOT.pays||Object.keys(nC).length)+'</b><span>pays et territoires</span></div><div><b>'+(Math.round((TOT.habitants||totPop)/1e8)/10).toString().replace('.',',')+' milliards</b><span>d’habitants dans ces villes</span></div><div><b>'+C.filter(function(c){return c.ph;}).length+'</b><span>villes phares</span></div>';
 
   /* ---- continents ---- */
   var CN={EU:'Europe',AF:'Afrique',AS:'Asie',NA:'Amérique du Nord et centrale',SA:'Amérique du Sud',OC:'Océanie'};
-  document.getElementById('conts').innerHTML=Object.keys(CN).map(function(k){var l=C.filter(function(c){return CONT[c.cc]===k;});return '<div class="cont"><h3>'+CN[k]+'<span>'+fmtN.format(l.length)+' villes</span></h3><ul>'+l.slice(0,7).map(function(c){return '<li><button type="button" data-i="'+c.i+'">'+c.name+'</button><span>'+country(c.cc)+'</span></li>';}).join('')+'</ul></div>';}).join('');
+  document.getElementById('conts').innerHTML=Object.keys(CN).map(function(k){var l=C.filter(function(c){return CONT[c.cc]===k;});return '<div class="cont"><h3>'+CN[k]+'<span>'+fmtN.format((TOT.continents||{})[k]||l.length)+' villes</span></h3><ul>'+l.slice(0,7).map(function(c){return '<li><button type="button" data-i="'+c.i+'">'+c.name+'</button><span>'+country(c.cc)+'</span></li>';}).join('')+'</ul></div>';}).join('');
   document.querySelectorAll('#conts button,#phlist button').forEach(function(){});
   function bindGo(scope){document.querySelectorAll(scope+' button[data-i]').forEach(function(b){b.addEventListener('click',function(){var c=C[+b.getAttribute('data-i')];var v=VIEWS.filter(function(v){return v[0]===CONT[c.cc];})[0];if(v)setView(v);select(c,false);document.getElementById('carte').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'});});});}
   bindGo('#conts');
