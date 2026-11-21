@@ -11,7 +11,38 @@ C'est une moyenne nationale : les grandes villes touristiques sont souvent plus 
 import argparse, json
 import commun as c
 
-URL = "https://api.worldbank.org/v2/country/all/indicator/PA.NUS.PPPC.RF?format=json&per_page=20000&mrnev=1"
+INDICATEUR = "PA.NUS.PPPC.RF"
+ESSAIS = [  # plusieurs façons de demander la donnée : la plus récente disponible pour chaque pays
+    f"https://api.worldbank.org/v2/country/all/indicator/{INDICATEUR}?format=json&per_page=20000&mrnev=1",
+    f"https://api.worldbank.org/v2/country/all/indicator/{INDICATEUR}?format=json&per_page=20000&date=2015:2026",
+]
+
+
+def telecharger():
+    """Renvoie {code ISO3: (valeur, année)} avec la valeur la plus récente de chaque pays, ou (None, raison)."""
+    raison = "pas de réponse"
+    for url in ESSAIS:
+        brut = c.http(url, timeout=180, delai=20)
+        if not brut:
+            raison = "Banque mondiale injoignable"
+            continue
+        try:
+            rep = json.loads(brut)
+        except ValueError:
+            raison = "réponse illisible"
+            continue
+        if not (isinstance(rep, list) and len(rep) > 1 and rep[1]):
+            raison = "réponse vide ou message d’erreur : " + str(rep)[:120]
+            continue
+        res = {}
+        for l in rep[1]:
+            cc3, v, an = l.get("countryiso3code"), l.get("value"), l.get("date", "")
+            if cc3 and v is not None and (cc3 not in res or an > res[cc3][1]):
+                res[cc3] = (v, an)
+        if res:
+            return res, None
+        raison = "aucune valeur dans la réponse"
+    return None, raison
 
 
 def main():
@@ -20,22 +51,19 @@ def main():
     a = p.parse_args()
     iso3 = {p["iso3"]: cc for cc, p in c.lire("pays.json", {}).items() if p.get("iso3")}  # code à 3 lettres -> 2 lettres
     if a.demo:
-        lignes = [{"countryiso3code": "FRA", "value": 0.83, "date": "2024"}, {"countryiso3code": "PRT", "value": 0.62, "date": "2024"},
-                  {"countryiso3code": "JPN", "value": 0.55, "date": "2024"}]
+        valeurs = {"FRA": (0.83, "2024"), "PRT": (0.62, "2024"), "JPN": (0.55, "2024")}
     else:
-        brut = c.http(URL, timeout=180)
-        if not brut:
-            c.journal("cout", "echec")
-            raise SystemExit("Banque mondiale injoignable, données conservées.")
-        rep = json.loads(brut)
-        lignes = rep[1] if isinstance(rep, list) and len(rep) > 1 else []
+        valeurs, raison = telecharger()
+        if valeurs is None:
+            c.journal("cout", "echec", raison=raison)
+            raise SystemExit(f"Coût de la vie : {raison}. Données précédentes conservées.")
     brut = {}
-    for l in lignes or []:
-        cc = iso3.get(l.get("countryiso3code", ""))
-        if cc and l.get("value"):
-            brut[cc] = (l["value"], l.get("date", ""))
+    for cc3, (v, an) in valeurs.items():
+        cc = iso3.get(cc3)
+        if cc:
+            brut[cc] = (v, an)
     if "FR" not in brut:
-        c.journal("cout", "echec")
+        c.journal("cout", "echec", raison="valeur de la France absente")
         raise SystemExit("Valeur de la France absente : impossible de comparer.")
     fr = brut["FR"][0]
     res = {cc: {"indice": round(v / fr, 3), "annee": an} for cc, (v, an) in brut.items()}

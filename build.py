@@ -859,7 +859,7 @@ def main():
                 if fn.startswith("_suivi") and fn.endswith(".json"):
                     with open(os.path.join(dl, fn), encoding="utf-8") as f:
                         suivi.update(json.load(f))
-    noms = {"villes": "Liste des villes (GeoNames)", "lieux_0": "Lieux, robot 1 (OpenStreetMap)", "lieux_1": "Lieux, robot 2 (OpenStreetMap)",
+    noms = {"surveillance_etat": "Surveillance (rapport du matin)", "villes": "Liste des villes (GeoNames)", "lieux_0": "Lieux, robot 1 (OpenStreetMap)", "lieux_1": "Lieux, robot 2 (OpenStreetMap)",
             "lieux_2": "Lieux, robot 3 (OpenStreetMap)", "meteo": "Météo (Open-Meteo)", "redaction": "Rédaction (IA)", "climat": "Climat (Open-Meteo ERA5)", "securite": "Sécurité (Département d’État)",
             "formalites": "Formalités (Passport Index)", "cout": "Coût de la vie (Banque mondiale)", "encyclopedie": "Encyclopédie (Wikidata, Wikipédia)", "lieux": "Lieux (OpenStreetMap)", "meteo": "Météo (Open-Meteo)", "feries": "Jours fériés (Nager.Date)", "change": "Change (BCE)"}
     lignes = ""
@@ -898,6 +898,8 @@ def main():
     if taille > LIMITE_SITE:
         print("ATTENTION : le site approche la limite de 1 Go de GitHub Pages. Réduire EN_LIGNE ou SECTIONS_AUTRES dans build.py.")
     ctx["taille_site"] = taille
+    cpt["taille_site_mo"] = round(taille / 1024 / 1024)
+    ecrire("static/compteur.json", json.dumps(cpt, ensure_ascii=False))
     nb = len(lot) + (perso if a.limite else 0)
     print(f"Site généré dans site/ : accueil + {nombre(len(lot))} pages de villes ({perso} rédigées à la main), "
           f"{len(ctx['lieux'])} villes avec des lieux, en {(datetime.now() - t0).seconds} s.")

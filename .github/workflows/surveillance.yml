@@ -1,0 +1,35 @@
+name: Surveillance du matin
+
+# Chaque matin, après le passage nocturne des robots : vérification de tout le système, relance de ce qui
+# a échoué, et rapport publié comme « issue » (vous la recevez par notification ou par e-mail de GitHub).
+
+on:
+  schedule:
+    - cron: "0 7 * * *"      # 7 h UTC, soit 8 h en hiver à Paris
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+  issues: write
+  pages: read
+
+env:
+  DME_DONNEES: ${{ github.workspace }}/donnees
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  surveillance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Réunir les données
+        run: python3 robots/preparer.py
+      - name: Vérifier, corriger, publier le rapport
+        run: python3 robots/robot_surveillance.py
+      - name: Enregistrer
+        if: always()
+        run: python3 robots/sauver.py --branche donnees-surveillance --chemins journal/surveillance.json journal/surveillance_etat.json

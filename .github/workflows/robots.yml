@@ -8,6 +8,11 @@ on:
   schedule:
     - cron: "30 0 * * *"     # chaque nuit à 0 h 30 (heure UTC)
   workflow_dispatch:          # bouton « Run workflow » pour lancer à la main
+    inputs:
+      groupes:
+        description: "Groupes à lancer, séparés par des virgules (villes, base, encyclopedie, lieux, redaction, publier). Vide = tous."
+        required: false
+        default: ""
   push:
     branches: [main]
 
@@ -22,7 +27,7 @@ env:
 
 jobs:
   villes:
-    if: github.event_name != 'push'
+    if: github.event_name != 'push' && (inputs.groupes == null || inputs.groupes == '' || contains(inputs.groupes, 'villes'))
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -39,7 +44,7 @@ jobs:
 
   base:
     needs: villes
-    if: github.event_name != 'push'
+    if: ${{ !failure() && !cancelled() && github.event_name != 'push' && (inputs.groupes == null || inputs.groupes == '' || contains(inputs.groupes, 'base')) }}
     concurrency: { group: robots-base, cancel-in-progress: false }
     runs-on: ubuntu-latest
     timeout-minutes: 355
@@ -75,7 +80,7 @@ jobs:
 
   encyclopedie:
     needs: villes
-    if: github.event_name != 'push'
+    if: ${{ !failure() && !cancelled() && github.event_name != 'push' && (inputs.groupes == null || inputs.groupes == '' || contains(inputs.groupes, 'encyclopedie')) }}
     concurrency: { group: robots-encyclopedie, cancel-in-progress: false }
     runs-on: ubuntu-latest
     timeout-minutes: 355
@@ -95,7 +100,7 @@ jobs:
 
   lieux:
     needs: villes
-    if: github.event_name != 'push'
+    if: ${{ !failure() && !cancelled() && github.event_name != 'push' && (inputs.groupes == null || inputs.groupes == '' || contains(inputs.groupes, 'lieux')) }}
     strategy:
       fail-fast: false
       matrix:
@@ -121,7 +126,7 @@ jobs:
 
   redaction:
     needs: [base, encyclopedie, lieux]
-    if: always() && github.event_name != 'push'
+    if: always() && !cancelled() && github.event_name != 'push' && (inputs.groupes == null || inputs.groupes == '' || contains(inputs.groupes, 'redaction'))
     runs-on: ubuntu-latest
     timeout-minutes: 120
     steps:
@@ -143,7 +148,7 @@ jobs:
 
   publier:
     needs: [villes, base, encyclopedie, lieux, redaction]
-    if: always()
+    if: always() && !cancelled()
     concurrency: { group: publication, cancel-in-progress: true }
     runs-on: ubuntu-latest
     timeout-minutes: 60
