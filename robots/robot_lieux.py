@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 """
-Robot Lieux : restaurants, cafés, bars, hôtels, musées, monuments, belvédères, parcs, boutiques.
+Robot Lieux : restaurants, cafés, bars, hôtels, musées, monuments, belvédères, parcs, boutiques,
+activités (plages, sports nautiques, parcs d'attractions, golf, ski…) et sites notables aux alentours.
+Deux cercles par ville :
+  - le cercle urbain (au moins 7 km pour les villes phares, jusqu'à 15 km pour les métropoles) : tout est collecté ;
+  - le cercle des alentours (50 km, 30 km pour les petites villes) : seulement les sites notables
+    (ceux qui ont une fiche Wikidata ou sont classés au patrimoine mondial).
 Un seul robot pour toutes les villes : il traite chaque nuit les villes dont les données sont
 les plus anciennes (phares chaque semaine, intermédiaires chaque mois, autres tous les 3 mois).
 Source : OpenStreetMap via l'API Overpass (© contributeurs OpenStreetMap, ODbL).
@@ -22,6 +27,21 @@ CIBLES = {
     "leisure": ("park|garden|nature_reserve", None),
     "shop": ("books|wine|deli|bakery|pastry|craft|art|antiques|gift|chocolate", None),
 }
+# Activités, cherchées dans le cercle urbain et aux alentours
+ACTIVITES = {
+    "leisure": "water_park|marina|golf_course|swimming_area|beach_resort|ice_rink|horse_riding",
+    "tourism": "theme_park|camp_site",
+    "natural": "beach",
+    "landuse": "winter_sports",
+}
+# Sites notables aux alentours (avec fiche Wikidata obligatoire)
+ALENTOURS = {
+    "historic": "castle|archaeological_site|monument|fort|ruins|monastery|city_gate",
+    "tourism": "attraction|museum|theme_park|zoo|viewpoint|aquarium",
+    "natural": "beach|waterfall|peak|cave_entrance|bay|cliff|volcano|glacier",
+    "leisure": "nature_reserve|water_park",
+    "boundary": "national_park|protected_area",
+}
 TYPE = {"restaurant": ("Restaurant", "manger"), "cafe": ("Café", "manger"), "bar": ("Bar", "manger"),
         "pub": ("Pub", "manger"), "fast_food": ("Restauration rapide", "manger"), "ice_cream": ("Glacier", "manger"),
         "marketplace": ("Marché", "acheter"), "hotel": ("Hôtel", "dormir"), "hostel": ("Auberge de jeunesse", "dormir"),
@@ -33,7 +53,17 @@ TYPE = {"restaurant": ("Restaurant", "manger"), "cafe": ("Café", "manger"), "ba
         "nature_reserve": ("Réserve naturelle", "voir"), "books": ("Librairie", "acheter"), "wine": ("Caviste", "acheter"),
         "deli": ("Épicerie fine", "acheter"), "bakery": ("Boulangerie", "acheter"), "pastry": ("Pâtisserie", "acheter"),
         "craft": ("Artisanat", "acheter"), "art": ("Boutique d’art", "acheter"), "antiques": ("Antiquaire", "acheter"),
-        "gift": ("Souvenirs", "acheter"), "chocolate": ("Chocolatier", "acheter")}
+        "gift": ("Souvenirs", "acheter"), "chocolate": ("Chocolatier", "acheter"),
+        "water_park": ("Parc aquatique", "faire"), "marina": ("Port de plaisance", "faire"), "golf_course": ("Golf", "faire"),
+        "swimming_area": ("Baignade", "faire"), "beach_resort": ("Plage aménagée", "faire"), "ice_rink": ("Patinoire", "faire"),
+        "horse_riding": ("Équitation", "faire"), "theme_park": ("Parc d’attractions", "faire"), "camp_site": ("Camping", "dormir"),
+        "beach": ("Plage", "faire"), "winter_sports": ("Station de ski", "faire"), "monastery": ("Monastère", "voir"),
+        "city_gate": ("Porte de ville", "voir"), "waterfall": ("Cascade", "voir"), "peak": ("Sommet", "voir"),
+        "cave_entrance": ("Grotte", "voir"), "bay": ("Baie", "voir"), "cliff": ("Falaise", "voir"), "volcano": ("Volcan", "voir"),
+        "glacier": ("Glacier", "voir"), "national_park": ("Parc national", "voir"), "protected_area": ("Espace naturel protégé", "voir"),
+        "hiking": ("Sentier de randonnée", "faire")}
+CLES = ("amenity", "tourism", "historic", "leisure", "shop", "natural", "landuse", "boundary", "route")
+DIRECTIONS = ["au nord", "au nord-est", "à l’est", "au sud-est", "au sud", "au sud-ouest", "à l’ouest", "au nord-ouest"]
 CUISINES = {"portuguese": "portugaise", "seafood": "fruits de mer", "fish": "poisson", "italian": "italienne",
             "pizza": "pizza", "burger": "burgers", "japanese": "japonaise", "sushi": "sushis", "chinese": "chinoise",
             "indian": "indienne", "french": "française", "spanish": "espagnole", "mexican": "mexicaine",
@@ -49,14 +79,42 @@ CHAMPS = ("nom", "type", "adresse", "lat", "lon", "horaires", "cuisine", "etoile
 
 
 def rayon_km(v):
-    return max(2.0, min(12.0, 1.5 + math.sqrt(v["population"]) / 300))
+    """Cercle urbain : assez large pour les quartiers touristiques excentrés (Belém à Lisbonne, par exemple)."""
+    r = 2.5 + math.sqrt(v["population"]) / 250
+    if v["niveau"] == "phare":
+        r = max(r, 7)
+    elif v["niveau"] == "intermediaire":
+        r = max(r, 4)
+    return min(15.0, r)
+
+
+def rayon_alentours_km(v):
+    return 30 if v["niveau"] == "autre" else 50
 
 
 def requete(v):
     r = int(rayon_km(v) * 1000)
     blocs = "".join(f'nwr["{k}"~"^({vals})$"]["name"](around:{r},{v["lat"]},{v["lon"]});'
                     for k, (vals, _) in CIBLES.items())
+    blocs += "".join(f'nwr["{k}"~"^({vals})$"]["name"](around:{r},{v["lat"]},{v["lon"]});' for k, vals in ACTIVITES.items())
     return f"[out:json][timeout:240][maxsize:536870912];({blocs});out center tags;"
+
+
+def requete_alentours(v):
+    r, a = int(rayon_alentours_km(v) * 1000), f'{v["lat"]},{v["lon"]}'
+    blocs = "".join(f'nwr["{k}"~"^({vals})$"]["name"]["wikidata"](around:{r},{a});' for k, vals in ALENTOURS.items())
+    blocs += "".join(f'nwr["{k}"~"^({vals})$"]["name"](around:{r},{a});' for k, vals in ACTIVITES.items() if k in ("natural", "landuse"))
+    blocs += f'nwr["heritage"="1"]["name"](around:{r},{a});'
+    blocs += f'relation["route"="hiking"]["name"]["wikidata"](around:{r},{a});'
+    return f"[out:json][timeout:240][maxsize:536870912];({blocs});out center tags 2500;"
+
+
+def direction(v, lat, lon):
+    t = math.pi / 180
+    y = math.sin((lon - v["lon"]) * t) * math.cos(lat * t)
+    x = math.cos(v["lat"] * t) * math.sin(lat * t) - math.sin(v["lat"] * t) * math.cos(lat * t) * math.cos((lon - v["lon"]) * t)
+    cap = (math.degrees(math.atan2(y, x)) + 360) % 360
+    return DIRECTIONS[int((cap + 22.5) // 45) % 8]
 
 
 def distance_km(a, b):
@@ -66,15 +124,17 @@ def distance_km(a, b):
     return 2 * 6371 * math.asin(math.sqrt(x))
 
 
-def normaliser(el, date):
+def normaliser(el, date, v=None, alentours=False):
     t = el.get("tags", {})
-    cle = next((t[k] for k in CIBLES if t.get(k) in TYPE), None)
+    cle = next((t[k] for k in CLES if t.get(k) in TYPE), None)
     nom = t.get("name:fr") or t.get("name")
     lat = el["lat"] if "lat" in el else el.get("center", {}).get("lat")
     lon = el["lon"] if "lon" in el else el.get("center", {}).get("lon")
     if not cle or not nom or lat is None:
         return None
     type_, rubrique = TYPE[cle]
+    if alentours:
+        rubrique = "alentours"
     rue = " ".join(x for x in (t.get("addr:street"), t.get("addr:housenumber")) if x)
     f = {"id": f"osm:{el['type']}/{el['id']}", "rubrique": rubrique, "type": type_, "nom": nom,
          "adresse": ", ".join(x for x in (rue, t.get("addr:postcode")) if x),
@@ -86,7 +146,10 @@ def normaliser(el, date):
          "telephone": t.get("phone") or t.get("contact:phone", ""),
          "fauteuil": {"yes": "oui", "limited": "partiel", "no": "non"}.get(t.get("wheelchair"), ""),
          "terrasse": {"yes": "oui", "no": "non"}.get(t.get("outdoor_seating"), ""),
-         "wikidata": t.get("wikidata", ""), "verifie_le": date}
+         "wikidata": t.get("wikidata", ""), "patrimoine_mondial": t.get("heritage") == "1", "verifie_le": date}
+    if v is not None:
+        f["distance_km"] = round(distance_km((v["lat"], v["lon"]), (lat, lon)), 1)
+        f["direction"] = direction(v, lat, lon)
     f["infos"] = sum(1 for k in CHAMPS if f.get(k)) + 1
     return f
 
@@ -116,6 +179,14 @@ def demo_elements(v):
           ("shop", "books", "Librairie Fictive", {"opening_hours": "Mo-Sa 10:00-19:00"})]
     return [{"type": "node", "id": i, "lat": v["lat"] + (i % 3 - 1) * 0.006, "lon": v["lon"] + (i % 4 - 1.5) * 0.007,
              "tags": dict(t, **{k: val, "name": n})} for i, (k, val, n, t) in enumerate(ex, 1)]
+
+
+def demo_alentours(v):
+    ex = [("historic", "castle", "Château d’exemple", 24, {"wikidata": "Q1", "heritage": "1"}),
+          ("natural", "beach", "Plage d’exemple", 31, {}), ("boundary", "national_park", "Parc naturel d’exemple", 42, {"wikidata": "Q2"}),
+          ("route", "hiking", "Sentier d’exemple", 18, {"wikidata": "Q3"})]
+    return [{"type": "node", "id": 100 + i, "lat": v["lat"] + d / 111 * (1 if i % 2 else -0.6), "lon": v["lon"] + d / 111 * (0.5 if i % 2 else -1),
+             "tags": dict(t, **{k: val, "name": n})} for i, (k, val, n, d, t) in enumerate(ex)]
 
 
 def main():
@@ -156,7 +227,19 @@ def main():
                 continue
             elements = json.loads(brut).get("elements", [])
         date = c.horodatage()
-        fiches = [f for f in (normaliser(e, date) for e in elements) if f]
+        fiches = [f for f in (normaliser(e, date, v) for e in elements) if f]
+        # Second cercle : les sites notables aux alentours (hors du cercle urbain)
+        if a.demo:
+            autour = demo_alentours(v)
+        else:
+            time.sleep(5)
+            brut2 = c.http(OVERPASS, urllib.parse.urlencode({"data": requete_alentours(v)}).encode(), delai=60, timeout=300)
+            autour = json.loads(brut2).get("elements", []) if brut2 else []
+        r_urbain = rayon_km(v)
+        for e in autour:
+            f = normaliser(e, date, v, alentours=True)
+            if f and f["distance_km"] > r_urbain:
+                fiches.append(f)
         vus = set(); fiches = [f for f in fiches if not (f["id"] in vus or vus.add(f["id"]))]
         avant = c.lire(f"lieux/{v['id']}.json", {}).get("lieux", [])
         if avant and len(fiches) < 0.5 * len(avant):
@@ -166,6 +249,7 @@ def main():
             continue
         ch = comparer(avant, fiches) if avant else []
         c.ecrire(f"lieux/{v['id']}.json", {"ville": v["id"], "date": date, "rayon_km": round(rayon_km(v), 1),
+                                            "rayon_alentours_km": rayon_alentours_km(v),
                                             "lieux": fiches, "changements": ch}, compact=True)
         suivi[str(v["id"])] = {"dernier_passage": t.isoformat(), "lieux": len(fiches),
                                "infos": sum(f["infos"] for f in fiches),

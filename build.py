@@ -24,6 +24,7 @@ FREQ = {"phare": "chaque semaine", "intermediaire": "chaque mois", "autre": "tou
 RUBRIQUES = [("voir", "À voir", "Monuments, musées, belvédères, parcs et sites recensés autour du centre-ville."),
              ("manger", "Manger et boire", "Restaurants, cafés, bars et glaciers."),
              ("dormir", "Dormir", "Hôtels, auberges de jeunesse et maisons d’hôtes."),
+             ("faire", "Activités", "Plages, baignade, sports nautiques, parcs d’attractions, golf, ski et autres loisirs."),
              ("acheter", "Acheter", "Marchés, librairies, épiceries fines, artisanat et souvenirs.")]
 MAX_PAR_RUBRIQUE = 250
 METEO = [((0,), "Ensoleillé"), ((1, 2), "Peu nuageux"), ((3,), "Couvert"), ((45, 48), "Brouillard"),
@@ -194,7 +195,7 @@ def carte_lieux(v, lieux, rayon):
             f'<text x="24" y="{H-32}" font-family="system-ui" font-size="14" fill="var(--muted)">{km} km</text></svg>'
             '<figcaption class="legend"><span style="--c:var(--buoy)">Centre-ville</span><span style="--c:var(--voir)">À voir</span>'
             '<span style="--c:var(--manger)">Manger et boire</span><span style="--c:var(--dormir)">Dormir</span>'
-            '<span style="--c:var(--acheter)">Acheter</span></figcaption></figure>')
+            '<span style="--c:var(--faire)">Activités</span><span style="--c:var(--acheter)">Acheter</span></figcaption></figure>')
 
 
 def liste_lieux(rub, items):
@@ -230,7 +231,9 @@ def page_ville(v, ctx):
     nom_pays = pays.get("nom", v["pays"])
     cont = CONTINENTS.get(pays.get("continent", ""), "")
     rubs = ctx["lieux"].get(v["id"])
-    lieux = rubs["lieux"] if rubs else []
+    tous = rubs["lieux"] if rubs else []
+    lieux = [f for f in tous if f["rubrique"] != "alentours"]
+    autour = sorted([f for f in tous if f["rubrique"] == "alentours"], key=lambda f: f.get("distance_km", 0))
     meteo = lire(f"meteo/{v['id']}.json")
     enc = lire(f"encyclo/{v['id']}.json") or {}
     clim = (lire(f"climat/{v['id']}.json") or {})
@@ -255,7 +258,7 @@ def page_ville(v, ctx):
         + sum(max(1, len(x["texte"]) // 300) for x in wps.values()) + (1 if wp.get("resume") else 0) + (1 if enc.get("photo") else 0) \
         + (60 if clim.get("mois") else 0) + (8 if cout else 0) + (4 if ctx["formalites"] else 0) + (1 if alerte else 0) \
         + sum(len(red.get(k, [])) for k in ("pourquoi", "conseils", "a_eviter", "un_jour", "trois_jours")) + (3 if red else 0)
-    total_infos = infos_base + sum(f["infos"] for f in lieux) + (len(meteo["jours"]) * 4 if meteo else 0) + (len(feries["jours"]) * 2 if feries else 0)
+    total_infos = infos_base + sum(f["infos"] + (2 if f.get("distance_km") else 0) for f in tous) + (len(meteo["jours"]) * 4 if meteo else 0) + (len(feries["jours"]) * 2 if feries else 0)
     coords = (f'{abs(v["lat"]):.2f}° {"N" if v["lat"] >= 0 else "S"} / {abs(v["lon"]):.2f}° {"E" if v["lon"] >= 0 else "O"}').replace(".", ",")
     badge = f'<span class="badge">{NIVEAUX[v["niveau"]]}</span>' if v["niveau"] == "phare" else ""
 
@@ -383,13 +386,15 @@ def page_ville(v, ctx):
     # Lieux
     if lieux:
         corps.append(f'<section class="block"><h2>Les lieux de {E(v["nom"])}</h2><p class="lead">{nombre(len(lieux))} lieux recensés dans un rayon de '
-                     f'{str(rubs.get("rayon_km", "")).replace(".", ",")} km autour du centre. Données vérifiées le {date_fr(rubs["date"])}.</p>'
+                     f'{str(rubs.get("rayon_km", "")).replace(".", ",")} km autour du centre, et {nombre(len(autour))} sites notables aux alentours. Données vérifiées le {date_fr(rubs["date"])}.</p>'
                      + carte_lieux(v, lieux, rubs.get("rayon_km", 3)) + "</section>")
         for rub, titre, desc in RUBRIQUES:
             items = [f for f in lieux if f["rubrique"] == rub]
             if items:
                 corps.append(f'<section class="block" id="{rub}"><h2>{titre}</h2><p class="lead">{desc} {nombre(len(items))} adresses.</p>{liste_lieux(rub, items)}</section>')
-    else:
+    if autour or v["proches"]:
+        corps.append(section_alentours(v, autour, rubs))
+    if not lieux:
         corps.append(f'<section class="block"><h2>Lieux, adresses et visites</h2><p class="empty">Les robots n’ont pas encore exploré {E(v["nom"])}. '
                      f'Les villes de ce niveau sont visitées {FREQ[v["niveau"]]} : monuments, musées, restaurants, hôtels et boutiques '
                      f'apparaîtront ici après leur premier passage.</p></section>')
@@ -456,7 +461,8 @@ def page_ville(v, ctx):
     # Villes proches
     proches = "".join(f'<a href="../{w["slug"]}/">{E(w["nom"])}<span>{nombre(round(d))} km</span></a>' for d, w in v["proches"])
     corps.append(f'<section class="block"><h2>Villes proches</h2><div class="near">{proches}</div></section>')
-    ancres = [("en-bref", "En bref"), ("avis", "Notre avis"), ("histoire", "Histoire"), ("quand-partir", "Quand partir"), ("budget", "Budget"), ("formalites", "Formalités"), ("voir", "À voir"), ("manger", "Manger et boire"), ("dormir", "Dormir"),
+    ancres = [("en-bref", "En bref"), ("avis", "Notre avis"), ("histoire", "Histoire"), ("quand-partir", "Quand partir"), ("budget", "Budget"), ("formalites", "Formalités"),
+              ("faire", "Activités"), ("alentours", "Aux alentours"), ("voir", "À voir"), ("manger", "Manger et boire"), ("dormir", "Dormir"),
               ("acheter", "Acheter"), ("patrimoine", "Patrimoine"), ("culture", "Culture"), ("gastronomie", "Gastronomie"),
               ("geographie", "Géographie"), ("personnalites", "Personnalités")]
     presentes = [(a, t) for a, t in ancres if any(f'id="{a}"' in b for b in corps)]
@@ -470,6 +476,48 @@ def page_ville(v, ctx):
 
     desc = f"Guide de voyage de {v['nom']} ({nom_pays}) : lieux à voir, où manger, où dormir, météo, jours fériés et infos pratiques."
     return page("../../", f"{v['nom']} ({nom_pays}) – Dix Mille Escales", desc, "\n".join(corps))
+
+
+def section_alentours(v, autour, rubs):
+    """Aux alentours : idées d'excursions à la journée, puis tous les sites notables classés par distance."""
+    h = '<section class="block" id="alentours"><h2>Aux alentours</h2>'
+    # Idées d'excursions : patrimoine mondial, grands sites et villes voisines, à moins de 2 h
+    poids = {"Parc national": 3, "Château": 3, "Site archéologique": 3, "Monastère": 2, "Cascade": 2, "Grotte": 2,
+             "Plage": 1, "Espace naturel protégé": 2, "Volcan": 3, "Glacier": 3, "Parc d’attractions": 2, "Sommet": 1}
+    idees = sorted(autour, key=lambda f: (-(5 if f.get("patrimoine_mondial") else 0) - poids.get(f["type"], 0) - (1 if f.get("wikidata") else 0),
+                                          f.get("distance_km", 99)))[:6]
+    villes = [(d, w) for d, w in v["proches"] if 15 <= d <= 150][:4]
+    if idees or villes:
+        h += '<h3>Idées d’excursions à la journée</h3><ul class="excursions">'
+        for f in idees:
+            badge = '<span class="unesco-tag">Patrimoine mondial</span>' if f.get("patrimoine_mondial") else ""
+            h += (f'<li><b>{E(f["nom"])}{badge}</b><span class="d">{E(f["type"])} · {str(f["distance_km"]).replace(".", ",")} km {E(f["direction"])}'
+                  f' · ≈ {duree(f["distance_km"])} de route</span></li>')
+        for d, w in villes:
+            h += (f'<li><b><a href="../{w["slug"]}/">{E(w["nom"])}</a></b><span class="d">Ville voisine · {nombre(round(d))} km · ≈ {duree(d)} de route</span></li>')
+        h += "</ul><p class=\"note\">Temps de route estimés à vol d’oiseau, à titre indicatif.</p>"
+    if autour:
+        types = {}
+        for f in autour:
+            types[f["type"]] = types.get(f["type"], 0) + 1
+        h += (f'<h3 style="margin-top:1.6rem">Tous les sites notables à moins de {rubs.get("rayon_alentours_km", 50)} km</h3>'
+              f'<div class="chips" data-filter-for="l-alentours"></div><ul class="places" id="l-alentours">')
+        for f in autour[:300]:
+            typ, ident = f["id"][4:].split("/")
+            h += (f'<li data-type="{E(f["type"])}" style="--c:var(--alentours)"><h3>{E(f["nom"])}</h3>'
+                  f'<div class="m">{E(f["type"])} · {str(f["distance_km"]).replace(".", ",")} km {E(f["direction"])}'
+                  f'{" · patrimoine mondial" if f.get("patrimoine_mondial") else ""}</div>'
+                  + (f'<div class="i">Horaires : {E(horaires_fr(f["horaires"]))}</div>' if f.get("horaires") else "")
+                  + f'<div class="i"><a href="https://www.openstreetmap.org/{typ}/{ident}" rel="nofollow noopener" target="_blank">Carte</a></div></li>')
+        h += "</ul>"
+    return h + "</section>"
+
+
+def duree(km):
+    h = km * 1.3 / 70  # détours de la route, 70 km/h de moyenne
+    if h < 1:
+        return f"{max(10, round(h * 60 / 5) * 5)} min"
+    return f"{int(h)} h {round((h % 1) * 60 / 5) * 5:02d}".replace(" 00", "")
 
 
 def proches(villes, n=6):

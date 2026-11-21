@@ -59,7 +59,7 @@ Ensuite, tout se fait seul, chaque nuit.
 | Coût de la vie | Niveau des prix comparé à la France, prix estimés (café, repas, transport, hôtel, budget par jour) | Banque mondiale | Chaque nuit |
 | Rédaction | « Notre avis » : accroche, raisons d’y aller, conseils d’initiés, erreurs à éviter, programmes 1 et 3 jours | Claude (Anthropic), à partir des données des autres robots | 40 villes phares par nuit, chacune tous les 30 jours |
 | Encyclopédie | Histoire, frise des événements, fondation, anciens noms, surnoms, photo, blason, maire, altitude, superficie, patrimoine UNESCO, personnalités nées dans la ville, villes jumelées, sections Wikipédia (histoire, géographie, patrimoine, culture, gastronomie, économie, sport, transports) | Wikidata, Wikipédia, Wikimedia Commons | 300 villes par nuit : phares tous les mois, intermédiaires tous les 3 mois, autres tous les 6 mois |
-| Lieux | Monuments, musées, restaurants, cafés, bars, hôtels, boutiques | OpenStreetMap | 60 villes par nuit : phares chaque semaine, intermédiaires chaque mois, autres tous les 3 mois |
+| Lieux | Monuments, musées, restaurants, cafés, bars, hôtels, boutiques et activités (plages, sports nautiques, parcs d’attractions, golf, ski) dans un cercle urbain d’au moins 7 km pour les villes phares ; sites notables, randonnées et patrimoine mondial dans un rayon de 50 km, avec idées d’excursions | OpenStreetMap | 60 villes par nuit : phares chaque semaine, intermédiaires chaque mois, autres tous les 3 mois |
 | Météo | Prévisions à 7 jours et qualité de l’air | Open-Meteo | Chaque nuit, villes phares et intermédiaires |
 | Jours fériés | Jours fériés nationaux | Nager.Date | Chaque pays une fois par mois |
 | Change | Taux de l’euro | Banque centrale européenne | Chaque nuit |

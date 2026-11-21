@@ -1,10 +1,10 @@
 /* Dix Mille Escales – feuille de style commune aux pages de villes */
 :root{--bg:#EEF3F1;--surface:#FFFFFF;--ink:#12313B;--muted:#56707A;--line:#CBD8D5;--sea:#2F7D6D;--buoy:#F2B705;--dot:#8AA39E;--grid:#D7E2DF;--soft:#E2ECE9;
---voir:#2F7D6D;--manger:#B5485D;--dormir:#2E6DB4;--acheter:#7B5EA7;
+--voir:#2F7D6D;--manger:#B5485D;--dormir:#2E6DB4;--acheter:#7B5EA7;--faire:#C9761E;--alentours:#4E7D3A;
 --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;--text:"Literata",Georgia,"Times New Roman",serif;
 color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1F24;--surface:#16292F;--ink:#E4EEEC;--muted:#93AAB0;--line:#2A434A;--sea:#5FBFA9;--dot:#3E5A60;--grid:#1E353B;--soft:#1B3137;--voir:#5FBFA9;--manger:#E07A8F;--dormir:#6FA3E0;--acheter:#A98BD6;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#0F1F24;--surface:#16292F;--ink:#E4EEEC;--muted:#93AAB0;--line:#2A434A;--sea:#5FBFA9;--dot:#3E5A60;--grid:#1E353B;--soft:#1B3137;--voir:#5FBFA9;--manger:#E07A8F;--dormir:#6FA3E0;--acheter:#A98BD6;color-scheme:dark}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1F24;--surface:#16292F;--ink:#E4EEEC;--muted:#93AAB0;--line:#2A434A;--sea:#5FBFA9;--dot:#3E5A60;--grid:#1E353B;--soft:#1B3137;--voir:#5FBFA9;--manger:#E07A8F;--dormir:#6FA3E0;--acheter:#A98BD6;--faire:#E39A4C;--alentours:#8FBF6F;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0F1F24;--surface:#16292F;--ink:#E4EEEC;--muted:#93AAB0;--line:#2A434A;--sea:#5FBFA9;--dot:#3E5A60;--grid:#1E353B;--soft:#1B3137;--voir:#5FBFA9;--manger:#E07A8F;--dormir:#6FA3E0;--acheter:#A98BD6;--faire:#E39A4C;--alentours:#8FBF6F;color-scheme:dark}
 html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 76px);scroll-behavior:smooth}
 *,*::before,*::after{box-sizing:inherit}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--text);font-size:1.0625rem;line-height:1.65}
@@ -114,5 +114,10 @@ thead th{font-weight:600;color:var(--muted);font-size:.84rem}
 .climat .l{margin-top:4px}
 .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem 2.4rem}
 td.num{font-weight:600;white-space:nowrap}
+.excursions{list-style:none;margin:.4rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:.5rem 2rem}
+.excursions li{padding:.6rem 0 .6rem .8rem;border-left:3px solid var(--alentours)}
+.excursions b{font-family:var(--display);display:block}
+.excursions .d{display:block;font-size:.92rem;color:var(--muted)}
+.unesco-tag{display:inline-block;font-family:var(--display);font-size:.72rem;background:var(--buoy);color:#12313B;border-radius:999px;padding:.05rem .5rem;margin-left:.4rem;vertical-align:.15em}
 @media (max-width:600px){.theme-btn{font-size:0;padding:.35rem .6rem}.theme-btn::before{content:"◐";font-size:1.05rem}.top-in{gap:.6rem}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
