@@ -10,7 +10,7 @@ on:
   workflow_dispatch:          # bouton « Run workflow » pour lancer à la main
     inputs:
       groupes:
-        description: "Groupes à lancer, séparés par des virgules (villes, base, encyclopedie, lieux, redaction, publier). Vide = tous."
+        description: "Groupes à lancer, séparés par des virgules (villes, base, encyclopedie, lieux, guides, redaction, publier). Vide = tous."
         required: false
         default: ""
   push:
@@ -63,6 +63,7 @@ jobs:
           python3 robots/robot_securite.py || true
           python3 robots/robot_formalites.py || true
           python3 robots/robot_cout.py || true
+          python3 robots/robot_aeroports.py || true
       - name: Météo et qualité de l'air
         continue-on-error: true
         run: python3 robots/robot_meteo.py
@@ -75,8 +76,8 @@ jobs:
         if: always()
         run: >
           python3 robots/sauver.py --branche donnees-base --chemins change.json feries securite.json formalites.json
-          cout.json meteo climat journal/change.json journal/feries.json journal/securite.json journal/formalites.json
-          journal/cout.json journal/meteo.json journal/climat.json
+          cout.json meteo climat aeroports.json.gz aeroports_meta.json journal/change.json journal/feries.json
+          journal/securite.json journal/formalites.json journal/cout.json journal/meteo.json journal/climat.json journal/aeroports.json
 
   encyclopedie:
     needs: villes
@@ -124,8 +125,28 @@ jobs:
           python3 robots/sauver.py --branche donnees-lieux-${{ matrix.part }} --chemins lieux/${{ matrix.part }}
           lieux/_suivi_${{ matrix.part }}.json journal/lieux_${{ matrix.part }}.json
 
+  guides:
+    needs: villes
+    if: ${{ !failure() && !cancelled() && github.event_name != 'push' && (inputs.groupes == null || inputs.groupes == '' || contains(inputs.groupes, 'guides') || contains(inputs.groupes, 'encyclopedie')) }}
+    concurrency: { group: robots-guides, cancel-in-progress: false }
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Réunir les données
+        run: python3 robots/preparer.py
+      - name: Guides Wikivoyage
+        continue-on-error: true
+        run: python3 robots/robot_guides.py --max-villes ${{ vars.MAX_GUIDES || 5000 }} --duree-max 320
+      - name: Enregistrer
+        if: always()
+        run: python3 robots/sauver.py --branche donnees-guides --chemins guides journal/guides.json
+
   redaction:
-    needs: [base, encyclopedie, lieux]
+    needs: [base, encyclopedie, lieux, guides]
     if: always() && !cancelled() && github.event_name != 'push' && (inputs.groupes == null || inputs.groupes == '' || contains(inputs.groupes, 'redaction'))
     runs-on: ubuntu-latest
     timeout-minutes: 120
@@ -147,7 +168,7 @@ jobs:
         run: python3 robots/sauver.py --branche donnees-redaction --chemins redaction journal/redaction.json
 
   publier:
-    needs: [villes, base, encyclopedie, lieux, redaction]
+    needs: [villes, base, encyclopedie, lieux, guides, redaction]
     if: always() && !cancelled()
     concurrency: { group: publication, cancel-in-progress: true }
     runs-on: ubuntu-latest

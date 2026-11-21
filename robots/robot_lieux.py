@@ -22,7 +22,8 @@ OVERPASS = "https://overpass-api.de/api/interpreter"
 FREQUENCE = {"phare": 7, "intermediaire": 30, "autre": 120}
 PAUSE = {"phare": 8, "intermediaire": 6, "autre": 2}  # secondes entre deux villes (politesse envers Overpass)
 CIBLES = {
-    "amenity": ("restaurant|cafe|bar|pub|fast_food|ice_cream|marketplace", None),
+    "amenity": ("restaurant|cafe|bar|pub|fast_food|ice_cream|marketplace|bus_station|ferry_terminal", None),
+    "railway": ("station", None),
     "tourism": ("hotel|hostel|guest_house|museum|attraction|viewpoint|gallery|zoo|aquarium", None),
     "historic": ("monument|castle|memorial|ruins|archaeological_site|fort", None),
     "leisure": ("park|garden|nature_reserve", None),
@@ -62,8 +63,9 @@ TYPE = {"restaurant": ("Restaurant", "manger"), "cafe": ("Café", "manger"), "ba
         "city_gate": ("Porte de ville", "voir"), "waterfall": ("Cascade", "voir"), "peak": ("Sommet", "voir"),
         "cave_entrance": ("Grotte", "voir"), "bay": ("Baie", "voir"), "cliff": ("Falaise", "voir"), "volcano": ("Volcan", "voir"),
         "glacier": ("Glacier", "voir"), "national_park": ("Parc national", "voir"), "protected_area": ("Espace naturel protégé", "voir"),
-        "hiking": ("Sentier de randonnée", "faire")}
-CLES = ("amenity", "tourism", "historic", "leisure", "shop", "natural", "landuse", "boundary", "route")
+        "hiking": ("Sentier de randonnée", "faire"),
+        "station": ("Gare ou station", "bouger"), "bus_station": ("Gare routière", "bouger"), "ferry_terminal": ("Terminal de ferry", "bouger")}
+CLES = ("amenity", "tourism", "historic", "leisure", "shop", "natural", "landuse", "boundary", "route", "railway")
 DIRECTIONS = ["au nord", "au nord-est", "à l’est", "au sud-est", "au sud", "au sud-ouest", "à l’ouest", "au nord-ouest"]
 CUISINES = {"portuguese": "portugaise", "seafood": "fruits de mer", "fish": "poisson", "italian": "italienne",
             "pizza": "pizza", "burger": "burgers", "japanese": "japonaise", "sushi": "sushis", "chinese": "chinoise",

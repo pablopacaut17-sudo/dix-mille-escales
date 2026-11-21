@@ -1,10 +1,10 @@
 /* Dix Mille Escales – feuille de style commune aux pages de villes */
 :root{--bg:#EEF3F1;--surface:#FFFFFF;--ink:#12313B;--muted:#56707A;--line:#CBD8D5;--sea:#2F7D6D;--buoy:#F2B705;--dot:#8AA39E;--grid:#D7E2DF;--soft:#E2ECE9;
---voir:#2F7D6D;--manger:#B5485D;--dormir:#2E6DB4;--acheter:#7B5EA7;--faire:#C9761E;--alentours:#4E7D3A;
+--voir:#2F7D6D;--manger:#B5485D;--dormir:#2E6DB4;--acheter:#7B5EA7;--faire:#C9761E;--alentours:#4E7D3A;--bouger:#56707A;
 --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;--text:"Literata",Georgia,"Times New Roman",serif;
 color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1F24;--surface:#16292F;--ink:#E4EEEC;--muted:#93AAB0;--line:#2A434A;--sea:#5FBFA9;--dot:#3E5A60;--grid:#1E353B;--soft:#1B3137;--voir:#5FBFA9;--manger:#E07A8F;--dormir:#6FA3E0;--acheter:#A98BD6;--faire:#E39A4C;--alentours:#8FBF6F;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#0F1F24;--surface:#16292F;--ink:#E4EEEC;--muted:#93AAB0;--line:#2A434A;--sea:#5FBFA9;--dot:#3E5A60;--grid:#1E353B;--soft:#1B3137;--voir:#5FBFA9;--manger:#E07A8F;--dormir:#6FA3E0;--acheter:#A98BD6;--faire:#E39A4C;--alentours:#8FBF6F;color-scheme:dark}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1F24;--surface:#16292F;--ink:#E4EEEC;--muted:#93AAB0;--line:#2A434A;--sea:#5FBFA9;--dot:#3E5A60;--grid:#1E353B;--soft:#1B3137;--voir:#5FBFA9;--manger:#E07A8F;--dormir:#6FA3E0;--acheter:#A98BD6;--faire:#E39A4C;--alentours:#8FBF6F;--bouger:#93AAB0;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0F1F24;--surface:#16292F;--ink:#E4EEEC;--muted:#93AAB0;--line:#2A434A;--sea:#5FBFA9;--dot:#3E5A60;--grid:#1E353B;--soft:#1B3137;--voir:#5FBFA9;--manger:#E07A8F;--dormir:#6FA3E0;--acheter:#A98BD6;--faire:#E39A4C;--alentours:#8FBF6F;--bouger:#93AAB0;color-scheme:dark}
 html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 76px);scroll-behavior:smooth}
 *,*::before,*::after{box-sizing:inherit}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--text);font-size:1.0625rem;line-height:1.65}
@@ -139,5 +139,7 @@ td.num{font-weight:600;white-space:nowrap}
 .tout-voir{font-family:var(--display);font-weight:600;font-size:.95rem;padding:.6rem 1rem;border-radius:10px;border:1px solid var(--ink);background:var(--surface);color:var(--ink);cursor:pointer;margin-top:.8rem}
 .recherche-lieux{flex:1 1 220px;min-width:0;font-family:var(--display);font-size:.92rem;padding:.4rem .8rem;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink)}
 @media (max-width:520px){.nav-pays{display:none}}
+.carte-zone .carte-ouvrir{margin:.4rem 0 1rem}
+.maplibregl-popup-content{font-family:var(--display);font-size:.88rem;color:#12313B}
 @media (max-width:600px){.theme-btn{font-size:0;padding:.35rem .6rem}.theme-btn::before{content:"◐";font-size:1.05rem}.top-in{gap:.6rem}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}

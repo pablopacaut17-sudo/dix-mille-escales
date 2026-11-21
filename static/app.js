@@ -63,7 +63,7 @@
   var q=document.getElementById('q'),res=document.getElementById('results');if(!q)return;
   var idx=null,hits=[],act=-1;
   function norm(t){return (t||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[’'\-|]/g,' ');}
-  function load(cb){if(idx)return cb();fetch(base+'static/index.json').then(function(r){return r.json();}).then(function(d){idx=d.map(function(r){return {n:r[0],s:r[1],p:r[2],pop:r[3],k:norm(r[0]+' '+r[4])};});cb();}).catch(function(){res.innerHTML='<li><a>Recherche indisponible pour le moment.</a></li>';});}
+  function load(cb){if(idx)return cb();fetch(base+'static/index.json').then(function(r){return r.json();}).then(function(d){idx=d.map(function(r){return {n:r[0],s:r[1],p:r[2],pop:r[3]+(r[5]?1e10:0),k:norm(r[0]+' '+r[4])};});cb();}).catch(function(){res.innerHTML='<li><a>Recherche indisponible pour le moment.</a></li>';});}
   function run(){var t=norm(q.value).trim();act=-1;if(t.length<2){res.innerHTML='';return;}
     load(function(){hits=[];for(var i=0;i<idx.length&&hits.length<30;i++){var k=idx[i].k;if(k.indexOf(t)===0||k.indexOf(' '+t)>-1)hits.push(idx[i]);}
       hits.sort(function(a,b){return (norm(a.n).indexOf(t)===0?0:1)-(norm(b.n).indexOf(t)===0?0:1)||b.pop-a.pop;});hits=hits.slice(0,8);

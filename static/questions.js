@@ -16,6 +16,7 @@
   function nb(n) { return new Intl.NumberFormat('fr-FR').format(n); }
   function virg(x) { return String(x).replace('.', ','); }
 
+  function poids(r) { return r[3] + (r[5] ? 1e10 : 0); }  // homonymes : la ville phare d'abord, puis la plus peuplée
   function chargerIndex(cb) {
     if (index) return cb();
     fetch(root + 'static/index.json').then(function (r) { return r.json(); }).then(function (d) {
@@ -26,7 +27,7 @@
         cand.forEach(function (n) {
           var k = norm(n); if (!k) return;
           var sans = k.replace(/^(le|la|les|l) /, '');
-          [k, sans].forEach(function (x) { if (x.length >= 3 && (!noms[x] || noms[x][3] < r[3])) noms[x] = r; });
+          [k, sans].forEach(function (x) { if (x.length >= 3 && (!noms[x] || poids(noms[x]) < poids(r))) noms[x] = r; });
         });
       });
       cb();
@@ -39,7 +40,7 @@
       for (var l = Math.min(5, mots.length - i); l >= 1; l--) {
         var g = mots.slice(i, i + l).join(' ');
         if (l === 1 && (vide[g] || g.length < 3)) continue;
-        if (noms[g] && (l > long || (l === long && noms[g][3] > meilleur[3]))) { meilleur = noms[g]; long = l; break; }
+        if (noms[g] && (l > long || (l === long && poids(noms[g]) > poids(meilleur)))) { meilleur = noms[g]; long = l; break; }
       }
     }
     if (meilleur) return meilleur;
@@ -178,6 +179,11 @@
     if (a(/(activite|plage|baign|surf|ski|golf|sport|loisir|que faire|enfant)/)) return d.faire ? 'Activités ' + aV(d.nom) + ' :' + liste(d.faire, function (x) { return '<b>' + E(x.nom) + '</b>, ' + E(x.type.toLowerCase()); }) + lien(d, 'faire', 'Voir toutes les activités') : (d.voir ? 'Pas encore d’activités recensées, mais voici quoi voir :' + liste(d.voir.slice(0, 6), function (x) { return '<b>' + E(x.nom) + '</b>, ' + E(x.type.toLowerCase()); }) : manque(d, 'les activités'));
     if (a(/(voir|visiter|monument|musee|incontournable|site|interessant|decouvrir)/)) return d.voir ? 'À voir ' + aV(d.nom) + ' (' + cpt(d.nb_voir, 'lieu recensé', 'lieux recensés') + ') :' + liste(d.voir, function (x) { return '<b>' + E(x.nom) + '</b>, ' + E(x.type.toLowerCase()); }) + lien(d, 'voir', 'Voir tous les lieux') : manque(d, 'les lieux à visiter');
     if (a(/(conseil|astuce|eviter|erreur|avis|recommand|programme|itineraire)/)) return d.avis ? (d.avis.accroche ? '<p>' + E(d.avis.accroche) + '</p>' : '') + (d.avis.conseils ? 'Conseils :' + liste(d.avis.conseils.slice(0, 6), E) : '') + (d.avis.a_eviter ? 'À éviter :' + liste(d.avis.a_eviter, E) : '') + lien(d, 'avis', 'Lire notre avis') : manque(d, 'nos conseils');
+    if (a(/(aeroport|aller a|s y rendre|comment aller|comment venir|arriver|train pour|bus pour)/)) {
+      if (!d.aeroports && !d.aller) return manque(d, 'les moyens d’accès');
+      return (d.aeroports ? 'Aéroports les plus proches ' + deV(d.nom).replace(/^de /, 'de ') + ' :' + liste(d.aeroports, function (x) { return '<b>' + E(x.nom) + '</b> (' + E(x.code) + '), ' + nb(x.km) + ' km' + (x.international ? ', international' : ''); }) : '')
+        + (d.aller ? '<p>' + E(d.aller) + '</p>' : '') + lien(d, 'guide-aller', 'Voir comment s’y rendre');
+    }
     if (a(/(distance|loin| km |kilometre|vol |avion|combien de temps|depuis paris|de paris)/)) return E(d.nom) + ' est à environ <b>' + nb(d.distance_paris) + ' km</b> de Paris à vol d’oiseau' + (d.distance_paris > 350 ? ', soit environ ' + Math.max(1, Math.round(d.distance_paris / 800 + 0.5)) + ' h de vol sans escale.' : ', faisable en train ou en voiture.');
     if (a(/(habitant|population|taille|grande)/)) return E(d.nom) + ' compte <b>' + nb(d.population) + ' habitants</b> et se classe ' + nb(d.rang) + 'ᵉ ville du guide.';
     if (a(/(voisin|proche|ville a cote)/)) return 'Villes du guide les plus proches ' + deV(d.nom) + ' :' + liste(d.proches, function (p) { return '<a href="' + root + 'villes/' + p.slug + '/">' + E(p.nom) + '</a> (' + p.km + ' km)'; });

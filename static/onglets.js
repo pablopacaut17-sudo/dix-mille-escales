@@ -4,14 +4,14 @@
    Fonctionne sur les trois sortes de fiches : complètes, légères (construites dans le navigateur) et rédigées à la main. */
 (function () {
   var ONGLETS = [
-    { id: 'essentiel', nom: 'L’essentiel', secs: ['apercu', 'facts', 'en-bref', 'avis', 'questions', 'essentiel', 'initie', 'profils', 'faq'] },
-    { id: 'visiter', nom: 'À voir et à faire', secs: ['carte-lieux', 'voir', 'faire', 'activites', 'alentours', 'patrimoine', 'itineraires', 'quartiers', 'plages', 'lieux', 'sortir', 'proches'] },
-    { id: 'adresses', nom: 'Manger et dormir', secs: ['manger', 'dormir', 'acheter', 'shopping', 'donnees-robots'] },
-    { id: 'pratique', nom: 'Infos pratiques', secs: ['meteo', 'quand-partir', 'climat', 'agenda', 'budget', 'formalites', 'feries', 'arriver', 'bouger', 'pratique', 'securite', 'lexique'] },
+    { id: 'essentiel', nom: 'L’essentiel', secs: ['apercu', 'facts', 'en-bref', 'avis', 'questions', 'essentiel', 'guide-comprendre', 'initie', 'profils', 'faq'] },
+    { id: 'visiter', nom: 'À voir et à faire', secs: ['carte-lieux', 'voir', 'guide-voir', 'faire', 'guide-faire', 'activites', 'alentours', 'guide-environs', 'patrimoine', 'itineraires', 'quartiers', 'plages', 'lieux', 'sortir', 'proches'] },
+    { id: 'adresses', nom: 'Manger et dormir', secs: ['manger', 'guide-manger', 'guide-sortir', 'dormir', 'guide-loger', 'acheter', 'guide-acheter', 'shopping', 'donnees-robots'] },
+    { id: 'pratique', nom: 'Infos pratiques', secs: ['meteo', 'quand-partir', 'climat', 'agenda', 'guide-aller', 'arriver', 'guide-circuler', 'bouger', 'budget', 'formalites', 'guide-securite', 'guide-sante', 'feries', 'guide-communiquer', 'guide-respecter', 'pratique', 'securite', 'lexique'] },
     { id: 'culture', nom: 'Histoire et culture', secs: ['histoire', 'culture', 'inspirations', 'gastronomie', 'geographie', 'economie', 'sport', 'transports', 'personnalites', 'jumelages', 'savoir', 'porto', 'quiz'] }
   ];
   var RUBRIQUE_ONGLET = { voir: 'visiter', faire: 'visiter', alentours: 'visiter', manger: 'adresses', dormir: 'adresses', acheter: 'adresses' };
-  var NOMS_RUB = { voir: 'À voir', faire: 'Activité', alentours: 'Aux alentours', manger: 'Manger et boire', dormir: 'Dormir', acheter: 'Acheter' };
+  var NOMS_RUB = { voir: 'À voir', faire: 'Activité', alentours: 'Aux alentours', manger: 'Manger et boire', dormir: 'Dormir', acheter: 'Acheter', bouger: 'Se déplacer' };
   var fait = false;
 
   function E(t) { return String(t == null ? '' : t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
@@ -64,11 +64,26 @@
 .og-carte span{display:block;font-family:var(--display,system-ui);font-size:.8rem;color:var(--muted)}\
 .og-carte b{display:block;font-family:var(--display,system-ui);font-size:1.12rem;line-height:1.25;margin-top:.15rem}\
 .og-carte small{display:block;font-family:var(--display,system-ui);font-size:.82rem;color:var(--muted);margin-top:.25rem;line-height:1.35}\
+.og-signaler{font-family:var(--display,system-ui);font-size:.88rem;color:var(--muted);margin:1rem 0 0}\
+.og-signaler small{font-size:.8rem}\
 .og-suivant{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:1rem;margin-top:1rem}\
 .og-suivant button{all:unset;cursor:pointer;font-family:var(--display,system-ui);font-weight:600;color:var(--sea)}\
 .og-suivant button:focus-visible{outline:3px solid var(--buoy)}\
 @media (max-width:700px){.og-cherche{flex:1 1 100%;order:-1}.og-tab{padding:.55rem .7rem;font-size:.92rem}}';
 
+  function depot() {  // propriétaire/dépôt GitHub, déduits de l'adresse du site (xxx.github.io/depot/)
+    var m = location.hostname.match(/^([^.]+)\.github\.io$/), seg = location.pathname.split('/').filter(Boolean);
+    return m && seg.length ? m[1] + '/' + seg[0] : 'pablopacaut17-sudo/dix-mille-escales';
+  }
+  function signaler(onglet) {
+    var ville = (document.querySelector('h1.city') || {}).textContent || document.title;
+    ville = ville.replace(/Ville phare|Fiche complète/g, '').trim();
+    var titre = 'Signalement – ' + ville + ' – ' + onglet;
+    var corps = 'Page : ' + location.href.split('#')[0] + '\nOnglet : ' + onglet + '\n\nQuelle information est fausse ou manquante ?\n\n\nQuelle est la bonne information (et sa source si possible) ?\n';
+    var d = document.createElement('p'); d.className = 'og-signaler';
+    d.innerHTML = 'Une information fausse ou manquante dans cet onglet ? <a href="https://github.com/' + depot() + '/issues/new?title=' + encodeURIComponent(titre) + '&body=' + encodeURIComponent(corps) + '" target="_blank" rel="noopener">Signaler une erreur</a> <small>(compte GitHub gratuit nécessaire)</small>';
+    return d;
+  }
   function principal() { return document.querySelector('main') || document.body; }
 
   function collecter(main) {
@@ -144,6 +159,7 @@
       tabs.appendChild(t); p.setAttribute('aria-labelledby', t.id);
       p.querySelector('.og-sous').innerHTML = Array.prototype.map.call(liste, function (s) { var tt = titre(s); return tt && s.id ? '<a href="#' + s.id + '">' + E(tt) + '</a>' : ''; }).join('');
       if (liste.length < 2) p.querySelector('.og-sous').remove();
+      var sig = signaler(o.nom); if (sig) p.appendChild(sig);
       var suiv = document.createElement('div'); suiv.className = 'og-suivant';
       suiv.innerHTML = (i > 0 ? '<button type="button" data-o="' + actifs[i - 1].id + '">' + E(actifs[i - 1].nom) + '</button>' : '<span></span>')
         + (i < actifs.length - 1 ? '<button type="button" data-o="' + actifs[i + 1].id + '">' + E(actifs[i + 1].nom) + '</button>' : '');

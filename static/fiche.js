@@ -8,7 +8,8 @@
   var MOIS = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
   var MC = ['janv', 'févr', 'mars', 'avr', 'mai', 'juin', 'juil', 'août', 'sept', 'oct', 'nov', 'déc'];
   var RUB = [['voir', 'À voir', 'Monuments, musées, belvédères, parcs et sites.'], ['manger', 'Manger et boire', 'Restaurants, cafés, bars et glaciers.'],
-    ['dormir', 'Dormir', 'Hôtels, auberges et maisons d’hôtes.'], ['faire', 'Activités', 'Plages, sports, loisirs.'], ['acheter', 'Acheter', 'Marchés, boutiques et artisanat.']];
+    ['dormir', 'Dormir', 'Hôtels, auberges et maisons d’hôtes.'], ['faire', 'Activités', 'Plages, sports, loisirs.'], ['acheter', 'Acheter', 'Marchés, boutiques et artisanat.'], ['bouger', 'Gares et stations', 'Gares, stations, gares routières et terminaux de ferry.']];
+  var GUIDE = [['comprendre', 'Comprendre {v}'], ['circuler', 'Se déplacer'], ['voir', 'Le guide : que voir'], ['faire', 'Le guide : que faire'], ['manger', 'Le guide : où manger'], ['sortir', 'Sortir le soir'], ['loger', 'Le guide : où dormir'], ['acheter', 'Le guide : shopping'], ['securite', 'Sécurité sur place'], ['sante', 'Santé'], ['communiquer', 'Communiquer'], ['respecter', 'Coutumes et savoir-vivre'], ['environs', 'Le guide : aux environs']];
   var JOURS = { Mo: 'lun', Tu: 'mar', We: 'mer', Th: 'jeu', Fr: 'ven', Sa: 'sam', Su: 'dim', PH: 'jours fériés', off: 'fermé' };
   var HTML_OK = { 'Heure locale': 1, 'Décalage': 1, 'Saison': 1, 'Monnaie': 1, 'Soleil aujourd’hui': 1 };
   function lireJson(url) {
@@ -73,9 +74,18 @@
         + '<details class="more"><summary>Voir le tableau mois par mois</summary><div class="table-scroll"><table><thead><tr><th>Mois</th><th>Max.</th><th>Min.</th><th>Pluie</th><th>Jours de pluie</th></tr></thead><tbody>'
         + d.climat.map(function (m, i) { return '<tr><td>' + MOIS[i] + '</td><td>' + Math.round(m.tmax) + '°</td><td>' + Math.round(m.tmin) + '°</td><td>' + m.pluie_mm + ' mm</td><td>' + m.jours_pluie + '</td></tr>'; }).join('') + '</tbody></table></div></details>');
     }
+    // S'y rendre et guide Wikivoyage
+    var gd = c.guide || {};
+    if ((d.aeroports && d.aeroports.length) || gd.aller) {
+      h += sec('guide-aller', 'S’y rendre', (d.aeroports ? '<h3>En avion</h3><div class="table-scroll"><table><thead><tr><th>Aéroport</th><th>Code</th><th>Distance</th><th>Trajet estimé</th></tr></thead><tbody>'
+        + d.aeroports.map(function (x) { return '<tr><td>' + E(x.nom) + (x.international ? ' · international' : '') + '</td><td class="num">' + E(x.code) + '</td><td class="num">' + nb(x.km) + ' km</td><td>≈ ' + duree(x.km) + ' de route</td></tr>'; }).join('') + '</tbody></table></div>' : '')
+        + (gd.aller ? prose(gd.aller, 3) : ''));
+    }
+    GUIDE.forEach(function (g) { if (gd[g[0]]) h += sec('guide-' + g[0], g[1].replace('{v}', E(d.nom)), prose(gd[g[0]], 3)); });
     // Lieux
     var tous = L && L.lieux ? L.lieux : [];
     if (tous.length) {
+      h += sec('carte-lieux', 'Les lieux sur la carte', '<div class="carte-zone" data-lat="' + d.lat + '" data-lon="' + d.lon + '" data-rayon="3"><button type="button" class="tout-voir carte-ouvrir">Ouvrir la carte interactive (zoom, tous les lieux, détails)</button></div>');
       RUB.forEach(function (rb) {
         var items = tous.filter(function (f) { return f.rubrique === rb[0]; });
         if (!items.length) return;
@@ -101,11 +111,13 @@
     if (d.jumelages) h += sec('jumelages', 'Villes jumelées', '<p class="lead">' + E(d.jumelages.join(', ')) + '.</p>');
     if (d.feries) h += sec('feries', 'Jours fériés à venir', '<div class="table-scroll"><table><tbody>' + d.feries.map(function (f) { return '<tr><td>' + E(f.date) + '</td><td>' + E(f.nom) + '</td></tr>'; }).join('') + '</tbody></table></div>');
     if (d.proches) h += sec('proches', 'Villes proches', '<div class="near">' + d.proches.map(function (p) { return '<a href="' + root + 'villes/' + p.slug + '/">' + E(p.nom) + '<span>' + nb(p.km) + ' km</span></a>'; }).join('') + '</div>');
+    if (c.guide_source && c.guide_source.url) h += '<p class="note">Rubriques du guide reprises de l’article <a href="' + E(c.guide_source.url) + '" rel="noopener" target="_blank">' + E(c.guide_source.titre) + '</a> de Wikivoyage (licence CC BY-SA).</p>';
     if (c.wikipedia && c.wikipedia.url) h += '<p class="note">Textes repris de l’article <a href="' + E(c.wikipedia.url) + '" rel="noopener" target="_blank">' + E(c.wikipedia.titre) + '</a> de Wikipédia (licence CC BY-SA 4.0). Lieux : © contributeurs OpenStreetMap.</p>';
     h += '<p class="note" style="margin-top:2rem">Fiche mise à jour le ' + E(d.maj) + '.</p>';
     zone.innerHTML = h;
     if (window.DME_initVivant) window.DME_initVivant(zone);
     if (window.DME_lierBoutons) window.DME_lierBoutons(zone);
+    if (window.DME_lierCarte) window.DME_lierCarte(zone);
     zone.dataset.pret = '1';
     if (window.DME_onglets) window.DME_onglets();
   }).catch(function () {

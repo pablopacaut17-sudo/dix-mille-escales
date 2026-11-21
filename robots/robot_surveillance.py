@@ -28,15 +28,16 @@ DEPOT = os.environ.get("GITHUB_REPOSITORY", "")
 JETON = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN", "")
 API = "https://api.github.com/repos/" + DEPOT
 FICHIER_ROBOTS = "robots.yml"
-GROUPES = {"villes": "villes", "base": "base", "encyclopedie": "encyclopedie", "lieux": "lieux", "redaction": "redaction", "publier": "publier"}
+GROUPES = {"villes": "villes", "base": "base", "encyclopedie": "encyclopedie", "lieux": "lieux", "guides": "guides", "redaction": "redaction", "publier": "publier"}
 # robot -> (groupe, âge maximal en heures, nom lisible)
 ATTENDUS = {
     "change": ("base", 30, "Change"), "feries": ("base", 30, "Jours fériés"), "securite": ("base", 30, "Sécurité"),
     "formalites": ("base", 30, "Formalités"), "cout": ("base", 30, "Coût de la vie"), "meteo": ("base", 30, "Météo"),
     "climat": ("base", 30, "Climat"), "encyclopedie": ("encyclopedie", 30, "Encyclopédie"),
     "lieux_0": ("lieux", 30, "Lieux, robot 1"), "lieux_1": ("lieux", 30, "Lieux, robot 2"), "lieux_2": ("lieux", 30, "Lieux, robot 3"),
+    "guides": ("guides", 30, "Guides Wikivoyage"), "aeroports": ("base", 24 * 35, "Aéroports"),
 }
-BRANCHES = ["donnees-base", "donnees-encyclopedie", "donnees-lieux-0", "donnees-lieux-1", "donnees-lieux-2"]
+BRANCHES = ["donnees-base", "donnees-encyclopedie", "donnees-lieux-0", "donnees-lieux-1", "donnees-lieux-2", "donnees-guides"]
 MOIS = ["janv.", "févr.", "mars", "avr.", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc."]
 
 
@@ -171,7 +172,16 @@ def main():
                            "lieux": cpt.get("lieux")})
         historique = historique[-90:]
 
-    # 5. Corrections : une seule relance par jour
+    # 5. Signalements des lecteurs (à traiter par un humain)
+    signalements = []
+    st, ouverts = gh("/issues?state=open&per_page=100")
+    for i in ouverts if st == 200 else []:
+        if i.get("title", "").startswith("Signalement") and "pull_request" not in i:
+            signalements.append(f"[{i['title']}]({i['html_url']})")
+    if signalements:
+        infos.append(f"{len(signalements)} signalement(s) d’erreur de lecteurs en attente (voir plus bas).")
+
+    # 6. Corrections : une seule relance par jour
     aujourdhui = maintenant.strftime("%Y-%m-%d")
     deja = journal.get("derniere_relance") == aujourdhui
     if a_relancer and not deja and not a.essai and not en_cours:
@@ -187,7 +197,7 @@ def main():
     elif a_relancer and en_cours:
         infos.append("Un passage est en cours : la relance attendra le prochain rapport.")
 
-    # 6. Rapport
+    # 7. Rapport
     restants = len(problemes)
     titre = (f"Rapport du matin – {jour_fr(maintenant)} : " +
              ("tout va bien" if not restants else f"{restants} problème{'s' if restants > 1 else ''}" + (f", {len(corriges)} correction{'s' if len(corriges) > 1 else ''} lancée{'s' if len(corriges) > 1 else ''}" if corriges else "")))
@@ -196,6 +206,8 @@ def main():
     if corriges:
         corps += ["", "## Corrections automatiques", ""] + [f"- {x}" for x in corriges]
     corps += ["", "## Détails", ""] + [f"- {x}" for x in infos]
+    if signalements:
+        corps += ["", "## Signalements d’erreurs à vérifier", ""] + [f"- {x}" for x in signalements[:30]]
     if len(historique) > 1:
         corps += ["", "## Progression du compteur", "", "| Date | Informations |", "|---|---|"]
         corps += [f"| {h['date']} | {nombre(h['informations'])} |" for h in historique[-7:]]

@@ -29,7 +29,12 @@ RUBRIQUES = [("voir", "À voir", "Monuments, musées, belvédères, parcs et sit
              ("manger", "Manger et boire", "Restaurants, cafés, bars et glaciers."),
              ("dormir", "Dormir", "Hôtels, auberges de jeunesse et maisons d’hôtes."),
              ("faire", "Activités", "Plages, baignade, sports nautiques, parcs d’attractions, golf, ski et autres loisirs."),
-             ("acheter", "Acheter", "Marchés, librairies, épiceries fines, artisanat et souvenirs.")]
+             ("acheter", "Acheter", "Marchés, librairies, épiceries fines, artisanat et souvenirs."),
+             ("bouger", "Gares et stations", "Gares, stations, gares routières et terminaux de ferry.")]
+GUIDE = [("comprendre", "Comprendre {ville}"), ("aller", "S’y rendre"), ("circuler", "Se déplacer"), ("voir", "Le guide : que voir"),
+         ("faire", "Le guide : que faire"), ("manger", "Le guide : où manger"), ("sortir", "Sortir le soir"), ("loger", "Le guide : où dormir"),
+         ("acheter", "Le guide : shopping"), ("securite", "Sécurité sur place"), ("sante", "Santé"), ("communiquer", "Communiquer"),
+         ("respecter", "Coutumes et savoir-vivre"), ("environs", "Le guide : aux environs")]
 MAX_PAR_RUBRIQUE = 250
 METEO = [((0,), "Ensoleillé"), ((1, 2), "Peu nuageux"), ((3,), "Couvert"), ((45, 48), "Brouillard"),
          ((51, 53, 55, 56, 57), "Bruine"), ((61, 63, 65, 66, 67), "Pluie"), ((71, 73, 75, 77), "Neige"),
@@ -58,6 +63,15 @@ def lire(nom, defaut=None):
             with open(p, encoding="utf-8") as f:
                 return json.load(f)
     return defaut
+
+
+def lire_gz(nom):
+    for base in (DONNEES, DATA):
+        p = os.path.join(base, nom)
+        if os.path.exists(p):
+            with gzip.open(p, "rt", encoding="utf-8") as f:
+                return json.load(f)
+    return None
 
 
 def ecrire_gz(chemin, objet):
@@ -157,6 +171,8 @@ def fmt_prix(x):
     return f"{round(x / 5) * 5 if x > 40 else round(x)} €"
 
 
+CARTE_BOUTON = ('<div class="carte-zone" data-lat="{lat}" data-lon="{lon}" data-rayon="{rayon}"><button type="button" class="tout-voir carte-ouvrir">'
+                'Ouvrir la carte interactive (zoom, tous les lieux, détails)</button></div>')
 BOITE_QUESTIONS = ('<section class="block questions" id="questions" data-ville="{slug}"><h2>Une question sur {nom} ?</h2>'
                    '<form class="q-form" onsubmit="return false"><label for="question" class="vh">Votre question</label>'
                    '<input id="question" class="q-input" type="text" autocomplete="off" placeholder="Par exemple : faut-il un visa ? Quel temps en avril ?">'
@@ -195,8 +211,8 @@ def page(root, titre, description, corps, recherche=True):
 <button type="button" class="theme-btn" id="theme-btn" aria-label="Changer le thème d’affichage">Thème : auto</button></div></header>
 <main class="wrap">{corps}</main>
 <footer class="foot"><div class="in"><p>Dix Mille Escales, le guide de toutes les villes du monde de plus de 5 000 habitants. Données mises à jour chaque nuit par nos robots.</p>
-<p><span data-compteur>…</span> informations dans le guide · <a href="{root}sources/">Nos sources</a> · <a href="{root}etat/">État des robots</a></p></div></footer>
-<script src="{root}static/app.js"></script><script src="{root}static/fiche.js"></script><script src="{root}static/questions.js"></script><script src="{root}static/lieux.js"></script><script src="{root}static/onglets.js"></script></body></html>"""
+<p><span data-compteur>…</span> informations dans le guide · <a href="{root}sources/">Nos sources</a> · <a href="{root}etat/">État des robots</a> · <a href="{root}mentions-legales/">Mentions légales</a></p></div></footer>
+<script src="{root}static/app.js"></script><script src="{root}static/fiche.js"></script><script src="{root}static/questions.js"></script><script src="{root}static/lieux.js"></script><script src="{root}static/onglets.js"></script><script src="{root}static/carte.js"></script></body></html>"""
 
 
 def carte_lieux(v, lieux, rayon):
@@ -268,6 +284,9 @@ def page_ville(v, ctx):
     autour = sorted([f for f in tous if f["rubrique"] == "alentours"], key=lambda f: f.get("distance_km", 0))
     meteo = lire(f"meteo/{v['id']}.json")
     enc = lire(f"encyclo/{v['id']}.json") or {}
+    guide = lire_gz(f"guides/{v['id']}.json.gz") or {}
+    gs = guide.get("sections", {})
+    aeros = ctx["aeroports"].get(str(v["id"]), [])
     clim = (lire(f"climat/{v['id']}.json") or {})
     red = lire(f"redaction/{v['id']}.json") or {}
     alerte = ctx["securite"].get("pays", {}).get(v["pays"])
@@ -291,7 +310,8 @@ def page_ville(v, ctx):
         + len(enc.get("personnalites", [])) * 3 + len(enc.get("surnoms", [])) + len(enc.get("anciens_noms", [])) \
         + sum(max(1, len(x["texte"]) // 300) for x in wps.values()) + (1 if wp.get("resume") else 0) + (1 if enc.get("photo") else 0) \
         + (60 if clim.get("mois") else 0) + (8 if cout else 0) + (4 if ctx["formalites"] else 0) + (1 if alerte else 0) \
-        + sum(len(red.get(k, [])) for k in ("pourquoi", "conseils", "a_eviter", "un_jour", "trois_jours")) + (3 if red else 0)
+        + sum(len(red.get(k, [])) for k in ("pourquoi", "conseils", "a_eviter", "un_jour", "trois_jours")) + (3 if red else 0) \
+        + sum(max(1, len(x["texte"]) // 300) for x in gs.values()) + len(aeros) * 4
     total_infos = infos_base + sum(f["infos"] + (2 if f.get("distance_km") else 0) for f in tous) + (len(meteo["jours"]) * 4 if meteo else 0) + (len(feries["jours"]) * 2 if feries else 0)
     coords = (f'{abs(v["lat"]):.2f}° {"N" if v["lat"] >= 0 else "S"} / {abs(v["lon"]):.2f}° {"E" if v["lon"] >= 0 else "O"}').replace(".", ",")
     badge = f'<span class="badge">{NIVEAUX[v["niveau"]]}</span>' if v["niveau"] == "phare" else ""
@@ -301,6 +321,8 @@ def page_ville(v, ctx):
              ("Saison", f'<span data-season="{v["lat"]}">–</span>'),
              ("Soleil aujourd’hui", f'<span data-sun="{v["lat"]},{v["lon"]}" data-suntz="{E(v["fuseau"])}">–</span>'),
              ("Depuis Paris", trajet)]
+    if aeros:
+        facts.append(("Aéroport le plus proche", f'{aeros[0][1]} ({aeros[0][0]}), {nombre(aeros[0][2])} km'))
     if enc.get("fondation"):
         facts.append(("Fondation", enc["fondation"]))
     if enc.get("altitude_m") is not None:
@@ -421,6 +443,7 @@ def page_ville(v, ctx):
     if lieux:
         corps.append(f'<section class="block" id="carte-lieux"><h2>Les lieux de {E(v["nom"])} sur la carte</h2><p class="lead">{nombre(len(lieux))} lieux recensés dans un rayon de '
                      f'{str(rubs.get("rayon_km", "")).replace(".", ",")} km autour du centre, et {nombre(len(autour))} sites notables aux alentours. Données vérifiées le {date_fr(rubs["date"])}.</p>'
+                     + CARTE_BOUTON.format(lat=v["lat"], lon=v["lon"], rayon=rubs.get("rayon_km", 3))
                      + carte_lieux(v, lieux, rubs.get("rayon_km", 3)) + "</section>")
         for rub, titre, desc in RUBRIQUES:
             items = [f for f in lieux if f["rubrique"] == rub]
@@ -462,6 +485,20 @@ def page_ville(v, ctx):
               f'et sur le site de l’ambassade du pays.</p>')
         corps.append(h + "</section>")
 
+    # S'y rendre : aéroports + guide
+    if aeros or "aller" in gs:
+        h = f'<section class="block" id="guide-aller"><h2>S’y rendre</h2>'
+        if aeros:
+            h += ('<h3>En avion</h3><div class="table-scroll"><table><thead><tr><th>Aéroport</th><th>Code</th><th>Distance</th><th>Trajet estimé</th></tr></thead><tbody>'
+                  + "".join(f'<tr><td>{E(x[1])}{" · international" if x[3] else ""}</td><td class="num">{E(x[0])}</td><td class="num">{nombre(x[2])} km</td>'
+                            f'<td>≈ {duree(x[2])} de route</td></tr>' for x in aeros) + "</tbody></table></div>")
+        if "aller" in gs:
+            h += texte_html(gs["aller"]["texte"], 3)
+        corps.append(h + "</section>")
+    for cle, titre_g in GUIDE:
+        if cle in gs and cle != "aller":
+            corps.append(f'<section class="block" id="guide-{cle}"><h2>{E(titre_g.format(ville=v["nom"]))}</h2>{texte_html(gs[cle]["texte"], 3)}</section>')
+
     # Patrimoine
     if enc.get("unesco") or "patrimoine" in wps:
         h = '<section class="block" id="patrimoine"><h2>Patrimoine</h2>'
@@ -502,6 +539,9 @@ def page_ville(v, ctx):
     presentes = [(a, t) for a, t in ancres if any(f'id="{a}"' in b for b in corps)]
     if len(presentes) >= 3:
         corps.insert(sommaire_pos, '<nav class="sommaire" aria-label="Dans cette fiche">' + "".join(f'<a href="#{a}">{t}</a>' for a, t in presentes) + "</nav>")
+    if guide:
+        corps.append(f'<p class="note">Les rubriques « Le guide », « S’y rendre », « Se déplacer » et voisines reprennent l’article <a href="{E(guide["url"])}" rel="noopener" target="_blank">'
+                     f'{E(guide["titre"])}</a> de Wikivoyage, le guide de voyage libre, sous licence <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.fr" rel="noopener" target="_blank">CC BY-SA</a>.</p>')
     if wp:
         corps.append(f'<p class="note">Les textes « En bref », « Histoire » et suivants reprennent l’article <a href="{E(wp["url"])}" rel="noopener" target="_blank">'
                      f'{E(wp["titre"])}</a> de Wikipédia en français, sous licence <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.fr" rel="noopener" target="_blank">CC BY-SA 4.0</a> '
@@ -564,13 +604,17 @@ def page_ville(v, ctx):
         donnees["alentours"] = [{"nom": f["nom"], "type": f["type"], "km": f["distance_km"], "direction": f["direction"],
                                  "patrimoine_mondial": f.get("patrimoine_mondial", False)} for f in autour[:10]]
     donnees["proches"] = [{"nom": w["nom"], "slug": w["slug"], "km": round(d)} for d, w in v["proches"]]
+    if aeros:
+        donnees["aeroports"] = [{"code": x[0], "nom": x[1], "km": x[2], "international": bool(x[3])} for x in aeros]
+    if gs.get("aller"):
+        donnees["aller"] = couper_txt(gs["aller"]["texte"], 700)
     red_ok = {k: red[k] for k in ("accroche", "conseils", "a_eviter", "quand_partir", "un_jour") if red.get(k)}
     if red_ok:
         donnees["avis"] = red_ok
     ecrire_gz(f"villes/{v['slug']}/donnees.json.gz", donnees)
     if tous:
         cles = ("nom", "type", "rubrique", "adresse", "horaires", "cuisine", "etoiles", "payant", "site", "telephone",
-                "fauteuil", "terrasse", "distance_km", "direction", "patrimoine_mondial", "id")
+                "fauteuil", "terrasse", "distance_km", "direction", "patrimoine_mondial", "id", "lat", "lon")
         export = [{k: f[k] for k in cles if f.get(k)} for f in sorted(tous, key=lambda f: (f["rubrique"], -f["infos"], f["nom"]))]
         if v["niveau"] == "autre":
             gardes = {}
@@ -588,6 +632,8 @@ def page_ville(v, ctx):
     if v["niveau"] == "autre" and not ctx.get("pages_completes"):
         # Page légère : le reste de la fiche est construit dans le navigateur à partir des fichiers compressés
         donnees["complet"] = {"textes": {k: x["texte"] for k, x in wps.items()}, "resume": wp.get("resume", ""),
+                              "guide": {k: x["texte"] for k, x in gs.items()},
+                              "guide_source": {"titre": guide.get("titre"), "url": guide.get("url")} if guide else None,
                               "wikipedia": {"titre": wp.get("titre"), "url": wp.get("url")} if wp else None,
                               "evenements": enc.get("evenements", []), "photo": enc.get("photo"), "blason": enc.get("blason"),
                               "alentours": [{"nom": f["nom"], "type": f["type"], "km": f.get("distance_km"), "direction": f.get("direction"),
@@ -712,6 +758,13 @@ def main():
     ctx["securite"] = lire("securite.json", {}) or {}
     ctx["cout"] = lire("cout.json", {}) or {}
     ctx["formalites"] = (lire("formalites.json", {}) or {}).get("passeports", {})
+    ctx["aeroports"] = {}
+    for base in (DONNEES, DATA):
+        p_ = os.path.join(base, "aeroports.json.gz")
+        if os.path.exists(p_):
+            with gzip.open(p_, "rt", encoding="utf-8") as f:
+                ctx["aeroports"] = json.load(f)
+            break
     ctx["compteur"] = {"informations": 0, "lieux": 0, "textes": 0, "photos": 0, "villes_enrichies": 0}
     ctx["feries"] = {}
     for base in (DATA, DONNEES):
@@ -739,7 +792,8 @@ def main():
 
     # Index de recherche
     index = [[v["nom"], v["slug"], pays.get(v["pays"], {}).get("nom", v["pays"]), v["population"],
-              "|".join(v["alts"]) if (v["population"] >= 30000 or v["niveau"] != "autre") else "|".join(v["alts"][:1])] for v in villes]
+              "|".join(v["alts"]) if (v["population"] >= 30000 or v["niveau"] != "autre") else "|".join(v["alts"][:1]),
+              1 if v["niveau"] == "phare" else 0] for v in villes]
     ecrire("static/index.json", json.dumps(index, ensure_ascii=False, separators=(",", ":")))
 
     # Pages de villes
@@ -843,7 +897,10 @@ def main():
                ("Passport Index Data", "https://github.com/imorte/passport-index-data", "Visas et durées de séjour", "MIT"),
                ("U.S. Department of State", "https://travel.state.gov/", "Niveau de sécurité par pays", "Domaine public"),
                ("Banque mondiale", "https://data.worldbank.org/", "Niveau des prix par pays (PA.NUS.PPPC.RF)", "CC BY 4.0"),
-               ("Claude (Anthropic)", "https://www.anthropic.com/", "Rédaction des conseils à partir des données", "Textes originaux du site")]
+               ("Claude (Anthropic)", "https://www.anthropic.com/", "Rédaction des conseils à partir des données", "Textes originaux du site"),
+               ("Wikivoyage en français", "https://fr.wikivoyage.org/", "Conseils de voyage : s’y rendre, se déplacer, voir, manger, se loger…", "CC BY-SA 3.0, textes repris avec lien vers l’article"),
+               ("OurAirports", "https://ourairports.com/data/", "Aéroports les plus proches", "Domaine public"),
+               ("OpenFreeMap", "https://openfreemap.org/", "Fond de la carte interactive", "Gratuit, données © OpenStreetMap")]
     lignes = "".join(f'<tr><td><a href="{u}" rel="noopener">{E(n)}</a></td><td>{E(r)}</td><td>{E(l)}</td></tr>' for n, u, r, l in sources)
     ecrire("sources/index.html", page("../", "Nos sources – Dix Mille Escales", "Sources et licences des données du guide.",
            f'<section class="hero"><h1 class="city" style="font-size:clamp(2.4rem,7vw,4.5rem)">Nos sources</h1>'
@@ -859,7 +916,7 @@ def main():
                 if fn.startswith("_suivi") and fn.endswith(".json"):
                     with open(os.path.join(dl, fn), encoding="utf-8") as f:
                         suivi.update(json.load(f))
-    noms = {"surveillance_etat": "Surveillance (rapport du matin)", "villes": "Liste des villes (GeoNames)", "lieux_0": "Lieux, robot 1 (OpenStreetMap)", "lieux_1": "Lieux, robot 2 (OpenStreetMap)",
+    noms = {"guides": "Guides (Wikivoyage)", "aeroports": "Aéroports (OurAirports)", "surveillance_etat": "Surveillance (rapport du matin)", "villes": "Liste des villes (GeoNames)", "lieux_0": "Lieux, robot 1 (OpenStreetMap)", "lieux_1": "Lieux, robot 2 (OpenStreetMap)",
             "lieux_2": "Lieux, robot 3 (OpenStreetMap)", "meteo": "Météo (Open-Meteo)", "redaction": "Rédaction (IA)", "climat": "Climat (Open-Meteo ERA5)", "securite": "Sécurité (Département d’État)",
             "formalites": "Formalités (Passport Index)", "cout": "Coût de la vie (Banque mondiale)", "encyclopedie": "Encyclopédie (Wikidata, Wikipédia)", "lieux": "Lieux (OpenStreetMap)", "meteo": "Météo (Open-Meteo)", "feries": "Jours fériés (Nager.Date)", "change": "Change (BCE)"}
     lignes = ""
@@ -879,6 +936,22 @@ def main():
            f'<p class="tagline">{nombre(infos)} informations de lieux collectées à ce jour. Page régénérée le {ctx["date_txt"]}.</p></section>'
            f'<section class="block"><h2>Derniers passages</h2><div class="table-scroll"><table><thead><tr><th>Robot</th><th>État</th><th>Dernier passage</th><th>Détails</th></tr></thead><tbody>{lignes}</tbody></table></div></section>'
            f'<section class="block"><h2>Couverture des villes</h2><div class="table-scroll"><table><thead><tr><th>Niveau</th><th>Villes explorées</th><th>Rythme de passage</th></tr></thead><tbody>{couverture}</tbody></table></div></section>'))
+
+    # Mentions légales
+    ecrire("mentions-legales/index.html", page("../", "Mentions légales – Dix Mille Escales", "Mentions légales du site Dix Mille Escales.",
+           '<section class="hero"><h1 class="city" style="font-size:clamp(2.4rem,7vw,4.5rem)">Mentions légales</h1></section><div class="prose">'
+           '<h2>Éditeur du site</h2><p>Dix Mille Escales est un site personnel et non commercial. Éditeur : <b>[NOM ET PRÉNOM À COMPLÉTER]</b>, '
+           'joignable via <a href="https://github.com/' + os.environ.get("GITHUB_REPOSITORY", "pablopacaut17-sudo/dix-mille-escales") + '/issues">les « issues » du dépôt GitHub</a>.</p>'
+           '<h2>Hébergement</h2><p>GitHub Pages, service de GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis.</p>'
+           '<h2>Données personnelles et cookies</h2><p>Le site ne crée pas de compte, ne dépose aucun cookie publicitaire ni de mesure d’audience. '
+           'Seul le choix du thème (clair ou sombre) est mémorisé dans votre navigateur, sans quitter votre appareil. L’hébergeur peut conserver '
+           'des journaux techniques de connexion (adresse IP) pour la sécurité du service.</p>'
+           '<h2>Contenus et licences</h2><p>Les données proviennent de sources ouvertes listées sur la page <a href="../sources/">Nos sources</a>, '
+           'avec leurs licences : © contributeurs OpenStreetMap (ODbL), Wikipédia et Wikivoyage (CC BY-SA), Wikidata (CC0), GeoNames et Open-Meteo (CC BY 4.0)… '
+           'Les textes repris de Wikipédia et de Wikivoyage restent sous licence CC BY-SA.</p>'
+           '<h2>Exactitude des informations</h2><p>Les informations sont collectées automatiquement et vérifiées régulièrement, mais peuvent contenir des erreurs '
+           'ou être devenues inexactes. Vérifiez toujours les informations importantes (visa, sécurité, santé, horaires) auprès des sources officielles avant de partir. '
+           'Chaque fiche propose un lien « Signaler une erreur ».</p></div>'))
 
     # Page 404, plan du site, robots.txt
     ecrire("404.html", page("/", "Page introuvable – Dix Mille Escales", "Page introuvable.",

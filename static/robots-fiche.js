@@ -6,8 +6,8 @@
   if (!zone) return;
   var root = zone.getAttribute('data-root') || '../../';
   var slug = location.pathname.replace(/\/index\.html$/, '').replace(/\/$/, '').split('/').pop();
-  var RUB = [['manger', 'Manger et boire'], ['dormir', 'Dormir'], ['voir', 'À voir'], ['faire', 'Activités'], ['acheter', 'Acheter'], ['alentours', 'Aux alentours']];
-  var COUL = { manger: '#B5485D', dormir: '#2E6DB4', voir: '#2F7D6D', faire: '#C9761E', acheter: '#7B5EA7', alentours: '#4E7D3A' };
+  var RUB = [['manger', 'Manger et boire'], ['dormir', 'Dormir'], ['voir', 'À voir'], ['faire', 'Activités'], ['acheter', 'Acheter'], ['bouger', 'Se déplacer'], ['alentours', 'Aux alentours']];
+  var COUL = { manger: '#B5485D', dormir: '#2E6DB4', voir: '#2F7D6D', faire: '#C9761E', acheter: '#7B5EA7', alentours: '#4E7D3A', bouger: '#56707A' };
   var JOURS = { Mo: 'lun', Tu: 'mar', We: 'mer', Th: 'jeu', Fr: 'ven', Sa: 'sam', Su: 'dim', PH: 'fériés', off: 'fermé' };
   function lireJson(url) {  // fichiers .json.gz : décompressés dans le navigateur
     return fetch(url).then(function (r) { if (!r.ok) throw new Error(r.status); return r.arrayBuffer(); }).then(function (b) {
