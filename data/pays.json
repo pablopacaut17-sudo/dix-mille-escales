@@ -1,3806 +1,3806 @@
 {
-"AD": {
-"nom": "Andorre",
-"continent": "EU",
-"capitale": "Andorra la Vella",
-"monnaie": "EUR",
-"monnaie_nom": "euro",
-"langues": [
-"catalan"
-],
-"indicatif": "+376",
-"superficie_km2": 468,
-"nom_en": "Andorra",
-"iso3": "AND"
-},
-"AE": {
-"nom": "Émirats arabes unis",
-"continent": "AS",
-"capitale": "Abu Dhabi",
-"monnaie": "AED",
-"monnaie_nom": "dirham des Émirats arabes unis",
-"langues": [
-"arabe",
-"persan",
-"anglais"
-],
-"indicatif": "+971",
-"superficie_km2": 82880,
-"nom_en": "United Arab Emirates",
-"iso3": "ARE"
-},
-"AF": {
-"nom": "Afghanistan",
-"continent": "AS",
-"capitale": "Kabul",
-"monnaie": "AFN",
-"monnaie_nom": "afghani afghan",
-"langues": [
-"persan",
-"pachto",
-"ouzbek"
-],
-"indicatif": "+93",
-"superficie_km2": 647500,
-"nom_en": "Afghanistan",
-"iso3": "AFG"
-},
-"AG": {
-"nom": "Antigua-et-Barbuda",
-"continent": "NA",
-"capitale": "St. John's",
-"monnaie": "XCD",
-"monnaie_nom": "dollar des Caraïbes orientales",
-"langues": [
-"anglais"
-],
-"indicatif": "+1-268",
-"superficie_km2": 443,
-"nom_en": "Antigua and Barbuda",
-"iso3": "ATG"
-},
-"AI": {
-"nom": "Anguilla",
-"continent": "NA",
-"capitale": "The Valley",
-"monnaie": "XCD",
-"monnaie_nom": "dollar des Caraïbes orientales",
-"langues": [
-"anglais"
-],
-"indicatif": "+1-264",
-"superficie_km2": 102,
-"nom_en": "Anguilla",
-"iso3": "AIA"
-},
-"AL": {
-"nom": "Albanie",
-"continent": "EU",
-"capitale": "Tirana",
-"monnaie": "ALL",
-"monnaie_nom": "lek albanais",
-"langues": [
-"albanais",
-"grec"
-],
-"indicatif": "+355",
-"superficie_km2": 28748,
-"nom_en": "Albania",
-"iso3": "ALB"
-},
-"AM": {
-"nom": "Arménie",
-"continent": "AS",
-"capitale": "Yerevan",
-"monnaie": "AMD",
-"monnaie_nom": "dram arménien",
-"langues": [
-"arménien"
-],
-"indicatif": "+374",
-"superficie_km2": 29800,
-"nom_en": "Armenia",
-"iso3": "ARM"
-},
-"AO": {
-"nom": "Angola",
-"continent": "AF",
-"capitale": "Luanda",
-"monnaie": "AOA",
-"monnaie_nom": "kwanza angolais",
-"langues": [
-"portugais"
-],
-"indicatif": "+244",
-"superficie_km2": 1246700,
-"nom_en": "Angola",
-"iso3": "AGO"
-},
-"AQ": {
-"nom": "Antarctique",
-"continent": "AN",
-"capitale": "",
-"monnaie": "",
-"monnaie_nom": "",
-"langues": [],
-"indicatif": "",
-"superficie_km2": 14000000,
-"nom_en": "Antarctica",
-"iso3": "ATA"
-},
-"AR": {
-"nom": "Argentine",
-"continent": "SA",
-"capitale": "Buenos Aires",
-"monnaie": "ARS",
-"monnaie_nom": "peso argentin",
-"langues": [
-"espagnol",
-"anglais",
-"italien"
-],
-"indicatif": "+54",
-"superficie_km2": 2766890,
-"nom_en": "Argentina",
-"iso3": "ARG"
-},
-"AS": {
-"nom": "Samoa américaines",
-"continent": "OC",
-"capitale": "Pago Pago",
-"monnaie": "USD",
-"monnaie_nom": "dollar des États-Unis",
-"langues": [
-"anglais",
-"samoan",
-"tongien"
-],
-"indicatif": "+1-684",
-"superficie_km2": 199,
-"nom_en": "American Samoa",
-"iso3": "ASM"
-},
-"AT": {
-"nom": "Autriche",
-"continent": "EU",
-"capitale": "Vienna",
-"monnaie": "EUR",
-"monnaie_nom": "euro",
-"langues": [
-"allemand",
-"croate",
-"hongrois"
-],
-"indicatif": "+43",
-"superficie_km2": 83858,
-"nom_en": "Austria",
-"iso3": "AUT"
-},
-"AU": {
-"nom": "Australie",
-"continent": "OC",
-"capitale": "Canberra",
-"monnaie": "AUD",
-"monnaie_nom": "dollar australien",
-"langues": [
-"anglais"
-],
-"indicatif": "+61",
-"superficie_km2": 7686850,
-"nom_en": "Australia",
-"iso3": "AUS"
-},
-"AW": {
-"nom": "Aruba",
-"continent": "NA",
-"capitale": "Oranjestad",
-"monnaie": "AWG",
-"monnaie_nom": "florin arubais",
-"langues": [
-"néerlandais",
-"papiamento",
-"espagnol"
-],
-"indicatif": "+297",
-"superficie_km2": 193,
-"nom_en": "Aruba",
-"iso3": "ABW"
-},
-"AX": {
-"nom": "Îles Åland",
-"continent": "EU",
-"capitale": "Mariehamn",
-"monnaie": "EUR",
-"monnaie_nom": "euro",
-"langues": [
-"suédois"
-],
-"indicatif": "+358-18",
-"superficie_km2": 1580,
-"nom_en": "Aland Islands",
-"iso3": "ALA"
-},
-"AZ": {
-"nom": "Azerbaïdjan",
-"continent": "AS",
-"capitale": "Baku",
-"monnaie": "AZN",
-"monnaie_nom": "manat azéri",
-"langues": [
-"azerbaïdjanais",
-"russe",
-"arménien"
-],
-"indicatif": "+994",
-"superficie_km2": 86600,
-"nom_en": "Azerbaijan",
-"iso3": "AZE"
-},
-"BA": {
-"nom": "Bosnie-Herzégovine",
-"continent": "EU",
-"capitale": "Sarajevo",
-"monnaie": "BAM",
-"monnaie_nom": "mark convertible bosniaque",
-"langues": [
-"bosniaque",
-"croate",
-"serbe"
-],
-"indicatif": "+387",
-"superficie_km2": 51129,
-"nom_en": "Bosnia and Herzegovina",
-"iso3": "BIH"
-},
-"BB": {
-"nom": "Barbade",
-"continent": "NA",
-"capitale": "Bridgetown",
-"monnaie": "BBD",
-"monnaie_nom": "dollar barbadien",
-"langues": [
-"anglais"
-],
-"indicatif": "+1-246",
-"superficie_km2": 431,
-"nom_en": "Barbados",
-"iso3": "BRB"
-},
-"BD": {
-"nom": "Bangladesh",
-"continent": "AS",
-"capitale": "Dhaka",
-"monnaie": "BDT",
-"monnaie_nom": "taka bangladeshi",
-"langues": [
-"bengali",
-"anglais"
-],
-"indicatif": "+880",
-"superficie_km2": 144000,
-"nom_en": "Bangladesh",
-"iso3": "BGD"
-},
-"BE": {
-"nom": "Belgique",
-"continent": "EU",
-"capitale": "Brussels",
-"monnaie": "EUR",
-"monnaie_nom": "euro",
-"langues": [
-"néerlandais",
-"français",
-"allemand"
-],
-"indicatif": "+32",
-"superficie_km2": 30510,
-"nom_en": "Belgium",
-"iso3": "BEL"
-},
-"BF": {
-"nom": "Burkina Faso",
-"continent": "AF",
-"capitale": "Ouagadougou",
-"monnaie": "XOF",
-"monnaie_nom": "franc CFA (BCEAO)",
-"langues": [
-"français",
-"moré"
-],
-"indicatif": "+226",
-"superficie_km2": 274200,
-"nom_en": "Burkina Faso",
-"iso3": "BFA"
-},
-"BG": {
-"nom": "Bulgarie",
-"continent": "EU",
-"capitale": "Sofia",
-"monnaie": "BGN",
-"monnaie_nom": "lev bulgare",
-"langues": [
-"bulgare",
-"turc",
-"romani"
-],
-"indicatif": "+359",
-"superficie_km2": 110910,
-"nom_en": "Bulgaria",
-"iso3": "BGR"
-},
-"BH": {
-"nom": "Bahreïn",
-"continent": "AS",
-"capitale": "Manama",
-"monnaie": "BHD",
-"monnaie_nom": "dinar bahreïni",
-"langues": [
-"arabe",
-"anglais",
-"persan"
-],
-"indicatif": "+973",
-"superficie_km2": 665,
-"nom_en": "Bahrain",
-"iso3": "BHR"
-},
-"BI": {
-"nom": "Burundi",
-"continent": "AF",
-"capitale": "Gitega",
-"monnaie": "BIF",
-"monnaie_nom": "franc burundais",
-"langues": [
-"français",
-"roundi"
-],
-"indicatif": "+257",
-"superficie_km2": 27830,
-"nom_en": "Burundi",
-"iso3": "BDI"
-},
-"BJ": {
-"nom": "Bénin",
-"continent": "AF",
-"capitale": "Porto-Novo",
-"monnaie": "XOF",
-"monnaie_nom": "franc CFA (BCEAO)",
-"langues": [
-"français"
-],
-"indicatif": "+229",
-"superficie_km2": 112620,
-"nom_en": "Benin",
-"iso3": "BEN"
-},
-"BL": {
-"nom": "Saint-Barthélemy",
-"continent": "NA",
-"capitale": "Gustavia",
-"monnaie": "EUR",
-"monnaie_nom": "euro",
-"langues": [
-"français"
-],
-"indicatif": "+590",
-"superficie_km2": 21,
-"nom_en": "Saint Barthelemy",
-"iso3": "BLM"
-},
-"BM": {
-"nom": "Bermudes",
-"continent": "NA",
-"capitale": "Hamilton",
-"monnaie": "BMD",
-"monnaie_nom": "dollar bermudien",
-"langues": [
-"anglais",
-"portugais"
-],
-"indicatif": "+1-441",
-"superficie_km2": 53,
-"nom_en": "Bermuda",
-"iso3": "BMU"
-},
-"BN": {
-"nom": "Brunei",
-"continent": "AS",
-"capitale": "Bandar Seri Begawan",
-"monnaie": "BND",
-"monnaie_nom": "dollar brunéien",
-"langues": [
-"malais",
-"anglais"
-],
-"indicatif": "+673",
-"superficie_km2": 5770,
-"nom_en": "Brunei",
-"iso3": "BRN"
-},
-"BO": {
-"nom": "Bolivie",
-"continent": "SA",
-"capitale": "Sucre",
-"monnaie": "BOB",
-"monnaie_nom": "boliviano bolivien",
-"langues": [
-"espagnol",
-"quechua",
-"aymara"
-],
-"indicatif": "+591",
-"superficie_km2": 1098580,
-"nom_en": "Bolivia",
-"iso3": "BOL"
-},
-"BQ": {
-"nom": "Pays-Bas caribéens",
-"continent": "NA",
-"capitale": "",
-"monnaie": "USD",
-"monnaie_nom": "dollar des États-Unis",
-"langues": [
-"néerlandais",
-"papiamento",
-"anglais"
-],
-"indicatif": "+599",
-"superficie_km2": 328,
-"nom_en": "Bonaire, Saint Eustatius and Saba ",
-"iso3": "BES"
-},
-"BR": {
-"nom": "Brésil",
-"continent": "SA",
-"capitale": "Brasilia",
-"monnaie": "BRL",
-"monnaie_nom": "réal brésilien",
-"langues": [
-"portugais",
-"espagnol",
-"anglais"
-],
-"indicatif": "+55",
-"superficie_km2": 8511965,
-"nom_en": "Brazil",
-"iso3": "BRA"
-},
-"BS": {
-"nom": "Bahamas",
-"continent": "NA",
-"capitale": "Nassau",
-"monnaie": "BSD",
-"monnaie_nom": "dollar bahaméen",
-"langues": [
-"anglais"
-],
-"indicatif": "+1-242",
-"superficie_km2": 13940,
-"nom_en": "Bahamas",
-"iso3": "BHS"
-},
-"BT": {
-"nom": "Bhoutan",
-"continent": "AS",
-"capitale": "Thimphu",
-"monnaie": "BTN",
-"monnaie_nom": "ngultrum bouthanais",
-"langues": [
-"dzongkha"
-],
-"indicatif": "+975",
-"superficie_km2": 47000,
-"nom_en": "Bhutan",
-"iso3": "BTN"
-},
-"BV": {
-"nom": "Île Bouvet",
-"continent": "AN",
-"capitale": "",
-"monnaie": "NOK",
-"monnaie_nom": "couronne norvégienne",
-"langues": [],
-"indicatif": "",
-"superficie_km2": 49,
-"nom_en": "Bouvet Island",
-"iso3": "BVT"
-},
-"BW": {
-"nom": "Botswana",
-"continent": "AF",
-"capitale": "Gaborone",
-"monnaie": "BWP",
-"monnaie_nom": "pula botswanais",
-"langues": [
-"anglais",
-"tswana"
-],
-"indicatif": "+267",
-"superficie_km2": 600370,
-"nom_en": "Botswana",
-"iso3": "BWA"
-},
-"BY": {
-"nom": "Biélorussie",
-"continent": "EU",
-"capitale": "Minsk",
-"monnaie": "BYN",
-"monnaie_nom": "rouble biélorusse",
-"langues": [
-"biélorusse",
-"russe"
-],
-"indicatif": "+375",
-"superficie_km2": 207600,
-"nom_en": "Belarus",
-"iso3": "BLR"
-},
-"BZ": {
-"nom": "Belize",
-"continent": "NA",
-"capitale": "Belmopan",
-"monnaie": "BZD",
-"monnaie_nom": "dollar bélizéen",
-"langues": [
-"anglais",
-"espagnol"
-],
-"indicatif": "+501",
-"superficie_km2": 22966,
-"nom_en": "Belize",
-"iso3": "BLZ"
-},
-"CA": {
-"nom": "Canada",
-"continent": "NA",
-"capitale": "Ottawa",
-"monnaie": "CAD",
-"monnaie_nom": "dollar canadien",
-"langues": [
-"anglais",
-"français",
-"inuktitut"
-],
-"indicatif": "+1",
-"superficie_km2": 9984670,
-"nom_en": "Canada",
-"iso3": "CAN"
-},
-"CC": {
-"nom": "Îles Cocos",
-"continent": "AS",
-"capitale": "West Island",
-"monnaie": "AUD",
-"monnaie_nom": "dollar australien",
-"langues": [
-"malais",
-"anglais"
-],
-"indicatif": "+61",
-"superficie_km2": 14,
-"nom_en": "Cocos Islands",
-"iso3": "CCK"
-},
-"CD": {
-"nom": "Congo-Kinshasa",
-"continent": "AF",
-"capitale": "Kinshasa",
-"monnaie": "CDF",
-"monnaie_nom": "franc congolais",
-"langues": [
-"français",
-"lingala",
-"kikongo"
-],
-"indicatif": "+243",
-"superficie_km2": 2345410,
-"nom_en": "Democratic Republic of the Congo",
-"iso3": "COD"
-},
-"CF": {
-"nom": "République centrafricaine",
-"continent": "AF",
-"capitale": "Bangui",
-"monnaie": "XAF",
-"monnaie_nom": "franc CFA (BEAC)",
-"langues": [
-"français",
-"sango",
-"lingala"
-],
-"indicatif": "+236",
-"superficie_km2": 622984,
-"nom_en": "Central African Republic",
-"iso3": "CAF"
-},
-"CG": {
-"nom": "Congo-Brazzaville",
-"continent": "AF",
-"capitale": "Brazzaville",
-"monnaie": "XAF",
-"monnaie_nom": "franc CFA (BEAC)",
-"langues": [
-"français",
-"kikongo",
-"lingala"
-],
-"indicatif": "+242",
-"superficie_km2": 342000,
-"nom_en": "Republic of the Congo",
-"iso3": "COG"
-},
-"CH": {
-"nom": "Suisse",
-"continent": "EU",
-"capitale": "Bern",
-"monnaie": "CHF",
-"monnaie_nom": "franc suisse",
-"langues": [
-"allemand",
-"français",
-"italien"
-],
-"indicatif": "+41",
-"superficie_km2": 41290,
-"nom_en": "Switzerland",
-"iso3": "CHE"
-},
-"CI": {
-"nom": "Côte d’Ivoire",
-"continent": "AF",
-"capitale": "Yamoussoukro",
-"monnaie": "XOF",
-"monnaie_nom": "franc CFA (BCEAO)",
-"langues": [
-"français"
-],
-"indicatif": "+225",
-"superficie_km2": 322460,
-"nom_en": "Ivory Coast",
-"iso3": "CIV"
-},
-"CK": {
-"nom": "Îles Cook",
-"continent": "OC",
-"capitale": "Avarua",
-"monnaie": "NZD",
-"monnaie_nom": "dollar néo-zélandais",
-"langues": [
-"anglais",
-"maori"
-],
-"indicatif": "+682",
-"superficie_km2": 240,
-"nom_en": "Cook Islands",
-"iso3": "COK"
-},
-"CL": {
-"nom": "Chili",
-"continent": "SA",
-"capitale": "Santiago",
-"monnaie": "CLP",
-"monnaie_nom": "peso chilien",
-"langues": [
-"espagnol"
-],
-"indicatif": "+56",
-"superficie_km2": 756950,
-"nom_en": "Chile",
-"iso3": "CHL"
-},
-"CM": {
-"nom": "Cameroun",
-"continent": "AF",
-"capitale": "Yaounde",
-"monnaie": "XAF",
-"monnaie_nom": "franc CFA (BEAC)",
-"langues": [
-"anglais",
-"français"
-],
-"indicatif": "+237",
-"superficie_km2": 475440,
-"nom_en": "Cameroon",
-"iso3": "CMR"
-},
-"CN": {
-"nom": "Chine",
-"continent": "AS",
-"capitale": "Beijing",
-"monnaie": "CNY",
-"monnaie_nom": "yuan renminbi chinois",
-"langues": [
-"chinois",
-"cantonais",
-"wu"
-],
-"indicatif": "+86",
-"superficie_km2": 9596960,
-"nom_en": "China",
-"iso3": "CHN"
-},
-"CO": {
-"nom": "Colombie",
-"continent": "SA",
-"capitale": "Bogota",
-"monnaie": "COP",
-"monnaie_nom": "peso colombien",
-"langues": [
-"espagnol"
-],
-"indicatif": "+57",
-"superficie_km2": 1138910,
-"nom_en": "Colombia",
-"iso3": "COL"
-},
-"CR": {
-"nom": "Costa Rica",
-"continent": "NA",
-"capitale": "San Jose",
-"monnaie": "CRC",
-"monnaie_nom": "colón costaricain",
-"langues": [
-"espagnol",
-"anglais"
-],
-"indicatif": "+506",
-"superficie_km2": 51100,
-"nom_en": "Costa Rica",
-"iso3": "CRI"
-},
-"CU": {
-"nom": "Cuba",
-"continent": "NA",
-"capitale": "Havana",
-"monnaie": "CUP",
-"monnaie_nom": "peso cubain",
-"langues": [
-"espagnol",
-"papiamento"
-],
-"indicatif": "+53",
-"superficie_km2": 110860,
-"nom_en": "Cuba",
-"iso3": "CUB"
-},
-"CV": {
-"nom": "Cap-Vert",
-"continent": "AF",
-"capitale": "Praia",
-"monnaie": "CVE",
-"monnaie_nom": "escudo capverdien",
-"langues": [
-"portugais"
-],
-"indicatif": "+238",
-"superficie_km2": 4033,
-"nom_en": "Cabo Verde",
-"iso3": "CPV"
-},
-"CW": {
-"nom": "Curaçao",
-"continent": "NA",
-"capitale": " Willemstad",
-"monnaie": "XCG",
-"monnaie_nom": "florin caribéen",
-"langues": [
-"néerlandais",
-"papiamento"
-],
-"indicatif": "+599",
-"superficie_km2": 444,
-"nom_en": "Curacao",
-"iso3": "CUW"
-},
-"CX": {
-"nom": "Île Christmas",
-"continent": "OC",
-"capitale": "Flying Fish Cove",
-"monnaie": "AUD",
-"monnaie_nom": "dollar australien",
-"langues": [
-"anglais",
-"chinois",
-"malais"
-],
-"indicatif": "+61",
-"superficie_km2": 135,
-"nom_en": "Christmas Island",
-"iso3": "CXR"
-},
-"CY": {
-"nom": "Chypre",
-"continent": "EU",
-"capitale": "Nicosia",
-"monnaie": "EUR",
-"monnaie_nom": "euro",
-"langues": [
-"grec",
-"turc",
-"anglais"
-],
-"indicatif": "+357",
-"superficie_km2": 9250,
-"nom_en": "Cyprus",
-"iso3": "CYP"
-},
-"CZ": {
-"nom": "Tchéquie",
-"continent": "EU",
-"capitale": "Prague",
-"monnaie": "CZK",
-"monnaie_nom": "couronne tchèque",
-"langues": [
-"tchèque",
-"slovaque"
-],
-"indicatif": "+420",
-"superficie_km2": 78866,
-"nom_en": "Czechia",
-"iso3": "CZE"
-},
-"DE": {
-"nom": "Allemagne",
-"continent": "EU",
-"capitale": "Berlin",
-"monnaie": "EUR",
-"monnaie_nom": "euro",
-"langues": [
-"allemand"
-],
-"indicatif": "+49",
-"superficie_km2": 357021,
-"nom_en": "Germany",
-"iso3": "DEU"
-},
-"DJ": {
-"nom": "Djibouti",
-"continent": "AF",
-"capitale": "Djibouti",
-"monnaie": "DJF",
-"monnaie_nom": "franc djiboutien",
-"langues": [
-"français",
-"arabe",
-"somali"
-],
-"indicatif": "+253",
-"superficie_km2": 23000,
-"nom_en": "Djibouti",
-"iso3": "DJI"
-},
-"DK": {
-"nom": "Danemark",
-"continent": "EU",
-"capitale": "Copenhagen",
-"monnaie": "DKK",
-"monnaie_nom": "couronne danoise",
-"langues": [
-"danois",
-"anglais",
-"féroïen"
-],
-"indicatif": "+45",
-"superficie_km2": 43094,
-"nom_en": "Denmark",
-"iso3": "DNK"
-},
-"DM": {
-"nom": "Dominique",
-"continent": "NA",
-"capitale": "Roseau",
-"monnaie": "XCD",
-"monnaie_nom": "dollar des Caraïbes orientales",
-"langues": [
-"anglais"
-],
-"indicatif": "+1-767",
-"superficie_km2": 754,
-"nom_en": "Dominica",
-"iso3": "DMA"
-},
-"DO": {
-"nom": "République dominicaine",
-"continent": "NA",
-"capitale": "Santo Domingo",
-"monnaie": "DOP",
-"monnaie_nom": "peso dominicain",
-"langues": [
-"espagnol"
-],
-"indicatif": "+1-809 and 1-829",
-"superficie_km2": 48730,
-"nom_en": "Dominican Republic",
-"iso3": "DOM"
-},
-"DZ": {
-"nom": "Algérie",
-"continent": "AF",
-"capitale": "Algiers",
-"monnaie": "DZD",
-"monnaie_nom": "dinar algérien",
-"langues": [
-"arabe"
-],
-"indicatif": "+213",
-"superficie_km2": 2381740,
-"nom_en": "Algeria",
-"iso3": "DZA"
-},
-"EC": {
-"nom": "Équateur",
-"continent": "SA",
-"capitale": "Quito",
-"monnaie": "USD",
-"monnaie_nom": "dollar des États-Unis",
-"langues": [
-"espagnol"
-],
-"indicatif": "+593",
-"superficie_km2": 283560,
-"nom_en": "Ecuador",
-"iso3": "ECU"
-},
-"EE": {
-"nom": "Estonie",
-"continent": "EU",
-"capitale": "Tallinn",
-"monnaie": "EUR",
-"monnaie_nom": "euro",
-"langues": [
-"estonien",
-"russe"
-],
-"indicatif": "+372",
-"superficie_km2": 45226,
-"nom_en": "Estonia",
-"iso3": "EST"
-},
-"EG": {
-"nom": "Égypte",
-"continent": "AF",
-"capitale": "Cairo",
-"monnaie": "EGP",
-"monnaie_nom": "livre égyptienne",
-"langues": [
-"arabe",
-"anglais",
-"français"
-],
-"indicatif": "+20",
-"superficie_km2": 1001450,
-"nom_en": "Egypt",
-"iso3": "EGY"
-},
-"EH": {
-"nom": "Sahara occidental",
-"continent": "AF",
-"capitale": "El-Aaiun",
-"monnaie": "MAD",
-"monnaie_nom": "dirham marocain",
-"langues": [
-"arabe"
-],
-"indicatif": "+212",
-"superficie_km2": 266000,
-"nom_en": "Western Sahara",
-"iso3": "ESH"
-},
-"ER": {
-"nom": "Érythrée",
-"continent": "AF",
-"capitale": "Asmara",
-"monnaie": "ERN",
-"monnaie_nom": "nafka érythréen",
-"langues": [
-"afar",
-"arabe",
-"tigré"
-],
-"indicatif": "+291",
-"superficie_km2": 121320,
-"nom_en": "Eritrea",
-"iso3": "ERI"
-},
-"ES": {
-"nom": "Espagne",
-"continent": "EU",
-"capitale": "Madrid",
-"monnaie": "EUR",
-"monnaie_nom": "euro",
-"langues": [
-"espagnol",
-"catalan",
-"galicien"
-],
-"indicatif": "+34",
-"superficie_km2": 504782,
-"nom_en": "Spain",
-"iso3": "ESP"
-},
-"ET": {
-"nom": "Éthiopie",
-"continent": "AF",
-"capitale": "Addis Ababa",
-"monnaie": "ETB",
-"monnaie_nom": "birr éthiopien",
-"langues": [
-"amharique",
-"anglais",
-"oromo"
-],
-"indicatif": "+251",
-"superficie_km2": 1127127,
-"nom_en": "Ethiopia",
-"iso3": "ETH"
-},
-"FI": {
-"nom": "Finlande",
-"continent": "EU",
-"capitale": "Helsinki",
-"monnaie": "EUR",
-"monnaie_nom": "euro",
-"langues": [
-"finnois",
-"suédois",
-"same d’Inari"
-],
-"indicatif": "+358",
-"superficie_km2": 337030,
-"nom_en": "Finland",
-"iso3": "FIN"
-},
-"FJ": {
-"nom": "Fidji",
-"continent": "OC",
-"capitale": "Suva",
-"monnaie": "FJD",
-"monnaie_nom": "dollar fidjien",
-"langues": [
-"anglais",
-"fidjien"
-],
-"indicatif": "+679",
-"superficie_km2": 18270,
-"nom_en": "Fiji",
-"iso3": "FJI"
-},
-"FK": {
-"nom": "Îles Malouines",
-"continent": "SA",
-"capitale": "Stanley",
-"monnaie": "FKP",
-"monnaie_nom": "livre des îles Malouines",
-"langues": [
-"anglais"
-],
-"indicatif": "+500",
-"superficie_km2": 12173,
-"nom_en": "Falkland Islands",
-"iso3": "FLK"
-},
-"FM": {
-"nom": "Micronésie",
-"continent": "OC",
-"capitale": "Palikir",
-"monnaie": "USD",
-"monnaie_nom": "dollar des États-Unis",
-"langues": [
-"anglais",
-"chuuk",
-"pohnpei"
-],
-"indicatif": "+691",
-"superficie_km2": 702,
-"nom_en": "Micronesia",
-"iso3": "FSM"
-},
-"FO": {
-"nom": "Îles Féroé",
-"continent": "EU",
-"capitale": "Torshavn",
-"monnaie": "DKK",
-"monnaie_nom": "couronne danoise",
-"langues": [
-"féroïen",
-"danois"
-],
-"indicatif": "+298",
-"superficie_km2": 1399,
-"nom_en": "Faroe Islands",
-"iso3": "FRO"
-},
-"FR": {
-"nom": "France",
-"continent": "EU",
-"capitale": "Paris",
-"monnaie": "EUR",
-"monnaie_nom": "euro",
-"langues": [
-"français",
-"francoprovençal",
-"breton"
-],
-"indicatif": "+33",
-"superficie_km2": 547030,
-"nom_en": "France",
-"iso3": "FRA"
-},
-"GA": {
-"nom": "Gabon",
-"continent": "AF",
-"capitale": "Libreville",
-"monnaie": "XAF",
-"monnaie_nom": "franc CFA (BEAC)",
-"langues": [
-"français"
-],
-"indicatif": "+241",
-"superficie_km2": 267667,
-"nom_en": "Gabon",
-"iso3": "GAB"
-},
-"GB": {
-"nom": "Royaume-Uni",
-"continent": "EU",
-"capitale": "London",
-"monnaie": "GBP",
-"monnaie_nom": "livre sterling",
-"langues": [
-"anglais",
-"gallois",
-"gaélique écossais"
-],
-"indicatif": "+44",
-"superficie_km2": 244820,
-"nom_en": "United Kingdom",
-"iso3": "GBR"
-},
-"GD": {
-"nom": "Grenade",
-"continent": "NA",
-"capitale": "St. George's",
-"monnaie": "XCD",
-"monnaie_nom": "dollar des Caraïbes orientales",
-"langues": [
-"anglais"
-],
-"indicatif": "+1-473",
-"superficie_km2": 344,
-"nom_en": "Grenada",
-"iso3": "GRD"
-},
-"GE": {
-"nom": "Géorgie",
-"continent": "AS",
-"capitale": "Tbilisi",
-"monnaie": "GEL",
-"monnaie_nom": "lari géorgien",
-"langues": [
-"géorgien",
-"russe",
-"arménien"
-],
-"indicatif": "+995",
-"superficie_km2": 69700,
-"nom_en": "Georgia",
-"iso3": "GEO"
-},
-"GF": {
-"nom": "Guyane française",
-"continent": "SA",
-"capitale": "Cayenne",
-"monnaie": "EUR",
-"monnaie_nom": "euro",
-"langues": [
-"français"
-],
-"indicatif": "+594",
-"superficie_km2": 91000,
-"nom_en": "French Guiana",
-"iso3": "GUF"
-},
-"GG": {
-"nom": "Guernesey",
-"continent": "EU",
-"capitale": "St Peter Port",
-"monnaie": "GBP",
-"monnaie_nom": "livre sterling",
-"langues": [
-"anglais"
-],
-"indicatif": "+44-1481",
-"superficie_km2": 78,
-"nom_en": "Guernsey",
-"iso3": "GGY"
-},
-"GH": {
-"nom": "Ghana",
-"continent": "AF",
-"capitale": "Accra",
-"monnaie": "GHS",
-"monnaie_nom": "cédi ghanéen",
-"langues": [
-"anglais",
-"akan",
-"éwé"
-],
-"indicatif": "+233",
-"superficie_km2": 239460,
-"nom_en": "Ghana",
-"iso3": "GHA"
-},
-"GI": {
-"nom": "Gibraltar",
-"continent": "EU",
-"capitale": "Gibraltar",
-"monnaie": "GIP",
-"monnaie_nom": "livre de Gibraltar",
-"langues": [
-"anglais",
-"espagnol",
-"italien"
-],
-"indicatif": "+350",
-"superficie_km2": 6,
-"nom_en": "Gibraltar",
-"iso3": "GIB"
-},
-"GL": {
-"nom": "Groenland",
-"continent": "NA",
-"capitale": "Nuuk",
-"monnaie": "DKK",
-"monnaie_nom": "couronne danoise",
-"langues": [
-"groenlandais",
-"danois",
-"anglais"
-],
-"indicatif": "+299",
-"superficie_km2": 2166086,
-"nom_en": "Greenland",
-"iso3": "GRL"
-},
-"GM": {
-"nom": "Gambie",
-"continent": "AF",
-"capitale": "Banjul",
-"monnaie": "GMD",
-"monnaie_nom": "dalasi gambien",
-"langues": [
-"anglais",
-"wolof",
-"peul"
-],
-"indicatif": "+220",
-"superficie_km2": 11300,
-"nom_en": "Gambia",
-"iso3": "GMB"
-},
-"GN": {
-"nom": "Guinée",
-"continent": "AF",
-"capitale": "Conakry",
-"monnaie": "GNF",
-"monnaie_nom": "franc guinéen",
-"langues": [
-"français"
-],
-"indicatif": "+224",
-"superficie_km2": 245857,
-"nom_en": "Guinea",
-"iso3": "GIN"
-},
-"GP": {
-"nom": "Guadeloupe",
-"continent": "NA",
-"capitale": "Basse-Terre",
-"monnaie": "EUR",
-"monnaie_nom": "euro",
-"langues": [
-"français"
-],
-"indicatif": "+590",
-"superficie_km2": 1780,
-"nom_en": "Guadeloupe",
-"iso3": "GLP"
-},
-"GQ": {
-"nom": "Guinée équatoriale",
-"continent": "AF",
-"capitale": "Ciudad de la Paz",
-"monnaie": "XAF",
-"monnaie_nom": "franc CFA (BEAC)",
-"langues": [
-"espagnol",
-"français",
-"portugais"
-],
-"indicatif": "+240",
-"superficie_km2": 28051,
-"nom_en": "Equatorial Guinea",
-"iso3": "GNQ"
-},
-"GR": {
-"nom": "Grèce",
-"continent": "EU",
-"capitale": "Athens",
-"monnaie": "EUR",
-"monnaie_nom": "euro",
-"langues": [
-"grec",
-"anglais",
-"français"
-],
-"indicatif": "+30",
-"superficie_km2": 131940,
-"nom_en": "Greece",
-"iso3": "GRC"
-},
-"GS": {
-"nom": "Géorgie du Sud-et-les Îles Sandwich du Sud",
-"continent": "AN",
-"capitale": "Grytviken",
-"monnaie": "GBP",
-"monnaie_nom": "livre sterling",
-"langues": [
-"anglais"
-],
-"indicatif": "",
-"superficie_km2": 3903,
-"nom_en": "South Georgia and the South Sandwich Islands",
-"iso3": "SGS"
-},
-"GT": {
-"nom": "Guatemala",
-"continent": "NA",
-"capitale": "Guatemala City",
-"monnaie": "GTQ",
-"monnaie_nom": "quetzal guatémaltèque",
-"langues": [
-"espagnol"
-],
-"indicatif": "+502",
-"superficie_km2": 108890,
-"nom_en": "Guatemala",
-"iso3": "GTM"
-},
-"GU": {
-"nom": "Guam",
-"continent": "OC",
-"capitale": "Hagatna",
-"monnaie": "USD",
-"monnaie_nom": "dollar des États-Unis",
-"langues": [
-"anglais",
-"chamorro"
-],
-"indicatif": "+1-671",
-"superficie_km2": 549,
-"nom_en": "Guam",
-"iso3": "GUM"
-},
-"GW": {
-"nom": "Guinée-Bissau",
-"continent": "AF",
-"capitale": "Bissau",
-"monnaie": "XOF",
-"monnaie_nom": "franc CFA (BCEAO)",
-"langues": [
-"portugais"
-],
-"indicatif": "+245",
-"superficie_km2": 36120,
-"nom_en": "Guinea-Bissau",
-"iso3": "GNB"
-},
-"GY": {
-"nom": "Guyana",
-"continent": "SA",
-"capitale": "Georgetown",
-"monnaie": "GYD",
-"monnaie_nom": "dollar du Guyana",
-"langues": [
-"anglais"
-],
-"indicatif": "+592",
-"superficie_km2": 214970,
-"nom_en": "Guyana",
-"iso3": "GUY"
-},
-"HK": {
-"nom": "R.A.S. chinoise de Hong Kong",
-"continent": "AS",
-"capitale": "Hong Kong",
-"monnaie": "HKD",
-"monnaie_nom": "dollar de Hong Kong",
-"langues": [
-"chinois",
-"cantonais",
-"anglais"
-],
-"indicatif": "+852",
-"superficie_km2": 1092,
-"nom_en": "Hong Kong",
-"iso3": "HKG"
-},
-"HM": {
-"nom": "Îles Heard-et-MacDonald",
-"continent": "AN",
-"capitale": "",
-"monnaie": "AUD",
-"monnaie_nom": "dollar australien",
-"langues": [],
-"indicatif": "+ ",
-"superficie_km2": 412,
-"nom_en": "Heard Island and McDonald Islands",
-"iso3": "HMD"
-},
-"HN": {
-"nom": "Honduras",
-"continent": "NA",
-"capitale": "Tegucigalpa",
-"monnaie": "HNL",
-"monnaie_nom": "lempira hondurien",
-"langues": [
-"espagnol"
-],
-"indicatif": "+504",
-"superficie_km2": 112090,
-"nom_en": "Honduras",
-"iso3": "HND"
-},
-"HR": {
-"nom": "Croatie",
-"continent": "EU",
-"capitale": "Zagreb",
-"monnaie": "EUR",
-"monnaie_nom": "euro",
-"langues": [
-"croate",
-"serbe"
-],
-"indicatif": "+385",
-"superficie_km2": 56542,
-"nom_en": "Croatia",
-"iso3": "HRV"
-},
-"HT": {
-"nom": "Haïti",
-"continent": "NA",
-"capitale": "Port-au-Prince",
-"monnaie": "HTG",
-"monnaie_nom": "gourde haïtienne",
-"langues": [
-"créole haïtien",
-"français"
-],
-"indicatif": "+509",
-"superficie_km2": 27750,
-"nom_en": "Haiti",
-"iso3": "HTI"
-},
-"HU": {
-"nom": "Hongrie",
-"continent": "EU",
-"capitale": "Budapest",
-"monnaie": "HUF",
-"monnaie_nom": "forint hongrois",
-"langues": [
-"hongrois"
-],
-"indicatif": "+36",
-"superficie_km2": 93030,
-"nom_en": "Hungary",
-"iso3": "HUN"
-},
-"ID": {
-"nom": "Indonésie",
-"continent": "AS",
-"capitale": "Jakarta",
-"monnaie": "IDR",
-"monnaie_nom": "roupie indonésienne",
-"langues": [
-"indonésien",
-"anglais",
-"néerlandais"
-],
-"indicatif": "+62",
-"superficie_km2": 1919440,
-"nom_en": "Indonesia",
-"iso3": "IDN"
-},
-"IE": {
-"nom": "Irlande",
-"continent": "EU",
-"capitale": "Dublin",
-"monnaie": "EUR",
-"monnaie_nom": "euro",
-"langues": [
-"anglais",
-"irlandais"
-],
-"indicatif": "+353",
-"superficie_km2": 70280,
-"nom_en": "Ireland",
-"iso3": "IRL"
-},
-"IL": {
-"nom": "Israël",
-"continent": "AS",
-"capitale": "Jerusalem",
-"monnaie": "ILS",
-"monnaie_nom": "nouveau shekel israélien",
-"langues": [
-"hébreu",
-"arabe",
-"anglais"
-],
-"indicatif": "+972",
-"superficie_km2": 20770,
-"nom_en": "Israel",
-"iso3": "ISR"
-},
-"IM": {
-"nom": "Île de Man",
-"continent": "EU",
-"capitale": "Douglas",
-"monnaie": "GBP",
-"monnaie_nom": "livre sterling",
-"langues": [
-"anglais",
-"mannois"
-],
-"indicatif": "+44-1624",
-"superficie_km2": 572,
-"nom_en": "Isle of Man",
-"iso3": "IMN"
-},
-"IN": {
-"nom": "Inde",
-"continent": "AS",
-"capitale": "New Delhi",
-"monnaie": "INR",
-"monnaie_nom": "roupie indienne",
-"langues": [
-"anglais",
-"hindi",
-"bengali"
-],
-"indicatif": "+91",
-"superficie_km2": 3287590,
-"nom_en": "India",
-"iso3": "IND"
-},
-"IO": {
-"nom": "Territoire britannique de l’océan Indien",
-"continent": "AS",
-"capitale": "Diego Garcia",
-"monnaie": "USD",
-"monnaie_nom": "dollar des États-Unis",
-"langues": [
-"anglais"
-],
-"indicatif": "+246",
-"superficie_km2": 60,
-"nom_en": "British Indian Ocean Territory",
-"iso3": "IOT"
-},
-"IQ": {
-"nom": "Irak",
-"continent": "AS",
-"capitale": "Baghdad",
-"monnaie": "IQD",
-"monnaie_nom": "dinar irakien",
-"langues": [
-"arabe",
-"kurde",
-"arménien"
-],
-"indicatif": "+964",
-"superficie_km2": 437072,
-"nom_en": "Iraq",
-"iso3": "IRQ"
-},
-"IR": {
-"nom": "Iran",
-"continent": "AS",
-"capitale": "Tehran",
-"monnaie": "IRR",
-"monnaie_nom": "riyal iranien",
-"langues": [
-"persan",
-"kurde"
-],
-"indicatif": "+98",
-"superficie_km2": 1648000,
-"nom_en": "Iran",
-"iso3": "IRN"
-},
-"IS": {
-"nom": "Islande",
-"continent": "EU",
-"capitale": "Reykjavik",
-"monnaie": "ISK",
-"monnaie_nom": "couronne islandaise",
-"langues": [
-"islandais",
-"anglais",
-"allemand"
-],
-"indicatif": "+354",
-"superficie_km2": 103000,
-"nom_en": "Iceland",
-"iso3": "ISL"
-},
-"IT": {
-"nom": "Italie",
-"continent": "EU",
-"capitale": "Rome",
-"monnaie": "EUR",
-"monnaie_nom": "euro",
-"langues": [
-"italien",
-"allemand",
-"français"
-],
-"indicatif": "+39",
-"superficie_km2": 301230,
-"nom_en": "Italy",
-"iso3": "ITA"
-},
-"JE": {
-"nom": "Jersey",
-"continent": "EU",
-"capitale": "Saint Helier",
-"monnaie": "GBP",
-"monnaie_nom": "livre sterling",
-"langues": [
-"anglais",
-"français"
-],
-"indicatif": "+44-1534",
-"superficie_km2": 116,
-"nom_en": "Jersey",
-"iso3": "JEY"
-},
-"JM": {
-"nom": "Jamaïque",
-"continent": "NA",
-"capitale": "Kingston",
-"monnaie": "JMD",
-"monnaie_nom": "dollar jamaïcain",
-"langues": [
-"anglais"
-],
-"indicatif": "+1-876",
-"superficie_km2": 10991,
-"nom_en": "Jamaica",
-"iso3": "JAM"
-},
-"JO": {
-"nom": "Jordanie",
-"continent": "AS",
-"capitale": "Amman",
-"monnaie": "JOD",
-"monnaie_nom": "dinar jordanien",
-"langues": [
-"arabe",
-"anglais"
-],
-"indicatif": "+962",
-"superficie_km2": 92300,
-"nom_en": "Jordan",
-"iso3": "JOR"
-},
-"JP": {
-"nom": "Japon",
-"continent": "AS",
-"capitale": "Tokyo",
-"monnaie": "JPY",
-"monnaie_nom": "yen japonais",
-"langues": [
-"japonais"
-],
-"indicatif": "+81",
-"superficie_km2": 377835,
-"nom_en": "Japan",
-"iso3": "JPN"
-},
-"KE": {
-"nom": "Kenya",
-"continent": "AF",
-"capitale": "Nairobi",
-"monnaie": "KES",
-"monnaie_nom": "shilling kényan",
-"langues": [
-"anglais",
-"swahili"
-],
-"indicatif": "+254",
-"superficie_km2": 582650,
-"nom_en": "Kenya",
-"iso3": "KEN"
-},
-"KG": {
-"nom": "Kirghizstan",
-"continent": "AS",
-"capitale": "Bishkek",
-"monnaie": "KGS",
-"monnaie_nom": "som kirghize",
-"langues": [
-"kirghize",
-"ouzbek",
-"russe"
-],
-"indicatif": "+996",
-"superficie_km2": 198500,
-"nom_en": "Kyrgyzstan",
-"iso3": "KGZ"
-},
-"KH": {
-"nom": "Cambodge",
-"continent": "AS",
-"capitale": "Phnom Penh",
-"monnaie": "KHR",
-"monnaie_nom": "riel cambodgien",
-"langues": [
-"khmer",
-"français",
-"anglais"
-],
-"indicatif": "+855",
-"superficie_km2": 181040,
-"nom_en": "Cambodia",
-"iso3": "KHM"
-},
-"KI": {
-"nom": "Kiribati",
-"continent": "OC",
-"capitale": "Tarawa",
-"monnaie": "AUD",
-"monnaie_nom": "dollar australien",
-"langues": [
-"anglais",
-"gilbertin"
-],
-"indicatif": "+686",
-"superficie_km2": 811,
-"nom_en": "Kiribati",
-"iso3": "KIR"
-},
-"KM": {
-"nom": "Comores",
-"continent": "AF",
-"capitale": "Moroni",
-"monnaie": "KMF",
-"monnaie_nom": "franc comorien",
-"langues": [
-"arabe",
-"français"
-],
-"indicatif": "+269",
-"superficie_km2": 2170,
-"nom_en": "Comoros",
-"iso3": "COM"
-},
-"KN": {
-"nom": "Saint-Christophe-et-Niévès",
-"continent": "NA",
-"capitale": "Basseterre",
-"monnaie": "XCD",
-"monnaie_nom": "dollar des Caraïbes orientales",
-"langues": [
-"anglais"
-],
-"indicatif": "+1-869",
-"superficie_km2": 261,
-"nom_en": "Saint Kitts and Nevis",
-"iso3": "KNA"
-},
-"KP": {
-"nom": "Corée du Nord",
-"continent": "AS",
-"capitale": "Pyongyang",
-"monnaie": "KPW",
-"monnaie_nom": "won nord-coréen",
-"langues": [
-"coréen"
-],
-"indicatif": "+850",
-"superficie_km2": 120540,
-"nom_en": "North Korea",
-"iso3": "PRK"
-},
-"KR": {
-"nom": "Corée du Sud",
-"continent": "AS",
-"capitale": "Seoul",
-"monnaie": "KRW",
-"monnaie_nom": "won sud-coréen",
-"langues": [
-"coréen",
-"anglais"
-],
-"indicatif": "+82",
-"superficie_km2": 98480,
-"nom_en": "South Korea",
-"iso3": "KOR"
-},
-"XK": {
-"nom": "Kosovo",
-"continent": "EU",
-"capitale": "Pristina",
-"monnaie": "EUR",
-"monnaie_nom": "euro",
-"langues": [
-"albanais",
-"serbe"
-],
-"indicatif": "",
-"superficie_km2": 10908,
-"nom_en": "Kosovo",
-"iso3": "XKX"
-},
-"KW": {
-"nom": "Koweït",
-"continent": "AS",
-"capitale": "Kuwait City",
-"monnaie": "KWD",
-"monnaie_nom": "dinar koweïtien",
-"langues": [
-"arabe",
-"anglais"
-],
-"indicatif": "+965",
-"superficie_km2": 17820,
-"nom_en": "Kuwait",
-"iso3": "KWT"
-},
-"KY": {
-"nom": "Îles Caïmans",
-"continent": "NA",
-"capitale": "George Town",
-"monnaie": "KYD",
-"monnaie_nom": "dollar des îles Caïmans",
-"langues": [
-"anglais"
-],
-"indicatif": "+1-345",
-"superficie_km2": 262,
-"nom_en": "Cayman Islands",
-"iso3": "CYM"
-},
-"KZ": {
-"nom": "Kazakhstan",
-"continent": "AS",
-"capitale": "Nur-Sultan",
-"monnaie": "KZT",
-"monnaie_nom": "tenge kazakh",
-"langues": [
-"kazakh",
-"russe"
-],
-"indicatif": "+7",
-"superficie_km2": 2717300,
-"nom_en": "Kazakhstan",
-"iso3": "KAZ"
-},
-"LA": {
-"nom": "Laos",
-"continent": "AS",
-"capitale": "Vientiane",
-"monnaie": "LAK",
-"monnaie_nom": "kip laotien",
-"langues": [
-"lao",
-"français",
-"anglais"
-],
-"indicatif": "+856",
-"superficie_km2": 236800,
-"nom_en": "Laos",
-"iso3": "LAO"
-},
-"LB": {
-"nom": "Liban",
-"continent": "AS",
-"capitale": "Beirut",
-"monnaie": "LBP",
-"monnaie_nom": "livre libanaise",
-"langues": [
-"arabe",
-"français",
-"anglais"
-],
-"indicatif": "+961",
-"superficie_km2": 10400,
-"nom_en": "Lebanon",
-"iso3": "LBN"
-},
-"LC": {
-"nom": "Sainte-Lucie",
-"continent": "NA",
-"capitale": "Castries",
-"monnaie": "XCD",
-"monnaie_nom": "dollar des Caraïbes orientales",
-"langues": [
-"anglais"
-],
-"indicatif": "+1-758",
-"superficie_km2": 616,
-"nom_en": "Saint Lucia",
-"iso3": "LCA"
-},
-"LI": {
-"nom": "Liechtenstein",
-"continent": "EU",
-"capitale": "Vaduz",
-"monnaie": "CHF",
-"monnaie_nom": "franc suisse",
-"langues": [
-"allemand"
-],
-"indicatif": "+423",
-"superficie_km2": 160,
-"nom_en": "Liechtenstein",
-"iso3": "LIE"
-},
-"LK": {
-"nom": "Sri Lanka",
-"continent": "AS",
-"capitale": "Colombo",
-"monnaie": "LKR",
-"monnaie_nom": "roupie srilankaise",
-"langues": [
-"cingalais",
-"tamoul",
-"anglais"
-],
-"indicatif": "+94",
-"superficie_km2": 65610,
-"nom_en": "Sri Lanka",
-"iso3": "LKA"
-},
-"LR": {
-"nom": "Liberia",
-"continent": "AF",
-"capitale": "Monrovia",
-"monnaie": "LRD",
-"monnaie_nom": "dollar libérien",
-"langues": [
-"anglais"
-],
-"indicatif": "+231",
-"superficie_km2": 111370,
-"nom_en": "Liberia",
-"iso3": "LBR"
-},
-"LS": {
-"nom": "Lesotho",
-"continent": "AF",
-"capitale": "Maseru",
-"monnaie": "LSL",
-"monnaie_nom": "loti lesothan",
-"langues": [
-"anglais",
-"sotho du Sud",
-"zoulou"
-],
-"indicatif": "+266",
-"superficie_km2": 30355,
-"nom_en": "Lesotho",
-"iso3": "LSO"
-},
-"LT": {
-"nom": "Lituanie",
-"continent": "EU",
-"capitale": "Vilnius",
-"monnaie": "EUR",
-"monnaie_nom": "euro",
-"langues": [
-"lituanien",
-"russe",
-"polonais"
-],
-"indicatif": "+370",
-"superficie_km2": 65200,
-"nom_en": "Lithuania",
-"iso3": "LTU"
-},
-"LU": {
-"nom": "Luxembourg",
-"continent": "EU",
-"capitale": "Luxembourg",
-"monnaie": "EUR",
-"monnaie_nom": "euro",
-"langues": [
-"luxembourgeois",
-"allemand",
-"français"
-],
-"indicatif": "+352",
-"superficie_km2": 2586,
-"nom_en": "Luxembourg",
-"iso3": "LUX"
-},
-"LV": {
-"nom": "Lettonie",
-"continent": "EU",
-"capitale": "Riga",
-"monnaie": "EUR",
-"monnaie_nom": "euro",
-"langues": [
-"letton",
-"russe",
-"lituanien"
-],
-"indicatif": "+371",
-"superficie_km2": 64589,
-"nom_en": "Latvia",
-"iso3": "LVA"
-},
-"LY": {
-"nom": "Libye",
-"continent": "AF",
-"capitale": "Tripoli",
-"monnaie": "LYD",
-"monnaie_nom": "dinar libyen",
-"langues": [
-"arabe",
-"italien",
-"anglais"
-],
-"indicatif": "+218",
-"superficie_km2": 1759540,
-"nom_en": "Libya",
-"iso3": "LBY"
-},
-"MA": {
-"nom": "Maroc",
-"continent": "AF",
-"capitale": "Rabat",
-"monnaie": "MAD",
-"monnaie_nom": "dirham marocain",
-"langues": [
-"arabe",
-"français"
-],
-"indicatif": "+212",
-"superficie_km2": 446550,
-"nom_en": "Morocco",
-"iso3": "MAR"
-},
-"MC": {
-"nom": "Monaco",
-"continent": "EU",
-"capitale": "Monaco",
-"monnaie": "EUR",
-"monnaie_nom": "euro",
-"langues": [
-"français",
-"anglais",
-"italien"
-],
-"indicatif": "+377",
-"superficie_km2": 1,
-"nom_en": "Monaco",
-"iso3": "MCO"
-},
-"MD": {
-"nom": "Moldavie",
-"continent": "EU",
-"capitale": "Chisinau",
-"monnaie": "MDL",
-"monnaie_nom": "leu moldave",
-"langues": [
-"roumain",
-"russe",
-"gagaouze"
-],
-"indicatif": "+373",
-"superficie_km2": 33843,
-"nom_en": "Moldova",
-"iso3": "MDA"
-},
-"ME": {
-"nom": "Monténégro",
-"continent": "EU",
-"capitale": "Podgorica",
-"monnaie": "EUR",
-"monnaie_nom": "euro",
-"langues": [
-"serbe",
-"hongrois",
-"bosniaque"
-],
-"indicatif": "+382",
-"superficie_km2": 14026,
-"nom_en": "Montenegro",
-"iso3": "MNE"
-},
-"MF": {
-"nom": "Saint-Martin",
-"continent": "NA",
-"capitale": "Marigot",
-"monnaie": "EUR",
-"monnaie_nom": "euro",
-"langues": [
-"français"
-],
-"indicatif": "+590",
-"superficie_km2": 53,
-"nom_en": "Saint Martin",
-"iso3": "MAF"
-},
-"MG": {
-"nom": "Madagascar",
-"continent": "AF",
-"capitale": "Antananarivo",
-"monnaie": "MGA",
-"monnaie_nom": "ariary malgache",
-"langues": [
-"français",
-"malgache"
-],
-"indicatif": "+261",
-"superficie_km2": 587040,
-"nom_en": "Madagascar",
-"iso3": "MDG"
-},
-"MH": {
-"nom": "Îles Marshall",
-"continent": "OC",
-"capitale": "Majuro",
-"monnaie": "USD",
-"monnaie_nom": "dollar des États-Unis",
-"langues": [
-"marshallais",
-"anglais"
-],
-"indicatif": "+692",
-"superficie_km2": 181,
-"nom_en": "Marshall Islands",
-"iso3": "MHL"
-},
-"MK": {
-"nom": "Macédoine du Nord",
-"continent": "EU",
-"capitale": "Skopje",
-"monnaie": "MKD",
-"monnaie_nom": "denar macédonien",
-"langues": [
-"macédonien",
-"albanais",
-"turc"
-],
-"indicatif": "+389",
-"superficie_km2": 25333,
-"nom_en": "North Macedonia",
-"iso3": "MKD"
-},
-"ML": {
-"nom": "Mali",
-"continent": "AF",
-"capitale": "Bamako",
-"monnaie": "XOF",
-"monnaie_nom": "franc CFA (BCEAO)",
-"langues": [
-"français",
-"bambara"
-],
-"indicatif": "+223",
-"superficie_km2": 1240000,
-"nom_en": "Mali",
-"iso3": "MLI"
-},
-"MM": {
-"nom": "Myanmar (Birmanie)",
-"continent": "AS",
-"capitale": "Nay Pyi Taw",
-"monnaie": "MMK",
-"monnaie_nom": "kyat myanmarais",
-"langues": [
-"birman"
-],
-"indicatif": "+95",
-"superficie_km2": 678500,
-"nom_en": "Myanmar",
-"iso3": "MMR"
-},
-"MN": {
-"nom": "Mongolie",
-"continent": "AS",
-"capitale": "Ulaanbaatar",
-"monnaie": "MNT",
-"monnaie_nom": "tugrik mongol",
-"langues": [
-"mongol",
-"russe"
-],
-"indicatif": "+976",
-"superficie_km2": 1565000,
-"nom_en": "Mongolia",
-"iso3": "MNG"
-},
-"MO": {
-"nom": "R.A.S. chinoise de Macao",
-"continent": "AS",
-"capitale": "Macao",
-"monnaie": "MOP",
-"monnaie_nom": "pataca macanaise",
-"langues": [
-"chinois",
-"portugais"
-],
-"indicatif": "+853",
-"superficie_km2": 254,
-"nom_en": "Macao",
-"iso3": "MAC"
-},
-"MP": {
-"nom": "Îles Mariannes du Nord",
-"continent": "OC",
-"capitale": "Saipan",
-"monnaie": "USD",
-"monnaie_nom": "dollar des États-Unis",
-"langues": [
-"filipino",
-"tagalog",
-"chinois"
-],
-"indicatif": "+1-670",
-"superficie_km2": 477,
-"nom_en": "Northern Mariana Islands",
-"iso3": "MNP"
-},
-"MQ": {
-"nom": "Martinique",
-"continent": "NA",
-"capitale": "Fort-de-France",
-"monnaie": "EUR",
-"monnaie_nom": "euro",
-"langues": [
-"français"
-],
-"indicatif": "+596",
-"superficie_km2": 1100,
-"nom_en": "Martinique",
-"iso3": "MTQ"
-},
-"MR": {
-"nom": "Mauritanie",
-"continent": "AF",
-"capitale": "Nouakchott",
-"monnaie": "MRU",
-"monnaie_nom": "ouguiya mauritanien",
-"langues": [
-"arabe",
-"soninké",
-"français"
-],
-"indicatif": "+222",
-"superficie_km2": 1030700,
-"nom_en": "Mauritania",
-"iso3": "MRT"
-},
-"MS": {
-"nom": "Montserrat",
-"continent": "NA",
-"capitale": "Plymouth",
-"monnaie": "XCD",
-"monnaie_nom": "dollar des Caraïbes orientales",
-"langues": [
-"anglais"
-],
-"indicatif": "+1-664",
-"superficie_km2": 102,
-"nom_en": "Montserrat",
-"iso3": "MSR"
-},
-"MT": {
-"nom": "Malte",
-"continent": "EU",
-"capitale": "Valletta",
-"monnaie": "EUR",
-"monnaie_nom": "euro",
-"langues": [
-"maltais",
-"anglais"
-],
-"indicatif": "+356",
-"superficie_km2": 316,
-"nom_en": "Malta",
-"iso3": "MLT"
-},
-"MU": {
-"nom": "Maurice",
-"continent": "AF",
-"capitale": "Port Louis",
-"monnaie": "MUR",
-"monnaie_nom": "roupie mauricienne",
-"langues": [
-"anglais",
-"bhodjpouri",
-"français"
-],
-"indicatif": "+230",
-"superficie_km2": 2040,
-"nom_en": "Mauritius",
-"iso3": "MUS"
-},
-"MV": {
-"nom": "Maldives",
-"continent": "AS",
-"capitale": "Male",
-"monnaie": "MVR",
-"monnaie_nom": "rufiyaa maldivienne",
-"langues": [
-"maldivien",
-"anglais"
-],
-"indicatif": "+960",
-"superficie_km2": 300,
-"nom_en": "Maldives",
-"iso3": "MDV"
-},
-"MW": {
-"nom": "Malawi",
-"continent": "AF",
-"capitale": "Lilongwe",
-"monnaie": "MWK",
-"monnaie_nom": "kwacha malawite",
-"langues": [
-"chewa",
-"yao",
-"tumbuka"
-],
-"indicatif": "+265",
-"superficie_km2": 118480,
-"nom_en": "Malawi",
-"iso3": "MWI"
-},
-"MX": {
-"nom": "Mexique",
-"continent": "NA",
-"capitale": "Mexico City",
-"monnaie": "MXN",
-"monnaie_nom": "peso mexicain",
-"langues": [
-"espagnol"
-],
-"indicatif": "+52",
-"superficie_km2": 1972550,
-"nom_en": "Mexico",
-"iso3": "MEX"
-},
-"MY": {
-"nom": "Malaisie",
-"continent": "AS",
-"capitale": "Kuala Lumpur",
-"monnaie": "MYR",
-"monnaie_nom": "ringgit malais",
-"langues": [
-"malais",
-"anglais",
-"chinois"
-],
-"indicatif": "+60",
-"superficie_km2": 329750,
-"nom_en": "Malaysia",
-"iso3": "MYS"
-},
-"MZ": {
-"nom": "Mozambique",
-"continent": "AF",
-"capitale": "Maputo",
-"monnaie": "MZN",
-"monnaie_nom": "metical mozambicain",
-"langues": [
-"portugais",
-"macua"
-],
-"indicatif": "+258",
-"superficie_km2": 801590,
-"nom_en": "Mozambique",
-"iso3": "MOZ"
-},
-"NA": {
-"nom": "Namibie",
-"continent": "AF",
-"capitale": "Windhoek",
-"monnaie": "NAD",
-"monnaie_nom": "dollar namibien",
-"langues": [
-"anglais",
-"afrikaans",
-"allemand"
-],
-"indicatif": "+264",
-"superficie_km2": 825418,
-"nom_en": "Namibia",
-"iso3": "NAM"
-},
-"NC": {
-"nom": "Nouvelle-Calédonie",
-"continent": "OC",
-"capitale": "Noumea",
-"monnaie": "XPF",
-"monnaie_nom": "franc CFP",
-"langues": [
-"français"
-],
-"indicatif": "+687",
-"superficie_km2": 19060,
-"nom_en": "New Caledonia",
-"iso3": "NCL"
-},
-"NE": {
-"nom": "Niger",
-"continent": "AF",
-"capitale": "Niamey",
-"monnaie": "XOF",
-"monnaie_nom": "franc CFA (BCEAO)",
-"langues": [
-"français",
-"haoussa",
-"kanouri"
-],
-"indicatif": "+227",
-"superficie_km2": 1267000,
-"nom_en": "Niger",
-"iso3": "NER"
-},
-"NF": {
-"nom": "Île Norfolk",
-"continent": "OC",
-"capitale": "Kingston",
-"monnaie": "AUD",
-"monnaie_nom": "dollar australien",
-"langues": [
-"anglais"
-],
-"indicatif": "+672",
-"superficie_km2": 34,
-"nom_en": "Norfolk Island",
-"iso3": "NFK"
-},
-"NG": {
-"nom": "Nigeria",
-"continent": "AF",
-"capitale": "Abuja",
-"monnaie": "NGN",
-"monnaie_nom": "naira nigérian",
-"langues": [
-"anglais",
-"haoussa",
-"yoruba"
-],
-"indicatif": "+234",
-"superficie_km2": 923768,
-"nom_en": "Nigeria",
-"iso3": "NGA"
-},
-"NI": {
-"nom": "Nicaragua",
-"continent": "NA",
-"capitale": "Managua",
-"monnaie": "NIO",
-"monnaie_nom": "córdoba oro nicaraguayen",
-"langues": [
-"espagnol",
-"anglais"
-],
-"indicatif": "+505",
-"superficie_km2": 129494,
-"nom_en": "Nicaragua",
-"iso3": "NIC"
-},
-"NL": {
-"nom": "Pays-Bas",
-"continent": "EU",
-"capitale": "Amsterdam",
-"monnaie": "EUR",
-"monnaie_nom": "euro",
-"langues": [
-"néerlandais",
-"frison occidental"
-],
-"indicatif": "+31",
-"superficie_km2": 41526,
-"nom_en": "The Netherlands",
-"iso3": "NLD"
-},
-"NO": {
-"nom": "Norvège",
-"continent": "EU",
-"capitale": "Oslo",
-"monnaie": "NOK",
-"monnaie_nom": "couronne norvégienne",
-"langues": [
-"norvégien",
-"norvégien bokmål",
-"norvégien nynorsk"
-],
-"indicatif": "+47",
-"superficie_km2": 324220,
-"nom_en": "Norway",
-"iso3": "NOR"
-},
-"NP": {
-"nom": "Népal",
-"continent": "AS",
-"capitale": "Kathmandu",
-"monnaie": "NPR",
-"monnaie_nom": "roupie népalaise",
-"langues": [
-"népalais",
-"anglais"
-],
-"indicatif": "+977",
-"superficie_km2": 140800,
-"nom_en": "Nepal",
-"iso3": "NPL"
-},
-"NR": {
-"nom": "Nauru",
-"continent": "OC",
-"capitale": "Yaren",
-"monnaie": "AUD",
-"monnaie_nom": "dollar australien",
-"langues": [
-"nauruan",
-"anglais"
-],
-"indicatif": "+674",
-"superficie_km2": 21,
-"nom_en": "Nauru",
-"iso3": "NRU"
-},
-"NU": {
-"nom": "Niue",
-"continent": "OC",
-"capitale": "Alofi",
-"monnaie": "NZD",
-"monnaie_nom": "dollar néo-zélandais",
-"langues": [
-"niuéen",
-"anglais"
-],
-"indicatif": "+683",
-"superficie_km2": 260,
-"nom_en": "Niue",
-"iso3": "NIU"
-},
-"NZ": {
-"nom": "Nouvelle-Zélande",
-"continent": "OC",
-"capitale": "Wellington",
-"monnaie": "NZD",
-"monnaie_nom": "dollar néo-zélandais",
-"langues": [
-"anglais",
-"maori"
-],
-"indicatif": "+64",
-"superficie_km2": 268680,
-"nom_en": "New Zealand",
-"iso3": "NZL"
-},
-"OM": {
-"nom": "Oman",
-"continent": "AS",
-"capitale": "Muscat",
-"monnaie": "OMR",
-"monnaie_nom": "riyal omanais",
-"langues": [
-"arabe",
-"anglais",
-"baloutchi"
-],
-"indicatif": "+968",
-"superficie_km2": 212460,
-"nom_en": "Oman",
-"iso3": "OMN"
-},
-"PA": {
-"nom": "Panama",
-"continent": "NA",
-"capitale": "Panama City",
-"monnaie": "PAB",
-"monnaie_nom": "balboa panaméen",
-"langues": [
-"espagnol",
-"anglais"
-],
-"indicatif": "+507",
-"superficie_km2": 78200,
-"nom_en": "Panama",
-"iso3": "PAN"
-},
-"PE": {
-"nom": "Pérou",
-"continent": "SA",
-"capitale": "Lima",
-"monnaie": "PEN",
-"monnaie_nom": "sol péruvien",
-"langues": [
-"espagnol",
-"quechua",
-"aymara"
-],
-"indicatif": "+51",
-"superficie_km2": 1285220,
-"nom_en": "Peru",
-"iso3": "PER"
-},
-"PF": {
-"nom": "Polynésie française",
-"continent": "OC",
-"capitale": "Papeete",
-"monnaie": "XPF",
-"monnaie_nom": "franc CFP",
-"langues": [
-"français",
-"tahitien"
-],
-"indicatif": "+689",
-"superficie_km2": 4167,
-"nom_en": "French Polynesia",
-"iso3": "PYF"
-},
-"PG": {
-"nom": "Papouasie-Nouvelle-Guinée",
-"continent": "OC",
-"capitale": "Port Moresby",
-"monnaie": "PGK",
-"monnaie_nom": "kina papouan-néo-guinéen",
-"langues": [
-"anglais",
-"hiri motu",
-"tok pisin"
-],
-"indicatif": "+675",
-"superficie_km2": 462840,
-"nom_en": "Papua New Guinea",
-"iso3": "PNG"
-},
-"PH": {
-"nom": "Philippines",
-"continent": "AS",
-"capitale": "Manila",
-"monnaie": "PHP",
-"monnaie_nom": "peso philippin",
-"langues": [
-"tagalog",
-"anglais",
-"filipino"
-],
-"indicatif": "+63",
-"superficie_km2": 300000,
-"nom_en": "Philippines",
-"iso3": "PHL"
-},
-"PK": {
-"nom": "Pakistan",
-"continent": "AS",
-"capitale": "Islamabad",
-"monnaie": "PKR",
-"monnaie_nom": "roupie pakistanaise",
-"langues": [
-"ourdou",
-"anglais",
-"pendjabi"
-],
-"indicatif": "+92",
-"superficie_km2": 803940,
-"nom_en": "Pakistan",
-"iso3": "PAK"
-},
-"PL": {
-"nom": "Pologne",
-"continent": "EU",
-"capitale": "Warsaw",
-"monnaie": "PLN",
-"monnaie_nom": "zloty polonais",
-"langues": [
-"polonais"
-],
-"indicatif": "+48",
-"superficie_km2": 312685,
-"nom_en": "Poland",
-"iso3": "POL"
-},
-"PM": {
-"nom": "Saint-Pierre-et-Miquelon",
-"continent": "NA",
-"capitale": "Saint-Pierre",
-"monnaie": "EUR",
-"monnaie_nom": "euro",
-"langues": [
-"français"
-],
-"indicatif": "+508",
-"superficie_km2": 242,
-"nom_en": "Saint Pierre and Miquelon",
-"iso3": "SPM"
-},
-"PN": {
-"nom": "Îles Pitcairn",
-"continent": "OC",
-"capitale": "Adamstown",
-"monnaie": "NZD",
-"monnaie_nom": "dollar néo-zélandais",
-"langues": [
-"anglais"
-],
-"indicatif": "+870",
-"superficie_km2": 47,
-"nom_en": "Pitcairn",
-"iso3": "PCN"
-},
-"PR": {
-"nom": "Porto Rico",
-"continent": "NA",
-"capitale": "San Juan",
-"monnaie": "USD",
-"monnaie_nom": "dollar des États-Unis",
-"langues": [
-"anglais",
-"espagnol"
-],
-"indicatif": "+1-787 and 1-939",
-"superficie_km2": 9104,
-"nom_en": "Puerto Rico",
-"iso3": "PRI"
-},
-"PS": {
-"nom": "Territoires palestiniens",
-"continent": "AS",
-"capitale": "East Jerusalem",
-"monnaie": "ILS",
-"monnaie_nom": "nouveau shekel israélien",
-"langues": [
-"arabe"
-],
-"indicatif": "+970",
-"superficie_km2": 5970,
-"nom_en": "Palestinian Territory",
-"iso3": "PSE"
-},
-"PT": {
-"nom": "Portugal",
-"continent": "EU",
-"capitale": "Lisbon",
-"monnaie": "EUR",
-"monnaie_nom": "euro",
-"langues": [
-"portugais",
-"mirandais"
-],
-"indicatif": "+351",
-"superficie_km2": 92391,
-"nom_en": "Portugal",
-"iso3": "PRT"
-},
-"PW": {
-"nom": "Palaos",
-"continent": "OC",
-"capitale": "Melekeok",
-"monnaie": "USD",
-"monnaie_nom": "dollar des États-Unis",
-"langues": [
-"palau",
-"anglais",
-"japonais"
-],
-"indicatif": "+680",
-"superficie_km2": 458,
-"nom_en": "Palau",
-"iso3": "PLW"
-},
-"PY": {
-"nom": "Paraguay",
-"continent": "SA",
-"capitale": "Asuncion",
-"monnaie": "PYG",
-"monnaie_nom": "guaraní paraguayen",
-"langues": [
-"espagnol",
-"guarani"
-],
-"indicatif": "+595",
-"superficie_km2": 406750,
-"nom_en": "Paraguay",
-"iso3": "PRY"
-},
-"QA": {
-"nom": "Qatar",
-"continent": "AS",
-"capitale": "Doha",
-"monnaie": "QAR",
-"monnaie_nom": "riyal qatari",
-"langues": [
-"arabe",
-"espagnol"
-],
-"indicatif": "+974",
-"superficie_km2": 11437,
-"nom_en": "Qatar",
-"iso3": "QAT"
-},
-"RE": {
-"nom": "La Réunion",
-"continent": "AF",
-"capitale": "Saint-Denis",
-"monnaie": "EUR",
-"monnaie_nom": "euro",
-"langues": [
-"français"
-],
-"indicatif": "+262",
-"superficie_km2": 2517,
-"nom_en": "Reunion",
-"iso3": "REU"
-},
-"RO": {
-"nom": "Roumanie",
-"continent": "EU",
-"capitale": "Bucharest",
-"monnaie": "RON",
-"monnaie_nom": "leu roumain",
-"langues": [
-"roumain",
-"hongrois",
-"romani"
-],
-"indicatif": "+40",
-"superficie_km2": 237500,
-"nom_en": "Romania",
-"iso3": "ROU"
-},
-"RS": {
-"nom": "Serbie",
-"continent": "EU",
-"capitale": "Belgrade",
-"monnaie": "RSD",
-"monnaie_nom": "dinar serbe",
-"langues": [
-"serbe",
-"hongrois",
-"bosniaque"
-],
-"indicatif": "+381",
-"superficie_km2": 88361,
-"nom_en": "Serbia",
-"iso3": "SRB"
-},
-"RU": {
-"nom": "Russie",
-"continent": "EU",
-"capitale": "Moscow",
-"monnaie": "RUB",
-"monnaie_nom": "rouble russe",
-"langues": [
-"russe",
-"tatar",
-"kalmouk"
-],
-"indicatif": "+7",
-"superficie_km2": 17100000,
-"nom_en": "Russia",
-"iso3": "RUS"
-},
-"RW": {
-"nom": "Rwanda",
-"continent": "AF",
-"capitale": "Kigali",
-"monnaie": "RWF",
-"monnaie_nom": "franc rwandais",
-"langues": [
-"kinyarwanda",
-"anglais",
-"français"
-],
-"indicatif": "+250",
-"superficie_km2": 26338,
-"nom_en": "Rwanda",
-"iso3": "RWA"
-},
-"SA": {
-"nom": "Arabie saoudite",
-"continent": "AS",
-"capitale": "Riyadh",
-"monnaie": "SAR",
-"monnaie_nom": "riyal saoudien",
-"langues": [
-"arabe"
-],
-"indicatif": "+966",
-"superficie_km2": 1960582,
-"nom_en": "Saudi Arabia",
-"iso3": "SAU"
-},
-"SB": {
-"nom": "Îles Salomon",
-"continent": "OC",
-"capitale": "Honiara",
-"monnaie": "SBD",
-"monnaie_nom": "dollar des îles Salomon",
-"langues": [
-"anglais",
-"tok pisin"
-],
-"indicatif": "+677",
-"superficie_km2": 28450,
-"nom_en": "Solomon Islands",
-"iso3": "SLB"
-},
-"SC": {
-"nom": "Seychelles",
-"continent": "AF",
-"capitale": "Victoria",
-"monnaie": "SCR",
-"monnaie_nom": "roupie des Seychelles",
-"langues": [
-"anglais",
-"français"
-],
-"indicatif": "+248",
-"superficie_km2": 455,
-"nom_en": "Seychelles",
-"iso3": "SYC"
-},
-"SD": {
-"nom": "Soudan",
-"continent": "AF",
-"capitale": "Khartoum",
-"monnaie": "SDG",
-"monnaie_nom": "livre soudanaise",
-"langues": [
-"arabe",
-"anglais"
-],
-"indicatif": "+249",
-"superficie_km2": 1861484,
-"nom_en": "Sudan",
-"iso3": "SDN"
-},
-"SS": {
-"nom": "Soudan du Sud",
-"continent": "AF",
-"capitale": "Juba",
-"monnaie": "SSP",
-"monnaie_nom": "livre sud-soudanaise",
-"langues": [
-"anglais"
-],
-"indicatif": "+211",
-"superficie_km2": 644329,
-"nom_en": "South Sudan",
-"iso3": "SSD"
-},
-"SE": {
-"nom": "Suède",
-"continent": "EU",
-"capitale": "Stockholm",
-"monnaie": "SEK",
-"monnaie_nom": "couronne suédoise",
-"langues": [
-"suédois",
-"same du Nord",
-"same du Sud"
-],
-"indicatif": "+46",
-"superficie_km2": 449964,
-"nom_en": "Sweden",
-"iso3": "SWE"
-},
-"SG": {
-"nom": "Singapour",
-"continent": "AS",
-"capitale": "Singapore",
-"monnaie": "SGD",
-"monnaie_nom": "dollar de Singapour",
-"langues": [
-"anglais",
-"malais",
-"tamoul"
-],
-"indicatif": "+65",
-"superficie_km2": 692,
-"nom_en": "Singapore",
-"iso3": "SGP"
-},
-"SH": {
-"nom": "Sainte-Hélène",
-"continent": "AF",
-"capitale": "Jamestown",
-"monnaie": "SHP",
-"monnaie_nom": "livre de Sainte-Hélène",
-"langues": [
-"anglais"
-],
-"indicatif": "+290",
-"superficie_km2": 410,
-"nom_en": "Saint Helena",
-"iso3": "SHN"
-},
-"SI": {
-"nom": "Slovénie",
-"continent": "EU",
-"capitale": "Ljubljana",
-"monnaie": "EUR",
-"monnaie_nom": "euro",
-"langues": [
-"slovène",
-"serbo-croate"
-],
-"indicatif": "+386",
-"superficie_km2": 20273,
-"nom_en": "Slovenia",
-"iso3": "SVN"
-},
-"SJ": {
-"nom": "Svalbard et Jan Mayen",
-"continent": "EU",
-"capitale": "Longyearbyen",
-"monnaie": "NOK",
-"monnaie_nom": "couronne norvégienne",
-"langues": [
-"norvégien",
-"russe"
-],
-"indicatif": "+47",
-"superficie_km2": 62049,
-"nom_en": "Svalbard and Jan Mayen",
-"iso3": "SJM"
-},
-"SK": {
-"nom": "Slovaquie",
-"continent": "EU",
-"capitale": "Bratislava",
-"monnaie": "EUR",
-"monnaie_nom": "euro",
-"langues": [
-"slovaque",
-"hongrois"
-],
-"indicatif": "+421",
-"superficie_km2": 48845,
-"nom_en": "Slovakia",
-"iso3": "SVK"
-},
-"SL": {
-"nom": "Sierra Leone",
-"continent": "AF",
-"capitale": "Freetown",
-"monnaie": "SLE",
-"monnaie_nom": "leone sierra-léonais",
-"langues": [
-"anglais",
-"mendé",
-"timné"
-],
-"indicatif": "+232",
-"superficie_km2": 71740,
-"nom_en": "Sierra Leone",
-"iso3": "SLE"
-},
-"SM": {
-"nom": "Saint-Marin",
-"continent": "EU",
-"capitale": "San Marino",
-"monnaie": "EUR",
-"monnaie_nom": "euro",
-"langues": [
-"italien"
-],
-"indicatif": "+378",
-"superficie_km2": 61,
-"nom_en": "San Marino",
-"iso3": "SMR"
-},
-"SN": {
-"nom": "Sénégal",
-"continent": "AF",
-"capitale": "Dakar",
-"monnaie": "XOF",
-"monnaie_nom": "franc CFA (BCEAO)",
-"langues": [
-"français",
-"wolof"
-],
-"indicatif": "+221",
-"superficie_km2": 196190,
-"nom_en": "Senegal",
-"iso3": "SEN"
-},
-"SO": {
-"nom": "Somalie",
-"continent": "AF",
-"capitale": "Mogadishu",
-"monnaie": "SOS",
-"monnaie_nom": "shilling somalien",
-"langues": [
-"somali",
-"arabe",
-"italien"
-],
-"indicatif": "+252",
-"superficie_km2": 637657,
-"nom_en": "Somalia",
-"iso3": "SOM"
-},
-"SR": {
-"nom": "Suriname",
-"continent": "SA",
-"capitale": "Paramaribo",
-"monnaie": "SRD",
-"monnaie_nom": "dollar surinamais",
-"langues": [
-"néerlandais",
-"anglais",
-"sranan tongo"
-],
-"indicatif": "+597",
-"superficie_km2": 163270,
-"nom_en": "Suriname",
-"iso3": "SUR"
-},
-"ST": {
-"nom": "Sao Tomé-et-Principe",
-"continent": "AF",
-"capitale": "Sao Tome",
-"monnaie": "STN",
-"monnaie_nom": "dobra santoméen",
-"langues": [
-"portugais"
-],
-"indicatif": "+239",
-"superficie_km2": 1001,
-"nom_en": "Sao Tome and Principe",
-"iso3": "STP"
-},
-"SV": {
-"nom": "Salvador",
-"continent": "NA",
-"capitale": "San Salvador",
-"monnaie": "USD",
-"monnaie_nom": "dollar des États-Unis",
-"langues": [
-"espagnol"
-],
-"indicatif": "+503",
-"superficie_km2": 21040,
-"nom_en": "El Salvador",
-"iso3": "SLV"
-},
-"SX": {
-"nom": "Saint-Martin (partie néerlandaise)",
-"continent": "NA",
-"capitale": "Philipsburg",
-"monnaie": "XCG",
-"monnaie_nom": "florin caribéen",
-"langues": [
-"néerlandais",
-"anglais"
-],
-"indicatif": "+599",
-"superficie_km2": 21,
-"nom_en": "Sint Maarten",
-"iso3": "SXM"
-},
-"SY": {
-"nom": "Syrie",
-"continent": "AS",
-"capitale": "Damascus",
-"monnaie": "SYP",
-"monnaie_nom": "livre syrienne",
-"langues": [
-"arabe",
-"kurde",
-"arménien"
-],
-"indicatif": "+963",
-"superficie_km2": 185180,
-"nom_en": "Syria",
-"iso3": "SYR"
-},
-"SZ": {
-"nom": "Eswatini",
-"continent": "AF",
-"capitale": "Mbabane",
-"monnaie": "SZL",
-"monnaie_nom": "lilangeni swazi",
-"langues": [
-"anglais",
-"swati"
-],
-"indicatif": "+268",
-"superficie_km2": 17363,
-"nom_en": "Eswatini",
-"iso3": "SWZ"
-},
-"TC": {
-"nom": "Îles Turques-et-Caïques",
-"continent": "NA",
-"capitale": "Cockburn Town",
-"monnaie": "USD",
-"monnaie_nom": "dollar des États-Unis",
-"langues": [
-"anglais"
-],
-"indicatif": "+1-649",
-"superficie_km2": 430,
-"nom_en": "Turks and Caicos Islands",
-"iso3": "TCA"
-},
-"TD": {
-"nom": "Tchad",
-"continent": "AF",
-"capitale": "N'Djamena",
-"monnaie": "XAF",
-"monnaie_nom": "franc CFA (BEAC)",
-"langues": [
-"français",
-"arabe"
-],
-"indicatif": "+235",
-"superficie_km2": 1284000,
-"nom_en": "Chad",
-"iso3": "TCD"
-},
-"TF": {
-"nom": "Terres australes françaises",
-"continent": "AN",
-"capitale": "Port-aux-Francais",
-"monnaie": "EUR",
-"monnaie_nom": "euro",
-"langues": [
-"français"
-],
-"indicatif": "",
-"superficie_km2": 7829,
-"nom_en": "French Southern Territories",
-"iso3": "ATF"
-},
-"TG": {
-"nom": "Togo",
-"continent": "AF",
-"capitale": "Lome",
-"monnaie": "XOF",
-"monnaie_nom": "franc CFA (BCEAO)",
-"langues": [
-"français",
-"éwé",
-"haoussa"
-],
-"indicatif": "+228",
-"superficie_km2": 56785,
-"nom_en": "Togo",
-"iso3": "TGO"
-},
-"TH": {
-"nom": "Thaïlande",
-"continent": "AS",
-"capitale": "Bangkok",
-"monnaie": "THB",
-"monnaie_nom": "baht thaïlandais",
-"langues": [
-"thaï",
-"anglais"
-],
-"indicatif": "+66",
-"superficie_km2": 514000,
-"nom_en": "Thailand",
-"iso3": "THA"
-},
-"TJ": {
-"nom": "Tadjikistan",
-"continent": "AS",
-"capitale": "Dushanbe",
-"monnaie": "TJS",
-"monnaie_nom": "somoni tadjik",
-"langues": [
-"tadjik",
-"russe"
-],
-"indicatif": "+992",
-"superficie_km2": 143100,
-"nom_en": "Tajikistan",
-"iso3": "TJK"
-},
-"TK": {
-"nom": "Tokelau",
-"continent": "OC",
-"capitale": "",
-"monnaie": "NZD",
-"monnaie_nom": "dollar néo-zélandais",
-"langues": [
-"tokelau",
-"anglais"
-],
-"indicatif": "+690",
-"superficie_km2": 10,
-"nom_en": "Tokelau",
-"iso3": "TKL"
-},
-"TL": {
-"nom": "Timor oriental",
-"continent": "OC",
-"capitale": "Dili",
-"monnaie": "USD",
-"monnaie_nom": "dollar des États-Unis",
-"langues": [
-"tétoum",
-"portugais",
-"indonésien"
-],
-"indicatif": "+670",
-"superficie_km2": 15007,
-"nom_en": "Timor Leste",
-"iso3": "TLS"
-},
-"TM": {
-"nom": "Turkménistan",
-"continent": "AS",
-"capitale": "Ashgabat",
-"monnaie": "TMT",
-"monnaie_nom": "nouveau manat turkmène",
-"langues": [
-"turkmène",
-"russe",
-"ouzbek"
-],
-"indicatif": "+993",
-"superficie_km2": 488100,
-"nom_en": "Turkmenistan",
-"iso3": "TKM"
-},
-"TN": {
-"nom": "Tunisie",
-"continent": "AF",
-"capitale": "Tunis",
-"monnaie": "TND",
-"monnaie_nom": "dinar tunisien",
-"langues": [
-"arabe",
-"français"
-],
-"indicatif": "+216",
-"superficie_km2": 163610,
-"nom_en": "Tunisia",
-"iso3": "TUN"
-},
-"TO": {
-"nom": "Tonga",
-"continent": "OC",
-"capitale": "Nuku'alofa",
-"monnaie": "TOP",
-"monnaie_nom": "pa’anga tongan",
-"langues": [
-"tongien",
-"anglais"
-],
-"indicatif": "+676",
-"superficie_km2": 748,
-"nom_en": "Tonga",
-"iso3": "TON"
-},
-"TR": {
-"nom": "Turquie",
-"continent": "AS",
-"capitale": "Ankara",
-"monnaie": "TRY",
-"monnaie_nom": "livre turque",
-"langues": [
-"turc",
-"kurde",
-"azerbaïdjanais"
-],
-"indicatif": "+90",
-"superficie_km2": 780580,
-"nom_en": "Turkey",
-"iso3": "TUR"
-},
-"TT": {
-"nom": "Trinité-et-Tobago",
-"continent": "NA",
-"capitale": "Port of Spain",
-"monnaie": "TTD",
-"monnaie_nom": "dollar de Trinité-et-Tobago",
-"langues": [
-"anglais",
-"français",
-"espagnol"
-],
-"indicatif": "+1-868",
-"superficie_km2": 5128,
-"nom_en": "Trinidad and Tobago",
-"iso3": "TTO"
-},
-"TV": {
-"nom": "Tuvalu",
-"continent": "OC",
-"capitale": "Funafuti",
-"monnaie": "AUD",
-"monnaie_nom": "dollar australien",
-"langues": [
-"tuvalu",
-"anglais",
-"samoan"
-],
-"indicatif": "+688",
-"superficie_km2": 26,
-"nom_en": "Tuvalu",
-"iso3": "TUV"
-},
-"TW": {
-"nom": "Taïwan",
-"continent": "AS",
-"capitale": "Taipei",
-"monnaie": "TWD",
-"monnaie_nom": "nouveau dollar taïwanais",
-"langues": [
-"chinois",
-"minnan",
-"hakka"
-],
-"indicatif": "+886",
-"superficie_km2": 35980,
-"nom_en": "Taiwan",
-"iso3": "TWN"
-},
-"TZ": {
-"nom": "Tanzanie",
-"continent": "AF",
-"capitale": "Dodoma",
-"monnaie": "TZS",
-"monnaie_nom": "shilling tanzanien",
-"langues": [
-"swahili",
-"anglais",
-"arabe"
-],
-"indicatif": "+255",
-"superficie_km2": 945087,
-"nom_en": "Tanzania",
-"iso3": "TZA"
-},
-"UA": {
-"nom": "Ukraine",
-"continent": "EU",
-"capitale": "Kyiv",
-"monnaie": "UAH",
-"monnaie_nom": "hryvnia ukrainienne",
-"langues": [
-"ukrainien",
-"russe",
-"romani"
-],
-"indicatif": "+380",
-"superficie_km2": 603700,
-"nom_en": "Ukraine",
-"iso3": "UKR"
-},
-"UG": {
-"nom": "Ouganda",
-"continent": "AF",
-"capitale": "Kampala",
-"monnaie": "UGX",
-"monnaie_nom": "shilling ougandais",
-"langues": [
-"anglais",
-"ganda",
-"swahili"
-],
-"indicatif": "+256",
-"superficie_km2": 236040,
-"nom_en": "Uganda",
-"iso3": "UGA"
-},
-"UM": {
-"nom": "Îles mineures éloignées des États-Unis",
-"continent": "OC",
-"capitale": "",
-"monnaie": "USD",
-"monnaie_nom": "dollar des États-Unis",
-"langues": [
-"anglais"
-],
-"indicatif": "+1",
-"superficie_km2": 0,
-"nom_en": "United States Minor Outlying Islands",
-"iso3": "UMI"
-},
-"US": {
-"nom": "États-Unis",
-"continent": "NA",
-"capitale": "Washington",
-"monnaie": "USD",
-"monnaie_nom": "dollar des États-Unis",
-"langues": [
-"anglais",
-"espagnol",
-"hawaïen"
-],
-"indicatif": "+1",
-"superficie_km2": 9629091,
-"nom_en": "United States",
-"iso3": "USA"
-},
-"UY": {
-"nom": "Uruguay",
-"continent": "SA",
-"capitale": "Montevideo",
-"monnaie": "UYU",
-"monnaie_nom": "peso uruguayen",
-"langues": [
-"espagnol"
-],
-"indicatif": "+598",
-"superficie_km2": 176220,
-"nom_en": "Uruguay",
-"iso3": "URY"
-},
-"UZ": {
-"nom": "Ouzbékistan",
-"continent": "AS",
-"capitale": "Tashkent",
-"monnaie": "UZS",
-"monnaie_nom": "sum ouzbek",
-"langues": [
-"ouzbek",
-"russe",
-"tadjik"
-],
-"indicatif": "+998",
-"superficie_km2": 447400,
-"nom_en": "Uzbekistan",
-"iso3": "UZB"
-},
-"VA": {
-"nom": "État de la Cité du Vatican",
-"continent": "EU",
-"capitale": "Vatican City",
-"monnaie": "EUR",
-"monnaie_nom": "euro",
-"langues": [
-"latin",
-"italien",
-"français"
-],
-"indicatif": "+379",
-"superficie_km2": 0,
-"nom_en": "Vatican",
-"iso3": "VAT"
-},
-"VC": {
-"nom": "Saint-Vincent-et-les Grenadines",
-"continent": "NA",
-"capitale": "Kingstown",
-"monnaie": "XCD",
-"monnaie_nom": "dollar des Caraïbes orientales",
-"langues": [
-"anglais",
-"français"
-],
-"indicatif": "+1-784",
-"superficie_km2": 389,
-"nom_en": "Saint Vincent and the Grenadines",
-"iso3": "VCT"
-},
-"VE": {
-"nom": "Venezuela",
-"continent": "SA",
-"capitale": "Caracas",
-"monnaie": "VES",
-"monnaie_nom": "bolivar vénézuélien",
-"langues": [
-"espagnol"
-],
-"indicatif": "+58",
-"superficie_km2": 912050,
-"nom_en": "Venezuela",
-"iso3": "VEN"
-},
-"VG": {
-"nom": "Îles Vierges britanniques",
-"continent": "NA",
-"capitale": "Road Town",
-"monnaie": "USD",
-"monnaie_nom": "dollar des États-Unis",
-"langues": [
-"anglais"
-],
-"indicatif": "+1-284",
-"superficie_km2": 153,
-"nom_en": "British Virgin Islands",
-"iso3": "VGB"
-},
-"VI": {
-"nom": "Îles Vierges des États-Unis",
-"continent": "NA",
-"capitale": "Charlotte Amalie",
-"monnaie": "USD",
-"monnaie_nom": "dollar des États-Unis",
-"langues": [
-"anglais"
-],
-"indicatif": "+1-340",
-"superficie_km2": 352,
-"nom_en": "U.S. Virgin Islands",
-"iso3": "VIR"
-},
-"VN": {
-"nom": "Viêt Nam",
-"continent": "AS",
-"capitale": "Hanoi",
-"monnaie": "VND",
-"monnaie_nom": "dông vietnamien",
-"langues": [
-"vietnamien",
-"anglais",
-"français"
-],
-"indicatif": "+84",
-"superficie_km2": 329560,
-"nom_en": "Vietnam",
-"iso3": "VNM"
-},
-"VU": {
-"nom": "Vanuatu",
-"continent": "OC",
-"capitale": "Port Vila",
-"monnaie": "VUV",
-"monnaie_nom": "vatu vanuatuan",
-"langues": [
-"bichelamar",
-"anglais",
-"français"
-],
-"indicatif": "+678",
-"superficie_km2": 12200,
-"nom_en": "Vanuatu",
-"iso3": "VUT"
-},
-"WF": {
-"nom": "Wallis-et-Futuna",
-"continent": "OC",
-"capitale": "Mata Utu",
-"monnaie": "XPF",
-"monnaie_nom": "franc CFP",
-"langues": [
-"français"
-],
-"indicatif": "+681",
-"superficie_km2": 274,
-"nom_en": "Wallis and Futuna",
-"iso3": "WLF"
-},
-"WS": {
-"nom": "Samoa",
-"continent": "OC",
-"capitale": "Apia",
-"monnaie": "WST",
-"monnaie_nom": "tala samoan",
-"langues": [
-"samoan",
-"anglais"
-],
-"indicatif": "+685",
-"superficie_km2": 2944,
-"nom_en": "Samoa",
-"iso3": "WSM"
-},
-"YE": {
-"nom": "Yémen",
-"continent": "AS",
-"capitale": "Sanaa",
-"monnaie": "YER",
-"monnaie_nom": "riyal yéménite",
-"langues": [
-"arabe"
-],
-"indicatif": "+967",
-"superficie_km2": 527970,
-"nom_en": "Yemen",
-"iso3": "YEM"
-},
-"YT": {
-"nom": "Mayotte",
-"continent": "AF",
-"capitale": "Mamoudzou",
-"monnaie": "EUR",
-"monnaie_nom": "euro",
-"langues": [
-"français"
-],
-"indicatif": "+262",
-"superficie_km2": 374,
-"nom_en": "Mayotte",
-"iso3": "MYT"
-},
-"ZA": {
-"nom": "Afrique du Sud",
-"continent": "AF",
-"capitale": "Pretoria",
-"monnaie": "ZAR",
-"monnaie_nom": "rand sud-africain",
-"langues": [
-"zoulou",
-"xhosa",
-"afrikaans"
-],
-"indicatif": "+27",
-"superficie_km2": 1219912,
-"nom_en": "South Africa",
-"iso3": "ZAF"
-},
-"ZM": {
-"nom": "Zambie",
-"continent": "AF",
-"capitale": "Lusaka",
-"monnaie": "ZMW",
-"monnaie_nom": "kwacha zambien",
-"langues": [
-"anglais",
-"bemba",
-"lozi"
-],
-"indicatif": "+260",
-"superficie_km2": 752614,
-"nom_en": "Zambia",
-"iso3": "ZMB"
-},
-"ZW": {
-"nom": "Zimbabwe",
-"continent": "AF",
-"capitale": "Harare",
-"monnaie": "ZWG",
-"monnaie_nom": "Zimbabwe Gold",
-"langues": [
-"anglais",
-"shona",
-"ndébélé du Sud"
-],
-"indicatif": "+263",
-"superficie_km2": 390580,
-"nom_en": "Zimbabwe",
-"iso3": "ZWE"
-},
-"CS": {
-"nom": "Serbia and Montenegro",
-"continent": "EU",
-"capitale": "Belgrade",
-"monnaie": "RSD",
-"monnaie_nom": "dinar serbe",
-"langues": [
-"slavon d’église",
-"hongrois",
-"albanais"
-],
-"indicatif": "+381",
-"superficie_km2": 102350,
-"nom_en": "Serbia and Montenegro",
-"iso3": "SCG"
-},
-"AN": {
-"nom": "Netherlands Antilles",
-"continent": "NA",
-"capitale": "Willemstad",
-"monnaie": "ANG",
-"monnaie_nom": "florin antillais",
-"langues": [
-"néerlandais",
-"anglais",
-"espagnol"
-],
-"indicatif": "+599",
-"superficie_km2": 960,
-"nom_en": "Netherlands Antilles",
-"iso3": "ANT"
-}
+ "AD": {
+  "nom": "Andorre",
+  "nom_en": "Andorra",
+  "iso3": "AND",
+  "continent": "EU",
+  "capitale": "Andorra la Vella",
+  "monnaie": "EUR",
+  "monnaie_nom": "euro",
+  "langues": [
+   "catalan"
+  ],
+  "indicatif": "+376",
+  "superficie_km2": 468.0
+ },
+ "AE": {
+  "nom": "Émirats arabes unis",
+  "nom_en": "United Arab Emirates",
+  "iso3": "ARE",
+  "continent": "AS",
+  "capitale": "Abu Dhabi",
+  "monnaie": "AED",
+  "monnaie_nom": "dirham des Émirats arabes unis",
+  "langues": [
+   "arabe",
+   "persan",
+   "anglais"
+  ],
+  "indicatif": "+971",
+  "superficie_km2": 82880.0
+ },
+ "AF": {
+  "nom": "Afghanistan",
+  "nom_en": "Afghanistan",
+  "iso3": "AFG",
+  "continent": "AS",
+  "capitale": "Kabul",
+  "monnaie": "AFN",
+  "monnaie_nom": "afghani afghan",
+  "langues": [
+   "persan",
+   "pachto",
+   "ouzbek"
+  ],
+  "indicatif": "+93",
+  "superficie_km2": 647500.0
+ },
+ "AG": {
+  "nom": "Antigua-et-Barbuda",
+  "nom_en": "Antigua and Barbuda",
+  "iso3": "ATG",
+  "continent": "NA",
+  "capitale": "St. John's",
+  "monnaie": "XCD",
+  "monnaie_nom": "dollar des Caraïbes orientales",
+  "langues": [
+   "anglais"
+  ],
+  "indicatif": "+1-268",
+  "superficie_km2": 443.0
+ },
+ "AI": {
+  "nom": "Anguilla",
+  "nom_en": "Anguilla",
+  "iso3": "AIA",
+  "continent": "NA",
+  "capitale": "The Valley",
+  "monnaie": "XCD",
+  "monnaie_nom": "dollar des Caraïbes orientales",
+  "langues": [
+   "anglais"
+  ],
+  "indicatif": "+1-264",
+  "superficie_km2": 102.0
+ },
+ "AL": {
+  "nom": "Albanie",
+  "nom_en": "Albania",
+  "iso3": "ALB",
+  "continent": "EU",
+  "capitale": "Tirana",
+  "monnaie": "ALL",
+  "monnaie_nom": "lek albanais",
+  "langues": [
+   "albanais",
+   "grec"
+  ],
+  "indicatif": "+355",
+  "superficie_km2": 28748.0
+ },
+ "AM": {
+  "nom": "Arménie",
+  "nom_en": "Armenia",
+  "iso3": "ARM",
+  "continent": "AS",
+  "capitale": "Yerevan",
+  "monnaie": "AMD",
+  "monnaie_nom": "dram arménien",
+  "langues": [
+   "arménien"
+  ],
+  "indicatif": "+374",
+  "superficie_km2": 29800.0
+ },
+ "AO": {
+  "nom": "Angola",
+  "nom_en": "Angola",
+  "iso3": "AGO",
+  "continent": "AF",
+  "capitale": "Luanda",
+  "monnaie": "AOA",
+  "monnaie_nom": "kwanza angolais",
+  "langues": [
+   "portugais"
+  ],
+  "indicatif": "+244",
+  "superficie_km2": 1246700.0
+ },
+ "AQ": {
+  "nom": "Antarctique",
+  "nom_en": "Antarctica",
+  "iso3": "ATA",
+  "continent": "AN",
+  "capitale": "",
+  "monnaie": "",
+  "monnaie_nom": "",
+  "langues": [],
+  "indicatif": "",
+  "superficie_km2": 14000000.0
+ },
+ "AR": {
+  "nom": "Argentine",
+  "nom_en": "Argentina",
+  "iso3": "ARG",
+  "continent": "SA",
+  "capitale": "Buenos Aires",
+  "monnaie": "ARS",
+  "monnaie_nom": "peso argentin",
+  "langues": [
+   "espagnol",
+   "anglais",
+   "italien"
+  ],
+  "indicatif": "+54",
+  "superficie_km2": 2766890.0
+ },
+ "AS": {
+  "nom": "Samoa américaines",
+  "nom_en": "American Samoa",
+  "iso3": "ASM",
+  "continent": "OC",
+  "capitale": "Pago Pago",
+  "monnaie": "USD",
+  "monnaie_nom": "dollar des États-Unis",
+  "langues": [
+   "anglais",
+   "samoan",
+   "tongien"
+  ],
+  "indicatif": "+1-684",
+  "superficie_km2": 199.0
+ },
+ "AT": {
+  "nom": "Autriche",
+  "nom_en": "Austria",
+  "iso3": "AUT",
+  "continent": "EU",
+  "capitale": "Vienna",
+  "monnaie": "EUR",
+  "monnaie_nom": "euro",
+  "langues": [
+   "allemand",
+   "croate",
+   "hongrois"
+  ],
+  "indicatif": "+43",
+  "superficie_km2": 83858.0
+ },
+ "AU": {
+  "nom": "Australie",
+  "nom_en": "Australia",
+  "iso3": "AUS",
+  "continent": "OC",
+  "capitale": "Canberra",
+  "monnaie": "AUD",
+  "monnaie_nom": "dollar australien",
+  "langues": [
+   "anglais"
+  ],
+  "indicatif": "+61",
+  "superficie_km2": 7686850.0
+ },
+ "AW": {
+  "nom": "Aruba",
+  "nom_en": "Aruba",
+  "iso3": "ABW",
+  "continent": "NA",
+  "capitale": "Oranjestad",
+  "monnaie": "AWG",
+  "monnaie_nom": "florin arubais",
+  "langues": [
+   "néerlandais",
+   "papiamento",
+   "espagnol"
+  ],
+  "indicatif": "+297",
+  "superficie_km2": 180.0
+ },
+ "AX": {
+  "nom": "Îles Åland",
+  "nom_en": "Aland Islands",
+  "iso3": "ALA",
+  "continent": "EU",
+  "capitale": "Mariehamn",
+  "monnaie": "EUR",
+  "monnaie_nom": "euro",
+  "langues": [
+   "suédois"
+  ],
+  "indicatif": "+358-18",
+  "superficie_km2": 1580.0
+ },
+ "AZ": {
+  "nom": "Azerbaïdjan",
+  "nom_en": "Azerbaijan",
+  "iso3": "AZE",
+  "continent": "AS",
+  "capitale": "Baku",
+  "monnaie": "AZN",
+  "monnaie_nom": "manat azéri",
+  "langues": [
+   "azerbaïdjanais",
+   "russe",
+   "arménien"
+  ],
+  "indicatif": "+994",
+  "superficie_km2": 86600.0
+ },
+ "BA": {
+  "nom": "Bosnie-Herzégovine",
+  "nom_en": "Bosnia and Herzegovina",
+  "iso3": "BIH",
+  "continent": "EU",
+  "capitale": "Sarajevo",
+  "monnaie": "BAM",
+  "monnaie_nom": "mark convertible bosniaque",
+  "langues": [
+   "bosniaque",
+   "croate",
+   "serbe"
+  ],
+  "indicatif": "+387",
+  "superficie_km2": 51129.0
+ },
+ "BB": {
+  "nom": "Barbade",
+  "nom_en": "Barbados",
+  "iso3": "BRB",
+  "continent": "NA",
+  "capitale": "Bridgetown",
+  "monnaie": "BBD",
+  "monnaie_nom": "dollar barbadien",
+  "langues": [
+   "anglais"
+  ],
+  "indicatif": "+1-246",
+  "superficie_km2": 431.0
+ },
+ "BD": {
+  "nom": "Bangladesh",
+  "nom_en": "Bangladesh",
+  "iso3": "BGD",
+  "continent": "AS",
+  "capitale": "Dhaka",
+  "monnaie": "BDT",
+  "monnaie_nom": "taka bangladeshi",
+  "langues": [
+   "bengali",
+   "anglais"
+  ],
+  "indicatif": "+880",
+  "superficie_km2": 144000.0
+ },
+ "BE": {
+  "nom": "Belgique",
+  "nom_en": "Belgium",
+  "iso3": "BEL",
+  "continent": "EU",
+  "capitale": "Brussels",
+  "monnaie": "EUR",
+  "monnaie_nom": "euro",
+  "langues": [
+   "néerlandais",
+   "français",
+   "allemand"
+  ],
+  "indicatif": "+32",
+  "superficie_km2": 30510.0
+ },
+ "BF": {
+  "nom": "Burkina Faso",
+  "nom_en": "Burkina Faso",
+  "iso3": "BFA",
+  "continent": "AF",
+  "capitale": "Ouagadougou",
+  "monnaie": "XOF",
+  "monnaie_nom": "franc CFA (BCEAO)",
+  "langues": [
+   "français",
+   "moré"
+  ],
+  "indicatif": "+226",
+  "superficie_km2": 274200.0
+ },
+ "BG": {
+  "nom": "Bulgarie",
+  "nom_en": "Bulgaria",
+  "iso3": "BGR",
+  "continent": "EU",
+  "capitale": "Sofia",
+  "monnaie": "BGN",
+  "monnaie_nom": "lev bulgare",
+  "langues": [
+   "bulgare",
+   "turc",
+   "romani"
+  ],
+  "indicatif": "+359",
+  "superficie_km2": 110910.0
+ },
+ "BH": {
+  "nom": "Bahreïn",
+  "nom_en": "Bahrain",
+  "iso3": "BHR",
+  "continent": "AS",
+  "capitale": "Manama",
+  "monnaie": "BHD",
+  "monnaie_nom": "dinar bahreïni",
+  "langues": [
+   "arabe",
+   "anglais",
+   "persan"
+  ],
+  "indicatif": "+973",
+  "superficie_km2": 800.0
+ },
+ "BI": {
+  "nom": "Burundi",
+  "nom_en": "Burundi",
+  "iso3": "BDI",
+  "continent": "AF",
+  "capitale": "Gitega",
+  "monnaie": "BIF",
+  "monnaie_nom": "franc burundais",
+  "langues": [
+   "français",
+   "roundi"
+  ],
+  "indicatif": "+257",
+  "superficie_km2": 27830.0
+ },
+ "BJ": {
+  "nom": "Bénin",
+  "nom_en": "Benin",
+  "iso3": "BEN",
+  "continent": "AF",
+  "capitale": "Porto-Novo",
+  "monnaie": "XOF",
+  "monnaie_nom": "franc CFA (BCEAO)",
+  "langues": [
+   "français"
+  ],
+  "indicatif": "+229",
+  "superficie_km2": 112620.0
+ },
+ "BL": {
+  "nom": "Saint-Barthélemy",
+  "nom_en": "Saint Barthelemy",
+  "iso3": "BLM",
+  "continent": "NA",
+  "capitale": "Gustavia",
+  "monnaie": "EUR",
+  "monnaie_nom": "euro",
+  "langues": [
+   "français"
+  ],
+  "indicatif": "+590",
+  "superficie_km2": 21.0
+ },
+ "BM": {
+  "nom": "Bermudes",
+  "nom_en": "Bermuda",
+  "iso3": "BMU",
+  "continent": "NA",
+  "capitale": "Hamilton",
+  "monnaie": "BMD",
+  "monnaie_nom": "dollar bermudien",
+  "langues": [
+   "anglais",
+   "portugais"
+  ],
+  "indicatif": "+1-441",
+  "superficie_km2": 53.0
+ },
+ "BN": {
+  "nom": "Brunei",
+  "nom_en": "Brunei",
+  "iso3": "BRN",
+  "continent": "AS",
+  "capitale": "Bandar Seri Begawan",
+  "monnaie": "BND",
+  "monnaie_nom": "dollar brunéien",
+  "langues": [
+   "malais",
+   "anglais"
+  ],
+  "indicatif": "+673",
+  "superficie_km2": 5770.0
+ },
+ "BO": {
+  "nom": "Bolivie",
+  "nom_en": "Bolivia",
+  "iso3": "BOL",
+  "continent": "SA",
+  "capitale": "Sucre",
+  "monnaie": "BOB",
+  "monnaie_nom": "boliviano bolivien",
+  "langues": [
+   "espagnol",
+   "quechua",
+   "aymara"
+  ],
+  "indicatif": "+591",
+  "superficie_km2": 1098580.0
+ },
+ "BQ": {
+  "nom": "Pays-Bas caribéens",
+  "nom_en": "Bonaire, Saint Eustatius and Saba ",
+  "iso3": "BES",
+  "continent": "NA",
+  "capitale": "",
+  "monnaie": "USD",
+  "monnaie_nom": "dollar des États-Unis",
+  "langues": [
+   "néerlandais",
+   "papiamento",
+   "anglais"
+  ],
+  "indicatif": "+599",
+  "superficie_km2": 328.0
+ },
+ "BR": {
+  "nom": "Brésil",
+  "nom_en": "Brazil",
+  "iso3": "BRA",
+  "continent": "SA",
+  "capitale": "Brasilia",
+  "monnaie": "BRL",
+  "monnaie_nom": "réal brésilien",
+  "langues": [
+   "portugais",
+   "espagnol",
+   "anglais"
+  ],
+  "indicatif": "+55",
+  "superficie_km2": 8511965.0
+ },
+ "BS": {
+  "nom": "Bahamas",
+  "nom_en": "Bahamas",
+  "iso3": "BHS",
+  "continent": "NA",
+  "capitale": "Nassau",
+  "monnaie": "BSD",
+  "monnaie_nom": "dollar bahaméen",
+  "langues": [
+   "anglais"
+  ],
+  "indicatif": "+1-242",
+  "superficie_km2": 13940.0
+ },
+ "BT": {
+  "nom": "Bhoutan",
+  "nom_en": "Bhutan",
+  "iso3": "BTN",
+  "continent": "AS",
+  "capitale": "Thimphu",
+  "monnaie": "BTN",
+  "monnaie_nom": "ngultrum bouthanais",
+  "langues": [
+   "dzongkha"
+  ],
+  "indicatif": "+975",
+  "superficie_km2": 38390.0
+ },
+ "BV": {
+  "nom": "Île Bouvet",
+  "nom_en": "Bouvet Island",
+  "iso3": "BVT",
+  "continent": "AN",
+  "capitale": "",
+  "monnaie": "NOK",
+  "monnaie_nom": "couronne norvégienne",
+  "langues": [],
+  "indicatif": "",
+  "superficie_km2": 49.0
+ },
+ "BW": {
+  "nom": "Botswana",
+  "nom_en": "Botswana",
+  "iso3": "BWA",
+  "continent": "AF",
+  "capitale": "Gaborone",
+  "monnaie": "BWP",
+  "monnaie_nom": "pula botswanais",
+  "langues": [
+   "anglais",
+   "tswana"
+  ],
+  "indicatif": "+267",
+  "superficie_km2": 600370.0
+ },
+ "BY": {
+  "nom": "Biélorussie",
+  "nom_en": "Belarus",
+  "iso3": "BLR",
+  "continent": "EU",
+  "capitale": "Minsk",
+  "monnaie": "BYN",
+  "monnaie_nom": "rouble biélorusse",
+  "langues": [
+   "biélorusse",
+   "russe"
+  ],
+  "indicatif": "+375",
+  "superficie_km2": 207600.0
+ },
+ "BZ": {
+  "nom": "Belize",
+  "nom_en": "Belize",
+  "iso3": "BLZ",
+  "continent": "NA",
+  "capitale": "Belmopan",
+  "monnaie": "BZD",
+  "monnaie_nom": "dollar bélizéen",
+  "langues": [
+   "anglais",
+   "espagnol"
+  ],
+  "indicatif": "+501",
+  "superficie_km2": 22966.0
+ },
+ "CA": {
+  "nom": "Canada",
+  "nom_en": "Canada",
+  "iso3": "CAN",
+  "continent": "NA",
+  "capitale": "Ottawa",
+  "monnaie": "CAD",
+  "monnaie_nom": "dollar canadien",
+  "langues": [
+   "anglais",
+   "français",
+   "inuktitut"
+  ],
+  "indicatif": "+1",
+  "superficie_km2": 9984670.0
+ },
+ "CC": {
+  "nom": "Îles Cocos",
+  "nom_en": "Cocos Islands",
+  "iso3": "CCK",
+  "continent": "AS",
+  "capitale": "West Island",
+  "monnaie": "AUD",
+  "monnaie_nom": "dollar australien",
+  "langues": [
+   "malais",
+   "anglais"
+  ],
+  "indicatif": "+61",
+  "superficie_km2": 14.0
+ },
+ "CD": {
+  "nom": "Congo-Kinshasa",
+  "nom_en": "Democratic Republic of the Congo",
+  "iso3": "COD",
+  "continent": "AF",
+  "capitale": "Kinshasa",
+  "monnaie": "CDF",
+  "monnaie_nom": "franc congolais",
+  "langues": [
+   "français",
+   "lingala",
+   "kikongo"
+  ],
+  "indicatif": "+243",
+  "superficie_km2": 2345410.0
+ },
+ "CF": {
+  "nom": "République centrafricaine",
+  "nom_en": "Central African Republic",
+  "iso3": "CAF",
+  "continent": "AF",
+  "capitale": "Bangui",
+  "monnaie": "XAF",
+  "monnaie_nom": "franc CFA (BEAC)",
+  "langues": [
+   "français",
+   "sango",
+   "lingala"
+  ],
+  "indicatif": "+236",
+  "superficie_km2": 622984.0
+ },
+ "CG": {
+  "nom": "Congo-Brazzaville",
+  "nom_en": "Republic of the Congo",
+  "iso3": "COG",
+  "continent": "AF",
+  "capitale": "Brazzaville",
+  "monnaie": "XAF",
+  "monnaie_nom": "franc CFA (BEAC)",
+  "langues": [
+   "français",
+   "kikongo",
+   "lingala"
+  ],
+  "indicatif": "+242",
+  "superficie_km2": 342000.0
+ },
+ "CH": {
+  "nom": "Suisse",
+  "nom_en": "Switzerland",
+  "iso3": "CHE",
+  "continent": "EU",
+  "capitale": "Bern",
+  "monnaie": "CHF",
+  "monnaie_nom": "franc suisse",
+  "langues": [
+   "allemand",
+   "français",
+   "italien"
+  ],
+  "indicatif": "+41",
+  "superficie_km2": 41290.0
+ },
+ "CI": {
+  "nom": "Côte d’Ivoire",
+  "nom_en": "Ivory Coast",
+  "iso3": "CIV",
+  "continent": "AF",
+  "capitale": "Yamoussoukro",
+  "monnaie": "XOF",
+  "monnaie_nom": "franc CFA (BCEAO)",
+  "langues": [
+   "français"
+  ],
+  "indicatif": "+225",
+  "superficie_km2": 322460.0
+ },
+ "CK": {
+  "nom": "Îles Cook",
+  "nom_en": "Cook Islands",
+  "iso3": "COK",
+  "continent": "OC",
+  "capitale": "Avarua",
+  "monnaie": "NZD",
+  "monnaie_nom": "dollar néo-zélandais",
+  "langues": [
+   "anglais",
+   "maori"
+  ],
+  "indicatif": "+682",
+  "superficie_km2": 240.0
+ },
+ "CL": {
+  "nom": "Chili",
+  "nom_en": "Chile",
+  "iso3": "CHL",
+  "continent": "SA",
+  "capitale": "Santiago",
+  "monnaie": "CLP",
+  "monnaie_nom": "peso chilien",
+  "langues": [
+   "espagnol"
+  ],
+  "indicatif": "+56",
+  "superficie_km2": 756950.0
+ },
+ "CM": {
+  "nom": "Cameroun",
+  "nom_en": "Cameroon",
+  "iso3": "CMR",
+  "continent": "AF",
+  "capitale": "Yaounde",
+  "monnaie": "XAF",
+  "monnaie_nom": "franc CFA (BEAC)",
+  "langues": [
+   "anglais",
+   "français"
+  ],
+  "indicatif": "+237",
+  "superficie_km2": 475440.0
+ },
+ "CN": {
+  "nom": "Chine",
+  "nom_en": "China",
+  "iso3": "CHN",
+  "continent": "AS",
+  "capitale": "Beijing",
+  "monnaie": "CNY",
+  "monnaie_nom": "yuan renminbi chinois",
+  "langues": [
+   "chinois",
+   "cantonais",
+   "wu"
+  ],
+  "indicatif": "+86",
+  "superficie_km2": 9596960.0
+ },
+ "CO": {
+  "nom": "Colombie",
+  "nom_en": "Colombia",
+  "iso3": "COL",
+  "continent": "SA",
+  "capitale": "Bogota",
+  "monnaie": "COP",
+  "monnaie_nom": "peso colombien",
+  "langues": [
+   "espagnol"
+  ],
+  "indicatif": "+57",
+  "superficie_km2": 1138910.0
+ },
+ "CR": {
+  "nom": "Costa Rica",
+  "nom_en": "Costa Rica",
+  "iso3": "CRI",
+  "continent": "NA",
+  "capitale": "San Jose",
+  "monnaie": "CRC",
+  "monnaie_nom": "colón costaricain",
+  "langues": [
+   "espagnol",
+   "anglais"
+  ],
+  "indicatif": "+506",
+  "superficie_km2": 51100.0
+ },
+ "CU": {
+  "nom": "Cuba",
+  "nom_en": "Cuba",
+  "iso3": "CUB",
+  "continent": "NA",
+  "capitale": "Havana",
+  "monnaie": "CUP",
+  "monnaie_nom": "peso cubain",
+  "langues": [
+   "espagnol",
+   "papiamento"
+  ],
+  "indicatif": "+53",
+  "superficie_km2": 110860.0
+ },
+ "CV": {
+  "nom": "Cap-Vert",
+  "nom_en": "Cabo Verde",
+  "iso3": "CPV",
+  "continent": "AF",
+  "capitale": "Praia",
+  "monnaie": "CVE",
+  "monnaie_nom": "escudo capverdien",
+  "langues": [
+   "portugais"
+  ],
+  "indicatif": "+238",
+  "superficie_km2": 4033.0
+ },
+ "CW": {
+  "nom": "Curaçao",
+  "nom_en": "Curacao",
+  "iso3": "CUW",
+  "continent": "NA",
+  "capitale": " Willemstad",
+  "monnaie": "XCG",
+  "monnaie_nom": "florin caribéen",
+  "langues": [
+   "néerlandais",
+   "papiamento"
+  ],
+  "indicatif": "+599",
+  "superficie_km2": 444.0
+ },
+ "CX": {
+  "nom": "Île Christmas",
+  "nom_en": "Christmas Island",
+  "iso3": "CXR",
+  "continent": "OC",
+  "capitale": "Flying Fish Cove",
+  "monnaie": "AUD",
+  "monnaie_nom": "dollar australien",
+  "langues": [
+   "anglais",
+   "chinois",
+   "malais"
+  ],
+  "indicatif": "+61",
+  "superficie_km2": 135.0
+ },
+ "CY": {
+  "nom": "Chypre",
+  "nom_en": "Cyprus",
+  "iso3": "CYP",
+  "continent": "EU",
+  "capitale": "Nicosia",
+  "monnaie": "EUR",
+  "monnaie_nom": "euro",
+  "langues": [
+   "grec",
+   "turc",
+   "anglais"
+  ],
+  "indicatif": "+357",
+  "superficie_km2": 9250.0
+ },
+ "CZ": {
+  "nom": "Tchéquie",
+  "nom_en": "Czechia",
+  "iso3": "CZE",
+  "continent": "EU",
+  "capitale": "Prague",
+  "monnaie": "CZK",
+  "monnaie_nom": "couronne tchèque",
+  "langues": [
+   "tchèque",
+   "slovaque"
+  ],
+  "indicatif": "+420",
+  "superficie_km2": 78866.0
+ },
+ "DE": {
+  "nom": "Allemagne",
+  "nom_en": "Germany",
+  "iso3": "DEU",
+  "continent": "EU",
+  "capitale": "Berlin",
+  "monnaie": "EUR",
+  "monnaie_nom": "euro",
+  "langues": [
+   "allemand"
+  ],
+  "indicatif": "+49",
+  "superficie_km2": 357021.0
+ },
+ "DJ": {
+  "nom": "Djibouti",
+  "nom_en": "Djibouti",
+  "iso3": "DJI",
+  "continent": "AF",
+  "capitale": "Djibouti",
+  "monnaie": "DJF",
+  "monnaie_nom": "franc djiboutien",
+  "langues": [
+   "français",
+   "arabe",
+   "somali"
+  ],
+  "indicatif": "+253",
+  "superficie_km2": 23000.0
+ },
+ "DK": {
+  "nom": "Danemark",
+  "nom_en": "Denmark",
+  "iso3": "DNK",
+  "continent": "EU",
+  "capitale": "Copenhagen",
+  "monnaie": "DKK",
+  "monnaie_nom": "couronne danoise",
+  "langues": [
+   "danois",
+   "anglais",
+   "féroïen"
+  ],
+  "indicatif": "+45",
+  "superficie_km2": 43094.0
+ },
+ "DM": {
+  "nom": "Dominique",
+  "nom_en": "Dominica",
+  "iso3": "DMA",
+  "continent": "NA",
+  "capitale": "Roseau",
+  "monnaie": "XCD",
+  "monnaie_nom": "dollar des Caraïbes orientales",
+  "langues": [
+   "anglais"
+  ],
+  "indicatif": "+1-767",
+  "superficie_km2": 754.0
+ },
+ "DO": {
+  "nom": "République dominicaine",
+  "nom_en": "Dominican Republic",
+  "iso3": "DOM",
+  "continent": "NA",
+  "capitale": "Santo Domingo",
+  "monnaie": "DOP",
+  "monnaie_nom": "peso dominicain",
+  "langues": [
+   "espagnol"
+  ],
+  "indicatif": "+1-809 and 1-829",
+  "superficie_km2": 48730.0
+ },
+ "DZ": {
+  "nom": "Algérie",
+  "nom_en": "Algeria",
+  "iso3": "DZA",
+  "continent": "AF",
+  "capitale": "Algiers",
+  "monnaie": "DZD",
+  "monnaie_nom": "dinar algérien",
+  "langues": [
+   "arabe"
+  ],
+  "indicatif": "+213",
+  "superficie_km2": 2381740.0
+ },
+ "EC": {
+  "nom": "Équateur",
+  "nom_en": "Ecuador",
+  "iso3": "ECU",
+  "continent": "SA",
+  "capitale": "Quito",
+  "monnaie": "USD",
+  "monnaie_nom": "dollar des États-Unis",
+  "langues": [
+   "espagnol"
+  ],
+  "indicatif": "+593",
+  "superficie_km2": 256370.0
+ },
+ "EE": {
+  "nom": "Estonie",
+  "nom_en": "Estonia",
+  "iso3": "EST",
+  "continent": "EU",
+  "capitale": "Tallinn",
+  "monnaie": "EUR",
+  "monnaie_nom": "euro",
+  "langues": [
+   "estonien",
+   "russe"
+  ],
+  "indicatif": "+372",
+  "superficie_km2": 45226.0
+ },
+ "EG": {
+  "nom": "Égypte",
+  "nom_en": "Egypt",
+  "iso3": "EGY",
+  "continent": "AF",
+  "capitale": "Cairo",
+  "monnaie": "EGP",
+  "monnaie_nom": "livre égyptienne",
+  "langues": [
+   "arabe",
+   "anglais",
+   "français"
+  ],
+  "indicatif": "+20",
+  "superficie_km2": 1001450.0
+ },
+ "EH": {
+  "nom": "Sahara occidental",
+  "nom_en": "Western Sahara",
+  "iso3": "ESH",
+  "continent": "AF",
+  "capitale": "El-Aaiun",
+  "monnaie": "MAD",
+  "monnaie_nom": "dirham marocain",
+  "langues": [
+   "arabe"
+  ],
+  "indicatif": "+212",
+  "superficie_km2": 266000.0
+ },
+ "ER": {
+  "nom": "Érythrée",
+  "nom_en": "Eritrea",
+  "iso3": "ERI",
+  "continent": "AF",
+  "capitale": "Asmara",
+  "monnaie": "ERN",
+  "monnaie_nom": "nafka érythréen",
+  "langues": [
+   "afar",
+   "arabe",
+   "tigré"
+  ],
+  "indicatif": "+291",
+  "superficie_km2": 121320.0
+ },
+ "ES": {
+  "nom": "Espagne",
+  "nom_en": "Spain",
+  "iso3": "ESP",
+  "continent": "EU",
+  "capitale": "Madrid",
+  "monnaie": "EUR",
+  "monnaie_nom": "euro",
+  "langues": [
+   "espagnol",
+   "catalan",
+   "galicien"
+  ],
+  "indicatif": "+34",
+  "superficie_km2": 504782.0
+ },
+ "ET": {
+  "nom": "Éthiopie",
+  "nom_en": "Ethiopia",
+  "iso3": "ETH",
+  "continent": "AF",
+  "capitale": "Addis Ababa",
+  "monnaie": "ETB",
+  "monnaie_nom": "birr éthiopien",
+  "langues": [
+   "amharique",
+   "anglais",
+   "oromo"
+  ],
+  "indicatif": "+251",
+  "superficie_km2": 1127127.0
+ },
+ "FI": {
+  "nom": "Finlande",
+  "nom_en": "Finland",
+  "iso3": "FIN",
+  "continent": "EU",
+  "capitale": "Helsinki",
+  "monnaie": "EUR",
+  "monnaie_nom": "euro",
+  "langues": [
+   "finnois",
+   "suédois",
+   "same d’Inari"
+  ],
+  "indicatif": "+358",
+  "superficie_km2": 337030.0
+ },
+ "FJ": {
+  "nom": "Fidji",
+  "nom_en": "Fiji",
+  "iso3": "FJI",
+  "continent": "OC",
+  "capitale": "Suva",
+  "monnaie": "FJD",
+  "monnaie_nom": "dollar fidjien",
+  "langues": [
+   "anglais",
+   "fidjien"
+  ],
+  "indicatif": "+679",
+  "superficie_km2": 18270.0
+ },
+ "FK": {
+  "nom": "Îles Malouines",
+  "nom_en": "Falkland Islands",
+  "iso3": "FLK",
+  "continent": "SA",
+  "capitale": "Stanley",
+  "monnaie": "FKP",
+  "monnaie_nom": "livre des îles Malouines",
+  "langues": [
+   "anglais"
+  ],
+  "indicatif": "+500",
+  "superficie_km2": 12173.0
+ },
+ "FM": {
+  "nom": "Micronésie",
+  "nom_en": "Micronesia",
+  "iso3": "FSM",
+  "continent": "OC",
+  "capitale": "Palikir",
+  "monnaie": "USD",
+  "monnaie_nom": "dollar des États-Unis",
+  "langues": [
+   "anglais",
+   "chuuk",
+   "pohnpei"
+  ],
+  "indicatif": "+691",
+  "superficie_km2": 702.0
+ },
+ "FO": {
+  "nom": "Îles Féroé",
+  "nom_en": "Faroe Islands",
+  "iso3": "FRO",
+  "continent": "EU",
+  "capitale": "Torshavn",
+  "monnaie": "DKK",
+  "monnaie_nom": "couronne danoise",
+  "langues": [
+   "féroïen",
+   "danois"
+  ],
+  "indicatif": "+298",
+  "superficie_km2": 1399.0
+ },
+ "FR": {
+  "nom": "France",
+  "nom_en": "France",
+  "iso3": "FRA",
+  "continent": "EU",
+  "capitale": "Paris",
+  "monnaie": "EUR",
+  "monnaie_nom": "euro",
+  "langues": [
+   "français",
+   "francoprovençal",
+   "breton"
+  ],
+  "indicatif": "+33",
+  "superficie_km2": 547030.0
+ },
+ "GA": {
+  "nom": "Gabon",
+  "nom_en": "Gabon",
+  "iso3": "GAB",
+  "continent": "AF",
+  "capitale": "Libreville",
+  "monnaie": "XAF",
+  "monnaie_nom": "franc CFA (BEAC)",
+  "langues": [
+   "français"
+  ],
+  "indicatif": "+241",
+  "superficie_km2": 267667.0
+ },
+ "GB": {
+  "nom": "Royaume-Uni",
+  "nom_en": "United Kingdom",
+  "iso3": "GBR",
+  "continent": "EU",
+  "capitale": "London",
+  "monnaie": "GBP",
+  "monnaie_nom": "livre sterling",
+  "langues": [
+   "anglais",
+   "gallois",
+   "gaélique écossais"
+  ],
+  "indicatif": "+44",
+  "superficie_km2": 244820.0
+ },
+ "GD": {
+  "nom": "Grenade",
+  "nom_en": "Grenada",
+  "iso3": "GRD",
+  "continent": "NA",
+  "capitale": "St. George's",
+  "monnaie": "XCD",
+  "monnaie_nom": "dollar des Caraïbes orientales",
+  "langues": [
+   "anglais"
+  ],
+  "indicatif": "+1-473",
+  "superficie_km2": 344.0
+ },
+ "GE": {
+  "nom": "Géorgie",
+  "nom_en": "Georgia",
+  "iso3": "GEO",
+  "continent": "AS",
+  "capitale": "Tbilisi",
+  "monnaie": "GEL",
+  "monnaie_nom": "lari géorgien",
+  "langues": [
+   "géorgien",
+   "russe",
+   "arménien"
+  ],
+  "indicatif": "+995",
+  "superficie_km2": 69700.0
+ },
+ "GF": {
+  "nom": "Guyane française",
+  "nom_en": "French Guiana",
+  "iso3": "GUF",
+  "continent": "SA",
+  "capitale": "Cayenne",
+  "monnaie": "EUR",
+  "monnaie_nom": "euro",
+  "langues": [
+   "français"
+  ],
+  "indicatif": "+594",
+  "superficie_km2": 91000.0
+ },
+ "GG": {
+  "nom": "Guernesey",
+  "nom_en": "Guernsey",
+  "iso3": "GGY",
+  "continent": "EU",
+  "capitale": "St Peter Port",
+  "monnaie": "GBP",
+  "monnaie_nom": "livre sterling",
+  "langues": [
+   "anglais"
+  ],
+  "indicatif": "+44-1481",
+  "superficie_km2": 78.0
+ },
+ "GH": {
+  "nom": "Ghana",
+  "nom_en": "Ghana",
+  "iso3": "GHA",
+  "continent": "AF",
+  "capitale": "Accra",
+  "monnaie": "GHS",
+  "monnaie_nom": "cédi ghanéen",
+  "langues": [
+   "anglais",
+   "akan",
+   "éwé"
+  ],
+  "indicatif": "+233",
+  "superficie_km2": 239460.0
+ },
+ "GI": {
+  "nom": "Gibraltar",
+  "nom_en": "Gibraltar",
+  "iso3": "GIB",
+  "continent": "EU",
+  "capitale": "Gibraltar",
+  "monnaie": "GIP",
+  "monnaie_nom": "livre de Gibraltar",
+  "langues": [
+   "anglais",
+   "espagnol",
+   "italien"
+  ],
+  "indicatif": "+350",
+  "superficie_km2": 6.5
+ },
+ "GL": {
+  "nom": "Groenland",
+  "nom_en": "Greenland",
+  "iso3": "GRL",
+  "continent": "NA",
+  "capitale": "Nuuk",
+  "monnaie": "DKK",
+  "monnaie_nom": "couronne danoise",
+  "langues": [
+   "groenlandais",
+   "danois",
+   "anglais"
+  ],
+  "indicatif": "+299",
+  "superficie_km2": 2166086.0
+ },
+ "GM": {
+  "nom": "Gambie",
+  "nom_en": "Gambia",
+  "iso3": "GMB",
+  "continent": "AF",
+  "capitale": "Banjul",
+  "monnaie": "GMD",
+  "monnaie_nom": "dalasi gambien",
+  "langues": [
+   "anglais",
+   "wolof",
+   "peul"
+  ],
+  "indicatif": "+220",
+  "superficie_km2": 11300.0
+ },
+ "GN": {
+  "nom": "Guinée",
+  "nom_en": "Guinea",
+  "iso3": "GIN",
+  "continent": "AF",
+  "capitale": "Conakry",
+  "monnaie": "GNF",
+  "monnaie_nom": "franc guinéen",
+  "langues": [
+   "français"
+  ],
+  "indicatif": "+224",
+  "superficie_km2": 245857.0
+ },
+ "GP": {
+  "nom": "Guadeloupe",
+  "nom_en": "Guadeloupe",
+  "iso3": "GLP",
+  "continent": "NA",
+  "capitale": "Basse-Terre",
+  "monnaie": "EUR",
+  "monnaie_nom": "euro",
+  "langues": [
+   "français"
+  ],
+  "indicatif": "+590",
+  "superficie_km2": 1780.0
+ },
+ "GQ": {
+  "nom": "Guinée équatoriale",
+  "nom_en": "Equatorial Guinea",
+  "iso3": "GNQ",
+  "continent": "AF",
+  "capitale": "Ciudad de la Paz",
+  "monnaie": "XAF",
+  "monnaie_nom": "franc CFA (BEAC)",
+  "langues": [
+   "espagnol",
+   "français",
+   "portugais"
+  ],
+  "indicatif": "+240",
+  "superficie_km2": 28051.0
+ },
+ "GR": {
+  "nom": "Grèce",
+  "nom_en": "Greece",
+  "iso3": "GRC",
+  "continent": "EU",
+  "capitale": "Athens",
+  "monnaie": "EUR",
+  "monnaie_nom": "euro",
+  "langues": [
+   "grec",
+   "anglais",
+   "français"
+  ],
+  "indicatif": "+30",
+  "superficie_km2": 131940.0
+ },
+ "GS": {
+  "nom": "Géorgie du Sud-et-les Îles Sandwich du Sud",
+  "nom_en": "South Georgia and the South Sandwich Islands",
+  "iso3": "SGS",
+  "continent": "AN",
+  "capitale": "Grytviken",
+  "monnaie": "GBP",
+  "monnaie_nom": "livre sterling",
+  "langues": [
+   "anglais"
+  ],
+  "indicatif": "",
+  "superficie_km2": 3903.0
+ },
+ "GT": {
+  "nom": "Guatemala",
+  "nom_en": "Guatemala",
+  "iso3": "GTM",
+  "continent": "NA",
+  "capitale": "Guatemala City",
+  "monnaie": "GTQ",
+  "monnaie_nom": "quetzal guatémaltèque",
+  "langues": [
+   "espagnol"
+  ],
+  "indicatif": "+502",
+  "superficie_km2": 108890.0
+ },
+ "GU": {
+  "nom": "Guam",
+  "nom_en": "Guam",
+  "iso3": "GUM",
+  "continent": "OC",
+  "capitale": "Hagatna",
+  "monnaie": "USD",
+  "monnaie_nom": "dollar des États-Unis",
+  "langues": [
+   "anglais",
+   "chamorro"
+  ],
+  "indicatif": "+1-671",
+  "superficie_km2": 549.0
+ },
+ "GW": {
+  "nom": "Guinée-Bissau",
+  "nom_en": "Guinea-Bissau",
+  "iso3": "GNB",
+  "continent": "AF",
+  "capitale": "Bissau",
+  "monnaie": "XOF",
+  "monnaie_nom": "franc CFA (BCEAO)",
+  "langues": [
+   "portugais"
+  ],
+  "indicatif": "+245",
+  "superficie_km2": 36120.0
+ },
+ "GY": {
+  "nom": "Guyana",
+  "nom_en": "Guyana",
+  "iso3": "GUY",
+  "continent": "SA",
+  "capitale": "Georgetown",
+  "monnaie": "GYD",
+  "monnaie_nom": "dollar du Guyana",
+  "langues": [
+   "anglais"
+  ],
+  "indicatif": "+592",
+  "superficie_km2": 214970.0
+ },
+ "HK": {
+  "nom": "R.A.S. chinoise de Hong Kong",
+  "nom_en": "Hong Kong",
+  "iso3": "HKG",
+  "continent": "AS",
+  "capitale": "Hong Kong",
+  "monnaie": "HKD",
+  "monnaie_nom": "dollar de Hong Kong",
+  "langues": [
+   "chinois",
+   "cantonais",
+   "anglais"
+  ],
+  "indicatif": "+852",
+  "superficie_km2": 1092.0
+ },
+ "HM": {
+  "nom": "Îles Heard-et-MacDonald",
+  "nom_en": "Heard Island and McDonald Islands",
+  "iso3": "HMD",
+  "continent": "AN",
+  "capitale": "",
+  "monnaie": "AUD",
+  "monnaie_nom": "dollar australien",
+  "langues": [],
+  "indicatif": "+ ",
+  "superficie_km2": 412.0
+ },
+ "HN": {
+  "nom": "Honduras",
+  "nom_en": "Honduras",
+  "iso3": "HND",
+  "continent": "NA",
+  "capitale": "Tegucigalpa",
+  "monnaie": "HNL",
+  "monnaie_nom": "lempira hondurien",
+  "langues": [
+   "espagnol"
+  ],
+  "indicatif": "+504",
+  "superficie_km2": 112090.0
+ },
+ "HR": {
+  "nom": "Croatie",
+  "nom_en": "Croatia",
+  "iso3": "HRV",
+  "continent": "EU",
+  "capitale": "Zagreb",
+  "monnaie": "EUR",
+  "monnaie_nom": "euro",
+  "langues": [
+   "croate",
+   "serbe"
+  ],
+  "indicatif": "+385",
+  "superficie_km2": 56542.0
+ },
+ "HT": {
+  "nom": "Haïti",
+  "nom_en": "Haiti",
+  "iso3": "HTI",
+  "continent": "NA",
+  "capitale": "Port-au-Prince",
+  "monnaie": "HTG",
+  "monnaie_nom": "gourde haïtienne",
+  "langues": [
+   "créole haïtien",
+   "français"
+  ],
+  "indicatif": "+509",
+  "superficie_km2": 27750.0
+ },
+ "HU": {
+  "nom": "Hongrie",
+  "nom_en": "Hungary",
+  "iso3": "HUN",
+  "continent": "EU",
+  "capitale": "Budapest",
+  "monnaie": "HUF",
+  "monnaie_nom": "forint hongrois",
+  "langues": [
+   "hongrois"
+  ],
+  "indicatif": "+36",
+  "superficie_km2": 93030.0
+ },
+ "ID": {
+  "nom": "Indonésie",
+  "nom_en": "Indonesia",
+  "iso3": "IDN",
+  "continent": "AS",
+  "capitale": "Jakarta",
+  "monnaie": "IDR",
+  "monnaie_nom": "roupie indonésienne",
+  "langues": [
+   "indonésien",
+   "anglais",
+   "néerlandais"
+  ],
+  "indicatif": "+62",
+  "superficie_km2": 1919440.0
+ },
+ "IE": {
+  "nom": "Irlande",
+  "nom_en": "Ireland",
+  "iso3": "IRL",
+  "continent": "EU",
+  "capitale": "Dublin",
+  "monnaie": "EUR",
+  "monnaie_nom": "euro",
+  "langues": [
+   "anglais",
+   "irlandais"
+  ],
+  "indicatif": "+353",
+  "superficie_km2": 70280.0
+ },
+ "IL": {
+  "nom": "Israël",
+  "nom_en": "Israel",
+  "iso3": "ISR",
+  "continent": "AS",
+  "capitale": "Jerusalem",
+  "monnaie": "ILS",
+  "monnaie_nom": "nouveau shekel israélien",
+  "langues": [
+   "hébreu",
+   "arabe",
+   "anglais"
+  ],
+  "indicatif": "+972",
+  "superficie_km2": 20770.0
+ },
+ "IM": {
+  "nom": "Île de Man",
+  "nom_en": "Isle of Man",
+  "iso3": "IMN",
+  "continent": "EU",
+  "capitale": "Douglas",
+  "monnaie": "GBP",
+  "monnaie_nom": "livre sterling",
+  "langues": [
+   "anglais",
+   "mannois"
+  ],
+  "indicatif": "+44-1624",
+  "superficie_km2": 572.0
+ },
+ "IN": {
+  "nom": "Inde",
+  "nom_en": "India",
+  "iso3": "IND",
+  "continent": "AS",
+  "capitale": "New Delhi",
+  "monnaie": "INR",
+  "monnaie_nom": "roupie indienne",
+  "langues": [
+   "anglais",
+   "hindi",
+   "bengali"
+  ],
+  "indicatif": "+91",
+  "superficie_km2": 3287590.0
+ },
+ "IO": {
+  "nom": "Territoire britannique de l’océan Indien",
+  "nom_en": "British Indian Ocean Territory",
+  "iso3": "IOT",
+  "continent": "AS",
+  "capitale": "Diego Garcia",
+  "monnaie": "USD",
+  "monnaie_nom": "dollar des États-Unis",
+  "langues": [
+   "anglais"
+  ],
+  "indicatif": "+246",
+  "superficie_km2": 60.0
+ },
+ "IQ": {
+  "nom": "Irak",
+  "nom_en": "Iraq",
+  "iso3": "IRQ",
+  "continent": "AS",
+  "capitale": "Baghdad",
+  "monnaie": "IQD",
+  "monnaie_nom": "dinar irakien",
+  "langues": [
+   "arabe",
+   "kurde",
+   "arménien"
+  ],
+  "indicatif": "+964",
+  "superficie_km2": 437072.0
+ },
+ "IR": {
+  "nom": "Iran",
+  "nom_en": "Iran",
+  "iso3": "IRN",
+  "continent": "AS",
+  "capitale": "Tehran",
+  "monnaie": "IRR",
+  "monnaie_nom": "riyal iranien",
+  "langues": [
+   "persan",
+   "kurde"
+  ],
+  "indicatif": "+98",
+  "superficie_km2": 1648000.0
+ },
+ "IS": {
+  "nom": "Islande",
+  "nom_en": "Iceland",
+  "iso3": "ISL",
+  "continent": "EU",
+  "capitale": "Reykjavik",
+  "monnaie": "ISK",
+  "monnaie_nom": "couronne islandaise",
+  "langues": [
+   "islandais",
+   "anglais",
+   "allemand"
+  ],
+  "indicatif": "+354",
+  "superficie_km2": 103000.0
+ },
+ "IT": {
+  "nom": "Italie",
+  "nom_en": "Italy",
+  "iso3": "ITA",
+  "continent": "EU",
+  "capitale": "Rome",
+  "monnaie": "EUR",
+  "monnaie_nom": "euro",
+  "langues": [
+   "italien",
+   "allemand",
+   "français"
+  ],
+  "indicatif": "+39",
+  "superficie_km2": 301230.0
+ },
+ "JE": {
+  "nom": "Jersey",
+  "nom_en": "Jersey",
+  "iso3": "JEY",
+  "continent": "EU",
+  "capitale": "Saint Helier",
+  "monnaie": "GBP",
+  "monnaie_nom": "livre sterling",
+  "langues": [
+   "anglais",
+   "français"
+  ],
+  "indicatif": "+44-1534",
+  "superficie_km2": 116.0
+ },
+ "JM": {
+  "nom": "Jamaïque",
+  "nom_en": "Jamaica",
+  "iso3": "JAM",
+  "continent": "NA",
+  "capitale": "Kingston",
+  "monnaie": "JMD",
+  "monnaie_nom": "dollar jamaïcain",
+  "langues": [
+   "anglais"
+  ],
+  "indicatif": "+1-876",
+  "superficie_km2": 10991.0
+ },
+ "JO": {
+  "nom": "Jordanie",
+  "nom_en": "Jordan",
+  "iso3": "JOR",
+  "continent": "AS",
+  "capitale": "Amman",
+  "monnaie": "JOD",
+  "monnaie_nom": "dinar jordanien",
+  "langues": [
+   "arabe",
+   "anglais"
+  ],
+  "indicatif": "+962",
+  "superficie_km2": 92300.0
+ },
+ "JP": {
+  "nom": "Japon",
+  "nom_en": "Japan",
+  "iso3": "JPN",
+  "continent": "AS",
+  "capitale": "Tokyo",
+  "monnaie": "JPY",
+  "monnaie_nom": "yen japonais",
+  "langues": [
+   "japonais"
+  ],
+  "indicatif": "+81",
+  "superficie_km2": 377835.0
+ },
+ "KE": {
+  "nom": "Kenya",
+  "nom_en": "Kenya",
+  "iso3": "KEN",
+  "continent": "AF",
+  "capitale": "Nairobi",
+  "monnaie": "KES",
+  "monnaie_nom": "shilling kényan",
+  "langues": [
+   "anglais",
+   "swahili"
+  ],
+  "indicatif": "+254",
+  "superficie_km2": 582650.0
+ },
+ "KG": {
+  "nom": "Kirghizstan",
+  "nom_en": "Kyrgyzstan",
+  "iso3": "KGZ",
+  "continent": "AS",
+  "capitale": "Bishkek",
+  "monnaie": "KGS",
+  "monnaie_nom": "som kirghize",
+  "langues": [
+   "kirghize",
+   "ouzbek",
+   "russe"
+  ],
+  "indicatif": "+996",
+  "superficie_km2": 198500.0
+ },
+ "KH": {
+  "nom": "Cambodge",
+  "nom_en": "Cambodia",
+  "iso3": "KHM",
+  "continent": "AS",
+  "capitale": "Phnom Penh",
+  "monnaie": "KHR",
+  "monnaie_nom": "riel cambodgien",
+  "langues": [
+   "khmer",
+   "français",
+   "anglais"
+  ],
+  "indicatif": "+855",
+  "superficie_km2": 181040.0
+ },
+ "KI": {
+  "nom": "Kiribati",
+  "nom_en": "Kiribati",
+  "iso3": "KIR",
+  "continent": "OC",
+  "capitale": "Tarawa",
+  "monnaie": "AUD",
+  "monnaie_nom": "dollar australien",
+  "langues": [
+   "anglais",
+   "gilbertin"
+  ],
+  "indicatif": "+686",
+  "superficie_km2": 811.0
+ },
+ "KM": {
+  "nom": "Comores",
+  "nom_en": "Comoros",
+  "iso3": "COM",
+  "continent": "AF",
+  "capitale": "Moroni",
+  "monnaie": "KMF",
+  "monnaie_nom": "franc comorien",
+  "langues": [
+   "arabe",
+   "français"
+  ],
+  "indicatif": "+269",
+  "superficie_km2": 2170.0
+ },
+ "KN": {
+  "nom": "Saint-Christophe-et-Niévès",
+  "nom_en": "Saint Kitts and Nevis",
+  "iso3": "KNA",
+  "continent": "NA",
+  "capitale": "Basseterre",
+  "monnaie": "XCD",
+  "monnaie_nom": "dollar des Caraïbes orientales",
+  "langues": [
+   "anglais"
+  ],
+  "indicatif": "+1-869",
+  "superficie_km2": 261.0
+ },
+ "KP": {
+  "nom": "Corée du Nord",
+  "nom_en": "North Korea",
+  "iso3": "PRK",
+  "continent": "AS",
+  "capitale": "Pyongyang",
+  "monnaie": "KPW",
+  "monnaie_nom": "won nord-coréen",
+  "langues": [
+   "coréen"
+  ],
+  "indicatif": "+850",
+  "superficie_km2": 120540.0
+ },
+ "KR": {
+  "nom": "Corée du Sud",
+  "nom_en": "South Korea",
+  "iso3": "KOR",
+  "continent": "AS",
+  "capitale": "Seoul",
+  "monnaie": "KRW",
+  "monnaie_nom": "won sud-coréen",
+  "langues": [
+   "coréen",
+   "anglais"
+  ],
+  "indicatif": "+82",
+  "superficie_km2": 98480.0
+ },
+ "XK": {
+  "nom": "Kosovo",
+  "nom_en": "Kosovo",
+  "iso3": "XKX",
+  "continent": "EU",
+  "capitale": "Pristina",
+  "monnaie": "EUR",
+  "monnaie_nom": "euro",
+  "langues": [
+   "albanais",
+   "serbe"
+  ],
+  "indicatif": "",
+  "superficie_km2": 10908.0
+ },
+ "KW": {
+  "nom": "Koweït",
+  "nom_en": "Kuwait",
+  "iso3": "KWT",
+  "continent": "AS",
+  "capitale": "Kuwait City",
+  "monnaie": "KWD",
+  "monnaie_nom": "dinar koweïtien",
+  "langues": [
+   "arabe",
+   "anglais"
+  ],
+  "indicatif": "+965",
+  "superficie_km2": 17820.0
+ },
+ "KY": {
+  "nom": "Îles Caïmans",
+  "nom_en": "Cayman Islands",
+  "iso3": "CYM",
+  "continent": "NA",
+  "capitale": "George Town",
+  "monnaie": "KYD",
+  "monnaie_nom": "dollar des îles Caïmans",
+  "langues": [
+   "anglais"
+  ],
+  "indicatif": "+1-345",
+  "superficie_km2": 262.0
+ },
+ "KZ": {
+  "nom": "Kazakhstan",
+  "nom_en": "Kazakhstan",
+  "iso3": "KAZ",
+  "continent": "AS",
+  "capitale": "Nur-Sultan",
+  "monnaie": "KZT",
+  "monnaie_nom": "tenge kazakh",
+  "langues": [
+   "kazakh",
+   "russe"
+  ],
+  "indicatif": "+7",
+  "superficie_km2": 2717300.0
+ },
+ "LA": {
+  "nom": "Laos",
+  "nom_en": "Laos",
+  "iso3": "LAO",
+  "continent": "AS",
+  "capitale": "Vientiane",
+  "monnaie": "LAK",
+  "monnaie_nom": "kip laotien",
+  "langues": [
+   "lao",
+   "français",
+   "anglais"
+  ],
+  "indicatif": "+856",
+  "superficie_km2": 236800.0
+ },
+ "LB": {
+  "nom": "Liban",
+  "nom_en": "Lebanon",
+  "iso3": "LBN",
+  "continent": "AS",
+  "capitale": "Beirut",
+  "monnaie": "LBP",
+  "monnaie_nom": "livre libanaise",
+  "langues": [
+   "arabe",
+   "français",
+   "anglais"
+  ],
+  "indicatif": "+961",
+  "superficie_km2": 10400.0
+ },
+ "LC": {
+  "nom": "Sainte-Lucie",
+  "nom_en": "Saint Lucia",
+  "iso3": "LCA",
+  "continent": "NA",
+  "capitale": "Castries",
+  "monnaie": "XCD",
+  "monnaie_nom": "dollar des Caraïbes orientales",
+  "langues": [
+   "anglais"
+  ],
+  "indicatif": "+1-758",
+  "superficie_km2": 616.0
+ },
+ "LI": {
+  "nom": "Liechtenstein",
+  "nom_en": "Liechtenstein",
+  "iso3": "LIE",
+  "continent": "EU",
+  "capitale": "Vaduz",
+  "monnaie": "CHF",
+  "monnaie_nom": "franc suisse",
+  "langues": [
+   "allemand"
+  ],
+  "indicatif": "+423",
+  "superficie_km2": 160.0
+ },
+ "LK": {
+  "nom": "Sri Lanka",
+  "nom_en": "Sri Lanka",
+  "iso3": "LKA",
+  "continent": "AS",
+  "capitale": "Colombo",
+  "monnaie": "LKR",
+  "monnaie_nom": "roupie srilankaise",
+  "langues": [
+   "cingalais",
+   "tamoul",
+   "anglais"
+  ],
+  "indicatif": "+94",
+  "superficie_km2": 65610.0
+ },
+ "LR": {
+  "nom": "Liberia",
+  "nom_en": "Liberia",
+  "iso3": "LBR",
+  "continent": "AF",
+  "capitale": "Monrovia",
+  "monnaie": "LRD",
+  "monnaie_nom": "dollar libérien",
+  "langues": [
+   "anglais"
+  ],
+  "indicatif": "+231",
+  "superficie_km2": 111370.0
+ },
+ "LS": {
+  "nom": "Lesotho",
+  "nom_en": "Lesotho",
+  "iso3": "LSO",
+  "continent": "AF",
+  "capitale": "Maseru",
+  "monnaie": "LSL",
+  "monnaie_nom": "loti lesothan",
+  "langues": [
+   "anglais",
+   "sotho du Sud",
+   "zoulou"
+  ],
+  "indicatif": "+266",
+  "superficie_km2": 30355.0
+ },
+ "LT": {
+  "nom": "Lituanie",
+  "nom_en": "Lithuania",
+  "iso3": "LTU",
+  "continent": "EU",
+  "capitale": "Vilnius",
+  "monnaie": "EUR",
+  "monnaie_nom": "euro",
+  "langues": [
+   "lituanien",
+   "russe",
+   "polonais"
+  ],
+  "indicatif": "+370",
+  "superficie_km2": 65200.0
+ },
+ "LU": {
+  "nom": "Luxembourg",
+  "nom_en": "Luxembourg",
+  "iso3": "LUX",
+  "continent": "EU",
+  "capitale": "Luxembourg",
+  "monnaie": "EUR",
+  "monnaie_nom": "euro",
+  "langues": [
+   "luxembourgeois",
+   "allemand",
+   "français"
+  ],
+  "indicatif": "+352",
+  "superficie_km2": 2586.0
+ },
+ "LV": {
+  "nom": "Lettonie",
+  "nom_en": "Latvia",
+  "iso3": "LVA",
+  "continent": "EU",
+  "capitale": "Riga",
+  "monnaie": "EUR",
+  "monnaie_nom": "euro",
+  "langues": [
+   "letton",
+   "russe",
+   "lituanien"
+  ],
+  "indicatif": "+371",
+  "superficie_km2": 64589.0
+ },
+ "LY": {
+  "nom": "Libye",
+  "nom_en": "Libya",
+  "iso3": "LBY",
+  "continent": "AF",
+  "capitale": "Tripoli",
+  "monnaie": "LYD",
+  "monnaie_nom": "dinar libyen",
+  "langues": [
+   "arabe",
+   "italien",
+   "anglais"
+  ],
+  "indicatif": "+218",
+  "superficie_km2": 1759540.0
+ },
+ "MA": {
+  "nom": "Maroc",
+  "nom_en": "Morocco",
+  "iso3": "MAR",
+  "continent": "AF",
+  "capitale": "Rabat",
+  "monnaie": "MAD",
+  "monnaie_nom": "dirham marocain",
+  "langues": [
+   "arabe",
+   "français"
+  ],
+  "indicatif": "+212",
+  "superficie_km2": 446550.0
+ },
+ "MC": {
+  "nom": "Monaco",
+  "nom_en": "Monaco",
+  "iso3": "MCO",
+  "continent": "EU",
+  "capitale": "Monaco",
+  "monnaie": "EUR",
+  "monnaie_nom": "euro",
+  "langues": [
+   "français",
+   "anglais",
+   "italien"
+  ],
+  "indicatif": "+377",
+  "superficie_km2": 1.95
+ },
+ "MD": {
+  "nom": "Moldavie",
+  "nom_en": "Moldova",
+  "iso3": "MDA",
+  "continent": "EU",
+  "capitale": "Chisinau",
+  "monnaie": "MDL",
+  "monnaie_nom": "leu moldave",
+  "langues": [
+   "roumain",
+   "russe",
+   "gagaouze"
+  ],
+  "indicatif": "+373",
+  "superficie_km2": 33843.0
+ },
+ "ME": {
+  "nom": "Monténégro",
+  "nom_en": "Montenegro",
+  "iso3": "MNE",
+  "continent": "EU",
+  "capitale": "Podgorica",
+  "monnaie": "EUR",
+  "monnaie_nom": "euro",
+  "langues": [
+   "serbe",
+   "hongrois",
+   "bosniaque"
+  ],
+  "indicatif": "+382",
+  "superficie_km2": 14026.0
+ },
+ "MF": {
+  "nom": "Saint-Martin",
+  "nom_en": "Saint Martin",
+  "iso3": "MAF",
+  "continent": "NA",
+  "capitale": "Marigot",
+  "monnaie": "EUR",
+  "monnaie_nom": "euro",
+  "langues": [
+   "français"
+  ],
+  "indicatif": "+590",
+  "superficie_km2": 53.0
+ },
+ "MG": {
+  "nom": "Madagascar",
+  "nom_en": "Madagascar",
+  "iso3": "MDG",
+  "continent": "AF",
+  "capitale": "Antananarivo",
+  "monnaie": "MGA",
+  "monnaie_nom": "ariary malgache",
+  "langues": [
+   "français",
+   "malgache"
+  ],
+  "indicatif": "+261",
+  "superficie_km2": 587040.0
+ },
+ "MH": {
+  "nom": "Îles Marshall",
+  "nom_en": "Marshall Islands",
+  "iso3": "MHL",
+  "continent": "OC",
+  "capitale": "Majuro",
+  "monnaie": "USD",
+  "monnaie_nom": "dollar des États-Unis",
+  "langues": [
+   "marshallais",
+   "anglais"
+  ],
+  "indicatif": "+692",
+  "superficie_km2": 181.3
+ },
+ "MK": {
+  "nom": "Macédoine du Nord",
+  "nom_en": "North Macedonia",
+  "iso3": "MKD",
+  "continent": "EU",
+  "capitale": "Skopje",
+  "monnaie": "MKD",
+  "monnaie_nom": "denar macédonien",
+  "langues": [
+   "macédonien",
+   "albanais",
+   "turc"
+  ],
+  "indicatif": "+389",
+  "superficie_km2": 25333.0
+ },
+ "ML": {
+  "nom": "Mali",
+  "nom_en": "Mali",
+  "iso3": "MLI",
+  "continent": "AF",
+  "capitale": "Bamako",
+  "monnaie": "XOF",
+  "monnaie_nom": "franc CFA (BCEAO)",
+  "langues": [
+   "français",
+   "bambara"
+  ],
+  "indicatif": "+223",
+  "superficie_km2": 1240000.0
+ },
+ "MM": {
+  "nom": "Myanmar (Birmanie)",
+  "nom_en": "Myanmar",
+  "iso3": "MMR",
+  "continent": "AS",
+  "capitale": "Nay Pyi Taw",
+  "monnaie": "MMK",
+  "monnaie_nom": "kyat myanmarais",
+  "langues": [
+   "birman"
+  ],
+  "indicatif": "+95",
+  "superficie_km2": 678500.0
+ },
+ "MN": {
+  "nom": "Mongolie",
+  "nom_en": "Mongolia",
+  "iso3": "MNG",
+  "continent": "AS",
+  "capitale": "Ulaanbaatar",
+  "monnaie": "MNT",
+  "monnaie_nom": "tugrik mongol",
+  "langues": [
+   "mongol",
+   "russe"
+  ],
+  "indicatif": "+976",
+  "superficie_km2": 1565000.0
+ },
+ "MO": {
+  "nom": "R.A.S. chinoise de Macao",
+  "nom_en": "Macao",
+  "iso3": "MAC",
+  "continent": "AS",
+  "capitale": "Macao",
+  "monnaie": "MOP",
+  "monnaie_nom": "pataca macanaise",
+  "langues": [
+   "chinois",
+   "portugais"
+  ],
+  "indicatif": "+853",
+  "superficie_km2": 33.0
+ },
+ "MP": {
+  "nom": "Îles Mariannes du Nord",
+  "nom_en": "Northern Mariana Islands",
+  "iso3": "MNP",
+  "continent": "OC",
+  "capitale": "Saipan",
+  "monnaie": "USD",
+  "monnaie_nom": "dollar des États-Unis",
+  "langues": [
+   "filipino",
+   "tagalog",
+   "chinois"
+  ],
+  "indicatif": "+1-670",
+  "superficie_km2": 477.0
+ },
+ "MQ": {
+  "nom": "Martinique",
+  "nom_en": "Martinique",
+  "iso3": "MTQ",
+  "continent": "NA",
+  "capitale": "Fort-de-France",
+  "monnaie": "EUR",
+  "monnaie_nom": "euro",
+  "langues": [
+   "français"
+  ],
+  "indicatif": "+596",
+  "superficie_km2": 1100.0
+ },
+ "MR": {
+  "nom": "Mauritanie",
+  "nom_en": "Mauritania",
+  "iso3": "MRT",
+  "continent": "AF",
+  "capitale": "Nouakchott",
+  "monnaie": "MRU",
+  "monnaie_nom": "ouguiya mauritanien",
+  "langues": [
+   "arabe",
+   "soninké",
+   "français"
+  ],
+  "indicatif": "+222",
+  "superficie_km2": 1030700.0
+ },
+ "MS": {
+  "nom": "Montserrat",
+  "nom_en": "Montserrat",
+  "iso3": "MSR",
+  "continent": "NA",
+  "capitale": "Plymouth",
+  "monnaie": "XCD",
+  "monnaie_nom": "dollar des Caraïbes orientales",
+  "langues": [
+   "anglais"
+  ],
+  "indicatif": "+1-664",
+  "superficie_km2": 102.0
+ },
+ "MT": {
+  "nom": "Malte",
+  "nom_en": "Malta",
+  "iso3": "MLT",
+  "continent": "EU",
+  "capitale": "Valletta",
+  "monnaie": "EUR",
+  "monnaie_nom": "euro",
+  "langues": [
+   "maltais",
+   "anglais"
+  ],
+  "indicatif": "+356",
+  "superficie_km2": 316.0
+ },
+ "MU": {
+  "nom": "Maurice",
+  "nom_en": "Mauritius",
+  "iso3": "MUS",
+  "continent": "AF",
+  "capitale": "Port Louis",
+  "monnaie": "MUR",
+  "monnaie_nom": "roupie mauricienne",
+  "langues": [
+   "anglais",
+   "bhodjpouri",
+   "français"
+  ],
+  "indicatif": "+230",
+  "superficie_km2": 2040.0
+ },
+ "MV": {
+  "nom": "Maldives",
+  "nom_en": "Maldives",
+  "iso3": "MDV",
+  "continent": "AS",
+  "capitale": "Male",
+  "monnaie": "MVR",
+  "monnaie_nom": "rufiyaa maldivienne",
+  "langues": [
+   "maldivien",
+   "anglais"
+  ],
+  "indicatif": "+960",
+  "superficie_km2": 300.0
+ },
+ "MW": {
+  "nom": "Malawi",
+  "nom_en": "Malawi",
+  "iso3": "MWI",
+  "continent": "AF",
+  "capitale": "Lilongwe",
+  "monnaie": "MWK",
+  "monnaie_nom": "kwacha malawite",
+  "langues": [
+   "chewa",
+   "yao",
+   "tumbuka"
+  ],
+  "indicatif": "+265",
+  "superficie_km2": 118480.0
+ },
+ "MX": {
+  "nom": "Mexique",
+  "nom_en": "Mexico",
+  "iso3": "MEX",
+  "continent": "NA",
+  "capitale": "Mexico City",
+  "monnaie": "MXN",
+  "monnaie_nom": "peso mexicain",
+  "langues": [
+   "espagnol"
+  ],
+  "indicatif": "+52",
+  "superficie_km2": 1972550.0
+ },
+ "MY": {
+  "nom": "Malaisie",
+  "nom_en": "Malaysia",
+  "iso3": "MYS",
+  "continent": "AS",
+  "capitale": "Kuala Lumpur",
+  "monnaie": "MYR",
+  "monnaie_nom": "ringgit malais",
+  "langues": [
+   "malais",
+   "anglais",
+   "chinois"
+  ],
+  "indicatif": "+60",
+  "superficie_km2": 329750.0
+ },
+ "MZ": {
+  "nom": "Mozambique",
+  "nom_en": "Mozambique",
+  "iso3": "MOZ",
+  "continent": "AF",
+  "capitale": "Maputo",
+  "monnaie": "MZN",
+  "monnaie_nom": "metical mozambicain",
+  "langues": [
+   "portugais",
+   "macua"
+  ],
+  "indicatif": "+258",
+  "superficie_km2": 801590.0
+ },
+ "NA": {
+  "nom": "Namibie",
+  "nom_en": "Namibia",
+  "iso3": "NAM",
+  "continent": "AF",
+  "capitale": "Windhoek",
+  "monnaie": "NAD",
+  "monnaie_nom": "dollar namibien",
+  "langues": [
+   "anglais",
+   "afrikaans",
+   "allemand"
+  ],
+  "indicatif": "+264",
+  "superficie_km2": 825418.0
+ },
+ "NC": {
+  "nom": "Nouvelle-Calédonie",
+  "nom_en": "New Caledonia",
+  "iso3": "NCL",
+  "continent": "OC",
+  "capitale": "Noumea",
+  "monnaie": "XPF",
+  "monnaie_nom": "franc CFP",
+  "langues": [
+   "français"
+  ],
+  "indicatif": "+687",
+  "superficie_km2": 19060.0
+ },
+ "NE": {
+  "nom": "Niger",
+  "nom_en": "Niger",
+  "iso3": "NER",
+  "continent": "AF",
+  "capitale": "Niamey",
+  "monnaie": "XOF",
+  "monnaie_nom": "franc CFA (BCEAO)",
+  "langues": [
+   "français",
+   "haoussa",
+   "kanouri"
+  ],
+  "indicatif": "+227",
+  "superficie_km2": 1267000.0
+ },
+ "NF": {
+  "nom": "Île Norfolk",
+  "nom_en": "Norfolk Island",
+  "iso3": "NFK",
+  "continent": "OC",
+  "capitale": "Kingston",
+  "monnaie": "AUD",
+  "monnaie_nom": "dollar australien",
+  "langues": [
+   "anglais"
+  ],
+  "indicatif": "+672",
+  "superficie_km2": 34.6
+ },
+ "NG": {
+  "nom": "Nigeria",
+  "nom_en": "Nigeria",
+  "iso3": "NGA",
+  "continent": "AF",
+  "capitale": "Abuja",
+  "monnaie": "NGN",
+  "monnaie_nom": "naira nigérian",
+  "langues": [
+   "anglais",
+   "haoussa",
+   "yoruba"
+  ],
+  "indicatif": "+234",
+  "superficie_km2": 923768.0
+ },
+ "NI": {
+  "nom": "Nicaragua",
+  "nom_en": "Nicaragua",
+  "iso3": "NIC",
+  "continent": "NA",
+  "capitale": "Managua",
+  "monnaie": "NIO",
+  "monnaie_nom": "córdoba oro nicaraguayen",
+  "langues": [
+   "espagnol",
+   "anglais"
+  ],
+  "indicatif": "+505",
+  "superficie_km2": 129494.0
+ },
+ "NL": {
+  "nom": "Pays-Bas",
+  "nom_en": "The Netherlands",
+  "iso3": "NLD",
+  "continent": "EU",
+  "capitale": "Amsterdam",
+  "monnaie": "EUR",
+  "monnaie_nom": "euro",
+  "langues": [
+   "néerlandais",
+   "frison occidental"
+  ],
+  "indicatif": "+31",
+  "superficie_km2": 41526.0
+ },
+ "NO": {
+  "nom": "Norvège",
+  "nom_en": "Norway",
+  "iso3": "NOR",
+  "continent": "EU",
+  "capitale": "Oslo",
+  "monnaie": "NOK",
+  "monnaie_nom": "couronne norvégienne",
+  "langues": [
+   "norvégien",
+   "norvégien bokmål",
+   "norvégien nynorsk"
+  ],
+  "indicatif": "+47",
+  "superficie_km2": 324220.0
+ },
+ "NP": {
+  "nom": "Népal",
+  "nom_en": "Nepal",
+  "iso3": "NPL",
+  "continent": "AS",
+  "capitale": "Kathmandu",
+  "monnaie": "NPR",
+  "monnaie_nom": "roupie népalaise",
+  "langues": [
+   "népalais",
+   "anglais"
+  ],
+  "indicatif": "+977",
+  "superficie_km2": 140800.0
+ },
+ "NR": {
+  "nom": "Nauru",
+  "nom_en": "Nauru",
+  "iso3": "NRU",
+  "continent": "OC",
+  "capitale": "Yaren",
+  "monnaie": "AUD",
+  "monnaie_nom": "dollar australien",
+  "langues": [
+   "nauruan",
+   "anglais"
+  ],
+  "indicatif": "+674",
+  "superficie_km2": 21.0
+ },
+ "NU": {
+  "nom": "Niue",
+  "nom_en": "Niue",
+  "iso3": "NIU",
+  "continent": "OC",
+  "capitale": "Alofi",
+  "monnaie": "NZD",
+  "monnaie_nom": "dollar néo-zélandais",
+  "langues": [
+   "niuéen",
+   "anglais"
+  ],
+  "indicatif": "+683",
+  "superficie_km2": 260.0
+ },
+ "NZ": {
+  "nom": "Nouvelle-Zélande",
+  "nom_en": "New Zealand",
+  "iso3": "NZL",
+  "continent": "OC",
+  "capitale": "Wellington",
+  "monnaie": "NZD",
+  "monnaie_nom": "dollar néo-zélandais",
+  "langues": [
+   "anglais",
+   "maori"
+  ],
+  "indicatif": "+64",
+  "superficie_km2": 268680.0
+ },
+ "OM": {
+  "nom": "Oman",
+  "nom_en": "Oman",
+  "iso3": "OMN",
+  "continent": "AS",
+  "capitale": "Muscat",
+  "monnaie": "OMR",
+  "monnaie_nom": "riyal omanais",
+  "langues": [
+   "arabe",
+   "anglais",
+   "baloutchi"
+  ],
+  "indicatif": "+968",
+  "superficie_km2": 309500.0
+ },
+ "PA": {
+  "nom": "Panama",
+  "nom_en": "Panama",
+  "iso3": "PAN",
+  "continent": "NA",
+  "capitale": "Panama City",
+  "monnaie": "PAB",
+  "monnaie_nom": "balboa panaméen",
+  "langues": [
+   "espagnol",
+   "anglais"
+  ],
+  "indicatif": "+507",
+  "superficie_km2": 78200.0
+ },
+ "PE": {
+  "nom": "Pérou",
+  "nom_en": "Peru",
+  "iso3": "PER",
+  "continent": "SA",
+  "capitale": "Lima",
+  "monnaie": "PEN",
+  "monnaie_nom": "sol péruvien",
+  "langues": [
+   "espagnol",
+   "quechua",
+   "aymara"
+  ],
+  "indicatif": "+51",
+  "superficie_km2": 1285220.0
+ },
+ "PF": {
+  "nom": "Polynésie française",
+  "nom_en": "French Polynesia",
+  "iso3": "PYF",
+  "continent": "OC",
+  "capitale": "Papeete",
+  "monnaie": "XPF",
+  "monnaie_nom": "franc CFP",
+  "langues": [
+   "français",
+   "tahitien"
+  ],
+  "indicatif": "+689",
+  "superficie_km2": 4167.0
+ },
+ "PG": {
+  "nom": "Papouasie-Nouvelle-Guinée",
+  "nom_en": "Papua New Guinea",
+  "iso3": "PNG",
+  "continent": "OC",
+  "capitale": "Port Moresby",
+  "monnaie": "PGK",
+  "monnaie_nom": "kina papouan-néo-guinéen",
+  "langues": [
+   "anglais",
+   "hiri motu",
+   "tok pisin"
+  ],
+  "indicatif": "+675",
+  "superficie_km2": 462840.0
+ },
+ "PH": {
+  "nom": "Philippines",
+  "nom_en": "Philippines",
+  "iso3": "PHL",
+  "continent": "AS",
+  "capitale": "Manila",
+  "monnaie": "PHP",
+  "monnaie_nom": "peso philippin",
+  "langues": [
+   "tagalog",
+   "anglais",
+   "filipino"
+  ],
+  "indicatif": "+63",
+  "superficie_km2": 300000.0
+ },
+ "PK": {
+  "nom": "Pakistan",
+  "nom_en": "Pakistan",
+  "iso3": "PAK",
+  "continent": "AS",
+  "capitale": "Islamabad",
+  "monnaie": "PKR",
+  "monnaie_nom": "roupie pakistanaise",
+  "langues": [
+   "ourdou",
+   "anglais",
+   "pendjabi"
+  ],
+  "indicatif": "+92",
+  "superficie_km2": 803940.0
+ },
+ "PL": {
+  "nom": "Pologne",
+  "nom_en": "Poland",
+  "iso3": "POL",
+  "continent": "EU",
+  "capitale": "Warsaw",
+  "monnaie": "PLN",
+  "monnaie_nom": "zloty polonais",
+  "langues": [
+   "polonais"
+  ],
+  "indicatif": "+48",
+  "superficie_km2": 312685.0
+ },
+ "PM": {
+  "nom": "Saint-Pierre-et-Miquelon",
+  "nom_en": "Saint Pierre and Miquelon",
+  "iso3": "SPM",
+  "continent": "NA",
+  "capitale": "Saint-Pierre",
+  "monnaie": "EUR",
+  "monnaie_nom": "euro",
+  "langues": [
+   "français"
+  ],
+  "indicatif": "+508",
+  "superficie_km2": 242.0
+ },
+ "PN": {
+  "nom": "Îles Pitcairn",
+  "nom_en": "Pitcairn",
+  "iso3": "PCN",
+  "continent": "OC",
+  "capitale": "Adamstown",
+  "monnaie": "NZD",
+  "monnaie_nom": "dollar néo-zélandais",
+  "langues": [
+   "anglais"
+  ],
+  "indicatif": "+870",
+  "superficie_km2": 47.0
+ },
+ "PR": {
+  "nom": "Porto Rico",
+  "nom_en": "Puerto Rico",
+  "iso3": "PRI",
+  "continent": "NA",
+  "capitale": "San Juan",
+  "monnaie": "USD",
+  "monnaie_nom": "dollar des États-Unis",
+  "langues": [
+   "anglais",
+   "espagnol"
+  ],
+  "indicatif": "+1-787 and 1-939",
+  "superficie_km2": 9104.0
+ },
+ "PS": {
+  "nom": "Territoires palestiniens",
+  "nom_en": "Palestinian Territory",
+  "iso3": "PSE",
+  "continent": "AS",
+  "capitale": "East Jerusalem",
+  "monnaie": "ILS",
+  "monnaie_nom": "nouveau shekel israélien",
+  "langues": [
+   "arabe"
+  ],
+  "indicatif": "+970",
+  "superficie_km2": 5970.0
+ },
+ "PT": {
+  "nom": "Portugal",
+  "nom_en": "Portugal",
+  "iso3": "PRT",
+  "continent": "EU",
+  "capitale": "Lisbon",
+  "monnaie": "EUR",
+  "monnaie_nom": "euro",
+  "langues": [
+   "portugais",
+   "mirandais"
+  ],
+  "indicatif": "+351",
+  "superficie_km2": 92391.0
+ },
+ "PW": {
+  "nom": "Palaos",
+  "nom_en": "Palau",
+  "iso3": "PLW",
+  "continent": "OC",
+  "capitale": "Melekeok",
+  "monnaie": "USD",
+  "monnaie_nom": "dollar des États-Unis",
+  "langues": [
+   "palau",
+   "anglais",
+   "japonais"
+  ],
+  "indicatif": "+680",
+  "superficie_km2": 458.0
+ },
+ "PY": {
+  "nom": "Paraguay",
+  "nom_en": "Paraguay",
+  "iso3": "PRY",
+  "continent": "SA",
+  "capitale": "Asuncion",
+  "monnaie": "PYG",
+  "monnaie_nom": "guaraní paraguayen",
+  "langues": [
+   "espagnol",
+   "guarani"
+  ],
+  "indicatif": "+595",
+  "superficie_km2": 406750.0
+ },
+ "QA": {
+  "nom": "Qatar",
+  "nom_en": "Qatar",
+  "iso3": "QAT",
+  "continent": "AS",
+  "capitale": "Doha",
+  "monnaie": "QAR",
+  "monnaie_nom": "riyal qatari",
+  "langues": [
+   "arabe",
+   "espagnol"
+  ],
+  "indicatif": "+974",
+  "superficie_km2": 11437.0
+ },
+ "RE": {
+  "nom": "La Réunion",
+  "nom_en": "Reunion",
+  "iso3": "REU",
+  "continent": "AF",
+  "capitale": "Saint-Denis",
+  "monnaie": "EUR",
+  "monnaie_nom": "euro",
+  "langues": [
+   "français"
+  ],
+  "indicatif": "+262",
+  "superficie_km2": 2517.0
+ },
+ "RO": {
+  "nom": "Roumanie",
+  "nom_en": "Romania",
+  "iso3": "ROU",
+  "continent": "EU",
+  "capitale": "Bucharest",
+  "monnaie": "RON",
+  "monnaie_nom": "leu roumain",
+  "langues": [
+   "roumain",
+   "hongrois",
+   "romani"
+  ],
+  "indicatif": "+40",
+  "superficie_km2": 237500.0
+ },
+ "RS": {
+  "nom": "Serbie",
+  "nom_en": "Serbia",
+  "iso3": "SRB",
+  "continent": "EU",
+  "capitale": "Belgrade",
+  "monnaie": "RSD",
+  "monnaie_nom": "dinar serbe",
+  "langues": [
+   "serbe",
+   "hongrois",
+   "bosniaque"
+  ],
+  "indicatif": "+381",
+  "superficie_km2": 88361.0
+ },
+ "RU": {
+  "nom": "Russie",
+  "nom_en": "Russia",
+  "iso3": "RUS",
+  "continent": "EU",
+  "capitale": "Moscow",
+  "monnaie": "RUB",
+  "monnaie_nom": "rouble russe",
+  "langues": [
+   "russe",
+   "tatar",
+   "kalmouk"
+  ],
+  "indicatif": "+7",
+  "superficie_km2": 17100000.0
+ },
+ "RW": {
+  "nom": "Rwanda",
+  "nom_en": "Rwanda",
+  "iso3": "RWA",
+  "continent": "AF",
+  "capitale": "Kigali",
+  "monnaie": "RWF",
+  "monnaie_nom": "franc rwandais",
+  "langues": [
+   "kinyarwanda",
+   "anglais",
+   "français"
+  ],
+  "indicatif": "+250",
+  "superficie_km2": 26338.0
+ },
+ "SA": {
+  "nom": "Arabie saoudite",
+  "nom_en": "Saudi Arabia",
+  "iso3": "SAU",
+  "continent": "AS",
+  "capitale": "Riyadh",
+  "monnaie": "SAR",
+  "monnaie_nom": "riyal saoudien",
+  "langues": [
+   "arabe"
+  ],
+  "indicatif": "+966",
+  "superficie_km2": 1960582.0
+ },
+ "SB": {
+  "nom": "Îles Salomon",
+  "nom_en": "Solomon Islands",
+  "iso3": "SLB",
+  "continent": "OC",
+  "capitale": "Honiara",
+  "monnaie": "SBD",
+  "monnaie_nom": "dollar des îles Salomon",
+  "langues": [
+   "anglais",
+   "tok pisin"
+  ],
+  "indicatif": "+677",
+  "superficie_km2": 28450.0
+ },
+ "SC": {
+  "nom": "Seychelles",
+  "nom_en": "Seychelles",
+  "iso3": "SYC",
+  "continent": "AF",
+  "capitale": "Victoria",
+  "monnaie": "SCR",
+  "monnaie_nom": "roupie des Seychelles",
+  "langues": [
+   "anglais",
+   "français"
+  ],
+  "indicatif": "+248",
+  "superficie_km2": 455.0
+ },
+ "SD": {
+  "nom": "Soudan",
+  "nom_en": "Sudan",
+  "iso3": "SDN",
+  "continent": "AF",
+  "capitale": "Khartoum",
+  "monnaie": "SDG",
+  "monnaie_nom": "livre soudanaise",
+  "langues": [
+   "arabe",
+   "anglais"
+  ],
+  "indicatif": "+249",
+  "superficie_km2": 1861484.0
+ },
+ "SS": {
+  "nom": "Soudan du Sud",
+  "nom_en": "South Sudan",
+  "iso3": "SSD",
+  "continent": "AF",
+  "capitale": "Juba",
+  "monnaie": "SSP",
+  "monnaie_nom": "livre sud-soudanaise",
+  "langues": [
+   "anglais"
+  ],
+  "indicatif": "+211",
+  "superficie_km2": 644329.0
+ },
+ "SE": {
+  "nom": "Suède",
+  "nom_en": "Sweden",
+  "iso3": "SWE",
+  "continent": "EU",
+  "capitale": "Stockholm",
+  "monnaie": "SEK",
+  "monnaie_nom": "couronne suédoise",
+  "langues": [
+   "suédois",
+   "same du Nord",
+   "same du Sud"
+  ],
+  "indicatif": "+46",
+  "superficie_km2": 449964.0
+ },
+ "SG": {
+  "nom": "Singapour",
+  "nom_en": "Singapore",
+  "iso3": "SGP",
+  "continent": "AS",
+  "capitale": "Singapore",
+  "monnaie": "SGD",
+  "monnaie_nom": "dollar de Singapour",
+  "langues": [
+   "anglais",
+   "malais",
+   "tamoul"
+  ],
+  "indicatif": "+65",
+  "superficie_km2": 736.0
+ },
+ "SH": {
+  "nom": "Sainte-Hélène",
+  "nom_en": "Saint Helena",
+  "iso3": "SHN",
+  "continent": "AF",
+  "capitale": "Jamestown",
+  "monnaie": "SHP",
+  "monnaie_nom": "livre de Sainte-Hélène",
+  "langues": [
+   "anglais"
+  ],
+  "indicatif": "+290",
+  "superficie_km2": 410.0
+ },
+ "SI": {
+  "nom": "Slovénie",
+  "nom_en": "Slovenia",
+  "iso3": "SVN",
+  "continent": "EU",
+  "capitale": "Ljubljana",
+  "monnaie": "EUR",
+  "monnaie_nom": "euro",
+  "langues": [
+   "slovène",
+   "serbo-croate"
+  ],
+  "indicatif": "+386",
+  "superficie_km2": 20273.0
+ },
+ "SJ": {
+  "nom": "Svalbard et Jan Mayen",
+  "nom_en": "Svalbard and Jan Mayen",
+  "iso3": "SJM",
+  "continent": "EU",
+  "capitale": "Longyearbyen",
+  "monnaie": "NOK",
+  "monnaie_nom": "couronne norvégienne",
+  "langues": [
+   "norvégien",
+   "russe"
+  ],
+  "indicatif": "+47",
+  "superficie_km2": 62049.0
+ },
+ "SK": {
+  "nom": "Slovaquie",
+  "nom_en": "Slovakia",
+  "iso3": "SVK",
+  "continent": "EU",
+  "capitale": "Bratislava",
+  "monnaie": "EUR",
+  "monnaie_nom": "euro",
+  "langues": [
+   "slovaque",
+   "hongrois"
+  ],
+  "indicatif": "+421",
+  "superficie_km2": 48845.0
+ },
+ "SL": {
+  "nom": "Sierra Leone",
+  "nom_en": "Sierra Leone",
+  "iso3": "SLE",
+  "continent": "AF",
+  "capitale": "Freetown",
+  "monnaie": "SLE",
+  "monnaie_nom": "leone sierra-léonais",
+  "langues": [
+   "anglais",
+   "mendé",
+   "timné"
+  ],
+  "indicatif": "+232",
+  "superficie_km2": 71740.0
+ },
+ "SM": {
+  "nom": "Saint-Marin",
+  "nom_en": "San Marino",
+  "iso3": "SMR",
+  "continent": "EU",
+  "capitale": "San Marino",
+  "monnaie": "EUR",
+  "monnaie_nom": "euro",
+  "langues": [
+   "italien"
+  ],
+  "indicatif": "+378",
+  "superficie_km2": 61.2
+ },
+ "SN": {
+  "nom": "Sénégal",
+  "nom_en": "Senegal",
+  "iso3": "SEN",
+  "continent": "AF",
+  "capitale": "Dakar",
+  "monnaie": "XOF",
+  "monnaie_nom": "franc CFA (BCEAO)",
+  "langues": [
+   "français",
+   "wolof"
+  ],
+  "indicatif": "+221",
+  "superficie_km2": 196190.0
+ },
+ "SO": {
+  "nom": "Somalie",
+  "nom_en": "Somalia",
+  "iso3": "SOM",
+  "continent": "AF",
+  "capitale": "Mogadishu",
+  "monnaie": "SOS",
+  "monnaie_nom": "shilling somalien",
+  "langues": [
+   "somali",
+   "arabe",
+   "italien"
+  ],
+  "indicatif": "+252",
+  "superficie_km2": 637657.0
+ },
+ "SR": {
+  "nom": "Suriname",
+  "nom_en": "Suriname",
+  "iso3": "SUR",
+  "continent": "SA",
+  "capitale": "Paramaribo",
+  "monnaie": "SRD",
+  "monnaie_nom": "dollar surinamais",
+  "langues": [
+   "néerlandais",
+   "anglais",
+   "sranan tongo"
+  ],
+  "indicatif": "+597",
+  "superficie_km2": 163270.0
+ },
+ "ST": {
+  "nom": "Sao Tomé-et-Principe",
+  "nom_en": "Sao Tome and Principe",
+  "iso3": "STP",
+  "continent": "AF",
+  "capitale": "Sao Tome",
+  "monnaie": "STN",
+  "monnaie_nom": "dobra santoméen",
+  "langues": [
+   "portugais"
+  ],
+  "indicatif": "+239",
+  "superficie_km2": 1001.0
+ },
+ "SV": {
+  "nom": "Salvador",
+  "nom_en": "El Salvador",
+  "iso3": "SLV",
+  "continent": "NA",
+  "capitale": "San Salvador",
+  "monnaie": "USD",
+  "monnaie_nom": "dollar des États-Unis",
+  "langues": [
+   "espagnol"
+  ],
+  "indicatif": "+503",
+  "superficie_km2": 21040.0
+ },
+ "SX": {
+  "nom": "Saint-Martin (partie néerlandaise)",
+  "nom_en": "Sint Maarten",
+  "iso3": "SXM",
+  "continent": "NA",
+  "capitale": "Philipsburg",
+  "monnaie": "XCG",
+  "monnaie_nom": "florin caribéen",
+  "langues": [
+   "néerlandais",
+   "anglais"
+  ],
+  "indicatif": "+599",
+  "superficie_km2": 34.0
+ },
+ "SY": {
+  "nom": "Syrie",
+  "nom_en": "Syria",
+  "iso3": "SYR",
+  "continent": "AS",
+  "capitale": "Damascus",
+  "monnaie": "SYP",
+  "monnaie_nom": "livre syrienne",
+  "langues": [
+   "arabe",
+   "kurde",
+   "arménien"
+  ],
+  "indicatif": "+963",
+  "superficie_km2": 185180.0
+ },
+ "SZ": {
+  "nom": "Eswatini",
+  "nom_en": "Eswatini",
+  "iso3": "SWZ",
+  "continent": "AF",
+  "capitale": "Mbabane",
+  "monnaie": "SZL",
+  "monnaie_nom": "lilangeni swazi",
+  "langues": [
+   "anglais",
+   "swati"
+  ],
+  "indicatif": "+268",
+  "superficie_km2": 17363.0
+ },
+ "TC": {
+  "nom": "Îles Turques-et-Caïques",
+  "nom_en": "Turks and Caicos Islands",
+  "iso3": "TCA",
+  "continent": "NA",
+  "capitale": "Cockburn Town",
+  "monnaie": "USD",
+  "monnaie_nom": "dollar des États-Unis",
+  "langues": [
+   "anglais"
+  ],
+  "indicatif": "+1-649",
+  "superficie_km2": 948.0
+ },
+ "TD": {
+  "nom": "Tchad",
+  "nom_en": "Chad",
+  "iso3": "TCD",
+  "continent": "AF",
+  "capitale": "N'Djamena",
+  "monnaie": "XAF",
+  "monnaie_nom": "franc CFA (BEAC)",
+  "langues": [
+   "français",
+   "arabe"
+  ],
+  "indicatif": "+235",
+  "superficie_km2": 1284000.0
+ },
+ "TF": {
+  "nom": "Terres australes françaises",
+  "nom_en": "French Southern Territories",
+  "iso3": "ATF",
+  "continent": "AN",
+  "capitale": "Port-aux-Francais",
+  "monnaie": "EUR",
+  "monnaie_nom": "euro",
+  "langues": [
+   "français"
+  ],
+  "indicatif": "",
+  "superficie_km2": 7829.0
+ },
+ "TG": {
+  "nom": "Togo",
+  "nom_en": "Togo",
+  "iso3": "TGO",
+  "continent": "AF",
+  "capitale": "Lome",
+  "monnaie": "XOF",
+  "monnaie_nom": "franc CFA (BCEAO)",
+  "langues": [
+   "français",
+   "éwé",
+   "haoussa"
+  ],
+  "indicatif": "+228",
+  "superficie_km2": 56785.0
+ },
+ "TH": {
+  "nom": "Thaïlande",
+  "nom_en": "Thailand",
+  "iso3": "THA",
+  "continent": "AS",
+  "capitale": "Bangkok",
+  "monnaie": "THB",
+  "monnaie_nom": "baht thaïlandais",
+  "langues": [
+   "thaï",
+   "anglais"
+  ],
+  "indicatif": "+66",
+  "superficie_km2": 514000.0
+ },
+ "TJ": {
+  "nom": "Tadjikistan",
+  "nom_en": "Tajikistan",
+  "iso3": "TJK",
+  "continent": "AS",
+  "capitale": "Dushanbe",
+  "monnaie": "TJS",
+  "monnaie_nom": "somoni tadjik",
+  "langues": [
+   "tadjik",
+   "russe"
+  ],
+  "indicatif": "+992",
+  "superficie_km2": 143100.0
+ },
+ "TK": {
+  "nom": "Tokelau",
+  "nom_en": "Tokelau",
+  "iso3": "TKL",
+  "continent": "OC",
+  "capitale": "",
+  "monnaie": "NZD",
+  "monnaie_nom": "dollar néo-zélandais",
+  "langues": [
+   "tokelau",
+   "anglais"
+  ],
+  "indicatif": "+690",
+  "superficie_km2": 10.0
+ },
+ "TL": {
+  "nom": "Timor oriental",
+  "nom_en": "Timor Leste",
+  "iso3": "TLS",
+  "continent": "OC",
+  "capitale": "Dili",
+  "monnaie": "USD",
+  "monnaie_nom": "dollar des États-Unis",
+  "langues": [
+   "tétoum",
+   "portugais",
+   "indonésien"
+  ],
+  "indicatif": "+670",
+  "superficie_km2": 15007.0
+ },
+ "TM": {
+  "nom": "Turkménistan",
+  "nom_en": "Turkmenistan",
+  "iso3": "TKM",
+  "continent": "AS",
+  "capitale": "Ashgabat",
+  "monnaie": "TMT",
+  "monnaie_nom": "nouveau manat turkmène",
+  "langues": [
+   "turkmène",
+   "russe",
+   "ouzbek"
+  ],
+  "indicatif": "+993",
+  "superficie_km2": 488100.0
+ },
+ "TN": {
+  "nom": "Tunisie",
+  "nom_en": "Tunisia",
+  "iso3": "TUN",
+  "continent": "AF",
+  "capitale": "Tunis",
+  "monnaie": "TND",
+  "monnaie_nom": "dinar tunisien",
+  "langues": [
+   "arabe",
+   "français"
+  ],
+  "indicatif": "+216",
+  "superficie_km2": 163610.0
+ },
+ "TO": {
+  "nom": "Tonga",
+  "nom_en": "Tonga",
+  "iso3": "TON",
+  "continent": "OC",
+  "capitale": "Nuku'alofa",
+  "monnaie": "TOP",
+  "monnaie_nom": "pa’anga tongan",
+  "langues": [
+   "tongien",
+   "anglais"
+  ],
+  "indicatif": "+676",
+  "superficie_km2": 748.0
+ },
+ "TR": {
+  "nom": "Turquie",
+  "nom_en": "Turkey",
+  "iso3": "TUR",
+  "continent": "AS",
+  "capitale": "Ankara",
+  "monnaie": "TRY",
+  "monnaie_nom": "livre turque",
+  "langues": [
+   "turc",
+   "kurde",
+   "azerbaïdjanais"
+  ],
+  "indicatif": "+90",
+  "superficie_km2": 780580.0
+ },
+ "TT": {
+  "nom": "Trinité-et-Tobago",
+  "nom_en": "Trinidad and Tobago",
+  "iso3": "TTO",
+  "continent": "NA",
+  "capitale": "Port of Spain",
+  "monnaie": "TTD",
+  "monnaie_nom": "dollar de Trinité-et-Tobago",
+  "langues": [
+   "anglais",
+   "français",
+   "espagnol"
+  ],
+  "indicatif": "+1-868",
+  "superficie_km2": 5128.0
+ },
+ "TV": {
+  "nom": "Tuvalu",
+  "nom_en": "Tuvalu",
+  "iso3": "TUV",
+  "continent": "OC",
+  "capitale": "Funafuti",
+  "monnaie": "AUD",
+  "monnaie_nom": "dollar australien",
+  "langues": [
+   "tuvalu",
+   "anglais",
+   "samoan"
+  ],
+  "indicatif": "+688",
+  "superficie_km2": 26.0
+ },
+ "TW": {
+  "nom": "Taïwan",
+  "nom_en": "Taiwan",
+  "iso3": "TWN",
+  "continent": "AS",
+  "capitale": "Taipei",
+  "monnaie": "TWD",
+  "monnaie_nom": "nouveau dollar taïwanais",
+  "langues": [
+   "chinois",
+   "minnan",
+   "hakka"
+  ],
+  "indicatif": "+886",
+  "superficie_km2": 35980.0
+ },
+ "TZ": {
+  "nom": "Tanzanie",
+  "nom_en": "Tanzania",
+  "iso3": "TZA",
+  "continent": "AF",
+  "capitale": "Dodoma",
+  "monnaie": "TZS",
+  "monnaie_nom": "shilling tanzanien",
+  "langues": [
+   "swahili",
+   "anglais",
+   "arabe"
+  ],
+  "indicatif": "+255",
+  "superficie_km2": 945087.0
+ },
+ "UA": {
+  "nom": "Ukraine",
+  "nom_en": "Ukraine",
+  "iso3": "UKR",
+  "continent": "EU",
+  "capitale": "Kyiv",
+  "monnaie": "UAH",
+  "monnaie_nom": "hryvnia ukrainienne",
+  "langues": [
+   "ukrainien",
+   "russe",
+   "romani"
+  ],
+  "indicatif": "+380",
+  "superficie_km2": 603700.0
+ },
+ "UG": {
+  "nom": "Ouganda",
+  "nom_en": "Uganda",
+  "iso3": "UGA",
+  "continent": "AF",
+  "capitale": "Kampala",
+  "monnaie": "UGX",
+  "monnaie_nom": "shilling ougandais",
+  "langues": [
+   "anglais",
+   "ganda",
+   "swahili"
+  ],
+  "indicatif": "+256",
+  "superficie_km2": 236040.0
+ },
+ "UM": {
+  "nom": "Îles mineures éloignées des États-Unis",
+  "nom_en": "United States Minor Outlying Islands",
+  "iso3": "UMI",
+  "continent": "OC",
+  "capitale": "",
+  "monnaie": "USD",
+  "monnaie_nom": "dollar des États-Unis",
+  "langues": [
+   "anglais"
+  ],
+  "indicatif": "+1",
+  "superficie_km2": 0.0
+ },
+ "US": {
+  "nom": "États-Unis",
+  "nom_en": "United States",
+  "iso3": "USA",
+  "continent": "NA",
+  "capitale": "Washington",
+  "monnaie": "USD",
+  "monnaie_nom": "dollar des États-Unis",
+  "langues": [
+   "anglais",
+   "espagnol",
+   "hawaïen"
+  ],
+  "indicatif": "+1",
+  "superficie_km2": 9629091.0
+ },
+ "UY": {
+  "nom": "Uruguay",
+  "nom_en": "Uruguay",
+  "iso3": "URY",
+  "continent": "SA",
+  "capitale": "Montevideo",
+  "monnaie": "UYU",
+  "monnaie_nom": "peso uruguayen",
+  "langues": [
+   "espagnol"
+  ],
+  "indicatif": "+598",
+  "superficie_km2": 176220.0
+ },
+ "UZ": {
+  "nom": "Ouzbékistan",
+  "nom_en": "Uzbekistan",
+  "iso3": "UZB",
+  "continent": "AS",
+  "capitale": "Tashkent",
+  "monnaie": "UZS",
+  "monnaie_nom": "sum ouzbek",
+  "langues": [
+   "ouzbek",
+   "russe",
+   "tadjik"
+  ],
+  "indicatif": "+998",
+  "superficie_km2": 447400.0
+ },
+ "VA": {
+  "nom": "État de la Cité du Vatican",
+  "nom_en": "Vatican",
+  "iso3": "VAT",
+  "continent": "EU",
+  "capitale": "Vatican City",
+  "monnaie": "EUR",
+  "monnaie_nom": "euro",
+  "langues": [
+   "latin",
+   "italien",
+   "français"
+  ],
+  "indicatif": "+379",
+  "superficie_km2": 0.44
+ },
+ "VC": {
+  "nom": "Saint-Vincent-et-les Grenadines",
+  "nom_en": "Saint Vincent and the Grenadines",
+  "iso3": "VCT",
+  "continent": "NA",
+  "capitale": "Kingstown",
+  "monnaie": "XCD",
+  "monnaie_nom": "dollar des Caraïbes orientales",
+  "langues": [
+   "anglais",
+   "français"
+  ],
+  "indicatif": "+1-784",
+  "superficie_km2": 389.0
+ },
+ "VE": {
+  "nom": "Venezuela",
+  "nom_en": "Venezuela",
+  "iso3": "VEN",
+  "continent": "SA",
+  "capitale": "Caracas",
+  "monnaie": "VES",
+  "monnaie_nom": "bolivar vénézuélien",
+  "langues": [
+   "espagnol"
+  ],
+  "indicatif": "+58",
+  "superficie_km2": 912050.0
+ },
+ "VG": {
+  "nom": "Îles Vierges britanniques",
+  "nom_en": "British Virgin Islands",
+  "iso3": "VGB",
+  "continent": "NA",
+  "capitale": "Road Town",
+  "monnaie": "USD",
+  "monnaie_nom": "dollar des États-Unis",
+  "langues": [
+   "anglais"
+  ],
+  "indicatif": "+1-284",
+  "superficie_km2": 153.0
+ },
+ "VI": {
+  "nom": "Îles Vierges des États-Unis",
+  "nom_en": "U.S. Virgin Islands",
+  "iso3": "VIR",
+  "continent": "NA",
+  "capitale": "Charlotte Amalie",
+  "monnaie": "USD",
+  "monnaie_nom": "dollar des États-Unis",
+  "langues": [
+   "anglais"
+  ],
+  "indicatif": "+1-340",
+  "superficie_km2": 352.0
+ },
+ "VN": {
+  "nom": "Viêt Nam",
+  "nom_en": "Vietnam",
+  "iso3": "VNM",
+  "continent": "AS",
+  "capitale": "Hanoi",
+  "monnaie": "VND",
+  "monnaie_nom": "dông vietnamien",
+  "langues": [
+   "vietnamien",
+   "anglais",
+   "français"
+  ],
+  "indicatif": "+84",
+  "superficie_km2": 329560.0
+ },
+ "VU": {
+  "nom": "Vanuatu",
+  "nom_en": "Vanuatu",
+  "iso3": "VUT",
+  "continent": "OC",
+  "capitale": "Port Vila",
+  "monnaie": "VUV",
+  "monnaie_nom": "vatu vanuatuan",
+  "langues": [
+   "bichelamar",
+   "anglais",
+   "français"
+  ],
+  "indicatif": "+678",
+  "superficie_km2": 12200.0
+ },
+ "WF": {
+  "nom": "Wallis-et-Futuna",
+  "nom_en": "Wallis and Futuna",
+  "iso3": "WLF",
+  "continent": "OC",
+  "capitale": "Mata Utu",
+  "monnaie": "XPF",
+  "monnaie_nom": "franc CFP",
+  "langues": [
+   "français"
+  ],
+  "indicatif": "+681",
+  "superficie_km2": 274.0
+ },
+ "WS": {
+  "nom": "Samoa",
+  "nom_en": "Samoa",
+  "iso3": "WSM",
+  "continent": "OC",
+  "capitale": "Apia",
+  "monnaie": "WST",
+  "monnaie_nom": "tala samoan",
+  "langues": [
+   "samoan",
+   "anglais"
+  ],
+  "indicatif": "+685",
+  "superficie_km2": 2944.0
+ },
+ "YE": {
+  "nom": "Yémen",
+  "nom_en": "Yemen",
+  "iso3": "YEM",
+  "continent": "AS",
+  "capitale": "Sanaa",
+  "monnaie": "YER",
+  "monnaie_nom": "riyal yéménite",
+  "langues": [
+   "arabe"
+  ],
+  "indicatif": "+967",
+  "superficie_km2": 527970.0
+ },
+ "YT": {
+  "nom": "Mayotte",
+  "nom_en": "Mayotte",
+  "iso3": "MYT",
+  "continent": "AF",
+  "capitale": "Mamoudzou",
+  "monnaie": "EUR",
+  "monnaie_nom": "euro",
+  "langues": [
+   "français"
+  ],
+  "indicatif": "+262",
+  "superficie_km2": 374.0
+ },
+ "ZA": {
+  "nom": "Afrique du Sud",
+  "nom_en": "South Africa",
+  "iso3": "ZAF",
+  "continent": "AF",
+  "capitale": "Pretoria",
+  "monnaie": "ZAR",
+  "monnaie_nom": "rand sud-africain",
+  "langues": [
+   "zoulou",
+   "xhosa",
+   "afrikaans"
+  ],
+  "indicatif": "+27",
+  "superficie_km2": 1219912.0
+ },
+ "ZM": {
+  "nom": "Zambie",
+  "nom_en": "Zambia",
+  "iso3": "ZMB",
+  "continent": "AF",
+  "capitale": "Lusaka",
+  "monnaie": "ZMW",
+  "monnaie_nom": "kwacha zambien",
+  "langues": [
+   "anglais",
+   "bemba",
+   "lozi"
+  ],
+  "indicatif": "+260",
+  "superficie_km2": 752614.0
+ },
+ "ZW": {
+  "nom": "Zimbabwe",
+  "nom_en": "Zimbabwe",
+  "iso3": "ZWE",
+  "continent": "AF",
+  "capitale": "Harare",
+  "monnaie": "ZWG",
+  "monnaie_nom": "Zimbabwe Gold",
+  "langues": [
+   "anglais",
+   "shona",
+   "ndébélé du Sud"
+  ],
+  "indicatif": "+263",
+  "superficie_km2": 390580.0
+ },
+ "CS": {
+  "nom": "Serbia and Montenegro",
+  "nom_en": "Serbia and Montenegro",
+  "iso3": "SCG",
+  "continent": "EU",
+  "capitale": "Belgrade",
+  "monnaie": "RSD",
+  "monnaie_nom": "dinar serbe",
+  "langues": [
+   "slavon d’église",
+   "hongrois",
+   "albanais"
+  ],
+  "indicatif": "+381",
+  "superficie_km2": 102350.0
+ },
+ "AN": {
+  "nom": "Netherlands Antilles",
+  "nom_en": "Netherlands Antilles",
+  "iso3": "ANT",
+  "continent": "NA",
+  "capitale": "Willemstad",
+  "monnaie": "ANG",
+  "monnaie_nom": "florin antillais",
+  "langues": [
+   "néerlandais",
+   "anglais",
+   "espagnol"
+  ],
+  "indicatif": "+599",
+  "superficie_km2": 960.0
+ }
 }
