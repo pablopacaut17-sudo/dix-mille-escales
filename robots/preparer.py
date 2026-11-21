@@ -57,21 +57,36 @@ def main():
             print(f"Données de « {b} » récupérées.")
     shutil.rmtree(tmp, ignore_errors=True)
     data = os.path.join(RACINE, "data")
-    anciennes = [x for x in ANCIENNES if os.path.exists(os.path.join(data, x))]
-    if not liste and anciennes:
-        for x in anciennes:  # premier passage : reprise des données rangées dans data/
-            s = os.path.join(data, x)
-            if os.path.isdir(s):
-                fusionner(s, os.path.join(DEST, x))
-            else:
-                shutil.copy2(s, os.path.join(DEST, x))
-        print("Anciennes données de data/ reprises : " + ", ".join(anciennes))
-    if a.nettoyer_main and liste and anciennes:
-        subprocess.run(["git", "-C", RACINE, "rm", "-r", "--quiet", "--cached", *[os.path.join("data", x) for x in anciennes]])
-        for x in anciennes:
-            s = os.path.join(data, x)
-            shutil.rmtree(s) if os.path.isdir(s) else os.remove(s)
-        print("Anciennes données retirées du dépôt principal (elles sont dans les branches donnees-…).")
+    # Fichiers déjà présents dans les branches (ils l'emportent sur les anciennes données de data/)
+    dans_branches = set()
+    for racine, _, fichiers in os.walk(DEST):
+        for f in fichiers:
+            dans_branches.add(os.path.relpath(os.path.join(racine, f), DEST))
+    anciens = []
+    for x in ANCIENNES:
+        s = os.path.join(data, x)
+        if os.path.isdir(s):
+            for racine, _, fichiers in os.walk(s):
+                for f in fichiers:
+                    anciens.append(os.path.relpath(os.path.join(racine, f), data))
+        elif os.path.isfile(s):
+            anciens.append(x)
+    repris = 0
+    for rel in anciens:  # reprise des anciennes données, sans écraser les plus récentes
+        if rel not in dans_branches:
+            os.makedirs(os.path.dirname(os.path.join(DEST, rel)) or DEST, exist_ok=True)
+            shutil.copy2(os.path.join(data, rel), os.path.join(DEST, rel))
+            repris += 1
+    if repris:
+        print(f"{repris} anciens fichiers de data/ repris.")
+    if a.nettoyer_main:
+        # On ne retire de data/ que les fichiers déjà enregistrés dans une branche « donnees-… »
+        a_retirer = [rel for rel in anciens if rel in dans_branches]
+        for rel in a_retirer:
+            subprocess.run(["git", "-C", RACINE, "rm", "--quiet", "--cached", os.path.join("data", rel)])
+            os.remove(os.path.join(data, rel))
+        if a_retirer:
+            print(f"{len(a_retirer)} anciens fichiers retirés du dépôt principal (ils sont dans les branches donnees-…).")
     print(f"Dossier des données prêt : {DEST}")
 
 
