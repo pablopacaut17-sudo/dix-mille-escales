@@ -55,6 +55,25 @@ def qid_de(uri):
 
 
 # ---------- 1. Correspondance GeoNames -> Wikidata (une fois pour toutes) ----------
+def par_nom(v):
+    """Recherche l'élément Wikidata d'une ville par son nom, en vérifiant qu'il est à moins de 20 km de ses coordonnées."""
+    rep = api(WIKIDATA, action="wbsearchentities", search=v.get("qid_recherche") or v["nom_local"], language="en", type="item", limit=7)
+    ids = [x["id"] for x in (rep or {}).get("search", [])]
+    if not ids:
+        return ""
+    rep = api(WIKIDATA, action="wbgetentities", ids="|".join(ids), props="claims")
+    for q in ids:
+        cl = (rep or {}).get("entities", {}).get(q, {}).get("claims", {})
+        for val, _, _ in valeurs(cl, "P625"):
+            if isinstance(val, dict) and "latitude" in val:
+                t = 0.0174533
+                dx = (val["longitude"] - v["lon"]) * 111.32 * abs(__import__("math").cos(v["lat"] * t))
+                dy = (val["latitude"] - v["lat"]) * 110.57
+                if (dx * dx + dy * dy) ** 0.5 < 20:
+                    return q
+    return ""
+
+
 def correspondances(villes):
     table = c.lire("encyclo/_qid.json", {})
     manquants = [str(v["id"]) for v in villes if str(v["id"]) not in table]
@@ -66,7 +85,9 @@ def correspondances(villes):
         for r in rep:
             table.setdefault(r["gn"]["value"], qid_de(r["item"]["value"]))
         for g in lot:
-            table.setdefault(g, "")  # "" = pas d'élément Wikidata trouvé, on ne recherche plus
+            if g not in table:  # pas d'identifiant GeoNames dans Wikidata : recherche par nom
+                v = next((x for x in villes if str(x["id"]) == g), None)
+                table[g] = par_nom(v) if v else ""
         c.ecrire("encyclo/_qid.json", table, compact=True)
         time.sleep(1)
     return table
