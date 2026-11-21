@@ -10,7 +10,7 @@ on:
   workflow_dispatch:          # bouton « Run workflow » pour lancer à la main
     inputs:
       groupes:
-        description: "Groupes à lancer, séparés par des virgules (villes, base, encyclopedie, lieux, guides, redaction, publier). Vide = tous."
+        description: "Groupes à lancer, séparés par des virgules (villes, base, climat, encyclopedie, lieux, guides, redaction, publier). Vide = tous."
         required: false
         default: ""
   push:
@@ -68,16 +68,12 @@ jobs:
         continue-on-error: true
         run: python3 robots/robot_meteo.py
         env: { OPENMETEO_KEY: "${{ secrets.OPENMETEO_KEY }}" }
-      - name: Climat
-        continue-on-error: true
-        run: python3 robots/robot_climat.py --max-villes ${{ vars.MAX_CLIMAT || 80 }}
-        env: { OPENMETEO_KEY: "${{ secrets.OPENMETEO_KEY }}" }
       - name: Enregistrer
         if: always()
         run: >
           python3 robots/sauver.py --branche donnees-base --chemins change.json feries securite.json formalites.json
-          cout.json meteo climat aeroports.json.gz aeroports_meta.json journal/change.json journal/feries.json
-          journal/securite.json journal/formalites.json journal/cout.json journal/meteo.json journal/climat.json journal/aeroports.json
+          cout.json meteo aeroports.json.gz aeroports_meta.json journal/change.json journal/feries.json
+          journal/securite.json journal/formalites.json journal/cout.json journal/meteo.json journal/aeroports.json
 
   encyclopedie:
     needs: villes
@@ -94,7 +90,7 @@ jobs:
         run: python3 robots/preparer.py
       - name: Encyclopédie
         continue-on-error: true
-        run: python3 robots/robot_encyclopedie.py --max-villes ${{ vars.MAX_ENCYCLO || 3000 }} --duree-max 320
+        run: python3 robots/robot_encyclopedie.py --max-villes ${{ vars.MAX_ENCYCLO || 8000 }} --duree-max 320
       - name: Enregistrer
         if: always()
         run: python3 robots/sauver.py --branche donnees-encyclopedie --chemins encyclo journal/encyclopedie.json
@@ -118,12 +114,32 @@ jobs:
         run: python3 robots/preparer.py
       - name: Lieux (robot ${{ matrix.part }})
         continue-on-error: true
-        run: python3 robots/robot_lieux.py --part ${{ matrix.part }} --parts 3 --max-villes ${{ vars.MAX_VILLES || 1500 }} --duree-max 320
+        run: python3 robots/robot_lieux.py --part ${{ matrix.part }} --parts 3 --max-villes ${{ vars.MAX_VILLES || 4000 }} --duree-max 320
       - name: Enregistrer
         if: always()
         run: >
           python3 robots/sauver.py --branche donnees-lieux-${{ matrix.part }} --chemins lieux/${{ matrix.part }}
           lieux/_suivi_${{ matrix.part }}.json journal/lieux_${{ matrix.part }}.json
+
+  climat:
+    needs: villes
+    if: ${{ !failure() && !cancelled() && github.event_name != 'push' && (inputs.groupes == null || inputs.groupes == '' || contains(inputs.groupes, 'climat')) }}
+    concurrency: { group: robots-climat, cancel-in-progress: false }
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Réunir les données
+        run: python3 robots/preparer.py
+      - name: Climat (NASA POWER)
+        continue-on-error: true
+        run: python3 robots/robot_climat.py --max-villes ${{ vars.MAX_CLIMAT || 8000 }} --duree-max 320
+      - name: Enregistrer
+        if: always()
+        run: python3 robots/sauver.py --branche donnees-climat --chemins climat journal/climat.json
 
   guides:
     needs: villes
@@ -140,13 +156,13 @@ jobs:
         run: python3 robots/preparer.py
       - name: Guides Wikivoyage
         continue-on-error: true
-        run: python3 robots/robot_guides.py --max-villes ${{ vars.MAX_GUIDES || 5000 }} --duree-max 320
+        run: python3 robots/robot_guides.py --max-villes ${{ vars.MAX_GUIDES || 15000 }} --duree-max 320
       - name: Enregistrer
         if: always()
         run: python3 robots/sauver.py --branche donnees-guides --chemins guides journal/guides.json
 
   redaction:
-    needs: [base, encyclopedie, lieux, guides]
+    needs: [base, encyclopedie, lieux, guides, climat]
     if: always() && !cancelled() && github.event_name != 'push' && (inputs.groupes == null || inputs.groupes == '' || contains(inputs.groupes, 'redaction'))
     runs-on: ubuntu-latest
     timeout-minutes: 120
@@ -168,7 +184,7 @@ jobs:
         run: python3 robots/sauver.py --branche donnees-redaction --chemins redaction journal/redaction.json
 
   publier:
-    needs: [villes, base, encyclopedie, lieux, guides, redaction]
+    needs: [villes, base, encyclopedie, lieux, guides, climat, redaction]
     if: always() && !cancelled()
     concurrency: { group: publication, cancel-in-progress: true }
     runs-on: ubuntu-latest

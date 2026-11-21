@@ -28,16 +28,16 @@ DEPOT = os.environ.get("GITHUB_REPOSITORY", "")
 JETON = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN", "")
 API = "https://api.github.com/repos/" + DEPOT
 FICHIER_ROBOTS = "robots.yml"
-GROUPES = {"villes": "villes", "base": "base", "encyclopedie": "encyclopedie", "lieux": "lieux", "guides": "guides", "redaction": "redaction", "publier": "publier"}
+GROUPES = {"villes": "villes", "base": "base", "encyclopedie": "encyclopedie", "lieux": "lieux", "guides": "guides", "climat": "climat", "redaction": "redaction", "publier": "publier"}
 # robot -> (groupe, âge maximal en heures, nom lisible)
 ATTENDUS = {
     "change": ("base", 30, "Change"), "feries": ("base", 30, "Jours fériés"), "securite": ("base", 30, "Sécurité"),
     "formalites": ("base", 30, "Formalités"), "cout": ("base", 30, "Coût de la vie"), "meteo": ("base", 30, "Météo"),
-    "climat": ("base", 30, "Climat"), "encyclopedie": ("encyclopedie", 30, "Encyclopédie"),
+    "climat": ("climat", 30, "Climat"), "encyclopedie": ("encyclopedie", 30, "Encyclopédie"),
     "lieux_0": ("lieux", 30, "Lieux, robot 1"), "lieux_1": ("lieux", 30, "Lieux, robot 2"), "lieux_2": ("lieux", 30, "Lieux, robot 3"),
     "guides": ("guides", 30, "Guides Wikivoyage"), "aeroports": ("base", 24 * 35, "Aéroports"),
 }
-BRANCHES = ["donnees-base", "donnees-encyclopedie", "donnees-lieux-0", "donnees-lieux-1", "donnees-lieux-2", "donnees-guides"]
+BRANCHES = ["donnees-base", "donnees-encyclopedie", "donnees-lieux-0", "donnees-lieux-1", "donnees-lieux-2", "donnees-guides", "donnees-climat"]
 MOIS = ["janv.", "févr.", "mars", "avr.", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc."]
 
 

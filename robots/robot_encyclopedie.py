@@ -309,7 +309,7 @@ def demo(v):
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("--max-villes", type=int, default=3000)
+    p.add_argument("--max-villes", type=int, default=8000)
     p.add_argument("--duree-max", type=float, default=320, help="minutes : au-delà, arrêt propre")
     p.add_argument("--ville")
     p.add_argument("--demo", action="store_true")

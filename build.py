@@ -151,9 +151,12 @@ def meilleurs_mois(mois):
     for i, m in enumerate(mois):
         if m["tmax"] is None:
             continue
-        if 18 <= m["tmax"] <= 29 and m["jours_pluie"] <= 8:
+        jp = m.get("jours_pluie")
+        sec_ = jp <= 8 if jp is not None else m["pluie_mm"] <= 70       # sans nombre de jours de pluie : cumul mensuel
+        assez_sec = jp <= 13 if jp is not None else m["pluie_mm"] <= 130
+        if 18 <= m["tmax"] <= 29 and sec_:
             out.append((i, "ideal"))
-        elif 12 <= m["tmax"] <= 33 and m["jours_pluie"] <= 13:
+        elif 12 <= m["tmax"] <= 33 and assez_sec:
             out.append((i, "possible"))
     return dict(out)
 
@@ -429,7 +432,7 @@ def page_ville(v, ctx):
         phrase = (f"Les mois les plus agréables pour visiter {E(v['nom'])} : {', '.join(ideaux)}." if ideaux
                   else "Aucun mois n’est vraiment tempéré et sec : choisissez selon la chaleur et la pluie que vous tolérez.")
         lignes = "".join(f'<tr><td>{MOIS_LONG[i].capitalize()}</td><td>{round(m["tmax"]) if m["tmax"] is not None else "–"}°</td>'
-                         f'<td>{round(m["tmin"]) if m["tmin"] is not None else "–"}°</td><td>{m["pluie_mm"]} mm</td><td>{m["jours_pluie"]}</td>'
+                         f'<td>{round(m["tmin"]) if m["tmin"] is not None else "–"}°</td><td>{m["pluie_mm"]} mm</td><td>{m["jours_pluie"] if m.get("jours_pluie") is not None else "–"}</td>'
                          f'<td>{str(m["soleil_h"]).replace(".", ",") + " h" if m["soleil_h"] is not None else "–"}</td></tr>' for i, m in enumerate(mois))
         corps.append(f'<section class="block" id="quand-partir"><h2>Quand partir</h2><p class="lead">{phrase} {E(red.get("quand_partir", ""))}</p>'
                      f'<div class="climat" aria-hidden="true">{barres}</div>'
@@ -437,7 +440,9 @@ def page_ville(v, ctx):
                      '<span style="--c:#c5ced0">Moins favorable</span><span style="--c:#5B8DC9">Pluie</span></p>'
                      f'<details class="more"><summary>Voir le tableau mois par mois</summary><div class="table-scroll"><table><thead><tr><th>Mois</th><th>Max.</th><th>Min.</th>'
                      f'<th>Pluie</th><th>Jours de pluie</th><th>Soleil par jour</th></tr></thead><tbody>{lignes}</tbody></table></div></details>'
-                     f'<p class="note">Moyennes {clim["periode"].replace("-", " à ")} calculées à partir de l’archive météo ERA5 (Open-Meteo).</p></section>')
+                     f'<p class="note">Moyennes {clim["periode"].replace("-", " à ")}, '
+                     + ("normales climatiques de la NASA (POWER)" if clim.get("source") == "NASA POWER" else "archive météo ERA5 (Open-Meteo)")
+                     + (f", reprises de {E(clim["partage_avec"])}, ville voisine." if clim.get("partage_avec") else ".") + '</p></section>')
 
     # Lieux
     if lieux:
@@ -898,7 +903,8 @@ def main():
                ("Wikidata", "https://www.wikidata.org/", "Fondation, événements, maires, jumelages, patrimoine, personnalités", "CC0"),
                ("Wikipédia en français", "https://fr.wikipedia.org/", "Résumés et sections Histoire, Culture, Gastronomie…", "CC BY-SA 4.0, textes repris avec lien vers l’article"),
                ("Wikimedia Commons", "https://commons.wikimedia.org/", "Photos, blasons et drapeaux", "Licence propre à chaque image, créditée sous la photo"),
-               ("Open-Meteo, archive ERA5", "https://open-meteo.com/", "Normales climatiques et qualité de l’air", "CC BY 4.0"),
+               ("Open-Meteo, archive ERA5", "https://open-meteo.com/", "Qualité de l’air (et premières normales climatiques)", "CC BY 4.0"),
+               ("NASA POWER", "https://power.larc.nasa.gov/", "Normales climatiques mois par mois (1991-2020)", "Données ouvertes de la NASA"),
                ("Passport Index Data", "https://github.com/imorte/passport-index-data", "Visas et durées de séjour", "MIT"),
                ("U.S. Department of State", "https://travel.state.gov/", "Niveau de sécurité par pays", "Domaine public"),
                ("Banque mondiale", "https://data.worldbank.org/", "Niveau des prix par pays (PA.NUS.PPPC.RF)", "CC BY 4.0"),

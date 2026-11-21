@@ -107,7 +107,7 @@
     var cartes = [];
     function c(titre, valeur, detail, ancre, coul) { cartes.push('<a class="og-carte" href="#' + ancre + '" style="--c:' + (coul || 'var(--sea)') + '"><span>' + E(titre) + '</span><b>' + valeur + '</b>' + (detail ? '<small>' + detail + '</small>' : '') + '</a>'); }
     if (d.meteo && d.meteo[0]) c('Météo aujourd’hui', Math.round(d.meteo[0].min) + ' à ' + Math.round(d.meteo[0].max) + ' °C', E(d.meteo[0].ciel), 'meteo', '#2E6DB4');
-    else if (d.climat) { var m = d.climat[new Date().getMonth()]; c('Climat ce mois-ci', Math.round(m.tmin) + ' à ' + Math.round(m.tmax) + ' °C', m.jours_pluie + ' jours de pluie', 'quand-partir', '#2E6DB4'); }
+    else if (d.climat) { var m = d.climat[new Date().getMonth()]; c('Climat ce mois-ci', Math.round(m.tmin) + ' à ' + Math.round(m.tmax) + ' °C', m.jours_pluie != null ? m.jours_pluie + ' jours de pluie' : m.pluie_mm + ' mm de pluie', 'quand-partir', '#2E6DB4'); }
     if (d.meilleurs_mois && d.meilleurs_mois.length) c('Meilleure période', E(d.meilleurs_mois.slice(0, 3).join(', ')) + (d.meilleurs_mois.length > 3 ? '…' : ''), '', 'quand-partir', '#2F7D6D');
     if (d.formalites && d.formalites['Passeport français']) c('Visa (passeport français)', E(d.formalites['Passeport français'].replace(/, séjour jusqu’à/, ' ·').replace('Libre circulation : carte d’identité ou passeport', 'Carte d’identité suffit')), 'Belgique, Suisse, Canada : voir le détail', 'formalites', '#7B5EA7');
     if (d.cout) c('Budget par jour', '≈ ' + d.cout.prix['budget par jour (moyen)'] + ' €', 'repas simple ≈ ' + d.cout.prix['repas simple'] + ' €', 'budget', '#C9761E');

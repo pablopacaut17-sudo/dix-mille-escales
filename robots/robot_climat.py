@@ -4,7 +4,7 @@ Robot Climat : normales mensuelles de chaque ville (températures, pluie, jours 
 calculées sur les 2 dernières années complètes de l'archive météo ERA5.
 Les villes à moins de 15 km d'une ville déjà calculée reprennent son climat (même maille météo).
 Le climat change peu : chaque ville n'est calculée qu'une fois, puis recalculée tous les 2 ans.
-Source : Open-Meteo, API d'archive (CC BY 4.0). Usage commercial : clé OPENMETEO_KEY obligatoire.
+Source : NASA POWER (normales mensuelles sur 30 ans, données ouvertes de la NASA, sans restriction d’usage).
 Les appels d'archive sont « lourds » pour Open-Meteo : on traite peu de villes par nuit.
 
   python3 robots/robot_climat.py --max-villes 30
@@ -15,21 +15,33 @@ from datetime import date, datetime
 import commun as c
 
 
-ANNEES = 2            # années complètes d'archive par ville (Open-Meteo compte les longues périodes comme plusieurs appels)
-RAYON_PARTAGE = 25    # km : l'archive ERA5 a des mailles d'environ 25 km, les villes plus proches partagent le même climat
+ANNEES = 2            # (ancienne source Open-Meteo, gardée en secours)
+RAYON_PARTAGE = 25    # km : les villes plus proches partagent le même climat (mailles de la NASA d'environ 50 km)
+POWER = "https://power.larc.nasa.gov/api/temporal/climatology/point"
+MOIS_POWER = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
+JOURS = [31, 28.25, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
 
-def url(v, debut, fin):
-    cle = os.environ.get("OPENMETEO_KEY")
-    base = "https://customer-archive-api.open-meteo.com/v1/archive" if cle else "https://archive-api.open-meteo.com/v1/archive"
-    q = {"latitude": v["lat"], "longitude": v["lon"], "start_date": debut, "end_date": fin, "timezone": "auto",
-         "daily": "temperature_2m_max,temperature_2m_min,precipitation_sum,sunshine_duration"}
-    if cle:
-        q["apikey"] = cle
-    return base + "?" + urllib.parse.urlencode(q)
+def url_power(v):
+    q = {"parameters": "T2M_MAX,T2M_MIN,PRECTOTCORR", "community": "AG", "longitude": round(v["lon"], 3),
+         "latitude": round(v["lat"], 3), "format": "JSON"}
+    return POWER + "?" + urllib.parse.urlencode(q)
 
 
-def normales(d):
+def normales_power(rep):
+    """Normales mensuelles NASA POWER (moyennes sur 30 ans) -> format du guide."""
+    p = rep["properties"]["parameter"]
+    mois = []
+    for i, m in enumerate(MOIS_POWER):
+        tmax, tmin, pluie_jour = p["T2M_MAX"].get(m), p["T2M_MIN"].get(m), p["PRECTOTCORR"].get(m)
+        if tmax is None or tmax < -900:
+            return None
+        mois.append({"tmax": round(tmax, 1), "tmin": round(tmin, 1), "pluie_mm": round(max(0, pluie_jour) * JOURS[i]),
+                     "jours_pluie": None, "soleil_h": None})
+    return mois
+
+
+def normales(d):  # (ancienne source Open-Meteo, plus utilisée)
     mois = [{"tmax": [], "tmin": [], "pluie": {}, "jp": {}, "soleil": []} for _ in range(12)]
     for i, jour in enumerate(d["time"]):
         an, m = jour[:4], int(jour[5:7]) - 1
@@ -48,7 +60,8 @@ def normales(d):
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("--max-villes", type=int, default=80, help="nombre maximal d'appels à l'archive météo par nuit")
+    p.add_argument("--max-villes", type=int, default=8000, help="nombre maximal de calculs (appels à NASA POWER) par nuit")
+    p.add_argument("--duree-max", type=float, default=320, help="minutes : au-delà, arrêt propre")
     p.add_argument("--demo", action="store_true")
     a = p.parse_args()
     V = c.villes()
@@ -88,7 +101,11 @@ def main():
             if not ancien or (c.maintenant() - datetime.fromisoformat(ancien["date"].replace("Z", "+00:00"))).days > 730:
                 lot.append(v)
     ok = ech = partages = appels = 0
+    debut_t = time.monotonic()
     for v in lot:
+        if time.monotonic() - debut_t > a.duree_max * 60:
+            print("Durée maximale atteinte : la suite passera la nuit prochaine.")
+            break
         if not a.demo:
             w = voisin_calcule(v)
             if w and w["id"] != v["id"]:
@@ -106,21 +123,23 @@ def main():
                      "jours_pluie": [11, 10, 8, 9, 6, 3, 1, 1, 4, 9, 11, 12][k], "soleil_h": [5, 6, 7, 8, 10, 11, 12, 11, 9, 7, 5, 5][k]}
                     for k, t in enumerate(base)]
         else:
-            brut = c.http(url(v, debut, fin), delai=60)
-            if not brut:
+            brut = c.http(url_power(v), delai=60, essais=2)
+            mois = None
+            if brut:
+                try:
+                    mois = normales_power(json.loads(brut))
+                except (ValueError, KeyError, TypeError):
+                    mois = None
+            if not mois:
                 ech += 1
                 continue
-            d = json.loads(brut).get("daily")
-            if not d:
-                ech += 1
-                continue
-            mois = normales(d)
-        c.ecrire(f"climat/{v['id']}.json", {"date": c.horodatage(), "periode": f"{an - ANNEES}-{an - 1}", "mois": mois}, compact=True)
+        c.ecrire(f"climat/{v['id']}.json", {"date": c.horodatage(), "periode": "1991-2020" if not a.demo else "démo",
+                                             "source": "NASA POWER", "mois": mois}, compact=True)
         grille.setdefault((round(v["lat"] / 0.2), round(v["lon"] / 0.2)), []).append(v)
         ok += 1
         print(f"{v['nom']} : normales calculées")
         if not a.demo:
-            time.sleep(5)
+            time.sleep(2.2)  # environ 27 demandes par minute, sous la limite de NASA POWER
     c.journal("climat", "ok" if ech == 0 else "partiel", villes_calculees=ok, villes_partagees=partages, echecs=ech, mode="démo" if a.demo else "réel")
 
 

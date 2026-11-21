@@ -109,7 +109,7 @@
   function climatMois(d, i) {
     var m = d.climat[i];
     return 'En ' + MOIS_AFF[i] + ' ' + aV(d.nom) + ' : environ <b>' + Math.round(m.tmax) + ' °C</b> l’après-midi et ' + Math.round(m.tmin) + ' °C la nuit, '
-      + m.pluie_mm + ' mm de pluie en ' + m.jours_pluie + ' jours' + (m.soleil_h != null ? ', ' + virg(m.soleil_h) + ' h de soleil par jour' : '') + '. '
+      + m.pluie_mm + ' mm de pluie' + (m.jours_pluie != null ? ' en ' + m.jours_pluie + ' jours' : '') + (m.soleil_h != null ? ', ' + virg(m.soleil_h) + ' h de soleil par jour' : '') + '. '
       + (d.meilleurs_mois && d.meilleurs_mois.indexOf(MOIS_AFF[i]) > -1 ? 'C’est l’un des meilleurs mois pour y aller.' : (d.meilleurs_mois && d.meilleurs_mois.length ? 'Les mois les plus agréables sont : ' + d.meilleurs_mois.join(', ') + '.' : ''));
   }
 
