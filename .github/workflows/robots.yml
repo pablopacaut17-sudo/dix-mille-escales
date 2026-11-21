@@ -12,13 +12,12 @@ permissions:
   pages: write
   id-token: write
 
-concurrency:
-  group: robots
-  cancel-in-progress: false
-
 jobs:
   robots:
     if: github.event_name != 'push'
+    concurrency:
+      group: robots
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     timeout-minutes: 340
     steps:
@@ -55,12 +54,21 @@ jobs:
         continue-on-error: true
         env:
           OPENMETEO_KEY: ${{ secrets.OPENMETEO_KEY }}
+      - name: Sauvegarde intermédiaire
+        if: always()
+        run: python3 robots/sauver.py
       - name: Robot Encyclopédie
         run: python3 robots/robot_encyclopedie.py --max-villes ${{ vars.MAX_ENCYCLO || 300 }}
         continue-on-error: true
+      - name: Sauvegarde intermédiaire
+        if: always()
+        run: python3 robots/sauver.py
       - name: Robot Lieux
         run: python3 robots/robot_lieux.py --max-villes ${{ vars.MAX_VILLES || 60 }}
         continue-on-error: true
+      - name: Sauvegarde intermédiaire
+        if: always()
+        run: python3 robots/sauver.py
       - name: Robot Rédaction
         run: python3 robots/robot_redaction.py --max-villes ${{ vars.MAX_REDACTION || 40 }}
         continue-on-error: true
@@ -68,17 +76,15 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           CLAUDE_MODEL: ${{ vars.CLAUDE_MODEL }}
       - name: Enregistrer les données collectées
-        run: |
-          git config user.name "robot-dix-mille-escales"
-          git config user.email "robot-dix-mille-escales@users.noreply.github.com"
-          git add data
-          git commit -m "Données du $(date -u +%F)" || echo "Aucune donnée nouvelle"
-          git pull --rebase
-          git push
+        if: always()
+        run: python3 robots/sauver.py
 
   publier:
     needs: robots
     if: always()
+    concurrency:
+      group: publication
+      cancel-in-progress: true
     runs-on: ubuntu-latest
     environment:
       name: github-pages
