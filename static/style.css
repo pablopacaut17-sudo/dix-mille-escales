@@ -119,5 +119,20 @@ td.num{font-weight:600;white-space:nowrap}
 .excursions b{font-family:var(--display);display:block}
 .excursions .d{display:block;font-size:.92rem;color:var(--muted)}
 .unesco-tag{display:inline-block;font-family:var(--display);font-size:.72rem;background:var(--buoy);color:#12313B;border-radius:999px;padding:.05rem .5rem;margin-left:.4rem;vertical-align:.15em}
+.questions{background:var(--surface);border:2px solid var(--ink);border-radius:16px;padding:1.2rem 1.3rem}
+.questions h2{margin-bottom:.7rem}
+.q-form{display:flex;gap:.5rem;flex-wrap:wrap}
+.q-input{flex:1 1 260px;min-width:0;font-family:var(--display);font-size:1.05rem;padding:.75rem 1rem;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink)}
+.q-btn{font-family:var(--display);font-weight:600;font-size:1rem;padding:.75rem 1.2rem;border-radius:12px;border:0;background:var(--ink);color:var(--bg);cursor:pointer}
+.q-sugg{display:flex;flex-wrap:wrap;gap:.4rem;margin:.8rem 0 0}
+.q-sugg button{font-family:var(--display);font-size:.86rem;padding:.3rem .75rem;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.q-sugg button:hover{border-color:var(--buoy)}
+.q-rep:not(:empty){margin-top:1rem;padding-top:1rem;border-top:1px solid var(--line)}
+.q-ville{font-family:var(--display);font-weight:600;color:var(--sea);margin-bottom:.3rem}
+.q-texte{max-width:72ch}
+.q-texte ul{margin:.4rem 0 .6rem;padding-left:1.2rem}
+.q-texte p{margin:.4rem 0}
+.q-vide{color:var(--muted);font-style:italic;margin:0}
+.q-infos{color:var(--muted);font-size:.9rem}
 @media (max-width:600px){.theme-btn{font-size:0;padding:.35rem .6rem}.theme-btn::before{content:"◐";font-size:1.05rem}.top-in{gap:.6rem}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}

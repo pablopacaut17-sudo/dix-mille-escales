@@ -101,6 +101,27 @@ h2.sec{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,4vw,2.7
 .site-foot ul{list-style:none;margin:0;padding:0}.site-foot li{margin-bottom:.3rem}
 .site-foot a{color:var(--muted);text-decoration:none}.site-foot a:hover{color:var(--ink)}
 .site-foot .legal{grid-column:1/-1;border-top:1px solid var(--line);padding-top:1rem;font-size:.82rem;margin:0}
+.questions{background:var(--surface);border:2px solid var(--ink);border-radius:16px;padding:1.2rem 1.3rem}
+.questions h2{margin-bottom:.7rem}
+.q-form{display:flex;gap:.5rem;flex-wrap:wrap}
+.q-input{flex:1 1 260px;min-width:0;font-family:var(--display);font-size:1.05rem;padding:.75rem 1rem;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink)}
+.q-btn{font-family:var(--display);font-weight:600;font-size:1rem;padding:.75rem 1.2rem;border-radius:12px;border:0;background:var(--ink);color:var(--bg);cursor:pointer}
+.q-sugg{display:flex;flex-wrap:wrap;gap:.4rem;margin:.8rem 0 0}
+.q-sugg button{font-family:var(--display);font-size:.86rem;padding:.3rem .75rem;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.q-sugg button:hover{border-color:var(--buoy)}
+.q-rep:not(:empty){margin-top:1rem;padding-top:1rem;border-top:1px solid var(--line)}
+.q-ville{font-family:var(--display);font-weight:600;color:var(--sea);margin-bottom:.3rem}
+.q-texte{max-width:72ch}
+.q-texte ul{margin:.4rem 0 .6rem;padding-left:1.2rem}
+.q-texte p{margin:.4rem 0}
+.q-vide{color:var(--muted);font-style:italic;margin:0}
+.q-infos{color:var(--muted);font-size:.9rem}
+.questions{margin-top:1.8rem}
+.questions h2{font-family:var(--display);font-weight:800;font-size:clamp(1.5rem,3.4vw,2.1rem);letter-spacing:-.025em;line-height:1.1;margin:0 0 .8rem}
+.compteur{margin-top:2rem;border-top:2px solid var(--ink);padding-top:1rem}
+.cpt-n{font-family:var(--display);font-weight:800;font-size:clamp(2.8rem,9vw,5.5rem);letter-spacing:-.045em;line-height:1;margin:0;color:var(--sea);font-variant-numeric:tabular-nums}
+.cpt-l{font-family:var(--display);font-size:1.1rem;margin:.3rem 0 0;font-weight:600}
+.cpt-d{font-family:var(--display);font-size:.88rem;color:var(--muted);margin:.3rem 0 0}
 @media (max-width:980px){.mainnav{display:none}}
 @media (max-width:760px){.stats{grid-template-columns:1fr 1fr}.site-foot .in{grid-template-columns:1fr 1fr}}
 @media (max-width:600px){.theme-btn{font-size:0;padding:.35rem .6rem}.theme-btn::before{content:"◐";font-size:1.05rem}}
@@ -125,6 +146,20 @@ h2.sec{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,4vw,2.7
       <input id="q" type="search" autocomplete="off" placeholder="Où voulez-vous aller ?" aria-autocomplete="list" aria-controls="results">
       <ul id="results" role="listbox"></ul>
       <p class="hint" id="hint">Essayez Lisbonne, Osaka, Valparaíso ou Tombouctou.</p>
+    </div>
+
+    <section class="questions" id="questions" aria-labelledby="q-titre">
+      <h2 id="q-titre">Posez une question sur n’importe quelle ville</h2>
+      <form class="q-form" onsubmit="return false"><label for="question" class="vh">Votre question</label>
+        <input id="question" class="q-input" type="text" autocomplete="off" placeholder="Par exemple : faut-il un visa pour le Japon ?">
+        <button type="submit" class="q-btn">Demander</button></form>
+      <div class="q-sugg"></div><div class="q-rep" aria-live="polite"></div>
+    </section>
+
+    <div class="compteur" aria-label="Compteur de données">
+      <p class="cpt-n"><span id="cpt" data-total="__INFOS__">__INFOS__</span></p>
+      <p class="cpt-l">informations dans le guide, mises à jour chaque nuit par nos robots</p>
+      <p class="cpt-d">__LIEUX__ lieux et adresses · __TEXTES__ textes · __ENRICHIES__ villes déjà enrichies · mis à jour le __DATE__</p>
     </div>
 
     <div class="mapzone">
@@ -281,5 +316,12 @@ h2.sec{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,4vw,2.7
   var lis=C.filter(function(c){return c.full;})[0]; if(lis)select(lis,false);
 })();
 </script>
+<script>
+(function(){var el=document.getElementById('cpt'),n=+el.getAttribute('data-total')||0,f=new Intl.NumberFormat('fr-FR');
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches||!n){el.textContent=f.format(n);return;}
+  var t0=null;function pas(t){if(!t0)t0=t;var p=Math.min(1,(t-t0)/1400),e=1-Math.pow(1-p,3);el.textContent=f.format(Math.round(n*e));if(p<1)requestAnimationFrame(pas);}
+  el.textContent='0';requestAnimationFrame(pas);})();
+</script>
+<script src="static/questions.js"></script>
 </body>
 </html>

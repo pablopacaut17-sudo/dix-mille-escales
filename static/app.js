@@ -51,10 +51,13 @@
     mk('Tout',''); keys.slice(0,10).forEach(function(k){mk(k+' ('+types[k]+')',k);});
   });
 
+  /* Compteur de données du guide */
+  document.querySelectorAll('[data-compteur]').forEach(function(el){fetch(base+'static/compteur.json').then(function(r){return r.json();}).then(function(c){el.textContent=new Intl.NumberFormat('fr-FR').format(c.informations);}).catch(function(){el.textContent='–';});});
+
   /* Recherche parmi les 10 000 villes (index chargé à la première frappe) */
   var q=document.getElementById('q'),res=document.getElementById('results');if(!q)return;
   var idx=null,hits=[],act=-1;
-  function norm(t){return (t||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[’'\-]/g,' ');}
+  function norm(t){return (t||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[’'\-|]/g,' ');}
   function load(cb){if(idx)return cb();fetch(base+'static/index.json').then(function(r){return r.json();}).then(function(d){idx=d.map(function(r){return {n:r[0],s:r[1],p:r[2],pop:r[3],k:norm(r[0]+' '+r[4])};});cb();}).catch(function(){res.innerHTML='<li><a>Recherche indisponible pour le moment.</a></li>';});}
   function run(){var t=norm(q.value).trim();act=-1;if(t.length<2){res.innerHTML='';return;}
     load(function(){hits=[];for(var i=0;i<idx.length&&hits.length<30;i++){var k=idx[i].k;if(k.indexOf(t)===0||k.indexOf(' '+t)>-1)hits.push(idx[i]);}

@@ -141,6 +141,21 @@ def fmt_prix(x):
     return f"{round(x / 5) * 5 if x > 40 else round(x)} €"
 
 
+BOITE_QUESTIONS = ('<section class="block questions" id="questions" data-ville="{slug}"><h2>Une question sur {nom} ?</h2>'
+                   '<form class="q-form" onsubmit="return false"><label for="question" class="vh">Votre question</label>'
+                   '<input id="question" class="q-input" type="text" autocomplete="off" placeholder="Par exemple : faut-il un visa ? Quel temps en avril ?">'
+                   '<button type="submit" class="q-btn">Demander</button></form><div class="q-sugg"></div><div class="q-rep" aria-live="polite"></div></section>')
+
+
+def couper_txt(t, n):
+    t = " ".join(t.split())
+    if len(t) <= n:
+        return t
+    c = t[:n]
+    fin = c.rfind(". ")
+    return (c[:fin + 1] if fin > n * 0.5 else c) + " […]"
+
+
 def maj(t):
     return t[:1].upper() + t[1:]
 
@@ -164,8 +179,8 @@ def page(root, titre, description, corps, recherche=True):
 <button type="button" class="theme-btn" id="theme-btn" aria-label="Changer le thème d’affichage">Thème : auto</button></div></header>
 <main class="wrap">{corps}</main>
 <footer class="foot"><div class="in"><p>Dix Mille Escales, le guide des 10 000 plus grandes villes du monde. Données mises à jour en continu par nos robots.</p>
-<p><a href="{root}sources/">Nos sources</a> · <a href="{root}etat/">État des robots</a></p></div></footer>
-<script src="{root}static/app.js"></script></body></html>"""
+<p><span data-compteur>…</span> informations dans le guide · <a href="{root}sources/">Nos sources</a> · <a href="{root}etat/">État des robots</a></p></div></footer>
+<script src="{root}static/app.js"></script><script src="{root}static/questions.js"></script></body></html>"""
 
 
 def carte_lieux(v, lieux, rayon):
@@ -391,7 +406,7 @@ def page_ville(v, ctx):
         for rub, titre, desc in RUBRIQUES:
             items = [f for f in lieux if f["rubrique"] == rub]
             if items:
-                corps.append(f'<section class="block" id="{rub}"><h2>{titre}</h2><p class="lead">{desc} {nombre(len(items))} adresses.</p>{liste_lieux(rub, items)}</section>')
+                corps.append(f'<section class="block" id="{rub}"><h2>{titre}</h2><p class="lead">{desc} {nombre(len(items))} adresse{"s" if len(items) > 1 else ""}.</p>{liste_lieux(rub, items)}</section>')
     if autour or v["proches"]:
         corps.append(section_alentours(v, autour, rubs))
     if not lieux:
@@ -473,6 +488,73 @@ def page_ville(v, ctx):
                      f'{E(wp["titre"])}</a> de Wikipédia en français, sous licence <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.fr" rel="noopener" target="_blank">CC BY-SA 4.0</a> '
                      f'(auteurs : voir l’historique de l’article). Faits historiques et jumelages : Wikidata.</p>')
     corps.append(f'<p class="note" style="margin-top:2.5rem">Fiche générée le {ctx["date_txt"]}. Une erreur ? Les signalements seront bientôt possibles depuis chaque fiche.</p>')
+
+    # Boîte à questions sur la ville
+    corps.insert(sommaire_pos + (1 if len(presentes) >= 3 else 0), BOITE_QUESTIONS.format(nom=E(v["nom"]), slug=v["slug"]))
+
+    # Export des données de la fiche, utilisées par la boîte à questions de tout le site
+    def top(rub, n):
+        return [{"nom": f["nom"], "type": f["type"], **({"cuisine": f["cuisine"]} if f.get("cuisine") else {}),
+                 **({"adresse": f["adresse"]} if f.get("adresse") else {})}
+                for f in sorted([f for f in lieux if f["rubrique"] == rub], key=lambda f: (-f["infos"], f["nom"]))[:n]]
+    donnees = {"nom": v["nom"], "slug": v["slug"], "pays": nom_pays, "population": v["population"], "rang": v["rang"],
+               "niveau": v["niveau"], "fuseau": v["fuseau"], "lat": v["lat"], "lon": v["lon"], "distance_paris": round(d_paris),
+               "monnaie": pays.get("monnaie_nom", ""), "devise": devise, "taux": ctx["change"].get("taux", {}).get(devise),
+               "langues": pays.get("langues", []), "indicatif": pays.get("indicatif", ""), "capitale": capitale,
+               "infos": total_infos, "maj": ctx["date_txt"]}
+    for k in ("fondation", "altitude_m", "superficie_km2", "maire", "surnoms", "eaux", "anciens_noms", "unesco", "site_officiel", "description"):
+        if enc.get(k):
+            donnees[k] = enc[k]
+    if enc.get("jumelages"):
+        donnees["jumelages"] = enc["jumelages"][:12]
+    if enc.get("personnalites"):
+        donnees["personnalites"] = [{"nom": x["nom"], "description": x["description"]} for x in enc["personnalites"][:8]]
+    if wp.get("resume"):
+        donnees["resume"] = couper_txt(wp["resume"], 700)
+    if "histoire" in wps:
+        donnees["histoire"] = couper_txt(wps["histoire"]["texte"], 900)
+    if "gastronomie" in wps:
+        donnees["gastronomie"] = couper_txt(wps["gastronomie"]["texte"], 600)
+    if enc.get("evenements"):
+        donnees["evenements"] = [{"date": e["date"], "nom": e["nom"]} for e in enc["evenements"][:12]]
+    if meteo:
+        donnees["meteo"] = [{"date": j["date"], "max": j["max"], "min": j["min"], "pluie": j["pluie_mm"], "ciel": meteo_fr(j["code"])} for j in meteo["jours"]]
+        if meteo.get("air"):
+            donnees["air"] = dict(meteo["air"], qualite=qualite_air(meteo["air"]["indice"]))
+    if clim.get("mois"):
+        donnees["climat"] = clim["mois"]
+        donnees["meilleurs_mois"] = [MOIS_LONG[i] for i, k in meilleurs_mois(clim["mois"]).items() if k == "ideal"]
+    if cout:
+        donnees["cout"] = {"indice": cout["indice"], "annee": cout["annee"],
+                           "prix": {"café": round(2.5 * cout["indice"], 1), "repas simple": round(15 * cout["indice"]),
+                                    "dîner au restaurant": round(35 * cout["indice"]), "ticket de transport": round(2.2 * cout["indice"], 1),
+                                    "nuit d’hôtel moyen": round(110 * cout["indice"]), "budget par jour (moyen)": round(150 * cout["indice"])}}
+    if ctx["formalites"]:
+        donnees["formalites"] = {n: formalite_fr(ctx["formalites"].get(pp, {}).get(v["pays"], ""), pp, v["pays"]) for pp, n in PASSEPORTS.items()}
+    if alerte:
+        donnees["securite"] = {"niveau": alerte["niveau"], "libelle": NIVEAU_ALERTE[alerte["niveau"]][0]}
+    if feries:
+        auj = date.today().isoformat()
+        donnees["feries"] = [{"date": date_fr(j["date"]), "nom": j["nom_local"] or j["nom"]} for j in feries["jours"] if j["date"] >= auj][:6]
+    for rub, n in (("voir", 10), ("manger", 10), ("dormir", 8), ("faire", 8), ("acheter", 6)):
+        t = top(rub, n)
+        if t:
+            donnees[rub] = t
+            donnees["nb_" + rub] = sum(1 for f in lieux if f["rubrique"] == rub)
+    if autour:
+        donnees["alentours"] = [{"nom": f["nom"], "type": f["type"], "km": f["distance_km"], "direction": f["direction"],
+                                 "patrimoine_mondial": f.get("patrimoine_mondial", False)} for f in autour[:10]]
+    donnees["proches"] = [{"nom": w["nom"], "slug": w["slug"], "km": round(d)} for d, w in v["proches"]]
+    red_ok = {k: red[k] for k in ("accroche", "conseils", "a_eviter", "quand_partir", "un_jour") if red.get(k)}
+    if red_ok:
+        donnees["avis"] = red_ok
+    ecrire(f"villes/{v['slug']}/donnees.json", json.dumps(donnees, ensure_ascii=False, separators=(",", ":")))
+    cpt = ctx["compteur"]
+    cpt["informations"] += total_infos
+    cpt["lieux"] += len(tous)
+    cpt["textes"] += len(wps) + (1 if wp.get("resume") else 0)
+    cpt["photos"] += 1 if enc.get("photo") else 0
+    cpt["villes_enrichies"] += 1 if (tous or enc) else 0
 
     desc = f"Guide de voyage de {v['nom']} ({nom_pays}) : lieux à voir, où manger, où dormir, météo, jours fériés et infos pratiques."
     return page("../../", f"{v['nom']} ({nom_pays}) – Dix Mille Escales", desc, "\n".join(corps))
@@ -561,6 +643,7 @@ def main():
     ctx["securite"] = lire("securite.json", {}) or {}
     ctx["cout"] = lire("cout.json", {}) or {}
     ctx["formalites"] = (lire("formalites.json", {}) or {}).get("passeports", {})
+    ctx["compteur"] = {"informations": 0, "lieux": 0, "textes": 0, "photos": 0, "villes_enrichies": 0}
     ctx["feries"] = {}
     df = os.path.join(DATA, "feries")
     if os.path.isdir(df):
@@ -578,20 +661,8 @@ def main():
     shutil.copytree(os.path.join(RACINE, "static"), os.path.join(SITE, "static"))
 
     # Index de recherche
-    index = [[v["nom"], v["slug"], pays.get(v["pays"], {}).get("nom", v["pays"]), v["population"], " ".join(v["alts"])] for v in villes]
+    index = [[v["nom"], v["slug"], pays.get(v["pays"], {}).get("nom", v["pays"]), v["population"], "|".join(v["alts"])] for v in villes]
     ecrire("static/index.json", json.dumps(index, ensure_ascii=False, separators=(",", ":")))
-
-    # Accueil
-    tzs, tzi, rows = [], {}, []
-    for v in villes:
-        if v["fuseau"] not in tzi:
-            tzi[v["fuseau"]] = len(tzs); tzs.append(v["fuseau"])
-        rows.append([v["nom"], v["pays"], v["lat"], v["lon"], v["population"], tzi[v["fuseau"]], "|".join(v["alts"]),
-                     1 if v["niveau"] == "phare" else 0, v["slug"]])
-    donnees = json.dumps({"c": rows, "tz": tzs, "cont": {cc: pz["continent"] for cc, pz in pays.items()}},
-                         ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
-    accueil = open(os.path.join(RACINE, "templates", "accueil.html"), encoding="utf-8").read()
-    ecrire("index.html", accueil.replace("__DATA__", donnees).replace("__DATE__", ctx["date_txt"]))
 
     # Pages de villes
     lot = villes[:a.limite] if a.limite else villes
@@ -600,6 +671,8 @@ def main():
         chemin_perso = os.path.join(RACINE, "pages", v["slug"] + ".html")
         if os.path.exists(chemin_perso):
             txt = open(chemin_perso, encoding="utf-8").read().replace('class="brand" href="#"', 'class="brand" href="../../"')
+            ecrire(f"villes/{v['slug']}/index.html", txt)
+            page_ville(v, ctx)  # pour exporter donnees.json (le HTML automatique est ignoré)
             ecrire(f"villes/{v['slug']}/index.html", txt)
             perso += 1
         else:
@@ -611,6 +684,27 @@ def main():
             txt = open(os.path.join(RACINE, "pages", fn), encoding="utf-8").read().replace('class="brand" href="#"', 'class="brand" href="../../"')
             ecrire(f"villes/{slug}/index.html", txt)
             perso += 1
+
+    # Compteur de données
+    cpt = ctx["compteur"]
+    cpt["villes"] = len(villes)
+    cpt["informations"] += sum(1300 for fn in os.listdir(os.path.join(RACINE, "pages")) if fn.endswith(".html"))  # fiches rédigées à la main
+    cpt["date"] = ctx["date_txt"]
+    ecrire("static/compteur.json", json.dumps(cpt, ensure_ascii=False))
+
+    # Accueil
+    tzs, tzi, rows = [], {}, []
+    for v in villes:
+        if v["fuseau"] not in tzi:
+            tzi[v["fuseau"]] = len(tzs); tzs.append(v["fuseau"])
+        rows.append([v["nom"], v["pays"], v["lat"], v["lon"], v["population"], tzi[v["fuseau"]], "|".join(v["alts"]),
+                     1 if v["niveau"] == "phare" else 0, v["slug"]])
+    donnees = json.dumps({"c": rows, "tz": tzs, "cont": {cc: pz["continent"] for cc, pz in pays.items()}},
+                         ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    accueil = open(os.path.join(RACINE, "templates", "accueil.html"), encoding="utf-8").read()
+    ecrire("index.html", accueil.replace("__DATA__", donnees).replace("__DATE__", ctx["date_txt"])
+           .replace("__INFOS__", str(cpt["informations"])).replace("__LIEUX__", nombre(cpt["lieux"]))
+           .replace("__TEXTES__", nombre(cpt["textes"])).replace("__ENRICHIES__", nombre(cpt["villes_enrichies"])))
 
     # Page Sources
     sources = [("GeoNames", "https://www.geonames.org/", "Liste des villes, population, coordonnées, fuseaux horaires", "CC BY 4.0"),
