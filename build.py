@@ -549,6 +549,13 @@ def page_ville(v, ctx):
     if red_ok:
         donnees["avis"] = red_ok
     ecrire(f"villes/{v['slug']}/donnees.json", json.dumps(donnees, ensure_ascii=False, separators=(",", ":")))
+    if tous:
+        cles = ("nom", "type", "rubrique", "adresse", "horaires", "cuisine", "etoiles", "payant", "site", "telephone",
+                "fauteuil", "terrasse", "distance_km", "direction", "patrimoine_mondial", "id")
+        export = [{k: f[k] for k in cles if f.get(k)} for f in sorted(tous, key=lambda f: (f["rubrique"], -f["infos"], f["nom"]))]
+        ecrire(f"villes/{v['slug']}/lieux.json", json.dumps({"date": rubs["date"], "rayon_km": rubs.get("rayon_km"),
+                                                             "rayon_alentours_km": rubs.get("rayon_alentours_km"), "lieux": export},
+                                                            ensure_ascii=False, separators=(",", ":")))
     cpt = ctx["compteur"]
     cpt["informations"] += total_infos
     cpt["lieux"] += len(tous)
@@ -600,6 +607,13 @@ def duree(km):
     if h < 1:
         return f"{max(10, round(h * 60 / 5) * 5)} min"
     return f"{int(h)} h {round((h % 1) * 60 / 5) * 5:02d}".replace(" 00", "")
+
+
+def avec_robots(txt):
+    """Ajoute à une fiche rédigée à la main le bloc des données collectées par les robots (rendu dans le navigateur)."""
+    bloc = ('<section id="donnees-robots" data-root="../../" aria-label="Données mises à jour chaque nuit"></section>'
+            '<script src="../../static/robots-fiche.js" defer></script>')
+    return txt.replace("</main>", bloc + "</main>", 1) if "</main>" in txt else txt.replace("</body>", bloc + "</body>", 1)
 
 
 def proches(villes, n=6):
@@ -671,9 +685,8 @@ def main():
         chemin_perso = os.path.join(RACINE, "pages", v["slug"] + ".html")
         if os.path.exists(chemin_perso):
             txt = open(chemin_perso, encoding="utf-8").read().replace('class="brand" href="#"', 'class="brand" href="../../"')
-            ecrire(f"villes/{v['slug']}/index.html", txt)
-            page_ville(v, ctx)  # pour exporter donnees.json (le HTML automatique est ignoré)
-            ecrire(f"villes/{v['slug']}/index.html", txt)
+            page_ville(v, ctx)  # pour exporter donnees.json et lieux.json (le HTML automatique est ignoré)
+            ecrire(f"villes/{v['slug']}/index.html", avec_robots(txt))
             perso += 1
         else:
             ecrire(f"villes/{v['slug']}/index.html", page_ville(v, ctx))
@@ -682,7 +695,10 @@ def main():
         slug = fn[:-5]
         if fn.endswith(".html") and not os.path.exists(os.path.join(SITE, "villes", slug, "index.html")):
             txt = open(os.path.join(RACINE, "pages", fn), encoding="utf-8").read().replace('class="brand" href="#"', 'class="brand" href="../../"')
-            ecrire(f"villes/{slug}/index.html", txt)
+            v = next((w for w in villes if w["slug"] == slug), None)
+            if v:
+                page_ville(v, ctx)
+            ecrire(f"villes/{slug}/index.html", avec_robots(txt))
             perso += 1
 
     # Compteur de données
