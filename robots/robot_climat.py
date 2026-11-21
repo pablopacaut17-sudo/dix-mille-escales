@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Robot Climat : normales mensuelles de chaque ville (températures, pluie, jours de pluie, ensoleillement),
-calculées sur les 5 dernières années complètes de l'archive météo ERA5.
+calculées sur les 2 dernières années complètes de l'archive météo ERA5.
 Les villes à moins de 15 km d'une ville déjà calculée reprennent son climat (même maille météo).
 Le climat change peu : chaque ville n'est calculée qu'une fois, puis recalculée tous les 2 ans.
 Source : Open-Meteo, API d'archive (CC BY 4.0). Usage commercial : clé OPENMETEO_KEY obligatoire.
@@ -13,6 +13,10 @@ Les appels d'archive sont « lourds » pour Open-Meteo : on traite peu de villes
 import argparse, json, os, time, urllib.parse
 from datetime import date, datetime
 import commun as c
+
+
+ANNEES = 2            # années complètes d'archive par ville (Open-Meteo compte les longues périodes comme plusieurs appels)
+RAYON_PARTAGE = 25    # km : l'archive ERA5 a des mailles d'environ 25 km, les villes plus proches partagent le même climat
 
 
 def url(v, debut, fin):
@@ -44,12 +48,12 @@ def normales(d):
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("--max-villes", type=int, default=150, help="nombre maximal d'appels à l'archive météo par nuit")
+    p.add_argument("--max-villes", type=int, default=100, help="nombre maximal d'appels à l'archive météo par nuit")
     p.add_argument("--demo", action="store_true")
     a = p.parse_args()
     V = c.villes()
     an = date.today().year
-    debut, fin = f"{an - 5}-01-01", f"{an - 1}-12-31"
+    debut, fin = f"{an - ANNEES}-01-01", f"{an - 1}-12-31"
     # Index des climats déjà calculés (pour les partager avec les villes voisines)
     calcules = {}
     import os, math
@@ -71,7 +75,7 @@ def main():
             for dj in (-1, 0, 1):
                 for w in grille.get((gi + di, gj + dj), []):
                     d = math.hypot((w["lat"] - v["lat"]) * 110.57, (w["lon"] - v["lon"]) * 111.32 * math.cos(math.radians(v["lat"])))
-                    if d < 15:
+                    if d < RAYON_PARTAGE:
                         return w
         return None
 
@@ -111,7 +115,7 @@ def main():
                 ech += 1
                 continue
             mois = normales(d)
-        c.ecrire(f"climat/{v['id']}.json", {"date": c.horodatage(), "periode": f"{an - 5}-{an - 1}", "mois": mois}, compact=True)
+        c.ecrire(f"climat/{v['id']}.json", {"date": c.horodatage(), "periode": f"{an - ANNEES}-{an - 1}", "mois": mois}, compact=True)
         grille.setdefault((round(v["lat"] / 0.2), round(v["lon"] / 0.2)), []).append(v)
         ok += 1
         print(f"{v['nom']} : normales calculées")
