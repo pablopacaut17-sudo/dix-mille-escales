@@ -1,0 +1,32 @@
+name: Test rapide des robots Lieux
+
+on:
+  workflow_dispatch:
+    inputs:
+      villes:
+        description: "Adresses (slugs) des villes à tester, séparées par des espaces"
+        required: true
+        default: "lisbonne-pt manali-in"
+
+permissions:
+  contents: write
+
+env:
+  DME_DONNEES: ${{ github.workspace }}/donnees
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Tester
+        continue-on-error: true
+        timeout-minutes: 45
+        run: python3 robots/test_lieux.py ${{ inputs.villes }}
+      - name: Enregistrer le résultat
+        if: always()
+        run: python3 robots/sauver.py --branche donnees-test --chemins test
