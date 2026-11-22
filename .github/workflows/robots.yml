@@ -20,6 +20,7 @@ permissions:
   contents: write
   pages: write
   id-token: write
+  issues: write
 
 env:
   DME_DONNEES: ${{ github.workspace }}/donnees
@@ -68,6 +69,7 @@ jobs:
           python3 robots/robot_conseils.py || true
           python3 robots/robot_pratique.py || true
           python3 robots/robot_langues.py || true
+          python3 robots/robot_avis.py || true
       - name: Météo et qualité de l'air
         continue-on-error: true
         run: python3 robots/robot_meteo.py
@@ -78,7 +80,7 @@ jobs:
           python3 robots/sauver.py --branche donnees-base --chemins change.json feries securite.json formalites.json
           cout.json meteo aeroports.json.gz aeroports_meta.json journal/change.json journal/feries.json
           journal/securite.json journal/formalites.json journal/cout.json journal/meteo.json journal/aeroports.json
-          urgences.json journal/urgences.json conseils journal/conseils.json pratique.json journal/pratique.json langues.json journal/langues.json
+          urgences.json journal/urgences.json conseils journal/conseils.json pratique.json journal/pratique.json langues.json journal/langues.json avis.json journal/avis.json
 
   encyclopedie:
     needs: villes
@@ -171,8 +173,28 @@ jobs:
         if: always()
         run: python3 robots/sauver.py --branche donnees-guides --chemins guides journal/guides.json
 
+  histoires:
+    needs: villes
+    if: ${{ !failure() && !cancelled() && github.event_name != 'push' && (inputs.groupes == null || inputs.groupes == '' || contains(inputs.groupes, 'histoires')) }}
+    concurrency: { group: robots-histoires, cancel-in-progress: false }
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Réunir les données
+        run: python3 robots/preparer.py
+      - name: Histoire des lieux célèbres (Wikipédia)
+        continue-on-error: true
+        run: python3 robots/robot_histoires.py --duree-max 300
+      - name: Enregistrer
+        if: always()
+        run: python3 robots/sauver.py --branche donnees-histoires --chemins histoires journal/histoires.json
+
   redaction:
-    needs: [base, encyclopedie, lieux, guides, climat]
+    needs: [base, encyclopedie, lieux, guides, climat, histoires]
     if: always() && !cancelled() && github.event_name != 'push' && (inputs.groupes == null || inputs.groupes == '' || contains(inputs.groupes, 'redaction'))
     runs-on: ubuntu-latest
     timeout-minutes: 120
@@ -194,7 +216,7 @@ jobs:
         run: python3 robots/sauver.py --branche donnees-redaction --chemins redaction journal/redaction.json
 
   publier:
-    needs: [villes, base, encyclopedie, lieux, guides, climat, redaction]
+    needs: [villes, base, encyclopedie, lieux, guides, climat, histoires, redaction]
     if: always() && !cancelled()
     concurrency: { group: publication, cancel-in-progress: true }
     runs-on: ubuntu-latest

@@ -248,17 +248,46 @@ def carte_lieux(v, lieux, rayon):
             '<span style="--c:var(--faire)">Activités</span><span style="--c:var(--acheter)">Acheter</span></figcaption></figure>')
 
 
+VILLE_EN_COURS = {}  # ville dont on fabrique la page (pour les liens d'avis)
+DEPOT = os.environ.get("GITHUB_REPOSITORY", "pablopacaut17-sudo/dix-mille-escales")
+
+
+def lien_avis(nom, ident, ville_nom, ville_slug):
+    """Formulaire GitHub prérempli pour déposer un avis de lecteur (publié après approbation)."""
+    from urllib.parse import quote
+    corps = (f"Lieu : {nom}\nIdentifiant : {ident}\nVille : {ville_slug}\n\nNote (de 1 à 5) : \n\nVotre avis :\n\n\n"
+             "Date de la visite (mois et année) : \n\n(Votre avis sera publié sur Dix Mille Escales après relecture. Restez courtois et factuel.)")
+    return f"https://github.com/{DEPOT}/issues/new?title={quote('Avis – ' + nom + ' – ' + ville_nom)}&body={quote(corps)}"
+
+
+def lien_maps(nom, ville_nom):
+    from urllib.parse import quote
+    return "https://www.google.com/maps/search/?api=1&query=" + quote(f"{nom} {ville_nom}")
+
+
+def note_fr(x):
+    return str(round(x, 1)).replace(".", ",")
+
+
 def liste_lieux(rub, items, niveau="phare"):
-    # Repères : d'abord les lieux célèbres (fiche encyclopédique, patrimoine), puis les fiches les plus complètes
-    items = sorted(items, key=lambda f: (not (f.get("wikidata") or f.get("patrimoine_mondial")), -f["infos"], f["nom"]))
+    # Repères : lieux célèbres, puis recommandés par Wikivoyage, puis notés par les lecteurs, puis les fiches les plus complètes
+    items = sorted(items, key=lambda f: (not (f.get("wikidata") or f.get("patrimoine_mondial")), not f.get("wikivoyage"),
+                                         -(f.get("avis_moy") or 0), -f["infos"], f["nom"]))
     def li(f):
         meta = " · ".join(x for x in (f["type"], f.get("cuisine"), (f["etoiles"] + " étoiles") if f.get("etoiles") else "",
                                       "payant" if f.get("payant") == "oui" else "gratuit" if f.get("payant") == "non" else "",
                                       "accessible en fauteuil" if f.get("fauteuil") == "oui" else "",
                                       "terrasse" if f.get("terrasse") == "oui" else "",
                                       "service d’urgences" if f.get("urgences") == "oui" else "") if x)
+        reperes = []
         if f.get("wikidata") or f.get("patrimoine_mondial"):
-            meta = "★ incontournable · " + meta
+            reperes.append("★ incontournable")
+        if f.get("wikivoyage"):
+            reperes.append("✓ recommandé par Wikivoyage")
+        if f.get("avis_n"):
+            reperes.append(f'{note_fr(f["avis_moy"])}/5 ({f["avis_n"]} avis de lecteurs)')
+        if reperes:
+            meta = " · ".join(reperes) + " · " + meta
         infos = []
         if f.get("adresse"):
             infos.append(E(f["adresse"]))
@@ -271,8 +300,20 @@ def liste_lieux(rub, items, niveau="phare"):
             liens.append(f'<a href="tel:{E(f["telephone"].replace(" ", ""))}">{E(f["telephone"])}</a>')
         typ, ident = f["id"][4:].split("/")
         liens.append(f'<a href="https://www.openstreetmap.org/{typ}/{ident}" rel="nofollow noopener" target="_blank">Carte</a>')
+        vn, vs = VILLE_EN_COURS.get("nom", ""), VILLE_EN_COURS.get("slug", "")
+        liens.append(f'<a href="{E(lien_maps(f["nom"], vn))}" rel="nofollow noopener" target="_blank">Avis et photos</a>')
+        liens.append(f'<a href="{E(lien_avis(f["nom"], f["id"], vn, vs))}" rel="nofollow noopener" target="_blank">Donner mon avis</a>')
+        plus = ""
+        if f.get("wikivoyage"):
+            plus += f'<div class="i wv">« {E(f["wikivoyage"])} » <small>(Wikivoyage)</small></div>'
+        if f.get("histoire"):
+            h_ = f["histoire"]
+            plus += (f'<details class="histoire"><summary>Histoire</summary><p>{E(h_["r"])}</p>'
+                     f'<p><a href="https://fr.wikipedia.org/wiki/{E(h_["t"].replace(" ", "_"))}" rel="noopener" target="_blank">Lire l’article Wikipédia</a></p></details>')
+        for a_ in (f.get("avis") or [])[:2]:
+            plus += f'<div class="i avis-l">{a_["note"]}/5 · « {E(a_["texte"][:300])} » <small>{E(a_.get("date", ""))}</small></div>'
         return (f'<li data-type="{E(f["type"])}" style="--c:var(--{rub})"><h3>{E(f["nom"])}</h3><div class="m">{E(meta)}</div>'
-                + "".join(f'<div class="i">{x}</div>' for x in infos) + f'<div class="i">{" · ".join(liens)}</div></li>')
+                + "".join(f'<div class="i">{x}</div>' for x in infos) + plus + f'<div class="i">{" · ".join(liens)}</div></li>')
     visibles = items[:EN_LIGNE.get(niveau, 15)]
     html_ = f'<ul class="places" id="l-{rub}">' + "".join(li(f) for f in visibles) + "</ul>"
     if len(items) > len(visibles):
@@ -524,6 +565,28 @@ def page_ville(v, ctx):
               f'et sur le site de l’ambassade du pays.</p>')
         corps.append(h + "</section>")
 
+    # Repères : recommandations Wikivoyage, histoire des lieux célèbres, avis des lecteurs
+    VILLE_EN_COURS.update(nom=v["nom"], slug=v["slug"])
+    av_ville = ctx["avis"].get(v["slug"], {})
+    textes_wv = {"voir": gs.get("voir", {}).get("texte", "") + gs.get("faire", {}).get("texte", ""), "faire": gs.get("faire", {}).get("texte", ""),
+                 "manger": gs.get("manger", {}).get("texte", "") + gs.get("sortir", {}).get("texte", ""), "dormir": gs.get("loger", {}).get("texte", ""),
+                 "acheter": gs.get("acheter", {}).get("texte", "")}
+    for f in tous:
+        t_wv = textes_wv.get(f["rubrique"], "")
+        if t_wv and len(f["nom"]) >= 5:
+            i_ = t_wv.lower().find(f["nom"].lower())
+            if i_ > -1:
+                deb = max(t_wv.rfind(". ", 0, i_) + 2, t_wv.rfind("\n", 0, i_) + 1, 0)
+                fin = min([x for x in (t_wv.find(". ", i_), t_wv.find("\n", i_)) if x > -1] or [len(t_wv)])
+                f["wikivoyage"] = t_wv[deb:fin + 1].strip()[:260]
+        if f.get("wikidata") and f["wikidata"] in ctx["histoires"]:
+            f["histoire"] = ctx["histoires"][f["wikidata"]]
+        la = av_ville.get(f["id"])
+        if la:
+            f["avis"] = la
+            f["avis_n"] = len(la)
+            f["avis_moy"] = sum(x["note"] for x in la) / len(la)
+
     # S'y rendre : aéroports, gares, gares routières, ports (distances depuis le centre)
     acces = {}
     for f in lieux:
@@ -580,6 +643,12 @@ def page_ville(v, ctx):
                      + (f'<p>Réseaux et exploitants : {E(", ".join(tr["reseaux"]))}.</p>' if tr.get("reseaux") else "")
                      + f'<p class="note">D’après OpenStreetMap. Horaires et tarifs : voir le site de l’exploitant. Pour comparer avion, train, bus et voiture vers une autre ville : '
                      f'<a href="../../trajets/#de={v["slug"]}">comparateur de trajets</a>.</p></section>')
+    av_v = av_ville.get("ville", [])
+    corps.append(f'<section class="block" id="avis-lecteurs"><h2>Avis des lecteurs</h2>'
+                 + ("".join(f'<p class="avis-l"><b>{x["note"]}/5</b> · « {E(x["texte"])} » <small>{E(x.get("date", ""))}</small></p>' for x in av_v[:10])
+                    if av_v else f'<p class="lead">Pas encore d’avis sur {E(v["nom"])}. Vous y êtes allé ? Partagez votre expérience.</p>')
+                 + f'<p><a class="tout-voir" style="display:inline-block;text-decoration:none" href="{E(lien_avis(v["nom"], "ville", v["nom"], v["slug"]))}" target="_blank" rel="noopener">Donner mon avis sur {E(v["nom"])}</a></p>'
+                 '<p class="note">Les avis sont publiés après relecture (compte GitHub gratuit nécessaire). Pour les avis sur une adresse, utilisez le lien « Donner mon avis » sous chaque lieu.</p></section>')
     sec_sante = section_sante(v, ctx, lieux, nom_pays)
     if sec_sante:
         corps.append(sec_sante)
@@ -693,6 +762,8 @@ def page_ville(v, ctx):
         donnees["urgences"] = ctx["urgences"][v["pays"]]
     if tr and tr.get("lignes"):
         donnees["transports"] = tr
+    if av_ville.get("ville"):
+        donnees["avis_ville"] = av_ville["ville"][:10]
     if lg:
         donnees["phrases"] = {"langue": lg_nom, "lignes": lg["lignes"][:20], "url": lg["url"], "titre": lg["titre"]}
     if pr:
@@ -722,7 +793,8 @@ def page_ville(v, ctx):
     ecrire_gz(f"villes/{v['slug']}/donnees.json.gz", donnees)
     if tous:
         cles = ("nom", "type", "rubrique", "adresse", "horaires", "cuisine", "etoiles", "payant", "site", "telephone",
-                "fauteuil", "terrasse", "distance_km", "direction", "patrimoine_mondial", "id", "lat", "lon", "wikidata", "urgences")
+                "fauteuil", "terrasse", "distance_km", "direction", "patrimoine_mondial", "id", "lat", "lon", "wikidata", "urgences",
+                "wikivoyage", "histoire", "avis_moy", "avis_n", "avis")
         export = [{k: f[k] for k in cles if f.get(k)} for f in sorted(tous, key=lambda f: (f["rubrique"], -f["infos"], f["nom"]))]
         if v["niveau"] == "autre":
             gardes = {}
@@ -1175,6 +1247,13 @@ def main():
     ctx["urgences"] = (lire("urgences.json", {}) or {}).get("pays", {})
     ctx["pratique"] = (lire("pratique.json", {}) or {}).get("pays", {})
     ctx["langues"] = (lire("langues.json", {}) or {}).get("langues", {})
+    ctx["histoires"] = {}
+    dh = os.path.join(DONNEES, "histoires")
+    if os.path.isdir(dh):
+        for fn in os.listdir(dh):
+            if fn.endswith(".json"):
+                ctx["histoires"].update(lire(f"histoires/{fn}") or {})
+    ctx["avis"] = (lire("avis.json", {}) or {}).get("villes", {})
     ctx["transports"] = {}
     dtr = os.path.join(DONNEES, "transports")
     if os.path.isdir(dtr):
@@ -1382,7 +1461,7 @@ def main():
                     with open(os.path.join(dl, fn), encoding="utf-8") as f:
                         suivi.update(json.load(f))
     noms = {"guides": "Guides (Wikivoyage)", "aeroports": "Aéroports (OurAirports)", "surveillance_etat": "Surveillance (rapport du matin)", "villes": "Liste des villes (GeoNames)", "lieux_0": "Lieux, robot 1 (OpenStreetMap)", "lieux_1": "Lieux, robot 2 (OpenStreetMap)",
-            "lieux_2": "Lieux, robot 3 (OpenStreetMap)", "lieux_3": "Lieux, robot 4 (OpenStreetMap)", "conseils": "Conseils aux voyageurs (Canada)", "pratique": "Prises, tension, conduite (Wikidata)", "langues": "Mots utiles (Wikivoyage)", "urgences": "Numéros d’urgence (Wikidata)", "meteo": "Météo (Open-Meteo)", "redaction": "Rédaction (IA)", "climat": "Climat (Open-Meteo ERA5)", "securite": "Sécurité (Département d’État)",
+            "lieux_2": "Lieux, robot 3 (OpenStreetMap)", "lieux_3": "Lieux, robot 4 (OpenStreetMap)", "conseils": "Conseils aux voyageurs (Canada)", "pratique": "Prises, tension, conduite (Wikidata)", "langues": "Mots utiles (Wikivoyage)", "histoires": "Histoire des lieux (Wikipédia)", "avis": "Avis des lecteurs", "urgences": "Numéros d’urgence (Wikidata)", "meteo": "Météo (Open-Meteo)", "redaction": "Rédaction (IA)", "climat": "Climat (Open-Meteo ERA5)", "securite": "Sécurité (Département d’État)",
             "formalites": "Formalités (Passport Index)", "cout": "Coût de la vie (Banque mondiale)", "encyclopedie": "Encyclopédie (Wikidata, Wikipédia)", "lieux": "Lieux (OpenStreetMap)", "meteo": "Météo (Open-Meteo)", "feries": "Jours fériés (Nager.Date)", "change": "Change (BCE)"}
     lignes = ""
     for k, n in noms.items():

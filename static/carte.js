@@ -61,7 +61,7 @@
           var f = lieux[e.features[0].properties.i];
           new maplibregl.Popup({ maxWidth: '280px' }).setLngLat(e.features[0].geometry.coordinates)
             .setHTML('<b>' + E(f.nom) + '</b><br>' + E([f.type, f.cuisine].filter(Boolean).join(' · ')) + (f.adresse ? '<br>' + E(f.adresse) : '') + (f.horaires ? '<br>Horaires : ' + E(f.horaires) : '')
-              + (f.site && /^https?:/.test(f.site) ? '<br><a href="' + E(f.site) + '" target="_blank" rel="noopener nofollow">Site</a>' : ''))
+              + (f.histoire ? '<br><i>' + E(f.histoire.r.slice(0, 220)) + '…</i>' : '') + (f.site && /^https?:/.test(f.site) ? '<br><a href="' + E(f.site) + '" target="_blank" rel="noopener nofollow">Site</a>' : '') + ' · <a href="https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(f.nom) + '&center=' + f.lat + ',' + f.lon + '" target="_blank" rel="noopener nofollow">Avis et photos</a>')
             .addTo(carte);
         });
         ['groupes', 'points'].forEach(function (c) { carte.on('mouseenter', c, function () { carte.getCanvas().style.cursor = 'pointer'; }); carte.on('mouseleave', c, function () { carte.getCanvas().style.cursor = ''; }); });

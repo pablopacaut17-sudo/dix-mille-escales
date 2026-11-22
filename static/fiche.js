@@ -26,6 +26,19 @@
   function nb(n) { return new Intl.NumberFormat('fr-FR').format(n); }
   function v(x) { return String(x).replace('.', ','); }
   function hfr(h) { Object.keys(JOURS).forEach(function (k) { h = h.split(k).join(JOURS[k]); }); return h.replace(/;/g, ' ; '); }
+  function depot() { var m = location.hostname.match(/^([^.]+)\.github\.io$/), seg = location.pathname.split('/').filter(Boolean); return m && seg.length ? m[1] + '/' + seg[0] : 'pablopacaut17-sudo/dix-mille-escales'; }
+  function villeNom() { var h = document.querySelector('h1.city'); return h ? h.textContent.replace(/Ville phare|Fiche complète/g, '').trim() : ''; }
+  function extras(f, slug) {
+    var vn = villeNom(), h = '';
+    if (f.wikivoyage) h += '<div class="i wv">« ' + E(f.wikivoyage) + ' » <small>(Wikivoyage)</small></div>';
+    if (f.histoire) h += '<details class="histoire"><summary>Histoire</summary><p>' + E(f.histoire.r) + '</p><p><a href="https://fr.wikipedia.org/wiki/' + encodeURIComponent(f.histoire.t.replace(/ /g, '_')) + '" target="_blank" rel="noopener">Lire l’article Wikipédia</a></p></details>';
+    (f.avis || []).slice(0, 2).forEach(function (a) { h += '<div class="i avis-l">' + a.note + '/5 · « ' + E(a.texte.slice(0, 300)) + ' » <small>' + E(a.date || '') + '</small></div>'; });
+    var corps = 'Lieu : ' + f.nom + '\nIdentifiant : ' + f.id + '\nVille : ' + slug + '\n\nNote (de 1 à 5) : \n\nVotre avis :\n\n\nDate de la visite (mois et année) : \n\n(Votre avis sera publié sur Dix Mille Escales après relecture. Restez courtois et factuel.)';
+    var liens = ' · <a href="https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(f.nom + ' ' + vn) + '" target="_blank" rel="noopener nofollow">Avis et photos</a>'
+      + ' · <a href="https://github.com/' + depot() + '/issues/new?title=' + encodeURIComponent('Avis – ' + f.nom + ' – ' + vn) + '&body=' + encodeURIComponent(corps) + '" target="_blank" rel="noopener nofollow">Donner mon avis</a>';
+    return { avant: h, liens: liens };
+  }
+  function reperes(f) { return [(f.wikidata || f.patrimoine_mondial) ? '★ incontournable' : '', f.wikivoyage ? '✓ recommandé par Wikivoyage' : '', f.avis_n ? String(Math.round(f.avis_moy * 10) / 10).replace('.', ',') + '/5 (' + f.avis_n + ' avis de lecteurs)' : '']; }
   function sec(id, titre, corps) { return '<section class="block" id="' + id + '"><h2>' + titre + '</h2>' + corps + '</section>'; }
   function prose(t, ouvert) {
     var b = [], p = 0;
@@ -38,12 +51,13 @@
     return '<div class="prose">' + b.slice(0, cut).join('') + '<details class="more"><summary>Lire la suite</summary>' + b.slice(cut).join('') + '</details></div>';
   }
   function lieu(f) {
-    var meta = [(f.wikidata || f.patrimoine_mondial) ? '★ incontournable' : '', f.type, f.cuisine, f.etoiles ? f.etoiles + ' étoiles' : '', f.fauteuil === 'oui' ? 'accessible en fauteuil' : '', f.terrasse === 'oui' ? 'terrasse' : ''].filter(Boolean).join(' · ');
+    var x_ = extras(f, slug);
+    var meta = reperes(f).concat([f.type, f.cuisine, f.etoiles ? f.etoiles + ' étoiles' : '', f.fauteuil === 'oui' ? 'accessible en fauteuil' : '', f.terrasse === 'oui' ? 'terrasse' : '']).filter(Boolean).join(' · ');
     var p = f.id ? f.id.slice(4).split('/') : null;
     return '<li style="--c:var(--' + f.rubrique + ')"><h3>' + E(f.nom) + '</h3><div class="m">' + E(meta) + '</div>'
       + (f.adresse ? '<div class="i">' + E(f.adresse) + '</div>' : '') + (f.horaires ? '<div class="i">Horaires : ' + E(hfr(f.horaires)) + '</div>' : '')
-      + '<div class="i">' + (f.site && /^https?:/.test(f.site) ? '<a href="' + E(f.site) + '" rel="nofollow noopener" target="_blank">Site</a> · ' : '')
-      + (p ? '<a href="https://www.openstreetmap.org/' + p[0] + '/' + p[1] + '" rel="nofollow noopener" target="_blank">Carte</a>' : '') + '</div></li>';
+      + x_.avant + '<div class="i">' + (f.site && /^https?:/.test(f.site) ? '<a href="' + E(f.site) + '" rel="nofollow noopener" target="_blank">Site</a> · ' : '')
+      + (p ? '<a href="https://www.openstreetmap.org/' + p[0] + '/' + p[1] + '" rel="nofollow noopener" target="_blank">Carte</a>' : '') + x_.liens + '</div></li>';
   }
   function duree(km) { var h = km * 1.3 / 70; return h < 1 ? Math.max(10, Math.round(h * 12) * 5) + ' min' : Math.floor(h) + ' h ' + String(Math.round(h % 1 * 12) * 5).padStart(2, '0'); }
 
@@ -108,6 +122,9 @@
     }
     if (d.conseils_ville && d.conseils_ville.length) h += sec('conseils-ville', 'Ce que disent les conseils officiels de ' + E(d.nom), '<ul>' + d.conseils_ville.map(function (x) { return '<li>' + E(x) + '</li>'; }).join('') + '</ul>');
     if (d.arnaques && d.arnaques.length) h += sec('arnaques', 'Arnaques signalées dans le pays', '<ul>' + d.arnaques.map(function (x) { return '<li>' + E(x) + '</li>'; }).join('') + '</ul><p><a href="' + root + 'pays/' + d.cc.toLowerCase() + '/conseils/#arnaques">Toutes les arnaques signalées</a></p>');
+    var avisCorps = 'Lieu : ' + d.nom + '\nIdentifiant : ville\nVille : ' + d.slug + '\n\nNote (de 1 à 5) : \n\nVotre avis :\n\n\nDate de la visite (mois et année) : \n';
+    h += sec('avis-lecteurs', 'Avis des lecteurs', (d.avis_ville && d.avis_ville.length ? d.avis_ville.map(function (a) { return '<p class="avis-l"><b>' + a.note + '/5</b> · « ' + E(a.texte) + ' » <small>' + E(a.date || '') + '</small></p>'; }).join('') : '<p class="lead">Pas encore d’avis sur ' + E(d.nom) + '. Vous y êtes allé ? Partagez votre expérience.</p>')
+      + '<p><a class="tout-voir" style="display:inline-block;text-decoration:none" target="_blank" rel="noopener" href="https://github.com/' + depot() + '/issues/new?title=' + encodeURIComponent('Avis – ' + d.nom + ' – ' + d.nom) + '&body=' + encodeURIComponent(avisCorps) + '">Donner mon avis sur ' + E(d.nom) + '</a></p><p class="note">Avis publiés après relecture (compte GitHub gratuit nécessaire).</p>');
     if (d.phrases) h += sec('langue', 'Quelques mots utiles en ' + E(d.phrases.langue), '<div class="table-scroll"><table><tbody>' + d.phrases.lignes.map(function (x) { var i = x.indexOf(':'); return i > 0 ? '<tr><td>' + E(x.slice(0, i).trim()) + '</td><td><b>' + E(x.slice(i + 1).trim()) + '</b></td></tr>' : '<tr><td colspan="2">' + E(x) + '</td></tr>'; }).join('') + '</tbody></table></div><p class="note">D’après le <a href="' + E(d.phrases.url) + '" rel="noopener" target="_blank">' + E(d.phrases.titre) + '</a> de Wikivoyage (licence CC BY-SA).</p>');
     if (d.transports && d.transports.lignes) {
       var NM = [['metro', 'métro'], ['tram', 'tram'], ['bus', 'bus'], ['train', 'train'], ['ferry', 'ferry']];
