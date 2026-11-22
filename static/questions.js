@@ -179,6 +179,17 @@
     if (a(/(activite|plage|baign|surf|ski|golf|sport|loisir|que faire|enfant)/)) return d.faire ? 'Activités ' + aV(d.nom) + ' :' + liste(d.faire, function (x) { return '<b>' + E(x.nom) + '</b>, ' + E(x.type.toLowerCase()); }) + lien(d, 'faire', 'Voir toutes les activités') : (d.voir ? 'Pas encore d’activités recensées, mais voici quoi voir :' + liste(d.voir.slice(0, 6), function (x) { return '<b>' + E(x.nom) + '</b>, ' + E(x.type.toLowerCase()); }) : manque(d, 'les activités'));
     if (a(/(voir|visiter|monument|musee|incontournable|site|interessant|decouvrir)/)) return d.voir ? 'À voir ' + aV(d.nom) + ' (' + cpt(d.nb_voir, 'lieu recensé', 'lieux recensés') + ') :' + liste(d.voir, function (x) { return '<b>' + E(x.nom) + '</b>, ' + E(x.type.toLowerCase()); }) + lien(d, 'voir', 'Voir tous les lieux') : manque(d, 'les lieux à visiter');
     if (a(/(conseil|astuce|eviter|erreur|avis|recommand|programme|itineraire)/)) return d.avis ? (d.avis.accroche ? '<p>' + E(d.avis.accroche) + '</p>' : '') + (d.avis.conseils ? 'Conseils :' + liste(d.avis.conseils.slice(0, 6), E) : '') + (d.avis.a_eviter ? 'À éviter :' + liste(d.avis.a_eviter, E) : '') + lien(d, 'avis', 'Lire notre avis') : manque(d, 'nos conseils');
+    if (a(/(hopital|hopitaux|clinique|pharmacie|medecin|dentiste|urgence|ambulance|police|pompier|malade|sante)/)) {
+      var h = '';
+      if (d.urgences) h += 'Numéros d’urgence (' + E(d.pays) + ') :' + liste(d.urgences, function (x) { return '<b>' + E(x.numero) + '</b>' + (x.services.length ? ' : ' + E(x.services.join(', ')) : ''); });
+      if (d.sante) h += 'Soins ' + aV(d.nom) + ' (' + cpt(d.nb_sante, 'adresse', 'adresses') + ') :' + liste(d.sante.slice(0, 5), function (x) { return '<b>' + E(x.nom) + '</b>, ' + E(x.type.toLowerCase()) + (x.urgences === 'oui' ? ', urgences' : '') + (x.telephone ? ', ' + E(x.telephone) : ''); });
+      return h ? h + lien(d, 'sante', 'Voir la rubrique santé') : manque(d, 'les informations de santé');
+    }
+    if (a(/(ambassade|consulat|consul)/)) {
+      if (!d.representations) return manque(d, 'les ambassades et consulats');
+      var NR = { FR: 'France', BE: 'Belgique', CH: 'Suisse', CA: 'Canada' };
+      return 'Représentations les plus proches ' + deV(d.nom) + ' :' + liste(d.representations, function (x) { return NR[x.pays] + ' : <b>' + E(x.nom) + '</b>, ' + nb(x.km) + ' km' + (x.telephone ? ', ' + E(x.telephone) : ''); }) + lien(d, 'sante', 'Voir les détails');
+    }
     if (a(/(aeroport|aller a|s y rendre|comment aller|comment venir|arriver|train pour|bus pour)/)) {
       if (!d.aeroports && !d.aller) return manque(d, 'les moyens d’accès');
       return (d.aeroports ? 'Aéroports les plus proches ' + deV(d.nom).replace(/^de /, 'de ') + ' :' + liste(d.aeroports, function (x) { return '<b>' + E(x.nom) + '</b> (' + E(x.code) + '), ' + nb(x.km) + ' km' + (x.international ? ', international' : ''); }) : '')

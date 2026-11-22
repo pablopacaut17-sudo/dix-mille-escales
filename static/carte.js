@@ -7,8 +7,8 @@
   var LIB = 'https://cdn.jsdelivr.net/npm/maplibre-gl@' + VERSION + '/dist/maplibre-gl.js';
   var CSS = 'https://cdn.jsdelivr.net/npm/maplibre-gl@' + VERSION + '/dist/maplibre-gl.css';
   var STYLE = 'https://tiles.openfreemap.org/styles/liberty';
-  var COUL = { voir: '#2F7D6D', manger: '#B5485D', dormir: '#2E6DB4', faire: '#C9761E', acheter: '#7B5EA7', alentours: '#4E7D3A', bouger: '#56707A' };
-  var NOMS = { voir: 'À voir', manger: 'Manger et boire', dormir: 'Dormir', faire: 'Activités', acheter: 'Acheter', alentours: 'Aux alentours', bouger: 'Se déplacer' };
+  var COUL = { voir: '#2F7D6D', manger: '#B5485D', dormir: '#2E6DB4', faire: '#C9761E', acheter: '#7B5EA7', alentours: '#4E7D3A', bouger: '#56707A', sante: '#C0392B' };
+  var NOMS = { voir: 'À voir', manger: 'Manger et boire', dormir: 'Dormir', faire: 'Activités', acheter: 'Acheter', alentours: 'Aux alentours', bouger: 'Se déplacer', sante: 'Santé' };
   var charge = null;
   function E(t) { return String(t == null ? '' : t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function lireJson(url) {
@@ -52,7 +52,7 @@
           layout: { 'text-field': ['get', 'point_count_abbreviated'], 'text-size': 12, 'text-font': ['Noto Sans Bold'] }, paint: { 'text-color': '#ffffff' } });
         carte.addLayer({ id: 'points', type: 'circle', source: 'lieux', filter: ['!', ['has', 'point_count']],
           paint: { 'circle-radius': 7, 'circle-stroke-width': 2, 'circle-stroke-color': '#ffffff',
-            'circle-color': ['match', ['get', 'r'], 'voir', COUL.voir, 'manger', COUL.manger, 'dormir', COUL.dormir, 'faire', COUL.faire, 'acheter', COUL.acheter, 'alentours', COUL.alentours, COUL.bouger] } });
+            'circle-color': ['match', ['get', 'r'], 'voir', COUL.voir, 'manger', COUL.manger, 'dormir', COUL.dormir, 'faire', COUL.faire, 'acheter', COUL.acheter, 'alentours', COUL.alentours, 'sante', COUL.sante, COUL.bouger] } });
         carte.on('click', 'groupes', function (e) {
           var f = e.features[0];
           carte.getSource('lieux').getClusterExpansionZoom(f.properties.cluster_id).then(function (z) { carte.easeTo({ center: f.geometry.coordinates, zoom: z }); });

@@ -23,7 +23,7 @@
     var meta = [f.type, f.cuisine, f.etoiles ? f.etoiles + ' étoiles' : '', f.payant === 'oui' ? 'payant' : f.payant === 'non' ? 'gratuit' : '',
       f.fauteuil === 'oui' ? 'accessible en fauteuil' : '', f.terrasse === 'oui' ? 'terrasse' : '',
       f.rubrique === 'alentours' && f.distance_km ? String(f.distance_km).replace('.', ',') + ' km ' + (f.direction || '') : '',
-      f.patrimoine_mondial ? 'patrimoine mondial' : ''].filter(Boolean).join(' · ');
+      f.patrimoine_mondial ? 'patrimoine mondial' : '', f.urgences === 'oui' ? 'service d’urgences' : ''].filter(Boolean).join(' · ');
     var liens = [];
     if (f.site && /^https?:/.test(f.site)) liens.push('<a href="' + E(f.site) + '" rel="nofollow noopener" target="_blank">Site</a>');
     if (f.telephone) liens.push('<a href="tel:' + E(f.telephone.replace(/\s/g, '')) + '">' + E(f.telephone) + '</a>');

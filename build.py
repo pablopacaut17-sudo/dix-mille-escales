@@ -254,7 +254,8 @@ def liste_lieux(rub, items, niveau="phare"):
         meta = " · ".join(x for x in (f["type"], f.get("cuisine"), (f["etoiles"] + " étoiles") if f.get("etoiles") else "",
                                       "payant" if f.get("payant") == "oui" else "gratuit" if f.get("payant") == "non" else "",
                                       "accessible en fauteuil" if f.get("fauteuil") == "oui" else "",
-                                      "terrasse" if f.get("terrasse") == "oui" else "") if x)
+                                      "terrasse" if f.get("terrasse") == "oui" else "",
+                                      "service d’urgences" if f.get("urgences") == "oui" else "") if x)
         infos = []
         if f.get("adresse"):
             infos.append(E(f["adresse"]))
@@ -473,6 +474,8 @@ def page_ville(v, ctx):
                      + CARTE_BOUTON.format(lat=v["lat"], lon=v["lon"], rayon=rubs.get("rayon_km", 3))
                      + carte_lieux(v, lieux, rubs.get("rayon_km", 3)) + "</section>")
         for rub, titre, desc in RUBRIQUES:
+            if rub == "sante":
+                continue
             items = [f for f in lieux if f["rubrique"] == rub]
             if items:
                 corps.append(f'<section class="block" id="{rub}"><h2>{titre}</h2><p class="lead">{desc} {nombre(len(items))} adresse{"s" if len(items) > 1 else ""}.</p>{liste_lieux(rub, items, v["niveau"])}</section>')
@@ -525,6 +528,10 @@ def page_ville(v, ctx):
     for cle, titre_g in GUIDE:
         if cle in gs and cle != "aller":
             corps.append(f'<section class="block" id="guide-{cle}"><h2>{E(titre_g.format(ville=v["nom"]))}</h2>{texte_html(gs[cle]["texte"], 3)}</section>')
+
+    sec_sante = section_sante(v, ctx, lieux, nom_pays)
+    if sec_sante:
+        corps.append(sec_sante)
 
     # Patrimoine
     if enc.get("unesco") or "patrimoine" in wps:
@@ -631,6 +638,16 @@ def page_ville(v, ctx):
         donnees["alentours"] = [{"nom": f["nom"], "type": f["type"], "km": f["distance_km"], "direction": f["direction"],
                                  "patrimoine_mondial": f.get("patrimoine_mondial", False)} for f in autour[:10]]
     donnees["proches"] = [{"nom": w["nom"], "slug": w["slug"], "km": round(d)} for d, w in v["proches"]]
+    if ctx["urgences"].get(v["pays"]):
+        donnees["urgences"] = ctx["urgences"][v["pays"]]
+    if v.get("representations"):
+        donnees["representations"] = [{k: x[k] for k in ("pays", "type", "nom", "adresse", "telephone", "site", "km")} for x in v["representations"]]
+    sante_ = [f for f in lieux if f["rubrique"] == "sante"]
+    if sante_:
+        sante_.sort(key=lambda f: (f.get("urgences") != "oui", f["type"] not in ("Hôpital", "Clinique"), -f["infos"]))
+        donnees["sante"] = [{"nom": f["nom"], "type": f["type"], "adresse": f.get("adresse", ""), "telephone": f.get("telephone", ""),
+                             "urgences": f.get("urgences", "")} for f in sante_[:8]]
+        donnees["nb_sante"] = len(sante_)
     if aeros:
         donnees["aeroports"] = [{"code": x[0], "nom": x[1], "km": x[2], "international": bool(x[3])} for x in aeros]
     if gs.get("aller"):
@@ -804,12 +821,48 @@ ul.querySelectorAll("button").forEach(function(b){{b.onclick=function(){{ch.spli
 if(!ch.length){{document.getElementById("prep-res").innerHTML="";return;}}var L=D.preparation(ch.map(D.ville),+m.value,f.querySelector("#prep-pp").value);
 document.getElementById("prep-res").innerHTML="<div class=o-prep>"+Object.keys(L).map(function(k){{return "<div><h3>"+E(k)+"</h3><ul class=o-cases>"+L[k].map(function(x){{return "<li><label><input type=checkbox> "+x+"</label></li>";}}).join("")+"</ul></div>";}}).join("")+"</div><div class=o-actions><button type=button onclick=window.print()>Imprimer la liste</button></div>";}}
 D.chargerMonde().then(function(){{D.choixVille(f.querySelector("#prep-q"),function(s){{if(ch.indexOf(s)<0)ch.push(s);r();}});r();}});m.onchange=r;f.querySelector("#prep-pp").onchange=r;}});</script>''', [])
+    ecrire("assurance/index.html", page("../", "Assurance, santé et rapatriement – Dix Mille Escales", "Ce qu’il faut vérifier avant de partir, et que faire en cas de problème de santé à l’étranger.",
+           '''<section class="hero"><p class="crumbs"><a href="../">Accueil</a> › <a href="../outils/">Outils</a></p>
+<h1 class="city" style="font-size:clamp(2.2rem,6.5vw,4.2rem)">Assurance, santé et rapatriement</h1>
+<p class="tagline">Ce qu’il faut vérifier avant de partir, et les bons réflexes en cas de problème de santé à l’étranger. Guide général : il ne remplace pas votre contrat ni l’avis d’un professionnel.</p></section>
+<div class="prose">
+<h2>1. Ce que vous avez peut-être déjà</h2>
+<p><b>La carte européenne d’assurance maladie</b> (CEAM), gratuite et délivrée par votre caisse d’assurance maladie, permet d’être soigné dans les pays de l’Union européenne, de l’Espace économique européen, en Suisse et au Royaume-Uni, aux conditions du pays. Elle ne couvre pas le rapatriement. Demandez-la au moins deux semaines avant le départ.</p>
+<p><b>Votre carte bancaire</b> inclut souvent une assistance et une assurance voyage, surtout les cartes haut de gamme, à condition d’avoir payé le voyage avec elle. Lisez la notice : montants, durée maximale du séjour, pays exclus.</p>
+<p><b>Votre mutuelle ou complémentaire santé</b> prend parfois en charge des soins à l’étranger : renseignez-vous avant de partir.</p>
+<h2>2. Ce qu’un bon contrat doit couvrir</h2>
+<ul>
+<li><b>Les frais médicaux et d’hospitalisation à l’étranger</b>, avec un plafond élevé hors d’Europe : une hospitalisation aux États-Unis, au Canada ou au Japon peut coûter plusieurs dizaines de milliers d’euros.</li>
+<li><b>Le rapatriement médical</b> vers votre pays, sans plafond ou avec un plafond très élevé.</li>
+<li><b>L’avance des frais</b> : sinon, il faut payer sur place et se faire rembourser au retour.</li>
+<li>Une <b>assistance joignable jour et nuit</b>, dans votre langue.</li>
+<li>Les <b>activités prévues</b> : sports à risque, plongée, randonnée en altitude ou ski sont souvent exclus sans option.</li>
+<li>La <b>durée</b> et les <b>pays</b> du voyage, la <b>franchise</b>, et les éventuelles <b>exclusions</b> (maladies déjà connues, grossesse).</li>
+</ul>
+<p>Pour certains pays, une assurance est obligatoire pour obtenir le visa ou entrer sur le territoire : vérifiez dans les formalités de la fiche du pays et sur les Conseils aux voyageurs.</p>
+<h2>3. Avant de partir</h2>
+<ul>
+<li>Notez le numéro d’assistance et le numéro de contrat, gardez-les sur vous et en version numérique.</li>
+<li>Consultez votre médecin ou un centre de vaccinations internationales 4 à 6 semaines avant le départ (vaccins, traitement préventif du paludisme selon la destination). Voir le <a href="https://www.pasteur.fr/fr/centre-medical/preparer-son-voyage" rel="noopener" target="_blank">centre médical de l’Institut Pasteur</a>.</li>
+<li>Emportez vos médicaments habituels en quantité suffisante, dans leur boîte, avec l’ordonnance (traduite si possible).</li>
+<li>Inscrivez-vous sur le service <b>Ariane</b> du ministère des Affaires étrangères, pour être prévenu et joint en cas de crise.</li>
+</ul>
+<h2>4. En cas de problème sur place</h2>
+<ul>
+<li><b>Urgence vitale</b> : appelez les secours du pays (numéros indiqués dans la rubrique « Santé et urgences » de chaque fiche de ville ; le 112 fonctionne dans de nombreux pays).</li>
+<li><b>Appelez votre assistance avant d’engager des frais</b>, sauf urgence vitale : elle peut orienter vers un établissement, avancer les frais et organiser un rapatriement.</li>
+<li>Gardez <b>toutes les factures et comptes rendus médicaux</b> pour le remboursement.</li>
+<li>En cas de difficulté grave (hospitalisation, perte de papiers), contactez l’<b>ambassade ou le consulat</b> : ses coordonnées figurent dans chaque fiche de ville. Le consulat ne paie pas les frais médicaux, mais peut aider à contacter la famille, l’assureur ou un médecin.</li>
+</ul>
+<p class="note">Dix Mille Escales ne vend pas d’assurance et ne reçoit aucune rémunération d’assureurs : ce guide est neutre. Comparez plusieurs offres et lisez toujours les conditions générales.</p>
+</div>'''))
     outil("carnet", "Mon carnet", "Vos villes et vos itinéraires gardés sur cet appareil.", '<div id="carnet-page" class="o-res"></div>', [])
     cartes = [("itineraire", "Planificateur d’itinéraire", "Plusieurs villes, un ou plusieurs pays : ordre des étapes, trajets, programme jour par jour, budget."),
               ("ou-partir", "Où partir ?", "Les villes idéales du monde pour un mois, une température et vos envies."),
               ("comparer", "Comparer des villes", "Deux à quatre villes côte à côte."),
               ("preparer", "Préparer son départ", "La liste à cocher : papiers, argent, valise, santé."),
-              ("carnet", "Mon carnet", "Vos villes et itinéraires gardés.")]
+              ("carnet", "Mon carnet", "Vos villes et itinéraires gardés."),
+              ("assurance", "Assurance, santé et rapatriement", "Ce qu’il faut vérifier avant de partir, et que faire en cas de problème.")]
     corps = ('<div class="o-cartes">' + "".join(f'<a class="o-carte" href="../{c}/"><b>{t}</b><span>{d}</span></a>' for c, t, d in cartes) + "</div>"
              + '''<section class="block" id="convertisseur"><h2>Convertisseur de monnaie</h2><form id="conv" class="o-form" onsubmit="return false"><div class="o-grille">
 <div class="o-champ"><label for="conv-montant">Montant</label><input id="conv-montant" type="text" inputmode="decimal" value="100"></div>
@@ -818,6 +871,77 @@ D.chargerMonde().then(function(){{D.choixVille(f.querySelector("#prep-q"),functi
     html_ = page("../", "Outils de voyage – Dix Mille Escales", "Planificateur d’itinéraire, où partir, comparateur, préparation, carnet et convertisseur.",
                  '<section class="hero"><h1 class="city" style="font-size:clamp(2.4rem,7vw,4.5rem)">Outils de voyage</h1><p class="tagline">Pour préparer un voyage avec les données de toutes les villes du guide.</p></section>' + corps)
     ecrire("outils/index.html", html_.replace("</body>", '<script src="../static/outils-commun.js"></script><script src="../static/convertisseur.js"></script></body>'))
+
+
+def representations(villes, ctx):
+    """Pour chaque ville : l'ambassade ou le consulat le plus proche de France, Belgique, Suisse et Canada, dans le même pays."""
+    cases = {}
+    for v in villes:
+        cases.setdefault((int(v["lat"] // 2), int(v["lon"] // 2)), []).append(v)
+    par_hote = {}
+    for x in ctx["diplo"]:
+        hote = x.get("cible", "")
+        if not hote:  # pays hôte = pays de la ville du guide la plus proche
+            ci, cj = int(x["lat"] // 2), int(x["lon"] // 2)
+            cand = [w for i in (ci - 1, ci, ci + 1) for j in (cj - 1, cj, cj + 1) for w in cases.get((i, j), [])]
+            if not cand:
+                continue
+            hote = min(cand, key=lambda w: dist((w["lat"], w["lon"]), (x["lat"], x["lon"])))["pays"]
+        par_hote.setdefault((x["pays"], hote), []).append(x)
+    for v in villes:
+        rep_ = []
+        for pp in ("FR", "BE", "CH", "CA"):
+            l = par_hote.get((pp, v["pays"]))
+            if l and pp != v["pays"]:
+                x = min(l, key=lambda y: dist((v["lat"], v["lon"]), (y["lat"], y["lon"])))
+                rep_.append(dict(x, km=round(dist((v["lat"], v["lon"]), (x["lat"], x["lon"])))))
+        v["representations"] = rep_
+
+
+def contacts(x):
+    """Téléphone et site d'une représentation diplomatique."""
+    out = []
+    if x.get("telephone"):
+        out.append(f'<a href="tel:{E(x["telephone"].replace(" ", ""))}">{E(x["telephone"])}</a>')
+    if x.get("site", "").startswith("http"):
+        out.append(f'<a href="{E(x["site"])}" rel="noopener" target="_blank">Site</a>')
+    return "<br>".join(out)
+
+
+NOMS_REPR = {"FR": "France", "BE": "Belgique", "CH": "Suisse", "CA": "Canada"}
+TYPES_REPR = {"embassy": "Ambassade", "consulate": "Consulat", "consulate_general": "Consulat général", "honorary_consul": "Consul honoraire",
+              "delegation": "Délégation", "high_commission": "Haut-commissariat"}
+
+
+def section_sante(v, ctx, lieux, nom_pays):
+    items = [f for f in lieux if f["rubrique"] == "sante"]
+    urg = ctx["urgences"].get(v["pays"], [])
+    rep_ = v.get("representations", [])
+    if not (items or urg or rep_):
+        return ""
+    h = '<section class="block" id="sante"><h2>Santé et urgences</h2>'
+    if urg:
+        h += ('<div class="urgences"><p class="lead"><b>Numéros d’urgence (' + E(nom_pays) + ')</b></p><ul>'
+              + "".join(f'<li><a href="tel:{E(x["numero"].replace(" ", ""))}"><b>{E(x["numero"])}</b></a>'
+                        f'{(" : " + E(", ".join(x["services"]))) if x["services"] else ""}</li>' for x in urg)
+              + '</ul><p class="note">Le 112 fonctionne dans toute l’Union européenne et dans de nombreux pays depuis un téléphone mobile. Vérifiez les numéros sur place.</p></div>')
+    if items:
+        nb_h = sum(1 for f in items if f["type"] in ("Hôpital", "Clinique"))
+        nb_p = sum(1 for f in items if f["type"] == "Pharmacie")
+        items.sort(key=lambda f: (f.get("urgences") != "oui", f["type"] not in ("Hôpital", "Clinique"), -f["infos"]))
+        h += (f'<h3>Soins autour de {E(v["nom"])}</h3><p class="lead">{nombre(nb_h)} hôpital{"aux" if nb_h > 1 else ""} ou clinique{"s" if nb_h > 1 else ""}, '
+              f'{nombre(nb_p)} pharmacie{"s" if nb_p > 1 else ""}, {nombre(len(items) - nb_h - nb_p)} médecins et dentistes recensés. Les hôpitaux avec service d’urgences sont en tête.</p>'
+              + liste_lieux("sante", items, v["niveau"]))
+    if rep_:
+        h += ('<h3>Ambassades et consulats</h3><div class="table-scroll"><table><tbody>'
+              + "".join(f'<tr><td>{NOMS_REPR[x["pays"]]}</td><td><b>{E(x["nom"] or TYPES_REPR.get(x["type"], "Représentation"))}</b><br>'
+                        f'<small>{E(TYPES_REPR.get(x["type"], ""))}{(" · " + E(x["adresse"])) if x["adresse"] else ""}</small></td>'
+                        f'<td class="num">{nombre(x["km"])} km</td><td>{contacts(x)}</td></tr>' for x in rep_)
+              + '</tbody></table></div><p class="note">D’après OpenStreetMap : vérifiez les coordonnées sur le site officiel de la représentation avant de vous déplacer.</p>')
+    h += (f'<p class="note">Santé en voyage : consultez la rubrique « Santé » des <a href="{DIPLO}" rel="noopener" target="_blank">Conseils aux voyageurs</a> '
+          'et les recommandations du <a href="https://www.pasteur.fr/fr/centre-medical/preparer-son-voyage" rel="noopener" target="_blank">centre médical de l’Institut Pasteur</a>. '
+          'Assurance et rapatriement : voir notre <a href="../../assurance/">guide</a>.</p>')
+    return h + "</section>"
 
 
 def proches(villes, n=6):
@@ -874,6 +998,15 @@ def main():
             with gzip.open(p_, "rt", encoding="utf-8") as f:
                 ctx["aeroports"] = json.load(f)
             break
+    ctx["urgences"] = (lire("urgences.json", {}) or {}).get("pays", {})
+    diplo = {}
+    dd = os.path.join(DONNEES, "diplomatie")
+    if os.path.isdir(dd):
+        for fn in os.listdir(dd):
+            if fn.endswith(".json"):
+                for x in lire(f"diplomatie/{fn}") or []:
+                    diplo[x["id"]] = x
+    ctx["diplo"] = list(diplo.values())
     ctx["monde"] = []
     ctx["compteur"] = {"informations": 0, "lieux": 0, "textes": 0, "photos": 0, "villes_enrichies": 0}
     ctx["feries"] = {}
@@ -895,6 +1028,7 @@ def main():
         m = next((v for v in villes if v["pays"] == cc and v["nom_local"] == pz.get("capitale")), None)
         ctx["capitales"][cc] = m["nom"] if m else pz.get("capitale", "")
     proches(villes)
+    representations(villes, ctx)
 
     if os.path.isdir(SITE):
         shutil.rmtree(SITE)
@@ -938,7 +1072,8 @@ def main():
         monde_pays[cc] = {"nom": pz.get("nom", cc), "cont": pz.get("continent", ""), "devise": dev, "monnaie": pz.get("monnaie_nom", ""),
                           "taux": ctx["change"].get("taux", {}).get(dev) if dev != "EUR" else 1, "langues": pz.get("langues", []),
                           "secu": alerte_["niveau"] if alerte_ else 0, "cout": cout_["indice"] if cout_ else None,
-                          "visa": {pp: formalite_fr(ctx["formalites"].get(pp, {}).get(cc, ""), pp, cc) for pp in PASSEPORTS} if ctx["formalites"] else {}}
+                          "visa": {pp: formalite_fr(ctx["formalites"].get(pp, {}).get(cc, ""), pp, cc) for pp in PASSEPORTS} if ctx["formalites"] else {},
+                          "urgences": [x["numero"] + (" (" + ", ".join(x["services"]) + ")" if x["services"] else "") for x in ctx["urgences"].get(cc, [])]}
     ecrire_gz("static/monde.json.gz", {"date": ctx["date_txt"], "villes": ctx["monde"], "pays": monde_pays,
                                        "change": ctx["change"].get("taux", {}), "change_date": ctx["change"].get("jour_bce", "")})
     outils(ctx)
@@ -1047,7 +1182,7 @@ def main():
                     with open(os.path.join(dl, fn), encoding="utf-8") as f:
                         suivi.update(json.load(f))
     noms = {"guides": "Guides (Wikivoyage)", "aeroports": "Aéroports (OurAirports)", "surveillance_etat": "Surveillance (rapport du matin)", "villes": "Liste des villes (GeoNames)", "lieux_0": "Lieux, robot 1 (OpenStreetMap)", "lieux_1": "Lieux, robot 2 (OpenStreetMap)",
-            "lieux_2": "Lieux, robot 3 (OpenStreetMap)", "lieux_3": "Lieux, robot 4 (OpenStreetMap)", "meteo": "Météo (Open-Meteo)", "redaction": "Rédaction (IA)", "climat": "Climat (Open-Meteo ERA5)", "securite": "Sécurité (Département d’État)",
+            "lieux_2": "Lieux, robot 3 (OpenStreetMap)", "lieux_3": "Lieux, robot 4 (OpenStreetMap)", "urgences": "Numéros d’urgence (Wikidata)", "meteo": "Météo (Open-Meteo)", "redaction": "Rédaction (IA)", "climat": "Climat (Open-Meteo ERA5)", "securite": "Sécurité (Département d’État)",
             "formalites": "Formalités (Passport Index)", "cout": "Coût de la vie (Banque mondiale)", "encyclopedie": "Encyclopédie (Wikidata, Wikipédia)", "lieux": "Lieux (OpenStreetMap)", "meteo": "Météo (Open-Meteo)", "feries": "Jours fériés (Nager.Date)", "change": "Change (BCE)"}
     lignes = ""
     for k, n in noms.items():

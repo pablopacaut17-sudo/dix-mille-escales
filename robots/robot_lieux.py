@@ -25,7 +25,7 @@ DELAI_REQUETE = 240  # secondes accordées au serveur pour une requête ; au-del
 FREQUENCE = {"phare": 7, "intermediaire": 30, "autre": 120}
 PAUSE = {"phare": 8, "intermediaire": 6, "autre": 2}  # secondes entre deux villes (politesse envers Overpass)
 CIBLES = {
-    "amenity": ("restaurant|cafe|bar|pub|fast_food|ice_cream|marketplace|bus_station|ferry_terminal", None),
+    "amenity": ("restaurant|cafe|bar|pub|fast_food|ice_cream|marketplace|bus_station|ferry_terminal|hospital|clinic|pharmacy|doctors|dentist", None),
     "railway": ("station", None),
     "tourism": ("hotel|hostel|guest_house|museum|attraction|viewpoint|gallery|zoo|aquarium", None),
     "historic": ("monument|castle|memorial|ruins|archaeological_site|fort", None),
@@ -67,6 +67,8 @@ TYPE = {"restaurant": ("Restaurant", "manger"), "cafe": ("Café", "manger"), "ba
         "cave_entrance": ("Grotte", "voir"), "bay": ("Baie", "voir"), "cliff": ("Falaise", "voir"), "volcano": ("Volcan", "voir"),
         "glacier": ("Glacier", "voir"), "national_park": ("Parc national", "voir"), "protected_area": ("Espace naturel protégé", "voir"),
         "hiking": ("Sentier de randonnée", "faire"),
+        "hospital": ("Hôpital", "sante"), "clinic": ("Clinique", "sante"), "pharmacy": ("Pharmacie", "sante"),
+        "doctors": ("Médecin", "sante"), "dentist": ("Dentiste", "sante"),
         "station": ("Gare ou station", "bouger"), "bus_station": ("Gare routière", "bouger"), "ferry_terminal": ("Terminal de ferry", "bouger")}
 CLES = ("amenity", "tourism", "historic", "leisure", "shop", "natural", "landuse", "boundary", "route", "railway")
 DIRECTIONS = ["au nord", "au nord-est", "à l’est", "au sud-est", "au sud", "au sud-ouest", "à l’ouest", "au nord-ouest"]
@@ -174,6 +176,8 @@ def normaliser(el, date, v=None, alentours=False):
          "fauteuil": {"yes": "oui", "limited": "partiel", "no": "non"}.get(t.get("wheelchair"), ""),
          "terrasse": {"yes": "oui", "no": "non"}.get(t.get("outdoor_seating"), ""),
          "wikidata": t.get("wikidata", ""), "patrimoine_mondial": t.get("heritage") == "1", "verifie_le": date}
+    if rubrique == "sante" and t.get("emergency") in ("yes", "no"):
+        f["urgences"] = "oui" if t["emergency"] == "yes" else "non"  # service d'urgences ouvert au public
     if v is not None:
         f["distance_km"] = round(distance_km((v["lat"], v["lon"]), (lat, lon)), 1)
         f["direction"] = direction(v, lat, lon)

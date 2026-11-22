@@ -35,7 +35,25 @@ FILTRES = [
     "nwr/natural=beach,waterfall,peak,cave_entrance,bay,cliff,volcano,glacier",
     "nwr/landuse=winter_sports", "nwr/boundary=national_park,protected_area", "nwr/railway=station", "nwr/heritage=1",
     "r/route=hiking",
+    "nwr/amenity=hospital,clinic,pharmacy,doctors,dentist,embassy", "nwr/office=diplomatic",
 ]
+PAYS_REPRESENTES = {"FR", "BE", "CH", "CA"}  # ambassades et consulats recherchés
+
+
+def diplomatiques(points):
+    """Ambassades et consulats de France, Belgique, Suisse et Canada présents dans la région."""
+    res = []
+    for typ, ident, lat, lon, t in points:
+        if (t.get("office") == "diplomatic" or t.get("amenity") == "embassy") and t.get("country") in PAYS_REPRESENTES:
+            if t.get("diplomatic") in ("liaison", "non_diplomatic"):
+                continue
+            rue = " ".join(x for x in (t.get("addr:street"), t.get("addr:housenumber")) if x)
+            res.append({"id": f"osm:{typ}/{ident}", "pays": t["country"], "type": t.get("diplomatic", "embassy"),
+                        "nom": t.get("name:fr") or t.get("name", ""), "lat": round(lat, 5), "lon": round(lon, 5),
+                        "adresse": ", ".join(x for x in (rue, t.get("addr:postcode"), t.get("addr:city")) if x),
+                        "telephone": t.get("phone") or t.get("contact:phone", ""), "site": t.get("website") or t.get("contact:website", ""),
+                        "cible": t.get("target", "")})
+    return res
 NOTABLES = {"Château", "Site archéologique", "Monastère", "Fort", "Ruines", "Parc national", "Espace naturel protégé", "Réserve naturelle",
             "Cascade", "Sommet", "Grotte", "Volcan", "Glacier", "Plage", "Baie", "Falaise", "Sentier de randonnée", "Station de ski",
             "Parc d’attractions", "Parc aquatique", "Zoo", "Aquarium", "Musée", "Site à voir", "Belvédère", "Monument"}
@@ -222,6 +240,7 @@ def main():
                 a_faire.append(r)
         a_faire.sort(key=lambda r: suivi.get(r["id"], ""))  # jamais faites d'abord, puis les plus anciennes
     print(f"{len(a_faire)} région(s) à traiter.")
+    diplo = {x["id"]: x for x in (c.lire(f"diplomatie/osm-{a.part}.json", []) or [])}
     faites = ech = nb_lieux = 0
     villes_touchees = set()
     for r in a_faire:
@@ -236,6 +255,8 @@ def main():
                 telecharger(r["urls"]["pbf"], source)
             fichier = trier(source, os.path.join(TRAVAIL, "tri.osm.pbf"))
             points = lire_lieux(fichier)
+            for x in diplomatiques(points):
+                diplo[x["id"]] = x
             accu = {}
             repartir(points, grille, date, accu)
             for v in villes:
@@ -254,6 +275,7 @@ def main():
                 if not a.fichier and os.path.exists(os.path.join(TRAVAIL, f)):
                     os.remove(os.path.join(TRAVAIL, f))
         c.ecrire(suivi_f, suivi, compact=True)
+        c.ecrire(f"diplomatie/osm-{a.part}.json", list(diplo.values()), compact=True)
     c.journal(f"lieux_{a.part}", "ok" if ech == 0 else "partiel", regions_traitees=faites, echecs=ech,
               villes_servies=len(villes_touchees), lieux=nb_lieux, regions_restantes=max(0, len(a_faire) - faites - ech),
               mode="test" if a.fichier else "réel")

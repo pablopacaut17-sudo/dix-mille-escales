@@ -96,6 +96,21 @@
     } else {
       h += sec('lieux', 'Lieux, adresses et visites', '<p class="empty">Les robots n’ont pas encore exploré ' + E(d.nom) + ' : monuments, restaurants, hôtels et boutiques apparaîtront ici après leur passage.</p>');
     }
+    // Santé et urgences
+    if ((d.urgences && d.urgences.length) || (d.sante && d.sante.length) || (d.representations && d.representations.length)) {
+      var TR = { embassy: 'Ambassade', consulate: 'Consulat', consulate_general: 'Consulat général', honorary_consul: 'Consul honoraire' };
+      var NR = { FR: 'France', BE: 'Belgique', CH: 'Suisse', CA: 'Canada' };
+      var hs = '';
+      if (d.urgences && d.urgences.length) hs += '<div class="urgences"><p class="lead"><b>Numéros d’urgence (' + E(d.pays) + ')</b></p><ul>' + d.urgences.map(function (x) { return '<li><a href="tel:' + E(x.numero.replace(/\s/g, '')) + '"><b>' + E(x.numero) + '</b></a>' + (x.services.length ? ' : ' + E(x.services.join(', ')) : '') + '</li>'; }).join('') + '</ul></div>';
+      if (d.sante && d.sante.length) {
+        var it = tous.filter(function (x) { return x.rubrique === 'sante'; });
+        hs += '<h3>Soins autour de ' + E(d.nom) + '</h3><ul class="places">' + d.sante.map(function (x) { return '<li style="--c:var(--sante)"><h3>' + E(x.nom) + '</h3><div class="m">' + E(x.type) + (x.urgences === 'oui' ? ' · service d’urgences' : '') + '</div>' + (x.adresse ? '<div class="i">' + E(x.adresse) + '</div>' : '') + (x.telephone ? '<div class="i"><a href="tel:' + E(x.telephone.replace(/\s/g, '')) + '">' + E(x.telephone) + '</a></div>' : '') + '</li>'; }).join('') + '</ul>'
+          + (it.length > 8 ? '<button type="button" class="tout-voir" data-rub="sante" data-n="' + it.length + '">Voir les ' + nb(d.nb_sante || it.length) + ' adresses de santé</button>' : '');
+      }
+      if (d.representations && d.representations.length) hs += '<h3>Ambassades et consulats</h3><div class="table-scroll"><table><tbody>' + d.representations.map(function (x) { return '<tr><td>' + NR[x.pays] + '</td><td><b>' + E(x.nom || TR[x.type] || 'Représentation') + '</b><br><small>' + E(TR[x.type] || '') + (x.adresse ? ' · ' + E(x.adresse) : '') + '</small></td><td class="num">' + nb(x.km) + ' km</td><td>' + (x.telephone ? '<a href="tel:' + E(x.telephone.replace(/\s/g, '')) + '">' + E(x.telephone) + '</a>' : '') + '</td></tr>'; }).join('') + '</tbody></table></div>';
+      hs += '<p class="note">Santé en voyage : voir les Conseils aux voyageurs et le <a href="https://www.pasteur.fr/fr/centre-medical/preparer-son-voyage" rel="noopener" target="_blank">centre médical de l’Institut Pasteur</a>. Assurance et rapatriement : <a href="' + root + 'assurance/">notre guide</a>.</p>';
+      h += sec('sante', 'Santé et urgences', hs);
+    }
     var au = c.alentours || [], pr = (d.proches || []).filter(function (p) { return p.km >= 15 && p.km <= 150; }).slice(0, 4);
     if (au.length || pr.length) {
       h += sec('alentours', 'Aux alentours', '<ul class="excursions">' + au.slice(0, 12).map(function (f) { return '<li><b>' + E(f.nom) + (f.patrimoine_mondial ? '<span class="unesco-tag">Patrimoine mondial</span>' : '') + '</b><span class="d">' + E(f.type) + ' · ' + v(f.km) + ' km ' + E(f.direction) + ' · ≈ ' + duree(f.km) + ' de route</span></li>'; }).join('')

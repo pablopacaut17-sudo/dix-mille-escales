@@ -1,10 +1,10 @@
 /* Dix Mille Escales – feuille de style commune aux pages de villes */
 :root{--bg:#EEF3F1;--surface:#FFFFFF;--ink:#12313B;--muted:#56707A;--line:#CBD8D5;--sea:#2F7D6D;--buoy:#F2B705;--dot:#8AA39E;--grid:#D7E2DF;--soft:#E2ECE9;
---voir:#2F7D6D;--manger:#B5485D;--dormir:#2E6DB4;--acheter:#7B5EA7;--faire:#C9761E;--alentours:#4E7D3A;--bouger:#56707A;
+--voir:#2F7D6D;--manger:#B5485D;--dormir:#2E6DB4;--acheter:#7B5EA7;--faire:#C9761E;--alentours:#4E7D3A;--bouger:#56707A;--sante:#C0392B;
 --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;--text:"Literata",Georgia,"Times New Roman",serif;
 color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1F24;--surface:#16292F;--ink:#E4EEEC;--muted:#93AAB0;--line:#2A434A;--sea:#5FBFA9;--dot:#3E5A60;--grid:#1E353B;--soft:#1B3137;--voir:#5FBFA9;--manger:#E07A8F;--dormir:#6FA3E0;--acheter:#A98BD6;--faire:#E39A4C;--alentours:#8FBF6F;--bouger:#93AAB0;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#0F1F24;--surface:#16292F;--ink:#E4EEEC;--muted:#93AAB0;--line:#2A434A;--sea:#5FBFA9;--dot:#3E5A60;--grid:#1E353B;--soft:#1B3137;--voir:#5FBFA9;--manger:#E07A8F;--dormir:#6FA3E0;--acheter:#A98BD6;--faire:#E39A4C;--alentours:#8FBF6F;--bouger:#93AAB0;color-scheme:dark}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1F24;--surface:#16292F;--ink:#E4EEEC;--muted:#93AAB0;--line:#2A434A;--sea:#5FBFA9;--dot:#3E5A60;--grid:#1E353B;--soft:#1B3137;--voir:#5FBFA9;--manger:#E07A8F;--dormir:#6FA3E0;--acheter:#A98BD6;--faire:#E39A4C;--alentours:#8FBF6F;--bouger:#93AAB0;--sante:#E0796B;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0F1F24;--surface:#16292F;--ink:#E4EEEC;--muted:#93AAB0;--line:#2A434A;--sea:#5FBFA9;--dot:#3E5A60;--grid:#1E353B;--soft:#1B3137;--voir:#5FBFA9;--manger:#E07A8F;--dormir:#6FA3E0;--acheter:#A98BD6;--faire:#E39A4C;--alentours:#8FBF6F;--bouger:#93AAB0;--sante:#E0796B;color-scheme:dark}
 html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 76px);scroll-behavior:smooth}
 *,*::before,*::after{box-sizing:inherit}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--text);font-size:1.0625rem;line-height:1.65}
@@ -206,5 +206,8 @@ td.num{font-weight:600;white-space:nowrap}
 .carnet-btns button,.carnet-btns a{font-family:var(--display);font-size:.88rem;padding:.4rem .9rem;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;text-decoration:none}
 .carnet-btns .on{background:var(--buoy);border-color:var(--buoy);color:#12313B}
 @media print{.o-form,.o-actions,.top,.foot,.carnet-btns{display:none!important}.o-etape{break-inside:avoid}}
+.urgences{background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--sante);border-radius:0 12px 12px 0;padding:.8rem 1.1rem;margin:0 0 1.4rem}
+.urgences ul{list-style:none;padding:0;margin:.3rem 0;display:flex;flex-wrap:wrap;gap:.4rem 1.6rem;font-family:var(--display)}
+.urgences b{font-size:1.3rem}
 @media (max-width:600px){.theme-btn{font-size:0;padding:.35rem .6rem}.theme-btn::before{content:"◐";font-size:1.05rem}.top-in{gap:.6rem}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}

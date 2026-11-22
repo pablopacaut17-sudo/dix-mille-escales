@@ -107,9 +107,10 @@ window.DME = (function () {
       var p = m.pays[cc] || {}, visa = (p.visa || {})[passeport || 'Passeport français'] || 'information non disponible';
       L['Papiers'].push(E(p.nom) + ' : ' + E(visa) + '.');
       if (p.devise && p.devise !== 'EUR') L['Argent'].push(E(p.nom) + ' : ' + E(p.monnaie || p.devise) + (p.taux ? ' (1 € ≈ ' + String(Math.round(p.taux * 100) / 100).replace('.', ',') + ' ' + E(p.devise) + ')' : '') + '. Prévenez votre banque de votre voyage.');
+      if (p.urgences && p.urgences.length) L['Santé et sécurité'].push(E(p.nom) + ' : numéros d’urgence ' + E(p.urgences.join(' · ')) + '.');
       if (p.secu >= 2) L['Santé et sécurité'].push(E(p.nom) + ' : niveau de sécurité ' + p.secu + ' sur 4. Lisez les Conseils aux voyageurs avant de partir.');
     });
-    L['Papiers'].push('Passeport ou carte d’identité valides (souvent 6 mois après le retour hors Union européenne).', 'Assurance voyage et rapatriement, avec l’attestation.', 'Copies numériques des papiers, envoyées à vous-même.');
+    L['Papiers'].push('Passeport ou carte d’identité valides (souvent 6 mois après le retour hors Union européenne).', 'Assurance voyage et rapatriement, avec l’attestation (voir <a href="' + root + 'assurance/">notre guide</a>).', 'Copies numériques des papiers, envoyées à vous-même.');
     if (Object.keys(pays).some(function (cc) { return ['FR', 'BE', 'CH', 'DE', 'IT', 'ES', 'PT', 'NL', 'AT', 'LU'].indexOf(cc) < 0; })) L['Papiers'].push('Permis de conduire international si vous louez une voiture hors d’Europe.');
     L['Argent'].push('Une carte bancaire de secours, rangée à part.', 'Un peu d’argent liquide pour l’arrivée.');
     if (tmax >= 26) L['Valise'].push('Vêtements légers, chapeau, lunettes de soleil, crème solaire (jusqu’à ' + tmax + ' °C).');
