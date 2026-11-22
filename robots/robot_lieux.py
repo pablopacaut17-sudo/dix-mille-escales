@@ -18,7 +18,10 @@ import argparse, json, math, sys, time, urllib.parse
 from datetime import datetime
 import commun as c
 
-OVERPASS = "https://overpass-api.de/api/interpreter"
+# Serveurs Overpass publics et gratuits : chaque robot commence par « le sien » et passe au suivant en cas d'échec
+SERVEURS = ["https://overpass-api.de/api/interpreter", "https://overpass.kumi.systems/api/interpreter",
+            "https://overpass.private.coffee/api/interpreter"]
+DELAI_REQUETE = 180  # secondes accordées au serveur pour une requête ; au-delà, on passe à la suite
 FREQUENCE = {"phare": 7, "intermediaire": 30, "autre": 120}
 PAUSE = {"phare": 8, "intermediaire": 6, "autre": 2}  # secondes entre deux villes (politesse envers Overpass)
 CIBLES = {
@@ -97,12 +100,15 @@ def rayon_alentours_km(v):
     return 30 if v["niveau"] == "autre" else 50
 
 
-def requete(v):
-    r = int(rayon_km(v) * 1000)
-    blocs = "".join(f'nwr["{k}"~"^({vals})$"]["name"](around:{r},{v["lat"]},{v["lon"]});'
-                    for k, (vals, _) in CIBLES.items())
-    blocs += "".join(f'nwr["{k}"~"^({vals})$"]["name"](around:{r},{v["lat"]},{v["lon"]});' for k, vals in ACTIVITES.items())
-    return f"[out:json][timeout:240][maxsize:536870912];({blocs});out center tags;"
+def requetes(v):
+    """Requêtes du cercle urbain. Les grandes villes ont des requêtes découpées par thème, plus légères pour le serveur."""
+    r, a = int(rayon_km(v) * 1000), f'{v["lat"]},{v["lon"]}'
+    morceaux = [f'nwr["{k}"~"^({vals})$"]["name"](around:{r},{a});' for k, (vals, _) in CIBLES.items()]
+    morceaux += [f'nwr["{k}"~"^({vals})$"]["name"](around:{r},{a});' for k, vals in ACTIVITES.items()]
+    entete = f"[out:json][timeout:{DELAI_REQUETE}][maxsize:1073741824];"
+    if v["niveau"] == "autre" and v["population"] < 150000:
+        return [entete + "(" + "".join(morceaux) + ");out center tags;"]
+    return [entete + "(" + m + ");out center tags;" for m in morceaux]
 
 
 def requete_alentours(v):
@@ -111,7 +117,7 @@ def requete_alentours(v):
     blocs += "".join(f'nwr["{k}"~"^({vals})$"]["name"](around:{r},{a});' for k, vals in ACTIVITES.items() if k in ("natural", "landuse"))
     blocs += f'nwr["heritage"="1"]["name"](around:{r},{a});'
     blocs += f'relation["route"="hiking"]["name"]["wikidata"](around:{r},{a});'
-    return f"[out:json][timeout:240][maxsize:536870912];({blocs});out center tags 2500;"
+    return f"[out:json][timeout:{DELAI_REQUETE}][maxsize:1073741824];({blocs});out center tags 2500;"
 
 
 def direction(v, lat, lon):
@@ -120,6 +126,22 @@ def direction(v, lat, lon):
     x = math.cos(v["lat"] * t) * math.sin(lat * t) - math.sin(v["lat"] * t) * math.cos(lat * t) * math.cos((lon - v["lon"]) * t)
     cap = (math.degrees(math.atan2(y, x)) + 360) % 360
     return DIRECTIONS[int((cap + 22.5) // 45) % 8]
+
+
+def interroger(q, depart):
+    """Essaie la requête sur chaque serveur, en commençant par celui du robot. Renvoie (éléments, serveur utilisé) ou (None, depart)."""
+    for k in range(len(SERVEURS)):
+        i = (depart + k) % len(SERVEURS)
+        brut = c.http(SERVEURS[i], urllib.parse.urlencode({"data": q}).encode(), essais=1, delai=5, timeout=DELAI_REQUETE + 30)
+        if brut:
+            try:
+                d = json.loads(brut)
+                if "elements" in d and not d.get("remark", "").lower().startswith(("runtime error", "error")):
+                    return d["elements"], i
+            except ValueError:
+                pass
+        time.sleep(3)
+    return None, depart
 
 
 def distance_km(a, b):
@@ -229,6 +251,7 @@ def main():
     print(f"{len(lot)} ville(s) à traiter.")
     ok = ech = sus = 0
     debut = time.monotonic()
+    serveur = a.part % len(SERVEURS)
     for n, v in enumerate(lot, 1):
         if time.monotonic() - debut > a.duree_max * 60:
             print(f"Durée maximale atteinte : arrêt propre, les {len(lot) - n + 1} villes restantes passeront la nuit prochaine.")
@@ -237,20 +260,26 @@ def main():
         if a.demo:
             elements = demo_elements(v)
         else:
-            brut = c.http(OVERPASS, urllib.parse.urlencode({"data": requete(v)}).encode(), delai=60, timeout=300)
-            if brut is None:
+            elements, rate = [], False
+            for q in requetes(v):
+                res, serveur = interroger(q, serveur)
+                if res is None:
+                    rate = True
+                    break
+                elements += res
+            if rate:
                 ech += 1
+                print("    serveurs saturés : ville reportée à la nuit prochaine")
                 continue
-            elements = json.loads(brut).get("elements", [])
         date = c.horodatage()
         fiches = [f for f in (normaliser(e, date, v) for e in elements) if f]
         # Second cercle : les sites notables aux alentours (hors du cercle urbain)
         if a.demo:
             autour = demo_alentours(v)
         else:
-            time.sleep(2)
-            brut2 = c.http(OVERPASS, urllib.parse.urlencode({"data": requete_alentours(v)}).encode(), delai=60, timeout=300)
-            autour = json.loads(brut2).get("elements", []) if brut2 else []
+            time.sleep(1)
+            autour, serveur = interroger(requete_alentours(v), serveur)
+            autour = autour or []
         r_urbain = rayon_km(v)
         for e in autour:
             f = normaliser(e, date, v, alentours=True)
