@@ -185,6 +185,14 @@
       if (d.sante) h += 'Soins ' + aV(d.nom) + ' (' + cpt(d.nb_sante, 'adresse', 'adresses') + ') :' + liste(d.sante.slice(0, 5), function (x) { return '<b>' + E(x.nom) + '</b>, ' + E(x.type.toLowerCase()) + (x.urgences === 'oui' ? ', urgences' : '') + (x.telephone ? ', ' + E(x.telephone) : ''); });
       return h ? h + lien(d, 'sante', 'Voir la rubrique santé') : manque(d, 'les informations de santé');
     }
+    if (a(/(arnaque|escroc|fraude|piege)/) && d.arnaques) return 'Arnaques signalées (' + E(d.pays) + ') :' + liste(d.arnaques, function (x) { return E(x); }) + '<p><a href="' + root + 'pays/' + d.cc.toLowerCase() + '/conseils/#arnaques">Toutes les arnaques signalées</a></p>';
+    if (a(/(prise|adaptateur|voltage|tension|electri)/) && d.pratique) return 'Prises ' + aV(d.nom) + ' : type ' + E((d.pratique.prises || []).join(', ')) + (d.pratique.tension ? ', ' + d.pratique.tension + ' V' : '') + '. ' + ((d.pratique.prises || []).every(function (x) { return 'CEF'.indexOf(x) > -1; }) ? 'Vos prises françaises conviennent.' : 'Prévoyez un adaptateur.');
+    if (a(/(metro|tram|bus |transport en commun|transports en commun|conduite|conduire)/)) {
+      var tx = '';
+      if (d.transports && d.transports.lignes) tx += 'Transports en commun ' + aV(d.nom) + ' : ' + Object.keys(d.transports.lignes).map(function (k) { return d.transports.lignes[k] + ' ligne(s) de ' + k.replace('metro', 'métro'); }).join(', ') + '. ';
+      if (d.pratique && d.pratique.conduite) tx += 'On conduit à ' + d.pratique.conduite + '.';
+      if (tx) return tx + lien(d, 'transports-communs', 'Voir les transports');
+    }
     if (a(/(danger|dangereux|zone|eviter|risque|attentat|terroris|vaccin|paludisme|loi|alcool|drogue|arnaque|seisme|cyclone|mousson)/) && d.conseils) {
       return E(d.pays) + ' : <b>' + E(d.conseils.texte) + '</b>.' + (d.conseils.zones.length ? ' Zones à éviter ou à risque :' + liste(d.conseils.zones, function (z) { return E(z); }) : '')
         + '<p><a href="' + root + 'pays/' + d.cc.toLowerCase() + '/conseils/">Tous les conseils : sécurité, santé et vaccins, lois, transports, catastrophes naturelles</a> (source : gouvernement du Canada ; la fiche du ministère français fait foi).</p>';

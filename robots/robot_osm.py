@@ -25,7 +25,7 @@ import robot_lieux as L
 INDEX = "https://download.geofabrik.de/index-v1-nogeom.json"
 COMPOSITES = {"alps", "britain-and-ireland", "dach", "us-midwest", "us-northeast", "us-pacific", "us-south", "us-west"}
 FREQUENCE_JOURS = 7
-VERSION_FILTRES = 2  # à augmenter quand on ajoute des catégories : toutes les régions sont alors retraitées
+VERSION_FILTRES = 3  # à augmenter quand on ajoute des catégories : toutes les régions sont alors retraitées
 TRAVAIL = os.path.join(os.environ.get("RUNNER_TEMP", "/tmp"), "osm")
 FILTRES = [
     "nwr/amenity=restaurant,cafe,bar,pub,fast_food,ice_cream,marketplace,bus_station,ferry_terminal",
@@ -37,7 +37,9 @@ FILTRES = [
     "nwr/landuse=winter_sports", "nwr/boundary=national_park,protected_area", "nwr/railway=station", "nwr/heritage=1",
     "r/route=hiking",
     "nwr/amenity=hospital,clinic,pharmacy,doctors,dentist,embassy", "nwr/office=diplomatic",
+    "r/route=bus,trolleybus,tram,subway,light_rail,monorail,ferry,train",
 ]
+MODES = {"bus": "bus", "trolleybus": "bus", "tram": "tram", "subway": "metro", "light_rail": "tram", "monorail": "metro", "ferry": "ferry", "train": "train"}
 PAYS_REPRESENTES = {"FR", "BE", "CH", "CA"}  # ambassades et consulats recherchés
 
 
@@ -109,6 +111,11 @@ def lire_lieux(fichier):
     class Relations(osmium.SimpleHandler):
         def relation(self, r):
             t = {k.k: k.v for k in r.tags}
+            if t.get("type") == "route" and t.get("route") in MODES:  # ligne de transport en commun
+                ws = [m.ref for m in r.members if m.type == "w"][::10][:12]  # quelques tronçons suffisent pour la situer
+                membres.update(ws)
+                relations.append((r.id, t, ws))
+                return
             if "name" in t and (any(k in t for k in cles) or t.get("heritage") == "1"):
                 ws = [m.ref for m in r.members if m.type == "w"][:50]
                 membres.update(ws)
@@ -165,10 +172,28 @@ class Grille:
                     yield v
 
 
+def transports(points, grille, accu_t):
+    """Lignes de transport en commun : comptées pour chaque ville dont le cercle urbain contient le centre de la ligne."""
+    for typ, ident, lat, lon, t in points:
+        if typ != "relation" or t.get("route") not in MODES:
+            continue
+        for v in grille.proches(lat, lon, 15):
+            if dist(v["lat"], v["lon"], lat, lon) <= max(v["_r"], 5):
+                x = accu_t.setdefault(v["id"], {"lignes": {}, "reseaux": {}})
+                m = MODES[t["route"]]
+                ref = t.get("ref") or t.get("name", "")
+                x["lignes"].setdefault(m, set()).add(ref)
+                res_ = t.get("network") or t.get("operator")
+                if res_:
+                    x["reseaux"][res_] = x["reseaux"].get(res_, 0) + 1
+
+
 def repartir(points, grille, date, accu):
     """Chaque lieu va à la ville la plus proche dont il est dans le cercle urbain ; les lieux notables vont aussi
     dans les « alentours » des villes situées à moins de 50 km (30 km pour les petites)."""
     for typ, ident, lat, lon, t in points:
+        if typ == "relation" and t.get("route") in MODES:
+            continue
         el = {"type": typ, "id": ident, "lat": lat, "lon": lon, "tags": t}
         dedans = set()
         for v in grille.proches(lat, lon, 15):  # toutes les villes (et quartiers) dont le lieu est dans le cercle urbain
@@ -244,6 +269,7 @@ def main():
         a_faire.sort(key=lambda r: str(suivi.get(r["id"], "")))  # jamais faites d'abord, puis les plus anciennes
     print(f"{len(a_faire)} région(s) à traiter.")
     diplo = {x["id"]: x for x in (c.lire(f"diplomatie/osm-{a.part}.json", []) or [])}
+    accu_t = {}
     faites = ech = nb_lieux = 0
     villes_touchees = set()
     for r in a_faire:
@@ -262,6 +288,7 @@ def main():
                 diplo[x["id"]] = x
             accu = {}
             repartir(points, grille, date, accu)
+            transports(points, grille, accu_t)
             for v in villes:
                 if v["id"] in accu:
                     villes_touchees.add(v["id"])
@@ -279,6 +306,12 @@ def main():
                     os.remove(os.path.join(TRAVAIL, f))
         c.ecrire(suivi_f, suivi, compact=True)
         c.ecrire(f"diplomatie/osm-{a.part}.json", list(diplo.values()), compact=True)
+        if accu_t:
+            anc_t = c.lire(f"transports/osm-{a.part}.json", {}) or {}
+            for vid, x in accu_t.items():
+                anc_t[str(vid)] = {"lignes": {m: len(s_) for m, s_ in x["lignes"].items()},
+                                   "reseaux": [n for n, _ in sorted(x["reseaux"].items(), key=lambda y: -y[1])[:5]]}
+            c.ecrire(f"transports/osm-{a.part}.json", anc_t, compact=True)
     c.journal(f"lieux_{a.part}", "ok" if ech == 0 else "partiel", regions_traitees=faites, echecs=ech,
               villes_servies=len(villes_touchees), lieux=nb_lieux, regions_restantes=max(0, len(a_faire) - faites - ech),
               mode="test" if a.fichier else "réel")

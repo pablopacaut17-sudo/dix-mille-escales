@@ -119,7 +119,22 @@ window.DME = (function () {
     if (pluie >= 80) L['Valise'].push('Imperméable ou parapluie : jusqu’à ' + pluie + ' mm de pluie dans le mois.');
     if (villes.some(function (v) { return v.plage; })) L['Valise'].push('Maillot de bain, serviette de plage.');
     if (villes.some(function (v) { return v.nature > 5; })) L['Valise'].push('Chaussures de marche, gourde.');
-    L['Valise'].push('Adaptateur de prise : vérifiez le type de prise du pays.', 'Chargeurs et batterie externe.');
+    Object.keys(pays).forEach(function (cc) {
+      var p = m.pays[cc] || {};
+      if (p.prises && p.prises.length) L['Valise'].push(E(p.nom) + ' : prises de type ' + E(p.prises.join(', ')) + (p.prises.every(function (x) { return 'CEF'.indexOf(x) > -1; }) ? ' (vos prises françaises conviennent)' : ' : <b>adaptateur nécessaire</b>') + '.');
+      if (p.conduite === 'gauche') L['Papiers'].push(E(p.nom) + ' : on y conduit à gauche.');
+    });
+    L['Valise'].push('Chargeurs et batterie externe.');
+    // Trousse à pharmacie : liste générale, à valider avec un médecin ou un pharmacien
+    var T = L['Trousse à pharmacie'] = ['Vos traitements habituels en quantité suffisante, dans leur boîte, avec l’ordonnance.',
+      'Pansements, compresses stériles, désinfectant, sparadrap.', 'Antidouleur et contre la fièvre adaptés à chacun (demandez conseil à votre pharmacien).',
+      'Sels de réhydratation orale, en cas de diarrhée ou de forte chaleur.', 'Thermomètre, pince à épiler ou à tiques, petits ciseaux.',
+      'Crème solaire et produit contre les coups de soleil.', 'Gel hydroalcoolique.'];
+    var palu = Object.keys(pays).some(function (cc) { return (m.pays[cc] || {}).palu; }), dengue = Object.keys(pays).some(function (cc) { return (m.pays[cc] || {}).dengue; });
+    if (palu || dengue) T.push('Répulsif anti-moustiques pour la peau et vêtements longs le soir' + (dengue ? ' (dengue ou autres maladies transmises par les moustiques signalées)' : '') + '.');
+    if (palu) T.push('<b>Paludisme signalé dans au moins un des pays</b> : demandez à votre médecin s’il faut un traitement préventif, à commencer avant le départ.');
+    if (tmax >= 30) T.push('Chapeau et de quoi bien s’hydrater : fortes chaleurs attendues.');
+    T.push('<small>Liste indicative : faites-la valider par votre médecin ou votre pharmacien selon votre santé et votre destination.</small>');
     L['Santé et sécurité'].push('Vaccins et traitements conseillés : consultez votre médecin ou un centre de vaccinations internationales (Institut Pasteur) 4 à 6 semaines avant le départ.',
       'Inscrivez-vous sur le service Ariane du ministère des Affaires étrangères.', 'Trousse de premiers soins et médicaments habituels.');
     return L;

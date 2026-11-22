@@ -347,6 +347,12 @@ def page_ville(v, ctx):
              ("Saison", f'<span data-season="{v["lat"]}">–</span>'),
              ("Soleil aujourd’hui", f'<span data-sun="{v["lat"]},{v["lon"]}" data-suntz="{E(v["fuseau"])}">–</span>'),
              ("Depuis Paris", trajet)]
+    pr = ctx["pratique"].get(v["pays"], {})
+    if pr.get("prises"):
+        facts.append(("Prises électriques", "type " + ", ".join(pr["prises"]) + (f' · {pr["tension"]} V' if pr.get("tension") else "")
+                      + (f', {pr["frequence"]} Hz' if pr.get("frequence") else "") + (" (pas d’adaptateur pour les prises françaises)" if set(pr["prises"]) <= {"C", "E", "F"} else " (adaptateur nécessaire)")))
+    if pr.get("conduite"):
+        facts.append(("Conduite", "à " + pr["conduite"]))
     if aeros:
         facts.append(("Aéroport le plus proche", f'{aeros[0][1]} ({aeros[0][0]}), {nombre(aeros[0][2])} km'))
     if enc.get("fondation"):
@@ -530,14 +536,25 @@ def page_ville(v, ctx):
             corps.append(f'<section class="block" id="guide-{cle}"><h2>{E(titre_g.format(ville=v["nom"]))}</h2>{texte_html(gs[cle]["texte"], 3)}</section>')
 
     cv = ctx["conseils"].get(v["pays"])
+    cite = extraits_ville(cv, [v["nom"], v["nom_local"]] + v["alts"][:2]) if cv else []
     if cv:
         zones = [t for g, t in cv["sections"].get("avertissements", []) if g == "t"][1:]
         corps.append(f'<section class="block" id="conseils"><h2>Conseils officiels aux voyageurs</h2>'
                      f'<p class="alerte" style="--a:{COULEURS_NIVEAU.get(cv.get("niveau", 0), "#56707A")}"><b>{E(nom_pays)} : {E(cv.get("niveau_texte", ""))}.</b></p>'
                      + (f'<p class="lead">Zones à éviter ou à risque dans le pays :</p><ul class="unesco">' + "".join(f"<li>{E(z)}</li>" for z in zones[:8]) + "</ul>" if zones else "")
+                     + ((f'<p class="lead">Ce que disent les conseils officiels de {E(v["nom"])} :</p><ul>' + "".join(f"<li>{E(x)}</li>" for x in cite) + "</ul>") if cite else "")
+                     + ((f'<p class="lead">Arnaques signalées dans le pays :</p><ul>' + "".join(f"<li>{E(t)}</li>" for g, t in extraits_arnaques(cv, 3) if g != "t") + "</ul>") if extraits_arnaques(cv, 3) else "")
                      + f'<p><a class="tout-voir" style="display:inline-block;text-decoration:none" href="../../pays/{v["pays"].lower()}/conseils/">Sécurité, santé et vaccins, lois et coutumes, transports, catastrophes naturelles : tous les conseils</a></p>'
                      f'<p class="note">Source : gouvernement du Canada (données ouvertes). Pour les voyageurs français, la '
                      f'<a href="https://www.diplomatie.gouv.fr/fr/conseils-aux-voyageurs/conseils-par-pays-destination/{slug_fd(nom_pays)}/" rel="noopener" target="_blank">fiche du ministère des Affaires étrangères</a> fait foi.</p></section>')
+    tr = ctx["transports"].get(v["id"])
+    if tr and tr.get("lignes"):
+        NOMS_MODES = [("metro", "métro"), ("tram", "tram"), ("bus", "bus"), ("train", "train"), ("ferry", "ferry")]
+        parts = [f'<b>{nombre(tr["lignes"][m])}</b> ligne{"s" if tr["lignes"][m] > 1 else ""} de {n}' for m, n in NOMS_MODES if tr["lignes"].get(m)]
+        corps.append(f'<section class="block" id="transports-communs"><h2>Transports en commun</h2><p class="lead">{", ".join(parts)} recensées dans et autour de {E(v["nom"])}.</p>'
+                     + (f'<p>Réseaux et exploitants : {E(", ".join(tr["reseaux"]))}.</p>' if tr.get("reseaux") else "")
+                     + f'<p class="note">D’après OpenStreetMap. Horaires et tarifs : voir le site de l’exploitant. Pour comparer avion, train, bus et voiture vers une autre ville : '
+                     f'<a href="../../trajets/#de={v["slug"]}">comparateur de trajets</a>.</p></section>')
     sec_sante = section_sante(v, ctx, lieux, nom_pays)
     if sec_sante:
         corps.append(sec_sante)
@@ -649,7 +666,13 @@ def page_ville(v, ctx):
     donnees["proches"] = [{"nom": w["nom"], "slug": w["slug"], "km": round(d)} for d, w in v["proches"]]
     if ctx["urgences"].get(v["pays"]):
         donnees["urgences"] = ctx["urgences"][v["pays"]]
+    if tr and tr.get("lignes"):
+        donnees["transports"] = tr
+    if pr:
+        donnees["pratique"] = pr
     if cv:
+        donnees["conseils_ville"] = cite
+        donnees["arnaques"] = [t for g, t in extraits_arnaques(cv, 4) if g != "t"][:3]
         donnees["conseils"] = {"niveau": cv.get("niveau", 0), "texte": cv.get("niveau_texte", ""),
                                "zones": [t for g, t in cv["sections"].get("avertissements", []) if g == "t"][1:9], "fd": slug_fd(nom_pays)}
     if v.get("representations"):
@@ -868,11 +891,17 @@ D.chargerMonde().then(function(){{D.choixVille(f.querySelector("#prep-q"),functi
 </ul>
 <p class="note">Dix Mille Escales ne vend pas d’assurance et ne reçoit aucune rémunération d’assureurs : ce guide est neutre. Comparez plusieurs offres et lisez toujours les conditions générales.</p>
 </div>'''))
+    outil("trajets", "Comparateur de trajets", "Avion, train, bus ou voiture entre deux villes : durée, prix et émissions de CO₂ estimés, avec des liens pour chercher les vrais billets.",
+          '''<form id="tj" class="o-form" onsubmit="return false"><div class="o-grille">
+<div class="o-champ"><label for="tj-a">Départ</label><input id="tj-a" type="search" autocomplete="off" placeholder="Ville de départ…"><p id="tj-a-v" class="o-nb"></p></div>
+<div class="o-champ"><label for="tj-b">Arrivée</label><input id="tj-b" type="search" autocomplete="off" placeholder="Ville d’arrivée…"><p id="tj-b-v" class="o-nb"></p></div>
+<div class="o-champ"><label for="tj-n">Voyageurs</label><input id="tj-n" type="number" min="1" max="9" value="1"></div></div></form><div id="tj-res" class="o-res" aria-live="polite"></div>''', ["trajets"])
     outil("carnet", "Mon carnet", "Vos villes et vos itinéraires gardés sur cet appareil.", '<div id="carnet-page" class="o-res"></div>', [])
     cartes = [("itineraire", "Planificateur d’itinéraire", "Plusieurs villes, un ou plusieurs pays : ordre des étapes, trajets, programme jour par jour, budget."),
               ("ou-partir", "Où partir ?", "Les villes idéales du monde pour un mois, une température et vos envies."),
               ("comparer", "Comparer des villes", "Deux à quatre villes côte à côte."),
               ("preparer", "Préparer son départ", "La liste à cocher : papiers, argent, valise, santé."),
+              ("trajets", "Comparateur de trajets", "Avion, train, bus ou voiture : durée, prix et CO₂ estimés, liens vers les vols."),
               ("carnet", "Mon carnet", "Vos villes et itinéraires gardés."),
               ("assurance", "Assurance, santé et rapatriement", "Ce qu’il faut vérifier avant de partir, et que faire en cas de problème.")]
     corps = ('<div class="o-cartes">' + "".join(f'<a class="o-carte" href="../{c}/"><b>{t}</b><span>{d}</span></a>' for c, t, d in cartes) + "</div>"
@@ -993,6 +1022,33 @@ def blocs_html(bl, visibles=8):
     return '<div class="prose">' + "".join(out) + "</div>"
 
 
+def extraits_arnaques(cv, n=10):
+    """Passages des conseils de sécurité qui parlent d'arnaques et de fraudes."""
+    bl, out, dedans = cv["sections"].get("securite", []), [], False
+    for g, t in bl:
+        if g == "t":
+            dedans = bool(re.search(r"fraude|arnaque|escroquer|escroc", t, re.I))
+            continue
+        if dedans or (g != "t" and re.search(r"\barnaque|escroquer", t, re.I)):
+            out.append([g, t])
+        if len(out) >= n:
+            break
+    return out
+
+
+def extraits_ville(cv, noms, n=5):
+    """Passages des conseils qui citent la ville (quartiers, plages, gares à éviter…)."""
+    out = []
+    motifs = [re.compile(r"\b" + re.escape(x) + r"\b", re.I) for x in noms if x and len(x) > 3]
+    for k in ("avertissements", "securite", "catastrophes_climat", "lois_culture"):
+        for g, t in cv["sections"].get(k, []):
+            if g != "t" and any(m.search(t) for m in motifs) and t not in out:
+                out.append(t)
+                if len(out) >= n:
+                    return out
+    return out
+
+
 def page_conseils(cc, nomp, cv):
     niv = cv.get("niveau", 0)
     zones = [t for g, t in cv["sections"].get("avertissements", []) if g == "t"]
@@ -1009,6 +1065,9 @@ def page_conseils(cc, nomp, cv):
              f'Conseils aux voyageurs – {E(nomp)} (diplomatie.gouv.fr)</a>. Inscrivez-vous aussi sur Ariane.</p>'
              f'<div class="chips" style="margin:1rem 0 .5rem"><input type="search" class="recherche-lieux" id="cv-q" placeholder="Chercher dans ces conseils (vaccin, taxi, alcool, séisme…)" aria-label="Chercher dans les conseils"></div>'
              f'<nav class="og-sous" aria-label="Rubriques">{nav}</nav>')
+    arn = extraits_arnaques(cv)
+    if arn:
+        corps += f'<section class="block cv-sec" id="arnaques"><h2>Arnaques et fraudes signalées</h2>{blocs_html(arn, 10)}</section>'
     for k, t in TITRES_CONSEILS:
         if k in cv["sections"]:
             corps += f'<section class="block cv-sec" id="{k}"><h2>{E(t)}</h2>{blocs_html(cv["sections"][k], 12 if k == "avertissements" else 8)}</section>'
@@ -1074,6 +1133,14 @@ def main():
                 ctx["aeroports"] = json.load(f)
             break
     ctx["urgences"] = (lire("urgences.json", {}) or {}).get("pays", {})
+    ctx["pratique"] = (lire("pratique.json", {}) or {}).get("pays", {})
+    ctx["transports"] = {}
+    dtr = os.path.join(DONNEES, "transports")
+    if os.path.isdir(dtr):
+        for fn in os.listdir(dtr):
+            if fn.endswith(".json"):
+                for k, x in (lire(f"transports/{fn}") or {}).items():
+                    ctx["transports"][int(k)] = x
     ctx["conseils"] = {}
     dcv = os.path.join(DONNEES, "conseils")
     if os.path.isdir(dcv):
@@ -1155,6 +1222,9 @@ def main():
                           "secu": alerte_["niveau"] if alerte_ else 0, "cout": cout_["indice"] if cout_ else None,
                           "visa": {pp: formalite_fr(ctx["formalites"].get(pp, {}).get(cc, ""), pp, cc) for pp in PASSEPORTS} if ctx["formalites"] else {},
                           "conseils": (ctx["conseils"].get(cc) or {}).get("niveau_texte", ""),
+                          "prises": ctx["pratique"].get(cc, {}).get("prises", []), "conduite": ctx["pratique"].get(cc, {}).get("conduite"),
+                          "palu": any(re.search(r"paludisme", t, re.I) for g, t in (ctx["conseils"].get(cc) or {}).get("sections", {}).get("sante", [])),
+                          "dengue": any(re.search(r"dengue|chikungunya|zika", t, re.I) for g, t in (ctx["conseils"].get(cc) or {}).get("sections", {}).get("sante", [])),
                           "urgences": [x["numero"] + (" (" + ", ".join(x["services"]) + ")" if x["services"] else "") for x in ctx["urgences"].get(cc, [])]}
     ecrire_gz("static/monde.json.gz", {"date": ctx["date_txt"], "villes": ctx["monde"], "pays": monde_pays,
                                        "change": ctx["change"].get("taux", {}), "change_date": ctx["change"].get("jour_bce", "")})
@@ -1271,7 +1341,7 @@ def main():
                     with open(os.path.join(dl, fn), encoding="utf-8") as f:
                         suivi.update(json.load(f))
     noms = {"guides": "Guides (Wikivoyage)", "aeroports": "Aéroports (OurAirports)", "surveillance_etat": "Surveillance (rapport du matin)", "villes": "Liste des villes (GeoNames)", "lieux_0": "Lieux, robot 1 (OpenStreetMap)", "lieux_1": "Lieux, robot 2 (OpenStreetMap)",
-            "lieux_2": "Lieux, robot 3 (OpenStreetMap)", "lieux_3": "Lieux, robot 4 (OpenStreetMap)", "conseils": "Conseils aux voyageurs (Canada)", "urgences": "Numéros d’urgence (Wikidata)", "meteo": "Météo (Open-Meteo)", "redaction": "Rédaction (IA)", "climat": "Climat (Open-Meteo ERA5)", "securite": "Sécurité (Département d’État)",
+            "lieux_2": "Lieux, robot 3 (OpenStreetMap)", "lieux_3": "Lieux, robot 4 (OpenStreetMap)", "conseils": "Conseils aux voyageurs (Canada)", "pratique": "Prises, tension, conduite (Wikidata)", "urgences": "Numéros d’urgence (Wikidata)", "meteo": "Météo (Open-Meteo)", "redaction": "Rédaction (IA)", "climat": "Climat (Open-Meteo ERA5)", "securite": "Sécurité (Département d’État)",
             "formalites": "Formalités (Passport Index)", "cout": "Coût de la vie (Banque mondiale)", "encyclopedie": "Encyclopédie (Wikidata, Wikipédia)", "lieux": "Lieux (OpenStreetMap)", "meteo": "Météo (Open-Meteo)", "feries": "Jours fériés (Nager.Date)", "change": "Change (BCE)"}
     lignes = ""
     for k, n in noms.items():

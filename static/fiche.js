@@ -104,6 +104,14 @@
         + '<p><a class="tout-voir" style="display:inline-block;text-decoration:none" href="' + root + 'pays/' + d.cc.toLowerCase() + '/conseils/">Sécurité, santé et vaccins, lois et coutumes, transports, catastrophes naturelles : tous les conseils</a></p>'
         + '<p class="note">Source : gouvernement du Canada (données ouvertes). Pour les voyageurs français, la <a href="https://www.diplomatie.gouv.fr/fr/conseils-aux-voyageurs/conseils-par-pays-destination/' + E(d.conseils.fd) + '/" rel="noopener" target="_blank">fiche du ministère des Affaires étrangères</a> fait foi.</p>');
     }
+    if (d.conseils_ville && d.conseils_ville.length) h += sec('conseils-ville', 'Ce que disent les conseils officiels de ' + E(d.nom), '<ul>' + d.conseils_ville.map(function (x) { return '<li>' + E(x) + '</li>'; }).join('') + '</ul>');
+    if (d.arnaques && d.arnaques.length) h += sec('arnaques', 'Arnaques signalées dans le pays', '<ul>' + d.arnaques.map(function (x) { return '<li>' + E(x) + '</li>'; }).join('') + '</ul><p><a href="' + root + 'pays/' + d.cc.toLowerCase() + '/conseils/#arnaques">Toutes les arnaques signalées</a></p>');
+    if (d.transports && d.transports.lignes) {
+      var NM = [['metro', 'métro'], ['tram', 'tram'], ['bus', 'bus'], ['train', 'train'], ['ferry', 'ferry']];
+      h += sec('transports-communs', 'Transports en commun', '<p class="lead">' + NM.filter(function (x) { return d.transports.lignes[x[0]]; }).map(function (x) { var k = d.transports.lignes[x[0]]; return '<b>' + nb(k) + '</b> ligne' + (k > 1 ? 's' : '') + ' de ' + x[1]; }).join(', ') + '.</p>'
+        + (d.transports.reseaux && d.transports.reseaux.length ? '<p>Réseaux et exploitants : ' + E(d.transports.reseaux.join(', ')) + '.</p>' : '')
+        + '<p class="note">D’après OpenStreetMap. Pour comparer avion, train, bus et voiture : <a href="' + root + 'trajets/#de=' + d.slug + '">comparateur de trajets</a>.</p>');
+    }
     // Santé et urgences
     if ((d.urgences && d.urgences.length) || (d.sante && d.sante.length) || (d.representations && d.representations.length)) {
       var TR = { embassy: 'Ambassade', consulate: 'Consulat', consulate_general: 'Consulat général', honorary_consul: 'Consul honoraire' };
