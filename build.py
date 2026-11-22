@@ -277,11 +277,33 @@ def liste_lieux(rub, items, niveau="phare"):
     return html_
 
 
+def lieux_ville(chemins):
+    """Lit et fusionne les fichiers de lieux d'une ville (plusieurs robots ou régions peuvent l'avoir servie)."""
+    if not chemins:
+        return None
+    res = None
+    for p in chemins:
+        ouvrir = gzip.open if p.endswith(".gz") else open
+        try:
+            with ouvrir(p, "rt", encoding="utf-8") as f:
+                d = json.load(f)
+        except (OSError, ValueError):
+            continue
+        if res is None:
+            res = d
+            continue
+        fusion = {x["id"]: x for x in res["lieux"]}
+        fusion.update({x["id"]: x for x in d["lieux"]})
+        res = dict(res, lieux=list(fusion.values()), date=max(res.get("date", ""), d.get("date", "")),
+                   rayon_km=d.get("rayon_km") or res.get("rayon_km"), rayon_alentours_km=d.get("rayon_alentours_km") or res.get("rayon_alentours_km"))
+    return res
+
+
 def page_ville(v, ctx):
     pays = ctx["pays"].get(v["pays"], {})
     nom_pays = pays.get("nom", v["pays"])
     cont = CONTINENTS.get(pays.get("continent", ""), "")
-    rubs = ctx["lieux"].get(v["id"])
+    rubs = lieux_ville(ctx["lieux"].get(v["id"]))
     tous = rubs["lieux"] if rubs else []
     lieux = [f for f in tous if f["rubrique"] != "alentours"]
     autour = sorted([f for f in tous if f["rubrique"] == "alentours"], key=lambda f: f.get("distance_km", 0))
@@ -623,7 +645,7 @@ def page_ville(v, ctx):
         export = [{k: f[k] for k in cles if f.get(k)} for f in sorted(tous, key=lambda f: (f["rubrique"], -f["infos"], f["nom"]))]
         if v["niveau"] == "autre":
             gardes = {}
-            export = [f for f in export if gardes.setdefault(f["rubrique"], []).append(1) or len(gardes[f["rubrique"]]) <= 60]
+            export = [f for f in export if gardes.setdefault(f["rubrique"], []).append(1) or len(gardes[f["rubrique"]]) <= 40]
         ecrire_gz(f"villes/{v['slug']}/lieux.json.gz", {"date": rubs["date"], "rayon_km": rubs.get("rayon_km"),
                                                          "rayon_alentours_km": rubs.get("rayon_alentours_km"), "lieux": export})
     # Ligne compacte pour les outils (itinéraire, « où partir », comparateur)
@@ -829,23 +851,19 @@ def main():
     ctx = {"pays": pays, "change": lire("change.json", {}) or {}, "journal": lire("journal.json", {}) or {},
            "date_txt": date_fr(date.today().isoformat())}
     # Lieux et jours fériés déjà collectés
+    # Lieux : on ne note ici que l'emplacement des fichiers ; ils sont lus ville par ville (des millions de lieux)
     ctx["lieux"] = {}
-    for base in (DATA, DONNEES):  # ancien rangement d'abord, puis le nouveau (qui l'emporte)
+    for base in (DATA, DONNEES):
         dl = os.path.join(base, "lieux")
         for racine, _, fichiers in (os.walk(dl) if os.path.isdir(dl) else []):
             for fn in fichiers:
                 if fn.startswith("_") or not (fn.endswith(".json") or fn.endswith(".json.gz")):
                     continue
-                ouvrir = gzip.open if fn.endswith(".gz") else open
-                with ouvrir(os.path.join(racine, fn), "rt", encoding="utf-8") as f:
-                    d = json.load(f)
-                deja = ctx["lieux"].get(d["ville"])
-                if deja:  # même ville vue par plusieurs robots ou plusieurs régions : on fusionne
-                    fusion = {x["id"]: x for x in deja["lieux"]}
-                    fusion.update({x["id"]: x for x in d["lieux"]})
-                    d = dict(deja, lieux=list(fusion.values()), date=max(deja.get("date", ""), d.get("date", "")),
-                             rayon_km=d.get("rayon_km") or deja.get("rayon_km"), rayon_alentours_km=d.get("rayon_alentours_km") or deja.get("rayon_alentours_km"))
-                ctx["lieux"][d["ville"]] = d
+                try:
+                    vid = int(fn.split(".")[0])
+                except ValueError:
+                    continue
+                ctx["lieux"].setdefault(vid, []).append(os.path.join(racine, fn))
     ctx["securite"] = lire("securite.json", {}) or {}
     ctx["cout"] = lire("cout.json", {}) or {}
     ctx["formalites"] = (lire("formalites.json", {}) or {}).get("passeports", {})
