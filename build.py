@@ -759,6 +759,12 @@ def main():
                 ouvrir = gzip.open if fn.endswith(".gz") else open
                 with ouvrir(os.path.join(racine, fn), "rt", encoding="utf-8") as f:
                     d = json.load(f)
+                deja = ctx["lieux"].get(d["ville"])
+                if deja:  # même ville vue par plusieurs robots ou plusieurs régions : on fusionne
+                    fusion = {x["id"]: x for x in deja["lieux"]}
+                    fusion.update({x["id"]: x for x in d["lieux"]})
+                    d = dict(deja, lieux=list(fusion.values()), date=max(deja.get("date", ""), d.get("date", "")),
+                             rayon_km=d.get("rayon_km") or deja.get("rayon_km"), rayon_alentours_km=d.get("rayon_alentours_km") or deja.get("rayon_alentours_km"))
                 ctx["lieux"][d["ville"]] = d
     ctx["securite"] = lire("securite.json", {}) or {}
     ctx["cout"] = lire("cout.json", {}) or {}
@@ -928,7 +934,7 @@ def main():
                     with open(os.path.join(dl, fn), encoding="utf-8") as f:
                         suivi.update(json.load(f))
     noms = {"guides": "Guides (Wikivoyage)", "aeroports": "Aéroports (OurAirports)", "surveillance_etat": "Surveillance (rapport du matin)", "villes": "Liste des villes (GeoNames)", "lieux_0": "Lieux, robot 1 (OpenStreetMap)", "lieux_1": "Lieux, robot 2 (OpenStreetMap)",
-            "lieux_2": "Lieux, robot 3 (OpenStreetMap)", "meteo": "Météo (Open-Meteo)", "redaction": "Rédaction (IA)", "climat": "Climat (Open-Meteo ERA5)", "securite": "Sécurité (Département d’État)",
+            "lieux_2": "Lieux, robot 3 (OpenStreetMap)", "lieux_3": "Lieux, robot 4 (OpenStreetMap)", "meteo": "Météo (Open-Meteo)", "redaction": "Rédaction (IA)", "climat": "Climat (Open-Meteo ERA5)", "securite": "Sécurité (Département d’État)",
             "formalites": "Formalités (Passport Index)", "cout": "Coût de la vie (Banque mondiale)", "encyclopedie": "Encyclopédie (Wikidata, Wikipédia)", "lieux": "Lieux (OpenStreetMap)", "meteo": "Météo (Open-Meteo)", "feries": "Jours fériés (Nager.Date)", "change": "Change (BCE)"}
     lignes = ""
     for k, n in noms.items():

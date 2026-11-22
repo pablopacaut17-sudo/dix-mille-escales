@@ -34,10 +34,10 @@ ATTENDUS = {
     "change": ("base", 30, "Change"), "feries": ("base", 30, "Jours fériés"), "securite": ("base", 30, "Sécurité"),
     "formalites": ("base", 30, "Formalités"), "cout": ("base", 30, "Coût de la vie"), "meteo": ("base", 30, "Météo"),
     "climat": ("climat", 30, "Climat"), "encyclopedie": ("encyclopedie", 30, "Encyclopédie"),
-    "lieux_0": ("lieux", 30, "Lieux, robot 1"), "lieux_1": ("lieux", 30, "Lieux, robot 2"), "lieux_2": ("lieux", 30, "Lieux, robot 3"),
+    "lieux_0": ("lieux", 30, "Lieux, robot 1"), "lieux_1": ("lieux", 30, "Lieux, robot 2"), "lieux_2": ("lieux", 30, "Lieux, robot 3"), "lieux_3": ("lieux", 30, "Lieux, robot 4"),
     "guides": ("guides", 30, "Guides Wikivoyage"), "aeroports": ("base", 24 * 35, "Aéroports"),
 }
-BRANCHES = ["donnees-base", "donnees-encyclopedie", "donnees-lieux-0", "donnees-lieux-1", "donnees-lieux-2", "donnees-guides", "donnees-climat"]
+BRANCHES = ["donnees-base", "donnees-encyclopedie", "donnees-lieux-0", "donnees-lieux-1", "donnees-lieux-2", "donnees-lieux-3", "donnees-guides", "donnees-climat"]
 MOIS = ["janv.", "févr.", "mars", "avr.", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc."]
 
 
@@ -127,7 +127,7 @@ def main():
         elif j.get("etat") in ("echec",):
             problemes.append(f"{nom} : en échec{' (' + detail + ')' if detail else ''}. Les données précédentes sont conservées ; "
                              f"si l’échec se répète plusieurs jours, la source a sans doute changé et le robot doit être adapté.")
-        elif robot.startswith("lieux") and j.get("villes_traitees", 1) == 0:
+        elif robot.startswith("lieux") and j.get("regions_traitees", j.get("villes_traitees", 1)) == 0:
             problemes.append(f"{nom} : aucune ville traitée cette nuit (serveur OpenStreetMap saturé ?).")
             a_relancer.add("lieux")
         else:

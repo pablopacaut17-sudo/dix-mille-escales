@@ -101,7 +101,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        part: [0, 1, 2]
+        part: [0, 1, 2, 3]
     concurrency: { group: "robots-lieux-${{ matrix.part }}", cancel-in-progress: false }
     runs-on: ubuntu-latest
     timeout-minutes: 355
@@ -110,16 +110,21 @@ jobs:
         with: { ref: main }
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
+      - name: Outils OpenStreetMap
+        run: |
+          sudo apt-get update -q && sudo apt-get install -y -q osmium-tool
+          pip install osmium
       - name: Réunir les données
         run: python3 robots/preparer.py
-      - name: Lieux (robot ${{ matrix.part }})
+      - name: Lieux (robot ${{ matrix.part }}, fichiers OpenStreetMap régionaux)
         continue-on-error: true
-        run: python3 robots/robot_lieux.py --part ${{ matrix.part }} --parts 3 --max-villes ${{ vars.MAX_VILLES || 4000 }} --duree-max 320
+        run: python3 robots/robot_osm.py --part ${{ matrix.part }} --parts 4 --duree-max 300
       - name: Enregistrer
         if: always()
         run: >
           python3 robots/sauver.py --branche donnees-lieux-${{ matrix.part }} --chemins lieux/${{ matrix.part }}
-          lieux/_suivi_${{ matrix.part }}.json journal/lieux_${{ matrix.part }}.json
+          lieux/osm-${{ matrix.part }} lieux/_suivi_${{ matrix.part }}.json lieux/_osm_suivi_${{ matrix.part }}.json
+          journal/lieux_${{ matrix.part }}.json
 
   climat:
     needs: villes

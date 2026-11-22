@@ -3,10 +3,10 @@ name: Test rapide des robots Lieux
 on:
   workflow_dispatch:
     inputs:
-      villes:
-        description: "Adresses (slugs) des villes à tester, séparées par des espaces"
+      region:
+        description: "Région Geofabrik à tester (ex. portugal, luxembourg)"
         required: true
-        default: "lisbonne-pt manali-in"
+        default: "portugal"
 
 permissions:
   contents: write
@@ -23,10 +23,16 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
-      - name: Tester
+      - name: Outils OpenStreetMap
+        run: |
+          sudo apt-get update -q && sudo apt-get install -y -q osmium-tool
+          pip install osmium
+      - name: Tester une région
         continue-on-error: true
         timeout-minutes: 45
-        run: python3 robots/test_lieux.py ${{ inputs.villes }}
+        run: python3 robots/robot_osm.py --region ${{ inputs.region }} --part 9 2>&1 | tee test.log
       - name: Enregistrer le résultat
         if: always()
-        run: python3 robots/sauver.py --branche donnees-test --chemins test
+        run: |
+          mkdir -p donnees/test && cp test.log donnees/test/ 2>/dev/null || true
+          python3 robots/sauver.py --branche donnees-test --chemins test lieux/osm-9 journal/lieux_9.json

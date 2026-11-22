@@ -51,6 +51,14 @@ def ecrire_gz(chemin, donnees):
     os.replace(chemin + ".tmp", chemin)
 
 
+def lire_gz_brut(nom):
+    p = os.path.join(DATA, nom)
+    if not os.path.exists(p):
+        return None
+    with gzip.open(p, "rt", encoding="utf-8") as f:
+        return json.load(f)
+
+
 def lire_lieux(ville_id):
     """Fichier des lieux d'une ville, où qu'il soit rangé (lieux/<n°>/<id>.json.gz, ou anciens formats non compressés)."""
     base = os.path.join(DATA, "lieux")
