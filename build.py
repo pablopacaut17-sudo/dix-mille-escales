@@ -521,13 +521,28 @@ def page_ville(v, ctx):
               f'et sur le site de l’ambassade du pays.</p>')
         corps.append(h + "</section>")
 
-    # S'y rendre : aéroports + guide
-    if aeros or "aller" in gs:
-        h = f'<section class="block" id="guide-aller"><h2>S’y rendre</h2>'
+    # S'y rendre : aéroports, gares, gares routières, ports (distances depuis le centre)
+    acces = {}
+    for f in lieux:
+        if f["rubrique"] == "bouger" and f.get("lat") is not None:
+            genre = "gares" if f["type"] == "Gare ferroviaire" else "routieres" if f["type"] == "Gare routière" else \
+                "ports" if f["type"] in ("Port (ferry)", "Terminal de ferry") else None
+            if genre:
+                acces.setdefault(genre, []).append((dist((v["lat"], v["lon"]), (f["lat"], f["lon"])), f))
+    for k in acces:
+        acces[k] = sorted(acces[k], key=lambda x: x[0])[:4]
+    if aeros or "aller" in gs or acces:
+        h = f'<section class="block" id="guide-aller"><h2>S’y rendre et accès</h2>'
         if aeros:
             h += ('<h3>En avion</h3><div class="table-scroll"><table><thead><tr><th>Aéroport</th><th>Code</th><th>Distance</th><th>Trajet estimé</th></tr></thead><tbody>'
                   + "".join(f'<tr><td>{E(x[1])}{" · international" if x[3] else ""}</td><td class="num">{E(x[0])}</td><td class="num">{nombre(x[2])} km</td>'
                             f'<td>≈ {duree(x[2])} de route</td></tr>' for x in aeros) + "</tbody></table></div>")
+        for k, titre_a in (("gares", "En train"), ("routieres", "En bus ou en car"), ("ports", "En bateau")):
+            if acces.get(k):
+                h += (f'<h3>{titre_a}</h3><div class="table-scroll"><table><tbody>'
+                      + "".join(f'<tr><td><b>{E(f["nom"])}</b>{("<br><small>" + E(f["adresse"]) + "</small>") if f.get("adresse") else ""}</td>'
+                                f'<td class="num">{str(round(d_, 1)).replace(".", ",")} km du centre</td><td>{acces_temps(d_)}</td></tr>' for d_, f in acces[k])
+                      + "</tbody></table></div>")
         if "aller" in gs:
             h += texte_html(gs["aller"]["texte"], 3)
         corps.append(h + "</section>")
@@ -687,6 +702,8 @@ def page_ville(v, ctx):
         donnees["aeroports"] = [{"code": x[0], "nom": x[1], "km": x[2], "international": bool(x[3])} for x in aeros]
     if gs.get("aller"):
         donnees["aller"] = couper_txt(gs["aller"]["texte"], 700)
+    if acces:
+        donnees["acces"] = {k: [{"nom": f["nom"], "km": round(d_, 1), "adresse": f.get("adresse", "")} for d_, f in l] for k, l in acces.items()}
     red_ok = {k: red[k] for k in ("accroche", "conseils", "a_eviter", "quand_partir", "un_jour") if red.get(k)}
     if red_ok:
         donnees["avis"] = red_ok
@@ -778,6 +795,13 @@ def section_alentours(v, autour, rubs):
         if len(autour) > limite_:
             h += f'<button type="button" class="tout-voir" data-rub="alentours" data-n="{len(autour)}">Voir les {nombre(len(autour))} sites des alentours</button>'
     return h + "</section>"
+
+
+def acces_temps(km):
+    """Temps depuis le centre : à pied jusqu'à 1,5 km, sinon en voiture ou en taxi."""
+    if km < 1.5:
+        return f"≈ {max(2, round(km / 4.5 * 60))} min à pied"
+    return f"≈ {duree(km)} en taxi"
 
 
 def duree(km):

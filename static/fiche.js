@@ -76,10 +76,12 @@
     }
     // S'y rendre et guide Wikivoyage
     var gd = c.guide || {};
-    if ((d.aeroports && d.aeroports.length) || gd.aller) {
-      h += sec('guide-aller', 'S’y rendre', (d.aeroports ? '<h3>En avion</h3><div class="table-scroll"><table><thead><tr><th>Aéroport</th><th>Code</th><th>Distance</th><th>Trajet estimé</th></tr></thead><tbody>'
+    var AC = [['gares', 'En train'], ['routieres', 'En bus ou en car'], ['ports', 'En bateau']], acc = d.acces || {};
+    var accH = AC.filter(function (x) { return acc[x[0]]; }).map(function (x) { return '<h3>' + x[1] + '</h3><div class="table-scroll"><table><tbody>' + acc[x[0]].map(function (g) { return '<tr><td><b>' + E(g.nom) + '</b>' + (g.adresse ? '<br><small>' + E(g.adresse) + '</small>' : '') + '</td><td class="num">' + v(g.km) + ' km du centre</td><td>≈ ' + duree(g.km) + '</td></tr>'; }).join('') + '</tbody></table></div>'; }).join('');
+    if ((d.aeroports && d.aeroports.length) || gd.aller || accH) {
+      h += sec('guide-aller', 'S’y rendre et accès', (d.aeroports ? '<h3>En avion</h3><div class="table-scroll"><table><thead><tr><th>Aéroport</th><th>Code</th><th>Distance</th><th>Trajet estimé</th></tr></thead><tbody>'
         + d.aeroports.map(function (x) { return '<tr><td>' + E(x.nom) + (x.international ? ' · international' : '') + '</td><td class="num">' + E(x.code) + '</td><td class="num">' + nb(x.km) + ' km</td><td>≈ ' + duree(x.km) + ' de route</td></tr>'; }).join('') + '</tbody></table></div>' : '')
-        + (gd.aller ? prose(gd.aller, 3) : ''));
+        + accH + (gd.aller ? prose(gd.aller, 3) : ''));
     }
     GUIDE.forEach(function (g) { if (gd[g[0]]) h += sec('guide-' + g[0], g[1].replace('{v}', E(d.nom)), prose(gd[g[0]], 3)); });
     // Lieux

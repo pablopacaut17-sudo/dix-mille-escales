@@ -202,6 +202,11 @@
       var NR = { FR: 'France', BE: 'Belgique', CH: 'Suisse', CA: 'Canada' };
       return 'Représentations les plus proches ' + deV(d.nom) + ' :' + liste(d.representations, function (x) { return NR[x.pays] + ' : <b>' + E(x.nom) + '</b>, ' + nb(x.km) + ' km' + (x.telephone ? ', ' + E(x.telephone) : ''); }) + lien(d, 'sante', 'Voir les détails');
     }
+    if (a(/(gare|train|port |ferry|bateau|gare routiere|car )/) && d.acces) {
+      var NA = { gares: 'Gares ferroviaires', routieres: 'Gares routières', ports: 'Ports (ferry)' }, out = '';
+      Object.keys(NA).forEach(function (k) { if (d.acces[k]) out += NA[k] + ' :' + liste(d.acces[k], function (g) { return '<b>' + E(g.nom) + '</b>, ' + String(g.km).replace('.', ',') + ' km du centre'; }); });
+      if (out) return out + lien(d, 'guide-aller', 'Voir les accès');
+    }
     if (a(/(aeroport|aller a|s y rendre|comment aller|comment venir|arriver|train pour|bus pour)/)) {
       if (!d.aeroports && !d.aller) return manque(d, 'les moyens d’accès');
       return (d.aeroports ? 'Aéroports les plus proches ' + deV(d.nom).replace(/^de /, 'de ') + ' :' + liste(d.aeroports, function (x) { return '<b>' + E(x.nom) + '</b> (' + E(x.code) + '), ' + nb(x.km) + ' km' + (x.international ? ', international' : ''); }) : '')

@@ -162,6 +162,12 @@ def normaliser(el, date, v=None, alentours=False):
     if not cle or not nom or lat is None:
         return None
     type_, rubrique = TYPE[cle]
+    if cle == "station":  # distinguer les vraies gares des stations de métro et de tram
+        st_ = t.get("station", "")
+        type_ = "Station de métro" if st_ in ("subway", "monorail") or t.get("subway") == "yes" else \
+            "Station de tram" if st_ in ("light_rail", "tram") or t.get("light_rail") == "yes" else "Gare ferroviaire"
+    elif cle == "ferry_terminal":
+        type_ = "Port (ferry)"
     if alentours:
         rubrique = "alentours"
     rue = " ".join(x for x in (t.get("addr:street"), t.get("addr:housenumber")) if x)
