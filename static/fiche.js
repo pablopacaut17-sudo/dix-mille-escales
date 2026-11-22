@@ -44,6 +44,8 @@
   function extras(f, slug) {
     var vn = villeNom(), h = '';
     if (f.wikivoyage) h += '<div class="i wv">« ' + E(f.wikivoyage) + ' » <small>(Wikivoyage)</small></div>';
+    var ph = f.histoire && f.histoire.f && f.histoire.f.photo;
+    if (ph) h += '<figure class="vignette"><img src="' + E(ph.u) + '" alt="' + E(f.nom) + '" loading="lazy" decoding="async"><figcaption><a href="' + E(ph.page) + '" rel="noopener" target="_blank">' + E(ph.a) + (ph.l ? ' · ' + E(ph.l) : '') + '</a></figcaption></figure>';
     if (f.histoire && f.histoire.f) h += '<div class="i carac">' + E(carac(f.histoire.f)) + '</div>';
     if (f.histoire && f.histoire.r) h += '<details class="histoire"><summary>Histoire</summary><p>' + E(f.histoire.r) + '</p><p><a href="https://fr.wikipedia.org/wiki/' + encodeURIComponent(f.histoire.t.replace(/ /g, '_')) + '" target="_blank" rel="noopener">Lire l’article Wikipédia</a></p></details>';
     (f.avis || []).slice(0, 2).forEach(function (a) { h += '<div class="i avis-l">' + a.note + '/5 · « ' + E(a.texte.slice(0, 300)) + ' » <small>' + E(a.date || '') + '</small></div>'; });
@@ -161,6 +163,8 @@
       hs += '<p class="note">Santé en voyage : voir les Conseils aux voyageurs et le <a href="https://www.pasteur.fr/fr/centre-medical/preparer-son-voyage" rel="noopener" target="_blank">centre médical de l’Institut Pasteur</a>. Assurance et rapatriement : <a href="' + root + 'assurance/">notre guide</a>.</p>';
       h += sec('sante', 'Santé et urgences', hs);
     }
+    var gal = tous.filter(function (x) { return x.histoire && x.histoire.f && x.histoire.f.photo; }).sort(function (a, b) { return (b.patrimoine_mondial ? 1 : 0) - (a.patrimoine_mondial ? 1 : 0); }).slice(0, 12);
+    if (gal.length) h += sec('galerie', E(d.nom) + ' en images', '<div class="galerie">' + gal.map(function (x) { var p_ = x.histoire.f.photo; return '<figure><img src="' + E(p_.u) + '" alt="' + E(x.nom) + '" loading="lazy" decoding="async"><figcaption><b>' + E(x.nom) + '</b><br><a href="' + E(p_.page) + '" rel="noopener" target="_blank">' + E(p_.a) + (p_.l ? ' · ' + E(p_.l) : '') + '</a></figcaption></figure>'; }).join('') + '</div><p class="note">Photos : Wikimedia Commons, sous licences libres.</p>');
     var au = c.alentours || [], pr = (d.proches || []).filter(function (p) { return p.km >= 15 && p.km <= 150; }).slice(0, 4);
     if (au.length || pr.length) {
       h += sec('alentours', 'Aux alentours', '<ul class="excursions">' + au.slice(0, 12).map(function (f) { return '<li><b>' + E(f.nom) + (f.patrimoine_mondial ? '<span class="unesco-tag">Patrimoine mondial</span>' : '') + '</b><span class="d">' + E(f.type) + ' · ' + v(f.km) + ' km ' + E(f.direction) + ' · ≈ ' + duree(f.km) + ' de route</span></li>'; }).join('')

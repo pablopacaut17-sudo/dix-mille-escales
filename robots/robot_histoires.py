@@ -12,6 +12,8 @@ import commun as c
 
 WIKIDATA = "https://www.wikidata.org/w/api.php"
 WIKIPEDIA = "https://fr.wikipedia.org/w/api.php"
+COMMONS = "https://commons.wikimedia.org/w/api.php"
+VERSION = 2  # 2 : photos des lieux (Wikimedia Commons) ; à chaque nouvelle version, tous les lieux sont retraités
 RUBRIQUES = ("voir", "faire", "alentours", "acheter")
 # Caractéristiques tirées de Wikidata : propriété -> (clé, genre)
 PROPRIETES = {"P2048": ("hauteur", "q"), "P2046": ("superficie", "q"), "P2043": ("longueur", "q"), "P2044": ("altitude", "q"),
@@ -21,9 +23,40 @@ UNITES = {"Q11573": ("m", 1), "Q828224": ("m", 1000), "Q174728": ("m", 0.01), "Q
           "Q25343": ("m2", 1), "Q712226": ("m2", 1e6), "Q35852": ("m2", 1e4), "Q81292": ("m2", 4046.86), "Q232291": ("m2", 2.59e6)}
 
 
+def sans_html(t):
+    import re, html
+    return re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", t or ""))).strip()
+
+
+def photos(fichiers):
+    """Vignette, auteur et licence de fichiers Wikimedia Commons (par paquets de 50)."""
+    out = {}
+    liste = sorted(fichiers)
+    for k in range(0, len(liste), 50):
+        rep = api(COMMONS, action="query", titles="|".join("File:" + f for f in liste[k:k + 50]), prop="imageinfo",
+                  iiprop="url|extmetadata", iiurlwidth=480, iiextmetadatafilter="Artist|LicenseShortName|Credit")
+        q_ = (rep or {}).get("query", {})
+        norm_ = {n["to"]: n["from"] for n in q_.get("normalized", [])}
+        for pg in q_.get("pages", []):
+            ii = (pg.get("imageinfo") or [{}])[0]
+            if not ii.get("thumburl"):
+                continue
+            md = ii.get("extmetadata", {})
+            nom = norm_.get(pg["title"], pg["title"])[5:]
+            out[nom] = {"u": ii["thumburl"], "page": ii.get("descriptionurl", ""),
+                        "a": sans_html(md.get("Artist", {}).get("value", ""))[:80] or "Wikimedia Commons",
+                        "l": md.get("LicenseShortName", {}).get("value", "")}
+        time.sleep(0.2)
+    return out
+
+
 def caracteristiques(claims):
-    """Valeurs utiles d'une entité Wikidata (dimensions en mètres ou m², années, éléments à nommer)."""
+    """Valeurs utiles d'une entité Wikidata (dimensions en mètres ou m², années, éléments à nommer, photo)."""
     out, a_nommer = {}, set()
+    for cl in (claims.get("P18") or [])[:1]:  # image principale
+        v = ((cl.get("mainsnak") or {}).get("datavalue") or {}).get("value")
+        if isinstance(v, str):
+            out["_photo"] = v.replace(" ", "_")
     for p, (cle, genre) in PROPRIETES.items():
         for cl in (claims.get(p) or [])[:3]:
             dv = (cl.get("mainsnak") or {}).get("datavalue") or {}
@@ -84,8 +117,10 @@ def main():
     for i in range(100):
         seaux[f"h{i:02d}"] = c.lire(f"histoires/h{i:02d}.json", {}) or {}
     vus = c.lire("histoires/_suivi.json", {}) or {}
+    if vus.get("_version") != VERSION:
+        vus = {"_version": VERSION}
     tous = qids_des_lieux()
-    a_faire = sorted(q for q in tous if not vus.get(q) or (t0 - datetime.fromisoformat(vus[q])).days > 180)
+    a_faire = sorted(q for q in tous if q != "_version" and (not vus.get(q) or (t0 - datetime.fromisoformat(vus[q])).days > 180))
     print(f"{len(tous)} lieux célèbres, {len(a_faire)} à traiter.")
     faits = sans = 0
     for k in range(0, len(a_faire), 50):
@@ -100,6 +135,15 @@ def main():
             cr, an_ = caracteristiques(ent.get("claims") or {})
             if cr:
                 carac[q] = cr; a_nommer |= an_
+        imgs = photos({cr["_photo"] for cr in carac.values() if cr.get("_photo")})
+        for q, cr in list(carac.items()):
+            ph = cr.pop("_photo", None)
+            if ph and ph in imgs:
+                cr["photo"] = imgs[ph]
+            elif ph:
+                pass
+            if not cr:
+                del carac[q]
         if a_nommer:  # noms en français des architectes, styles, protections
             noms_ = {}
             liste_ = sorted(a_nommer)

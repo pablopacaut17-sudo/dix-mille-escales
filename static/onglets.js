@@ -5,7 +5,7 @@
 (function () {
   var ONGLETS = [
     { id: 'essentiel', nom: 'L’essentiel', secs: ['apercu', 'facts', 'en-bref', 'avis', 'questions', 'avis-lecteurs', 'essentiel', 'guide-comprendre', 'initie', 'profils', 'faq'] },
-    { id: 'visiter', nom: 'À voir et à faire', secs: ['carte-lieux', 'voir', 'guide-voir', 'faire', 'guide-faire', 'activites', 'alentours', 'guide-environs', 'patrimoine', 'itineraires', 'quartiers', 'plages', 'lieux', 'sortir', 'proches'] },
+    { id: 'visiter', nom: 'À voir et à faire', secs: ['galerie', 'carte-lieux', 'voir', 'guide-voir', 'faire', 'guide-faire', 'activites', 'alentours', 'guide-environs', 'patrimoine', 'itineraires', 'quartiers', 'plages', 'lieux', 'sortir', 'proches'] },
     { id: 'adresses', nom: 'Manger et dormir', secs: ['manger', 'guide-manger', 'guide-sortir', 'dormir', 'guide-loger', 'acheter', 'guide-acheter', 'shopping', 'donnees-robots'] },
     { id: 'pratique', nom: 'Infos pratiques', secs: ['meteo', 'quand-partir', 'climat', 'agenda', 'guide-aller', 'arriver', 'guide-circuler', 'bouger', 'budget', 'formalites', 'conseils', 'conseils-ville', 'arnaques', 'sante', 'transports-communs', 'langue', 'guide-securite', 'guide-sante', 'feries', 'guide-communiquer', 'guide-respecter', 'pratique', 'securite', 'lexique'] },
     { id: 'culture', nom: 'Histoire et culture', secs: ['histoire', 'culture', 'inspirations', 'gastronomie', 'geographie', 'economie', 'sport', 'transports', 'personnalites', 'jumelages', 'savoir', 'porto', 'quiz'] }

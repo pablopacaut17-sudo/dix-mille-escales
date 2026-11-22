@@ -212,6 +212,16 @@ td.num{font-weight:600;white-space:nowrap}
 .wv{font-style:italic}
 .q-extrait{border-left:3px solid var(--line);padding-left:.7rem;margin:.6rem 0}
 .q-extrait mark{background:var(--buoy);color:#12313B;border-radius:3px}
+.vignette{float:right;width:120px;margin:.2rem 0 .4rem .8rem}
+.vignette img{width:120px;height:90px;object-fit:cover;border-radius:8px;display:block}
+.vignette figcaption{font-size:.68rem;line-height:1.2;color:var(--muted);margin-top:.15rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.vignette figcaption a{color:var(--muted)}
+.places li::after{content:"";display:block;clear:both}
+.galerie{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.8rem}
+.galerie figure{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.galerie img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+.galerie figcaption{padding:.5rem .7rem;font-family:var(--display);font-size:.85rem}
+.galerie figcaption a{font-size:.72rem;color:var(--muted)}
 .carac{font-family:var(--display);font-size:.84rem;color:var(--sea)}
 .histoire{margin:.3rem 0}.histoire summary{cursor:pointer;font-family:var(--display);font-size:.86rem;color:var(--sea)}
 .histoire p{font-size:.9rem;margin:.3rem 0}

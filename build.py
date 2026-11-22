@@ -334,6 +334,10 @@ def liste_lieux(rub, items, niveau="phare"):
             plus += f'<div class="i wv">« {E(f["wikivoyage"])} » <small>(Wikivoyage)</small></div>'
         if f.get("histoire"):
             h_ = f["histoire"]
+            ph = (h_.get("f") or {}).get("photo")
+            if ph:
+                plus += (f'<figure class="vignette"><img src="{E(ph["u"])}" alt="{E(f["nom"])}" loading="lazy" decoding="async">'
+                         f'<figcaption><a href="{E(ph["page"])}" rel="noopener" target="_blank">{E(ph["a"])}{(" · " + E(ph["l"])) if ph.get("l") else ""}</a></figcaption></figure>')
             if h_.get("f"):
                 plus += f'<div class="i carac">{E(carac_txt(h_["f"]))}</div>'
             if h_.get("r"):
@@ -617,6 +621,16 @@ def page_ville(v, ctx):
             f["avis"] = la
             f["avis_n"] = len(la)
             f["avis_moy"] = sum(x["note"] for x in la) / len(la)
+
+    # Galerie : les lieux célèbres qui ont une photo
+    gal = [f for f in tous if ((f.get("histoire") or {}).get("f") or {}).get("photo")]
+    gal.sort(key=lambda f: (not f.get("patrimoine_mondial"), f["rubrique"] == "alentours", -f["infos"]))
+    if gal:
+        corps.append(f'<section class="block" id="galerie"><h2>{E(v["nom"])} en images</h2><div class="galerie">'
+                     + "".join(f'<figure><img src="{E(f["histoire"]["f"]["photo"]["u"])}" alt="{E(f["nom"])}" loading="lazy" decoding="async">'
+                               f'<figcaption><b>{E(f["nom"])}</b><br><a href="{E(f["histoire"]["f"]["photo"]["page"])}" rel="noopener" target="_blank">'
+                               f'{E(f["histoire"]["f"]["photo"]["a"])}{(" · " + E(f["histoire"]["f"]["photo"]["l"])) if f["histoire"]["f"]["photo"].get("l") else ""}</a></figcaption></figure>' for f in gal[:12])
+                     + '</div><p class="note">Photos : Wikimedia Commons, sous licences libres (auteurs et licences indiqués sous chaque photo).</p></section>')
 
     # S'y rendre : aéroports, gares, gares routières, ports (distances depuis le centre)
     acces = {}

@@ -36,6 +36,8 @@
   function extras(f, slug) {
     var vn = villeNom(), h = '';
     if (f.wikivoyage) h += '<div class="i wv">« ' + E(f.wikivoyage) + ' » <small>(Wikivoyage)</small></div>';
+    var ph = f.histoire && f.histoire.f && f.histoire.f.photo;
+    if (ph) h += '<figure class="vignette"><img src="' + E(ph.u) + '" alt="' + E(f.nom) + '" loading="lazy" decoding="async"><figcaption><a href="' + E(ph.page) + '" rel="noopener" target="_blank">' + E(ph.a) + (ph.l ? ' · ' + E(ph.l) : '') + '</a></figcaption></figure>';
     if (f.histoire && f.histoire.f) h += '<div class="i carac">' + E(carac(f.histoire.f)) + '</div>';
     if (f.histoire && f.histoire.r) h += '<details class="histoire"><summary>Histoire</summary><p>' + E(f.histoire.r) + '</p><p><a href="https://fr.wikipedia.org/wiki/' + encodeURIComponent(f.histoire.t.replace(/ /g, '_')) + '" target="_blank" rel="noopener">Lire l’article Wikipédia</a></p></details>';
     (f.avis || []).slice(0, 2).forEach(function (a) { h += '<div class="i avis-l">' + a.note + '/5 · « ' + E(a.texte.slice(0, 300)) + ' » <small>' + E(a.date || '') + '</small></div>'; });
