@@ -2,6 +2,19 @@
 import gzip, json, os, sys, time, urllib.request
 from datetime import datetime, timezone
 
+# Les machines de GitHub n'ont pas de route IPv6 vers certains serveurs : on force l'IPv4 (sans effet ailleurs)
+import socket as _socket
+_getaddrinfo = _socket.getaddrinfo
+
+
+def _ipv4_seulement(hote, *args, **kwargs):
+    res = _getaddrinfo(hote, *args, **kwargs)
+    v4 = [r for r in res if r[0] == _socket.AF_INET]
+    return v4 or res
+
+
+_socket.getaddrinfo = _ipv4_seulement
+
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CONFIG = os.path.join(RACINE, "data")  # liste des villes et des pays : dans le dépôt principal
 # Données des robots : dans un dossier à part (branches « donnees-… » du dépôt), jamais dans l'historique principal
