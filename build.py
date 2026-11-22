@@ -249,13 +249,16 @@ def carte_lieux(v, lieux, rayon):
 
 
 def liste_lieux(rub, items, niveau="phare"):
-    items = sorted(items, key=lambda f: (-f["infos"], f["nom"]))
+    # Repères : d'abord les lieux célèbres (fiche encyclopédique, patrimoine), puis les fiches les plus complètes
+    items = sorted(items, key=lambda f: (not (f.get("wikidata") or f.get("patrimoine_mondial")), -f["infos"], f["nom"]))
     def li(f):
         meta = " · ".join(x for x in (f["type"], f.get("cuisine"), (f["etoiles"] + " étoiles") if f.get("etoiles") else "",
                                       "payant" if f.get("payant") == "oui" else "gratuit" if f.get("payant") == "non" else "",
                                       "accessible en fauteuil" if f.get("fauteuil") == "oui" else "",
                                       "terrasse" if f.get("terrasse") == "oui" else "",
                                       "service d’urgences" if f.get("urgences") == "oui" else "") if x)
+        if f.get("wikidata") or f.get("patrimoine_mondial"):
+            meta = "★ incontournable · " + meta
         infos = []
         if f.get("adresse"):
             infos.append(E(f["adresse"]))
@@ -562,6 +565,13 @@ def page_ville(v, ctx):
                      + f'<p><a class="tout-voir" style="display:inline-block;text-decoration:none" href="../../pays/{v["pays"].lower()}/conseils/">Sécurité, santé et vaccins, lois et coutumes, transports, catastrophes naturelles : tous les conseils</a></p>'
                      f'<p class="note">Source : gouvernement du Canada (données ouvertes). Pour les voyageurs français, la '
                      f'<a href="https://www.diplomatie.gouv.fr/fr/conseils-aux-voyageurs/conseils-par-pays-destination/{slug_fd(nom_pays)}/" rel="noopener" target="_blank">fiche du ministère des Affaires étrangères</a> fait foi.</p></section>')
+    langues_ = sorted(pays.get("langues", [])[:3], key=lambda l: l == "anglais")  # la langue locale avant l'anglais
+    lg_nom = next((l for l in langues_ if l in ctx["langues"]), "")
+    lg = ctx["langues"].get(lg_nom) if lg_nom else None
+    if lg:
+        corps.append(f'<section class="block" id="langue"><h2>Quelques mots utiles en {E(lg_nom)}</h2><div class="table-scroll"><table><tbody>'
+                     + "".join(f'<tr><td>{E(x.split(":", 1)[0].strip())}</td><td><b>{E(x.split(":", 1)[1].strip())}</b></td></tr>' if ":" in x else f'<tr><td colspan="2">{E(x)}</td></tr>' for x in lg["lignes"][:20])
+                     + f'</tbody></table></div><p class="note">D’après le <a href="{E(lg["url"])}" rel="noopener" target="_blank">{E(lg["titre"])}</a> de Wikivoyage (licence CC BY-SA), qui en contient bien plus.</p></section>')
     tr = ctx["transports"].get(v["id"])
     if tr and tr.get("lignes"):
         NOMS_MODES = [("metro", "métro"), ("tram", "tram"), ("bus", "bus"), ("train", "train"), ("ferry", "ferry")]
@@ -683,6 +693,8 @@ def page_ville(v, ctx):
         donnees["urgences"] = ctx["urgences"][v["pays"]]
     if tr and tr.get("lignes"):
         donnees["transports"] = tr
+    if lg:
+        donnees["phrases"] = {"langue": lg_nom, "lignes": lg["lignes"][:20], "url": lg["url"], "titre": lg["titre"]}
     if pr:
         donnees["pratique"] = pr
     if cv:
@@ -710,7 +722,7 @@ def page_ville(v, ctx):
     ecrire_gz(f"villes/{v['slug']}/donnees.json.gz", donnees)
     if tous:
         cles = ("nom", "type", "rubrique", "adresse", "horaires", "cuisine", "etoiles", "payant", "site", "telephone",
-                "fauteuil", "terrasse", "distance_km", "direction", "patrimoine_mondial", "id", "lat", "lon")
+                "fauteuil", "terrasse", "distance_km", "direction", "patrimoine_mondial", "id", "lat", "lon", "wikidata", "urgences")
         export = [{k: f[k] for k in cles if f.get(k)} for f in sorted(tous, key=lambda f: (f["rubrique"], -f["infos"], f["nom"]))]
         if v["niveau"] == "autre":
             gardes = {}
@@ -920,8 +932,12 @@ D.chargerMonde().then(function(){{D.choixVille(f.querySelector("#prep-q"),functi
 <div class="o-champ"><label for="tj-a">Départ</label><input id="tj-a" type="search" autocomplete="off" placeholder="Ville de départ…"><p id="tj-a-v" class="o-nb"></p></div>
 <div class="o-champ"><label for="tj-b">Arrivée</label><input id="tj-b" type="search" autocomplete="off" placeholder="Ville d’arrivée…"><p id="tj-b-v" class="o-nb"></p></div>
 <div class="o-champ"><label for="tj-n">Voyageurs</label><input id="tj-n" type="number" min="1" max="9" value="1"></div></div></form><div id="tj-res" class="o-res" aria-live="polite"></div>''', ["trajets"])
+    with open(os.path.join(RACINE, "pages_outils", "premier-voyage.html"), encoding="utf-8") as f_:
+        ecrire("premier-voyage/index.html", page("../", "Guide du premier voyage – Dix Mille Escales",
+               "Tout ce qu’il faut savoir quand on n’a jamais voyagé : papiers, réservation, argent, téléphone, aéroport, sécurité, que faire en cas de problème.", f_.read()))
     outil("carnet", "Mon carnet", "Vos villes et vos itinéraires gardés sur cet appareil.", '<div id="carnet-page" class="o-res"></div>', [])
-    cartes = [("itineraire", "Planificateur d’itinéraire", "Plusieurs villes, un ou plusieurs pays : ordre des étapes, trajets, programme jour par jour, budget."),
+    cartes = [("premier-voyage", "Guide du premier voyage", "Jamais voyagé ? Papiers, réservation, argent, téléphone, aéroport, sécurité : tout, étape par étape."),
+              ("itineraire", "Planificateur d’itinéraire", "Plusieurs villes, un ou plusieurs pays : ordre des étapes, trajets, programme jour par jour, budget."),
               ("ou-partir", "Où partir ?", "Les villes idéales du monde pour un mois, une température et vos envies."),
               ("comparer", "Comparer des villes", "Deux à quatre villes côte à côte."),
               ("preparer", "Préparer son départ", "La liste à cocher : papiers, argent, valise, santé."),
@@ -1158,6 +1174,7 @@ def main():
             break
     ctx["urgences"] = (lire("urgences.json", {}) or {}).get("pays", {})
     ctx["pratique"] = (lire("pratique.json", {}) or {}).get("pays", {})
+    ctx["langues"] = (lire("langues.json", {}) or {}).get("langues", {})
     ctx["transports"] = {}
     dtr = os.path.join(DONNEES, "transports")
     if os.path.isdir(dtr):
@@ -1365,7 +1382,7 @@ def main():
                     with open(os.path.join(dl, fn), encoding="utf-8") as f:
                         suivi.update(json.load(f))
     noms = {"guides": "Guides (Wikivoyage)", "aeroports": "Aéroports (OurAirports)", "surveillance_etat": "Surveillance (rapport du matin)", "villes": "Liste des villes (GeoNames)", "lieux_0": "Lieux, robot 1 (OpenStreetMap)", "lieux_1": "Lieux, robot 2 (OpenStreetMap)",
-            "lieux_2": "Lieux, robot 3 (OpenStreetMap)", "lieux_3": "Lieux, robot 4 (OpenStreetMap)", "conseils": "Conseils aux voyageurs (Canada)", "pratique": "Prises, tension, conduite (Wikidata)", "urgences": "Numéros d’urgence (Wikidata)", "meteo": "Météo (Open-Meteo)", "redaction": "Rédaction (IA)", "climat": "Climat (Open-Meteo ERA5)", "securite": "Sécurité (Département d’État)",
+            "lieux_2": "Lieux, robot 3 (OpenStreetMap)", "lieux_3": "Lieux, robot 4 (OpenStreetMap)", "conseils": "Conseils aux voyageurs (Canada)", "pratique": "Prises, tension, conduite (Wikidata)", "langues": "Mots utiles (Wikivoyage)", "urgences": "Numéros d’urgence (Wikidata)", "meteo": "Météo (Open-Meteo)", "redaction": "Rédaction (IA)", "climat": "Climat (Open-Meteo ERA5)", "securite": "Sécurité (Département d’État)",
             "formalites": "Formalités (Passport Index)", "cout": "Coût de la vie (Banque mondiale)", "encyclopedie": "Encyclopédie (Wikidata, Wikipédia)", "lieux": "Lieux (OpenStreetMap)", "meteo": "Météo (Open-Meteo)", "feries": "Jours fériés (Nager.Date)", "change": "Change (BCE)"}
     lignes = ""
     for k, n in noms.items():

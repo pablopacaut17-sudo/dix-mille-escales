@@ -38,7 +38,7 @@
     return '<div class="prose">' + b.slice(0, cut).join('') + '<details class="more"><summary>Lire la suite</summary>' + b.slice(cut).join('') + '</details></div>';
   }
   function lieu(f) {
-    var meta = [f.type, f.cuisine, f.etoiles ? f.etoiles + ' étoiles' : '', f.fauteuil === 'oui' ? 'accessible en fauteuil' : '', f.terrasse === 'oui' ? 'terrasse' : ''].filter(Boolean).join(' · ');
+    var meta = [(f.wikidata || f.patrimoine_mondial) ? '★ incontournable' : '', f.type, f.cuisine, f.etoiles ? f.etoiles + ' étoiles' : '', f.fauteuil === 'oui' ? 'accessible en fauteuil' : '', f.terrasse === 'oui' ? 'terrasse' : ''].filter(Boolean).join(' · ');
     var p = f.id ? f.id.slice(4).split('/') : null;
     return '<li style="--c:var(--' + f.rubrique + ')"><h3>' + E(f.nom) + '</h3><div class="m">' + E(meta) + '</div>'
       + (f.adresse ? '<div class="i">' + E(f.adresse) + '</div>' : '') + (f.horaires ? '<div class="i">Horaires : ' + E(hfr(f.horaires)) + '</div>' : '')
@@ -89,7 +89,7 @@
     if (tous.length) {
       h += sec('carte-lieux', 'Les lieux sur la carte', '<div class="carte-zone" data-lat="' + d.lat + '" data-lon="' + d.lon + '" data-rayon="3"><button type="button" class="tout-voir carte-ouvrir">Ouvrir la carte interactive (zoom, tous les lieux, détails)</button></div>');
       RUB.forEach(function (rb) {
-        var items = tous.filter(function (f) { return f.rubrique === rb[0]; });
+        var items = tous.filter(function (f) { return f.rubrique === rb[0]; }).sort(function (x, y) { return ((y.wikidata || y.patrimoine_mondial) ? 1 : 0) - ((x.wikidata || x.patrimoine_mondial) ? 1 : 0); });
         if (!items.length) return;
         var total = d['nb_' + rb[0]] || items.length;
         h += sec(rb[0], rb[1], '<p class="lead">' + rb[2] + ' ' + nb(total) + ' adresse' + (total > 1 ? 's' : '') + '.</p><ul class="places">' + items.slice(0, 8).map(lieu).join('') + '</ul>'
@@ -108,6 +108,7 @@
     }
     if (d.conseils_ville && d.conseils_ville.length) h += sec('conseils-ville', 'Ce que disent les conseils officiels de ' + E(d.nom), '<ul>' + d.conseils_ville.map(function (x) { return '<li>' + E(x) + '</li>'; }).join('') + '</ul>');
     if (d.arnaques && d.arnaques.length) h += sec('arnaques', 'Arnaques signalées dans le pays', '<ul>' + d.arnaques.map(function (x) { return '<li>' + E(x) + '</li>'; }).join('') + '</ul><p><a href="' + root + 'pays/' + d.cc.toLowerCase() + '/conseils/#arnaques">Toutes les arnaques signalées</a></p>');
+    if (d.phrases) h += sec('langue', 'Quelques mots utiles en ' + E(d.phrases.langue), '<div class="table-scroll"><table><tbody>' + d.phrases.lignes.map(function (x) { var i = x.indexOf(':'); return i > 0 ? '<tr><td>' + E(x.slice(0, i).trim()) + '</td><td><b>' + E(x.slice(i + 1).trim()) + '</b></td></tr>' : '<tr><td colspan="2">' + E(x) + '</td></tr>'; }).join('') + '</tbody></table></div><p class="note">D’après le <a href="' + E(d.phrases.url) + '" rel="noopener" target="_blank">' + E(d.phrases.titre) + '</a> de Wikivoyage (licence CC BY-SA).</p>');
     if (d.transports && d.transports.lignes) {
       var NM = [['metro', 'métro'], ['tram', 'tram'], ['bus', 'bus'], ['train', 'train'], ['ferry', 'ferry']];
       h += sec('transports-communs', 'Transports en commun', '<p class="lead">' + NM.filter(function (x) { return d.transports.lignes[x[0]]; }).map(function (x) { var k = d.transports.lignes[x[0]]; return '<b>' + nb(k) + '</b> ligne' + (k > 1 ? 's' : '') + ' de ' + x[1]; }).join(', ') + '.</p>'

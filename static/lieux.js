@@ -20,7 +20,7 @@
   function norm(t) { return (t || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
   function hfr(h) { Object.keys(JOURS).forEach(function (k) { h = h.split(k).join(JOURS[k]); }); return h.replace(/;/g, ' ; '); }
   function item(f) {
-    var meta = [f.type, f.cuisine, f.etoiles ? f.etoiles + ' étoiles' : '', f.payant === 'oui' ? 'payant' : f.payant === 'non' ? 'gratuit' : '',
+    var meta = [(f.wikidata || f.patrimoine_mondial) ? '★ incontournable' : '', f.type, f.cuisine, f.etoiles ? f.etoiles + ' étoiles' : '', f.payant === 'oui' ? 'payant' : f.payant === 'non' ? 'gratuit' : '',
       f.fauteuil === 'oui' ? 'accessible en fauteuil' : '', f.terrasse === 'oui' ? 'terrasse' : '',
       f.rubrique === 'alentours' && f.distance_km ? String(f.distance_km).replace('.', ',') + ' km ' + (f.direction || '') : '',
       f.patrimoine_mondial ? 'patrimoine mondial' : '', f.urgences === 'oui' ? 'service d’urgences' : ''].filter(Boolean).join(' · ');
@@ -40,7 +40,7 @@
       b.disabled = true; b.textContent = 'Chargement…';
       (donnees ? Promise.resolve(donnees) : lireJson(root + 'villes/' + slug + '/lieux.json.gz')).then(function (d) {
         donnees = d;
-        var tous = d.lieux.filter(function (f) { return f.rubrique === rub; }), vus = 120, filtre = '', type = '';
+        var tous = d.lieux.filter(function (f) { return f.rubrique === rub; }).sort(function (x, y) { return ((y.wikidata || y.patrimoine_mondial) ? 1 : 0) - ((x.wikidata || x.patrimoine_mondial) ? 1 : 0); }), vus = 120, filtre = '', type = '';
         var outils = document.createElement('div');
         outils.className = 'chips';
         var types = {}; tous.forEach(function (f) { types[f.type] = (types[f.type] || 0) + 1; });

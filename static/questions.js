@@ -186,6 +186,7 @@
       return h ? h + lien(d, 'sante', 'Voir la rubrique santé') : manque(d, 'les informations de santé');
     }
     if (a(/(arnaque|escroc|fraude|piege)/) && d.arnaques) return 'Arnaques signalées (' + E(d.pays) + ') :' + liste(d.arnaques, function (x) { return E(x); }) + '<p><a href="' + root + 'pays/' + d.cc.toLowerCase() + '/conseils/#arnaques">Toutes les arnaques signalées</a></p>';
+    if (a(/(bonjour|merci|mots|phrase|dire|parler|langue|traduire|traduction)/) && d.phrases) return 'Quelques mots en ' + E(d.phrases.langue) + ' :' + liste(d.phrases.lignes.slice(0, 8), function (x) { return E(x); }) + lien(d, 'langue', 'Voir tous les mots utiles');
     if (a(/(prise|adaptateur|voltage|tension|electri)/) && d.pratique) return 'Prises ' + aV(d.nom) + ' : type ' + E((d.pratique.prises || []).join(', ')) + (d.pratique.tension ? ', ' + d.pratique.tension + ' V' : '') + '. ' + ((d.pratique.prises || []).every(function (x) { return 'CEF'.indexOf(x) > -1; }) ? 'Vos prises françaises conviennent.' : 'Prévoyez un adaptateur.');
     if (a(/(metro|tram|bus |transport en commun|transports en commun|conduite|conduire)/)) {
       var tx = '';
