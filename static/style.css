@@ -210,6 +210,9 @@ td.num{font-weight:600;white-space:nowrap}
 .urgences ul{list-style:none;padding:0;margin:.3rem 0;display:flex;flex-wrap:wrap;gap:.4rem 1.6rem;font-family:var(--display)}
 .urgences b{font-size:1.3rem}
 .wv{font-style:italic}
+.q-extrait{border-left:3px solid var(--line);padding-left:.7rem;margin:.6rem 0}
+.q-extrait mark{background:var(--buoy);color:#12313B;border-radius:3px}
+.carac{font-family:var(--display);font-size:.84rem;color:var(--sea)}
 .histoire{margin:.3rem 0}.histoire summary{cursor:pointer;font-family:var(--display);font-size:.86rem;color:var(--sea)}
 .histoire p{font-size:.9rem;margin:.3rem 0}
 .avis-l{font-size:.9rem}

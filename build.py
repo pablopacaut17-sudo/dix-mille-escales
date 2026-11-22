@@ -265,6 +265,32 @@ def lien_maps(nom, ville_nom):
     return "https://www.google.com/maps/search/?api=1&query=" + quote(f"{nom} {ville_nom}")
 
 
+def carac_txt(c_):
+    """Dimensions et caractéristiques d'un lieu (Wikidata), en clair."""
+    if not c_:
+        return ""
+    def m(x):
+        return (str(round(x, 1)).replace(".", ",").replace(",0", "") if x < 100 else nombre(round(x))) + " m"
+    def surf(x):
+        return (str(round(x / 1e6, 2)).replace(".", ",") + " km²") if x >= 1e6 else (nombre(round(x / 1e4)) + " ha") if x >= 1e4 else nombre(round(x)) + " m²"
+    def an(x):
+        return f"{-x} av. J.-C." if x < 0 else str(x)
+    p = []
+    if c_.get("hauteur"): p.append("hauteur " + m(c_["hauteur"]))
+    if c_.get("longueur"): p.append("longueur " + m(c_["longueur"]))
+    if c_.get("largeur"): p.append("largeur " + m(c_["largeur"]))
+    if c_.get("superficie"): p.append("superficie " + surf(c_["superficie"]))
+    if c_.get("altitude") is not None and c_.get("altitude"): p.append("altitude " + m(c_["altitude"]))
+    for k, lib in (("creation", "date"), ("debut", "début"), ("ouverture", "ouverture")):
+        if c_.get(k):
+            p.append(f"{lib} : {an(c_[k])}"); break
+    if c_.get("architecte"): p.append("architecte : " + ", ".join(c_["architecte"]))
+    if c_.get("style"): p.append("style : " + ", ".join(c_["style"]))
+    if c_.get("visiteurs_an"): p.append(f'{nombre(c_["visiteurs_an"])} visiteurs par an')
+    if c_.get("protection"): p.append("protection : " + ", ".join(c_["protection"]))
+    return " · ".join(p)
+
+
 def note_fr(x):
     return str(round(x, 1)).replace(".", ",")
 
@@ -308,8 +334,11 @@ def liste_lieux(rub, items, niveau="phare"):
             plus += f'<div class="i wv">« {E(f["wikivoyage"])} » <small>(Wikivoyage)</small></div>'
         if f.get("histoire"):
             h_ = f["histoire"]
-            plus += (f'<details class="histoire"><summary>Histoire</summary><p>{E(h_["r"])}</p>'
-                     f'<p><a href="https://fr.wikipedia.org/wiki/{E(h_["t"].replace(" ", "_"))}" rel="noopener" target="_blank">Lire l’article Wikipédia</a></p></details>')
+            if h_.get("f"):
+                plus += f'<div class="i carac">{E(carac_txt(h_["f"]))}</div>'
+            if h_.get("r"):
+                plus += (f'<details class="histoire"><summary>Histoire</summary><p>{E(h_["r"])}</p>'
+                         f'<p><a href="https://fr.wikipedia.org/wiki/{E(h_["t"].replace(" ", "_"))}" rel="noopener" target="_blank">Lire l’article Wikipédia</a></p></details>')
         for a_ in (f.get("avis") or [])[:2]:
             plus += f'<div class="i avis-l">{a_["note"]}/5 · « {E(a_["texte"][:300])} » <small>{E(a_.get("date", ""))}</small></div>'
         return (f'<li data-type="{E(f["type"])}" style="--c:var(--{rub})"><h3>{E(f["nom"])}</h3><div class="m">{E(meta)}</div>'
@@ -405,6 +434,8 @@ def page_ville(v, ctx):
         facts.append(("Altitude", f'{nombre(enc["altitude_m"])} m'))
     if enc.get("superficie_km2"):
         facts.append(("Superficie", f'{str(enc["superficie_km2"]).replace(".", ",")} km²'))
+        if enc["superficie_km2"] > 0.5:
+            facts.append(("Densité", f'{nombre(round(v["population"] / enc["superficie_km2"]))} habitants par km²'))
     if enc.get("eaux"):
         facts.append(("Au bord de", ", ".join(enc["eaux"])))
     if enc.get("maire"):
@@ -823,6 +854,9 @@ def page_ville(v, ctx):
     cpt["villes_enrichies"] += 1 if (tous or enc) else 0
 
     desc = f"Guide de voyage de {v['nom']} ({nom_pays}) : lieux à voir, où manger, où dormir, météo, jours fériés et infos pratiques."
+    if v["niveau"] != "autre" and (wps or gs or wp):
+        ecrire_gz(f"villes/{v['slug']}/textes.json.gz", {"resume": wp.get("resume", ""), "textes": {k: x["texte"] for k, x in wps.items()},
+                                                        "guide": {k: x["texte"] for k, x in gs.items()}})
     if v["niveau"] == "autre" and not ctx.get("pages_completes"):
         # Page légère : le reste de la fiche est construit dans le navigateur à partir des fichiers compressés
         donnees["complet"] = {"textes": {k: x["texte"] for k, x in wps.items()}, "resume": wp.get("resume", ""),
@@ -1410,6 +1444,7 @@ def main():
         cv = ctx["conseils"].get(cc)
         if cv:
             ecrire(f"pays/{cc.lower()}/conseils/index.html", page_conseils(cc, nomp, cv))
+            ecrire_gz(f"pays/{cc.lower()}/conseils.json.gz", {"url": cv.get("url"), "sections": cv["sections"]})
             corps = corps.replace('<section class="facts">', f'<p class="alerte" style="--a:{COULEURS_NIVEAU.get(cv.get("niveau", 0), "#56707A")}"><b>{E(cv.get("niveau_texte", ""))}.</b> '
                                   f'<a href="conseils/">Lire les conseils aux voyageurs : sécurité, santé et vaccins, lois, transports…</a></p><section class="facts">', 1)
         ecrire(f"pays/{cc.lower()}/index.html", page("../../", f"{nomp} : toutes les villes – Dix Mille Escales",

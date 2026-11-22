@@ -113,9 +113,91 @@
       + (d.meilleurs_mois && d.meilleurs_mois.indexOf(MOIS_AFF[i]) > -1 ? 'C’est l’un des meilleurs mois pour y aller.' : (d.meilleurs_mois && d.meilleurs_mois.length ? 'Les mois les plus agréables sont : ' + d.meilleurs_mois.join(', ') + '.' : ''));
   }
 
+  var VIDES = ' le la les un une des du de d l a au aux et ou en dans sur pour par avec sans est sont etre faut il elle on y quel quelle quels quelles que qui quoi comment combien pourquoi ou quand ce cet cette ces mon ma mes ton ta tes son sa ses leur leurs je tu nous vous ils elles peut peux pouvoir faire fait se ne pas plus moins tres bien bon bonne avoir ville est-ce ';
+  function mots(t, ville) {
+    var v = ' ' + norm(ville || '') + ' ';
+    return norm(t).replace(/[^a-z0-9 ]/g, ' ').split(/\s+/).filter(function (w) { return w.length >= 3 && VIDES.indexOf(' ' + w + ' ') < 0 && v.indexOf(' ' + w + ' ') < 0; })
+      .map(function (w) { return w.length > 4 ? w.replace(/(x|s)$/, '') : w; });
+  }
+  function carac(c) {
+    if (!c) return '';
+    var p = [];
+    function m(x) { return (x < 100 ? String(Math.round(x * 10) / 10).replace('.', ',') : nb(Math.round(x))) + ' m'; }
+    if (c.hauteur) p.push('hauteur ' + m(c.hauteur)); if (c.longueur) p.push('longueur ' + m(c.longueur));
+    if (c.superficie) p.push('superficie ' + (c.superficie >= 1e6 ? String(Math.round(c.superficie / 1e4) / 100).replace('.', ',') + ' km²' : c.superficie >= 1e4 ? nb(Math.round(c.superficie / 1e4)) + ' ha' : nb(Math.round(c.superficie)) + ' m²'));
+    var dt = c.creation || c.debut || c.ouverture; if (dt) p.push('date : ' + (dt < 0 ? (-dt) + ' av. J.-C.' : dt));
+    if (c.architecte) p.push('architecte : ' + c.architecte.join(', ')); if (c.style) p.push('style : ' + c.style.join(', '));
+    if (c.visiteurs_an) p.push(nb(c.visiteurs_an) + ' visiteurs par an');
+    return p.join(' · ');
+  }
+  var lieuxCache = {}, textesCache = {};
+  function chargerLieux(slug) {
+    if (lieuxCache[slug]) return Promise.resolve(lieuxCache[slug]);
+    return lireJson(root + 'villes/' + slug + '/lieux.json.gz').then(function (x) { lieuxCache[slug] = x.lieux || []; return lieuxCache[slug]; }).catch(function () { return []; });
+  }
+  /* Un lieu cité dans la question (tous les mots significatifs de son nom y figurent) */
+  function lieuCite(q0, lieux) {
+    var qn = ' ' + norm(q0).replace(/[^a-z0-9 ]/g, ' ') + ' ', meilleur = null, lg = 0;
+    lieux.forEach(function (f) {
+      var ws = norm(f.nom).replace(/[^a-z0-9 ]/g, ' ').split(/\s+/).filter(function (w) { return w.length >= 3 && VIDES.indexOf(' ' + w + ' ') < 0; });
+      if (!ws.length || ws.join('').length < 5) return;
+      if (ws.every(function (w) { return qn.indexOf(' ' + w + ' ') > -1 || qn.indexOf(' ' + w.replace(/s$/, '') + ' ') > -1; }) && ws.join('').length > lg) { meilleur = f; lg = ws.join('').length; }
+    });
+    return meilleur;
+  }
+  function repLieu(f, d) {
+    var h = '<b>' + E(f.nom) + '</b> · ' + E(f.type) + ((f.wikidata || f.patrimoine_mondial) ? ' · ★ incontournable' : '');
+    if (f.histoire && f.histoire.f) h += '<p>' + E(carac(f.histoire.f)) + '</p>';
+    if (f.histoire && f.histoire.r) h += '<p>' + E(f.histoire.r) + '</p>';
+    if (f.adresse) h += '<p>Adresse : ' + E(f.adresse) + '</p>';
+    if (f.horaires) h += '<p>Horaires : ' + E(f.horaires) + '</p>';
+    if (f.distance_km) h += '<p>À ' + String(f.distance_km).replace('.', ',') + ' km ' + E(f.direction || '') + ' ' + deV(d.nom) + '.</p>';
+    if (f.wikivoyage) h += '<p>Wikivoyage : « ' + E(f.wikivoyage) + ' »</p>';
+    if (!f.histoire && !f.horaires && !f.adresse) h += '<p>Nous n’avons pas encore de détails sur ce lieu.</p>';
+    return h + '<p><a href="https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(f.nom + ' ' + d.nom) + '" target="_blank" rel="noopener">Avis et photos</a></p>';
+  }
+  /* Recherche dans tous les textes de la ville (Wikipédia, Wikivoyage) et du pays (conseils officiels) */
+  function chercherTextes(q0, d) {
+    var cle = d.slug;
+    var p1 = textesCache[cle] ? Promise.resolve(textesCache[cle]) : (d.complet ? Promise.resolve({ resume: d.complet.resume, textes: d.complet.textes, guide: d.complet.guide })
+      : lireJson(root + 'villes/' + d.slug + '/textes.json.gz').catch(function () { return {}; }));
+    var p2 = d.cc ? lireJson(root + 'pays/' + d.cc.toLowerCase() + '/conseils.json.gz').catch(function () { return null; }) : Promise.resolve(null);
+    return Promise.all([p1, p2]).then(function (r) {
+      textesCache[cle] = r[0];
+      var T = r[0] || {}, C = r[1], passages = [];
+      var NOMS = { histoire: 'Histoire', geographie: 'Géographie', culture: 'Culture', patrimoine: 'Patrimoine', gastronomie: 'Gastronomie', economie: 'Économie', sport: 'Sport', transports: 'Transports',
+        comprendre: 'Comprendre', aller: 'S’y rendre', circuler: 'Se déplacer', voir: 'À voir', faire: 'À faire', manger: 'Manger', sortir: 'Sortir', loger: 'Se loger', acheter: 'Acheter', securite: 'Sécurité', sante: 'Santé', communiquer: 'Communiquer', respecter: 'Coutumes', environs: 'Aux environs',
+        avertissements: 'Zones à éviter', entree_sortie: 'Entrée et sortie', lois_culture: 'Lois et coutumes', catastrophes_climat: 'Catastrophes naturelles et climat', aide: 'Aide sur place' };
+      function ajouter(texte, src, rub) { (texte || '').split(/\n+/).forEach(function (p) { p = p.trim(); if (p.length > 40) passages.push({ t: p, src: src, rub: rub }); }); }
+      if (T.resume) ajouter(T.resume, 'Wikipédia', 'En bref');
+      Object.keys(T.textes || {}).forEach(function (k) { ajouter(T.textes[k], 'Wikipédia', NOMS[k] || k); });
+      Object.keys(T.guide || {}).forEach(function (k) { ajouter(T.guide[k], 'Wikivoyage', NOMS[k] || k); });
+      if (C && C.sections) Object.keys(C.sections).forEach(function (k) {
+        var titre = NOMS[k] || k;
+        C.sections[k].forEach(function (b) { if (b[0] === 't') titre = b[1]; else if (b[1].length > 40) passages.push({ t: b[1], src: 'Conseils aux voyageurs (Canada)', rub: titre, pays: 1 }); });
+      });
+      var ws = mots(q0, d.nom);
+      if (!ws.length) return null;
+      passages.forEach(function (p) {
+        var n = norm(p.t), r_ = norm(p.rub), s = 0;
+        ws.forEach(function (w) { if (n.indexOf(w) > -1) s += w.length > 6 ? 1.6 : 1; if (r_.indexOf(w) > -1) s += 1; });
+        p.s = s;
+      });
+      var best = passages.reduce(function (m_, p) { return Math.max(m_, p.s); }, 0);
+      if (best < 1) return null;
+      var top = passages.filter(function (p) { return p.s >= best * 0.6; }).sort(function (a, b) { return b.s - a.s || a.t.length - b.t.length; }).slice(0, 3);
+      if (!top.length) return null;
+      function surligner(t) { var h = E(t.length > 450 ? t.slice(0, 450) + '…' : t); ws.forEach(function (w) { h = h.replace(new RegExp('(' + w.replace(/[^a-z0-9]/g, '') + '[a-zà-ÿ]*)', 'gi'), '<mark>$1</mark>'); }); return h; }
+      return 'Voici ce que disent nos sources :' + top.map(function (p) { return '<p class="q-extrait">' + surligner(p.t) + '<br><small>' + E(p.src) + ' · ' + E(p.rub) + (p.pays ? ' (' + E(d.pays) + ')' : '') + '</small></p>'; }).join('')
+        + (C ? '<p><a href="' + root + 'pays/' + d.cc.toLowerCase() + '/conseils/">Tous les conseils pour ' + E(d.pays) + '</a></p>' : '');
+    });
+  }
+
   function repondre(q0, d) {
     var q = ' ' + norm(q0) + ' ', a = function (re) { return re.test(q); };
     var m = moisCite(q.trim());
+    // Questions précises que les sujets prévus comprendraient mal : directement la recherche dans les textes
+    if (a(/(robinet|potable|moustique|piqure|tenue|vetement|pourboire|marchand|taxi|tuk|rickshaw|mendi|voler|vol a la tire|pickpocket|femme seule|enfant|bebe|handicap|animal|chien|chat|drone|alcool|ramadan|religieu|temple|mosquee|eglise|photo)/)) return null;
     if (a(/ (quelle heure|l heure|heure locale|decalage|fuseau)/)) return heure(d);
     if (a(/(visa|passeport|formalit| entrer | entree |frontiere|esta |autorisation)/)) {
       if (!d.formalites) return manque(d, 'les formalités');
@@ -214,9 +296,11 @@
         + (d.aller ? '<p>' + E(d.aller) + '</p>' : '') + lien(d, 'guide-aller', 'Voir comment s’y rendre');
     }
     if (a(/(distance|loin| km |kilometre|vol |avion|combien de temps|depuis paris|de paris)/)) return E(d.nom) + ' est à environ <b>' + nb(d.distance_paris) + ' km</b> de Paris à vol d’oiseau' + (d.distance_paris > 350 ? ', soit environ ' + Math.max(1, Math.round(d.distance_paris / 800 + 0.5)) + ' h de vol sans escale.' : ', faisable en train ou en voiture.');
-    if (a(/(habitant|population|taille|grande)/)) return E(d.nom) + ' compte <b>' + nb(d.population) + ' habitants</b> et se classe ' + nb(d.rang) + 'ᵉ ville du guide.';
+    if (a(/(habitant|population|combien de personnes|taille de la ville|grande ville)/)) return E(d.nom) + ' compte <b>' + nb(d.population) + ' habitants</b> et se classe ' + nb(d.rang) + 'ᵉ ville du guide.';
     if (a(/(voisin|proche|ville a cote)/)) return 'Villes du guide les plus proches ' + deV(d.nom) + ' :' + liste(d.proches, function (p) { return '<a href="' + root + 'villes/' + p.slug + '/">' + E(p.nom) + '</a> (' + p.km + ' km)'; });
-    // Pas de sujet reconnu : portrait de la ville
+    return null;  // pas de sujet reconnu : recherche dans les textes (voir chercherTextes)
+  }
+  function portrait(d) {
     return '<b>' + E(d.nom) + '</b> (' + E(d.pays) + '), ' + nb(d.population) + ' habitants.' + (d.resume ? '<p>' + E(d.resume) + '</p>' : '')
       + ' Je peux vous répondre sur : visa, météo, quand partir, budget, monnaie, langue, heure, que voir, où manger, où dormir, activités, alentours, histoire, sécurité…'
       + lien(d, '', 'Ouvrir la fiche complète') + ' <span class="q-infos">' + nb(d.infos) + ' informations dans cette fiche.</span>';
@@ -242,7 +326,15 @@
         derniere = slug;
         charger(slug, function (d) {
           if (!d) { rep.innerHTML = '<p class="q-vide">Impossible de charger la fiche de cette ville pour le moment.</p>'; return; }
-          rep.innerHTML = '<div class="q-ville">' + E(d.nom) + ' · ' + E(d.pays) + '</div><div class="q-texte">' + repondre(q, d) + '</div>';
+          var tete = '<div class="q-ville">' + E(d.nom) + ' · ' + E(d.pays) + '</div><div class="q-texte">';
+          chargerLieux(slug).then(function (L) {
+            var f = lieuCite(q, L);
+            if (f) { rep.innerHTML = tete + repLieu(f, d) + '</div>'; return; }
+            var r_ = repondre(q, d);
+            if (r_) { rep.innerHTML = tete + r_ + '</div>'; return; }
+            rep.innerHTML = tete + '<p class="q-vide">Je cherche dans tous les textes de ' + E(d.nom) + '…</p></div>';
+            chercherTextes(q, d).then(function (h) { rep.innerHTML = tete + (h || portrait(d)) + '</div>'; }).catch(function () { rep.innerHTML = tete + portrait(d) + '</div>'; });
+          });
         });
       });
     }

@@ -26,12 +26,26 @@
   function nb(n) { return new Intl.NumberFormat('fr-FR').format(n); }
   function v(x) { return String(x).replace('.', ','); }
   function hfr(h) { Object.keys(JOURS).forEach(function (k) { h = h.split(k).join(JOURS[k]); }); return h.replace(/;/g, ' ; '); }
+  function carac(c) {
+    if (!c) return '';
+    function m(x) { return (x < 100 ? String(Math.round(x * 10) / 10).replace('.', ',') : nb(Math.round(x))) + ' m'; }
+    function su(x) { return x >= 1e6 ? String(Math.round(x / 1e4) / 100).replace('.', ',') + ' km²' : x >= 1e4 ? nb(Math.round(x / 1e4)) + ' ha' : nb(Math.round(x)) + ' m²'; }
+    function an(x) { return x < 0 ? (-x) + ' av. J.-C.' : String(x); }
+    var p = [];
+    if (c.hauteur) p.push('hauteur ' + m(c.hauteur)); if (c.longueur) p.push('longueur ' + m(c.longueur)); if (c.largeur) p.push('largeur ' + m(c.largeur));
+    if (c.superficie) p.push('superficie ' + su(c.superficie)); if (c.altitude) p.push('altitude ' + m(c.altitude));
+    var d = c.creation || c.debut || c.ouverture; if (d) p.push('date : ' + an(d));
+    if (c.architecte) p.push('architecte : ' + c.architecte.join(', ')); if (c.style) p.push('style : ' + c.style.join(', '));
+    if (c.visiteurs_an) p.push(nb(c.visiteurs_an) + ' visiteurs par an'); if (c.protection) p.push('protection : ' + c.protection.join(', '));
+    return p.join(' · ');
+  }
   function depot() { var m = location.hostname.match(/^([^.]+)\.github\.io$/), seg = location.pathname.split('/').filter(Boolean); return m && seg.length ? m[1] + '/' + seg[0] : 'pablopacaut17-sudo/dix-mille-escales'; }
   function villeNom() { var h = document.querySelector('h1.city'); return h ? h.textContent.replace(/Ville phare|Fiche complète/g, '').trim() : ''; }
   function extras(f, slug) {
     var vn = villeNom(), h = '';
     if (f.wikivoyage) h += '<div class="i wv">« ' + E(f.wikivoyage) + ' » <small>(Wikivoyage)</small></div>';
-    if (f.histoire) h += '<details class="histoire"><summary>Histoire</summary><p>' + E(f.histoire.r) + '</p><p><a href="https://fr.wikipedia.org/wiki/' + encodeURIComponent(f.histoire.t.replace(/ /g, '_')) + '" target="_blank" rel="noopener">Lire l’article Wikipédia</a></p></details>';
+    if (f.histoire && f.histoire.f) h += '<div class="i carac">' + E(carac(f.histoire.f)) + '</div>';
+    if (f.histoire && f.histoire.r) h += '<details class="histoire"><summary>Histoire</summary><p>' + E(f.histoire.r) + '</p><p><a href="https://fr.wikipedia.org/wiki/' + encodeURIComponent(f.histoire.t.replace(/ /g, '_')) + '" target="_blank" rel="noopener">Lire l’article Wikipédia</a></p></details>';
     (f.avis || []).slice(0, 2).forEach(function (a) { h += '<div class="i avis-l">' + a.note + '/5 · « ' + E(a.texte.slice(0, 300)) + ' » <small>' + E(a.date || '') + '</small></div>'; });
     var corps = 'Lieu : ' + f.nom + '\nIdentifiant : ' + f.id + '\nVille : ' + slug + '\n\nNote (de 1 à 5) : \n\nVotre avis :\n\n\nDate de la visite (mois et année) : \n\n(Votre avis sera publié sur Dix Mille Escales après relecture. Restez courtois et factuel.)';
     var liens = ' · <a href="https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(f.nom + ' ' + vn) + '" target="_blank" rel="noopener nofollow">Avis et photos</a>'
