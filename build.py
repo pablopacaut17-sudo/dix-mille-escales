@@ -11,7 +11,7 @@ Lit les données (data/) produites par les robots et fabrique le site complet da
   python3 build.py --limite 50      # seulement les 50 premières villes (test rapide)
 Variable facultative : SITE_URL (ex. https://dixmilleescales.fr) pour le plan du site.
 """
-import argparse, gzip, html, json, math, os, shutil, sys
+import argparse, gzip, html, json, math, os, re, shutil, sys
 from datetime import date, datetime, timezone
 
 RACINE = os.path.dirname(os.path.abspath(__file__))
@@ -529,6 +529,15 @@ def page_ville(v, ctx):
         if cle in gs and cle != "aller":
             corps.append(f'<section class="block" id="guide-{cle}"><h2>{E(titre_g.format(ville=v["nom"]))}</h2>{texte_html(gs[cle]["texte"], 3)}</section>')
 
+    cv = ctx["conseils"].get(v["pays"])
+    if cv:
+        zones = [t for g, t in cv["sections"].get("avertissements", []) if g == "t"][1:]
+        corps.append(f'<section class="block" id="conseils"><h2>Conseils officiels aux voyageurs</h2>'
+                     f'<p class="alerte" style="--a:{COULEURS_NIVEAU.get(cv.get("niveau", 0), "#56707A")}"><b>{E(nom_pays)} : {E(cv.get("niveau_texte", ""))}.</b></p>'
+                     + (f'<p class="lead">Zones à éviter ou à risque dans le pays :</p><ul class="unesco">' + "".join(f"<li>{E(z)}</li>" for z in zones[:8]) + "</ul>" if zones else "")
+                     + f'<p><a class="tout-voir" style="display:inline-block;text-decoration:none" href="../../pays/{v["pays"].lower()}/conseils/">Sécurité, santé et vaccins, lois et coutumes, transports, catastrophes naturelles : tous les conseils</a></p>'
+                     f'<p class="note">Source : gouvernement du Canada (données ouvertes). Pour les voyageurs français, la '
+                     f'<a href="https://www.diplomatie.gouv.fr/fr/conseils-aux-voyageurs/conseils-par-pays-destination/{slug_fd(nom_pays)}/" rel="noopener" target="_blank">fiche du ministère des Affaires étrangères</a> fait foi.</p></section>')
     sec_sante = section_sante(v, ctx, lieux, nom_pays)
     if sec_sante:
         corps.append(sec_sante)
@@ -590,7 +599,7 @@ def page_ville(v, ctx):
         return [{"nom": f["nom"], "type": f["type"], **({"cuisine": f["cuisine"]} if f.get("cuisine") else {}),
                  **({"adresse": f["adresse"]} if f.get("adresse") else {})}
                 for f in sorted([f for f in lieux if f["rubrique"] == rub], key=lambda f: (-f["infos"], f["nom"]))[:n]]
-    donnees = {"nom": v["nom"], "slug": v["slug"], "pays": nom_pays, "population": v["population"], "rang": v["rang"],
+    donnees = {"nom": v["nom"], "slug": v["slug"], "cc": v["pays"], "pays": nom_pays, "population": v["population"], "rang": v["rang"],
                "niveau": v["niveau"], "fuseau": v["fuseau"], "lat": v["lat"], "lon": v["lon"], "distance_paris": round(d_paris),
                "monnaie": pays.get("monnaie_nom", ""), "devise": devise, "taux": ctx["change"].get("taux", {}).get(devise),
                "langues": pays.get("langues", []), "indicatif": pays.get("indicatif", ""), "capitale": capitale,
@@ -640,6 +649,9 @@ def page_ville(v, ctx):
     donnees["proches"] = [{"nom": w["nom"], "slug": w["slug"], "km": round(d)} for d, w in v["proches"]]
     if ctx["urgences"].get(v["pays"]):
         donnees["urgences"] = ctx["urgences"][v["pays"]]
+    if cv:
+        donnees["conseils"] = {"niveau": cv.get("niveau", 0), "texte": cv.get("niveau_texte", ""),
+                               "zones": [t for g, t in cv["sections"].get("avertissements", []) if g == "t"][1:9], "fd": slug_fd(nom_pays)}
     if v.get("representations"):
         donnees["representations"] = [{k: x[k] for k in ("pays", "type", "nom", "adresse", "telephone", "site", "km")} for x in v["representations"]]
     sante_ = [f for f in lieux if f["rubrique"] == "sante"]
@@ -944,6 +956,69 @@ def section_sante(v, ctx, lieux, nom_pays):
     return h + "</section>"
 
 
+TITRES_CONSEILS = [("avertissements", "Niveau de risque et zones à éviter"), ("securite", "Sécurité : criminalité, transports, arnaques…"),
+                   ("sante", "Santé et vaccins"), ("lois_culture", "Lois et coutumes"), ("catastrophes_climat", "Catastrophes naturelles et climat"),
+                   ("entree_sortie", "Entrée et sortie (règles pour les voyageurs canadiens)"), ("aide", "Services d’urgence et aide sur place")]
+COULEURS_NIVEAU = {0: "#2F7D6D", 1: "#C99A00", 2: "#D9822B", 3: "#B5485D"}
+
+
+def slug_fd(nom):
+    """Adresse probable de la fiche du ministère français (diplomatie.gouv.fr) pour un pays."""
+    import unicodedata
+    t = unicodedata.normalize("NFKD", nom).encode("ascii", "ignore").decode().lower()
+    return re.sub(r"[^a-z0-9]+", "-", t).strip("-")
+
+
+def blocs_html(bl, visibles=8):
+    """Blocs (titre, paragraphe, élément de liste) -> HTML ; au-delà de « visibles » paragraphes, « Lire la suite »."""
+    out, liste, n, coupe = [], False, 0, None
+    for i, (g, t) in enumerate(bl):
+        if g != "l" and liste:
+            out.append("</ul>"); liste = False
+        if g == "t":
+            out.append(f"<h4>{E(t)}</h4>")
+        elif g == "l":
+            if not liste:
+                out.append("<ul>"); liste = True
+            out.append(f"<li>{E(t)}</li>")
+        else:
+            out.append(f"<p>{E(t)}</p>")
+            n += 1
+        if coupe is None and n >= visibles and g != "l" and i < len(bl) - 3:
+            coupe = len(out)
+    if liste:
+        out.append("</ul>")
+    if coupe:
+        return '<div class="prose">' + "".join(out[:coupe]) + '<details class="more"><summary>Lire la suite</summary>' + "".join(out[coupe:]) + "</details></div>"
+    return '<div class="prose">' + "".join(out) + "</div>"
+
+
+def page_conseils(cc, nomp, cv):
+    niv = cv.get("niveau", 0)
+    zones = [t for g, t in cv["sections"].get("avertissements", []) if g == "t"]
+    nav = "".join(f'<a href="#{k}">{E(t.split(" :")[0].split(" (")[0])}</a>' for k, t in TITRES_CONSEILS if k in cv["sections"])
+    corps = (f'<section class="hero"><p class="crumbs"><a href="../../../">Accueil</a> › <a href="../">{E(nomp)}</a></p>'
+             f'<h1 class="city" style="font-size:clamp(2.2rem,6.5vw,4.2rem)">Conseils aux voyageurs : {E(nomp)}</h1>'
+             f'<p class="tagline">Sécurité, zones à éviter, santé et vaccins, lois et coutumes, catastrophes naturelles, transports.</p></section>'
+             f'<p class="alerte" style="--a:{COULEURS_NIVEAU.get(niv, "#56707A")}"><b>{E(cv.get("niveau_texte", ""))}</b>'
+             f'{(" · Zones concernées : " + E(", ".join(zones[1:6])) + ("…" if len(zones) > 6 else "")) if len(zones) > 1 else ""}</p>'
+             f'<p class="note">Source : <a href="{E(cv["url"])}" rel="noopener" target="_blank">Conseils aux voyageurs et avertissements du gouvernement du Canada</a> '
+             f'(mis à jour le {E(cv.get("mise_a_jour", ""))}), en français, sous Licence du gouvernement ouvert – Canada. '
+             f'<b>Pour les voyageurs français, la fiche du ministère de l’Europe et des Affaires étrangères fait foi :</b> '
+             f'<a href="https://www.diplomatie.gouv.fr/fr/conseils-aux-voyageurs/conseils-par-pays-destination/{slug_fd(nomp)}/" rel="noopener" target="_blank">'
+             f'Conseils aux voyageurs – {E(nomp)} (diplomatie.gouv.fr)</a>. Inscrivez-vous aussi sur Ariane.</p>'
+             f'<div class="chips" style="margin:1rem 0 .5rem"><input type="search" class="recherche-lieux" id="cv-q" placeholder="Chercher dans ces conseils (vaccin, taxi, alcool, séisme…)" aria-label="Chercher dans les conseils"></div>'
+             f'<nav class="og-sous" aria-label="Rubriques">{nav}</nav>')
+    for k, t in TITRES_CONSEILS:
+        if k in cv["sections"]:
+            corps += f'<section class="block cv-sec" id="{k}"><h2>{E(t)}</h2>{blocs_html(cv["sections"][k], 12 if k == "avertissements" else 8)}</section>'
+    js = ("<script>(function(){var q=document.getElementById('cv-q');if(!q)return;function n(t){return (t||'').toLowerCase().normalize('NFD').replace(/[\\u0300-\\u036f]/g,'');}"
+          "q.addEventListener('input',function(){var t=n(q.value.trim());document.querySelectorAll('.cv-sec').forEach(function(s){var vu=0;"
+          "s.querySelectorAll('p,li,h4').forEach(function(e){var ok=!t||n(e.textContent).indexOf(t)>-1;e.style.display=ok?'':'none';if(ok&&t)vu++;});"
+          "s.querySelectorAll('details').forEach(function(d){if(t)d.open=true;});s.style.display=(!t||vu)?'':'none';});});})();</script>")
+    return page("../../../", f"Conseils aux voyageurs {nomp} – Dix Mille Escales", f"Sécurité, santé, vaccins, lois et coutumes, zones à éviter : {nomp}.", corps).replace("</body>", js + "</body>")
+
+
 def proches(villes, n=6):
     """Pour chaque ville, ses n plus proches voisines du guide (recherche par cases de 5°)."""
     cases = {}
@@ -999,6 +1074,12 @@ def main():
                 ctx["aeroports"] = json.load(f)
             break
     ctx["urgences"] = (lire("urgences.json", {}) or {}).get("pays", {})
+    ctx["conseils"] = {}
+    dcv = os.path.join(DONNEES, "conseils")
+    if os.path.isdir(dcv):
+        for fn in os.listdir(dcv):
+            if fn.endswith(".json"):
+                ctx["conseils"][fn[:-5]] = lire(f"conseils/{fn}")
     diplo = {}
     dd = os.path.join(DONNEES, "diplomatie")
     if os.path.isdir(dd):
@@ -1073,6 +1154,7 @@ def main():
                           "taux": ctx["change"].get("taux", {}).get(dev) if dev != "EUR" else 1, "langues": pz.get("langues", []),
                           "secu": alerte_["niveau"] if alerte_ else 0, "cout": cout_["indice"] if cout_ else None,
                           "visa": {pp: formalite_fr(ctx["formalites"].get(pp, {}).get(cc, ""), pp, cc) for pp in PASSEPORTS} if ctx["formalites"] else {},
+                          "conseils": (ctx["conseils"].get(cc) or {}).get("niveau_texte", ""),
                           "urgences": [x["numero"] + (" (" + ", ".join(x["services"]) + ")" if x["services"] else "") for x in ctx["urgences"].get(cc, [])]}
     ecrire_gz("static/monde.json.gz", {"date": ctx["date_txt"], "villes": ctx["monde"], "pays": monde_pays,
                                        "change": ctx["change"].get("taux", {}), "change_date": ctx["change"].get("jour_bce", "")})
@@ -1135,6 +1217,11 @@ def main():
                  + (f'<section class="block"><h2>Toutes les villes ({nombre(len(lv))})</h2><div class="chips"><input type="search" class="recherche-lieux" id="pays-q" '
                     f'placeholder="Chercher parmi les {nombre(len(lv))} villes de ce pays…" aria-label="Chercher une ville du pays"></div>'
                     f'<div class="near" id="pays-liste" data-pays="{E(nomp)}"></div><p class="note" id="pays-note"></p></section>' if len(lv) > len(phares) + len(grandes) else ""))
+        cv = ctx["conseils"].get(cc)
+        if cv:
+            ecrire(f"pays/{cc.lower()}/conseils/index.html", page_conseils(cc, nomp, cv))
+            corps = corps.replace('<section class="facts">', f'<p class="alerte" style="--a:{COULEURS_NIVEAU.get(cv.get("niveau", 0), "#56707A")}"><b>{E(cv.get("niveau_texte", ""))}.</b> '
+                                  f'<a href="conseils/">Lire les conseils aux voyageurs : sécurité, santé et vaccins, lois, transports…</a></p><section class="facts">', 1)
         ecrire(f"pays/{cc.lower()}/index.html", page("../../", f"{nomp} : toutes les villes – Dix Mille Escales",
                f"Guide de voyage {nomp} : {len(lv)} villes, visa, sécurité, monnaie, langues.", corps).replace("</body>", PAYS_JS + "</body>"))
     cont_html = ""
@@ -1165,7 +1252,9 @@ def main():
                ("Claude (Anthropic)", "https://www.anthropic.com/", "Rédaction des conseils à partir des données", "Textes originaux du site"),
                ("Wikivoyage en français", "https://fr.wikivoyage.org/", "Conseils de voyage : s’y rendre, se déplacer, voir, manger, se loger…", "CC BY-SA 3.0, textes repris avec lien vers l’article"),
                ("OurAirports", "https://ourairports.com/data/", "Aéroports les plus proches", "Domaine public"),
-               ("OpenFreeMap", "https://openfreemap.org/", "Fond de la carte interactive", "Gratuit, données © OpenStreetMap")]
+               ("OpenFreeMap", "https://openfreemap.org/", "Fond de la carte interactive", "Gratuit, données © OpenStreetMap"),
+               ("Gouvernement du Canada, Conseils aux voyageurs", "https://voyage.gc.ca/", "Niveaux de risque, zones à éviter, sécurité, santé, lois, catastrophes naturelles", "Licence du gouvernement ouvert – Canada"),
+               ("Geofabrik", "https://download.geofabrik.de/", "Fichiers OpenStreetMap par région", "Données © OpenStreetMap (ODbL)")]
     lignes = "".join(f'<tr><td><a href="{u}" rel="noopener">{E(n)}</a></td><td>{E(r)}</td><td>{E(l)}</td></tr>' for n, u, r, l in sources)
     ecrire("sources/index.html", page("../", "Nos sources – Dix Mille Escales", "Sources et licences des données du guide.",
            f'<section class="hero"><h1 class="city" style="font-size:clamp(2.4rem,7vw,4.5rem)">Nos sources</h1>'
@@ -1182,7 +1271,7 @@ def main():
                     with open(os.path.join(dl, fn), encoding="utf-8") as f:
                         suivi.update(json.load(f))
     noms = {"guides": "Guides (Wikivoyage)", "aeroports": "Aéroports (OurAirports)", "surveillance_etat": "Surveillance (rapport du matin)", "villes": "Liste des villes (GeoNames)", "lieux_0": "Lieux, robot 1 (OpenStreetMap)", "lieux_1": "Lieux, robot 2 (OpenStreetMap)",
-            "lieux_2": "Lieux, robot 3 (OpenStreetMap)", "lieux_3": "Lieux, robot 4 (OpenStreetMap)", "urgences": "Numéros d’urgence (Wikidata)", "meteo": "Météo (Open-Meteo)", "redaction": "Rédaction (IA)", "climat": "Climat (Open-Meteo ERA5)", "securite": "Sécurité (Département d’État)",
+            "lieux_2": "Lieux, robot 3 (OpenStreetMap)", "lieux_3": "Lieux, robot 4 (OpenStreetMap)", "conseils": "Conseils aux voyageurs (Canada)", "urgences": "Numéros d’urgence (Wikidata)", "meteo": "Météo (Open-Meteo)", "redaction": "Rédaction (IA)", "climat": "Climat (Open-Meteo ERA5)", "securite": "Sécurité (Département d’État)",
             "formalites": "Formalités (Passport Index)", "cout": "Coût de la vie (Banque mondiale)", "encyclopedie": "Encyclopédie (Wikidata, Wikipédia)", "lieux": "Lieux (OpenStreetMap)", "meteo": "Météo (Open-Meteo)", "feries": "Jours fériés (Nager.Date)", "change": "Change (BCE)"}
     lignes = ""
     for k, n in noms.items():

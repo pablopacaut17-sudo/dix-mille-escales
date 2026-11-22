@@ -185,6 +185,10 @@
       if (d.sante) h += 'Soins ' + aV(d.nom) + ' (' + cpt(d.nb_sante, 'adresse', 'adresses') + ') :' + liste(d.sante.slice(0, 5), function (x) { return '<b>' + E(x.nom) + '</b>, ' + E(x.type.toLowerCase()) + (x.urgences === 'oui' ? ', urgences' : '') + (x.telephone ? ', ' + E(x.telephone) : ''); });
       return h ? h + lien(d, 'sante', 'Voir la rubrique santé') : manque(d, 'les informations de santé');
     }
+    if (a(/(danger|dangereux|zone|eviter|risque|attentat|terroris|vaccin|paludisme|loi|alcool|drogue|arnaque|seisme|cyclone|mousson)/) && d.conseils) {
+      return E(d.pays) + ' : <b>' + E(d.conseils.texte) + '</b>.' + (d.conseils.zones.length ? ' Zones à éviter ou à risque :' + liste(d.conseils.zones, function (z) { return E(z); }) : '')
+        + '<p><a href="' + root + 'pays/' + d.cc.toLowerCase() + '/conseils/">Tous les conseils : sécurité, santé et vaccins, lois, transports, catastrophes naturelles</a> (source : gouvernement du Canada ; la fiche du ministère français fait foi).</p>';
+    }
     if (a(/(ambassade|consulat|consul)/)) {
       if (!d.representations) return manque(d, 'les ambassades et consulats');
       var NR = { FR: 'France', BE: 'Belgique', CH: 'Suisse', CA: 'Canada' };

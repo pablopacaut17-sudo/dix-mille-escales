@@ -96,6 +96,14 @@
     } else {
       h += sec('lieux', 'Lieux, adresses et visites', '<p class="empty">Les robots n’ont pas encore exploré ' + E(d.nom) + ' : monuments, restaurants, hôtels et boutiques apparaîtront ici après leur passage.</p>');
     }
+    // Conseils officiels aux voyageurs
+    if (d.conseils) {
+      var CN = ['#2F7D6D', '#C99A00', '#D9822B', '#B5485D'];
+      h += sec('conseils', 'Conseils officiels aux voyageurs', '<p class="alerte" style="--a:' + (CN[d.conseils.niveau] || '#56707A') + '"><b>' + E(d.pays) + ' : ' + E(d.conseils.texte) + '.</b></p>'
+        + (d.conseils.zones.length ? '<p class="lead">Zones à éviter ou à risque dans le pays :</p><ul class="unesco">' + d.conseils.zones.map(function (z) { return '<li>' + E(z) + '</li>'; }).join('') + '</ul>' : '')
+        + '<p><a class="tout-voir" style="display:inline-block;text-decoration:none" href="' + root + 'pays/' + d.cc.toLowerCase() + '/conseils/">Sécurité, santé et vaccins, lois et coutumes, transports, catastrophes naturelles : tous les conseils</a></p>'
+        + '<p class="note">Source : gouvernement du Canada (données ouvertes). Pour les voyageurs français, la <a href="https://www.diplomatie.gouv.fr/fr/conseils-aux-voyageurs/conseils-par-pays-destination/' + E(d.conseils.fd) + '/" rel="noopener" target="_blank">fiche du ministère des Affaires étrangères</a> fait foi.</p>');
+    }
     // Santé et urgences
     if ((d.urgences && d.urgences.length) || (d.sante && d.sante.length) || (d.representations && d.representations.length)) {
       var TR = { embassy: 'Ambassade', consulate: 'Consulat', consulate_general: 'Consulat général', honorary_consul: 'Consul honoraire' };

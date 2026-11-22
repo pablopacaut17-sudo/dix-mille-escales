@@ -65,6 +65,7 @@ jobs:
           python3 robots/robot_cout.py || true
           python3 robots/robot_aeroports.py || true
           python3 robots/robot_urgences.py || true
+          python3 robots/robot_conseils.py || true
       - name: Météo et qualité de l'air
         continue-on-error: true
         run: python3 robots/robot_meteo.py
@@ -75,7 +76,7 @@ jobs:
           python3 robots/sauver.py --branche donnees-base --chemins change.json feries securite.json formalites.json
           cout.json meteo aeroports.json.gz aeroports_meta.json journal/change.json journal/feries.json
           journal/securite.json journal/formalites.json journal/cout.json journal/meteo.json journal/aeroports.json
-          urgences.json journal/urgences.json
+          urgences.json journal/urgences.json conseils journal/conseils.json
 
   encyclopedie:
     needs: villes

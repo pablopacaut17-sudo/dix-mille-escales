@@ -35,7 +35,7 @@ ATTENDUS = {
     "formalites": ("base", 30, "Formalités"), "cout": ("base", 30, "Coût de la vie"), "meteo": ("base", 30, "Météo"),
     "climat": ("climat", 30, "Climat"), "encyclopedie": ("encyclopedie", 30, "Encyclopédie"),
     "lieux_0": ("lieux", 30, "Lieux, robot 1"), "lieux_1": ("lieux", 30, "Lieux, robot 2"), "lieux_2": ("lieux", 30, "Lieux, robot 3"), "lieux_3": ("lieux", 30, "Lieux, robot 4"),
-    "guides": ("guides", 30, "Guides Wikivoyage"), "aeroports": ("base", 24 * 35, "Aéroports"), "urgences": ("base", 24 * 35, "Numéros d’urgence"),
+    "guides": ("guides", 30, "Guides Wikivoyage"), "aeroports": ("base", 24 * 35, "Aéroports"), "urgences": ("base", 24 * 35, "Numéros d’urgence"), "conseils": ("base", 30, "Conseils aux voyageurs (Canada)"),
 }
 BRANCHES = ["donnees-base", "donnees-encyclopedie", "donnees-lieux-0", "donnees-lieux-1", "donnees-lieux-2", "donnees-lieux-3", "donnees-guides", "donnees-climat"]
 MOIS = ["janv.", "févr.", "mars", "avr.", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc."]
