@@ -324,17 +324,46 @@ main>.chapter:not(:first-child){margin-top:4.5rem}
   .months{height:130px}
   .months button{font-size:.62rem}
 }
+
+/* Éléments communs à tout le site */
+.hero > *,.hero-grid > *{min-width:0}
+.carnet-btns{max-width:100%;min-width:0}
+.pied-commun{display:block!important}
+.foot-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1.4rem 2rem;margin:0 0 1.4rem}
+.foot-cols b{display:block;font-family:var(--display);font-size:.95rem;margin-bottom:.4rem;color:var(--ink)}
+.foot-cols a{display:block;font-family:var(--display);font-size:.9rem;color:var(--muted);text-decoration:none;padding:.18rem 0}
+.foot-cols a:hover{color:var(--ink);text-decoration:underline}
+.foot-note{font-size:.88rem;color:var(--muted)}
+.carnet-btns{display:flex;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;gap:.45rem;margin:.9rem 0 0;padding-bottom:.2rem}
+.carnet-btns::-webkit-scrollbar{display:none}
+.carnet-btns button,.carnet-btns a{flex:0 0 auto;font-family:var(--display);font-size:.88rem;font-weight:600;padding:.45rem 1rem;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;text-decoration:none}
+.carnet-btns .on{background:#F2B705;border-color:#F2B705;color:#12313B}
+.haut-page{position:fixed;right:1rem;bottom:calc(var(--bas,0px) + 1rem);z-index:19;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;display:grid;place-items:center;box-shadow:0 6px 18px rgba(18,49,59,.12)}
+.haut-page[hidden]{display:none}
+.haut-page svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.barre-bas{display:none}
+@media (max-width:700px){
+  :root{--bas:calc(62px + env(safe-area-inset-bottom,0px))}
+  body{padding-bottom:var(--bas)}
+  .barre-bas{display:grid;grid-template-columns:repeat(4,1fr);position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--surface);border-top:1px solid var(--line);padding:.35rem .4rem calc(.35rem + env(safe-area-inset-bottom,0px));box-shadow:0 -4px 16px rgba(18,49,59,.06)}
+  .barre-bas a,.barre-bas button{all:unset;display:flex;flex-direction:column;align-items:center;gap:.15rem;font-family:var(--display);font-size:.74rem;font-weight:600;color:var(--muted);padding:.25rem 0;cursor:pointer}
+  .barre-bas svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+  .barre-bas a:focus-visible,.barre-bas button:focus-visible{outline:3px solid #F2B705}
+  .top .search{display:none}
+  .top.cherche-ouverte .search{display:block;position:absolute;left:.8rem;right:.8rem;top:.45rem;max-width:none;z-index:3}
+  .theme-btn{margin-left:auto}
+}
 </style>
 </head>
 <body>
 
 <header class="top">
   <div class="top-in">
-    <a class="brand" href="#">
+    <a class="brand" href="../../">
       <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M2 12h20M12 2c3 3.2 3 16.8 0 20M12 2c-3 3.2-3 16.8 0 20" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="15.5" cy="8" r="2.6" fill="#F2B705"/></svg>
       Dix Mille Escales
     </a>
-    <nav class="mainnav" aria-label="Navigation principale"><a href="../../pays/">Pays</a><a href="../../#carte">Carte du monde</a><a href="../../#phares">Villes phares</a><a href="../../pays/pt/">Portugal</a></nav>
+    <nav class="mainnav" aria-label="Navigation principale"><a href="../../pays/">Destinations</a><a href="../../outils/">Préparer</a><a href="../../premier-voyage/">Premier voyage</a><a href="../../carnet/">Mon carnet</a></nav>
     <form class="search" role="search" id="search">
       <label for="q" class="vh">Chercher une ville</label>
       <input id="q" type="search" placeholder="Chercher une ville" autocomplete="off">
@@ -1047,18 +1076,21 @@ main>.chapter:not(:first-child){margin-top:4.5rem}
 
 <a href="#city-name" class="totop" id="totop">↑ Haut de page</a>
 
-<footer class="site-foot">
-  <div class="in">
-    <div>
-      <a class="brand" href="#"><svg viewBox="0 0 24 24" aria-hidden="true" style="width:22px;height:22px"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M2 12h20M12 2c3 3.2 3 16.8 0 20M12 2c-3 3.2-3 16.8 0 20" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="15.5" cy="8" r="2.6" fill="#F2B705"/></svg>Dix Mille Escales</a>
-      <p style="margin:0">Le guide de voyage des 10 000 plus grandes villes du monde. Une fiche par ville, des informations pratiques vérifiées, une carte pour tout relier.</p>
-    </div>
-    <div><h3>Destinations</h3><ul><li><a href="#">Europe</a></li><li><a href="#">Afrique</a></li><li><a href="#">Asie</a></li><li><a href="#">Amériques</a></li><li><a href="#">Océanie</a></li></ul></div>
-    <div><h3>Autour de Lisbonne</h3><ul><li><a href="#">Porto</a></li><li><a href="#">Sintra</a></li><li><a href="#">Setúbal</a></li><li><a href="#">Évora</a></li><li><a href="#">Séville</a></li></ul></div>
-    <div><h3>Le guide</h3><ul><li><a href="#">À propos</a></li><li><a href="#">Nos sources</a></li><li><a href="#">Signaler une erreur</a></li><li><a href="#">Contact</a></li></ul></div>
-    <p class="legal">Prototype de fiche « ville phare », mise à jour en novembre 2026. Sources prévues pour la version complète : GeoNames, Wikidata, OpenStreetMap, Wikivoyage (CC BY-SA), sites officiels des transports et de la ville. Tarifs de transport et taxe touristique : valeurs officielles 2026 ; autres prix indicatifs.</p>
-  </div>
-</footer>
+<footer class="site-foot"><div class="in pied-commun">
+<div class="foot-cols">
+<div><b>Destinations</b><a href="../../pays/">Tous les pays</a><a href="../../pays/pt/">Portugal</a><a href="../../#carte">Carte du monde</a><a href="../../ou-partir/">Où partir ?</a></div>
+<div><b>Préparer</b><a href="../../premier-voyage/">Guide du premier voyage</a><a href="../../itineraire/">Planificateur d’itinéraire</a><a href="../../preparer/">Liste de préparation</a><a href="../../assurance/">Assurance et santé</a></div>
+<div><b>Outils</b><a href="../../comparer/">Comparer des villes</a><a href="../../trajets/">Comparer des trajets</a><a href="../../outils/#convertisseur">Convertisseur</a><a href="../../carnet/">Mon carnet</a></div>
+<div><b>Le guide</b><a href="../../sources/">Nos sources</a><a href="../../etat/">État des robots</a><a href="../../mentions-legales/">Mentions légales</a></div>
+</div>
+<p class="foot-note">Dix Mille Escales, le guide de toutes les villes du monde de plus de 5 000 habitants, mis à jour chaque nuit.</p></div></footer>
+<nav class="barre-bas" aria-label="Navigation rapide">
+<a href="../../"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Accueil</a>
+<button type="button" id="bb-chercher"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5"/></svg>Chercher</button>
+<a href="../../outils/"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg>Préparer</a>
+<a href="../../carnet/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg>Carnet</a>
+</nav>
+<button type="button" class="haut-page" id="haut-page" aria-label="Revenir en haut de la page" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 14l6-6 6 6"/></svg></button>
 
 <script>
 (function(){
@@ -1560,5 +1592,6 @@ main>.chapter:not(:first-child){margin-top:4.5rem}
   }
 })();
 </script>
+<script src="../../static/carnet.js" defer></script><script src="../../static/nav.js" defer></script>
 </body>
 </html>

@@ -177,7 +177,7 @@
       actifs.forEach(function (o) {
         var on = o.id === id; panels[o.id].hidden = !on;
         var t = document.getElementById('tab-' + o.id); t.setAttribute('aria-selected', on ? 'true' : 'false'); t.tabIndex = on ? 0 : -1;
-        if (on) t.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+        if (on) tabs.scrollLeft = Math.max(0, t.offsetLeft - (tabs.clientWidth - t.offsetWidth) / 2);  // défilement horizontal seulement
       });
       if (maj && history.replaceState) history.replaceState(null, '', '#onglet-' + id);
       if (maj) { // en changeant d'onglet plus bas dans la page, on remonte au début de l'onglet
