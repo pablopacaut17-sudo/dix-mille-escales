@@ -177,7 +177,7 @@ h2.sec{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,4vw,2.7
         <canvas id="map" role="img" aria-label="Carte du monde des villes du guide"></canvas>
         <div class="tip" id="tip"></div>
       </div>
-      <div class="legend"><span style="--c:var(--buoy);--s:.8em">Fiche complète</span><span style="--c:var(--sea);--s:.65em">Ville phare, fiche en préparation</span><span style="--c:var(--dot);--s:.45em">Autre ville du guide</span><span style="--c:transparent;--s:0">La carte montre les 15 000 plus grandes villes. Toutes les autres sont dans la recherche et sur les <a href="pays/">pages Pays</a>.</span></div>
+      <div class="legend"><span style="--c:var(--sea);--s:.65em">Ville phare</span><span style="--c:var(--dot);--s:.45em">Autre ville du guide</span><span style="--c:transparent;--s:0">La carte montre les 15 000 plus grandes villes. Toutes les autres sont dans la recherche et sur les <a href="pays/">pages Pays</a>.</span></div>
     </div>
 
     <div class="card" id="card" aria-live="polite"><p class="empty">Touchez un point de la carte ou cherchez une ville pour voir sa fiche.</p></div>
@@ -236,7 +236,7 @@ h2.sec{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,4vw,2.7
   function country(cc){try{return regionName?regionName.of(cc):cc;}catch(e){return cc;}}
   function norm(t){return (t||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[’'\-]/g,' ');}
   var C=D.c.map(function(r,i){return {i:i,name:r[0],cc:r[1],lat:r[2],lon:r[3],pop:r[4],tz:TZ[r[5]],alts:r[6]?r[6].split('|'):[],ph:r[7]===1,slug:r[8],rank:i+1};});
-  var nonPh=0; C.forEach(function(c){ if(!c.ph){nonPh++; c.tier=nonPh<=1000?2:3;} else c.tier=1; c.full=(c.name==='Lisbonne'); c.key=norm(c.name+' '+c.alts.join(' '));});
+  var nonPh=0; C.forEach(function(c){ if(!c.ph){nonPh++; c.tier=nonPh<=1000?2:3;} else c.tier=1; c.full=false; c.key=norm(c.name+' '+c.alts.join(' '));});
   var fmtN=new Intl.NumberFormat('fr-FR');
 
   /* ---- thème ---- */
@@ -287,13 +287,13 @@ h2.sec{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,4vw,2.7
     if(view[0]!=='monde'&&view[0]!==CONT[c.cc])setView(VIEWS[0]);
     draw();
     var d=Math.round(dist(PAR,c)), travel=d<350?'≈ '+fmtN.format(d)+' km à vol d’oiseau, faisable en train ou en voiture':'≈ '+fmtN.format(Math.round(d/10)*10)+' km à vol d’oiseau, soit ≈ '+Math.max(1,Math.round(d/800+.5))+' h de vol sans compter les escales';
-    var tierTxt=c.full?'Fiche complète disponible':c.tier===1?'Ville phare : fiche complète en préparation':c.tier===2?'Ville intermédiaire : fiche détaillée en préparation':'Fiche essentielle en préparation';
+    var tierTxt=c.tier===1?'Ville phare':c.tier===2?'Grande ville':'Ville du guide';
     var card=document.getElementById('card'); card.className='card'+(c.full?' full':'');
     card.innerHTML='<h2>'+c.name+(c.full?'<span class="tag full">Fiche complète</span>':c.ph?'<span class="tag phare">Ville phare</span>':'')+'</h2>'+
       '<p class="where">'+country(c.cc)+'  ·  '+coord(c)+'</p>'+
       '<dl><div><dt>Habitants</dt><dd>'+fmtN.format(c.pop)+'</dd></div><div><dt>Rang dans le guide</dt><dd>'+fmtN.format(c.rank)+'ᵉ ville</dd></div><div><dt>Heure locale</dt><dd>'+localTime(c)+'</dd></div><div><dt>Décalage</dt><dd>'+offset(c)+'</dd></div><div><dt>Saison</dt><dd>'+season(c)+'</dd></div><div><dt>Depuis Paris</dt><dd>'+travel+'</dd></div></dl>'+
-      '<p class="status"><b style="font-family:var(--display)">'+tierTxt+'.</b> '+(c.full?'Lieux, quartiers, itinéraires, budget, transports et infos pratiques vérifiés.':'Sa fiche rassemble les données de base et ce que les robots ont déjà collecté : lieux, météo, jours fériés, change.')+'</p>'+
-      '<a class="btn" href="villes/'+c.slug+'/">'+(c.full?'Ouvrir la fiche complète':'Ouvrir la fiche de '+c.name)+'</a>';
+      '<p class="status"><b style="font-family:var(--display)">'+tierTxt+'.</b> '+'Lieux à voir, adresses, climat, histoire, santé, accès et conseils pratiques, mis à jour chaque nuit.'+'</p>'+
+      '<a class="btn" href="villes/'+c.slug+'/">'+'Ouvrir la fiche de '+c.name+'</a>';
     if(scroll)card.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'nearest'});
   }
 
@@ -334,11 +334,11 @@ h2.sec{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,4vw,2.7
 
   /* ---- phares ---- */
   var ph=C.filter(function(c){return c.ph;}).sort(function(a,b){return (b.full-a.full)||a.name.localeCompare(b.name,'fr');});
-  document.getElementById('phlist').innerHTML=ph.map(function(c){return '<button type="button" class="'+(c.full?'full':'')+'" data-i="'+c.i+'">'+c.name+(c.full?' · disponible':'')+'</button>';}).join('');
+  document.getElementById('phlist').innerHTML=ph.map(function(c){return '<button type="button" class="'+(c.full?'full':'')+'" data-i="'+c.i+'">'+c.name+'</button>';}).join('');
   bindGo('#phlist');
 
   resize(); applyTheme();
-  var lis=C.filter(function(c){return c.full;})[0]; if(lis)select(lis,false);
+  var dep=C.filter(function(c){return c.name==='Paris';})[0]; if(dep)select(dep,false);
 })();
 </script>
 <script>
