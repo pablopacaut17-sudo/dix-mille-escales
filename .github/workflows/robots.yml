@@ -124,7 +124,7 @@ jobs:
         run: >
           python3 robots/sauver.py --branche donnees-lieux-${{ matrix.part }} --chemins lieux/${{ matrix.part }}
           lieux/osm-${{ matrix.part }} lieux/_suivi_${{ matrix.part }}.json lieux/_osm_suivi_${{ matrix.part }}.json
-          journal/lieux_${{ matrix.part }}.json
+          journal/lieux_${{ matrix.part }}.json geofabrik_index.json
 
   climat:
     needs: villes

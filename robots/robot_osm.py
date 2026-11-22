@@ -49,10 +49,15 @@ def dist(a, b, c_, d):
 
 # ---------- Régions Geofabrik ----------
 def regions(part, parts):
-    brut = c.http(INDEX, timeout=120)
-    if not brut:
-        raise SystemExit("Index de Geofabrik injoignable.")
-    feats = [f["properties"] for f in json.loads(brut)["features"]]
+    brut = c.http(INDEX, timeout=120, essais=5, delai=20)
+    if brut:
+        feats = [f["properties"] for f in json.loads(brut)["features"]]
+        c.ecrire("geofabrik_index.json", feats, compact=True)  # copie de secours
+    else:
+        feats = c.lire("geofabrik_index.json")
+        if not feats:
+            raise SystemExit("Index de Geofabrik injoignable et aucune copie de secours.")
+        print("Index de Geofabrik injoignable : copie de secours utilisée.")
     parents = {p.get("parent") for p in feats}
     feuilles = [p for p in feats if p["id"] not in parents and p["id"] not in COMPOSITES and p.get("urls", {}).get("pbf")]
     # Répartition stable entre robots (même région → même robot, d'une nuit à l'autre)
