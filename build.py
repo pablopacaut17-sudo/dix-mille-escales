@@ -1547,7 +1547,7 @@ def main():
     # Mentions légales
     ecrire("mentions-legales/index.html", page("../", "Mentions légales – Dix Mille Escales", "Mentions légales du site Dix Mille Escales.",
            '<section class="hero"><h1 class="city" style="font-size:clamp(2.4rem,7vw,4.5rem)">Mentions légales</h1></section><div class="prose">'
-           '<h2>Éditeur du site</h2><p>Dix Mille Escales est un site personnel et non commercial. Éditeur : <b>[NOM ET PRÉNOM À COMPLÉTER]</b>, '
+           '<h2>Éditeur du site</h2><p>Dix Mille Escales est un site personnel et non commercial. Éditeur : <b>Pablo Pacaut</b>, '
            'joignable via <a href="https://github.com/' + os.environ.get("GITHUB_REPOSITORY", "pablopacaut17-sudo/dix-mille-escales") + '/issues">les « issues » du dépôt GitHub</a>.</p>'
            '<h2>Hébergement</h2><p>GitHub Pages, service de GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis.</p>'
            '<h2>Données personnelles et cookies</h2><p>Le site ne crée pas de compte, ne dépose aucun cookie publicitaire ni de mesure d’audience. '
