@@ -11,15 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Tester les sources
+      - name: Échantillons de sources
         run: |
-          mkdir -p diag
-          for u in https://download.geofabrik.de/index-v1-nogeom.json https://download.geofabrik.de/europe/portugal-latest.osm.pbf https://download.openstreetmap.fr/extracts/europe/portugal-latest.osm.pbf https://download.openstreetmap.fr/extracts/europe/portugal.state.txt; do
-            echo "== $u" >> diag/res.txt
-            (curl -4 -sS -o /dev/null -r 0-1000 -w "ipv4 %{http_code} %{time_total}s\n" "$u" || echo "ipv4 échec") >> diag/res.txt 2>&1
-            (curl -6 -sS -o /dev/null -r 0-1000 -w "ipv6 %{http_code} %{time_total}s\n" --max-time 15 "$u" || echo "ipv6 échec") >> diag/res.txt 2>&1
-          done
-          python3 -c "import urllib.request;print('python', urllib.request.urlopen('https://download.geofabrik.de/index-v1-nogeom.json',timeout=30).status)" >> diag/res.txt 2>&1 || echo "python échec" >> diag/res.txt
-          cat diag/res.txt
-          cd diag && git init -q && git checkout -q -b diagnostic && git -c user.name=r -c user.email=r@r add -A && git -c user.name=r -c user.email=r@r commit -qm diag
+          mkdir -p diag && cd diag
+          curl -4 -sS -m 60 -o index-fra.json https://data.international.gc.ca/travel-voyage/index-alpha-fra.json || echo echec > index-fra.err
+          curl -4 -sS -m 60 -o cta-cap-IN.json https://data.international.gc.ca/travel-voyage/cta-cap-IN.json || echo echec > cta.err
+          curl -4 -sS -m 60 -o cta-cap-in.json https://data.international.gc.ca/travel-voyage/cta-cap-in.json || true
+          ls -la
+          git init -q && git checkout -q -b diagnostic && git -c user.name=r -c user.email=r@r add -A && git -c user.name=r -c user.email=r@r commit -qm diag
           git push -q --force "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" diagnostic:diagnostic
