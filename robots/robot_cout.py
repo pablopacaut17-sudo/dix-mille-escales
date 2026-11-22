@@ -11,38 +11,42 @@ C'est une moyenne nationale : les grandes villes touristiques sont souvent plus 
 import argparse, json
 import commun as c
 
-INDICATEUR = "PA.NUS.PPPC.RF"
-ESSAIS = [  # plusieurs façons de demander la donnée : la plus récente disponible pour chaque pays
-    f"https://api.worldbank.org/v2/country/all/indicator/{INDICATEUR}?format=json&per_page=20000&mrnev=1",
-    f"https://api.worldbank.org/v2/country/all/indicator/{INDICATEUR}?format=json&per_page=20000&date=2015:2026",
-]
+# Niveau des prix = facteur de parité de pouvoir d'achat (PA.NUS.PPP) / taux de change officiel (PA.NUS.FCRF),
+# deux indicateurs de la Banque mondiale ; puis comparaison avec la France.
+INDICATEURS = ("PA.NUS.PPP", "PA.NUS.FCRF")
 
 
-def telecharger():
-    """Renvoie {code ISO3: (valeur, année)} avec la valeur la plus récente de chaque pays, ou (None, raison)."""
-    raison = "pas de réponse"
-    for url in ESSAIS:
+def serie(code):
+    """{code ISO3: (valeur, année)} : valeur la plus récente de chaque pays, ou None."""
+    for url in (f"https://api.worldbank.org/v2/country/all/indicator/{code}?format=json&per_page=20000&mrnev=1",
+                f"https://api.worldbank.org/v2/country/all/indicator/{code}?format=json&per_page=20000&date=2015:2026"):
         brut = c.http(url, timeout=180, delai=20)
         if not brut:
-            raison = "Banque mondiale injoignable"
             continue
         try:
             rep = json.loads(brut)
         except ValueError:
-            raison = "réponse illisible"
             continue
-        if not (isinstance(rep, list) and len(rep) > 1 and rep[1]):
-            raison = "réponse vide ou message d’erreur : " + str(rep)[:120]
-            continue
-        res = {}
-        for l in rep[1]:
-            cc3, v, an = l.get("countryiso3code"), l.get("value"), l.get("date", "")
-            if cc3 and v is not None and (cc3 not in res or an > res[cc3][1]):
-                res[cc3] = (v, an)
-        if res:
-            return res, None
-        raison = "aucune valeur dans la réponse"
-    return None, raison
+        if isinstance(rep, list) and len(rep) > 1 and rep[1]:
+            res = {}
+            for l in rep[1]:
+                cc3, v, an = l.get("countryiso3code"), l.get("value"), l.get("date", "")
+                if cc3 and v and (cc3 not in res or an > res[cc3][1]):
+                    res[cc3] = (v, an)
+            if res:
+                return res
+    return None
+
+
+def telecharger():
+    ppp, change = serie(INDICATEURS[0]), serie(INDICATEURS[1])
+    if not ppp or not change:
+        return None, "indicateurs de la Banque mondiale indisponibles"
+    res = {}
+    for cc3, (p, an) in ppp.items():
+        if cc3 in change and change[cc3][0]:
+            res[cc3] = (p / change[cc3][0], min(an, change[cc3][1]))
+    return (res, None) if res else (None, "aucun pays avec les deux indicateurs")
 
 
 def main():
@@ -67,7 +71,7 @@ def main():
         raise SystemExit("Valeur de la France absente : impossible de comparer.")
     fr = brut["FR"][0]
     res = {cc: {"indice": round(v / fr, 3), "annee": an} for cc, (v, an) in brut.items()}
-    c.ecrire("cout.json", {"date": c.horodatage(), "source": "Banque mondiale, PA.NUS.PPPC.RF", "pays": res})
+    c.ecrire("cout.json", {"date": c.horodatage(), "source": "Banque mondiale, PA.NUS.PPP / PA.NUS.FCRF", "pays": res})
     c.journal("cout", "ok", pays=len(res), mode="démo" if a.demo else "réel")
     print(f"Coût de la vie : {len(res)} pays.")
 

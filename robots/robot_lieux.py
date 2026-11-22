@@ -21,7 +21,7 @@ import commun as c
 # Serveurs Overpass publics et gratuits : chaque robot commence par « le sien » et passe au suivant en cas d'échec
 SERVEURS = ["https://overpass-api.de/api/interpreter", "https://overpass.kumi.systems/api/interpreter",
             "https://overpass.private.coffee/api/interpreter"]
-DELAI_REQUETE = 180  # secondes accordées au serveur pour une requête ; au-delà, on passe à la suite
+DELAI_REQUETE = 240  # secondes accordées au serveur pour une requête ; au-delà, on passe à la suite
 FREQUENCE = {"phare": 7, "intermediaire": 30, "autre": 120}
 PAUSE = {"phare": 8, "intermediaire": 6, "autre": 2}  # secondes entre deux villes (politesse envers Overpass)
 CIBLES = {
@@ -93,7 +93,7 @@ def rayon_km(v):
         r = max(r, 5)
     else:
         r = max(r, 3)
-    return min(15.0, r)
+    return min(10.0, r)  # au-delà, les requêtes des métropoles deviennent trop lourdes pour les serveurs gratuits
 
 
 def rayon_alentours_km(v):
@@ -105,7 +105,7 @@ def requetes(v):
     r, a = int(rayon_km(v) * 1000), f'{v["lat"]},{v["lon"]}'
     morceaux = [f'nwr["{k}"~"^({vals})$"]["name"](around:{r},{a});' for k, (vals, _) in CIBLES.items()]
     morceaux += [f'nwr["{k}"~"^({vals})$"]["name"](around:{r},{a});' for k, vals in ACTIVITES.items()]
-    entete = f"[out:json][timeout:{DELAI_REQUETE}][maxsize:1073741824];"
+    entete = f"[out:json][timeout:{DELAI_REQUETE}][maxsize:536870912];"
     if v["niveau"] == "autre" and v["population"] < 150000:
         return [entete + "(" + "".join(morceaux) + ");out center tags;"]
     return [entete + "(" + m + ");out center tags;" for m in morceaux]
@@ -117,7 +117,7 @@ def requete_alentours(v):
     blocs += "".join(f'nwr["{k}"~"^({vals})$"]["name"](around:{r},{a});' for k, vals in ACTIVITES.items() if k in ("natural", "landuse"))
     blocs += f'nwr["heritage"="1"]["name"](around:{r},{a});'
     blocs += f'relation["route"="hiking"]["name"]["wikidata"](around:{r},{a});'
-    return f"[out:json][timeout:{DELAI_REQUETE}][maxsize:1073741824];({blocs});out center tags 2500;"
+    return f"[out:json][timeout:{DELAI_REQUETE}][maxsize:536870912];({blocs});out center tags 2500;"
 
 
 def direction(v, lat, lon):
@@ -241,12 +241,15 @@ def main():
     else:
         dues = []
         for v in V:
-            d = suivi.get(str(v["id"]), {}).get("dernier_passage")
+            sv = suivi.get(str(v["id"]), {})
+            d = sv.get("dernier_passage")
             retard = (t - datetime.fromisoformat(d)).days - FREQUENCE[v["niveau"]] if d else 10**6
             if retard >= 0:
-                dues.append(({"phare": 0, "intermediaire": 1, "autre": 2}[v["niveau"]], -retard, -v["population"], v))
-        dues.sort(key=lambda x: x[:3])
-        lot = [x[3] for x in dues[:a.max_villes]]
+                echec = sv.get("echec")
+                recalee = 1 if echec and (t - datetime.fromisoformat(echec)).days < 3 else 0  # échec récent : en fin de file
+                dues.append((recalee, {"phare": 0, "intermediaire": 1, "autre": 2}[v["niveau"]], -retard, -v["population"], v))
+        dues.sort(key=lambda x: x[:4])
+        lot = [x[4] for x in dues[:a.max_villes]]
 
     print(f"{len(lot)} ville(s) à traiter.")
     ok = ech = sus = 0
@@ -269,7 +272,10 @@ def main():
                 elements += res
             if rate:
                 ech += 1
-                print("    serveurs saturés : ville reportée à la nuit prochaine")
+                sv = suivi.get(str(v["id"]), {})
+                suivi[str(v["id"])] = dict(sv, echec=t.isoformat(), nb_echecs=sv.get("nb_echecs", 0) + 1)
+                c.ecrire(fsuivi, suivi, compact=True)
+                print("    serveurs saturés : ville reportée")
                 continue
         date = c.horodatage()
         fiches = [f for f in (normaliser(e, date, v) for e in elements) if f]
