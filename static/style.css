@@ -141,5 +141,70 @@ td.num{font-weight:600;white-space:nowrap}
 @media (max-width:520px){.nav-pays{display:none}}
 .carte-zone .carte-ouvrir{margin:.4rem 0 1rem}
 .maplibregl-popup-content{font-family:var(--display);font-size:.88rem;color:#12313B}
+/* Outils */
+.o-form{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:1.2rem;margin:0 0 1.6rem}
+.o-grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.8rem 1rem;margin:.8rem 0}
+.o-champ{display:flex;flex-direction:column;gap:.25rem;font-family:var(--display)}
+.o-champ.o-large{grid-column:1/-1}
+.o-champ label{font-size:.85rem;color:var(--muted)}
+.o-champ input,.o-champ select{font:inherit;font-family:var(--display);font-size:1rem;padding:.55rem .75rem;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);min-width:0}
+.o-sugg{position:absolute;z-index:5;left:0;right:0;top:100%;list-style:none;margin:.3rem 0 0;padding:.3rem;background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 30px rgba(18,49,59,.15)}
+.o-sugg:empty{display:none}
+.o-sugg li{display:flex;justify-content:space-between;gap:1rem;padding:.45rem .7rem;border-radius:8px;cursor:pointer;font-family:var(--display)}
+.o-sugg li:hover,.o-sugg li[aria-selected="true"]{background:var(--soft)}
+.o-sugg span{color:var(--muted);font-size:.85rem}
+.o-choix{list-style:none;padding:0;margin:.4rem 0;display:flex;flex-wrap:wrap;gap:.4rem}
+.o-choix li{font-family:var(--display);font-size:.92rem;padding:.3rem .5rem .3rem .8rem;border-radius:999px;background:var(--soft);display:flex;align-items:center;gap:.3rem}
+.o-choix button{all:unset;cursor:pointer;padding:0 .35rem;color:var(--muted)}
+.o-coche{font-family:var(--display);font-size:.92rem;margin-right:1rem;display:inline-flex;gap:.35rem;align-items:center}
+.o-envies{border:1px solid var(--line);border-radius:12px;padding:.6rem .9rem;margin:.8rem 0}
+.o-envies legend{font-family:var(--display);font-size:.85rem;color:var(--muted)}
+.o-go{font-family:var(--display);font-weight:600;font-size:1.05rem;padding:.8rem 1.4rem;border-radius:12px;border:0;background:var(--ink);color:var(--bg);cursor:pointer;margin-top:.6rem}
+.o-petit,.o-actions button,.o-bouton,.o-ajout,.o-liste button{font-family:var(--display);font-size:.88rem;padding:.4rem .85rem;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.o-actions{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.4rem 0 .4rem}
+.o-res h2{font-family:var(--display);font-weight:800;font-size:1.7rem;margin:2rem 0 .8rem}
+.o-resume{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));border-top:2px solid var(--ink);border-bottom:1px solid var(--line);margin-bottom:1rem}
+.o-resume div{padding:.8rem .6rem .8rem 0;font-family:var(--display)}
+.o-resume span{display:block;font-size:.82rem;color:var(--muted)}
+.o-resume b{font-size:1.4rem}
+.o-etapes{list-style:none;padding:0;margin:0}
+.o-etape{background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--sea);border-radius:12px;padding:1rem 1.2rem;margin:.6rem 0}
+.o-tete{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.4rem 1rem;align-items:baseline}
+.o-tete h3{font-family:var(--display);font-size:1.35rem;margin:0}
+.o-tete small{font-weight:400;color:var(--muted);font-size:.9rem}
+.o-jours{font-family:var(--display);font-weight:600;color:var(--sea);margin:0}
+.o-climat{font-family:var(--display);font-size:.9rem;color:var(--muted);margin:.3rem 0 .6rem}
+.o-climat.o-mauvais{color:#B5485D}
+.o-prog{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.6rem 1.4rem}
+.o-prog > li{font-size:.94rem}
+.o-prog > li > b{font-family:var(--display);display:block;margin-bottom:.15rem}
+.o-prog ul{margin:0;padding-left:1.1rem}
+.o-conseil{font-size:.92rem;font-style:italic;margin:.6rem 0 0}
+.o-trajet{font-family:var(--display);font-size:.92rem;color:var(--muted);padding:.3rem 0 .3rem 1.4rem}
+.o-prep{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem 2rem}
+.o-prep h3{font-family:var(--display);font-size:1.05rem;margin:0 0 .4rem}
+.o-cases{list-style:none;padding:0;margin:0}
+.o-cases li{padding:.35rem 0;border-bottom:1px solid var(--line);font-size:.94rem}
+.o-cases input{margin-right:.4rem}
+.o-alerte{border-left:4px solid #B5485D;background:var(--surface);padding:.7rem 1rem;border-radius:0 10px 10px 0}
+.o-vide{color:var(--muted);font-style:italic}
+.o-nb{font-family:var(--display);color:var(--muted)}
+.o-liste{list-style:none;padding:0;margin:0;columns:2 320px;column-gap:2rem}
+.o-liste li{break-inside:avoid;padding:.6rem 0;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;align-items:baseline;gap:.2rem .8rem}
+.o-liste a{font-family:var(--display);color:var(--ink);text-decoration:none}
+.o-liste a span{color:var(--muted);font-size:.88rem}
+.o-liste small{flex-basis:100%;color:var(--muted);font-size:.86rem}
+.o-cmp td:first-child{color:var(--muted);font-size:.85rem}
+.o-cmp th a{font-family:var(--display);font-size:1.05rem}
+.o-cartes{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.8rem;margin:0 0 2rem}
+.o-carte{display:block;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-top:5px solid var(--buoy);border-radius:14px;padding:1rem 1.1rem}
+.o-carte:hover{border-color:var(--ink)}
+.o-carte b{display:block;font-family:var(--display);font-size:1.2rem}
+.o-carte span{display:block;font-size:.93rem;color:var(--muted);margin-top:.3rem}
+.o-conv{font-family:var(--display);font-weight:800;font-size:clamp(1.5rem,4vw,2.2rem);margin:.8rem 0 .2rem}
+.carnet-btns{display:flex;flex-wrap:wrap;gap:.4rem;margin:.8rem 0 0}
+.carnet-btns button,.carnet-btns a{font-family:var(--display);font-size:.88rem;padding:.4rem .9rem;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;text-decoration:none}
+.carnet-btns .on{background:var(--buoy);border-color:var(--buoy);color:#12313B}
+@media print{.o-form,.o-actions,.top,.foot,.carnet-btns{display:none!important}.o-etape{break-inside:avoid}}
 @media (max-width:600px){.theme-btn{font-size:0;padding:.35rem .6rem}.theme-btn::before{content:"◐";font-size:1.05rem}.top-in{gap:.6rem}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}

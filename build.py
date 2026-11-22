@@ -210,12 +210,12 @@ def page(root, titre, description, corps, recherche=True):
 <title>{E(titre)}</title><meta name="description" content="{E(description)}">
 {FONTS}<link rel="stylesheet" href="{root}static/style.css"></head>
 <body data-root="{root}">
-<header class="top"><div class="top-in"><a class="brand" href="{root}">{LOGO}Dix Mille Escales</a><a class="nav-pays" href="{root}pays/">Pays</a>{rech}
+<header class="top"><div class="top-in"><a class="brand" href="{root}">{LOGO}Dix Mille Escales</a><a class="nav-pays" href="{root}pays/">Pays</a><a class="nav-pays" href="{root}outils/">Outils</a>{rech}
 <button type="button" class="theme-btn" id="theme-btn" aria-label="Changer le thème d’affichage">Thème : auto</button></div></header>
 <main class="wrap">{corps}</main>
 <footer class="foot"><div class="in"><p>Dix Mille Escales, le guide de toutes les villes du monde de plus de 5 000 habitants. Données mises à jour chaque nuit par nos robots.</p>
 <p><span data-compteur>…</span> informations dans le guide · <a href="{root}sources/">Nos sources</a> · <a href="{root}etat/">État des robots</a> · <a href="{root}mentions-legales/">Mentions légales</a></p></div></footer>
-<script src="{root}static/app.js"></script><script src="{root}static/fiche.js"></script><script src="{root}static/questions.js"></script><script src="{root}static/lieux.js"></script><script src="{root}static/onglets.js"></script><script src="{root}static/carte.js"></script></body></html>"""
+<script src="{root}static/app.js"></script><script src="{root}static/fiche.js"></script><script src="{root}static/questions.js"></script><script src="{root}static/lieux.js"></script><script src="{root}static/onglets.js"></script><script src="{root}static/carte.js"></script><script src="{root}static/carnet.js"></script></body></html>"""
 
 
 def carte_lieux(v, lieux, rayon):
@@ -626,6 +626,20 @@ def page_ville(v, ctx):
             export = [f for f in export if gardes.setdefault(f["rubrique"], []).append(1) or len(gardes[f["rubrique"]]) <= 60]
         ecrire_gz(f"villes/{v['slug']}/lieux.json.gz", {"date": rubs["date"], "rayon_km": rubs.get("rayon_km"),
                                                          "rayon_alentours_km": rubs.get("rayon_alentours_km"), "lieux": export})
+    # Ligne compacte pour les outils (itinéraire, « où partir », comparateur)
+    types_ = [f["type"] for f in tous]
+    culture = sum(1 for t in types_ if t in ("Musée", "Monument", "Château", "Site archéologique", "Galerie", "Monastère", "Fort", "Ruines")) + 5 * len(enc.get("unesco", []))
+    nature = sum(1 for t in types_ if t in ("Parc national", "Réserve naturelle", "Espace naturel protégé", "Cascade", "Sommet", "Grotte", "Volcan", "Glacier", "Sentier de randonnée"))
+    plage = any(t in ("Plage", "Plage aménagée", "Baignade") for t in types_)
+    ski = "Station de ski" in types_
+    nbr = {r: sum(1 for f in lieux if f["rubrique"] == r) for r in ("voir", "manger", "dormir", "faire")}
+    cm = clim.get("mois")
+    ctx["monde"].append([v["slug"], v["nom"], v["pays"], round(v["lat"], 2), round(v["lon"], 2), v["population"],
+                         {"phare": 0, "intermediaire": 1, "autre": 2}[v["niveau"]],
+                         [round(m["tmax"]) for m in cm] if cm else 0, [round(m["tmin"]) for m in cm] if cm else 0,
+                         [m["pluie_mm"] for m in cm] if cm else 0,
+                         nbr["voir"], nbr["manger"], nbr["dormir"], nbr["faire"], culture, nature, 1 if plage else 0, 1 if ski else 0,
+                         [aeros[0][0], aeros[0][2]] if aeros else 0])
     cpt = ctx["compteur"]
     cpt["informations"] += total_infos
     cpt["lieux"] += len(tous)
@@ -718,6 +732,72 @@ q.addEventListener('input',function(){if(L)rendre();});})();
 </script>"""
 
 
+def outils(ctx):
+    """Pages des outils : planificateur d'itinéraire, « où partir », comparateur, préparation, carnet, convertisseur."""
+    pp = "".join(f'<option>{n}</option>' for n in PASSEPORTS.values())
+    def outil(chemin, titre, desc, corps, scripts):
+        sc = "".join(f'<script src="../static/{x}.js"></script>' for x in ["outils-commun"] + scripts)
+        html_ = page("../", f"{titre} – Dix Mille Escales", desc,
+                     f'<section class="hero"><p class="crumbs"><a href="../">Accueil</a> › <a href="../outils/">Outils</a></p>'
+                     f'<h1 class="city" style="font-size:clamp(2.2rem,6.5vw,4.2rem)">{titre}</h1><p class="tagline">{desc}</p></section>{corps}')
+        ecrire(f"{chemin}/index.html", html_.replace("</body>", sc + "</body>"))
+    outil("itineraire", "Planificateur d’itinéraire", "Choisissez vos villes, vos dates et vos envies : l’ordre des étapes, les trajets, le programme jour par jour, le budget et la préparation sont calculés pour vous.",
+          f'''<form id="itin" class="o-form">
+<div class="o-champ o-large"><label for="itin-q">Ajouter une ville</label><input id="itin-q" type="search" autocomplete="off" placeholder="Tapez le nom d’une ville…"></div>
+<ul id="itin-villes" class="o-choix"></ul>
+<label class="o-coche"><input type="checkbox" id="itin-depart" checked> La première ville est mon point de départ</label>
+<div class="o-grille">
+<div class="o-champ"><label for="itin-jours">Nombre de jours</label><input id="itin-jours" type="number" min="1" max="120" value="10"></div>
+<div class="o-champ"><label for="itin-mois">Mois du voyage</label><select id="itin-mois"></select></div>
+<div class="o-champ"><label for="itin-pers">Voyageurs</label><input id="itin-pers" type="number" min="1" max="20" value="2"></div>
+<div class="o-champ"><label for="itin-budget">Budget</label><select id="itin-budget"><option value="petit">Petit budget</option><option value="moyen" selected>Moyen</option><option value="confort">Confort</option></select></div>
+<div class="o-champ"><label for="itin-passeport">Passeport</label><select id="itin-passeport">{pp}</select></div>
+</div>
+<fieldset class="o-envies"><legend>Vos envies</legend><div id="itin-envies"></div></fieldset>
+<button type="submit" class="o-go">Créer mon itinéraire</button></form><div id="itin-res" class="o-res" aria-live="polite"></div>''', ["itineraire"])
+    outil("ou-partir", "Où partir ?", "Un mois, une température, vos envies : les villes idéales du monde entier, parmi toutes celles du guide.",
+          '''<form id="op" class="o-form"><div class="o-grille">
+<div class="o-champ"><label for="op-mois">Mois</label><select id="op-mois"></select></div>
+<div class="o-champ"><label for="op-tmin">Température l’après-midi, au moins</label><input id="op-tmin" type="number" value="20"></div>
+<div class="o-champ"><label for="op-tmax">Au plus</label><input id="op-tmax" type="number" value="30"></div>
+<div class="o-champ"><label for="op-pluie">Pluie du mois, au plus (mm)</label><input id="op-pluie" type="number" value="80"></div>
+<div class="o-champ"><label for="op-envie">Envie</label><select id="op-envie"><option value="tout">Peu importe</option><option value="plage">Plage</option><option value="culture">Culture et monuments</option><option value="nature">Nature</option><option value="ski">Ski</option></select></div>
+<div class="o-champ"><label for="op-cont">Continent</label><select id="op-cont"><option value="">Partout</option><option value="EU">Europe</option><option value="AF">Afrique</option><option value="AS">Asie</option><option value="NA">Amérique du Nord et centrale</option><option value="SA">Amérique du Sud</option><option value="OC">Océanie</option></select></div>
+<div class="o-champ"><label for="op-budget">Budget</label><select id="op-budget"><option value="">Peu importe</option><option value="moyen">Moins cher que la France</option><option value="petit">Bien moins cher</option></select></div>
+<div class="o-champ"><label for="op-taille">Villes</label><select id="op-taille"><option value="">Toutes</option><option value="grandes">Grandes villes</option><option value="petites">Petites villes</option></select></div>
+<div class="o-champ"><label for="op-dist">Distance de Paris, au plus</label><select id="op-dist"><option value="0">Peu importe</option><option value="1500">1 500 km</option><option value="3000">3 000 km</option><option value="6000">6 000 km</option></select></div>
+</div><label class="o-coche"><input type="checkbox" id="op-visa"> Sans visa pour un passeport français</label> <label class="o-coche"><input type="checkbox" id="op-sur" checked> Pays sûrs seulement (niveau 1 ou 2)</label>
+<button type="submit" class="o-go">Trouver</button></form><div id="op-res" class="o-res" aria-live="polite"></div>''', ["ou-partir"])
+    outil("comparer", "Comparer des villes", "Deux à quatre villes côte à côte : climat, budget, visa, sécurité, nombre de lieux, accès.",
+          '''<form id="cmp" class="o-form" onsubmit="return false"><div class="o-grille"><div class="o-champ o-large"><label for="cmp-q">Ajouter une ville</label><input id="cmp-q" type="search" autocomplete="off" placeholder="Tapez le nom d’une ville…"></div>
+<div class="o-champ"><label for="cmp-mois">Mois du voyage</label><select id="cmp-mois"></select></div></div><ul id="cmp-villes" class="o-choix"></ul></form><div id="cmp-res" class="o-res"></div>''', ["comparer"])
+    outil("preparer", "Préparer son départ", "Papiers, argent, valise, santé : la liste à cocher pour vos destinations et votre mois de voyage.",
+          f'''<form id="prep" class="o-form" onsubmit="return false"><div class="o-grille"><div class="o-champ o-large"><label for="prep-q">Ajouter une destination</label><input id="prep-q" type="search" autocomplete="off" placeholder="Tapez le nom d’une ville…"></div>
+<div class="o-champ"><label for="prep-mois">Mois</label><select id="prep-mois"></select></div><div class="o-champ"><label for="prep-pp">Passeport</label><select id="prep-pp">{pp}</select></div></div>
+<ul id="prep-villes" class="o-choix"></ul></form><div id="prep-res" class="o-res"></div>
+<script>document.addEventListener("DOMContentLoaded",function(){{var D=window.DME,E=D.E,ch=[],f=document.getElementById("prep"),m=f.querySelector("#prep-mois");
+m.innerHTML=D.MOIS.map(function(x,i){{return "<option value="+i+">"+x+"</option>";}}).join("");m.value=String(new Date().getMonth());
+function r(){{var ul=f.querySelector("#prep-villes");ul.innerHTML=ch.map(function(s,i){{var v=D.ville(s);return "<li>"+E(v?v.nom:s)+" <button type=button data-i="+i+">✕</button></li>";}}).join("")||"<li class=o-vide>Ajoutez une ou plusieurs destinations.</li>";
+ul.querySelectorAll("button").forEach(function(b){{b.onclick=function(){{ch.splice(+b.getAttribute("data-i"),1);r();}};}});
+if(!ch.length){{document.getElementById("prep-res").innerHTML="";return;}}var L=D.preparation(ch.map(D.ville),+m.value,f.querySelector("#prep-pp").value);
+document.getElementById("prep-res").innerHTML="<div class=o-prep>"+Object.keys(L).map(function(k){{return "<div><h3>"+E(k)+"</h3><ul class=o-cases>"+L[k].map(function(x){{return "<li><label><input type=checkbox> "+x+"</label></li>";}}).join("")+"</ul></div>";}}).join("")+"</div><div class=o-actions><button type=button onclick=window.print()>Imprimer la liste</button></div>";}}
+D.chargerMonde().then(function(){{D.choixVille(f.querySelector("#prep-q"),function(s){{if(ch.indexOf(s)<0)ch.push(s);r();}});r();}});m.onchange=r;f.querySelector("#prep-pp").onchange=r;}});</script>''', [])
+    outil("carnet", "Mon carnet", "Vos villes et vos itinéraires gardés sur cet appareil.", '<div id="carnet-page" class="o-res"></div>', [])
+    cartes = [("itineraire", "Planificateur d’itinéraire", "Plusieurs villes, un ou plusieurs pays : ordre des étapes, trajets, programme jour par jour, budget."),
+              ("ou-partir", "Où partir ?", "Les villes idéales du monde pour un mois, une température et vos envies."),
+              ("comparer", "Comparer des villes", "Deux à quatre villes côte à côte."),
+              ("preparer", "Préparer son départ", "La liste à cocher : papiers, argent, valise, santé."),
+              ("carnet", "Mon carnet", "Vos villes et itinéraires gardés.")]
+    corps = ('<div class="o-cartes">' + "".join(f'<a class="o-carte" href="../{c}/"><b>{t}</b><span>{d}</span></a>' for c, t, d in cartes) + "</div>"
+             + '''<section class="block" id="convertisseur"><h2>Convertisseur de monnaie</h2><form id="conv" class="o-form" onsubmit="return false"><div class="o-grille">
+<div class="o-champ"><label for="conv-montant">Montant</label><input id="conv-montant" type="text" inputmode="decimal" value="100"></div>
+<div class="o-champ"><label for="conv-de">De</label><select id="conv-de"></select></div><div class="o-champ"><label for="conv-vers">Vers</label><select id="conv-vers"></select></div>
+</div><button type="button" id="conv-inverser" class="o-petit">Inverser</button><p class="o-conv" id="conv-res" aria-live="polite"></p><p class="note" id="conv-date"></p></form></section>''')
+    html_ = page("../", "Outils de voyage – Dix Mille Escales", "Planificateur d’itinéraire, où partir, comparateur, préparation, carnet et convertisseur.",
+                 '<section class="hero"><h1 class="city" style="font-size:clamp(2.4rem,7vw,4.5rem)">Outils de voyage</h1><p class="tagline">Pour préparer un voyage avec les données de toutes les villes du guide.</p></section>' + corps)
+    ecrire("outils/index.html", html_.replace("</body>", '<script src="../static/outils-commun.js"></script><script src="../static/convertisseur.js"></script></body>'))
+
+
 def proches(villes, n=6):
     """Pour chaque ville, ses n plus proches voisines du guide (recherche par cases de 5°)."""
     cases = {}
@@ -776,6 +856,7 @@ def main():
             with gzip.open(p_, "rt", encoding="utf-8") as f:
                 ctx["aeroports"] = json.load(f)
             break
+    ctx["monde"] = []
     ctx["compteur"] = {"informations": 0, "lieux": 0, "textes": 0, "photos": 0, "villes_enrichies": 0}
     ctx["feries"] = {}
     for base in (DATA, DONNEES):
@@ -829,6 +910,20 @@ def main():
                 page_ville(v, ctx)
             ecrire(f"villes/{slug}/index.html", avec_robots(txt))
             perso += 1
+
+    # Fichier mondial pour les outils, et pages des outils
+    monde_pays = {}
+    for cc, pz in pays.items():
+        alerte_ = ctx["securite"].get("pays", {}).get(cc)
+        cout_ = ctx["cout"].get("pays", {}).get(cc)
+        dev = pz.get("monnaie", "")
+        monde_pays[cc] = {"nom": pz.get("nom", cc), "cont": pz.get("continent", ""), "devise": dev, "monnaie": pz.get("monnaie_nom", ""),
+                          "taux": ctx["change"].get("taux", {}).get(dev) if dev != "EUR" else 1, "langues": pz.get("langues", []),
+                          "secu": alerte_["niveau"] if alerte_ else 0, "cout": cout_["indice"] if cout_ else None,
+                          "visa": {pp: formalite_fr(ctx["formalites"].get(pp, {}).get(cc, ""), pp, cc) for pp in PASSEPORTS} if ctx["formalites"] else {}}
+    ecrire_gz("static/monde.json.gz", {"date": ctx["date_txt"], "villes": ctx["monde"], "pays": monde_pays,
+                                       "change": ctx["change"].get("taux", {}), "change_date": ctx["change"].get("jour_bce", "")})
+    outils(ctx)
 
     # Compteur de données
     cpt = ctx["compteur"]
