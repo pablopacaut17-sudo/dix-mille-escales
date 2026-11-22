@@ -25,6 +25,7 @@ import robot_lieux as L
 INDEX = "https://download.geofabrik.de/index-v1-nogeom.json"
 COMPOSITES = {"alps", "britain-and-ireland", "dach", "us-midwest", "us-northeast", "us-pacific", "us-south", "us-west"}
 FREQUENCE_JOURS = 7
+VERSION_FILTRES = 2  # à augmenter quand on ajoute des catégories : toutes les régions sont alors retraitées
 TRAVAIL = os.path.join(os.environ.get("RUNNER_TEMP", "/tmp"), "osm")
 FILTRES = [
     "nwr/amenity=restaurant,cafe,bar,pub,fast_food,ice_cream,marketplace,bus_station,ferry_terminal",
@@ -227,6 +228,8 @@ def main():
     grille = Grille(villes)
     suivi_f = f"lieux/_osm_suivi_{a.part}.json"
     suivi = c.lire(suivi_f, {}) or {}
+    if suivi.get("_version") != VERSION_FILTRES:  # nouvelles catégories (ex. santé) : tout retraiter
+        suivi = {"_version": VERSION_FILTRES}
     os.makedirs(TRAVAIL, exist_ok=True)
     if a.fichier:
         a_faire = [{"id": "test", "name": "fichier de test", "urls": {"pbf": None}}]
@@ -235,10 +238,10 @@ def main():
     else:
         a_faire = []
         for r in regions(a.part, a.parts):
-            d = suivi.get(r["id"])
+            d = suivi.get(r["id"]) if r["id"] != "_version" else None
             if not d or (t0 - datetime.fromisoformat(d)).days >= FREQUENCE_JOURS:
                 a_faire.append(r)
-        a_faire.sort(key=lambda r: suivi.get(r["id"], ""))  # jamais faites d'abord, puis les plus anciennes
+        a_faire.sort(key=lambda r: str(suivi.get(r["id"], "")))  # jamais faites d'abord, puis les plus anciennes
     print(f"{len(a_faire)} région(s) à traiter.")
     diplo = {x["id"]: x for x in (c.lire(f"diplomatie/osm-{a.part}.json", []) or [])}
     faites = ech = nb_lieux = 0
