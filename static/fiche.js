@@ -77,7 +77,7 @@
     // S'y rendre et guide Wikivoyage
     var gd = c.guide || {};
     var AC = [['gares', 'En train'], ['routieres', 'En bus ou en car'], ['ports', 'En bateau']], acc = d.acces || {};
-    var accH = AC.filter(function (x) { return acc[x[0]]; }).map(function (x) { return '<h3>' + x[1] + '</h3><div class="table-scroll"><table><tbody>' + acc[x[0]].map(function (g) { return '<tr><td><b>' + E(g.nom) + '</b>' + (g.adresse ? '<br><small>' + E(g.adresse) + '</small>' : '') + '</td><td class="num">' + v(g.km) + ' km du centre</td><td>≈ ' + duree(g.km) + '</td></tr>'; }).join('') + '</tbody></table></div>'; }).join('');
+    var accH = AC.filter(function (x) { return acc[x[0]]; }).map(function (x) { return '<h3>' + x[1] + '</h3><div class="table-scroll"><table><tbody>' + acc[x[0]].map(function (g) { return '<tr><td><b>' + E(g.nom) + '</b>' + (g.adresse ? '<br><small>' + E(g.adresse) + '</small>' : '') + '</td><td class="num">' + v(g.km) + ' km du centre</td><td>' + (g.km < 1.5 ? '≈ ' + Math.max(2, Math.round(g.km / 4.5 * 60)) + ' min à pied' : '≈ ' + duree(g.km) + ' en taxi') + '</td></tr>'; }).join('') + '</tbody></table></div>'; }).join('');
     if ((d.aeroports && d.aeroports.length) || gd.aller || accH) {
       h += sec('guide-aller', 'S’y rendre et accès', (d.aeroports ? '<h3>En avion</h3><div class="table-scroll"><table><thead><tr><th>Aéroport</th><th>Code</th><th>Distance</th><th>Trajet estimé</th></tr></thead><tbody>'
         + d.aeroports.map(function (x) { return '<tr><td>' + E(x.nom) + (x.international ? ' · international' : '') + '</td><td class="num">' + E(x.code) + '</td><td class="num">' + nb(x.km) + ' km</td><td>≈ ' + duree(x.km) + ' de route</td></tr>'; }).join('') + '</tbody></table></div>' : '')
