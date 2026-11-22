@@ -210,12 +210,27 @@ def page(root, titre, description, corps, recherche=True):
 <title>{E(titre)}</title><meta name="description" content="{E(description)}">
 {FONTS}<link rel="stylesheet" href="{root}static/style.css"></head>
 <body data-root="{root}">
-<header class="top"><div class="top-in"><a class="brand" href="{root}">{LOGO}Dix Mille Escales</a><a class="nav-pays" href="{root}pays/">Pays</a><a class="nav-pays" href="{root}outils/">Outils</a>{rech}
+<a class="vh vh-focus" href="#contenu">Aller au contenu</a>
+<header class="top"><div class="top-in"><a class="brand" href="{root}">{LOGO}<span>Dix Mille Escales</span></a>
+<nav class="nav-top" aria-label="Navigation principale"><a href="{root}pays/">Destinations</a><a href="{root}outils/">Préparer</a><a href="{root}premier-voyage/">Premier voyage</a><a href="{root}carnet/">Mon carnet</a></nav>{rech}
 <button type="button" class="theme-btn" id="theme-btn" aria-label="Changer le thème d’affichage">Thème : auto</button></div></header>
-<main class="wrap">{corps}</main>
-<footer class="foot"><div class="in"><p>Dix Mille Escales, le guide de toutes les villes du monde de plus de 5 000 habitants. Données mises à jour chaque nuit par nos robots.</p>
-<p><span data-compteur>…</span> informations dans le guide · <a href="{root}sources/">Nos sources</a> · <a href="{root}etat/">État des robots</a> · <a href="{root}mentions-legales/">Mentions légales</a></p></div></footer>
-<script src="{root}static/app.js"></script><script src="{root}static/fiche.js"></script><script src="{root}static/questions.js"></script><script src="{root}static/lieux.js"></script><script src="{root}static/onglets.js"></script><script src="{root}static/carte.js"></script><script src="{root}static/carnet.js"></script></body></html>"""
+<main class="wrap" id="contenu">{corps}</main>
+<footer class="foot"><div class="in">
+<div class="foot-cols">
+<div><b>Destinations</b><a href="{root}pays/">Tous les pays</a><a href="{root}#carte">Carte du monde</a><a href="{root}ou-partir/">Où partir ?</a></div>
+<div><b>Préparer</b><a href="{root}premier-voyage/">Guide du premier voyage</a><a href="{root}itineraire/">Planificateur d’itinéraire</a><a href="{root}preparer/">Liste de préparation</a><a href="{root}assurance/">Assurance et santé</a></div>
+<div><b>Outils</b><a href="{root}comparer/">Comparer des villes</a><a href="{root}trajets/">Comparer des trajets</a><a href="{root}outils/#convertisseur">Convertisseur</a><a href="{root}carnet/">Mon carnet</a></div>
+<div><b>Le guide</b><a href="{root}sources/">Nos sources</a><a href="{root}etat/">État des robots</a><a href="{root}mentions-legales/">Mentions légales</a></div>
+</div>
+<p class="foot-note"><span data-compteur>…</span> informations sur toutes les villes du monde de plus de 5 000 habitants, mises à jour chaque nuit.</p></div></footer>
+<nav class="barre-bas" aria-label="Navigation rapide">
+<a href="{root}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Accueil</a>
+<button type="button" id="bb-chercher"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5"/></svg>Chercher</button>
+<a href="{root}outils/"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg>Préparer</a>
+<a href="{root}carnet/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg>Carnet</a>
+</nav>
+<button type="button" class="haut-page" id="haut-page" aria-label="Revenir en haut de la page" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 14l6-6 6 6"/></svg></button>
+<script src="{root}static/app.js"></script><script src="{root}static/fiche.js"></script><script src="{root}static/questions.js"></script><script src="{root}static/lieux.js"></script><script src="{root}static/onglets.js"></script><script src="{root}static/carte.js"></script><script src="{root}static/carnet.js"></script><script src="{root}static/nav.js"></script></body></html>"""
 
 
 def carte_lieux(v, lieux, rayon):
@@ -312,8 +327,7 @@ def liste_lieux(rub, items, niveau="phare"):
             reperes.append("✓ recommandé par Wikivoyage")
         if f.get("avis_n"):
             reperes.append(f'{note_fr(f["avis_moy"])}/5 ({f["avis_n"]} avis de lecteurs)')
-        if reperes:
-            meta = " · ".join(reperes) + " · " + meta
+        meta_html = "".join(f'<span class="rep">{E(x)}</span>' for x in reperes) + "".join(f"<span>{E(x)}</span>" for x in meta.split(" · ") if x)
         infos = []
         if f.get("adresse"):
             infos.append(E(f["adresse"]))
@@ -345,8 +359,8 @@ def liste_lieux(rub, items, niveau="phare"):
                          f'<p><a href="https://fr.wikipedia.org/wiki/{E(h_["t"].replace(" ", "_"))}" rel="noopener" target="_blank">Lire l’article Wikipédia</a></p></details>')
         for a_ in (f.get("avis") or [])[:2]:
             plus += f'<div class="i avis-l">{a_["note"]}/5 · « {E(a_["texte"][:300])} » <small>{E(a_.get("date", ""))}</small></div>'
-        return (f'<li data-type="{E(f["type"])}" style="--c:var(--{rub})"><h3>{E(f["nom"])}</h3><div class="m">{E(meta)}</div>'
-                + "".join(f'<div class="i">{x}</div>' for x in infos) + plus + f'<div class="i">{" · ".join(liens)}</div></li>')
+        return (f'<li data-type="{E(f["type"])}" style="--c:var(--{rub})"><h3>{E(f["nom"])}</h3><div class="m">{meta_html}</div>'
+                + "".join(f'<div class="i">{x}</div>' for x in infos) + plus + f'<div class="i liens">{" ".join(liens)}</div></li>')
     visibles = items[:EN_LIGNE.get(niveau, 15)]
     html_ = f'<ul class="places" id="l-{rub}">' + "".join(li(f) for f in visibles) + "</ul>"
     if len(items) > len(visibles):

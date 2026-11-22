@@ -50,8 +50,8 @@
     if (f.histoire && f.histoire.r) h += '<details class="histoire"><summary>Histoire</summary><p>' + E(f.histoire.r) + '</p><p><a href="https://fr.wikipedia.org/wiki/' + encodeURIComponent(f.histoire.t.replace(/ /g, '_')) + '" target="_blank" rel="noopener">Lire l’article Wikipédia</a></p></details>';
     (f.avis || []).slice(0, 2).forEach(function (a) { h += '<div class="i avis-l">' + a.note + '/5 · « ' + E(a.texte.slice(0, 300)) + ' » <small>' + E(a.date || '') + '</small></div>'; });
     var corps = 'Lieu : ' + f.nom + '\nIdentifiant : ' + f.id + '\nVille : ' + slug + '\n\nNote (de 1 à 5) : \n\nVotre avis :\n\n\nDate de la visite (mois et année) : \n\n(Votre avis sera publié sur Dix Mille Escales après relecture. Restez courtois et factuel.)';
-    var liens = ' · <a href="https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(f.nom + ' ' + vn) + '" target="_blank" rel="noopener nofollow">Avis et photos</a>'
-      + ' · <a href="https://github.com/' + depot() + '/issues/new?title=' + encodeURIComponent('Avis – ' + f.nom + ' – ' + vn) + '&body=' + encodeURIComponent(corps) + '" target="_blank" rel="noopener nofollow">Donner mon avis</a>';
+    var liens = ' <a href="https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(f.nom + ' ' + vn) + '" target="_blank" rel="noopener nofollow">Avis et photos</a>'
+      + ' <a href="https://github.com/' + depot() + '/issues/new?title=' + encodeURIComponent('Avis – ' + f.nom + ' – ' + vn) + '&body=' + encodeURIComponent(corps) + '" target="_blank" rel="noopener nofollow">Donner mon avis</a>';
     return { avant: h, liens: liens };
   }
   function reperes(f) { return [(f.wikidata || f.patrimoine_mondial) ? '★ incontournable' : '', f.wikivoyage ? '✓ recommandé par Wikivoyage' : '', f.avis_n ? String(Math.round(f.avis_moy * 10) / 10).replace('.', ',') + '/5 (' + f.avis_n + ' avis de lecteurs)' : '']; }
@@ -70,9 +70,9 @@
     var x_ = extras(f, slug);
     var meta = reperes(f).concat([f.type, f.cuisine, f.etoiles ? f.etoiles + ' étoiles' : '', f.fauteuil === 'oui' ? 'accessible en fauteuil' : '', f.terrasse === 'oui' ? 'terrasse' : '']).filter(Boolean).join(' · ');
     var p = f.id ? f.id.slice(4).split('/') : null;
-    return '<li style="--c:var(--' + f.rubrique + ')"><h3>' + E(f.nom) + '</h3><div class="m">' + E(meta) + '</div>'
+    return '<li style="--c:var(--' + f.rubrique + ')"><h3>' + E(f.nom) + '</h3><div class="m">' + meta.split(' · ').filter(Boolean).map(function (x) { return '<span' + (/incontournable|Wikivoyage|avis de lecteurs/.test(x) ? ' class="rep"' : '') + '>' + E(x) + '</span>'; }).join('') + '</div>'
       + (f.adresse ? '<div class="i">' + E(f.adresse) + '</div>' : '') + (f.horaires ? '<div class="i">Horaires : ' + E(hfr(f.horaires)) + '</div>' : '')
-      + x_.avant + '<div class="i">' + (f.site && /^https?:/.test(f.site) ? '<a href="' + E(f.site) + '" rel="nofollow noopener" target="_blank">Site</a> · ' : '')
+      + x_.avant + '<div class="i liens">' + (f.site && /^https?:/.test(f.site) ? '<a href="' + E(f.site) + '" rel="nofollow noopener" target="_blank">Site</a> ' : '')
       + (p ? '<a href="https://www.openstreetmap.org/' + p[0] + '/' + p[1] + '" rel="nofollow noopener" target="_blank">Carte</a>' : '') + x_.liens + '</div></li>';
   }
   function duree(km) { var h = km * 1.3 / 70; return h < 1 ? Math.max(10, Math.round(h * 12) * 5) + ' min' : Math.floor(h) + ' h ' + String(Math.round(h % 1 * 12) * 5).padStart(2, '0'); }

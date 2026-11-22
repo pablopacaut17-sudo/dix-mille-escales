@@ -124,6 +124,13 @@ h2.sec{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,4vw,2.7
 .cpt-n{font-family:var(--display);font-weight:800;font-size:clamp(2.8rem,9vw,5.5rem);letter-spacing:-.045em;line-height:1;margin:0;color:var(--sea);font-variant-numeric:tabular-nums}
 .cpt-l{font-family:var(--display);font-size:1.1rem;margin:.3rem 0 0;font-weight:600}
 .cpt-d{font-family:var(--display);font-size:.88rem;color:var(--muted);margin:.3rem 0 0}
+.barre-bas{display:none}
+@media (max-width:700px){body{padding-bottom:calc(62px + env(safe-area-inset-bottom,0px))}
+.barre-bas{display:grid;grid-template-columns:repeat(4,1fr);position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--surface);border-top:1px solid var(--line);padding:.35rem .4rem calc(.35rem + env(safe-area-inset-bottom,0px));box-shadow:0 -4px 16px rgba(18,49,59,.06)}
+.barre-bas a,.barre-bas button{all:unset;display:flex;flex-direction:column;align-items:center;gap:.15rem;font-family:var(--display);font-size:.74rem;font-weight:600;color:var(--muted);padding:.25rem 0;cursor:pointer}
+.barre-bas svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.barre-bas a[aria-current="page"]{color:var(--ink)}.barre-bas a[aria-current="page"] svg{stroke:var(--sea)}
+.barre-bas a:focus-visible,.barre-bas button:focus-visible{outline:3px solid var(--buoy)}}
 @media (max-width:980px){.mainnav{display:none}}
 @media (max-width:760px){.stats{grid-template-columns:1fr 1fr}.site-foot .in{grid-template-columns:1fr 1fr}}
 @media (max-width:600px){.theme-btn{font-size:0;padding:.35rem .6rem}.theme-btn::before{content:"◐";font-size:1.05rem}}
@@ -134,7 +141,7 @@ h2.sec{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,4vw,2.7
 <header class="top">
   <div class="top-in">
     <a class="brand" href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M2 12h20M12 2c3 3.2 3 16.8 0 20M12 2c-3 3.2-3 16.8 0 20" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="15.5" cy="8" r="2.6" fill="#F2B705"/></svg>Dix Mille Escales</a>
-    <nav class="mainnav" aria-label="Navigation principale"><a href="#carte" aria-current="page">Carte du monde</a><a href="pays/">Pays</a><a href="outils/">Outils</a><a href="#continents">Destinations</a><a href="#phares">Villes phares</a><a href="#methode">Notre méthode</a></nav>
+    <nav class="mainnav" aria-label="Navigation principale"><a href="pays/">Destinations</a><a href="outils/">Préparer</a><a href="premier-voyage/">Premier voyage</a><a href="#carte">Carte du monde</a><a href="carnet/">Mon carnet</a></nav>
     <button type="button" class="theme-btn" id="theme-btn" aria-label="Changer le thème d’affichage">Thème : auto</button>
   </div>
 </header>
@@ -341,5 +348,12 @@ h2.sec{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,4vw,2.7
   el.textContent='0';requestAnimationFrame(pas);})();
 </script>
 <script src="static/questions.js"></script>
+<nav class="barre-bas" aria-label="Navigation rapide">
+<a href="./" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Accueil</a>
+<button type="button" id="bb-chercher"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5"/></svg>Chercher</button>
+<a href="outils/"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg>Préparer</a>
+<a href="carnet/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg>Carnet</a>
+</nav>
+<script>(function(){var b=document.getElementById('bb-chercher'),q=document.getElementById('q');if(b&&q)b.addEventListener('click',function(){window.scrollTo({top:0});setTimeout(function(){q.focus();},60);});})();</script>
 </body>
 </html>
