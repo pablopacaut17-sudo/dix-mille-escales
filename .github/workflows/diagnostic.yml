@@ -11,12 +11,15 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Échantillons de sources
+      - name: Geofabrik
         run: |
           mkdir -p diag && cd diag
-          curl -4 -sS -m 60 -o index-fra.json https://data.international.gc.ca/travel-voyage/index-alpha-fra.json || echo echec > index-fra.err
-          curl -4 -sS -m 60 -o cta-cap-IN.json https://data.international.gc.ca/travel-voyage/cta-cap-IN.json || echo echec > cta.err
-          curl -4 -sS -m 60 -o cta-cap-in.json https://data.international.gc.ca/travel-voyage/cta-cap-in.json || true
-          ls -la
+          curl -4 -sS -m 60 -o index.json https://download.geofabrik.de/index-v1-nogeom.json; ls -la index.json >> res.txt
+          python3 -c "
+          import json;d=json.load(open('index.json'));f=[x['properties'] for x in d['features'] if x['properties']['id'] in ('portugal','india','luxembourg')]
+          print(json.dumps(f,indent=1)[:1500])" >> res.txt 2>&1
+          for u in https://download.geofabrik.de/europe/portugal-latest.osm.pbf https://download.geofabrik.de/europe/luxembourg-latest.osm.pbf https://download.geofabrik.de/europe/; do
+            echo "== $u" >> res.txt; curl -4 -sS -o /dev/null -r 0-100 -D - -m 30 "$u" | head -12 >> res.txt 2>&1; done
+          cat res.txt
           git init -q && git checkout -q -b diagnostic && git -c user.name=r -c user.email=r@r add -A && git -c user.name=r -c user.email=r@r commit -qm diag
           git push -q --force "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" diagnostic:diagnostic
