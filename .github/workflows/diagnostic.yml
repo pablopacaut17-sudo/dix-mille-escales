@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
+      - uses: actions/checkout@v4
       - name: Geofabrik
         run: |
           mkdir -p diag && cd diag
@@ -18,8 +19,15 @@ jobs:
           python3 -c "
           import json;d=json.load(open('index.json'));f=[x['properties'] for x in d['features'] if x['properties']['id'] in ('portugal','india','luxembourg')]
           print(json.dumps(f,indent=1)[:1500])" >> res.txt 2>&1
-          for u in https://download.geofabrik.de/europe/portugal-latest.osm.pbf https://download.geofabrik.de/europe/luxembourg-latest.osm.pbf https://download.geofabrik.de/europe/; do
-            echo "== $u" >> res.txt; curl -4 -sS -o /dev/null -r 0-100 -D - -m 30 "$u" | head -12 >> res.txt 2>&1; done
+          python3 -c "
+          import json;d=json.load(open('index.json'));print([x['properties']['urls']['pbf'] for x in d['features'] if x['properties']['id']=='portugal'])" >> res.txt 2>&1
+          curl -4 -sS -o /dev/null -r 0-100 -D - -m 30 https://download.geofabrik.de/europe/portugal/portugal-latest.osm.pbf | head -3 >> res.txt
+          cd .. && python3 -c "
+          import sys; sys.path.insert(0,'robots'); import commun as c, urllib.request
+          for ua in (c.USER_AGENT, 'Mozilla/5.0'):
+              try:
+                  r=urllib.request.urlopen(urllib.request.Request('https://download.geofabrik.de/europe/portugal/portugal-latest.osm.pbf',headers={'User-Agent':ua,'Range':'bytes=0-100'}),timeout=30); print(ua[:40],'->',r.status)
+              except Exception as e: print(ua[:40],'->',e)" >> diag/res.txt 2>&1; cd diag
           cat res.txt
           git init -q && git checkout -q -b diagnostic && git -c user.name=r -c user.email=r@r add -A && git -c user.name=r -c user.email=r@r commit -qm diag
           git push -q --force "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" diagnostic:diagnostic
