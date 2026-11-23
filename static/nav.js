@@ -1,5 +1,24 @@
 /* Dix Mille Escales – navigation pratique : barre du bas sur téléphone (recherche), retour en haut, partage d'une fiche. */
 (function () {
+  // Pied de page, barre du bas et bouton « haut de page » : construits ici une seule fois (les 69 000 pages restent légères)
+  var R = document.body.getAttribute('data-root') || (/\/villes\/|\/pays\/[a-z]{2}\//.test(location.pathname) ? '../../' : /\/[a-z-]+\/$/.test(location.pathname) && !/\/dix-mille-escales\/$/.test(location.pathname) ? '../' : '');
+  var pied = document.getElementById('pied');
+  if (pied && !pied.querySelector('.foot-cols')) {
+    var col = function (t, l) { return '<div><b>' + t + '</b>' + l.map(function (x) { return '<a href="' + R + x[0] + '">' + x[1] + '</a>'; }).join('') + '</div>'; };
+    pied.querySelector('.in').insertAdjacentHTML('afterbegin', '<div class="foot-cols">'
+      + col('Destinations', [['pays/', 'Tous les pays'], ['#carte', 'Carte du monde'], ['ou-partir/', 'Où partir ?']])
+      + col('Préparer', [['premier-voyage/', 'Guide du premier voyage'], ['itineraire/', 'Planificateur d’itinéraire'], ['preparer/', 'Liste de préparation'], ['assurance/', 'Assurance et santé']])
+      + col('Outils', [['comparer/', 'Comparer des villes'], ['trajets/', 'Comparer des trajets'], ['outils/#convertisseur', 'Convertisseur'], ['carnet/', 'Mon carnet']])
+      + col('Le guide', [['sources/', 'Nos sources'], ['etat/', 'État des robots'], ['mentions-legales/', 'Mentions légales']]) + '</div>');
+  }
+  if (!document.querySelector('.barre-bas')) {
+    var ic = { a: '<path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>', c: '<circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5"/>',
+      p: '<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/>', k: '<path d="M6 3h12v18l-6-4-6 4z"/>' };
+    var sv = function (x) { return '<svg viewBox="0 0 24 24" aria-hidden="true">' + ic[x] + '</svg>'; };
+    document.body.insertAdjacentHTML('beforeend', '<nav class="barre-bas" aria-label="Navigation rapide"><a href="' + (R || './') + '">' + sv('a') + 'Accueil</a>'
+      + '<button type="button" id="bb-chercher">' + sv('c') + 'Chercher</button><a href="' + R + 'outils/">' + sv('p') + 'Préparer</a><a href="' + R + 'carnet/">' + sv('k') + 'Carnet</a></nav>'
+      + '<button type="button" class="haut-page" id="haut-page" aria-label="Revenir en haut de la page" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 14l6-6 6 6"/></svg></button>');
+  }
   var top = document.querySelector('.top'), q = document.getElementById('q');
   var bb = document.getElementById('bb-chercher');
   if (bb && top && q) bb.addEventListener('click', function () {
