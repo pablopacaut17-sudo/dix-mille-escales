@@ -177,6 +177,7 @@
       + '<p class="note">Vérifiez toujours avant de partir sur les <a href="https://www.diplomatie.gouv.fr/fr/conseils-aux-voyageurs/conseils-par-pays-destination/" rel="noopener" target="_blank">Conseils aux voyageurs</a>.</p>');
     if ((d.unesco && d.unesco.length) || txt.patrimoine) h += sec('patrimoine', 'Patrimoine', (d.unesco && d.unesco.length ? '<p class="lead">Patrimoine mondial de l’UNESCO :</p><ul class="unesco">' + d.unesco.map(function (u) { return '<li>' + E(u) + '</li>'; }).join('') + '</ul>' : '') + (txt.patrimoine ? prose(txt.patrimoine) : ''));
     if (txt.gastronomie) h += sec('gastronomie', 'Gastronomie', prose(txt.gastronomie));
+    [['geographie', 'Géographie'], ['culture', 'Culture'], ['economie', 'Économie'], ['sport', 'Sport'], ['transports', 'Transports']].forEach(function (x) { if (txt[x[0]]) h += sec(x[0], x[1], prose(txt[x[0]])); });
     if (d.jumelages) h += sec('jumelages', 'Villes jumelées', '<p class="lead">' + E(d.jumelages.join(', ')) + '.</p>');
     if (d.feries) h += sec('feries', 'Jours fériés à venir', '<div class="table-scroll"><table><tbody>' + d.feries.map(function (f) { return '<tr><td>' + E(f.date) + '</td><td>' + E(f.nom) + '</td></tr>'; }).join('') + '</tbody></table></div>');
     if (d.proches) h += sec('proches', 'Villes proches', '<div class="near">' + d.proches.map(function (p) { return '<a href="' + root + 'villes/' + p.slug + '/">' + E(p.nom) + '<span>' + nb(p.km) + ' km</span></a>'; }).join('') + '</div>');

@@ -843,7 +843,7 @@ def page_ville(v, ctx):
                 "fauteuil", "terrasse", "distance_km", "direction", "patrimoine_mondial", "id", "lat", "lon", "wikidata", "urgences",
                 "wikivoyage", "histoire", "avis_moy", "avis_n", "avis")
         export = [{k: f[k] for k in cles if f.get(k)} for f in sorted(tous, key=lambda f: (f["rubrique"], -f["infos"], f["nom"]))]
-        plafond = {"phare": 600, "intermediaire": 150, "autre": 25}[v["niveau"]]  # adresses par rubrique (poids du site)
+        plafond = {"phare": 600, "intermediaire": 60, "autre": 15}[v["niveau"]]  # adresses par rubrique (poids du site)
         gardes = {}
         export = [f for f in export if gardes.setdefault(f["rubrique"], []).append(1) or len(gardes[f["rubrique"]]) <= plafond]
         ecrire_gz(f"villes/{v['slug']}/lieux.json.gz", {"date": rubs["date"], "rayon_km": rubs.get("rayon_km"),
@@ -870,10 +870,10 @@ def page_ville(v, ctx):
     cpt["villes_enrichies"] += 1 if (tous or enc) else 0
 
     desc = f"Guide de voyage de {v['nom']} ({nom_pays}) : lieux à voir, où manger, où dormir, météo, jours fériés et infos pratiques."
-    if v["niveau"] != "autre" and (wps or gs or wp):
+    if v["niveau"] == "phare" and (wps or gs or wp):
         ecrire_gz(f"villes/{v['slug']}/textes.json.gz", {"resume": wp.get("resume", ""), "textes": {k: x["texte"] for k, x in wps.items()},
                                                         "guide": {k: x["texte"] for k, x in gs.items()}})
-    if v["niveau"] == "autre" and not ctx.get("pages_completes"):
+    if v["niveau"] != "phare" and not ctx.get("pages_completes"):  # pages légères (poids du site) : tout sauf les villes phares
         # Page légère : le reste de la fiche est construit dans le navigateur à partir des fichiers compressés
         donnees["complet"] = {"textes": {k: x["texte"] for k, x in wps.items()}, "resume": wp.get("resume", ""),
                               "guide": {k: x["texte"] for k, x in gs.items()},
@@ -881,7 +881,7 @@ def page_ville(v, ctx):
                               "wikipedia": {"titre": wp.get("titre"), "url": wp.get("url")} if wp else None,
                               "evenements": enc.get("evenements", []), "photo": enc.get("photo"), "blason": enc.get("blason"),
                               "alentours": [{"nom": f["nom"], "type": f["type"], "km": f.get("distance_km"), "direction": f.get("direction"),
-                                             "patrimoine_mondial": f.get("patrimoine_mondial", False), "id": f["id"]} for f in autour[:100]],
+                                             "patrimoine_mondial": f.get("patrimoine_mondial", False), "id": f["id"]} for f in autour[:40]],
                               "facts": [(k, val) for k, val in facts]}
         ecrire_gz(f"villes/{v['slug']}/donnees.json.gz", donnees)
         leger = (f'<section class="hero"><p class="crumbs"><a href="../../">Accueil</a> › <a href="../../pays/#{pays.get("continent", "")}">{E(cont)}</a> › <a href="../../pays/{v["pays"].lower()}/">{E(nom_pays)}</a></p>'
