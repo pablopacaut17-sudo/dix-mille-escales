@@ -85,10 +85,37 @@ def regions(part, parts):
     return [p for p in sorted(feuilles, key=lambda p: p["id"]) if zlib.crc32(p["id"].encode()) % parts == part]
 
 
+def candidats(url):
+    """Adresses possibles d'un même fichier : Geofabrik (actuelle, datées des jours précédents, ancienne), puis OpenStreetMap France."""
+    from datetime import date, timedelta
+    out = [url]
+    if url.endswith("-latest.osm.pbf"):
+        base = url[:-len("-latest.osm.pbf")]
+        for j in (1, 2, 3):
+            out.append(base + "-" + (date.today() - timedelta(days=j)).strftime("%y%m%d") + ".osm.pbf")
+    chemin = url.split("download.geofabrik.de/", 1)[-1]
+    morceaux = chemin.split("/")
+    if len(morceaux) >= 3 and morceaux[-1] == morceaux[-2] + "-latest.osm.pbf":
+        ancien = "/".join(morceaux[:-2] + [morceaux[-1]])  # ancien rangement : dossier/pays-latest.osm.pbf
+        out.append("https://download.geofabrik.de/" + ancien)
+        out.append("https://download.openstreetmap.fr/extracts/" + ancien)
+    else:
+        out.append("https://download.openstreetmap.fr/extracts/" + chemin)
+    return out
+
+
 def telecharger(url, chemin):
-    req = urllib.request.Request(url, headers={"User-Agent": c.USER_AGENT})
-    with urllib.request.urlopen(req, timeout=600) as r, open(chemin, "wb") as f:
-        shutil.copyfileobj(r, f, 4 * 1024 * 1024)
+    """Télécharge le fichier d'une région en essayant plusieurs adresses (curl suit les redirections, en IPv4)."""
+    dernier = ""
+    for u in candidats(url):
+        r = subprocess.run(["curl", "-4", "-sS", "-L", "--fail", "--retry", "2", "--retry-delay", "10", "-m", "1500",
+                            "-A", c.USER_AGENT, "-o", chemin, u], capture_output=True, text=True)
+        if r.returncode == 0 and os.path.exists(chemin) and os.path.getsize(chemin) > 1000:
+            if u != url:
+                print(f"   fichier obtenu à une adresse de secours : {u}")
+            return
+        dernier = (r.stderr or "").strip()[:160]
+    raise RuntimeError("fichier introuvable à toutes les adresses (" + dernier + ")")
 
 
 def trier(source, cible):
