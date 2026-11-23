@@ -28,4 +28,15 @@
     });
     actions.appendChild(b);
   }
+  // « Donner mon avis » : formulaire GitHub prérempli, fabriqué au moment du clic (les pages restent légères)
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a.donner-avis'); if (!a) return;
+    e.preventDefault();
+    var m = location.hostname.match(/^([^.]+)\.github\.io$/), seg = location.pathname.split('/').filter(Boolean);
+    var depot = m && seg.length ? m[1] + '/' + seg[0] : 'pablopacaut17-sudo/dix-mille-escales';
+    var h = document.querySelector('h1.city'), ville = h ? h.textContent.replace(/Ville phare|Fiche complète/g, '').trim() : '';
+    var slug = location.pathname.replace(/\/index\.html$/, '').replace(/\/$/, '').split('/').pop();
+    var corps = 'Lieu : ' + a.dataset.n + '\nIdentifiant : ' + a.dataset.i + '\nVille : ' + slug + '\n\nNote (de 1 à 5) : \n\nVotre avis :\n\n\nDate de la visite (mois et année) : \n\n(Votre avis sera publié sur Dix Mille Escales après relecture. Restez courtois et factuel.)';
+    window.open('https://github.com/' + depot + '/issues/new?title=' + encodeURIComponent('Avis – ' + a.dataset.n + ' – ' + ville) + '&body=' + encodeURIComponent(corps), '_blank', 'noopener');
+  });
 })();

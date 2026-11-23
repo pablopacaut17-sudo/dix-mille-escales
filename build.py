@@ -18,7 +18,7 @@ RACINE = os.path.dirname(os.path.abspath(__file__))
 DATA, SITE = os.path.join(RACINE, "data"), os.path.join(RACINE, "site")
 DONNEES = os.environ.get("DME_DONNEES") or os.path.join(RACINE, "donnees")  # données des robots (branches donnees-…)
 LIMITE_SITE = 950 * 1024 * 1024  # GitHub Pages accepte 1 Go : alerte au-delà de 950 Mo
-EN_LIGNE = {"phare": 30, "intermediaire": 15, "autre": 8}  # adresses écrites dans la page par rubrique ; la suite se charge à la demande
+EN_LIGNE = {"phare": 20, "intermediaire": 10, "autre": 8}  # adresses écrites dans la page par rubrique ; la suite se charge à la demande
 SECTIONS_AUTRES = ("histoire", "patrimoine", "gastronomie")  # petites villes : sections Wikipédia gardées dans la page
 E = html.escape
 CONTINENTS = {"EU": "Europe", "AF": "Afrique", "AS": "Asie", "NA": "Amérique du Nord et centrale",
@@ -244,7 +244,9 @@ def carte_lieux(v, lieux, rayon):
         dy = (f["lat"] - v["lat"]) * 110.57
         return W / 2 + dx / rayon * (W / 2 - 20), H / 2 - dy / rayon * (H / 2 - 20)
     pts = []
-    for f in lieux[:3000]:
+    # 200 points suffisent pour l'aperçu (lieux célèbres et fiches les plus complètes d'abord) ; la carte interactive montre tout
+    choisis = sorted(lieux, key=lambda f: (not (f.get("wikidata") or f.get("patrimoine_mondial")), -f.get("infos", 0)))[:200]
+    for f in choisis:
         x, y = xy(f)
         if 0 <= x <= W and 0 <= y <= H:
             pts.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="4" fill="var(--{f["rubrique"]})" fill-opacity=".85">'
@@ -342,7 +344,7 @@ def liste_lieux(rub, items, niveau="phare"):
         liens.append(f'<a href="https://www.openstreetmap.org/{typ}/{ident}" rel="nofollow noopener" target="_blank">Carte</a>')
         vn, vs = VILLE_EN_COURS.get("nom", ""), VILLE_EN_COURS.get("slug", "")
         liens.append(f'<a href="{E(lien_maps(f["nom"], vn))}" rel="nofollow noopener" target="_blank">Avis et photos</a>')
-        liens.append(f'<a href="{E(lien_avis(f["nom"], f["id"], vn, vs))}" rel="nofollow noopener" target="_blank">Donner mon avis</a>')
+        liens.append(f'<a href="#" class="donner-avis" data-n="{E(f["nom"])}" data-i="{E(f["id"])}" rel="nofollow">Donner mon avis</a>')  # formulaire fabriqué au clic
         plus = ""
         if f.get("wikivoyage"):
             plus += f'<div class="i wv">« {E(f["wikivoyage"])} » <small>(Wikivoyage)</small></div>'
@@ -637,7 +639,7 @@ def page_ville(v, ctx):
             f["avis_moy"] = sum(x["note"] for x in la) / len(la)
 
     # Galerie : les lieux célèbres qui ont une photo
-    gal = [f for f in tous if ((f.get("histoire") or {}).get("f") or {}).get("photo")]
+    gal = [f for f in tous if isinstance(f.get("histoire"), dict) and (f["histoire"].get("f") or {}).get("photo")]
     gal.sort(key=lambda f: (not f.get("patrimoine_mondial"), f["rubrique"] == "alentours", -f["infos"]))
     if gal:
         corps.append(f'<section class="block" id="galerie"><h2>{E(v["nom"])} en images</h2><div class="galerie">'
@@ -855,9 +857,9 @@ def page_ville(v, ctx):
                 "fauteuil", "terrasse", "distance_km", "direction", "patrimoine_mondial", "id", "lat", "lon", "wikidata", "urgences",
                 "wikivoyage", "histoire", "avis_moy", "avis_n", "avis")
         export = [{k: f[k] for k in cles if f.get(k)} for f in sorted(tous, key=lambda f: (f["rubrique"], -f["infos"], f["nom"]))]
-        if v["niveau"] == "autre":
-            gardes = {}
-            export = [f for f in export if gardes.setdefault(f["rubrique"], []).append(1) or len(gardes[f["rubrique"]]) <= 40]
+        plafond = {"phare": 600, "intermediaire": 150, "autre": 25}[v["niveau"]]  # adresses par rubrique (poids du site)
+        gardes = {}
+        export = [f for f in export if gardes.setdefault(f["rubrique"], []).append(1) or len(gardes[f["rubrique"]]) <= plafond]
         ecrire_gz(f"villes/{v['slug']}/lieux.json.gz", {"date": rubs["date"], "rayon_km": rubs.get("rayon_km"),
                                                          "rayon_alentours_km": rubs.get("rayon_alentours_km"), "lieux": export})
     # Ligne compacte pour les outils (itinéraire, « où partir », comparateur)
@@ -1313,8 +1315,8 @@ def main():
     dh = os.path.join(DONNEES, "histoires")
     if os.path.isdir(dh):
         for fn in os.listdir(dh):
-            if fn.endswith(".json"):
-                ctx["histoires"].update(lire(f"histoires/{fn}") or {})
+            if fn.endswith(".json") and not fn.startswith("_"):  # _suivi.json : dates de passage, pas des histoires
+                ctx["histoires"].update({k: x for k, x in (lire(f"histoires/{fn}") or {}).items() if isinstance(x, dict)})
     ctx["avis"] = (lire("avis.json", {}) or {}).get("villes", {})
     ctx["transports"] = {}
     dtr = os.path.join(DONNEES, "transports")
