@@ -188,6 +188,10 @@ def main():
                     seaux[seau(q)][q] = {"t": pg["title"], "r": "", "f": carac[q]}
                     faits += 1
             time.sleep(0.2)
+        for orig, q in titres.items():  # article absent de la réponse : on garde au moins les caractéristiques
+            if q in carac and q not in seaux[seau(q)]:
+                seaux[seau(q)][q] = {"t": orig, "r": "", "f": carac[q]}
+                vus[q] = t0.isoformat()
         if k % 2000 == 0:
             for nom, d in seaux.items():
                 c.ecrire(f"histoires/{nom}.json", d, compact=True)
@@ -201,4 +205,9 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as e:  # l'erreur est notée dans le journal, pour le rapport du matin
+        import traceback
+        c.journal("histoires", "echec", erreur=f"{type(e).__name__}: {e}"[:300], trace=traceback.format_exc()[-900:])
+        raise
