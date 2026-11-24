@@ -153,11 +153,11 @@ def main():
                     lb = e_.get("labels", {})
                     noms_[i_] = (lb.get("fr") or lb.get("en") or {}).get("value", "")
             for q, cr in carac.items():
-                for k in ("architecte", "style", "protection"):
-                    if k in cr:
-                        cr[k] = [noms_[x] for x in cr[k] if noms_.get(x)][:3]
-                        if not cr[k]:
-                            del cr[k]
+                for cle_ in ("architecte", "style", "protection"):
+                    if cle_ in cr:
+                        cr[cle_] = [noms_[x] for x in cr[cle_] if noms_.get(x)][:3]
+                        if not cr[cle_]:
+                            del cr[cle_]
         for q in paquet:
             sl = ((rep or {}).get("entities", {}).get(q, {}).get("sitelinks", {}) or {}).get("frwiki")
             if sl:
