@@ -97,7 +97,7 @@ jobs:
         run: python3 robots/preparer.py
       - name: Encyclopédie
         continue-on-error: true
-        run: python3 robots/robot_encyclopedie.py --max-villes ${{ vars.MAX_ENCYCLO || 8000 }} --duree-max 320
+        run: python3 robots/robot_encyclopedie.py --max-villes ${{ vars.MAX_ENCYCLO || 8000 }} --duree-max 290
       - name: Enregistrer
         if: always()
         run: python3 robots/sauver.py --branche donnees-encyclopedie --chemins encyclo journal/encyclopedie.json

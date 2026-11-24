@@ -74,9 +74,18 @@ def par_nom(v):
     return ""
 
 
+DEBUT = time.monotonic()  # le temps de travail compte dès le lancement (limite de 6 h des machines de GitHub)
+LIMITE_S = [300 * 60]
+
+
+def temps_ecoule():
+    return time.monotonic() - DEBUT > LIMITE_S[0]
+
+
 def correspondances(villes):
     table = c.lire("encyclo/_qid.json", {})
     manquants = [str(v["id"]) for v in villes if str(v["id"]) not in table]
+    par_id = {str(x["id"]): x for x in villes}
     for i in range(0, len(manquants), 200):
         lot = manquants[i:i + 200]
         rep = sparql("SELECT ?gn ?item WHERE { VALUES ?gn { %s } ?item wdt:P1566 ?gn . }" % " ".join(f'"{g}"' for g in lot))
@@ -86,7 +95,9 @@ def correspondances(villes):
             table.setdefault(r["gn"]["value"], qid_de(r["item"]["value"]))
         for g in lot:
             if g not in table:  # pas d'identifiant GeoNames dans Wikidata : recherche par nom
-                v = next((x for x in villes if str(x["id"]) == g), None)
+                v = par_id.get(g)
+                if temps_ecoule():
+                    break  # la suite de la recherche se fera la nuit prochaine
                 table[g] = par_nom(v) if v else ""
         c.ecrire("encyclo/_qid.json", table, compact=True)
         time.sleep(1)
@@ -310,7 +321,7 @@ def demo(v):
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--max-villes", type=int, default=8000)
-    p.add_argument("--duree-max", type=float, default=320, help="minutes : au-delà, arrêt propre")
+    p.add_argument("--duree-max", type=float, default=290, help="minutes depuis le lancement : au-delà, arrêt propre")
     p.add_argument("--ville")
     p.add_argument("--demo", action="store_true")
     a = p.parse_args()
@@ -331,11 +342,11 @@ def main():
         dues.sort(key=lambda x: x[:3])
         lot = [x[3] for x in dues[:a.max_villes]]
     print(f"{len(lot)} ville(s) à traiter.")
+    LIMITE_S[0] = a.duree_max * 60
     table = {} if a.demo else correspondances(lot)
     ok = sans = ech = 0
-    debut = time.monotonic()
     for n, v in enumerate(lot, 1):
-        if time.monotonic() - debut > a.duree_max * 60:
+        if temps_ecoule():
             print("Durée maximale atteinte : la suite passera la nuit prochaine.")
             break
         qid = table.get(str(v["id"]))
