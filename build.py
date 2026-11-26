@@ -357,6 +357,16 @@ def liste_lieux(rub, items, niveau="phare"):
     return html_
 
 
+def infos_histoires(tous, ctx):
+    """Informations apportées par l'histoire des lieux célèbres : résumé, photo, dimensions, date, architecte…"""
+    n = 0
+    for f in tous:
+        h_ = ctx["histoires"].get(f.get("wikidata", "")) if f.get("wikidata") else None
+        if isinstance(h_, dict):
+            n += (1 if h_.get("r") else 0) + len(h_.get("f") or {})
+    return n
+
+
 def lieux_ville(chemins):
     """Lit et fusionne les fichiers de lieux d'une ville (plusieurs robots ou régions peuvent l'avoir servie)."""
     if not chemins:
@@ -416,7 +426,8 @@ def page_ville(v, ctx):
         + sum(max(1, len(x["texte"]) // 300) for x in wps.values()) + (1 if wp.get("resume") else 0) + (1 if enc.get("photo") else 0) \
         + (60 if clim.get("mois") else 0) + (8 if cout else 0) + (4 if ctx["formalites"] else 0) + (1 if alerte else 0) \
         + sum(len(red.get(k, [])) for k in ("pourquoi", "conseils", "a_eviter", "un_jour", "trois_jours")) + (3 if red else 0) \
-        + sum(max(1, len(x["texte"]) // 300) for x in gs.values()) + len(aeros) * 4
+        + sum(max(1, len(x["texte"]) // 300) for x in gs.values()) + len(aeros) * 4 \
+        + infos_histoires(tous, ctx)
     total_infos = infos_base + sum(f["infos"] + (2 if f.get("distance_km") else 0) for f in tous) + (len(meteo["jours"]) * 4 if meteo else 0) + (len(feries["jours"]) * 2 if feries else 0)
     coords = (f'{abs(v["lat"]):.2f}° {"N" if v["lat"] >= 0 else "S"} / {abs(v["lon"]):.2f}° {"E" if v["lon"] >= 0 else "O"}').replace(".", ",")
     badge = f'<span class="badge">{NIVEAUX[v["niveau"]]}</span>' if v["niveau"] == "phare" else ""

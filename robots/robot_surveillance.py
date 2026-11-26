@@ -127,7 +127,8 @@ def main():
         elif j.get("etat") in ("echec",):
             problemes.append(f"{nom} : en échec{' (' + detail + ')' if detail else ''}. Les données précédentes sont conservées ; "
                              f"si l’échec se répète plusieurs jours, la source a sans doute changé et le robot doit être adapté.")
-        elif robot.startswith("lieux") and j.get("regions_traitees", j.get("villes_traitees", 1)) == 0:
+        elif robot.startswith("lieux") and j.get("regions_traitees", j.get("villes_traitees", 1)) == 0 and \
+                (j.get("echecs", 0) > 0 or j.get("regions_restantes", 0) > 0):  # 0 région faite sans échec = tout est à jour cette semaine
             problemes.append(f"{nom} : aucune ville traitée cette nuit (serveur OpenStreetMap saturé ?).")
             a_relancer.add("lieux")
         else:
