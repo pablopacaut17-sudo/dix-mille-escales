@@ -68,10 +68,54 @@ def nombre(n):
     return f"{n:,}".replace(",", "\u202f")
 
 
+def heure_paris():
+    from zoneinfo import ZoneInfo
+    return datetime.now(ZoneInfo("Europe/Paris"))
+
+
+def visite(url_site):
+    """Visite du site comme un visiteur : accueil, pages principales, outils, et trois fiches de villes au hasard."""
+    import gzip, random
+    villes = c.villes()
+    hasard = random.Random(datetime.now().strftime("%Y%m%d"))
+    echantillon = [hasard.choice([v for v in villes if v["niveau"] == n]) for n in ("phare", "intermediaire", "autre")]
+    pages = [("Accueil", ""), ("Tous les pays", "pays/"), ("Outils", "outils/"), ("Planificateur d’itinéraire", "itineraire/"),
+             ("Premier voyage", "premier-voyage/"), ("Données des outils", "static/monde.json.gz"), ("Recherche", "static/index.json")]
+    for v in echantillon:
+        pages.append((f"Fiche de {v['nom']}", f"villes/{v['slug']}/"))
+        pages.append((f"Données de {v['nom']}", f"villes/{v['slug']}/donnees.json.gz"))
+    ok, ko = [], []
+    for nom, chemin in pages:
+        try:
+            req = urllib.request.Request(url_site.rstrip("/") + "/" + chemin, headers={"User-Agent": "dix-mille-escales-surveillance"})
+            with urllib.request.urlopen(req, timeout=40) as r:
+                corps = r.read()
+                if r.status != 200 or len(corps) < 200:
+                    ko.append(f"{nom} (réponse vide)")
+                elif chemin.endswith(".gz"):
+                    json.loads(gzip.decompress(corps))
+                    ok.append(nom)
+                elif chemin.endswith(".json"):
+                    json.loads(corps)
+                    ok.append(nom)
+                else:
+                    ok.append(nom)
+        except Exception as e:
+            ko.append(f"{nom} ({str(e)[:60]})")
+    return ok, ko
+
+
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--essai", action="store_true", help="vérifier seulement : ne rien relancer, ne rien publier")
+    p.add_argument("--heure", type=int, default=0, help="heure de Paris minimale du rapport (0 = maintenant)")
     a = p.parse_args()
+    if a.heure:
+        hp = heure_paris()
+        deja = (c.lire("journal/surveillance.json", {}) or {}).get("dernier_rapport", "")
+        if hp.hour < a.heure or deja[:10] == datetime.now(timezone.utc).strftime("%Y-%m-%d"):
+            print(f"Il est {hp:%H:%M} à Paris : pas de rapport maintenant (prévu à {a.heure} h, une fois par jour).")
+            return
     maintenant = c.maintenant()
     problemes, corriges, infos, a_relancer = [], [], [], set()
     journal = c.lire("journal/surveillance.json", {}) or {}
@@ -158,6 +202,13 @@ def main():
         except Exception as e:
             problemes.append(f"Le site ne répond pas ({e}).")
             a_relancer.add("publier")
+    if url:
+        ok_, ko_ = visite(url)
+        if ko_:
+            problemes.append("Visite du site : pages en erreur : " + "; ".join(ko_))
+            a_relancer.add("publier")
+        else:
+            infos.append(f"Visite du site : {len(ok_)} pages et fichiers vérifiés, tous accessibles (dont " + ", ".join(x for x in ok_ if x.startswith("Fiche")) + ").")
     if cpt:
         inf = cpt.get("informations", 0)
         precedent = historique[-1]["informations"] if historique else None

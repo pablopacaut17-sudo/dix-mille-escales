@@ -5,7 +5,7 @@ name: Surveillance du matin
 
 on:
   schedule:
-    - cron: "0 7 * * *"      # 7 h UTC, soit 8 h en hiver à Paris
+    - cron: "0 7,8 * * *"    # 7 h et 8 h UTC : le robot ne fait son rapport qu'à partir de 9 h à Paris (été comme hiver), une fois par jour
   workflow_dispatch:
 
 permissions:
@@ -29,7 +29,7 @@ jobs:
       - name: Réunir les données
         run: python3 robots/preparer.py
       - name: Vérifier, corriger, publier le rapport
-        run: python3 robots/robot_surveillance.py
+        run: python3 robots/robot_surveillance.py ${{ github.event_name == 'schedule' && '--heure 9' || '' }}
       - name: Enregistrer
         if: always()
         run: python3 robots/sauver.py --branche donnees-surveillance --chemins journal/surveillance.json journal/surveillance_etat.json
