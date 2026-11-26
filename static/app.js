@@ -58,6 +58,7 @@
 
   /* Compteur de données du guide */
   document.querySelectorAll('[data-compteur]').forEach(function(el){fetch(base+'static/compteur.json').then(function(r){return r.json();}).then(function(c){el.textContent=new Intl.NumberFormat('fr-FR').format(c.informations);}).catch(function(){el.textContent='–';});});
+  document.querySelectorAll('[data-maj]').forEach(function(el){fetch(base+'static/compteur.json').then(function(r){return r.json();}).then(function(c){el.textContent=c.mis_a_jour||'–';}).catch(function(){el.textContent='–';});});
 
   /* Recherche parmi toutes les villes (index chargé à la première frappe) */
   var q=document.getElementById('q'),res=document.getElementById('results');if(!q)return;

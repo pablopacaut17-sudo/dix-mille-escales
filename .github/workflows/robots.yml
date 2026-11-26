@@ -246,6 +246,14 @@ jobs:
       - id: deploy
         uses: actions/deploy-pages@v4
         continue-on-error: true
+      - name: Garder le dépôt actif (GitHub suspend les tâches programmées après 60 jours sans modification)
+        if: github.event_name == 'schedule'
+        continue-on-error: true
+        run: |
+          git config user.name "robot-dix-mille-escales"; git config user.email "robot-dix-mille-escales@users.noreply.github.com"
+          git fetch -q origin main && git checkout -q -B main origin/main
+          date -u +"Dernière publication automatique : %Y-%m-%d %H:%M UTC" > data/derniere_publication.txt
+          git add data/derniere_publication.txt && git commit -qm "Publication du $(date -u +%F) [skip ci]" && git push -q origin main || true
       - name: Nouvel essai de mise en ligne (incident GitHub passager)
         if: steps.deploy.outcome == 'failure'
         run: sleep 60

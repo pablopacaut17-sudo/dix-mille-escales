@@ -215,7 +215,7 @@ def page(root, titre, description, corps, recherche=True):
 <nav class="nav-top" aria-label="Navigation principale"><a href="{root}pays/">Destinations</a><a href="{root}outils/">Préparer</a><a href="{root}premier-voyage/">Premier voyage</a><a href="{root}carnet/">Mon carnet</a></nav>{rech}
 <button type="button" class="theme-btn" id="theme-btn" aria-label="Changer le thème d’affichage">Thème : auto</button></div></header>
 <main class="wrap" id="contenu">{corps}</main>
-<footer class="foot" id="pied"><div class="in"><p class="foot-note"><span data-compteur>…</span> informations, mises à jour chaque nuit · <a href="{root}mentions-legales/">Mentions légales</a></p></div></footer>
+<footer class="foot" id="pied"><div class="in"><p class="foot-note"><span data-compteur>…</span> informations · mis à jour le <span data-maj>…</span> · <a href="{root}mentions-legales/">Mentions légales</a></p></div></footer>
 <script src="{root}static/app.js"></script><script src="{root}static/fiche.js"></script><script src="{root}static/questions.js"></script><script src="{root}static/lieux.js"></script><script src="{root}static/onglets.js"></script><script src="{root}static/carte.js"></script><script src="{root}static/carnet.js"></script><script src="{root}static/nav.js"></script></body></html>"""
 
 
@@ -365,6 +365,16 @@ def infos_histoires(tous, ctx):
         if isinstance(h_, dict):
             n += (1 if h_.get("r") else 0) + len(h_.get("f") or {})
     return n
+
+
+def maj_paris():
+    """« jeudi 26 novembre 2026 à 8 h 03 » : date et heure de la publication, à l'heure de Paris."""
+    from zoneinfo import ZoneInfo
+    from datetime import datetime as dt_
+    t = dt_.now(ZoneInfo("Europe/Paris"))
+    jours = ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"]
+    mois = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"]
+    return f"{jours[t.weekday()]} {t.day} {mois[t.month - 1]} {t.year} à {t.hour} h {t.minute:02d}"
 
 
 def lieux_ville(chemins):
@@ -758,7 +768,7 @@ def page_ville(v, ctx):
         corps.append(f'<p class="note">Les textes « En bref », « Histoire » et suivants reprennent l’article <a href="{E(wp["url"])}" rel="noopener" target="_blank">'
                      f'{E(wp["titre"])}</a> de Wikipédia en français, sous licence <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.fr" rel="noopener" target="_blank">CC BY-SA 4.0</a> '
                      f'(auteurs : voir l’historique de l’article). Faits historiques et jumelages : Wikidata.</p>')
-    corps.append(f'<p class="note" style="margin-top:2.5rem">Fiche générée le {ctx["date_txt"]}. Une erreur ? Les signalements seront bientôt possibles depuis chaque fiche.</p>')
+    corps.append(f'<p class="note" style="margin-top:2.5rem">Fiche mise à jour le {ctx["maj_txt"]}. Une erreur ? Utilisez le lien « Signaler une erreur » en bas de chaque onglet.</p>')
 
     # Boîte à questions sur la ville
     corps.insert(sommaire_pos + (1 if len(presentes) >= 3 else 0), BOITE_QUESTIONS.format(nom=E(v["nom"]), slug=v["slug"]))
@@ -1319,7 +1329,7 @@ def main():
         v["rang"] = i
     pays = lire("pays.json", {})
     ctx = {"pays": pays, "change": lire("change.json", {}) or {}, "journal": lire("journal.json", {}) or {},
-           "date_txt": date_fr(date.today().isoformat())}
+           "date_txt": date_fr(date.today().isoformat()), "maj_txt": maj_paris()}
     # Lieux et jours fériés déjà collectés
     # Lieux : on ne note ici que l'emplacement des fichiers ; ils sont lus ville par ville (des millions de lieux)
     ctx["lieux"] = {}
@@ -1472,7 +1482,7 @@ def main():
     donnees = json.dumps({"c": rows, "tz": tzs, "cont": {cc: pz["continent"] for cc, pz in pays.items()}, "tot": tot},
                          ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
     accueil = open(os.path.join(RACINE, "templates", "accueil.html"), encoding="utf-8").read()
-    ecrire("index.html", accueil.replace("__DATA__", donnees).replace("__DATE__", ctx["date_txt"])
+    ecrire("index.html", accueil.replace("__DATA__", donnees).replace("__DATE__", ctx["maj_txt"])
            .replace("__INFOS__", str(cpt["informations"])).replace("__LIEUX__", nombre(cpt["lieux"]))
            .replace("__TEXTES__", nombre(cpt["textes"])).replace("__ENRICHIES__", nombre(cpt["villes_enrichies"])))
 
@@ -1619,6 +1629,7 @@ def main():
         print(f"Site allégé automatiquement ({mesure}) : {taille / 1024 / 1024:.0f} Mo.")
     ctx["taille_site"] = taille
     cpt["taille_site_mo"] = round(taille / 1024 / 1024)
+    cpt["mis_a_jour"] = ctx["maj_txt"]
     ecrire("static/compteur.json", json.dumps(cpt, ensure_ascii=False))
     nb = len(lot) + (perso if a.limite else 0)
     print(f"Site généré dans site/ : accueil + {nombre(len(lot))} pages de villes ({perso} rédigées à la main), "
