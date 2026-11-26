@@ -1240,6 +1240,45 @@ def page_conseils(cc, nomp, cv):
     return page("../../../", f"Conseils aux voyageurs {nomp} – Dix Mille Escales", f"Sécurité, santé, vaccins, lois et coutumes, zones à éviter : {nomp}.", corps).replace("</body>", js + "</body>")
 
 
+def taille_site():
+    return sum(os.path.getsize(os.path.join(r, f)) for r, _, fs in os.walk(SITE) for f in fs)
+
+
+def alleger(villes, taille):
+    """Si le site dépasse 950 Mo, il s'allège tout seul pour rester sous la limite de 1 Go de GitHub Pages :
+    on réduit pas à pas le nombre d'adresses dans les fichiers téléchargés (petites villes, puis grandes villes),
+    jusqu'à repasser sous 900 Mo. Les pages et les autres informations ne changent pas."""
+    cible = 900 * 1024 * 1024
+    niveau = {v["slug"]: v["niveau"] for v in villes}
+    etapes = [("autre", 10), ("autre", 6), ("intermediaire", 30), ("autre", 3), ("intermediaire", 12), ("phare", 200)]
+    mesure = "aucune"
+    for niv, plafond in etapes:
+        if taille <= cible:
+            break
+        base = os.path.join(SITE, "villes")
+        for slug in os.listdir(base):
+            if niveau.get(slug) != niv:
+                continue
+            p = os.path.join(base, slug, "lieux.json.gz")
+            if not os.path.exists(p):
+                continue
+            with gzip.open(p, "rt", encoding="utf-8") as f:
+                d = json.load(f)
+            vus, garde = {}, []
+            for x in d.get("lieux", []):  # déjà triés : les lieux les plus importants d'abord
+                vus[x["rubrique"]] = vus.get(x["rubrique"], 0) + 1
+                if vus[x["rubrique"]] <= plafond:
+                    garde.append(x)
+            if len(garde) < len(d.get("lieux", [])):
+                d["lieux"] = garde
+                with open(p, "wb") as f:
+                    f.write(gzip.compress(json.dumps(d, ensure_ascii=False, separators=(",", ":")).encode(), 9, mtime=0))
+        taille = taille_site()
+        mesure = f"{plafond} adresses par rubrique pour les villes de niveau « {niv} »"
+        print(f"  allègement : {mesure} → {taille / 1024 / 1024:.0f} Mo")
+    return taille, mesure
+
+
 def proches(villes, n=6):
     """Pour chaque ville, ses n plus proches voisines du guide (recherche par cases de 5°)."""
     cases = {}
@@ -1561,10 +1600,12 @@ def main():
     else:
         ecrire("robots.txt", "User-agent: *\nAllow: /\n")
 
-    taille = sum(os.path.getsize(os.path.join(r, f)) for r, _, fs in os.walk(SITE) for f in fs)
+    taille = taille_site()
     print(f"Taille du site : {taille / 1024 / 1024:.0f} Mo sur 1 024 Mo autorisés par GitHub Pages.")
     if taille > LIMITE_SITE:
-        print("ATTENTION : le site approche la limite de 1 Go de GitHub Pages. Réduire EN_LIGNE ou SECTIONS_AUTRES dans build.py.")
+        taille, mesure = alleger(villes, taille)
+        cpt["allegement"] = mesure
+        print(f"Site allégé automatiquement ({mesure}) : {taille / 1024 / 1024:.0f} Mo.")
     ctx["taille_site"] = taille
     cpt["taille_site_mo"] = round(taille / 1024 / 1024)
     ecrire("static/compteur.json", json.dumps(cpt, ensure_ascii=False))

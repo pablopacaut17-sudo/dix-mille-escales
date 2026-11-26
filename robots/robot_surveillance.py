@@ -166,6 +166,8 @@ def main():
         taille = cpt.get("taille_site_mo")
         if taille:
             infos.append(f"Taille du site : {taille} Mo sur 1 024 Mo.")
+            if cpt.get("allegement") and cpt["allegement"] != "aucune":
+                infos.append(f"Le site s’est allégé tout seul pour rester sous 1 Go ({cpt['allegement']}).")
             if taille > 950:
                 problemes.append(f"Le site approche la limite de 1 Go de GitHub Pages ({taille} Mo). Intervention humaine nécessaire.")
         historique.append({"date": maintenant.strftime("%Y-%m-%d"), "informations": inf, "villes_enrichies": cpt.get("villes_enrichies"),
