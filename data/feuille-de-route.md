@@ -16,3 +16,7 @@ jour** (point 3, avant toute autre idée), le teste, puis le coche ici avec la d
 
 ## Fait
 - [x] 27/11 : comparaison de deux villes (distance, durée de vol, décalage, climat), soleil pour un mois donné, question à voix haute, bouton « Signaler une erreur », sauvegarde hebdomadaire des données (Release GitHub), robots Noms et Chiffres, testeur de questions.
+
+## Robots ajoutés le 27/11/2026 (à vérifier le 28/11)
+- [x] **Liens cassés** (robots/robot_liens.py, groupe « decouvertes ») : 4 000 sites de lieux testés par jour ; mort après deux échecs nets à un jour d'écart ; build.py masque les liens morts. État : liens.json.gz (branche donnees-decouvertes).
+- Déjà en place avant (pas refaits) : jours fériés (robot_feries.py, Nager.Date) et niveau de sécurité par pays (robot_securite.py, Département d'État américain + lien vers les Conseils aux voyageurs français).
