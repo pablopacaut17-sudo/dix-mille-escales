@@ -1863,7 +1863,7 @@ def main():
            '<h2>Éditeur du site</h2><p>Dix Mille Escales est un site personnel et non commercial. Éditeur : <b>Pablo Pacaut</b>, '
            'joignable via <a href="https://github.com/' + os.environ.get("GITHUB_REPOSITORY", "pablopacaut17-sudo/dix-mille-escales") + '/issues">les « issues » du dépôt GitHub</a>.</p>'
            '<h2>Hébergement</h2><p>GitHub Pages, service de GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis.</p>'
-           '<h2>Données personnelles et cookies</h2><p>Le site ne crée pas de compte, ne dépose aucun cookie publicitaire ni de mesure d’audience. '
+           '<h2>Données personnelles et cookies</h2><p>Le site ne crée pas de compte, ne dépose aucun cookie. La fréquentation est mesurée de façon anonyme par GoatCounter (sans cookie, sans donnée personnelle conservée) : seuls les totaux de visites par page sont comptés. '
            'Seul le choix du thème (clair ou sombre) est mémorisé dans votre navigateur, sans quitter votre appareil. L’hébergeur peut conserver '
            'des journaux techniques de connexion (adresse IP) pour la sécurité du service.</p>'
            '<h2>Contenus et licences</h2><p>Les données proviennent de sources ouvertes listées sur la page <a href="../sources/">Nos sources</a>, '
