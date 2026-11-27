@@ -468,9 +468,18 @@
           rep.innerHTML = repCelebre(cel) + (aLe ? boutonIA(q, {}, 1) : pasLeChiffre(ch, cel[0]) + boutonIA(q, {})); if (!aLe) memoireIA(rep, q, {}); return;
         }
         var ld = ch ? lieuDemande(q) : '';
-        if (ch && ld) { rep.innerHTML = pasLeChiffre(ch, ld) + boutonIA(q, {}); memoireIA(rep, q, {}); return; }
         var v = trouverVille(q), slug = v ? v[1] : derniere;
-        if (!slug) { rep.innerHTML = '<p class="q-vide">De quelle ville parlez-vous ? Ajoutez son nom à la question, par exemple « Quel temps fait-il à Lisbonne ? ».</p>' + boutonIA(q, {}); memoireIA(rep, q, {}); return; }
+        if ((ch && ld) || !slug) {
+          // réponses vérifiées (lecteurs, ou réponses de l'IA relues et ajoutées au site) avant de renvoyer vers l'IA
+          chargerReponses().catch(function () { return []; }).then(function (liste) {
+            var rg = reponseLecteur(q, { slug: v ? v[1] : '' }, liste || []);
+            if (rg) { rep.innerHTML = '<div class="q-texte"><p>' + E(rg.r).replace(/\n/g, '<br>') + '</p><p class="note">Réponse vérifiée le ' + E(rg.date || '') + (rg.source ? ' · source : ' + E(rg.source) : '') + '.</p>' + boutonIA(q, {}, 1) + '</div>'; return; }
+            if (ch && ld) rep.innerHTML = pasLeChiffre(ch, ld) + boutonIA(q, {});
+            else rep.innerHTML = '<p class="q-vide">De quelle ville parlez-vous ? Ajoutez son nom à la question, par exemple « Quel temps fait-il à Lisbonne ? ».</p>' + boutonIA(q, {});
+            memoireIA(rep, q, {});
+          });
+          return;
+        }
         derniere = slug;
         charger(slug, function (d) {
           if (!d) { rep.innerHTML = '<p class="q-vide">Impossible de charger la fiche de cette ville pour le moment.</p>'; return; }
