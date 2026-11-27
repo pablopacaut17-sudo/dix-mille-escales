@@ -200,6 +200,7 @@ def meteo_fr(code):
 
 
 SITE_URL = "https://pablopacaut17-sudo.github.io/dix-mille-escales/"
+CR_AERO = "https://pablopacaut17-sudo.github.io/cotes-et-routes/#aeroport="  # fiche d'un aéroport sur l'autre site (code IATA)
 PROMO_VOISIN = '<a class="voisin" href="https://pablopacaut17-sudo.github.io/cotes-et-routes/#accueil"><svg viewBox="0 0 64 64" width="40" height="40" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#FFC72C"/><path d="M8 46C22 46 30 30 46 22" fill="none" stroke="#1B2A38" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="1 7"/><path d="M8 54h48M8 50v8M56 50v8" stroke="#1B2A38" stroke-width="2.5"/><path fill="#1B2A38" d="M47 9c1.6 0 2.6 1.6 2.4 3.4l-.7 7.4 9.3 4.6-.4 3.4-9.5-2.6-.8 7.9 3 2.2-.3 2.4-4.2-1.4-4.4.6.3-2.4 3.4-1.7.8-7.9-9.8.8.4-3.4 9.6-2.9.7-7.4C45 10.6 45.6 9 47 9z"/></svg><span><b>Découvrez aussi Cotes &amp; Routes</b><span>L’encyclopédie de l’aviation civile : avions, aéroports, compagnies, vols.</span></span></a>'  # encart vers l’autre site, en pied de page
 
 
@@ -901,7 +902,7 @@ def page_ville(v, ctx):
         h = f'<section class="block" id="guide-aller"><h2>S’y rendre et accès</h2>'
         if aeros:
             h += ('<h3>En avion</h3><div class="table-scroll"><table><thead><tr><th>Aéroport</th><th>Code</th><th>Distance</th><th>Trajet estimé</th></tr></thead><tbody>'
-                  + "".join(f'<tr><td>{E(x[1])}{" · international" if x[3] else ""}</td><td class="num">{E(x[0])}</td><td class="num">{nombre(x[2])} km</td>'
+                  + "".join(f'<tr><td><a href="{CR_AERO}{E(x[0])}" title="Fiche de l’aéroport sur Cotes &amp; Routes">{E(x[1])}</a>{" · international" if x[3] else ""}</td><td class="num">{E(x[0])}</td><td class="num">{nombre(x[2])} km</td>'
                             f'<td>≈ {duree(x[2])} de route</td></tr>' for x in aeros) + "</tbody></table></div>")
         for k, titre_a in (("gares", "En train"), ("routieres", "En bus ou en car"), ("ports", "En bateau")):
             if acces.get(k):
@@ -1657,6 +1658,18 @@ def main():
               "|".join(v["alts"]) if (v["population"] >= 30000 or v["niveau"] != "autre") else "|".join(v["alts"][:1]),
               1 if v["niveau"] == "phare" else 0] for v in villes]
     ecrire("static/index.json", json.dumps(index, ensure_ascii=False, separators=(",", ":")))
+    # Lien vers l'autre site : pour chaque aéroport, la ville la plus proche (Cotes & Routes l'affiche sur la fiche de l'aéroport)
+    par_code = {}
+    for v in villes:
+        for x in ctx["aeroports"].get(str(v["id"]), []):
+            try:
+                mun = (x[4] if len(x) > 4 else "") or ""
+                cle_ = (0 if mun and (mun == v.get("nom_local") or mun == v["nom"] or mun in v.get("alts", [])) else 1, float(x[2]), -v["population"])
+            except Exception:
+                continue
+            if x[0] and cle_[1] <= 60 and (x[0] not in par_code or cle_ < par_code[x[0]][0]):
+                par_code[x[0]] = (cle_, [v["slug"], v["nom"], pays.get(v["pays"], {}).get("nom", v["pays"])])
+    ecrire("liens-aeroports.json", json.dumps({k: w[1] for k, w in sorted(par_code.items())}, ensure_ascii=False, separators=(",", ":")))
 
     # Pages de villes
     lot = villes[:a.limite] if a.limite else villes
