@@ -363,6 +363,32 @@
     });
     return score >= 0.6 ? best : null;
   }
+
+  /* Question chiffrée sur un lieu (« fréquentation de la gare de Lyon ») : si le site n'a pas ce chiffre, il le dit
+     franchement et propose l'IA, au lieu de répondre à côté avec un autre lieu ou les textes de la ville. */
+  var CHIFFRES = [['fr', /(frequentation|voyageurs|passagers|trafic)/, 'la fréquentation'], ['ca', /(capacite|nombre de places|combien de places|spectateurs|jauge)/, 'la capacité'],
+    ['vi', /(visiteurs|combien de visites|entrees par an)/, 'le nombre de visiteurs'], ['ha', /(hauteur|combien de metres|quelle taille|mesure t)/, 'la hauteur'],
+    ['su', /(superficie|surface)/, 'la superficie'], ['lo', /(longueur|long fait|combien de kilometres de long)/, 'la longueur'],
+    ['cr', /(date de construction|construit|construite|batie?|inaugur|annee d ouverture|ouvert en|quand a ete)/, 'la date de construction']];
+  var MOTS_LIEUX = /(gare|aeroport|stade|arena|tour |musee|pont |cathedrale|chateau|salle |theatre|opera|monument|basilique|eglise|gratte ciel|immeuble|batiment|zoo|parc d attraction|statue|barrage|phare|palais|mosquee|temple|abbaye|viaduc|tunnel|port |station)/;
+  function chiffreDemande(q0) {
+    var q = ' ' + norm(q0).replace(/[^a-z0-9 ]/g, ' ') + ' ';
+    for (var i = 0; i < CHIFFRES.length; i++) if (CHIFFRES[i][1].test(q)) return CHIFFRES[i];
+    return null;
+  }
+  function lieuDemande(q0) {
+    var mots = q0.replace(/[?!.]+\s*$/, '').trim().split(/\s+/);
+    for (var i = 0; i < mots.length; i++) {
+      var reste = ' ' + norm(mots.slice(i).join(' ')).replace(/[^a-z0-9 ]/g, ' ').replace(/^(l|d) /, '') + ' ', m = reste.match(MOTS_LIEUX);
+      if (!m) return '';
+      if (reste.indexOf(m[1]) === 1) return mots.slice(i).join(' ').replace(/^[ldLD][’']/, '').trim();
+    }
+    return '';
+  }
+  function pasLeChiffre(ch, quoi) {
+    return '<p class="q-vide">Je n’ai pas encore ' + ch[2] + ' ' + deLieu(quoi) + ' dans le guide. Plutôt que de vous répondre à côté, je vous propose de demander à l’IA.</p>';
+  }
+  function deLieu(t) { t = String(t || '').trim(); var n = norm(t); return /^(le|la|les|l )/.test(n) ? 'de ' + E(t) : /^(du |de |des |d )/.test(n) ? E(t) : 'de « ' + E(t) + ' »'; }
   var IA_URL = 'https://relais-ia.pablopacaut17.workers.dev';  // relais IA de Pablo (Cloudflare) ; vide = bouton masqué
   function boutonIA(q, d, petit) {
     if (!IA_URL) return '';
@@ -379,13 +405,27 @@
     });
     return out + (liste ? '</ul>' : '');
   }
+  /* Mémoire du relais IA : si la même question a déjà été posée à l'IA, sa réponse s'affiche tout de suite, gratuitement */
+  function memoireIA(rep, q, d) {
+    if (!IA_URL || !window.fetch) return;
+    fetch(IA_URL + '?site=dix-mille-escales&q=' + encodeURIComponent(q) + '&slug=' + encodeURIComponent((d && d.slug) || ''))
+      .then(function (x) { return x.ok ? x.json() : null; })
+      .then(function (r) {
+        var z = rep.querySelector('.q-ia-rep');
+        if (!r || !r.reponse || !z || z.innerHTML) return;
+        z.innerHTML = '<p class="note">Réponse de l’IA (Claude) à la même question, donnée le ' + E(dateFr(r.date)) + ' :</p>' + miseIA(r.reponse)
+          + '<p class="note">Réponse rédigée par une intelligence artificielle : elle peut contenir des erreurs. Vérifiez les points importants auprès de sources officielles.</p>';
+        var b = rep.querySelector('.q-ia'); if (b) b.parentNode.style.display = 'none';
+      }).catch(function () {});
+  }
+  function dateFr(iso) { return iso ? String(iso).slice(8, 10) + '/' + String(iso).slice(5, 7) + '/' + String(iso).slice(0, 4) : ''; }
   document.addEventListener('click', function (ev) {
     var b = ev.target.closest && ev.target.closest('.q-ia');
     if (!b) return;
     var zone = b.parentNode.nextElementSibling, q = b.getAttribute('data-q'), d = cache[b.getAttribute('data-slug')] || {};
     zone.innerHTML = '<p class="q-vide">L’IA rédige sa réponse…</p>';
     var ctx = d.nom ? ('Ville : ' + d.nom + ' (' + (d.pays || '') + '), ' + (d.population || '') + ' habitants. ' + (d.resume || '')).slice(0, 4000) : '';
-    fetch(IA_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ site: 'dix-mille-escales', question: q, contexte: ctx }) })
+    fetch(IA_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ site: 'dix-mille-escales', question: q, contexte: ctx, slug: d.slug || '' }) })
       .then(function (x) { return x.json(); })
       .then(function (r) {
         zone.innerHTML = r.reponse ? miseIA(r.reponse) + '<p class="note">Réponse rédigée par une intelligence artificielle (Claude) : elle peut contenir des erreurs. Vérifiez les points importants (visas, santé, sécurité) auprès de sources officielles.</p>'
@@ -422,9 +462,15 @@
         if (err) { rep.innerHTML = '<p class="q-vide">La recherche est indisponible pour le moment. Réessayez dans un instant.</p>'; return; }
         chercherCelebre(q).catch(function () { return null; }).then(function (cel) {
         var vc = trouverVille(q);
-        if (cel && !(vc && motsLieu(cel[0]).join(' ') === motsLieu(vc[0]).join(' '))) { rep.innerHTML = repCelebre(cel) + boutonIA(q, {}, 1); return; }
+        var ch = chiffreDemande(q);
+        if (cel && !(vc && motsLieu(cel[0]).join(' ') === motsLieu(vc[0]).join(' '))) {
+          var aLe = !ch || (cel[3] || {})[ch[0]] != null || (ch[0] === 'cr' && (cel[3] || {}).ou != null);
+          rep.innerHTML = repCelebre(cel) + (aLe ? boutonIA(q, {}, 1) : pasLeChiffre(ch, cel[0]) + boutonIA(q, {})); if (!aLe) memoireIA(rep, q, {}); return;
+        }
+        var ld = ch ? lieuDemande(q) : '';
+        if (ch && ld) { rep.innerHTML = pasLeChiffre(ch, ld) + boutonIA(q, {}); memoireIA(rep, q, {}); return; }
         var v = trouverVille(q), slug = v ? v[1] : derniere;
-        if (!slug) { rep.innerHTML = '<p class="q-vide">De quelle ville parlez-vous ? Ajoutez son nom à la question, par exemple « Quel temps fait-il à Lisbonne ? ».</p>' + boutonIA(q, {}); return; }
+        if (!slug) { rep.innerHTML = '<p class="q-vide">De quelle ville parlez-vous ? Ajoutez son nom à la question, par exemple « Quel temps fait-il à Lisbonne ? ».</p>' + boutonIA(q, {}); memoireIA(rep, q, {}); return; }
         derniere = slug;
         charger(slug, function (d) {
           if (!d) { rep.innerHTML = '<p class="q-vide">Impossible de charger la fiche de cette ville pour le moment.</p>'; return; }
@@ -438,7 +484,7 @@
             var rl = reponseLecteur(q, d, liste);
             if (rl) { rep.innerHTML = tete + '<p>' + E(rl.r).replace(/\n/g, '<br>') + '</p><p class="note">Réponse rédigée le ' + E(rl.date || '') + ' à la question d’un lecteur' + (rl.source ? ' · source : ' + E(rl.source) : '') + '.</p>' + boutonIA(q, d, 1) + '</div>'; return; }
             rep.innerHTML = tete + '<p class="q-vide">Je cherche dans tous les textes de ' + E(d.nom) + '…</p></div>';
-            chercherTextes(q, d).then(function (h) { rep.innerHTML = tete + (h || portrait(d)) + boutonIA(q, d) + envoyer(q, d) + '</div>'; }).catch(function () { rep.innerHTML = tete + portrait(d) + boutonIA(q, d) + envoyer(q, d) + '</div>'; });
+            chercherTextes(q, d).then(function (h) { rep.innerHTML = tete + (h || portrait(d)) + boutonIA(q, d) + envoyer(q, d) + '</div>'; memoireIA(rep, q, d); }).catch(function () { rep.innerHTML = tete + portrait(d) + boutonIA(q, d) + envoyer(q, d) + '</div>'; });
             });
           });
         });

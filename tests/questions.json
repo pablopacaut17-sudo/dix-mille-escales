@@ -1,0 +1,109 @@
+[
+ {
+  "q": "hauteur de la tour Montparnasse",
+  "contient": [
+   "209 m",
+   "Paris"
+  ]
+ },
+ {
+  "q": "tour de Pise",
+  "contient": [
+   "58,4 m"
+  ]
+ },
+ {
+  "q": "Quelle est la hauteur de la tour Eiffel ?",
+  "contient": [
+   "tour Eiffel|Tour Eiffel",
+   " m"
+  ]
+ },
+ {
+  "q": "meilleur restaurant de crêpes à Quimper",
+  "contient": [
+   "Quimper",
+   "Demander à l’IA"
+  ],
+  "interdit": [
+   "Gare ferroviaire"
+  ]
+ },
+ {
+  "q": "fréquentation gare de Lyon",
+  "contient": [
+   "voyageurs|pas encore la fréquentation"
+  ],
+  "interdit": [
+   "Chalon"
+  ]
+ },
+ {
+  "q": "Faut-il un visa pour Tokyo ?",
+  "contient": [
+   "Passeport français",
+   "Tokyo"
+  ]
+ },
+ {
+  "q": "Quel temps fait-il à New York ?",
+  "contient": [
+   "New York"
+  ]
+ },
+ {
+  "q": "Quelle monnaie au Caire ?",
+  "contient": [
+   "on paie en"
+  ]
+ },
+ {
+  "q": "Combien coûte un repas à Lisbonne ?",
+  "contient": [
+   "Lisbonne",
+   "€"
+  ]
+ },
+ {
+  "q": "Quelle langue parle-t-on à Prague ?",
+  "contient": [
+   "Prague"
+  ]
+ },
+ {
+  "q": "Que voir à Rome ?",
+  "contient": [
+   "Rome"
+  ]
+ },
+ {
+  "q": "Qui est né à Vienne ?",
+  "contient": [
+   "Vienne"
+  ]
+ },
+ {
+  "q": "Quand partir à Marrakech ?",
+  "contient": [
+   "Marrakech"
+  ]
+ },
+ {
+  "q": "Quelle heure est-il à Sydney ?",
+  "contient": [
+   "Sydney"
+  ]
+ },
+ {
+  "q": "Est-ce dangereux d'aller à Bogota ?",
+  "contient": [
+   "sécurité"
+  ]
+ },
+ {
+  "q": "Quelle est l’histoire de Kyoto ?",
+  "contient": [
+   "Kyoto"
+  ]
+ }
+]

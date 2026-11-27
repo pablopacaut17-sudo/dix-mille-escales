@@ -476,6 +476,51 @@ def decouvertes(v, ctx):
 MOTS_LIEN = {"de", "du", "des", "la", "le", "les", "l", "d", "et", "a", "au", "aux", "en", "sur", "sous", "the", "of"}
 
 
+def noms_francais(villes):
+    """Nom français des villes (robot_noms, libellé Wikidata) : « Pise » au lieu de « Pisa ». Le nom choisi à la main
+    (NOMS_FR de robot_villes) reste prioritaire. Par prudence, le nom n'est pris que s'il est en alphabet latin et
+    qu'il ressemble au nom actuel ou figure parmi ses autres noms ; l'ancien nom reste trouvable par la recherche."""
+    import unicodedata
+    def n(t):
+        return re.sub(r"[^a-z]", "", unicodedata.normalize("NFKD", t).encode("ascii", "ignore").decode().lower())
+    table = (lire_gz("noms.json.gz") or {}).get("villes", {})
+    latin = re.compile(r"^[A-Za-zÀ-ÖØ-öø-ÿĀ-ž' .\-]+$")
+    k = 0
+    for v in villes:
+        x = table.get(str(v["id"]))
+        if not x or not x[1] or v["nom"] != v.get("nom_local"):
+            continue
+        fr = re.sub(r"\s*\(.*\)$", "", x[1]).strip()
+        if not fr or fr == v["nom"] or len(fr) > 40 or not latin.match(fr):
+            continue
+        if n(fr) in {n(a) for a in v.get("alts", [])} or n(fr)[:3] == n(v["nom"])[:3]:
+            v["alts"] = [v["nom"]] + [a for a in v.get("alts", []) if a != fr]
+            v["nom"] = fr
+            k += 1
+    return k
+
+
+# Détecteur de chiffres aberrants : Wikidata contient parfois des erreurs de saisie (un musée à 281 millions de
+# visiteurs, une place de 25 000 km², une date de création en 9999). Une valeur impossible est retirée avant
+# publication : mieux vaut ne rien afficher qu'un chiffre faux.
+BORNES = {"hauteur": (0.5, 900), "longueur": (0.05, 25_000_000), "largeur": (0.05, 2_000_000), "superficie": (1, 1e12),
+          "altitude": (-450, 8849), "visiteurs_an": (1, 120_000_000), "capacite": (1, 400_000), "frequentation": (1, 2_000_000_000)}
+def chiffres_plausibles(f):
+    """Retire d'un dictionnaire de caractéristiques les valeurs impossibles ; renvoie le nombre de valeurs retirées."""
+    if not isinstance(f, dict):
+        return 0
+    an, n = datetime.now().year, 0
+    for k in list(f):
+        v = f[k]
+        if not isinstance(v, (int, float)) or isinstance(v, bool):
+            continue
+        b = BORNES.get(k)
+        if (b and not b[0] <= v <= b[1]) or (k in ("creation", "ouverture", "debut") and (v > an or 0 <= v < 10)):
+            del f[k]
+            n += 1
+    return n
+
+
 def index_celebres(ctx):
     """Index des lieux célèbres (titre de leur article Wikipédia en français), pour que la boîte à questions réponde
     à « hauteur de la tour Montparnasse » sans que la ville soit citée. Découpé par les deux premières lettres
@@ -486,6 +531,11 @@ def index_celebres(ctx):
     chiffres = {x["q"]: x for x in (lire_gz("chiffres.json.gz") or {}).get("lieux", [])}
 
     def compact(m):
+        m = dict(m)
+        for k1, k2 in (("fr", "frequentation"), ("vi", "visiteurs_an"), ("ca", "capacite")):
+            if k1 in m and not BORNES[k2][0] <= m[k1] <= BORNES[k2][1]:
+                del m[k1]
+                m.pop(k1 + "_an", None)
         return {k2: m[k1] for k1, k2 in (("fr", "fr"), ("fr_an", "fa"), ("vi", "vi"), ("vi_an", "va"), ("ca", "ca")) if m.get(k1)}
     for qid, (slug, ville, _) in ctx["celebres"].items():
         h_ = ctx["histoires"].get(qid) or {}
@@ -1491,6 +1541,7 @@ def main():
         sys.exit("data/villes.json introuvable.")
     for i, v in enumerate(villes, 1):
         v["rang"] = i
+    print(f"Noms français : {noms_francais(villes)} villes affichées sous leur nom français (Pise, Cologne…).")
     pays = lire("pays.json", {})
     ctx = {"pays": pays, "change": lire("change.json", {}) or {}, "journal": lire("journal.json", {}) or {},
            "date_txt": date_fr(date.today().isoformat()), "maj_txt": maj_paris()}
@@ -1527,6 +1578,8 @@ def main():
         for fn in os.listdir(dh):
             if fn.endswith(".json") and not fn.startswith("_"):  # _suivi.json : dates de passage, pas des histoires
                 ctx["histoires"].update({k: x for k, x in (lire(f"histoires/{fn}") or {}).items() if isinstance(x, dict)})
+        ecartes = sum(chiffres_plausibles(x.get("f")) for x in ctx["histoires"].values())
+        print(f"Chiffres aberrants écartés des histoires : {ecartes}")
     ctx["avis"] = (lire("avis.json", {}) or {}).get("villes", {})
     ctx["celebres"] = {}
     ctx["reseaux"] = (lire("reseaux.json", {}) or {}).get("villes", {})

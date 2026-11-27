@@ -186,9 +186,13 @@ jobs:
         with: { python-version: "3.12" }
       - name: Réunir les données
         run: python3 robots/preparer.py
+      - name: Correction des dates avant Jésus-Christ (une seule fois)
+        continue-on-error: true
+        timeout-minutes: 50
+        run: python3 robots/corriger_dates.py --duree-max 40
       - name: Histoire des lieux célèbres (Wikipédia)
         continue-on-error: true
-        run: python3 robots/robot_histoires.py --duree-max 300
+        run: python3 robots/robot_histoires.py --duree-max 260
       - name: Enregistrer
         if: always()
         run: python3 robots/sauver.py --branche donnees-histoires --chemins histoires journal/histoires.json
@@ -216,19 +220,23 @@ jobs:
         run: python3 robots/robot_datatourisme.py
       - name: Fêtes et festivals (Wikidata)
         continue-on-error: true
-        run: python3 robots/robot_fetes.py --max-villes ${{ vars.MAX_FETES || 20000 }} --duree-max 70
+        run: python3 robots/robot_fetes.py --max-villes ${{ vars.MAX_FETES || 20000 }} --duree-max 50
+      - name: Noms français des villes (Wikidata)
+        continue-on-error: true
+        timeout-minutes: 50
+        run: python3 robots/robot_noms.py --duree-max 40
       - name: Grands chiffres des lieux (Wikidata, chaque semaine)
         continue-on-error: true
         timeout-minutes: 75
         run: python3 robots/robot_chiffres.py --duree-max 60
       - name: Photos des villes (Wikimedia Commons)
         continue-on-error: true
-        run: python3 robots/robot_photos.py --max-villes ${{ vars.MAX_PHOTOS || 4000 }} --duree-max 130
+        run: python3 robots/robot_photos.py --max-villes ${{ vars.MAX_PHOTOS || 4000 }} --duree-max 80
       - name: Enregistrer
         if: always()
         run: >
-          python3 robots/sauver.py --branche donnees-decouvertes --chemins photos fetes reseaux.json datatourisme.json.gz chiffres.json.gz
-          journal/photos.json journal/fetes.json journal/reseaux.json journal/datatourisme.json journal/chiffres.json
+          python3 robots/sauver.py --branche donnees-decouvertes --chemins photos fetes reseaux.json datatourisme.json.gz chiffres.json.gz noms.json.gz
+          journal/photos.json journal/fetes.json journal/reseaux.json journal/datatourisme.json journal/chiffres.json journal/noms.json
 
   redaction:
     needs: [base, encyclopedie, lieux, guides, climat, histoires]

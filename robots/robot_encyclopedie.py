@@ -328,6 +328,19 @@ def main():
     V = c.villes()
     suivi = c.lire("encyclo/_suivi.json", {})
     t = c.maintenant()
+    if not a.demo:  # correspondances corrigées par le robot Noms (élément Wikidata qui a le plus d'articles) : fiche à refaire
+        noms = (c.lire_gz_brut("noms.json.gz") or {}).get("villes", {})
+        table = c.lire("encyclo/_qid.json", {}) or {}
+        corrigees = 0
+        for g, x in noms.items():
+            if x and x[0] and table.get(g) and table[g] != x[0]:
+                table[g] = x[0]
+                suivi.pop(g, None)
+                corrigees += 1
+        if corrigees:
+            c.ecrire("encyclo/_qid.json", table, compact=True)
+            c.ecrire("encyclo/_suivi.json", suivi, compact=True)
+            print(f"{corrigees} villes rattachées à un meilleur élément Wikidata : leur fiche sera refaite.")
     if a.ville:
         lot = [v for v in V if v["slug"] == a.ville]
     elif a.demo:

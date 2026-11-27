@@ -6,7 +6,7 @@ Les lieux sont tirés des fichiers des robots Lieux. Chaque résumé est revéri
 
   python3 robots/robot_histoires.py --duree-max 300
 """
-import argparse, gzip, json, os, time, urllib.parse
+import argparse, gzip, json, os, re, time, urllib.parse
 from datetime import datetime
 import commun as c
 
@@ -72,9 +72,10 @@ def caracteristiques(claims):
                 out[cle] = int(float(v["amount"]))
                 break
             elif genre == "t" and isinstance(v, dict) and v.get("time"):
-                an = int(v["time"][:5].replace("+", "") or 0) if v["time"][0] in "+-" else None
+                m_ = re.match(r"([+-])(\d+)-", v["time"])  # « -3180-00-00… » = 3180 av. J.-C. (l'ancienne lecture donnait +3180)
+                an = int(m_.group(2)) if m_ else 0
                 if an:
-                    out[cle] = an if v["time"][0] == "+" else -an
+                    out[cle] = an if m_.group(1) == "+" else -an
                     break
             elif genre == "i" and isinstance(v, dict) and v.get("id"):
                 out.setdefault(cle, []).append(v["id"]); a_nommer.add(v["id"])
