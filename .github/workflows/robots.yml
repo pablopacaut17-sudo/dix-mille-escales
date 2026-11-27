@@ -1,14 +1,16 @@
 name: Robots et publication
 
-# Deux passages par jour (depuis le 28/11/2026, à la demande de Pablo) : le soir vers 20 h et le matin vers 5 h (heure de Paris
-# en hiver ; une heure plus tard en été). Chaque passage : plusieurs groupes de robots travaillent en parallèle (environ 5 h 30 maximum chacun),
+# Deux passages par jour (depuis le 28/11/2026, à la demande de Pablo) : le soir à 19 h et la nuit à 1 h 30 (heure de Paris
+# en hiver ; une heure plus tard en été). Le passage de la nuit finit avant 9 h 30, heure du contrôle quotidien.
+# La rédaction par IA (payante) ne tourne qu'au passage de la nuit, pour rester dans le budget API.
+# Chaque passage : plusieurs groupes de robots travaillent en parallèle (environ 5 h 30 maximum chacun),
 # enregistrent leurs données dans des branches « donnees-… » (sans historique, pour que le dépôt ne grossisse pas),
 # puis le site est regénéré et publié. Une modification des fichiers du site le republie aussitôt.
 
 on:
   schedule:
-    - cron: "0 19 * * *"     # le soir : 19 h UTC = 20 h à Paris en hiver (21 h en été)
-    - cron: "0 4 * * *"      # le matin : 4 h UTC = 5 h à Paris en hiver (6 h en été)
+    - cron: "0 18 * * *"     # le soir : 18 h UTC = 19 h à Paris en hiver (20 h en été), fini vers 1 h
+    - cron: "30 0 * * *"     # la nuit : 0 h 30 UTC = 1 h 30 à Paris en hiver (2 h 30 en été), fini avant 9 h 30
   workflow_dispatch:          # bouton « Run workflow » pour lancer à la main
     inputs:
       groupes:
@@ -257,6 +259,7 @@ jobs:
       - name: Réunir les données
         run: python3 robots/preparer.py
       - name: Rédaction (si une clé API Claude est fournie)
+        if: github.event.schedule != '0 18 * * *'
         continue-on-error: true
         run: python3 robots/robot_redaction.py --max-villes ${{ vars.MAX_REDACTION || 80 }}
         env:
