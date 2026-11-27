@@ -216,10 +216,10 @@ def page(root, titre, description, corps, recherche=True):
 <button type="button" class="theme-btn" id="theme-btn" aria-label="Changer le thème d’affichage">Thème : auto</button></div></header>
 <main class="wrap" id="contenu">{corps}</main>
 <footer class="foot" id="pied"><div class="in"><p class="foot-note"><span data-compteur>…</span> informations · mis à jour le <span data-maj>…</span> · <a href="{root}mentions-legales/">Mentions légales</a></p></div></footer>
-<script src="{root}static/app.js"></script><script src="{root}static/fiche.js"></script><script src="{root}static/questions.js"></script><script src="{root}static/lieux.js"></script><script src="{root}static/onglets.js"></script><script src="{root}static/carte.js"></script><script src="{root}static/carnet.js"></script><script src="{root}static/nav.js"></script></body></html>"""
+<script src="{root}static/app.js"></script><script src="{root}static/fiche.js"></script><script src="{root}static/questions.js"></script><script src="{root}static/lieux.js"></script><script src="{root}static/onglets.js"></script><script src="{root}static/carte.js"></script><script src="{root}static/carnet.js"></script><script src="{root}static/nav.js"></script><script src="{root}static/langue.js"></script></body></html>"""
 
 
-SCRIPTS = ("app.js", "fiche.js", "questions.js", "lieux.js", "onglets.js", "carte.js", "carnet.js", "nav.js")
+SCRIPTS = ("app.js", "fiche.js", "questions.js", "lieux.js", "onglets.js", "carte.js", "carnet.js", "nav.js", "langue.js")
 
 
 def page_legere(root, titre, description, corps):
@@ -1206,7 +1206,7 @@ def outils(ctx):
     """Pages des outils : planificateur d'itinéraire, « où partir », comparateur, préparation, carnet, convertisseur."""
     pp = "".join(f'<option>{n}</option>' for n in PASSEPORTS.values())
     def outil(chemin, titre, desc, corps, scripts):
-        sc = "".join(f'<script src="../static/{x}.js"></script>' for x in ["outils-commun"] + scripts)
+        sc = "".join(f'<script src="../static/{x}.js"></script>' for x in ["outils-commun"] + scripts + ["langue"])
         html_ = page("../", f"{titre} – Dix Mille Escales", desc,
                      f'<section class="hero"><p class="crumbs"><a href="../">Accueil</a> › <a href="../outils/">Outils</a></p>'
                      f'<h1 class="city" style="font-size:clamp(2.2rem,6.5vw,4.2rem)">{titre}</h1><p class="tagline">{desc}</p></section>{corps}')
@@ -1311,7 +1311,7 @@ D.chargerMonde().then(function(){{D.choixVille(f.querySelector("#prep-q"),functi
 </div><button type="button" id="conv-inverser" class="o-petit">Inverser</button><p class="o-conv" id="conv-res" aria-live="polite"></p><p class="note" id="conv-date"></p></form></section>''')
     html_ = page("../", "Outils de voyage – Dix Mille Escales", "Planificateur d’itinéraire, où partir, comparateur, préparation, carnet et convertisseur.",
                  '<section class="hero"><h1 class="city" style="font-size:clamp(2.4rem,7vw,4.5rem)">Outils de voyage</h1><p class="tagline">Pour préparer un voyage avec les données de toutes les villes du guide.</p></section>' + corps)
-    ecrire("outils/index.html", html_.replace("</body>", '<script src="../static/outils-commun.js"></script><script src="../static/convertisseur.js"></script></body>'))
+    ecrire("outils/index.html", html_.replace("</body>", '<script src="../static/outils-commun.js"></script><script src="../static/convertisseur.js"></script><script src="../static/langue.js"></script></body>'))
 
 
 def representations(villes, ctx):
