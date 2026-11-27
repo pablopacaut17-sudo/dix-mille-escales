@@ -217,14 +217,18 @@ jobs:
       - name: Fêtes et festivals (Wikidata)
         continue-on-error: true
         run: python3 robots/robot_fetes.py --max-villes ${{ vars.MAX_FETES || 20000 }} --duree-max 70
+      - name: Grands chiffres des lieux (Wikidata, chaque semaine)
+        continue-on-error: true
+        timeout-minutes: 75
+        run: python3 robots/robot_chiffres.py --duree-max 60
       - name: Photos des villes (Wikimedia Commons)
         continue-on-error: true
         run: python3 robots/robot_photos.py --max-villes ${{ vars.MAX_PHOTOS || 4000 }} --duree-max 130
       - name: Enregistrer
         if: always()
         run: >
-          python3 robots/sauver.py --branche donnees-decouvertes --chemins photos fetes reseaux.json datatourisme.json.gz
-          journal/photos.json journal/fetes.json journal/reseaux.json journal/datatourisme.json
+          python3 robots/sauver.py --branche donnees-decouvertes --chemins photos fetes reseaux.json datatourisme.json.gz chiffres.json.gz
+          journal/photos.json journal/fetes.json journal/reseaux.json journal/datatourisme.json journal/chiffres.json
 
   redaction:
     needs: [base, encyclopedie, lieux, guides, climat, histoires]

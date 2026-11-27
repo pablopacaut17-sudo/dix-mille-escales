@@ -124,15 +124,17 @@
     var p = [];
     function m(x) { return (x < 100 ? String(Math.round(x * 10) / 10).replace('.', ',') : nb(Math.round(x))) + ' m'; }
     if (c.hauteur) p.push('hauteur ' + m(c.hauteur)); if (c.longueur) p.push('longueur ' + m(c.longueur));
-    if (c.superficie) p.push('superficie ' + (c.superficie >= 1e6 ? String(Math.round(c.superficie / 1e4) / 100).replace('.', ',') + ' km²' : c.superficie >= 1e4 ? nb(Math.round(c.superficie / 1e4)) + ' ha' : nb(Math.round(c.superficie)) + ' m²'));
+    if (c.superficie && !(c.hauteur && c.superficie >= 1e4)) p.push('superficie ' + (c.superficie >= 1e6 ? String(Math.round(c.superficie / 1e4) / 100).replace('.', ',') + ' km²' : c.superficie >= 1e4 ? nb(Math.round(c.superficie / 1e4)) + ' ha' : nb(Math.round(c.superficie)) + ' m²'));
     var dt = c.creation || c.debut || c.ouverture; if (dt) p.push('date : ' + (dt < 0 ? (-dt) + ' av. J.-C.' : dt));
-    if (c.architecte) p.push('architecte : ' + c.architecte.join(', ')); if (c.style) p.push('style : ' + c.style.join(', '));
-    if (c.visiteurs_an) p.push(nb(c.visiteurs_an) + ' visiteurs par an');
+    if (c.architecte) p.push((c.architecte.length > 1 ? 'architectes : ' : 'architecte : ') + c.architecte.join(' et ')); if (c.style) p.push('style : ' + c.style.join(', '));
+    if (c.frequentation) p.push('fréquentation : ' + nb(c.frequentation) + ' voyageurs par an' + (c.frequentation_annee ? ' (' + c.frequentation_annee + ')' : ''));
+    if (c.visiteurs_an) p.push(nb(c.visiteurs_an) + ' visiteurs par an' + (c.visiteurs_annee ? ' (' + c.visiteurs_annee + ')' : ''));
+    if (c.capacite) p.push('capacité : ' + nb(c.capacite) + ' places');
     return p.join(' · ');
   }
   /* Lieux célèbres de tout le guide (titres Wikipédia) : répond à « hauteur de la tour Montparnasse » sans ville citée */
   var LIENS = { de: 1, du: 1, des: 1, la: 1, le: 1, les: 1, l: 1, d: 1, et: 1, a: 1, au: 1, aux: 1, en: 1, sur: 1, sous: 1, the: 1, of: 1 };
-  var CLES = { ha: 'hauteur', lo: 'longueur', su: 'superficie', la: 'largeur', al: 'altitude', vi: 'visiteurs_an', cr: 'creation', ou: 'ouverture', ar: 'architecte' };
+  var CLES = { ha: 'hauteur', lo: 'longueur', su: 'superficie', la: 'largeur', al: 'altitude', vi: 'visiteurs_an', va: 'visiteurs_annee', cr: 'creation', ou: 'ouverture', ar: 'architecte', fr: 'frequentation', fa: 'frequentation_annee', ca: 'capacite' };
   var celebresCache = {};
   var GENERIQUES = { avenue: 1, rue: 1, boulevard: 1, place: 1, quai: 1, parc: 1, jardin: 1, jardins: 1, square: 1, cours: 1, esplanade: 1 };
   function motsLieu(t) { return norm(t).replace(/[^a-z0-9 ]/g, ' ').split(/\s+/).filter(function (m) { return m && !LIENS[m]; }); }
@@ -145,15 +147,18 @@
     return Promise.all(cles.map(function (c) {
       return celebresCache[c] ? Promise.resolve(celebresCache[c]) : lireJson(root + 'static/celebres/' + c + '.json.gz').then(function (l) { celebresCache[c] = l; return l; }).catch(function () { celebresCache[c] = []; return []; });
     })).then(function (listes) {
-      var meilleur = null, lg = 0;
+      var meilleur = null, lg = 0, pmax = -1;
       listes.forEach(function (l) {
         l.forEach(function (x) {
           var mt = motsLieu(x[0]);
           if (mt.length > 2 && GENERIQUES[mt[0]]) mt = mt.slice(1);  // « avenue des Champs-Élysées » : « Champs-Élysées » suffit
           if (!mt.length) return;
           var s = mt.join('');
-          if ((mt.length < 2 && s.length < 6) || s.length <= lg) return;
-          if (mt.every(function (m) { return present[m] || present[m.replace(/s$/, '')]; })) { meilleur = x; lg = s.length; }
+          if ((mt.length < 2 && s.length < 6) || s.length < lg) return;
+          if (!mt.every(function (m) { return present[m] || present[m.replace(/s$/, '')]; })) return;
+          // à nom égal (« Gare centrale »), la ville citée dans la question l'emporte, puis le lieu le plus fréquenté
+          var me = x[3] || {}, poids = (motsLieu(x[2]).every(function (m) { return present[m]; }) ? 1e12 : 0) + (me.fr || 0) + (me.vi || 0) + (me.ca || 0);
+          if (s.length > lg || poids > pmax) { meilleur = x; lg = s.length; pmax = poids; }
         });
       });
       return meilleur;

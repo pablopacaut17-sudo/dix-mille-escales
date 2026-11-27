@@ -483,6 +483,10 @@ def index_celebres(ctx):
     quelques mesures seulement (le site doit rester sous 1 Go)."""
     import unicodedata
     paquets = {}
+    chiffres = {x["q"]: x for x in (lire_gz("chiffres.json.gz") or {}).get("lieux", [])}
+
+    def compact(m):
+        return {k2: m[k1] for k1, k2 in (("fr", "fr"), ("fr_an", "fa"), ("vi", "vi"), ("vi_an", "va"), ("ca", "ca")) if m.get(k1)}
     for qid, (slug, ville, _) in ctx["celebres"].items():
         h_ = ctx["histoires"].get(qid) or {}
         titre = h_.get("t")
@@ -500,7 +504,19 @@ def index_celebres(ctx):
                 break
         if f_.get("architecte"):
             mesures["ar"] = f_["architecte"][:2]
+        x_ = chiffres.pop(qid, None)
+        if x_:
+            mesures.update(compact(x_["m"]))
         paquets.setdefault(mots[0][:2], []).append([titre, slug, ville, mesures] if mesures else [titre, slug, ville])
+    # Grands chiffres (robot_chiffres : fréquentation des gares et aéroports, visiteurs, capacité des stades) des lieux
+    # qui n'ont pas encore leur histoire, sous leur nom et leurs autres noms français
+    for x_ in chiffres.values():
+        mesures = compact(x_["m"])
+        for nom in [x_["t"]] + x_.get("a", []):
+            n = unicodedata.normalize("NFKD", nom).encode("ascii", "ignore").decode().lower()
+            mots = [m for m in re.sub(r"[^a-z0-9]+", " ", n).split() if m not in MOTS_LIEN]
+            if mots and len("".join(mots)) >= 4:
+                paquets.setdefault(mots[0][:2], []).append([nom[:1].upper() + nom[1:], x_["s"], x_["v"], mesures])
     for cle, l in paquets.items():
         ecrire_gz(f"static/celebres/{cle}.json.gz", l)
     print(f"Index des lieux célèbres : {sum(len(l) for l in paquets.values())} lieux, {len(paquets)} fichiers.")
