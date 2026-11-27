@@ -229,14 +229,18 @@ jobs:
         continue-on-error: true
         timeout-minutes: 75
         run: python3 robots/robot_chiffres.py --duree-max 60
+      - name: Liens cassés (sites web des lieux)
+        continue-on-error: true
+        timeout-minutes: 50
+        run: python3 robots/robot_liens.py --max 4000 --duree-max 40
       - name: Photos des villes (Wikimedia Commons)
         continue-on-error: true
         run: python3 robots/robot_photos.py --max-villes ${{ vars.MAX_PHOTOS || 4000 }} --duree-max 80
       - name: Enregistrer
         if: always()
         run: >
-          python3 robots/sauver.py --branche donnees-decouvertes --chemins photos fetes reseaux.json datatourisme.json.gz chiffres.json.gz noms.json.gz
-          journal/photos.json journal/fetes.json journal/reseaux.json journal/datatourisme.json journal/chiffres.json journal/noms.json
+          python3 robots/sauver.py --branche donnees-decouvertes --chemins photos fetes reseaux.json datatourisme.json.gz chiffres.json.gz noms.json.gz liens.json.gz
+          journal/photos.json journal/fetes.json journal/reseaux.json journal/datatourisme.json journal/chiffres.json journal/noms.json journal/liens.json
 
   redaction:
     needs: [base, encyclopedie, lieux, guides, climat, histoires]

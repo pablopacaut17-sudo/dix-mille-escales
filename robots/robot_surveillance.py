@@ -37,7 +37,7 @@ ATTENDUS = {
     "lieux_0": ("lieux", 30, "Lieux, robot 1"), "lieux_1": ("lieux", 30, "Lieux, robot 2"), "lieux_2": ("lieux", 30, "Lieux, robot 3"), "lieux_3": ("lieux", 30, "Lieux, robot 4"),
     "guides": ("guides", 30, "Guides Wikivoyage"), "aeroports": ("base", 24 * 35, "Aéroports"), "urgences": ("base", 24 * 35, "Numéros d’urgence"), "conseils": ("base", 30, "Conseils aux voyageurs (Canada)"), "pratique": ("base", 24 * 35, "Prises et conduite (Wikidata)"), "langues": ("base", 24 * 35, "Mots utiles (Wikivoyage)"), "histoires": ("histoires", 30, "Histoire des lieux (Wikipédia)"), "avis": ("base", 30, "Avis des lecteurs"),
     "photos": ("decouvertes", 30, "Photos des villes (Commons)"), "fetes": ("decouvertes", 30, "Fêtes et festivals (Wikidata)"),
-    "reseaux": ("decouvertes", 24 * 9, "Réseaux de transport (Mobility Database)"), "datatourisme": ("decouvertes", 30, "Offices de tourisme (DATAtourisme)"), "chiffres": ("decouvertes", 24 * 8, "Grands chiffres des lieux (Wikidata)"), "noms": ("decouvertes", 30, "Noms français des villes (Wikidata)"),
+    "reseaux": ("decouvertes", 24 * 9, "Réseaux de transport (Mobility Database)"), "datatourisme": ("decouvertes", 30, "Offices de tourisme (DATAtourisme)"), "chiffres": ("decouvertes", 24 * 8, "Grands chiffres des lieux (Wikidata)"), "noms": ("decouvertes", 30, "Noms français des villes (Wikidata)"), "liens": ("decouvertes", 30, "Liens cassés (sites des lieux)"),
 }
 BRANCHES = ["donnees-base", "donnees-encyclopedie", "donnees-lieux-0", "donnees-lieux-1", "donnees-lieux-2", "donnees-lieux-3", "donnees-guides", "donnees-climat", "donnees-decouvertes"]
 MOIS = ["janv.", "févr.", "mars", "avr.", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc."]

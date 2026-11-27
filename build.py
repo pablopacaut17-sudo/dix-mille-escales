@@ -602,6 +602,9 @@ def maj_paris():
     return f"{jours[t.weekday()]} {t.day} {mois[t.month - 1]} {t.year} à {t.hour} h {t.minute:02d}"
 
 
+LIENS_MORTS = set()
+
+
 def lieux_ville(chemins):
     """Lit et fusionne les fichiers de lieux d'une ville (plusieurs robots ou régions peuvent l'avoir servie)."""
     if not chemins:
@@ -614,6 +617,10 @@ def lieux_ville(chemins):
                 d = json.load(f)
         except (OSError, ValueError):
             continue
+        if LIENS_MORTS:
+            for x in d.get("lieux", []):
+                if x.get("site") in LIENS_MORTS:
+                    x["site"] = ""
         if res is None:
             res = d
             continue
@@ -1589,6 +1596,9 @@ def main():
             with gzip.open(p_, "rt", encoding="utf-8") as f:
                 ctx["aeroports"] = json.load(f)
             break
+    # Liens morts (robot_liens : deux échecs nets à un jour d'écart) : le site web du lieu n'est plus affiché
+    LIENS_MORTS.clear()
+    LIENS_MORTS.update(u for u, e in (lire_gz("liens.json.gz") or {}).items() if e[2] >= 2)
     ctx["urgences"] = (lire("urgences.json", {}) or {}).get("pays", {})
     ctx["pratique"] = (lire("pratique.json", {}) or {}).get("pays", {})
     ctx["langues"] = (lire("langues.json", {}) or {}).get("langues", {})
