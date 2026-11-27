@@ -356,7 +356,7 @@
     });
     return score >= 0.6 ? best : null;
   }
-  var IA_URL = '';  // relais IA de Pablo (Cloudflare) ; vide = bouton masqué
+  var IA_URL = 'https://relais-ia.pablopacaut17.workers.dev';  // relais IA de Pablo (Cloudflare) ; vide = bouton masqué
   function boutonIA(q, d) {
     if (!IA_URL) return '';
     return '<p><button type="button" class="q-btn q-ia" data-q="' + E(q) + '" data-slug="' + E(d.slug || '') + '">✨ Demander à l’IA</button></p><div class="q-ia-rep"></div>';
