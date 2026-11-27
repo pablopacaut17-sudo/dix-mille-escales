@@ -130,6 +130,44 @@
     if (c.visiteurs_an) p.push(nb(c.visiteurs_an) + ' visiteurs par an');
     return p.join(' · ');
   }
+  /* Lieux célèbres de tout le guide (titres Wikipédia) : répond à « hauteur de la tour Montparnasse » sans ville citée */
+  var LIENS = { de: 1, du: 1, des: 1, la: 1, le: 1, les: 1, l: 1, d: 1, et: 1, a: 1, au: 1, aux: 1, en: 1, sur: 1, sous: 1, the: 1, of: 1 };
+  var CLES = { ha: 'hauteur', lo: 'longueur', su: 'superficie', la: 'largeur', al: 'altitude', vi: 'visiteurs_an', cr: 'creation', ou: 'ouverture', ar: 'architecte' };
+  var celebresCache = {};
+  var GENERIQUES = { avenue: 1, rue: 1, boulevard: 1, place: 1, quai: 1, parc: 1, jardin: 1, jardins: 1, square: 1, cours: 1, esplanade: 1 };
+  function motsLieu(t) { return norm(t).replace(/[^a-z0-9 ]/g, ' ').split(/\s+/).filter(function (m) { return m && !LIENS[m]; }); }
+  function chercherCelebre(q) {
+    var mq = motsLieu(q), present = {};
+    mq.forEach(function (m) { present[m] = 1; present[m.replace(/s$/, '')] = 1; });
+    var cles = mq.filter(function (m) { return m.length >= 3; }).map(function (m) { return m.slice(0, 2); })
+      .filter(function (c, i, l) { return l.indexOf(c) === i; }).slice(0, 14);
+    if (!cles.length) return Promise.resolve(null);
+    return Promise.all(cles.map(function (c) {
+      return celebresCache[c] ? Promise.resolve(celebresCache[c]) : lireJson(root + 'static/celebres/' + c + '.json.gz').then(function (l) { celebresCache[c] = l; return l; }).catch(function () { celebresCache[c] = []; return []; });
+    })).then(function (listes) {
+      var meilleur = null, lg = 0;
+      listes.forEach(function (l) {
+        l.forEach(function (x) {
+          var mt = motsLieu(x[0]);
+          if (mt.length > 2 && GENERIQUES[mt[0]]) mt = mt.slice(1);  // « avenue des Champs-Élysées » : « Champs-Élysées » suffit
+          if (!mt.length) return;
+          var s = mt.join('');
+          if ((mt.length < 2 && s.length < 6) || s.length <= lg) return;
+          if (mt.every(function (m) { return present[m] || present[m.replace(/s$/, '')]; })) { meilleur = x; lg = s.length; }
+        });
+      });
+      return meilleur;
+    });
+  }
+  function repCelebre(x) {
+    var c = {}, m = x[3] || {};
+    Object.keys(m).forEach(function (k) { if (CLES[k]) c[CLES[k]] = m[k]; });
+    var infos = carac(c);
+    return '<div class="q-ville">' + E(x[2]) + '</div><div class="q-texte"><b>' + E(x[0]) + '</b>' + (infos ? ' : ' + E(infos) + '.' : '.')
+      + ' <a href="' + root + 'villes/' + x[1] + '/">Ouvrir la fiche ' + deV(x[2]) + '</a>'
+      + ' · <a href="https://fr.wikipedia.org/wiki/' + encodeURIComponent(x[0].replace(/ /g, '_')) + '" target="_blank" rel="noopener">Article Wikipédia</a>'
+      + '<p class="note">D’après Wikidata et Wikipédia.</p></div>';
+  }
   var lieuxCache = {}, textesCache = {};
   function chargerLieux(slug) {
     if (lieuxCache[slug]) return Promise.resolve(lieuxCache[slug]);
@@ -346,6 +384,9 @@
       rep.innerHTML = '<p class="q-vide">Je cherche…</p>';
       chargerIndex(function (err) {
         if (err) { rep.innerHTML = '<p class="q-vide">La recherche est indisponible pour le moment. Réessayez dans un instant.</p>'; return; }
+        chercherCelebre(q).catch(function () { return null; }).then(function (cel) {
+        var vc = trouverVille(q);
+        if (cel && !(vc && motsLieu(cel[0]).join(' ') === motsLieu(vc[0]).join(' '))) { rep.innerHTML = repCelebre(cel); return; }
         var v = trouverVille(q), slug = v ? v[1] : derniere;
         if (!slug) { rep.innerHTML = '<p class="q-vide">De quelle ville parlez-vous ? Ajoutez son nom à la question, par exemple « Quel temps fait-il à Lisbonne ? ».</p>'; return; }
         derniere = slug;
@@ -364,6 +405,7 @@
             chercherTextes(q, d).then(function (h) { rep.innerHTML = tete + (h || portrait(d)) + envoyer(q, d) + '</div>'; }).catch(function () { rep.innerHTML = tete + portrait(d) + envoyer(q, d) + '</div>'; });
             });
           });
+        });
         });
       });
     }

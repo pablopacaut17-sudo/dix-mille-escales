@@ -437,6 +437,39 @@ def decouvertes(v, ctx):
     return "".join(h), infos
 
 
+MOTS_LIEN = {"de", "du", "des", "la", "le", "les", "l", "d", "et", "a", "au", "aux", "en", "sur", "sous", "the", "of"}
+
+
+def index_celebres(ctx):
+    """Index des lieux célèbres (titre de leur article Wikipédia en français), pour que la boîte à questions réponde
+    à « hauteur de la tour Montparnasse » sans que la ville soit citée. Découpé par les deux premières lettres
+    du premier mot du titre (petits fichiers chargés à la demande). Volontairement compact : titre, ville et
+    quelques mesures seulement (le site doit rester sous 1 Go)."""
+    import unicodedata
+    paquets = {}
+    for qid, (slug, ville, _) in ctx["celebres"].items():
+        h_ = ctx["histoires"].get(qid) or {}
+        titre = h_.get("t")
+        if not titre:
+            continue
+        n = unicodedata.normalize("NFKD", titre).encode("ascii", "ignore").decode().lower()
+        mots = [m for m in re.sub(r"[^a-z0-9]+", " ", n).split() if m not in MOTS_LIEN]
+        if not mots or len("".join(mots)) < 4:
+            continue
+        f_ = h_.get("f") or {}
+        mesures = {k[:2]: f_[k] for k in ("hauteur", "longueur", "superficie", "largeur", "altitude", "visiteurs_an") if isinstance(f_.get(k), (int, float))}
+        for k in ("creation", "ouverture"):
+            if isinstance(f_.get(k), int):
+                mesures[k[:2]] = f_[k]
+                break
+        if f_.get("architecte"):
+            mesures["ar"] = f_["architecte"][:2]
+        paquets.setdefault(mots[0][:2], []).append([titre, slug, ville, mesures] if mesures else [titre, slug, ville])
+    for cle, l in paquets.items():
+        ecrire_gz(f"static/celebres/{cle}.json.gz", l)
+    print(f"Index des lieux célèbres : {sum(len(l) for l in paquets.values())} lieux, {len(paquets)} fichiers.")
+
+
 def maj_paris():
     """« jeudi 26 novembre 2026 à 8 h 03 » : date et heure de la publication, à l'heure de Paris."""
     from zoneinfo import ZoneInfo
@@ -711,6 +744,9 @@ def page_ville(v, ctx):
                 f["wikivoyage"] = t_wv[deb:fin + 1].strip()[:260]
         if f.get("wikidata") and f["wikidata"] in ctx["histoires"]:
             f["histoire"] = ctx["histoires"][f["wikidata"]]
+            ancien = ctx["celebres"].get(f["wikidata"])
+            if not ancien or (ancien[2] and f["rubrique"] != "alentours"):  # un lieu célèbre est rattaché à sa ville plutôt qu'aux villes voisines
+                ctx["celebres"][f["wikidata"]] = (v["slug"], v["nom"], f["rubrique"] == "alentours")
         la = av_ville.get(f["id"])
         if la:
             f["avis"] = la
@@ -1441,6 +1477,7 @@ def main():
             if fn.endswith(".json") and not fn.startswith("_"):  # _suivi.json : dates de passage, pas des histoires
                 ctx["histoires"].update({k: x for k, x in (lire(f"histoires/{fn}") or {}).items() if isinstance(x, dict)})
     ctx["avis"] = (lire("avis.json", {}) or {}).get("villes", {})
+    ctx["celebres"] = {}
     ctx["reseaux"] = (lire("reseaux.json", {}) or {}).get("villes", {})
     ctx["datatourisme"] = (lire_gz("datatourisme.json.gz") or {}).get("villes", {})
     ctx["transports"] = {}
@@ -1702,6 +1739,7 @@ def main():
     else:
         ecrire("robots.txt", "User-agent: *\nAllow: /\n")
 
+    index_celebres(ctx)
     taille = taille_site()
     print(f"Taille du site : {taille / 1024 / 1024:.0f} Mo sur 1 024 Mo autorisés par GitHub Pages.")
     if taille > LIMITE_SITE:
