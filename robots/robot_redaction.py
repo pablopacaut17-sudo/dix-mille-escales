@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-Robot Rédaction : écrit, pour les villes phares, des conseils de voyage originaux en français
+Robot Rédaction : écrit des conseils de voyage originaux en français (villes phares, puis intermédiaires, puis les autres)
 à partir des données vérifiées des autres robots (histoire, lieux, climat, budget, formalités).
 Il utilise l'API Claude d'Anthropic : clé à placer dans le secret GitHub ANTHROPIC_API_KEY.
 Sans clé, le robot ne fait rien. Le texte est marqué sur le site comme rédigé par IA.
 Consigne donnée au modèle : n'utiliser que les faits fournis, n'inventer ni adresse ni prix.
 
-  python3 robots/robot_redaction.py                 # villes phares, tous les 30 jours
+  python3 robots/robot_redaction.py                 # 80 villes par nuit (Claude Haiku 5.5, ≈ 0,3 $ par nuit au maximum)
   python3 robots/robot_redaction.py --niveau intermediaire --max-villes 50
   python3 robots/robot_redaction.py --demo
 """
@@ -15,7 +15,8 @@ from datetime import datetime
 import commun as c
 
 API = "https://api.anthropic.com/v1/messages"
-MODELE = os.environ.get("CLAUDE_MODEL") or "claude-sonnet-5-5"
+MODELE = os.environ.get("CLAUDE_MODEL") or "claude-haiku-5-5"  # Haiku 5.5 : environ 10 fois moins cher que Sonnet, pour rédiger bien plus de villes
+RENOUVELER = {"phare": 30, "intermediaire": 180, "autre": 365}  # jours avant de réécrire les conseils d'une ville
 CONSIGNE = """Tu es rédacteur d'un guide de voyage francophone exigeant, dans l'esprit des meilleurs guides papier.
 À partir UNIQUEMENT des faits fournis, rédige des conseils utiles, concrets et chaleureux sur la ville.
 Règles absolues : n'invente aucun nom de lieu, d'adresse, de prix, d'horaire ou de date qui ne figure pas dans les faits.
@@ -55,7 +56,7 @@ def faits(v, pays):
 
 
 def appeler(cle, donnees):
-    corps = json.dumps({"model": MODELE, "max_tokens": 4000, "system": CONSIGNE,
+    corps = json.dumps({"model": MODELE, "max_tokens": 8000, "system": CONSIGNE,
                         "messages": [{"role": "user", "content": "Faits vérifiés sur la ville :\n" + json.dumps(donnees, ensure_ascii=False)}]}).encode()
     import urllib.request
     req = urllib.request.Request(API, data=corps, headers={"x-api-key": cle, "anthropic-version": "2023-06-01",
@@ -69,8 +70,8 @@ def appeler(cle, donnees):
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("--niveau", default="phare", choices=["phare", "intermediaire", "autre"])
-    p.add_argument("--max-villes", type=int, default=40)
+    p.add_argument("--niveau", default="tous", choices=["tous", "phare", "intermediaire", "autre"])
+    p.add_argument("--max-villes", type=int, default=80)
     p.add_argument("--demo", action="store_true")
     a = p.parse_args()
     cle = os.environ.get("ANTHROPIC_API_KEY")
@@ -84,11 +85,12 @@ def main():
         lot = [v for v in V if v["slug"] in ("porto-pt", "tokyo-jp")]
     else:
         lot = []
-        for v in V:
-            if v["niveau"] != a.niveau:
+        ordre = {"phare": 0, "intermediaire": 1, "autre": 2}
+        for v in sorted(V, key=lambda v: (ordre[v["niveau"]], -v["population"])):  # villes phares, puis intermédiaires, puis les autres, les plus peuplées d'abord
+            if a.niveau != "tous" and v["niveau"] != a.niveau:
                 continue
             anc = c.lire(f"redaction/{v['id']}.json")
-            if not anc or (c.maintenant() - datetime.fromisoformat(anc["date"].replace("Z", "+00:00"))).days >= 30:
+            if not anc or (c.maintenant() - datetime.fromisoformat(anc["date"].replace("Z", "+00:00"))).days >= RENOUVELER[v["niveau"]]:
                 if c.lire(f"encyclo/{v['id']}.json") or c.lire_lieux(v["id"]):  # il faut des faits
                     lot.append(v)
             if len(lot) >= a.max_villes:
