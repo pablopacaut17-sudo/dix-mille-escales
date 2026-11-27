@@ -300,6 +300,31 @@
     if (a(/(voisin|proche|ville a cote)/)) return 'Villes du guide les plus proches ' + deV(d.nom) + ' :' + liste(d.proches, function (p) { return '<a href="' + root + 'villes/' + p.slug + '/">' + E(p.nom) + '</a> (' + p.km + ' km)'; });
     return null;  // pas de sujet reconnu : recherche dans les textes (voir chercherTextes)
   }
+  var reponses = null;  // réponses rédigées aux questions des lecteurs (static/reponses.json, complété chaque jour)
+  function chargerReponses() {
+    if (reponses) return Promise.resolve(reponses);
+    return fetch(root + 'static/reponses.json').then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; })
+      .then(function (l) { reponses = l || []; return reponses; });
+  }
+  function motsCles(t) { return norm(t).split(' ').filter(function (m) { return m.length > 2 && !vide[m]; }); }
+  function reponseLecteur(q, d, liste) {
+    var mq = motsCles(q), best = null, score = 0;
+    if (!mq.length) return null;
+    liste.forEach(function (x) {
+      if (x.ville && x.ville !== d.slug) return;
+      var mx = motsCles(x.q), communs = mq.filter(function (m) { return mx.indexOf(m) > -1; }).length;
+      var s = communs / Math.max(mq.length, mx.length);
+      if (s > score) { score = s; best = x; }
+    });
+    return score >= 0.6 ? best : null;
+  }
+  function envoyer(q, d) {  // question sans réponse : transmise aux robots, la réponse est ajoutée au site sous 24 h
+    var depot = 'pablopacaut17-sudo/dix-mille-escales', m = location.hostname.match(/^([^.]+)\.github\.io$/), seg = location.pathname.split('/').filter(Boolean);
+    if (m && seg.length) depot = m[1] + '/' + seg[0];
+    var url = 'https://github.com/' + depot + '/issues/new?labels=question&title=' + encodeURIComponent('Question – ' + d.nom + ' – ' + q.slice(0, 120))
+      + '&body=' + encodeURIComponent('Ville : ' + d.nom + ' (' + (d.slug || '') + ')\nQuestion : ' + q + '\n\n(La réponse sera ajoutée au site sous 24 h environ, puis indiquée ici.)');
+    return '<p class="q-envoi">Pas la réponse que vous cherchiez ? <a href="' + url + '" target="_blank" rel="noopener">Envoyez votre question</a> : elle sera traitée sous 24 h et sa réponse ajoutée au site (compte GitHub gratuit nécessaire).</p>';
+  }
   function portrait(d) {
     return '<b>' + E(d.nom) + '</b> (' + E(d.pays) + '), ' + nb(d.population) + ' habitants.' + (d.resume ? '<p>' + E(d.resume) + '</p>' : '')
       + ' Je peux vous répondre sur : visa, météo, quand partir, budget, monnaie, langue, heure, que voir, où manger, où dormir, activités, alentours, histoire, sécurité…'
@@ -332,8 +357,12 @@
             if (f) { rep.innerHTML = tete + repLieu(f, d) + '</div>'; return; }
             var r_ = repondre(q, d);
             if (r_) { rep.innerHTML = tete + r_ + '</div>'; return; }
+            chargerReponses().then(function (liste) {
+            var rl = reponseLecteur(q, d, liste);
+            if (rl) { rep.innerHTML = tete + '<p>' + E(rl.r).replace(/\n/g, '<br>') + '</p><p class="note">Réponse rédigée le ' + E(rl.date || '') + ' à la question d’un lecteur' + (rl.source ? ' · source : ' + E(rl.source) : '') + '.</p></div>'; return; }
             rep.innerHTML = tete + '<p class="q-vide">Je cherche dans tous les textes de ' + E(d.nom) + '…</p></div>';
-            chercherTextes(q, d).then(function (h) { rep.innerHTML = tete + (h || portrait(d)) + '</div>'; }).catch(function () { rep.innerHTML = tete + portrait(d) + '</div>'; });
+            chercherTextes(q, d).then(function (h) { rep.innerHTML = tete + (h || portrait(d)) + envoyer(q, d) + '</div>'; }).catch(function () { rep.innerHTML = tete + portrait(d) + envoyer(q, d) + '</div>'; });
+            });
           });
         });
       });
