@@ -173,7 +173,9 @@
     var c = {}, m = x[3] || {};
     Object.keys(m).forEach(function (k) { if (CLES[k]) c[CLES[k]] = m[k]; });
     var infos = carac(c);
-    return '<div class="q-ville">' + E(x[2]) + '</div><div class="q-texte"><b>' + E(x[0]) + '</b>' + (infos ? ' : ' + E(infos) + '.' : '.')
+    var photo = m.ph ? '<figure class="q-photo" style="margin:.4rem 0 .8rem"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/' + encodeURIComponent(m.ph) + '?width=640" alt="' + E(x[0]) + '" loading="lazy" decoding="async" style="width:100%;max-height:300px;object-fit:cover;border-radius:12px">'
+      + '<figcaption class="note">Photo : <a href="https://commons.wikimedia.org/wiki/File:' + encodeURIComponent(m.ph) + '" target="_blank" rel="noopener">Wikimedia Commons (auteur et licence)</a></figcaption></figure>' : '';
+    return '<div class="q-ville">' + E(x[2]) + '</div>' + photo + '<div class="q-texte"><b>' + E(x[0]) + '</b>' + (infos ? ' : ' + E(infos) + '.' : '.')
       + ' <a href="' + root + 'villes/' + x[1] + '/">Ouvrir la fiche ' + deV(x[2]) + '</a>'
       + ' · <a href="https://fr.wikipedia.org/wiki/' + encodeURIComponent(x[0].replace(/ /g, '_')) + '" target="_blank" rel="noopener">Article Wikipédia</a>'
       + '<p class="note">D’après Wikidata et Wikipédia.</p></div>';

@@ -554,6 +554,9 @@ def index_celebres(ctx):
                 break
         if f_.get("architecte"):
             mesures["ar"] = f_["architecte"][:2]
+        ph_ = f_.get("photo") or {}
+        if "File:" in (ph_.get("page") or ""):  # photo du lieu (Wikimedia Commons) : seul le nom du fichier, pour rester léger
+            mesures["ph"] = ph_["page"].split("File:", 1)[1][:120]
         x_ = chiffres.pop(qid, None)
         if x_:
             mesures.update(compact(x_["m"]))
