@@ -274,7 +274,7 @@ jobs:
     if: always() && !cancelled()
     concurrency: { group: publication, cancel-in-progress: true }
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 90
     environment:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url || steps.deploy2.outputs.page_url }}
@@ -293,6 +293,17 @@ jobs:
         run: python3 build.py
         env:
           SITE_URL: ${{ vars.SITE_URL }}
+      - name: Deuxième espace (gros fichiers des villes → branche espace2, publiée par le dépôt pablopacaut17-sudo.github.io)
+        continue-on-error: true
+        timeout-minutes: 25
+        run: |
+          [ -d espace2 ] || { echo "Pas de deuxième espace préparé"; exit 0; }
+          du -sm espace2
+          cd espace2
+          git init -q -b espace2
+          git config user.name "robot-dix-mille-escales"; git config user.email "robot-dix-mille-escales@users.noreply.github.com"
+          git add -A && git commit -qm "Deuxième espace : $(cat version.txt)"
+          git push -q --force "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" espace2
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

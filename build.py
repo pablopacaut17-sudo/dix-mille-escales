@@ -204,10 +204,19 @@ CR_AERO = "https://pablopacaut17-sudo.github.io/cotes-et-routes/#aeroport="  # f
 PROMO_VOISIN = '<a class="voisin" href="https://pablopacaut17-sudo.github.io/cotes-et-routes/#accueil"><svg viewBox="0 0 64 64" width="40" height="40" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#FFC72C"/><path d="M8 46C22 46 30 30 46 22" fill="none" stroke="#1B2A38" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="1 7"/><path d="M8 54h48M8 50v8M56 50v8" stroke="#1B2A38" stroke-width="2.5"/><path fill="#1B2A38" d="M47 9c1.6 0 2.6 1.6 2.4 3.4l-.7 7.4 9.3 4.6-.4 3.4-9.5-2.6-.8 7.9 3 2.2-.3 2.4-4.2-1.4-4.4.6.3-2.4 3.4-1.7.8-7.9-9.8.8.4-3.4 9.6-2.9.7-7.4C45 10.6 45.6 9 47 9z"/></svg><span><b>Découvrez aussi Cotes &amp; Routes</b><span>L’encyclopédie de l’aviation civile : avions, aéroports, compagnies, vols.</span></span></a>'  # encart vers l’autre site, en pied de page
 
 
+# Lecture des gros fichiers des villes dans le deuxième espace d'abord, puis à l'ancienne adresse (sécurité pendant le déménagement).
+ESPACE2_JS = ("<script>(function(){var F=window.fetch;if(!F||window.__e2)return;window.__e2=1;"
+              "var R=/(?:^|\\/)villes\\/([^\\/?#]+)\\/(lieux|donnees)\\.json\\.gz(?:[?#].*)?$/;"
+              "window.fetch=function(u,o){var s=typeof u==='string'?u:(u&&u.url)||'',m=R.exec(s),t=this,a=arguments;"
+              "if(!m)return F.apply(t,a);"
+              "return F.call(t,'https://pablopacaut17-sudo.github.io/dme-donnees/villes/'+m[1]+'/'+m[2]+'.json.gz',o)"
+              ".then(function(r){return r.ok?r:F.apply(t,a);},function(){return F.apply(t,a);});};})();</script>")
+
+
 def tetes(root, titre, description, image=None):
     """Icône, écran d'accueil du téléphone et aperçu quand on partage un lien (WhatsApp, Messenger, réseaux sociaux)."""
     img = image or SITE_URL + "static/icones/og.jpg"
-    return (f'<link rel="icon" href="{root}static/icones/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="{root}static/icones/apple-touch-icon.png">'
+    return (ESPACE2_JS + f'<link rel="icon" href="{root}static/icones/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="{root}static/icones/apple-touch-icon.png">'
             f'<link rel="manifest" href="{root}static/manifest.webmanifest"><meta name="theme-color" content="#12313B">'
             f'<meta property="og:type" content="website"><meta property="og:site_name" content="Dix Mille Escales"><meta property="og:locale" content="fr_FR">'
             f'<meta property="og:title" content="{E(titre)}"><meta property="og:description" content="{E(description)}">'
@@ -1502,6 +1511,55 @@ def page_conseils(cc, nomp, cv):
     return page("../../../", f"Conseils aux voyageurs {nomp} – Dix Mille Escales", f"Sécurité, santé, vaccins, lois et coutumes, zones à éviter : {nomp}.", corps).replace("</body>", js + "</body>")
 
 
+# Deuxième espace de 1 Go : https://pablopacaut17-sudo.github.io/dme-donnees/ (dépôt pablopacaut17-sudo.github.io).
+# build.py prépare dans espace2/ une copie des gros fichiers des villes ; robots.yml l'envoie sur la branche « espace2 »
+# de ce dépôt, et le dépôt pablopacaut17-sudo.github.io la publie (workflow publier-dme-donnees.yml).
+# Le navigateur lit d'abord le deuxième espace, puis l'ancienne adresse si besoin (voir ESPACE2_JS dans tetes()).
+# Étape 1 (27/11/2026) : copie seulement. Étape 2, une fois la copie vérifiée en ligne : DEPLACER = True retire ces fichiers
+# du site principal, qui maigrit d'autant.
+ESPACE2_URL = "https://pablopacaut17-sudo.github.io/dme-donnees/"
+ESPACE2_DEPLACER = os.environ.get("ESPACE2_DEPLACER", "") == "1"
+ESPACE2_MAX = 950 * 1024 * 1024
+
+
+def preparer_espace2(cpt):
+    dossier = os.path.join(os.path.dirname(os.path.abspath(SITE)), "espace2")
+    shutil.rmtree(dossier, ignore_errors=True)
+    base = os.path.join(SITE, "villes")
+    tailles = {}
+    for r, _, fs in os.walk(SITE):
+        for f in fs:
+            k = f if f in ("lieux.json.gz", "donnees.json.gz", "index.html") and r.startswith(base) else "autres"
+            k = "pages des villes" if k == "index.html" else k
+            tailles[k] = tailles.get(k, 0) + os.path.getsize(os.path.join(r, f))
+    cpt["tailles_mo"] = {k: round(v / 1024 / 1024) for k, v in sorted(tailles.items())}
+    noms = ["lieux.json.gz"]
+    if tailles.get("lieux.json.gz", 0) + tailles.get("donnees.json.gz", 0) < ESPACE2_MAX:
+        noms.append("donnees.json.gz")
+    elif tailles.get("lieux.json.gz", 0) >= ESPACE2_MAX:
+        print("Deuxième espace : les fichiers de lieux dépassent à eux seuls 950 Mo, rien n'est déplacé.")
+        cpt["espace2"] = {"fichiers": [], "taille_mo": 0, "deplace": False}
+        return
+    n = poids = 0
+    for slug in os.listdir(base) if os.path.isdir(base) else []:
+        for nom in noms:
+            src = os.path.join(base, slug, nom)
+            if not os.path.exists(src):
+                continue
+            dst = os.path.join(dossier, "villes", slug, nom)
+            os.makedirs(os.path.dirname(dst), exist_ok=True)
+            shutil.copy2(src, dst)
+            n += 1
+            poids += os.path.getsize(src)
+            if ESPACE2_DEPLACER:
+                os.remove(src)
+    with open(os.path.join(dossier, "version.txt"), "w") as f:
+        f.write(datetime.now().strftime("%Y-%m-%d %H:%M") + "\n")
+    cpt["espace2"] = {"fichiers": noms, "nombre": n, "taille_mo": round(poids / 1024 / 1024), "deplace": ESPACE2_DEPLACER}
+    print(f"Deuxième espace : {n} fichiers ({', '.join(noms)}), {poids / 1024 / 1024:.0f} Mo"
+          + (" déplacés hors du site principal." if ESPACE2_DEPLACER else " copiés (le site principal les garde encore)."))
+
+
 def taille_site():
     return sum(os.path.getsize(os.path.join(r, f)) for r, _, fs in os.walk(SITE) for f in fs)
 
@@ -1887,6 +1945,7 @@ def main():
         ecrire("robots.txt", "User-agent: *\nAllow: /\n")
 
     index_celebres(ctx)
+    preparer_espace2(cpt)
     taille = taille_site()
     print(f"Taille du site : {taille / 1024 / 1024:.0f} Mo sur 1 024 Mo autorisés par GitHub Pages.")
     if taille > LIMITE_SITE:
