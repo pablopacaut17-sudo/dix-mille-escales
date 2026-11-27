@@ -174,11 +174,13 @@
     return lireJson(root + 'villes/' + slug + '/lieux.json.gz').then(function (x) { lieuxCache[slug] = x.lieux || []; return lieuxCache[slug]; }).catch(function () { return []; });
   }
   /* Un lieu cité dans la question (tous les mots significatifs de son nom y figurent) */
-  function lieuCite(q0, lieux) {
+  function lieuCite(q0, lieux, ville) {
     var qn = ' ' + norm(q0).replace(/[^a-z0-9 ]/g, ' ') + ' ', meilleur = null, lg = 0;
+    var vn = ' ' + norm(ville || '').replace(/[^a-z0-9 ]/g, ' ') + ' ';
     lieux.forEach(function (f) {
       var ws = norm(f.nom).replace(/[^a-z0-9 ]/g, ' ').split(/\s+/).filter(function (w) { return w.length >= 3 && VIDES.indexOf(' ' + w + ' ') < 0; });
       if (!ws.length || ws.join('').length < 5) return;
+      if (ws.every(function (w) { return vn.indexOf(' ' + w + ' ') > -1; })) return;  // « Quimper » (la gare) : c'est le nom de la ville, pas un lieu cité
       if (ws.every(function (w) { return qn.indexOf(' ' + w + ' ') > -1 || qn.indexOf(' ' + w.replace(/s$/, '') + ' ') > -1; }) && ws.join('').length > lg) { meilleur = f; lg = ws.join('').length; }
     });
     return meilleur;
@@ -357,8 +359,9 @@
     return score >= 0.6 ? best : null;
   }
   var IA_URL = 'https://relais-ia.pablopacaut17.workers.dev';  // relais IA de Pablo (Cloudflare) ; vide = bouton masqué
-  function boutonIA(q, d) {
+  function boutonIA(q, d, petit) {
     if (!IA_URL) return '';
+    if (petit) return '<p class="note">Pas la réponse attendue ? <button type="button" class="q-btn q-ia" data-q="' + E(q) + '" data-slug="' + E(d.slug || '') + '">✨ Demander à l’IA</button></p><div class="q-ia-rep"></div>';
     return '<p><button type="button" class="q-btn q-ia" data-q="' + E(q) + '" data-slug="' + E(d.slug || '') + '">✨ Demander à l’IA</button></p><div class="q-ia-rep"></div>';
   }
   function miseIA(t) {
@@ -414,7 +417,7 @@
         if (err) { rep.innerHTML = '<p class="q-vide">La recherche est indisponible pour le moment. Réessayez dans un instant.</p>'; return; }
         chercherCelebre(q).catch(function () { return null; }).then(function (cel) {
         var vc = trouverVille(q);
-        if (cel && !(vc && motsLieu(cel[0]).join(' ') === motsLieu(vc[0]).join(' '))) { rep.innerHTML = repCelebre(cel); return; }
+        if (cel && !(vc && motsLieu(cel[0]).join(' ') === motsLieu(vc[0]).join(' '))) { rep.innerHTML = repCelebre(cel) + boutonIA(q, {}, 1); return; }
         var v = trouverVille(q), slug = v ? v[1] : derniere;
         if (!slug) { rep.innerHTML = '<p class="q-vide">De quelle ville parlez-vous ? Ajoutez son nom à la question, par exemple « Quel temps fait-il à Lisbonne ? ».</p>' + boutonIA(q, {}); return; }
         derniere = slug;
@@ -422,13 +425,13 @@
           if (!d) { rep.innerHTML = '<p class="q-vide">Impossible de charger la fiche de cette ville pour le moment.</p>'; return; }
           var tete = '<div class="q-ville">' + E(d.nom) + ' · ' + E(d.pays) + '</div><div class="q-texte">';
           chargerLieux(slug).then(function (L) {
-            var f = lieuCite(q, L);
-            if (f) { rep.innerHTML = tete + repLieu(f, d) + '</div>'; return; }
+            var f = lieuCite(q, L, d.nom);
+            if (f) { rep.innerHTML = tete + repLieu(f, d) + boutonIA(q, d, 1) + '</div>'; return; }
             var r_ = repondre(q, d);
-            if (r_) { rep.innerHTML = tete + r_ + '</div>'; return; }
+            if (r_) { rep.innerHTML = tete + r_ + boutonIA(q, d, 1) + '</div>'; return; }
             chargerReponses().then(function (liste) {
             var rl = reponseLecteur(q, d, liste);
-            if (rl) { rep.innerHTML = tete + '<p>' + E(rl.r).replace(/\n/g, '<br>') + '</p><p class="note">Réponse rédigée le ' + E(rl.date || '') + ' à la question d’un lecteur' + (rl.source ? ' · source : ' + E(rl.source) : '') + '.</p></div>'; return; }
+            if (rl) { rep.innerHTML = tete + '<p>' + E(rl.r).replace(/\n/g, '<br>') + '</p><p class="note">Réponse rédigée le ' + E(rl.date || '') + ' à la question d’un lecteur' + (rl.source ? ' · source : ' + E(rl.source) : '') + '.</p>' + boutonIA(q, d, 1) + '</div>'; return; }
             rep.innerHTML = tete + '<p class="q-vide">Je cherche dans tous les textes de ' + E(d.nom) + '…</p></div>';
             chercherTextes(q, d).then(function (h) { rep.innerHTML = tete + (h || portrait(d)) + boutonIA(q, d) + envoyer(q, d) + '</div>'; }).catch(function () { rep.innerHTML = tete + portrait(d) + boutonIA(q, d) + envoyer(q, d) + '</div>'; });
             });
