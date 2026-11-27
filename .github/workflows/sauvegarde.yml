@@ -1,0 +1,39 @@
+name: Sauvegarde hebdomadaire des données
+# Les branches donnees-… n'ont pas d'historique : si un robot écrasait un jour ses données par erreur, elles seraient
+# perdues. Chaque dimanche, une copie complète de chaque branche est rangée dans une « Release » GitHub
+# (sauvegarde-AAAA-MM-JJ). Les 4 dernières sont gardées. Pour restaurer : télécharger l'archive de la branche dans la
+# Release et la remettre dans la branche (voir LISEZ-MOI ou demander à Claude).
+on:
+  schedule:
+    - cron: "41 11 * * 0"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency: { group: sauvegarde, cancel-in-progress: false }
+jobs:
+  sauvegarder:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v5
+        with: { fetch-depth: 1 }
+      - name: Archiver chaque branche de données
+        run: |
+          mkdir -p /tmp/sauvegarde
+          for b in $(git ls-remote --heads origin 'donnees-*' | awk '{print $2}' | sed 's#refs/heads/##'); do
+            git fetch -q --depth 1 origin "$b"
+            git archive --format=tar FETCH_HEAD | gzip -6 > "/tmp/sauvegarde/$b.tar.gz"
+            echo "$b : $(du -h /tmp/sauvegarde/$b.tar.gz | cut -f1)"
+          done
+          ls -la /tmp/sauvegarde
+      - name: Créer la sauvegarde et garder les 4 dernières
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="sauvegarde-$(date -u +%F)"
+          gh release delete "$tag" -y --cleanup-tag 2>/dev/null || true
+          gh release create "$tag" /tmp/sauvegarde/*.tar.gz --title "Sauvegarde des données du $(date -u +%d/%m/%Y)" \
+            --notes "Copie complète des branches de données des robots (une archive par branche). Créée automatiquement chaque dimanche ; les 4 dernières sont gardées." --latest=false
+          gh release list --limit 100 --json tagName --jq '.[].tagName' | grep '^sauvegarde-' | sort -r | tail -n +5 | while read t; do
+            gh release delete "$t" -y --cleanup-tag
+          done
