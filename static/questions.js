@@ -561,7 +561,7 @@
     function demander() {
       var q = input.value.trim();
       if (q.length < 3) { rep.innerHTML = '<p class="q-vide">Posez une question, par exemple « Faut-il un visa pour le Japon ? ».</p>'; return; }
-      rep.innerHTML = '<p class="q-vide">Je cherche…</p>';
+      rep.innerHTML = '<div aria-label="Je cherche…" role="status"><span class="sk l"></span><span class="sk c"></span><span class="sk b"></span></div>';
       chargerIndex(function (err) {
         if (err) { rep.innerHTML = '<p class="q-vide">La recherche est indisponible pour le moment. Réessayez dans un instant.</p>'; return; }
         chercherCelebre(q).catch(function () { return null; }).then(function (cel) {

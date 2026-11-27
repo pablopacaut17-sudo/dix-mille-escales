@@ -344,3 +344,13 @@ body{text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}
 #results li[data-q]{flex-direction:column;align-items:flex-start;gap:2px}
 #results li[data-q] b{white-space:normal}
 #results li[data-q] span{white-space:normal}
+
+/* Encart vers Cotes & Routes, en pied de page */
+.voisin{display:flex;gap:14px;align-items:center;margin:0 0 1rem;padding:14px 16px;border-radius:16px;border:1px solid var(--line);background:var(--surface);text-decoration:none;color:var(--ink)}
+.voisin svg{flex:none}.voisin b{display:block;font-family:var(--display);font-size:1.02rem}.voisin span span{color:var(--muted);font-size:.9rem}
+/* Chargements : des formes grises à la place des messages « Chargement… » */
+@keyframes sk{0%{background-position:100% 0}100%{background-position:-100% 0}}
+.sk,#fiche-dyn>p.note:only-child{display:block;border-radius:12px;color:transparent!important;background:linear-gradient(90deg,var(--soft) 0,var(--surface) 50%,var(--soft) 100%);background-size:200% 100%;animation:sk 1.2s infinite linear}
+#fiche-dyn>p.note:only-child{height:340px;margin:1.2rem 0}
+.sk{height:14px;margin:10px 0}.sk.l{width:60%}.sk.c{width:85%}.sk.b{height:90px}
+@media (prefers-reduced-motion:reduce){.sk,#fiche-dyn>p.note:only-child{animation:none}}

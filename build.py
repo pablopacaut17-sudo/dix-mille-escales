@@ -199,7 +199,21 @@ def meteo_fr(code):
     return next((t for codes, t in METEO if code in codes), "Variable")
 
 
-def page(root, titre, description, corps, recherche=True):
+SITE_URL = "https://pablopacaut17-sudo.github.io/dix-mille-escales/"
+PROMO_VOISIN = '<a class="voisin" href="https://pablopacaut17-sudo.github.io/cotes-et-routes/#accueil"><svg viewBox="0 0 64 64" width="40" height="40" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#FFC72C"/><path d="M8 46C22 46 30 30 46 22" fill="none" stroke="#1B2A38" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="1 7"/><path d="M8 54h48M8 50v8M56 50v8" stroke="#1B2A38" stroke-width="2.5"/><path fill="#1B2A38" d="M47 9c1.6 0 2.6 1.6 2.4 3.4l-.7 7.4 9.3 4.6-.4 3.4-9.5-2.6-.8 7.9 3 2.2-.3 2.4-4.2-1.4-4.4.6.3-2.4 3.4-1.7.8-7.9-9.8.8.4-3.4 9.6-2.9.7-7.4C45 10.6 45.6 9 47 9z"/></svg><span><b>Découvrez aussi Cotes &amp; Routes</b><span>L’encyclopédie de l’aviation civile : avions, aéroports, compagnies, vols.</span></span></a>'  # encart vers l’autre site, en pied de page
+
+
+def tetes(root, titre, description, image=None):
+    """Icône, écran d'accueil du téléphone et aperçu quand on partage un lien (WhatsApp, Messenger, réseaux sociaux)."""
+    img = image or SITE_URL + "static/icones/og.jpg"
+    return (f'<link rel="icon" href="{root}static/icones/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="{root}static/icones/apple-touch-icon.png">'
+            f'<link rel="manifest" href="{root}static/manifest.webmanifest"><meta name="theme-color" content="#12313B">'
+            f'<meta property="og:type" content="website"><meta property="og:site_name" content="Dix Mille Escales"><meta property="og:locale" content="fr_FR">'
+            f'<meta property="og:title" content="{E(titre)}"><meta property="og:description" content="{E(description)}">'
+            f'<meta property="og:image" content="{E(img)}"><meta name="twitter:card" content="summary_large_image">')
+
+
+def page(root, titre, description, corps, recherche=True, image=None):
     """Gabarit commun à toutes les pages générées. root = chemin relatif vers la racine du site."""
     rech = ('<form class="search" role="search" onsubmit="return false"><label for="q" class="vh">Chercher une ville</label>'
             '<input id="q" type="search" autocomplete="off" placeholder="Chercher une ville">'
@@ -207,7 +221,7 @@ def page(root, titre, description, corps, recherche=True):
     return f"""<!DOCTYPE html>
 <html lang="fr"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>{E(titre)}</title><meta name="description" content="{E(description)}">
+<title>{E(titre)}</title><meta name="description" content="{E(description)}">{tetes(root, titre, description, image)}
 {FONTS}<link rel="stylesheet" href="{root}static/style.css"></head>
 <body data-root="{root}">
 <a class="vh vh-focus" href="#contenu">Aller au contenu</a>
@@ -215,19 +229,21 @@ def page(root, titre, description, corps, recherche=True):
 <nav class="nav-top" aria-label="Navigation principale"><a href="{root}pays/">Destinations</a><a href="{root}outils/">Préparer</a><a href="{root}premier-voyage/">Premier voyage</a><a href="{root}carnet/">Mon carnet</a></nav>{rech}
 <button type="button" class="theme-btn" id="theme-btn" aria-label="Changer le thème d’affichage">Thème : auto</button></div></header>
 <main class="wrap" id="contenu">{corps}</main>
-<footer class="foot" id="pied"><div class="in"><p class="foot-note"><span data-compteur>…</span> informations · mis à jour le <span data-maj>…</span> · <a href="{root}mentions-legales/">Mentions légales</a></p></div></footer>
+<footer class="foot" id="pied"><div class="in">{PROMO_VOISIN}<p class="foot-note"><span data-compteur>…</span> informations · mis à jour le <span data-maj>…</span> · <a href="{root}mentions-legales/">Mentions légales</a></p></div></footer>
 <script src="{root}static/app.js"></script><script src="{root}static/fiche.js"></script><script src="{root}static/questions.js"></script><script src="{root}static/lieux.js"></script><script src="{root}static/onglets.js"></script><script src="{root}static/carte.js"></script><script src="{root}static/carnet.js"></script><script src="{root}static/nav.js"></script><script src="{root}static/langue.js"></script></body></html>"""
 
 
 SCRIPTS = ("app.js", "fiche.js", "questions.js", "lieux.js", "onglets.js", "carte.js", "carnet.js", "nav.js", "langue.js")
 
 
-def page_legere(root, titre, description, corps):
+def page_legere(root, titre, description, corps, image=None):
     """Gabarit minimal des fiches légères (plus de 60 000 pages) : l'en-tête, le pied de page, la boîte à questions et les
     scripts sont ajoutés dans le navigateur par static/leger.js. Environ 2,5 Ko de moins par page, soit plus de 150 Mo
     gagnés sur le site, sans aucune information en moins (le site doit rester sous 1 Go)."""
     return (f'<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">'
-            f'<title>{E(titre)}</title><meta name="description" content="{E(description)}"><link rel="stylesheet" href="{root}static/style.css"></head>'
+            f'<title>{E(titre)}</title><meta name="description" content="{E(description)}">'
+            + (f'<meta property="og:image" content="{E(image)}">' if image else "")  # le reste (icônes) est ajouté par static/leger.js : pages légères
+            + f'<link rel="stylesheet" href="{root}static/style.css"></head>'
             f'<body data-root="{root}"><main class="wrap" id="contenu">{corps}</main><script src="{root}static/leger.js"></script></body></html>')
 
 
@@ -238,13 +254,13 @@ def script_leger():
     entete = (f'<a class="vh vh-focus" href="#contenu">Aller au contenu</a><header class="top"><div class="top-in"><a class="brand" href="__R__">{LOGO}<span>Dix Mille Escales</span></a>'
               '<nav class="nav-top" aria-label="Navigation principale"><a href="__R__pays/">Destinations</a><a href="__R__outils/">Préparer</a><a href="__R__premier-voyage/">Premier voyage</a><a href="__R__carnet/">Mon carnet</a></nav>'
               + rech + '<button type="button" class="theme-btn" id="theme-btn" aria-label="Changer le thème d’affichage">Thème : auto</button></div></header>')
-    pied = ('<footer class="foot" id="pied"><div class="in"><p class="foot-note"><span data-compteur>…</span> informations · mis à jour le <span data-maj>…</span> · '
+    pied = ('<footer class="foot" id="pied"><div class="in">' + PROMO_VOISIN + '<p class="foot-note"><span data-compteur>…</span> informations · mis à jour le <span data-maj>…</span> · '
             '<a href="__R__mentions-legales/">Mentions légales</a></p></div></footer>')
     boite = BOITE_QUESTIONS.replace("{nom}", "__NOM__").replace("{slug}", "__SLUG__")
     fontes = FONTS
     return ("/* Dix Mille Escales : parties communes des fiches légères (généré par build.py). */\n(function () {\n"
             f"  var r = document.body.getAttribute('data-root') || '', E = {json.dumps(entete, ensure_ascii=False)}, P = {json.dumps(pied, ensure_ascii=False)}, B = {json.dumps(boite, ensure_ascii=False)};\n"
-            f"  document.head.insertAdjacentHTML('beforeend', {json.dumps(fontes, ensure_ascii=False)});\n"
+            f"  document.head.insertAdjacentHTML('beforeend', {json.dumps(fontes, ensure_ascii=False)} + '<link rel=\"icon\" href=\"' + r + 'static/icones/favicon.svg\" type=\"image/svg+xml\"><link rel=\"apple-touch-icon\" href=\"' + r + 'static/icones/apple-touch-icon.png\"><link rel=\"manifest\" href=\"' + r + 'static/manifest.webmanifest\"><meta name=\"theme-color\" content=\"#12313B\">');\n"
             "  function esc(t) { return String(t).replace(/[&<>\"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;' }[c]; }); }\n"
             "  document.body.insertAdjacentHTML('afterbegin', E.replace(/__R__/g, r));\n"
             "  var dyn = document.getElementById('fiche-dyn'), h1 = document.querySelector('h1.city');\n"
@@ -1127,8 +1143,8 @@ def page_ville(v, ctx):
                  f'<h1 class="city">{E(v["nom"])}</h1><p class="coords">{coords}</p>'
                  f'<p class="tagline">{E(v["nom"])}, {nombre(v["population"])} habitants, {E(nom_pays)}. {nombre(total_infos)} informations dans cette fiche.</p></section>'
                  f'<div id="fiche-dyn" data-slug="{v["slug"]}" data-niveau="{v["niveau"]}"><p class="note">Chargement de la fiche…</p></div>')
-        return page_legere("../../", f"{v['nom']} ({nom_pays}) – Dix Mille Escales", desc, leger)
-    return page("../../", f"{v['nom']} ({nom_pays}) – Dix Mille Escales", desc, "\n".join(corps))
+        return page_legere("../../", f"{v['nom']} ({nom_pays}) – Dix Mille Escales", desc, leger, image=(enc.get("photo") or {}).get("url"))
+    return page("../../", f"{v['nom']} ({nom_pays}) – Dix Mille Escales", desc, "\n".join(corps), image=(enc.get("photo") or {}).get("url"))
 
 
 def section_alentours(v, autour, rubs):
