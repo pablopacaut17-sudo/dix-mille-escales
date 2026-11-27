@@ -219,6 +219,42 @@ def page(root, titre, description, corps, recherche=True):
 <script src="{root}static/app.js"></script><script src="{root}static/fiche.js"></script><script src="{root}static/questions.js"></script><script src="{root}static/lieux.js"></script><script src="{root}static/onglets.js"></script><script src="{root}static/carte.js"></script><script src="{root}static/carnet.js"></script><script src="{root}static/nav.js"></script></body></html>"""
 
 
+SCRIPTS = ("app.js", "fiche.js", "questions.js", "lieux.js", "onglets.js", "carte.js", "carnet.js", "nav.js")
+
+
+def page_legere(root, titre, description, corps):
+    """Gabarit minimal des fiches légères (plus de 60 000 pages) : l'en-tête, le pied de page, la boîte à questions et les
+    scripts sont ajoutés dans le navigateur par static/leger.js. Environ 2,5 Ko de moins par page, soit plus de 150 Mo
+    gagnés sur le site, sans aucune information en moins (le site doit rester sous 1 Go)."""
+    return (f'<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">'
+            f'<title>{E(titre)}</title><meta name="description" content="{E(description)}"><link rel="stylesheet" href="{root}static/style.css"></head>'
+            f'<body data-root="{root}"><main class="wrap" id="contenu">{corps}</main><script src="{root}static/leger.js"></script></body></html>')
+
+
+def script_leger():
+    """static/leger.js : reconstruit dans le navigateur les parties communes des fiches légères (identiques à page())."""
+    rech = ('<form class="search" role="search" onsubmit="return false"><label for="q" class="vh">Chercher une ville</label>'
+            '<input id="q" type="search" autocomplete="off" placeholder="Chercher une ville"><ul id="results"></ul></form>')
+    entete = (f'<a class="vh vh-focus" href="#contenu">Aller au contenu</a><header class="top"><div class="top-in"><a class="brand" href="__R__">{LOGO}<span>Dix Mille Escales</span></a>'
+              '<nav class="nav-top" aria-label="Navigation principale"><a href="__R__pays/">Destinations</a><a href="__R__outils/">Préparer</a><a href="__R__premier-voyage/">Premier voyage</a><a href="__R__carnet/">Mon carnet</a></nav>'
+              + rech + '<button type="button" class="theme-btn" id="theme-btn" aria-label="Changer le thème d’affichage">Thème : auto</button></div></header>')
+    pied = ('<footer class="foot" id="pied"><div class="in"><p class="foot-note"><span data-compteur>…</span> informations · mis à jour le <span data-maj>…</span> · '
+            '<a href="__R__mentions-legales/">Mentions légales</a></p></div></footer>')
+    boite = BOITE_QUESTIONS.replace("{nom}", "__NOM__").replace("{slug}", "__SLUG__")
+    fontes = FONTS
+    return ("/* Dix Mille Escales : parties communes des fiches légères (généré par build.py). */\n(function () {\n"
+            f"  var r = document.body.getAttribute('data-root') || '', E = {json.dumps(entete, ensure_ascii=False)}, P = {json.dumps(pied, ensure_ascii=False)}, B = {json.dumps(boite, ensure_ascii=False)};\n"
+            f"  document.head.insertAdjacentHTML('beforeend', {json.dumps(fontes, ensure_ascii=False)});\n"
+            "  function esc(t) { return String(t).replace(/[&<>\"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;' }[c]; }); }\n"
+            "  document.body.insertAdjacentHTML('afterbegin', E.replace(/__R__/g, r));\n"
+            "  var dyn = document.getElementById('fiche-dyn'), h1 = document.querySelector('h1.city');\n"
+            "  if (dyn) dyn.insertAdjacentHTML('afterend', B.replace(/__NOM__/g, esc(h1 ? h1.textContent.trim() : '')).replace(/__SLUG__/g, esc(dyn.getAttribute('data-slug') || '')));\n"
+            "  var s = document.querySelector('script[src$=\"leger.js\"]');\n"
+            "  (s || document.body.lastChild).insertAdjacentHTML('beforebegin', P.replace(/__R__/g, r));\n"
+            f"  {json.dumps(list(SCRIPTS))}.forEach(function (n) {{ var x = document.createElement('script'); x.src = r + 'static/' + n; x.async = false; document.body.appendChild(x); }});\n"
+            "})();\n")
+
+
 def carte_lieux(v, lieux, rayon):
     """Petite carte SVG des lieux autour du centre-ville (sans fond de carte externe)."""
     if not lieux:
@@ -1021,9 +1057,8 @@ def page_ville(v, ctx):
         leger = (f'<section class="hero"><p class="crumbs"><a href="../../">Accueil</a> › <a href="../../pays/#{pays.get("continent", "")}">{E(cont)}</a> › <a href="../../pays/{v["pays"].lower()}/">{E(nom_pays)}</a></p>'
                  f'<h1 class="city">{E(v["nom"])}</h1><p class="coords">{coords}</p>'
                  f'<p class="tagline">{E(v["nom"])}, {nombre(v["population"])} habitants, {E(nom_pays)}. {nombre(total_infos)} informations dans cette fiche.</p></section>'
-                 f'<div id="fiche-dyn" data-slug="{v["slug"]}" data-niveau="{v["niveau"]}"><p class="note">Chargement de la fiche…</p></div>'
-                 + BOITE_QUESTIONS.format(nom=E(v["nom"]), slug=v["slug"]))
-        return page("../../", f"{v['nom']} ({nom_pays}) – Dix Mille Escales", desc, leger)
+                 f'<div id="fiche-dyn" data-slug="{v["slug"]}" data-niveau="{v["niveau"]}"><p class="note">Chargement de la fiche…</p></div>')
+        return page_legere("../../", f"{v['nom']} ({nom_pays}) – Dix Mille Escales", desc, leger)
     return page("../../", f"{v['nom']} ({nom_pays}) – Dix Mille Escales", desc, "\n".join(corps))
 
 
@@ -1527,6 +1562,7 @@ def main():
     if os.path.isdir(SITE):
         shutil.rmtree(SITE)
     shutil.copytree(os.path.join(RACINE, "static"), os.path.join(SITE, "static"))
+    ecrire("static/leger.js", script_leger())
 
     # Index de recherche
     index = [[v["nom"], v["slug"], pays.get(v["pays"], {}).get("nom", v["pays"]), v["population"],
