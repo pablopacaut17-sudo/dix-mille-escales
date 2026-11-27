@@ -165,6 +165,7 @@
     }
     var gal = tous.filter(function (x) { return x.histoire && x.histoire.f && x.histoire.f.photo; }).sort(function (a, b) { return (b.patrimoine_mondial ? 1 : 0) - (a.patrimoine_mondial ? 1 : 0); }).slice(0, 12);
     if (gal.length) h += sec('galerie', E(d.nom) + ' en images', '<div class="galerie">' + gal.map(function (x) { var p_ = x.histoire.f.photo; return '<figure><img src="' + E(p_.u) + '" alt="' + E(x.nom) + '" loading="lazy" decoding="async"><figcaption><b>' + E(x.nom) + '</b><br><a href="' + E(p_.page) + '" rel="noopener" target="_blank">' + E(p_.a) + (p_.l ? ' · ' + E(p_.l) : '') + '</a></figcaption></figure>'; }).join('') + '</div><p class="note">Photos : Wikimedia Commons, sous licences libres.</p>');
+    if (d.decouvertes) h += d.decouvertes;
     var au = c.alentours || [], pr = (d.proches || []).filter(function (p) { return p.km >= 15 && p.km <= 150; }).slice(0, 4);
     if (au.length || pr.length) {
       h += sec('alentours', 'Aux alentours', '<ul class="excursions">' + au.slice(0, 12).map(function (f) { return '<li><b>' + E(f.nom) + (f.patrimoine_mondial ? '<span class="unesco-tag">Patrimoine mondial</span>' : '') + '</b><span class="d">' + E(f.type) + ' · ' + v(f.km) + ' km ' + E(f.direction) + ' · ≈ ' + duree(f.km) + ' de route</span></li>'; }).join('')

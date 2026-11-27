@@ -28,7 +28,7 @@ DEPOT = os.environ.get("GITHUB_REPOSITORY", "")
 JETON = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN", "")
 API = "https://api.github.com/repos/" + DEPOT
 FICHIER_ROBOTS = "robots.yml"
-GROUPES = {"villes": "villes", "base": "base", "encyclopedie": "encyclopedie", "lieux": "lieux", "guides": "guides", "climat": "climat", "histoires": "histoires", "redaction": "redaction", "publier": "publier"}
+GROUPES = {"villes": "villes", "base": "base", "encyclopedie": "encyclopedie", "lieux": "lieux", "guides": "guides", "climat": "climat", "histoires": "histoires", "redaction": "redaction", "decouvertes": "decouvertes", "publier": "publier"}
 # robot -> (groupe, âge maximal en heures, nom lisible)
 ATTENDUS = {
     "change": ("base", 30, "Change"), "feries": ("base", 30, "Jours fériés"), "securite": ("base", 30, "Sécurité"),
@@ -36,8 +36,10 @@ ATTENDUS = {
     "climat": ("climat", 30, "Climat"), "encyclopedie": ("encyclopedie", 30, "Encyclopédie"),
     "lieux_0": ("lieux", 30, "Lieux, robot 1"), "lieux_1": ("lieux", 30, "Lieux, robot 2"), "lieux_2": ("lieux", 30, "Lieux, robot 3"), "lieux_3": ("lieux", 30, "Lieux, robot 4"),
     "guides": ("guides", 30, "Guides Wikivoyage"), "aeroports": ("base", 24 * 35, "Aéroports"), "urgences": ("base", 24 * 35, "Numéros d’urgence"), "conseils": ("base", 30, "Conseils aux voyageurs (Canada)"), "pratique": ("base", 24 * 35, "Prises et conduite (Wikidata)"), "langues": ("base", 24 * 35, "Mots utiles (Wikivoyage)"), "histoires": ("histoires", 30, "Histoire des lieux (Wikipédia)"), "avis": ("base", 30, "Avis des lecteurs"),
+    "photos": ("decouvertes", 30, "Photos des villes (Commons)"), "fetes": ("decouvertes", 30, "Fêtes et festivals (Wikidata)"),
+    "reseaux": ("decouvertes", 24 * 9, "Réseaux de transport (Mobility Database)"), "datatourisme": ("decouvertes", 30, "Offices de tourisme (DATAtourisme)"),
 }
-BRANCHES = ["donnees-base", "donnees-encyclopedie", "donnees-lieux-0", "donnees-lieux-1", "donnees-lieux-2", "donnees-lieux-3", "donnees-guides", "donnees-climat"]
+BRANCHES = ["donnees-base", "donnees-encyclopedie", "donnees-lieux-0", "donnees-lieux-1", "donnees-lieux-2", "donnees-lieux-3", "donnees-guides", "donnees-climat", "donnees-decouvertes"]
 MOIS = ["janv.", "févr.", "mars", "avr.", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc."]
 
 

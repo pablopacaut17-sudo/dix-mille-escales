@@ -10,7 +10,7 @@ on:
   workflow_dispatch:          # bouton « Run workflow » pour lancer à la main
     inputs:
       groupes:
-        description: "Groupes à lancer, séparés par des virgules (villes, base, climat, encyclopedie, lieux, guides, redaction, publier). Vide = tous."
+        description: "Groupes à lancer, séparés par des virgules (villes, base, climat, encyclopedie, lieux, guides, decouvertes, redaction, publier). Vide = tous."
         required: false
         default: ""
   push:
@@ -193,6 +193,39 @@ jobs:
         if: always()
         run: python3 robots/sauver.py --branche donnees-histoires --chemins histoires journal/histoires.json
 
+  decouvertes:
+    needs: villes
+    if: ${{ !failure() && !cancelled() && github.event_name != 'push' && (inputs.groupes == null || inputs.groupes == '' || contains(inputs.groupes, 'decouvertes')) }}
+    concurrency: { group: robots-decouvertes, cancel-in-progress: false }
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Réunir les données
+        run: python3 robots/preparer.py
+      - name: Réseaux de transport (Mobility Database)
+        continue-on-error: true
+        timeout-minutes: 30
+        run: python3 robots/robot_reseaux.py
+      - name: Offices de tourisme (DATAtourisme, France)
+        continue-on-error: true
+        timeout-minutes: 60
+        run: python3 robots/robot_datatourisme.py
+      - name: Fêtes et festivals (Wikidata)
+        continue-on-error: true
+        run: python3 robots/robot_fetes.py --max-villes ${{ vars.MAX_FETES || 20000 }} --duree-max 70
+      - name: Photos des villes (Wikimedia Commons)
+        continue-on-error: true
+        run: python3 robots/robot_photos.py --max-villes ${{ vars.MAX_PHOTOS || 4000 }} --duree-max 130
+      - name: Enregistrer
+        if: always()
+        run: >
+          python3 robots/sauver.py --branche donnees-decouvertes --chemins photos fetes reseaux.json datatourisme.json.gz
+          journal/photos.json journal/fetes.json journal/reseaux.json journal/datatourisme.json
+
   redaction:
     needs: [base, encyclopedie, lieux, guides, climat, histoires]
     if: always() && !cancelled() && github.event_name != 'push' && (inputs.groupes == null || inputs.groupes == '' || contains(inputs.groupes, 'redaction'))
@@ -216,7 +249,7 @@ jobs:
         run: python3 robots/sauver.py --branche donnees-redaction --chemins redaction journal/redaction.json
 
   publier:
-    needs: [villes, base, encyclopedie, lieux, guides, climat, histoires, redaction]
+    needs: [villes, base, encyclopedie, lieux, guides, climat, histoires, decouvertes, redaction]
     if: always() && !cancelled()
     concurrency: { group: publication, cancel-in-progress: true }
     runs-on: ubuntu-latest

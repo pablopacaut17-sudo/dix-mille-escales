@@ -367,6 +367,76 @@ def infos_histoires(tous, ctx):
     return n
 
 
+MOIS_NUM = {m: i for i, m in enumerate(MOIS_LONG)}
+
+
+def decouvertes(v, ctx):
+    """Sections apportées par les nouveaux robots : photos de la ville (Wikimedia Commons), fêtes et festivals (Wikidata),
+    réseaux de transport et libre-service (Mobility Database), sites et événements officiels (DATAtourisme, France).
+    Renvoie le HTML (déjà échappé) et le nombre d'informations ajoutées. Volontairement compact : le site doit rester sous 1 Go."""
+    h, infos, nom = [], 0, E(v["nom"])
+    ph = (lire(f"photos/{v['id']}.json") or {}).get("photos", [])
+    if ph:
+        infos += len(ph) * 3
+        h.append(f'<section class="block" id="photos-ville"><h2>Photos de {nom}</h2><div class="galerie">'
+                 + "".join(f'<figure><img src="{E(x["u"])}" alt="{E(x.get("t") or v["nom"])}" loading="lazy" decoding="async">'
+                           f'<figcaption>{E(x.get("t", ""))}<br><a href="{E(x["page"])}" rel="noopener" target="_blank">{E(x.get("a", ""))}'
+                           f'{(" · " + E(x["l"])) if x.get("l") else ""}</a></figcaption></figure>' for x in ph)
+                 + '</div><p class="note">Photos : Wikimedia Commons, sous licences libres (auteurs et licences indiqués sous chaque photo).</p></section>')
+    dt = ctx["datatourisme"].get(str(v["id"])) or {}
+    evts = dt.get("evenements", [])
+    if evts:
+        infos += sum(3 + (1 if x.get("d") else 0) + (1 if x.get("w") else 0) + (1 if x.get("a") else 0) for x in evts)
+        lignes = "".join(f'<li><b>{E(x["n"])}</b><span class="d">{date_fr(x["du"])}'
+                         + (f' au {date_fr(x["au"])}' if x.get("au") and x["au"] != x["du"] else "")
+                         + (f' · {E(x["a"])}' if x.get("a") else "") + "</span>"
+                         + (f'<span class="d">{E(x["d"])}</span>' if x.get("d") else "")
+                         + (f'<span class="d"><a href="{E(x["w"])}" rel="noopener nofollow" target="_blank">Site</a></span>' if x.get("w") else "") + "</li>"
+                         for x in evts)
+        h.append(f'<section class="block" id="agenda"><h2>Agenda : les prochains événements à {nom}</h2><ul class="excursions">{lignes}</ul>'
+                 '<p class="note">Source : DATAtourisme, données des offices de tourisme (Licence Ouverte). Dates à confirmer auprès des organisateurs.</p></section>')
+    fetes = (lire(f"fetes/{v['id']}.json") or {}).get("fetes", [])
+    if fetes:
+        infos += sum(2 + sum(1 for k in ("desc", "site", "depuis", "mois") if x.get(k)) for x in fetes)
+        fetes = sorted(fetes, key=lambda x: (MOIS_NUM.get(x.get("mois", ""), 12), x["nom"]))
+        lignes = "".join(f'<li><b>{E(x["nom"])}</b><span class="d">'
+                         + " · ".join(y for y in ((E(maj(x["mois"])) if x.get("mois") else ""), (E(x["desc"]) if x.get("desc") else ""),
+                                                  (f'depuis {E(x["depuis"])}' if x.get("depuis") else "")) if y)
+                         + "</span>" + (f'<span class="d"><a href="{E(x["site"])}" rel="noopener nofollow" target="_blank">Site officiel</a></span>' if x.get("site") else "")
+                         + "</li>" for x in fetes)
+        h.append(f'<section class="block" id="fetes"><h2>Fêtes et festivals de {nom}</h2><p class="lead">Les rendez-vous qui reviennent chaque année.</p>'
+                 f'<ul class="excursions">{lignes}</ul><p class="note">Source : Wikidata (CC0).</p></section>')
+    sites = dt.get("sites", [])
+    if sites:
+        infos += sum(2 + (1 if x.get("d") else 0) + (1 if x.get("w") else 0) + (1 if x.get("a") else 0) for x in sites)
+        par_cat = {}
+        for x in sites:
+            par_cat.setdefault(x["c"], []).append(x)
+        blocs = "".join(f'<h3>{E(cat)}</h3><ul class="excursions">'
+                        + "".join(f'<li><b>{E(x["n"])}</b><span class="d">' + " · ".join(y for y in ((E(x["a"]) if x.get("a") else ""),
+                                  (f'{str(x["km"]).replace(".", ",")} km du centre' if x.get("km") else "")) if y) + "</span>"
+                                  + (f'<span class="d">{E(x["d"])}</span>' if x.get("d") else "")
+                                  + (f'<span class="d"><a href="{E(x["w"])}" rel="noopener nofollow" target="_blank">Site</a></span>' if x.get("w") else "")
+                                  + "</li>" for x in l) + "</ul>" for cat, l in par_cat.items())
+        h.append(f'<section class="block" id="office-tourisme"><h2>Sélection des offices de tourisme</h2><p class="lead">Musées, patrimoine, '
+                 f'nature et visites autour de {nom}, d’après les offices de tourisme.</p>{blocs}'
+                 '<p class="note">Source : DATAtourisme, base nationale des données touristiques (Licence Ouverte).</p></section>')
+    rs = ctx["reseaux"].get(str(v["id"]), [])
+    if rs:
+        infos += len(rs) * 3
+        tc = [x for x in rs if x["t"] == "gtfs"]
+        ls = [x for x in rs if x["t"] == "gbfs"]
+        corps_ = ""
+        if tc:
+            corps_ += ('<h3>Réseaux de transport en commun</h3><ul>' + "".join(f'<li><b>{E(x["e"])}</b>{(" · " + E(x["n"])) if x.get("n") else ""}'
+                                                                              f'{" · réseau officiel" if x.get("o") else ""}</li>' for x in tc) + "</ul>")
+        if ls:
+            corps_ += ('<h3>Vélos et trottinettes en libre-service</h3><ul>' + "".join(f'<li><b>{E(x["e"])}</b>{(" · " + E(x["n"])) if x.get("n") else ""}</li>' for x in ls) + "</ul>")
+        h.append(f'<section class="block" id="reseaux"><h2>Se déplacer à {nom} : réseaux et libre-service</h2>{corps_}'
+                 '<p class="note">Source : Mobility Database (MobilityData). Horaires, tarifs et applications : voir le site de chaque exploitant.</p></section>')
+    return "".join(h), infos
+
+
 def maj_paris():
     """« jeudi 26 novembre 2026 à 8 h 03 » : date et heure de la publication, à l'heure de Paris."""
     from zoneinfo import ZoneInfo
@@ -439,6 +509,8 @@ def page_ville(v, ctx):
         + sum(max(1, len(x["texte"]) // 300) for x in gs.values()) + len(aeros) * 4 \
         + infos_histoires(tous, ctx)
     total_infos = infos_base + sum(f["infos"] + (2 if f.get("distance_km") else 0) for f in tous) + (len(meteo["jours"]) * 4 if meteo else 0) + (len(feries["jours"]) * 2 if feries else 0)
+    dec_html, dec_infos = decouvertes(v, ctx)
+    total_infos += dec_infos
     coords = (f'{abs(v["lat"]):.2f}° {"N" if v["lat"] >= 0 else "S"} / {abs(v["lon"]):.2f}° {"E" if v["lon"] >= 0 else "O"}').replace(".", ",")
     badge = f'<span class="badge">{NIVEAUX[v["niveau"]]}</span>' if v["niveau"] == "phare" else ""
 
@@ -655,6 +727,9 @@ def page_ville(v, ctx):
                                f'{E(f["histoire"]["f"]["photo"]["a"])}{(" · " + E(f["histoire"]["f"]["photo"]["l"])) if f["histoire"]["f"]["photo"].get("l") else ""}</a></figcaption></figure>' for f in gal[:12])
                      + '</div><p class="note">Photos : Wikimedia Commons, sous licences libres (auteurs et licences indiqués sous chaque photo).</p></section>')
 
+    if dec_html:
+        corps.append(dec_html)
+
     # S'y rendre : aéroports, gares, gares routières, ports (distances depuis le centre)
     acces = {}
     for f in lieux:
@@ -858,6 +933,8 @@ def page_ville(v, ctx):
     red_ok = {k: red[k] for k in ("accroche", "conseils", "a_eviter", "quand_partir", "un_jour") if red.get(k)}
     if red_ok:
         donnees["avis"] = red_ok
+    if dec_html:
+        donnees["decouvertes"] = dec_html
     ecrire_gz(f"villes/{v['slug']}/donnees.json.gz", donnees)
     if tous:
         cles = ("nom", "type", "rubrique", "adresse", "horaires", "cuisine", "etoiles", "payant", "site", "telephone",
@@ -887,7 +964,7 @@ def page_ville(v, ctx):
     cpt["informations"] += total_infos
     cpt["lieux"] += len(tous)
     cpt["textes"] += len(wps) + (1 if wp.get("resume") else 0)
-    cpt["photos"] += 1 if enc.get("photo") else 0
+    cpt["photos"] += (1 if enc.get("photo") else 0) + dec_html.count("<figure>")
     cpt["villes_enrichies"] += 1 if (tous or enc) else 0
 
     desc = f"Guide de voyage de {v['nom']} ({nom_pays}) : lieux à voir, où manger, où dormir, météo, jours fériés et infos pratiques."
@@ -1364,6 +1441,8 @@ def main():
             if fn.endswith(".json") and not fn.startswith("_"):  # _suivi.json : dates de passage, pas des histoires
                 ctx["histoires"].update({k: x for k, x in (lire(f"histoires/{fn}") or {}).items() if isinstance(x, dict)})
     ctx["avis"] = (lire("avis.json", {}) or {}).get("villes", {})
+    ctx["reseaux"] = (lire("reseaux.json", {}) or {}).get("villes", {})
+    ctx["datatourisme"] = (lire_gz("datatourisme.json.gz") or {}).get("villes", {})
     ctx["transports"] = {}
     dtr = os.path.join(DONNEES, "transports")
     if os.path.isdir(dtr):
@@ -1545,6 +1624,8 @@ def main():
                ("Wikidata", "https://www.wikidata.org/", "Fondation, événements, maires, jumelages, patrimoine, personnalités", "CC0"),
                ("Wikipédia en français", "https://fr.wikipedia.org/", "Résumés et sections Histoire, Culture, Gastronomie…", "CC BY-SA 4.0, textes repris avec lien vers l’article"),
                ("Wikimedia Commons", "https://commons.wikimedia.org/", "Photos, blasons et drapeaux", "Licence propre à chaque image, créditée sous la photo"),
+               ("DATAtourisme", "https://www.datatourisme.fr/", "Sites, musées, patrimoine et agenda des villes françaises (offices de tourisme)", "Licence Ouverte 2.0"),
+               ("Mobility Database", "https://mobilitydatabase.org/", "Réseaux de transport en commun et services de vélos ou trottinettes en libre-service", "Catalogue ouvert de MobilityData"),
                ("Open-Meteo, archive ERA5", "https://open-meteo.com/", "Qualité de l’air (et premières normales climatiques)", "CC BY 4.0"),
                ("NASA POWER", "https://power.larc.nasa.gov/", "Normales climatiques mois par mois (1991-2020)", "Données ouvertes de la NASA"),
                ("Passport Index Data", "https://github.com/imorte/passport-index-data", "Visas et durées de séjour", "MIT"),
@@ -1573,7 +1654,7 @@ def main():
                         suivi.update(json.load(f))
     noms = {"guides": "Guides (Wikivoyage)", "aeroports": "Aéroports (OurAirports)", "surveillance_etat": "Surveillance (rapport du matin)", "villes": "Liste des villes (GeoNames)", "lieux_0": "Lieux, robot 1 (OpenStreetMap)", "lieux_1": "Lieux, robot 2 (OpenStreetMap)",
             "lieux_2": "Lieux, robot 3 (OpenStreetMap)", "lieux_3": "Lieux, robot 4 (OpenStreetMap)", "conseils": "Conseils aux voyageurs (Canada)", "pratique": "Prises, tension, conduite (Wikidata)", "langues": "Mots utiles (Wikivoyage)", "histoires": "Histoire des lieux (Wikipédia)", "avis": "Avis des lecteurs", "urgences": "Numéros d’urgence (Wikidata)", "meteo": "Météo (Open-Meteo)", "redaction": "Rédaction (IA)", "climat": "Climat (Open-Meteo ERA5)", "securite": "Sécurité (Département d’État)",
-            "formalites": "Formalités (Passport Index)", "cout": "Coût de la vie (Banque mondiale)", "encyclopedie": "Encyclopédie (Wikidata, Wikipédia)", "lieux": "Lieux (OpenStreetMap)", "meteo": "Météo (Open-Meteo)", "feries": "Jours fériés (Nager.Date)", "change": "Change (BCE)"}
+            "formalites": "Formalités (Passport Index)", "cout": "Coût de la vie (Banque mondiale)", "encyclopedie": "Encyclopédie (Wikidata, Wikipédia)", "lieux": "Lieux (OpenStreetMap)", "meteo": "Météo (Open-Meteo)", "feries": "Jours fériés (Nager.Date)", "change": "Change (BCE)", "photos": "Photos des villes (Wikimedia Commons)", "fetes": "Fêtes et festivals (Wikidata)", "reseaux": "Réseaux de transport (Mobility Database)", "datatourisme": "Offices de tourisme (DATAtourisme)"}
     lignes = ""
     for k, n in noms.items():
         j = ctx["journal"].get(k)
