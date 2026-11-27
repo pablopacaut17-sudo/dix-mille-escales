@@ -105,5 +105,32 @@
   "contient": [
    "Kyoto"
   ]
+ },
+ {
+  "q": "distance Paris Rome",
+  "contient": [
+   "km",
+   "Rome"
+  ]
+ },
+ {
+  "q": "Séville ou Malaga en avril ?",
+  "contient": [
+   "En avril",
+   "plus chaude|même chaleur"
+  ]
+ },
+ {
+  "q": "décalage horaire entre Paris et Tokyo",
+  "contient": [
+   "Décalage horaire",
+   "Tokyo"
+  ]
+ },
+ {
+  "q": "lever du soleil à Reykjavik en juin",
+  "contient": [
+   "Reykjavik|Reykjavík"
+  ]
  }
 ]

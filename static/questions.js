@@ -83,17 +83,22 @@
   function liste(l, f) { return '<ul>' + l.map(function (x) { return '<li>' + f(x) + '</li>'; }).join('') + '</ul>'; }
   function manque(d, quoi) { return 'Les robots n’ont pas encore collecté ' + quoi + ' pour ' + E(d.nom) + '. Ils passent régulièrement : revenez bientôt.' + lien(d); }
 
-  function soleil(d) {
-    var R = Math.PI / 180, jd = Date.now() / 864e5 + 2440587.5, n = Math.round(jd - 2451545 - 0.0009 + d.lon / 360), Js = n + 0.0009 - d.lon / 360;
+  function soleil(d, mois) {
+    var quand = Date.now(), dit = 'Aujourd’hui';
+    if (mois > -1) {  // « lever du soleil à Reykjavik en juin » : le 15 du mois cité (à venir)
+      var n0 = new Date(), an = n0.getFullYear() + (mois < n0.getMonth() ? 1 : 0);
+      quand = Date.UTC(an, mois, 15, 12); dit = 'Le 15 ' + MOIS_AFF[mois];
+    }
+    var R = Math.PI / 180, jd = quand / 864e5 + 2440587.5, n = Math.round(jd - 2451545 - 0.0009 + d.lon / 360), Js = n + 0.0009 - d.lon / 360;
     var M = (357.5291 + 0.98560028 * Js) % 360, C = 1.9148 * Math.sin(M * R) + 0.02 * Math.sin(2 * M * R) + 0.0003 * Math.sin(3 * M * R);
     var L = (M + C + 282.9372) % 360, Jt = 2451545 + Js + 0.0053 * Math.sin(M * R) - 0.0069 * Math.sin(2 * L * R);
     var sd = Math.sin(L * R) * Math.sin(23.4397 * R), cd = Math.cos(Math.asin(sd));
     var cw = (Math.sin(-0.833 * R) - Math.sin(d.lat * R) * sd) / (Math.cos(d.lat * R) * cd);
-    if (cw < -1) return 'Le soleil ne se couche pas en ce moment ' + aV(d.nom) + ' (soleil de minuit).';
-    if (cw > 1) return 'Le soleil ne se lève pas en ce moment ' + aV(d.nom) + ' (nuit polaire).';
+    if (cw < -1) return (mois > -1 ? 'En ' + MOIS_AFF[mois] + ', le' : 'Le') + ' soleil ne se couche pas ' + (mois > -1 ? '' : 'en ce moment ') + aV(d.nom) + ' (soleil de minuit).';
+    if (cw > 1) return (mois > -1 ? 'En ' + MOIS_AFF[mois] + ', le' : 'Le') + ' soleil ne se lève pas ' + (mois > -1 ? '' : 'en ce moment ') + aV(d.nom) + ' (nuit polaire).';
     var w = Math.acos(cw) / R, f = function (j) { return new Intl.DateTimeFormat('fr-FR', { timeZone: d.fuseau, hour: '2-digit', minute: '2-digit' }).format(new Date((j - 2440587.5) * 864e5)); };
     var duree = w / 180 * 24;
-    return 'Aujourd’hui ' + aV(d.nom) + ', le soleil se lève vers <b>' + f(Jt - w / 360) + '</b> et se couche vers <b>' + f(Jt + w / 360) + '</b> (heure locale), soit environ ' + Math.floor(duree) + ' h ' + String(Math.round(duree % 1 * 60)).padStart(2, '0') + ' de jour.';
+    return dit + ' ' + aV(d.nom) + ', le soleil se lève vers <b>' + f(Jt - w / 360) + '</b> et se couche vers <b>' + f(Jt + w / 360) + '</b> (heure locale), soit environ ' + Math.floor(duree) + ' h ' + String(Math.round(duree % 1 * 60)).padStart(2, '0') + ' de jour.';
   }
 
   function heure(d) {
@@ -242,6 +247,7 @@
     var q = ' ' + norm(q0) + ' ', a = function (re) { return re.test(q); };
     var m = moisCite(q.trim());
     // Questions précises que les sujets prévus comprendraient mal : directement la recherche dans les textes
+    if (a(/(lever du soleil|coucher du soleil|se leve|se couche|duree du jour|longueur du jour|nuit polaire|soleil de minuit)/)) return soleil(d, m);
     if (a(/(robinet|potable|moustique|piqure|tenue|vetement|pourboire|marchand|taxi|tuk|rickshaw|mendi|voler|vol a la tire|pickpocket|femme seule|enfant|bebe|handicap|animal|chien|chat|drone|alcool|ramadan|religieu|temple|mosquee|eglise|photo)/)) return null;
     if (a(/ (quelle heure|l heure|heure locale|decalage|fuseau)/)) return heure(d);
     if (a(/(visa|passeport|formalit| entrer | entree |frontiere|esta |autorisation)/)) {
@@ -296,7 +302,7 @@
       return manque(d, 'la météo');
     }
     if (a(/ (air|pollution)/)) return d.air ? 'Qualité de l’air ' + aV(d.nom) + ' : <b>' + E(d.air.qualite) + '</b> (indice européen ' + d.air.indice + ', particules fines ' + d.air.pm25 + ' µg/m³).' : manque(d, 'la qualité de l’air');
-    if (a(/(soleil|lever|coucher|duree du jour)/)) return soleil(d);
+    if (a(/(lever|coucher|duree du jour|longueur du jour|nuit polaire|soleil de minuit)/) || (a(/soleil/) && !a(/heures? de soleil|ensoleill/))) return soleil(d, m);
     if (a(/(ferie|fete nationale|jours? off)/)) return d.feries ? 'Prochains jours fériés (' + E(d.pays) + ') :' + liste(d.feries, function (f) { return '<b>' + E(f.date) + '</b> : ' + E(f.nom); }) : manque(d, 'les jours fériés');
     if (a(/(dormir|hotel|loger|logement|hebergement|auberge|nuit )/)) return d.dormir ? 'Où dormir ' + aV(d.nom) + ' (' + cpt(d.nb_dormir, 'adresse recensée', 'adresses recensées') + ') :' + liste(d.dormir, function (x) { return '<b>' + E(x.nom) + '</b>, ' + E(x.type.toLowerCase()) + (x.adresse ? ', ' + E(x.adresse) : ''); }) + lien(d, 'dormir', 'Voir toutes les adresses') : manque(d, 'les hébergements');
     if (a(/(manger|restaurant|resto|boire| bar |cafe|gastronom|specialit|plat |cuisine)/)) {
@@ -362,6 +368,54 @@
       if (s > score) { score = s; best = x; }
     });
     return score >= 0.6 ? best : null;
+  }
+
+
+  /* Deux villes dans la même question (« distance Paris Rome », « Séville ou Malaga en avril ? », « décalage horaire
+     entre Paris et Tokyo ») : la réponse est calculée à partir des fiches des deux villes. */
+  function deuxVilles(q) {
+    var mots = norm(q).split(' '), trouves = [], i = 0;
+    while (i < mots.length && trouves.length < 3) {
+      var pris = 0;
+      for (var l = Math.min(5, mots.length - i); l >= 1; l--) {
+        var g = mots.slice(i, i + l).join(' ');
+        if (l === 1 && (vide[g] || g.length < 3)) continue;
+        if (noms[g]) { if (!trouves.some(function (r) { return r[1] === noms[g][1]; })) trouves.push(noms[g]); pris = l; break; }
+      }
+      i += pris || 1;
+    }
+    return trouves.length === 2 ? trouves : null;
+  }
+  var COMPARE = /(distance|km|kilometre|loin|combien de temps|duree|trajet|vol |en avion| ou | vs |versus|compar|difference|decalage|plus chaud|plus froid|plus de soleil|moins de pluie|plus de pluie|mieux|entre )/;
+  function decalage(z1, z2) {
+    var now = new Date();
+    function t(z) { var o = {}; new Intl.DateTimeFormat('en-US', { timeZone: z, hour12: false, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }).formatToParts(now).forEach(function (x) { o[x.type] = x.value; }); return Date.UTC(+o.year, +o.month - 1, +o.day, +o.hour % 24, +o.minute); }
+    try { return (t(z2) - t(z1)) / 36e5; } catch (e) { return null; }
+  }
+  function comparer(a, b, q0) {
+    var q = ' ' + norm(q0) + ' ', R = Math.PI / 180, h = '';
+    if (a.lat != null && b.lat != null) {
+      var x = Math.sin((b.lat - a.lat) * R / 2), y = Math.sin((b.lon - a.lon) * R / 2);
+      var km = 2 * 6371 * Math.asin(Math.sqrt(x * x + Math.cos(a.lat * R) * Math.cos(b.lat * R) * y * y));
+      var vol = km / 820 + 0.5, hv = Math.floor(vol), mv = Math.round((vol - hv) * 60 / 5) * 5;
+      if (mv === 60) { hv++; mv = 0; }
+      h += '<p>Distance à vol d’oiseau entre ' + E(a.nom) + ' et ' + E(b.nom) + ' : <b>' + nb(Math.round(km)) + ' km</b>.'
+        + (km > 250 ? ' En avion, un vol direct dure environ <b>' + hv + ' h ' + String(mv).padStart(2, '0') + '</b> (estimation à 820 km/h de moyenne ; la durée réelle dépend de la route suivie et des vents).' : '')
+        + (km < 700 ? ' Sur une telle distance, le train ou la route sont souvent aussi rapides que l’avion, de centre-ville à centre-ville.' : '') + '</p>';
+    }
+    if (a.fuseau && b.fuseau) {
+      var dec = decalage(a.fuseau, b.fuseau);
+      if (dec != null) h += '<p>Décalage horaire : ' + (dec === 0 ? 'aucun, c’est la même heure.' : '<b>' + (Math.abs(dec) + ' h').replace('.5 h', ' h 30') + '</b> ' + (dec > 0 ? 'de plus' : 'de moins') + ' ' + aV(b.nom) + ' qu’' + aV(a.nom).replace(/^à /, 'à ') + ' en ce moment.') + '</p>';
+    }
+    var m = moisCite(q.trim()); if (m < 0) m = new Date().getMonth();
+    if (a.climat && b.climat && a.climat[m] && b.climat[m]) {
+      var ca = a.climat[m], cb = b.climat[m];
+      var plus = Math.abs(ca.tmax - cb.tmax) < 1 ? 'la même chaleur dans les deux villes' : (ca.tmax > cb.tmax ? E(a.nom) : E(b.nom)) + ' est la plus chaude';
+      h += '<p>En ' + MOIS_AFF[m] + ' : ' + E(a.nom) + ' ' + Math.round(ca.tmax) + ' °C l’après-midi et ' + ca.pluie_mm + ' mm de pluie' + (ca.soleil_h != null ? ', ' + virg(ca.soleil_h) + ' h de soleil par jour' : '')
+        + ' ; ' + E(b.nom) + ' ' + Math.round(cb.tmax) + ' °C et ' + cb.pluie_mm + ' mm' + (cb.soleil_h != null ? ', ' + virg(cb.soleil_h) + ' h de soleil' : '') + '. <b>' + plus + '</b>'
+        + (Math.abs(ca.pluie_mm - cb.pluie_mm) >= 10 ? ', et ' + (ca.pluie_mm < cb.pluie_mm ? E(a.nom) : E(b.nom)) + ' est la moins pluvieuse' : '') + '.</p>';
+    }
+    return h ? h + '<p>' + lien(a, '', 'Fiche ' + deV(a.nom)) + ' · ' + lien(b, '', 'Fiche ' + deV(b.nom)) + '</p>' : '';
   }
 
   /* Question chiffrée sur un lieu (« fréquentation de la gare de Lyon ») : si le site n'a pas ce chiffre, il le dit
@@ -474,6 +528,22 @@
 
   boites.forEach(function (b) {
     var input = b.querySelector('.q-input'), rep = b.querySelector('.q-rep'), form = b.querySelector('.q-form'), sugg = b.querySelector('.q-sugg');
+    // Question à voix haute (téléphones et navigateurs qui le permettent)
+    var Reco = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (Reco && input && !b.querySelector('.q-micro')) {
+      var mic = document.createElement('button');
+      mic.type = 'button'; mic.className = 'q-btn q-micro'; mic.title = 'Poser la question à voix haute'; mic.setAttribute('aria-label', 'Poser la question à voix haute'); mic.textContent = '🎤';
+      input.insertAdjacentElement('afterend', mic);
+      mic.addEventListener('click', function () {
+        try {
+          var r = new Reco(); r.lang = 'fr-FR'; r.interimResults = false; r.maxAlternatives = 1;
+          mic.textContent = '…';
+          r.onresult = function (e) { input.value = e.results[0][0].transcript; mic.textContent = '🎤'; demander(); };
+          r.onerror = r.onend = function () { mic.textContent = '🎤'; };
+          r.start();
+        } catch (e) { mic.textContent = '🎤'; }
+      });
+    }
     var villePage = b.getAttribute('data-ville') || '';
     var exemples = villePage
       ? ['Faut-il un visa ?', 'Quel temps fait-il cette semaine ?', 'Quand partir ?', 'Combien coûte un repas ?', 'Que voir ?', 'Où manger ?', 'Que faire aux alentours ?', 'Quelle heure est-il là-bas ?', 'Est-ce dangereux ?', 'Quelle langue parle-t-on ?', 'Quelle est son histoire ?', 'Qui est né ici ?']
@@ -493,6 +563,15 @@
         if (cel && !(vc && motsLieu(cel[0]).join(' ') === motsLieu(vc[0]).join(' '))) {
           var aLe = !ch || (cel[3] || {})[ch[0]] != null || (ch[0] === 'cr' && (cel[3] || {}).ou != null);
           rep.innerHTML = repCelebre(cel) + (aLe ? boutonIA(q, {}, 1) : pasLeChiffre(ch, cel[0]) + boutonIA(q, {})); if (!aLe) memoireIA(rep, q, {}); return;
+        }
+        var dv = COMPARE.test((' ' + norm(q) + ' ').replace(/^ ou /, ' ')) ? deuxVilles(q) : null;
+        if (dv) {
+          charger(dv[0][1], function (a) { charger(dv[1][1], function (b) {
+            var h = a && b ? comparer(a, b, q) : '';
+            rep.innerHTML = h ? '<div class="q-ville">' + E(a.nom) + ' · ' + E(b.nom) + '</div><div class="q-texte">' + h + boutonIA(q, {}, 1) + '</div>'
+              : '<p class="q-vide">Je n’ai pas pu comparer ces deux villes pour le moment.</p>' + boutonIA(q, {});
+          }); });
+          return;
         }
         var ld = ch ? lieuDemande(q) : '';
         var v = trouverVille(q), slug = v ? v[1] : derniere;
