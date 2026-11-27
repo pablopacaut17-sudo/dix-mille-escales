@@ -392,7 +392,8 @@
   var IA_URL = 'https://relais-ia.pablopacaut17.workers.dev';  // relais IA de Pablo (Cloudflare) ; vide = bouton masqué
   function boutonIA(q, d, petit) {
     if (!IA_URL) return '';
-    if (petit) return '<p class="note">Pas la réponse attendue ? <button type="button" class="q-btn q-ia" data-q="' + E(q) + '" data-slug="' + E(d.slug || '') + '">✨ Demander à l’IA</button></p><div class="q-ia-rep"></div>';
+    var faux = ' <button type="button" class="q-btn q-faux" data-q="' + E(q) + '" data-slug="' + E(d.slug || '') + '">Signaler une erreur</button>';
+    if (petit) return '<p class="note">Pas la réponse attendue ? <button type="button" class="q-btn q-ia" data-q="' + E(q) + '" data-slug="' + E(d.slug || '') + '">✨ Demander à l’IA</button>' + faux + '</p><div class="q-ia-rep"></div>';
     return '<p><button type="button" class="q-btn q-ia" data-q="' + E(q) + '" data-slug="' + E(d.slug || '') + '">✨ Demander à l’IA</button></p><div class="q-ia-rep"></div>';
   }
   function miseIA(t) {
@@ -405,9 +406,35 @@
     });
     return out + (liste ? '</ul>' : '');
   }
+  /* Questions sans réponse et erreurs signalées : notées gratuitement par le relais (version 3 et plus), puis traitées
+     en priorité par les tâches d'amélioration et le chasseur d'erreurs. Rien n'est envoyé si le relais est plus ancien. */
+  var relaisV3 = null;
+  function versionRelais() {
+    if (!relaisV3) relaisV3 = fetch(IA_URL + '?version=1').then(function (r) { return r.ok ? r.json() : {}; }).then(function (j) { return (j.version || 0) >= 3; }).catch(function () { return false; });
+    return relaisV3;
+  }
+  function noter(type, q, slug, extra) {
+    if (!IA_URL || !window.fetch) return Promise.resolve(false);
+    return versionRelais().then(function (ok) {
+      if (!ok) return false;
+      var b = { site: 'dix-mille-escales', type: type, question: q, slug: slug || '' };
+      for (var k in extra || {}) b[k] = extra[k];
+      return fetch(IA_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(b) }).then(function () { return true; });
+    }).catch(function () { return false; });
+  }
+  document.addEventListener('click', function (ev) {
+    var b = ev.target.closest && ev.target.closest('.q-faux');
+    if (!b) return;
+    var zone = b.closest('.q-rep') || document.body, note = window.prompt('Qu’est-ce qui est faux ? (facultatif)', '') ;
+    if (note === null) return;
+    noter('signal', b.getAttribute('data-q'), b.getAttribute('data-slug'), { reponse: (zone.innerText || '').slice(0, 600), note: note }).then(function (ok) {
+      b.textContent = ok ? 'Merci, c’est noté : ce sera vérifié.' : 'Signalement impossible pour le moment.'; b.disabled = true;
+    });
+  });
   /* Mémoire du relais IA : si la même question a déjà été posée à l'IA, sa réponse s'affiche tout de suite, gratuitement */
   function memoireIA(rep, q, d) {
     if (!IA_URL || !window.fetch) return;
+    noter('sansreponse', q, (d && d.slug) || '');
     fetch(IA_URL + '?site=dix-mille-escales&q=' + encodeURIComponent(q) + '&slug=' + encodeURIComponent((d && d.slug) || ''))
       .then(function (x) { return x.ok ? x.json() : null; })
       .then(function (r) {
