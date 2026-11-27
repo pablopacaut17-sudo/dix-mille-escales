@@ -135,6 +135,14 @@ h2.sec{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,4vw,2.7
 @media (max-width:760px){.stats{grid-template-columns:1fr 1fr}.site-foot .in{grid-template-columns:1fr 1fr}}
 @media (max-width:600px){.theme-btn{font-size:0;padding:.35rem .6rem}.theme-btn::before{content:"◐";font-size:1.05rem}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* Finition (27/11/2026) */
+#results li[data-q]{flex-direction:column;align-items:flex-start;gap:2px}
+#results li[data-q] b,#results li[data-q] span{white-space:normal}
+.q-plus{border:0;background:none;color:inherit;text-decoration:underline;font:inherit;font-size:.9rem;cursor:pointer;padding:4px 2px}
+@media (max-width:640px){.q-sugg:not(.tout) button:not(.q-plus):nth-child(n+6){display:none!important}}
+@media (min-width:641px){.q-plus{display:none}}
+.q-rep .note .q-btn{display:inline-flex;margin:4px 6px 0 0;padding:.5rem .9rem;font-size:.92rem}
 </style>
 </head>
 <body>
@@ -154,7 +162,7 @@ h2.sec{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,4vw,2.7
       <label for="q" class="vh">Chercher une ville</label>
       <input id="q" type="search" autocomplete="off" placeholder="Où voulez-vous aller ?" aria-autocomplete="list" aria-controls="results">
       <ul id="results" role="listbox"></ul>
-      <p class="hint" id="hint">Essayez Lisbonne, Osaka, Valparaíso ou Tombouctou.</p>
+      <p class="hint" id="hint">Une ville (Lisbonne, Osaka, Tombouctou…) ou directement une question (« Quand partir à Bali ? »).</p>
     </div>
 
     <section class="questions" id="questions" aria-labelledby="q-titre">
@@ -308,7 +316,16 @@ h2.sec{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,4vw,2.7
     hits=hits.slice(0,8);
     afficher();
   }
+  /* Une seule case pour tout : une ville ouvre sa fiche, une question part vers la boîte à questions */
+  function qa(){var v=q.value.trim(),t=norm(v);return !!document.getElementById('question')&&(/\?$/.test(v)||t.split(/\s+/).filter(Boolean).length>=3||/^(quel|quelle|quels|quelles|comment|combien|pourquoi|ou |faut|est ce|distance|meteo|que |qui |quand )/.test(t));}
+  function qaFort(){var v=q.value.trim(),t=norm(v);return /\?$/.test(v)||/^(quel|quelle|quels|quelles|comment|combien|pourquoi|ou |faut|est ce|distance|meteo|que |qui |quand )/.test(t)||t.split(/\s+/).filter(Boolean).length>=5;}
+  function poser(){var i=document.getElementById('question');if(!i)return;i.value=q.value.trim();res.innerHTML='';finder.setAttribute('aria-expanded','false');var f=i.form||i.closest('form');if(f&&f.requestSubmit)f.requestSubmit();setTimeout(function(){var r=document.querySelector('.q-rep');(r&&r.textContent.trim()?r:i).scrollIntoView({behavior:'smooth',block:'start'});},700);}
   function afficher(){
+    if(qa()){var esc=q.value.trim().replace(/[<>&"]/g,'');res.innerHTML='<li role="option" id="optq" data-q="1"><b>💬 Poser la question : « '+esc+' »</b><span>Réponse tout de suite, à partir des fiches du guide</span></li>'+(/\?$/.test(q.value.trim())?'':hits.map(function(c,i){return '<li role="option" id="opt'+i+'" aria-selected="false" data-i="'+i+'"><b>'+c.name+'</b><span>'+(c.page?c.pays:country(c.cc))+' · '+fmtN.format(c.pop)+' hab.</span></li>';}).join(''));
+      finder.setAttribute('aria-expanded','true');
+      var lq=res.querySelector('li[data-q]');lq.addEventListener('mousedown',function(e){e.preventDefault();poser();});
+      res.querySelectorAll('li[data-i]').forEach(function(li){li.addEventListener('mousedown',function(e){e.preventDefault();pick(+li.getAttribute('data-i'));});});
+      return;}
     res.innerHTML=hits.length?hits.map(function(c,i){return '<li role="option" id="opt'+i+'" aria-selected="false" data-i="'+i+'"><b>'+c.name+(c.full?'<span class="tag full">Fiche complète</span>':c.ph?'<span class="tag phare">Phare</span>':'')+'</b><span>'+(c.page?c.pays:country(c.cc))+' · '+fmtN.format(c.pop)+' hab.</span></li>';}).join(''):'<li aria-disabled="true"><span>Aucune ville du guide ne correspond. Vérifiez l’orthographe ou essayez le nom local.</span></li>';
     finder.setAttribute('aria-expanded','true');
     res.querySelectorAll('li[data-i]').forEach(function(li){li.addEventListener('mousedown',function(e){e.preventDefault();pick(+li.getAttribute('data-i'));});});
@@ -317,7 +334,7 @@ h2.sec{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,4vw,2.7
   var IDX=null;function chargerIdx(cb){if(IDX)return cb();fetch('static/index.json').then(function(r){return r.json();}).then(function(d){var vus={};C.forEach(function(c){vus[c.slug]=1;});IDX=d.filter(function(r){return !vus[r[1]];}).map(function(r){return {name:r[0],slug:r[1],pays:r[2],pop:r[3],key:norm(r[0]+' '+(r[4]||'').split('|').join(' ')),page:true};});cb();}).catch(function(){IDX=[];cb();});}
   function mark(){res.querySelectorAll('li[data-i]').forEach(function(li,i){li.setAttribute('aria-selected',i===act?'true':'false');});q.setAttribute('aria-activedescendant',act>-1?'opt'+act:'');}
   q.addEventListener('input',search);
-  q.addEventListener('keydown',function(e){if(e.key==='ArrowDown'){act=Math.min(hits.length-1,act+1);mark();e.preventDefault();}else if(e.key==='ArrowUp'){act=Math.max(0,act-1);mark();e.preventDefault();}else if(e.key==='Enter'){e.preventDefault();pick(act>-1?act:0);}else if(e.key==='Escape'){res.innerHTML='';}});
+  q.addEventListener('keydown',function(e){if(e.key==='ArrowDown'){act=Math.min(hits.length-1,act+1);mark();e.preventDefault();}else if(e.key==='ArrowUp'){act=Math.max(0,act-1);mark();e.preventDefault();}else if(e.key==='Enter'){e.preventDefault();if(act<0&&(qaFort()||!hits.length))poser();else pick(act>-1?act:0);}else if(e.key==='Escape'){res.innerHTML='';}});
   q.addEventListener('blur',function(){setTimeout(function(){res.innerHTML='';},150);});
 
   /* ---- chiffres ---- */

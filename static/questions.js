@@ -550,6 +550,11 @@
       : ['Faut-il un visa pour Tokyo ?', 'Quel temps fait-il à New York ?', 'Quand partir à Marrakech ?', 'Combien coûte un repas à Lisbonne ?', 'Que voir à Rome ?', 'Quelle heure est-il à Sydney ?', 'Que faire autour de Barcelone ?', 'Quelle monnaie au Caire ?', 'Qui est né à Vienne ?', 'Quelle est l’histoire de Kyoto ?', 'Où dormir à Prague ?', 'Quel temps en avril à Bangkok ?'];
     sugg.innerHTML = exemples.map(function (e) { return '<button type="button">' + E(e) + '</button>'; }).join('');
     sugg.querySelectorAll('button').forEach(function (bt) { bt.addEventListener('click', function () { input.value = bt.textContent; demander(); }); });
+    if (sugg.querySelectorAll('button').length > 5) {  // sur téléphone, 5 exemples d'abord, les autres sur demande
+      var plus = document.createElement('button'); plus.type = 'button'; plus.className = 'q-plus'; plus.textContent = 'Plus d’exemples';
+      plus.addEventListener('click', function () { sugg.classList.add('tout'); plus.remove(); });
+      sugg.appendChild(plus);
+    }
     var derniere = villePage;
     function demander() {
       var q = input.value.trim();

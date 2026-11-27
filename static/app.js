@@ -68,9 +68,14 @@
   function run(){var t=norm(q.value).trim();act=-1;if(t.length<2){res.innerHTML='';return;}
     load(function(){hits=[];for(var i=0;i<idx.length&&hits.length<30;i++){var k=idx[i].k;if(k.indexOf(t)===0||k.indexOf(' '+t)>-1)hits.push(idx[i]);}
       hits.sort(function(a,b){return (norm(a.n).indexOf(t)===0?0:1)-(norm(b.n).indexOf(t)===0?0:1)||b.pop-a.pop;});hits=hits.slice(0,8);
-      res.innerHTML=hits.length?hits.map(function(h,i){return '<li><a id="o'+i+'" href="'+base+'villes/'+h.s+'/">'+h.n+'<span>'+h.p+'</span></a></li>';}).join(''):'<li><a>Aucune ville ne correspond.</a></li>';});}
+      var question=qa()?'<li><a href="#question" data-question="1">💬 Poser la question : « '+q.value.trim().replace(/[<>&"]/g,'')+' »<span>Réponse du guide</span></a></li>':'';
+      res.innerHTML=(hits.length&&!/\?$/.test(q.value.trim())?hits.map(function(h,i){return '<li><a id="o'+i+'" href="'+base+'villes/'+h.s+'/">'+h.n+'<span>'+h.p+'</span></a></li>';}).join(''):'')+question||'<li><a>Aucune ville ne correspond.</a></li>';});}
+  /* Une seule case pour tout : une ville ouvre sa fiche, une question part vers la boîte à questions */
+  function qa(){var v=q.value.trim(),n=norm(v).split(/\s+/).filter(Boolean);return !!document.getElementById('question')&&(/\?$/.test(v)||n.length>=3||/^(quel|quelle|quels|quelles|comment|combien|pourquoi|ou |faut|est ce|distance|meteo|que |qui )/.test(norm(v)));}
+  function poser(){var i=document.getElementById('question');if(!i)return;i.value=q.value.trim();res.innerHTML='';var f=i.form||i.closest('form');i.scrollIntoView({behavior:'smooth',block:'center'});if(f&&f.requestSubmit)f.requestSubmit();else if(f)f.dispatchEvent(new Event('submit',{cancelable:true}));}
+  res.addEventListener('mousedown',function(e){var a=e.target.closest&&e.target.closest('a[data-question]');if(a){e.preventDefault();poser();}});
   q.addEventListener('input',run);
   q.addEventListener('keydown',function(e){var a=res.querySelectorAll('a[href]');if(e.key==='ArrowDown'||e.key==='ArrowUp'){act=Math.max(0,Math.min(a.length-1,act+(e.key==='ArrowDown'?1:-1)));a.forEach(function(x,i){x.setAttribute('aria-selected',i===act?'true':'false');});e.preventDefault();}
-    else if(e.key==='Enter'){e.preventDefault();var x=a[act>-1?act:0];if(x)location.href=x.getAttribute('href');}else if(e.key==='Escape')res.innerHTML='';});
+    else if(e.key==='Enter'){e.preventDefault();var x=a[act>-1?act:0];if(x&&x.dataset.question){poser();return;}if(x)location.href=x.getAttribute('href');else if(qa()||q.value.trim().length>2)poser();}else if(e.key==='Escape')res.innerHTML='';});
   q.addEventListener('blur',function(){setTimeout(function(){res.innerHTML='';},200);});
 })();
