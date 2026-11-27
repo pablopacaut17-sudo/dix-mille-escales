@@ -143,6 +143,15 @@ h2.sec{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,4vw,2.7
 @media (max-width:640px){.q-sugg:not(.tout) button:not(.q-plus):nth-child(n+6){display:none!important}}
 @media (min-width:641px){.q-plus{display:none}}
 .q-rep .note .q-btn{display:inline-flex;margin:4px 6px 0 0;padding:.5rem .9rem;font-size:.92rem}
+
+/* Ordinateur : la recherche de ville et la boîte à questions côte à côte, au-dessus de la ligne de flottaison */
+@media (min-width:1050px){
+  #carte.hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);column-gap:3.2rem;align-items:start}
+  #carte.hero>h1,#carte.hero>.sub,#carte.hero>.finder{grid-column:1}
+  #carte.hero>.questions{grid-column:2;grid-row:1 / span 3;margin-top:.4rem;align-self:start}
+  #carte.hero>.compteur,#carte.hero>.mapzone,#carte.hero>.card,#carte.hero>.stats{grid-column:1 / -1}
+  #carte.hero>.questions .q-sugg button:nth-child(n+9):not(.q-plus){display:none}
+}
 </style>
 </head>
 <body>
