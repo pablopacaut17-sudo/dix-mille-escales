@@ -356,6 +356,34 @@
     });
     return score >= 0.6 ? best : null;
   }
+  var IA_URL = '';  // relais IA de Pablo (Cloudflare) ; vide = bouton masqué
+  function boutonIA(q, d) {
+    if (!IA_URL) return '';
+    return '<p><button type="button" class="q-btn q-ia" data-q="' + E(q) + '" data-slug="' + E(d.slug || '') + '">✨ Demander à l’IA</button></p><div class="q-ia-rep"></div>';
+  }
+  function miseIA(t) {
+    var out = '', liste = false;
+    E(t).split(/\n+/).forEach(function (l) {
+      l = l.trim(); if (!l) return;
+      l = l.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
+      if (/^[-•]\s+/.test(l)) { if (!liste) { out += '<ul>'; liste = true; } out += '<li>' + l.replace(/^[-•]\s+/, '') + '</li>'; }
+      else { if (liste) { out += '</ul>'; liste = false; } out += '<p>' + l.replace(/^#+\s/, '') + '</p>'; }
+    });
+    return out + (liste ? '</ul>' : '');
+  }
+  document.addEventListener('click', function (ev) {
+    var b = ev.target.closest && ev.target.closest('.q-ia');
+    if (!b) return;
+    var zone = b.parentNode.nextElementSibling, q = b.getAttribute('data-q'), d = cache[b.getAttribute('data-slug')] || {};
+    zone.innerHTML = '<p class="q-vide">L’IA rédige sa réponse…</p>';
+    var ctx = d.nom ? ('Ville : ' + d.nom + ' (' + (d.pays || '') + '), ' + (d.population || '') + ' habitants. ' + (d.resume || '')).slice(0, 4000) : '';
+    fetch(IA_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ site: 'dix-mille-escales', question: q, contexte: ctx }) })
+      .then(function (x) { return x.json(); })
+      .then(function (r) {
+        zone.innerHTML = r.reponse ? miseIA(r.reponse) + '<p class="note">Réponse rédigée par une intelligence artificielle (Claude) : elle peut contenir des erreurs. Vérifiez les points importants (visas, santé, sécurité) auprès de sources officielles.</p>'
+          : '<p class="q-vide">' + E(r.erreur || 'Pas de réponse.') + '</p>';
+      }).catch(function () { zone.innerHTML = '<p class="q-vide">L’IA est injoignable pour le moment. Réessayez dans un instant.</p>'; });
+  });
   function envoyer(q, d) {  // question sans réponse : transmise aux robots, la réponse est ajoutée au site sous 24 h
     var depot = 'pablopacaut17-sudo/dix-mille-escales', m = location.hostname.match(/^([^.]+)\.github\.io$/), seg = location.pathname.split('/').filter(Boolean);
     if (m && seg.length) depot = m[1] + '/' + seg[0];
@@ -388,7 +416,7 @@
         var vc = trouverVille(q);
         if (cel && !(vc && motsLieu(cel[0]).join(' ') === motsLieu(vc[0]).join(' '))) { rep.innerHTML = repCelebre(cel); return; }
         var v = trouverVille(q), slug = v ? v[1] : derniere;
-        if (!slug) { rep.innerHTML = '<p class="q-vide">De quelle ville parlez-vous ? Ajoutez son nom à la question, par exemple « Quel temps fait-il à Lisbonne ? ».</p>'; return; }
+        if (!slug) { rep.innerHTML = '<p class="q-vide">De quelle ville parlez-vous ? Ajoutez son nom à la question, par exemple « Quel temps fait-il à Lisbonne ? ».</p>' + boutonIA(q, {}); return; }
         derniere = slug;
         charger(slug, function (d) {
           if (!d) { rep.innerHTML = '<p class="q-vide">Impossible de charger la fiche de cette ville pour le moment.</p>'; return; }
@@ -402,7 +430,7 @@
             var rl = reponseLecteur(q, d, liste);
             if (rl) { rep.innerHTML = tete + '<p>' + E(rl.r).replace(/\n/g, '<br>') + '</p><p class="note">Réponse rédigée le ' + E(rl.date || '') + ' à la question d’un lecteur' + (rl.source ? ' · source : ' + E(rl.source) : '') + '.</p></div>'; return; }
             rep.innerHTML = tete + '<p class="q-vide">Je cherche dans tous les textes de ' + E(d.nom) + '…</p></div>';
-            chercherTextes(q, d).then(function (h) { rep.innerHTML = tete + (h || portrait(d)) + envoyer(q, d) + '</div>'; }).catch(function () { rep.innerHTML = tete + portrait(d) + envoyer(q, d) + '</div>'; });
+            chercherTextes(q, d).then(function (h) { rep.innerHTML = tete + (h || portrait(d)) + boutonIA(q, d) + envoyer(q, d) + '</div>'; }).catch(function () { rep.innerHTML = tete + portrait(d) + boutonIA(q, d) + envoyer(q, d) + '</div>'; });
             });
           });
         });
