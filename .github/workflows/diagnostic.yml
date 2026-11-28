@@ -11,19 +11,17 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
-      - name: Geofabrik
+      - name: NASA POWER (paramètres de température des normales)
         run: |
           mkdir -p diag && cd diag
-          curl -4 -sS -m 60 -o index.json https://download.geofabrik.de/index-v1-nogeom.json; ls -la index.json >> res.txt
-          python3 -c "
-          import json;d=json.load(open('index.json'));f=[x['properties'] for x in d['features'] if x['properties']['id'] in ('portugal','india','luxembourg')]
-          print(json.dumps(f,indent=1)[:1500])" >> res.txt 2>&1
-          python3 -c "
-          import json;d=json.load(open('index.json'));print([x['properties']['urls']['pbf'] for x in d['features'] if x['properties']['id']=='portugal'])" >> res.txt 2>&1
-          curl -4 -sS -o /dev/null -D - -m 30 https://download.geofabrik.de/europe/portugal/portugal-latest.osm.pbf | grep -i "^location\|^HTTP" >> res.txt
-          curl -4 -sSL -o p.pbf -m 120 -w "curl -L : %{http_code} %{size_download} octets via %{url_effective}\n" https://download.geofabrik.de/europe/portugal/portugal-latest.osm.pbf >> res.txt 2>&1; rm -f p.pbf
-          curl -4 -sSL -o /dev/null -m 60 -A "DixMilleEscales/1.0" -w "curl UA robot : %{http_code}\n" -r 0-100 https://download.geofabrik.de/europe/portugal/portugal-latest.osm.pbf >> res.txt 2>&1
+          for P in "T2M_MAX,T2M_MIN,T2M_MAX_AVG,T2M_MIN_AVG,T2M,PRECTOTCORR" "T2M_MAX_AVG,T2M_MIN_AVG,PRECTOTCORR" "T2M,T2M_RANGE"; do
+            for C in "48.857 2.352" "22.573 88.364" "-29.064 30.593"; do
+              set -- $C
+              echo "== $P @ $1 $2" >> res.txt
+              curl -4 -sS -m 60 "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=$P&community=AG&longitude=$2&latitude=$1&format=JSON" \
+                | python3 -c "import json,sys;d=json.load(sys.stdin);p=d.get('properties',{}).get('parameter',{});print({k:(v.get('JAN'),v.get('JUL')) for k,v in p.items()}, d.get('messages'), d.get('header',{}).get('start'), d.get('header',{}).get('end'))" >> res.txt 2>&1
+            done
+          done
           cat res.txt
           git init -q && git checkout -q -b diagnostic && git -c user.name=r -c user.email=r@r add -A && git -c user.name=r -c user.email=r@r commit -qm diag
           git push -q --force "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" diagnostic:diagnostic
