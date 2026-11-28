@@ -1,0 +1,1698 @@
+{
+ "alertes_total": 3602,
+ "totaux": {
+  "doublons": 16,
+  "mauvais_pays": 1,
+  "climat_a_recalculer": 1,
+  "feries": 1,
+  "textes": 974,
+  "encyclopedie": 55,
+  "histoires_dates": 78,
+  "histoires_chiffres": 187,
+  "histoires_biographies": 204,
+  "liens_mal_formes": 2057,
+  "lieux_trop_loin": 11,
+  "questions": 17
+ },
+ "verifies": {
+  "villes": 69441,
+  "climat": 69441,
+  "meteo": 3109,
+  "change": 29,
+  "feries": 4695,
+  "encyclopedie": 54046,
+  "histoires": 231928,
+  "liens": 4000,
+  "reponses": 1,
+  "fichiers_lieux": 87724,
+  "lieux": 18530860,
+  "questions": 22
+ },
+ "alertes": {
+  "doublons": [
+   {
+    "objet": "Benito Juárez (MX)",
+    "detail": "deux fiches à moins de 3 km : benito-juarez-mx et benito-juarez-mx-3827406"
+   },
+   {
+    "objet": "Anthony (US)",
+    "detail": "deux fiches à moins de 3 km : anthony-us-5516368 et anthony-us"
+   },
+   {
+    "objet": "Panauti (NP)",
+    "detail": "deux fiches à moins de 3 km : panauti-np et panauti-np-1282950"
+   },
+   {
+    "objet": "Kentron (AM)",
+    "detail": "deux fiches à moins de 3 km : kentron-am-7670941 et kentron-am"
+   },
+   {
+    "objet": "Marhamat (UZ)",
+    "detail": "deux fiches à moins de 3 km : marhamat-uz et marhamat-uz-1513241"
+   },
+   {
+    "objet": "Yehud-Monosson (IL)",
+    "detail": "deux fiches à moins de 3 km : yehud-monosson-il et yehud-monosson-il-293207"
+   },
+   {
+    "objet": "Kāshān (IR)",
+    "detail": "deux fiches à moins de 3 km : kashan-ir-6861211 et kashan-ir"
+   },
+   {
+    "objet": "Banga (PH)",
+    "detail": "deux fiches à moins de 3 km : banga-ph et banga-ph-1727400"
+   },
+   {
+    "objet": "Villa Union (MX)",
+    "detail": "deux fiches à moins de 3 km : villa-union-mx-3980123 et villa-union-mx-3980122"
+   },
+   {
+    "objet": "Cañete (CL)",
+    "detail": "deux fiches à moins de 3 km : canete-cl et canete-cl-3896924"
+   },
+   {
+    "objet": "Chevy Chase (US)",
+    "detail": "deux fiches à moins de 3 km : chevy-chase-us-4351335 et chevy-chase-us"
+   },
+   {
+    "objet": "Bristol (US)",
+    "detail": "deux fiches à moins de 3 km : bristol-us-4748993 et bristol-us-4608657"
+   },
+   {
+    "objet": "Älajärvi (FI)",
+    "detail": "deux fiches à moins de 3 km : alajarvi-fi et alajarvi-fi-661576"
+   },
+   {
+    "objet": "Texarkana (US)",
+    "detail": "deux fiches à moins de 3 km : texarkana-us et texarkana-us-4133367"
+   },
+   {
+    "objet": "Manali (IN)",
+    "detail": "deux fiches à moins de 3 km : manali-in et manali-in-1263967"
+   },
+   {
+    "objet": "Ngama (TD)",
+    "detail": "deux fiches à moins de 3 km : ngama-td-2427036 et ngama-td"
+   }
+  ],
+  "mauvais_pays": [
+   {
+    "objet": "Dhekelia (GB)",
+    "detail": "aucune autre ville de ce pays à 600 km, mais 17 villes de CY à moins de 40 km : pays probablement faux"
+   }
+  ],
+  "climat_a_recalculer": [
+   {
+    "objet": "60210 villes",
+    "detail": "normales NASA POWER de l'ancienne méthode (masquées sur le site, recalcul en cours)"
+   }
+  ],
+  "feries": [
+   {
+    "objet": "AL",
+    "detail": "« New Year's Day » le 2027-01-04 au lieu du 01/01"
+   }
+  ],
+  "textes": [
+   {
+    "objet": "Bagnolet (FR)",
+    "detail": "résumé coupé : « … département de la Seine-Saint-Denis en région Île-de-France »"
+   },
+   {
+    "objet": "Ashoknagar (IN)",
+    "detail": "résumé coupé : « …a ville appartenait au district de Guna.\n\n Portail de l’Inde »"
+   },
+   {
+    "objet": "Buzuluk (RU)",
+    "detail": "résumé coupé : « …n Russie. Sa population s'élevait à 86 103 habitants en 2020 »"
+   },
+   {
+    "objet": "Zuwarah (LY)",
+    "detail": "résumé coupé : « …population parle arabe avec quelque peu le berbère de Zouara »"
+   },
+   {
+    "objet": "Bunia (CD)",
+    "detail": "résumé Wikipédia vide"
+   },
+   {
+    "objet": "Āwash (ET)",
+    "detail": "résumé coupé : « …u Āwash (en guèze አዋሽ) est une ville du centre de l'Éthiopie »"
+   },
+   {
+    "objet": "El Menzel (MA)",
+    "detail": "résumé Wikipédia vide"
+   },
+   {
+    "objet": "São Jorge de Arroios (PT)",
+    "detail": "résumé coupé : « …Arroios est une freguesia de Lisbonne.\n\n Portail de Lisbonne »"
+   },
+   {
+    "objet": "Mercedes (PH)",
+    "detail": "résumé coupé : « …ment de 2020, elle compte une population de 55 334 habitants »"
+   },
+   {
+    "objet": "Colonia Lindavista (MX)",
+    "detail": "résumé coupé : « …s d'après des villes en Amérique du Sud.\n\n Portail de Mexico »"
+   },
+   {
+    "objet": "Lewisburg (US)",
+    "detail": "résumé coupé : « …le est nommée en l'honneur de l'explorateur Meriwether Lewis »"
+   },
+   {
+    "objet": "Buco Zau (AO)",
+    "detail": "résumé coupé : « …alité compte également deux autres villes : Inhuca et Necuto »"
+   },
+   {
+    "objet": "Wesoła (PL)",
+    "detail": "résumé coupé : « …t conservé une atmosphère de banlieue.\n\n Portail de Varsovie »"
+   },
+   {
+    "objet": "El Limón (VE)",
+    "detail": "résumé coupé : « …partie de l'agglomération de Maracay.\n\n Portail du Venezuela »"
+   },
+   {
+    "objet": "Yavuzeli (TR)",
+    "detail": "résumé coupé : « …Gaziantep dans la région de l'Anatolie du sud-est en Turquie »"
+   },
+   {
+    "objet": "Lukulu (ZM)",
+    "detail": "résumé coupé : « …de la Province Occidentale en Zambie.\n\n Portail de la Zambie »"
+   },
+   {
+    "objet": "Yapleu (CI)",
+    "detail": "résumé coupé : « ….\n \n\n Portail de la Côte d’Ivoire   Portail de la géographie »"
+   },
+   {
+    "objet": "Duomo (IT)",
+    "detail": "résumé coupé : « …a cathédrale de Milan.\n\n Portail du métro   Portail de Milan »"
+   },
+   {
+    "objet": "Chajarí (AR)",
+    "detail": "résumé coupé : « …jarí City, Entre Rios, en Argentine\n\n Portail de l’Argentine »"
+   },
+   {
+    "objet": "Santa Cruz de Mora (VE)",
+    "detail": "résumé coupé : « …son chef-lieu et ses 41 villages totalisent 23 276 habitants »"
+   },
+   {
+    "objet": "Qandala (SO)",
+    "detail": "résumé coupé : « … fait partie du district homonyme et compte 15 600 habitants »"
+   },
+   {
+    "objet": "Les Baumettes (FR)",
+    "detail": "résumé coupé : « …ques de Marseille, notamment celles de Sormiou et de Morgiou »"
+   },
+   {
+    "objet": "Phú Mỹ (VN)",
+    "detail": "résumé coupé : « … Son territoire s'étend sur 333,84 km2.\n\n Portail du Vietnam »"
+   },
+   {
+    "objet": "Minignan (CI)",
+    "detail": "résumé coupé : « …és.\n\n Portail de la Côte d’Ivoire   Portail de la géographie »"
+   },
+   {
+    "objet": "Grabo (CI)",
+    "detail": "résumé coupé : « …ra.\n\n Portail de la Côte d’Ivoire   Portail de la géographie »"
+   },
+   {
+    "objet": "Sjöbo (SE)",
+    "detail": "résumé coupé : « …onnes y vivent. Elle est le chef-lieu de la commune de Sjöbo »"
+   },
+   {
+    "objet": "József Attila-lakótelep (HU)",
+    "detail": "résumé coupé : « …er de Külső-Ferencváros, créé en 2012.\n\n Portail de Budapest »"
+   },
+   {
+    "objet": "Bayan Nur (CN)",
+    "detail": "résumé coupé : « …t administratif de la ligue de Bayannur le 1er décembre 2003 »"
+   },
+   {
+    "objet": "Downtown Brooklyn (US)",
+    "detail": "résumé coupé : « …e – Barclays Center, et DeKalb Avenue.\n\n Portail de New York »"
+   },
+   {
+    "objet": "Villa Ortúzar (AR)",
+    "detail": "résumé coupé : « …te-huit quartiers de Buenos Aires.\n\n Portail de Buenos Aires »"
+   },
+   {
+    "objet": "Alsórákos (HU)",
+    "detail": "résumé coupé : « …ns le 14e arrondissement de Budapest. \n\n Portail de Budapest »"
+   },
+   {
+    "objet": "Doftana (RO)",
+    "detail": "résumé coupé : « …années 1930 les détenus politiques.\n\n Portail de la Roumanie »"
+   },
+   {
+    "objet": "Felsőrákos (HU)",
+    "detail": "résumé coupé : « …ns le 10e arrondissement de Budapest. \n\n Portail de Budapest »"
+   },
+   {
+    "objet": "Saryaghash (KZ)",
+    "detail": "résumé coupé : « …e ville de la région du Kazakhstan-Méridional au Kazakhstan, »"
+   },
+   {
+    "objet": "Ahouanou (CI)",
+    "detail": "résumé coupé : « …ua \n\n Portail de la Côte d’Ivoire   Portail de la géographie »"
+   },
+   {
+    "objet": "Serpong (ID)",
+    "detail": "résumé coupé : « …loppement urbain privé d'Indonésie.\n\n Portail de l’Indonésie »"
+   },
+   {
+    "objet": "Bolnes (NL)",
+    "detail": "résumé coupé : « … le village comptait 7 300 habitants.\n\n Portail des Pays-Bas »"
+   },
+   {
+    "objet": "Ribeirão da Ilha (BR)",
+    "detail": "résumé coupé : « …e production d'huîtres du Brésil.\n\n Portail de Florianópolis »"
+   },
+   {
+    "objet": "Teluk Dalam (ID)",
+    "detail": "résumé coupé : « …souffert du séisme du 28 mars 2005.\n\n Portail de l’Indonésie »"
+   },
+   {
+    "objet": "Phichit (TH)",
+    "detail": "résumé coupé : « …05 elle comptait 23 791 habitants.\n\n Portail de la Thaïlande »"
+   },
+   {
+    "objet": "Ngã Bảy (VN)",
+    "detail": "résumé coupé : « … km de Cần Thơ, et à 40 km de Vị Thanh.\n\n Portail du Vietnam »"
+   },
+   {
+    "objet": "Zarumilla (PE)",
+    "detail": "résumé coupé : « …ivière Tumbes.\n\n Portail de la géographie   Portail du Pérou »"
+   },
+   {
+    "objet": "Santa Rosa de Río Primero (AR)",
+    "detail": "résumé coupé : « … 10 à 90 km au nord-est de Córdoba.\n\n Portail de l’Argentine »"
+   },
+   {
+    "objet": "Middleton (GB)",
+    "detail": "résumé coupé : « …on 45 000 habitants.\n\n Portail de Manchester et de son comté »"
+   },
+   {
+    "objet": "Aldoar (PT)",
+    "detail": "résumé coupé : « …Aldoar est une freguesia de Porto.\n\n Portail du Portugal »"
+   },
+   {
+    "objet": "Treptow (DE)",
+    "detail": "résumé coupé : « …rschöneweide\n0906 Altglienicke\n0907 Adlershof\n0908 Bohnsdorf »"
+   },
+   {
+    "objet": "Klazienaveen (NL)",
+    "detail": "résumé coupé : « …le village comptait 11 853 habitants.\n\n Portail des Pays-Bas »"
+   },
+   {
+    "objet": "Lüdenscheid (DE)",
+    "detail": "résumé coupé : « …hef-lieu de l'arrondissement de La Marck (Märkischer Kreis), »"
+   },
+   {
+    "objet": "Szemeretelep (HU)",
+    "detail": "résumé coupé : « …ns le 18e arrondissement de Budapest. \n\n Portail de Budapest »"
+   },
+   {
+    "objet": "Curridabat (CR)",
+    "detail": "résumé coupé : « …la capitale du canton de Curridabat.\n\n Portail du Costa Rica »"
+   },
+   {
+    "objet": "Guamiranga (BR)",
+    "detail": "résumé coupé : « …ne située dans l'État du Paraná dans la région sud du Brésil »"
+   },
+   {
+    "objet": "Tonla (CI)",
+    "detail": "résumé coupé : « …oc.\n\n Portail de la Côte d’Ivoire   Portail de la géographie »"
+   },
+   {
+    "objet": "Soledad (VE)",
+    "detail": "résumé coupé : « …tatistique de Capitale Independencia.\n\n Portail du Venezuela »"
+   },
+   {
+    "objet": "Banganapalle (IN)",
+    "detail": "résumé coupé : « …nt un cultivar porte d'ailleurs son nom.\n\n Portail de l’Inde »"
+   },
+   {
+    "objet": "Kurmuk (SD)",
+    "detail": "résumé coupé : « …environ 250 000 dans le district selon des chiffres de 2009, »"
+   },
+   {
+    "objet": "Mennecy (FR)",
+    "detail": "résumé coupé : « … pour son allée d'arbres remarquables : l'allée des Séquoias »"
+   },
+   {
+    "objet": "Sémbé (CG)",
+    "detail": "résumé coupé : « …c le Cameroun (au nord).\n\n Portail de la république du Congo »"
+   },
+   {
+    "objet": "Aígio (GR)",
+    "detail": "résumé coupé : « …ne les 20 000 habitants. Elle est le siège du dème d'Égialée »"
+   },
+   {
+    "objet": "Westfield (US)",
+    "detail": "résumé coupé : « … aux États-Unis. Westfield se trouve en banlieue de New York »"
+   },
+   {
+    "objet": "Labuleng (CN)",
+    "detail": "résumé coupé : « …nd nombre de moines en dehors de la région autonome du Tibet »"
+   }
+  ],
+  "encyclopedie": [
+   {
+    "objet": "Stratmoor (US)",
+    "detail": "altitude impossible pour une ville : 5787 m"
+   },
+   {
+    "objet": "Calle Blancos (CR)",
+    "detail": "altitude impossible pour une ville : 83829 m"
+   },
+   {
+    "objet": "Dakota Ridge (US)",
+    "detail": "altitude impossible pour une ville : 5780 m"
+   },
+   {
+    "objet": "Show Low (US)",
+    "detail": "altitude impossible pour une ville : 6345 m"
+   },
+   {
+    "objet": "Cholpon-Ata (KG)",
+    "detail": "altitude impossible pour une ville : 5359 m"
+   },
+   {
+    "objet": "Conda (US)",
+    "detail": "altitude impossible pour une ville : 6194 m"
+   },
+   {
+    "objet": "Linden (US)",
+    "detail": "superficie impossible : 0.0 km²"
+   },
+   {
+    "objet": "Al-Khārijah (EG)",
+    "detail": "superficie impossible : 440098.0 km²"
+   },
+   {
+    "objet": "Blaine (US)",
+    "detail": "superficie impossible : 0.0 km²"
+   },
+   {
+    "objet": "Maplewood (US)",
+    "detail": "superficie impossible : 0.0 km²"
+   },
+   {
+    "objet": "Berkley (US)",
+    "detail": "altitude impossible pour une ville : 5213 m"
+   },
+   {
+    "objet": "Fairfield (US)",
+    "detail": "superficie impossible : 0.0 km²"
+   },
+   {
+    "objet": "Terny (UA)",
+    "detail": "superficie impossible : 0.0 km²"
+   },
+   {
+    "objet": "Highlands Ranch (US)",
+    "detail": "altitude impossible pour une ville : 5920 m"
+   },
+   {
+    "objet": "Muchkapskiy (RU)",
+    "detail": "superficie impossible : -111.0 km²"
+   },
+   {
+    "objet": "North Ridgeville (US)",
+    "detail": "superficie impossible : 0.0 km²"
+   },
+   {
+    "objet": "Nagqu (CN)",
+    "detail": "superficie impossible : 450537.0 km²"
+   },
+   {
+    "objet": "Rocky Mount (US)",
+    "detail": "superficie impossible : 0.0 km²"
+   },
+   {
+    "objet": "Dhirkot (PK)",
+    "detail": "altitude impossible pour une ville : 5499 m"
+   },
+   {
+    "objet": "Chitral (PK)",
+    "detail": "superficie impossible : 0.0 km²"
+   },
+   {
+    "objet": "Slavyansk-na-Kubani (RU)",
+    "detail": "superficie impossible : -43.5 km²"
+   },
+   {
+    "objet": "Muhanga (RW)",
+    "detail": "altitude impossible pour une ville : 5945 m"
+   },
+   {
+    "objet": "Concord (US)",
+    "detail": "superficie impossible : 0.0 km²"
+   },
+   {
+    "objet": "Stonegate (US)",
+    "detail": "altitude impossible pour une ville : 5876 m"
+   },
+   {
+    "objet": "Franklin (US)",
+    "detail": "superficie impossible : 0.0 km²"
+   },
+   {
+    "objet": "Woodland Park (US)",
+    "detail": "altitude impossible pour une ville : 8465 m"
+   },
+   {
+    "objet": "Saco (US)",
+    "detail": "superficie impossible : 0.0 km²"
+   },
+   {
+    "objet": "Derby (US)",
+    "detail": "altitude impossible pour une ville : 5128 m"
+   },
+   {
+    "objet": "Gare (FR)",
+    "detail": "superficie impossible : 0.0 km²"
+   },
+   {
+    "objet": "Deer Park (US)",
+    "detail": "superficie impossible : 0.0 km²"
+   },
+   {
+    "objet": "Sunāmganj (BD)",
+    "detail": "superficie impossible : 931246.0 km²"
+   },
+   {
+    "objet": "Svyatoshyn (UA)",
+    "detail": "superficie impossible : 0.0 km²"
+   },
+   {
+    "objet": "Sherrelwood (US)",
+    "detail": "altitude impossible pour une ville : 5292 m"
+   },
+   {
+    "objet": "Security-Widefield (US)",
+    "detail": "altitude impossible pour une ville : 5843 m"
+   },
+   {
+    "objet": "North Royalton (US)",
+    "detail": "superficie impossible : 0.0 km²"
+   },
+   {
+    "objet": "Edwards (US)",
+    "detail": "altitude impossible pour une ville : 7221 m"
+   },
+   {
+    "objet": "Pirojpur (BD)",
+    "detail": "superficie impossible : 315752.0 km²"
+   },
+   {
+    "objet": "Wheat Ridge (US)",
+    "detail": "altitude impossible pour une ville : 5459 m"
+   },
+   {
+    "objet": "Alta Sierra (US)",
+    "detail": "altitude impossible pour une ville : 5718 m"
+   },
+   {
+    "objet": "Agawam (US)",
+    "detail": "superficie impossible : 0.0 km²"
+   },
+   {
+    "objet": "Tutong (BN)",
+    "detail": "superficie impossible : 0.0 km²"
+   },
+   {
+    "objet": "Dearborn Heights (US)",
+    "detail": "superficie impossible : 0.0 km²"
+   },
+   {
+    "objet": "Tabount (MA)",
+    "detail": "superficie impossible : 0.0 km²"
+   },
+   {
+    "objet": "Gitarama (RW)",
+    "detail": "altitude impossible pour une ville : 5945 m"
+   },
+   {
+    "objet": "Belousovo (RU)",
+    "detail": "superficie impossible : -1196.0 km²"
+   },
+   {
+    "objet": "Başkale (TR)",
+    "detail": "superficie impossible : 0.0 km²"
+   },
+   {
+    "objet": "Welby (US)",
+    "detail": "altitude impossible pour une ville : 5135 m"
+   },
+   {
+    "objet": "Gunbarrel (US)",
+    "detail": "altitude impossible pour une ville : 5282 m"
+   },
+   {
+    "objet": "La Rinconada (PE)",
+    "detail": "altitude impossible pour une ville : 5300 m"
+   },
+   {
+    "objet": "Fairborn (US)",
+    "detail": "superficie impossible : 0.0 km²"
+   },
+   {
+    "objet": "Montrose (US)",
+    "detail": "altitude impossible pour une ville : 5807 m"
+   },
+   {
+    "objet": "Dehaq (IR)",
+    "detail": "superficie impossible : 0.0 km²"
+   },
+   {
+    "objet": "South Portland (US)",
+    "detail": "superficie impossible : 0.0 km²"
+   },
+   {
+    "objet": "Nandi Hills (KE)",
+    "detail": "altitude impossible pour une ville : 6716 m"
+   },
+   {
+    "objet": "Roxborough Park (US)",
+    "detail": "altitude impossible pour une ville : 5751 m"
+   }
+  ],
+  "histoires_dates": [
+   {
+    "objet": "Sam'al (Q1039186)",
+    "detail": "creation dans le futur : 3000"
+   },
+   {
+    "objet": "Philippéion (Q3396766)",
+    "detail": "creation = 338 alors que le texte dit « 338 av. J.-C. » (signe moins rétabli par build.py)"
+   },
+   {
+    "objet": "Atlit Yam (Q2896085)",
+    "detail": "creation dans le futur : 6900"
+   },
+   {
+    "objet": "Ours noir d'Amérique (Q122783)",
+    "detail": "debut dans le futur : 2600"
+   },
+   {
+    "objet": "Temples mégalithiques de Malte (Q753383)",
+    "detail": "creation dans le futur : 3600"
+   },
+   {
+    "objet": "Qumrân (Q223399)",
+    "detail": "creation = 104 alors que le texte dit « 104 av. J.-C. » (signe moins rétabli par build.py)"
+   },
+   {
+    "objet": "Ur (Mésopotamie) (Q5699)",
+    "detail": "creation dans le futur : 3800"
+   },
+   {
+    "objet": "Léonidaion (Q3271682)",
+    "detail": "creation = 330 alors que le texte dit « 330 av. J.-C. » (signe moins rétabli par build.py)"
+   },
+   {
+    "objet": "Q1673859 (Q1673859)",
+    "detail": "creation dans le futur : 6980"
+   },
+   {
+    "objet": "Mammouth laineux (Q3699044)",
+    "detail": "debut dans le futur : 4000"
+   },
+   {
+    "objet": "Pont d'Aël (Q844246)",
+    "detail": "creation = 3 alors que le texte dit « 3 av. J.-C. » (signe moins rétabli par build.py)"
+   },
+   {
+    "objet": "Q880846 (Q880846)",
+    "detail": "creation dans le futur : 3000"
+   },
+   {
+    "objet": "Ebla (Q5743)",
+    "detail": "creation dans le futur : 3000"
+   },
+   {
+    "objet": "Megiddo (Q208379)",
+    "detail": "creation = 7000 alors que le texte dit « 7000 av. J.-C. » (signe moins rétabli par build.py)"
+   },
+   {
+    "objet": "Troie (Q22647)",
+    "detail": "creation dans le futur : 3000"
+   },
+   {
+    "objet": "Yack (Q26547)",
+    "detail": "debut dans le futur : 5000"
+   },
+   {
+    "objet": "Mont Kaimon (Q713847)",
+    "detail": "creation dans le futur : 2400"
+   },
+   {
+    "objet": "Grotte Franchthi (Q1441331)",
+    "detail": "creation dans le futur : 3800"
+   },
+   {
+    "objet": "Abu Salabikh (Q195128)",
+    "detail": "creation dans le futur : 3400"
+   },
+   {
+    "objet": "Temple de Cérès (Paestum) (Q3983228)",
+    "detail": "creation = 500 alors que le texte dit « 500 av. J.-C. » (signe moins rétabli par build.py)"
+   },
+   {
+    "objet": "Q4221865 (Q4221865)",
+    "detail": "creation dans le futur : 8000"
+   },
+   {
+    "objet": "IIIe dynastie égyptienne (Q220276)",
+    "detail": "creation dans le futur : 2686"
+   },
+   {
+    "objet": "Q1440021 (Q1440021)",
+    "detail": "creation dans le futur : 2750"
+   },
+   {
+    "objet": "Pyramide rhomboïdale (Q459608)",
+    "detail": "creation dans le futur : 2700"
+   },
+   {
+    "objet": "Forum de César (Q856968)",
+    "detail": "creation = 46 alors que le texte dit « 46 av. J.-C. » (signe moins rétabli par build.py)"
+   },
+   {
+    "objet": "Lycée (école philosophique) (Q1160664)",
+    "detail": "creation = 335 alors que le texte dit « 335 av. J.-C. » (signe moins rétabli par build.py)"
+   },
+   {
+    "objet": "Piédestal d'Agrippa (Q16327864)",
+    "detail": "creation = 178 alors que le texte dit « 178 av. J.-C. » (signe moins rétabli par build.py)"
+   },
+   {
+    "objet": "Q6517664 (Q6517664)",
+    "detail": "creation dans le futur : 3000"
+   },
+   {
+    "objet": "Tapir (Q128001)",
+    "detail": "debut dans le futur : 5500"
+   },
+   {
+    "objet": "Pyramide d'Ounas (Q1478801)",
+    "detail": "creation dans le futur : 2360"
+   },
+   {
+    "objet": "Vinča-Belo brdo (Q3560333)",
+    "detail": "creation dans le futur : 5700"
+   },
+   {
+    "objet": "Ara Pacis (Q623612)",
+    "detail": "creation = 9 alors que le texte dit « 9 av. J.-C. » (signe moins rétabli par build.py)"
+   },
+   {
+    "objet": "Bab edh-Dhra (Q797529)",
+    "detail": "creation dans le futur : 3500"
+   },
+   {
+    "objet": "Q1780329 (Q1780329)",
+    "detail": "creation dans le futur : 3000"
+   },
+   {
+    "objet": "Cromlech de Guadalperal (Q20170929)",
+    "detail": "creation dans le futur : 4000"
+   },
+   {
+    "objet": "Temple de Xrobb l-Għaġin (Q20949769)",
+    "detail": "creation dans le futur : 4000"
+   },
+   {
+    "objet": "Géoglyphes de Nazca (Q2620036)",
+    "detail": "creation = 200 alors que le texte dit « 200 av. J.-C. » (signe moins rétabli par build.py)"
+   },
+   {
+    "objet": "Silbury Hill (Q225896)",
+    "detail": "creation dans le futur : 2390"
+   },
+   {
+    "objet": "Ġgantija (Q216862)",
+    "detail": "creation dans le futur : 3600"
+   },
+   {
+    "objet": "Condor des Andes (Q170598)",
+    "detail": "debut dans le futur : 2600"
+   },
+   {
+    "objet": "Complexe funéraire de Djéser (Q192418)",
+    "detail": "creation dans le futur : 2640"
+   },
+   {
+    "objet": "Etna (Q16990)",
+    "detail": "creation dans le futur : 3000"
+   },
+   {
+    "objet": "Q106987190 (Q106987190)",
+    "detail": "creation dans le futur : 3000"
+   },
+   {
+    "objet": "Q9186392 (Q9186392)",
+    "detail": "creation dans le futur : 2100"
+   },
+   {
+    "objet": "Brú na Bóinne (Q339489)",
+    "detail": "creation dans le futur : 3500"
+   },
+   {
+    "objet": "Musée d'Ennigaldi-Nanna (Q3014063)",
+    "detail": "creation = 530 alors que le texte dit « 530 av. J.-C. » (signe moins rétabli par build.py)"
+   },
+   {
+    "objet": "Basilique Æmilia (Q522924)",
+    "detail": "creation = 179 alors que le texte dit « 179 av. J.-C. » (signe moins rétabli par build.py)"
+   },
+   {
+    "objet": "Q7494260 (Q7494260)",
+    "detail": "creation dans le futur : 3000"
+   },
+   {
+    "objet": "Théâtre de Pompée (Q944814)",
+    "detail": "creation = 55 alors que le texte dit « 55 av. J.-C. » (signe moins rétabli par build.py)"
+   },
+   {
+    "objet": "Q1464514 (Q1464514)",
+    "detail": "ouverture dans le futur : 6900"
+   },
+   {
+    "objet": "Q1784571 (Q1784571)",
+    "detail": "creation dans le futur : 3500"
+   },
+   {
+    "objet": "Q85783961 (Q85783961)",
+    "detail": "creation dans le futur : 3000"
+   },
+   {
+    "objet": "Grotte d'Altamira (Q133575)",
+    "detail": "creation dans le futur : 3500"
+   },
+   {
+    "objet": "Gilgal I (Q5561775)",
+    "detail": "creation dans le futur : 9300"
+   },
+   {
+    "objet": "Kish (Mésopotamie) (Q132272)",
+    "detail": "creation dans le futur : 3100"
+   },
+   {
+    "objet": "Orang-outan de Bornéo (Q599672)",
+    "detail": "debut dans le futur : 4000"
+   },
+   {
+    "objet": "Temple de Vénus Genitrix (Q2459870)",
+    "detail": "creation = 46 alors que le texte dit « 46 av. J.-C. » (signe moins rétabli par build.py)"
+   },
+   {
+    "objet": "Pyramide de Khéops (Q37200)",
+    "detail": "creation dans le futur : 2560"
+   },
+   {
+    "objet": "Pyramide rouge (Q135332)",
+    "detail": "creation dans le futur : 2590"
+   },
+   {
+    "objet": "Qatna (Q630734)",
+    "detail": "creation dans le futur : 3300"
+   }
+  ],
+  "histoires_chiffres": [
+   {
+    "objet": "Q131287786 (Q131287786)",
+    "detail": "hauteur impossible : 0.1"
+   },
+   {
+    "objet": "Q133543186 (Q133543186)",
+    "detail": "hauteur impossible : 0.1"
+   },
+   {
+    "objet": "Q111737685 (Q111737685)",
+    "detail": "hauteur impossible : 0.37"
+   },
+   {
+    "objet": "Q133542785 (Q133542785)",
+    "detail": "hauteur impossible : 0.1"
+   },
+   {
+    "objet": "U Thant Island (Q933185)",
+    "detail": "visiteurs_an impossible : 0"
+   },
+   {
+    "objet": "Q123687883 (Q123687883)",
+    "detail": "hauteur impossible : 0.47"
+   },
+   {
+    "objet": "Q142259283 (Q142259283)",
+    "detail": "hauteur impossible : 0.1"
+   },
+   {
+    "objet": "Q55197083 (Q55197083)",
+    "detail": "visiteurs_an impossible : 0"
+   },
+   {
+    "objet": "Q133760202 (Q133760202)",
+    "detail": "hauteur impossible : 0.1"
+   },
+   {
+    "objet": "Q55375602 (Q55375602)",
+    "detail": "visiteurs_an impossible : 0"
+   },
+   {
+    "objet": "Q69570802 (Q69570802)",
+    "detail": "hauteur impossible : 0.0"
+   },
+   {
+    "objet": "Q106136899 (Q106136899)",
+    "detail": "hauteur impossible : 25800.0"
+   },
+   {
+    "objet": "Q110824899 (Q110824899)",
+    "detail": "hauteur impossible : 0.45"
+   },
+   {
+    "objet": "Stonewall National Monument (Q24799699)",
+    "detail": "visiteurs_an impossible : 0"
+   },
+   {
+    "objet": "Q69570799 (Q69570799)",
+    "detail": "hauteur impossible : 0.0"
+   },
+   {
+    "objet": "Q60677745 (Q60677745)",
+    "detail": "hauteur impossible : 0.1"
+   },
+   {
+    "objet": "Golfe du Bengale (Q38684)",
+    "detail": "superficie impossible : 2172000000000.0"
+   },
+   {
+    "objet": "Q133752582 (Q133752582)",
+    "detail": "hauteur impossible : 0.1"
+   },
+   {
+    "objet": "Q61409523 (Q61409523)",
+    "detail": "hauteur impossible : 0.1"
+   },
+   {
+    "objet": "Q106568506 (Q106568506)",
+    "detail": "superficie impossible : 0.0"
+   },
+   {
+    "objet": "Q123052306 (Q123052306)",
+    "detail": "hauteur impossible : 0.1"
+   },
+   {
+    "objet": "Place de la Liberté (Taipei) (Q6541958)",
+    "detail": "superficie impossible : 25000000000000.0"
+   },
+   {
+    "objet": "Q106599158 (Q106599158)",
+    "detail": "hauteur impossible : 0.32"
+   },
+   {
+    "objet": "Q12757258 (Q12757258)",
+    "detail": "superficie impossible : 0.0"
+   },
+   {
+    "objet": "Q5526958 (Q5526958)",
+    "detail": "superficie impossible : 0.0"
+   },
+   {
+    "objet": "Q106569859 (Q106569859)",
+    "detail": "superficie impossible : 0.0"
+   },
+   {
+    "objet": "Q133816744 (Q133816744)",
+    "detail": "hauteur impossible : 0.1"
+   },
+   {
+    "objet": "Q106568951 (Q106568951)",
+    "detail": "superficie impossible : 0.0"
+   },
+   {
+    "objet": "Q61054646 (Q61054646)",
+    "detail": "hauteur impossible : 0.1"
+   },
+   {
+    "objet": "Q140306143 (Q140306143)",
+    "detail": "hauteur impossible : 0.1"
+   },
+   {
+    "objet": "Q142259343 (Q142259343)",
+    "detail": "hauteur impossible : 0.1"
+   },
+   {
+    "objet": "Q12598738 (Q12598738)",
+    "detail": "superficie impossible : 0.0"
+   },
+   {
+    "objet": "Q60685938 (Q60685938)",
+    "detail": "hauteur impossible : 0.1"
+   },
+   {
+    "objet": "Sanctuaire nuragique d'Abini (Q3471777)",
+    "detail": "visiteurs_an impossible : 0"
+   },
+   {
+    "objet": "Q131287777 (Q131287777)",
+    "detail": "hauteur impossible : 0.1"
+   },
+   {
+    "objet": "Q140592077 (Q140592077)",
+    "detail": "hauteur impossible : 0.1"
+   },
+   {
+    "objet": "Q131178747 (Q131178747)",
+    "detail": "hauteur impossible : 0.1"
+   },
+   {
+    "objet": "Q134065247 (Q134065247)",
+    "detail": "hauteur impossible : 0.1"
+   },
+   {
+    "objet": "Q3662347 (Q3662347)",
+    "detail": "visiteurs_an impossible : 0"
+   },
+   {
+    "objet": "Q133803154 (Q133803154)",
+    "detail": "hauteur impossible : 0.1"
+   },
+   {
+    "objet": "Q35505954 (Q35505954)",
+    "detail": "visiteurs_an impossible : 0"
+   },
+   {
+    "objet": "Q3862731 (Q3862731)",
+    "detail": "superficie impossible : 0.0"
+   },
+   {
+    "objet": "Q106568628 (Q106568628)",
+    "detail": "superficie impossible : 0.0"
+   },
+   {
+    "objet": "Q6596128 (Q6596128)",
+    "detail": "hauteur impossible : 1200.0"
+   },
+   {
+    "objet": "Q140591965 (Q140591965)",
+    "detail": "hauteur impossible : 0.1"
+   },
+   {
+    "objet": "Q134479376 (Q134479376)",
+    "detail": "hauteur impossible : 0.1"
+   },
+   {
+    "objet": "Q140387076 (Q140387076)",
+    "detail": "hauteur impossible : 0.1"
+   },
+   {
+    "objet": "Villa-mausolée de Centcelles (Q1053521)",
+    "detail": "superficie impossible : 0.0"
+   },
+   {
+    "objet": "Livre de Kells (Q204221)",
+    "detail": "hauteur impossible : 0.33"
+   },
+   {
+    "objet": "Q106569221 (Q106569221)",
+    "detail": "superficie impossible : 0.0"
+   },
+   {
+    "objet": "Q133816621 (Q133816621)",
+    "detail": "hauteur impossible : 0.1"
+   },
+   {
+    "objet": "Q60730821 (Q60730821)",
+    "detail": "hauteur impossible : 0.1"
+   },
+   {
+    "objet": "Q55371708 (Q55371708)",
+    "detail": "visiteurs_an impossible : 0"
+   },
+   {
+    "objet": "Fani Maoré (Q66811868)",
+    "detail": "altitude impossible : -2700.0"
+   },
+   {
+    "objet": "Mill Ends Park (Q753064)",
+    "detail": "superficie impossible : 0.29"
+   },
+   {
+    "objet": "Parc naturel régional du Haut-Jura (Q3364633)",
+    "detail": "superficie impossible : 1775923420000.0"
+   },
+   {
+    "objet": "Q140592012 (Q140592012)",
+    "detail": "hauteur impossible : 0.1"
+   },
+   {
+    "objet": "Q31379712 (Q31379712)",
+    "detail": "hauteur impossible : 1765.0"
+   },
+   {
+    "objet": "Q31381412 (Q31381412)",
+    "detail": "hauteur impossible : 1385.0"
+   },
+   {
+    "objet": "Wadi Rum (Q40729)",
+    "detail": "hauteur impossible : 1750.0"
+   }
+  ],
+  "histoires_biographies": [
+   {
+    "objet": "Henri Rousseau (Q156386)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Henrik Wergeland (Q351705)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Bjørnstjerne Bjørnson (Q46405)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Wilhelm Emmanuel von Ketteler (Q626805)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Simón Bolívar (Q8605)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Alexandre de Serpa Pinto (Q921705)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Santiago Casares Quiroga (Q186666)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Alejo Carpentier (Q216466)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "José Martí (Q103285)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Charles Aznavour (Q1785)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Vissarion Belinski (Q192885)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Eivind Berggrav (Q255085)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Joseíto Fernández (Q3079985)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Józef Piłsudski (Q885)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Jean Bosco (Q146183)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Anne Frank (Q4583)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Tenji (empereur) (Q314802)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "John A. Macdonald (Q128702)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Armand Jean du Plessis de Richelieu (Q26702)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Zog Ier (Q60699)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Stephen Boyd (Q683299)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "François Athanase Charette de La Contrie (Q1292599)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Muslim Magomayev (Q558799)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Roh Moo-hyun (Q14345)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Elefthérios Venizélos (Q205545)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Gaspard de Bernard de Marigny (Q1344045)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Ferdinand Augustin Hallerstein (Q11884)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Toto Bissainthe (Q2188782)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Miguel de Cervantes (Q5682)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Constantin Rokossovski (Q40482)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Enrique Angelelli (Q372423)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Vital Alsar (Q7936723)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Petko Slaveykov (Q1256887)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Edvard Munch (Q41406)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Billy Bishop (Q2035406)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Taras Chevtchenko (Q134958)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Eloy Alfaro (Q378158)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Jacques Demy (Q312258)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Heorhiy Kirpa (Q1349059)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Ignacio Piñeiro (Q3099359)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Jean de Cronstadt (Q561659)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Jan Arnošt Smoler (Q65559)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Rubén González (pianiste) (Q458251)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Johann Gottfried Seume (Q77451)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Ja'far al-Sâdiq (Q170046)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "George Henry Lewes (Q1275943)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Ismaïl ben Chérif (Q276938)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Juan Bautista Alberdi (Q722738)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Salvatore Quasimodo (Q83038)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Jean-Jacques Laffont (Q1005479)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Tadeusz Kościuszko (Q191479)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Pascal Laporte (Q3367479)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Ferdinand Verbiest (Q378277)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Wincenty Witos (Q540177)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Georges Enesco (Q77177)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Jawaharlal Nehru (Q1047)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Franco Battiato (Q25147)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Ebrahim Raïssi (Q5947347)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Stepan Makarov (Q315847)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   },
+   {
+    "objet": "Rûmî (Q43347)",
+    "detail": "biographie d'une personne prise pour l'histoire d'un lieu (écartée par build.py)"
+   }
+  ],
+  "liens_mal_formes": [
+   {
+    "objet": "Alcalá de Guadaira (ES)",
+    "detail": "« Centro de Educación y Turismo Sostenible » : adresse web « htp://descubreguadaira.es »"
+   },
+   {
+    "objet": "Moncada (ES)",
+    "detail": "« Museu de l'Arròs de València » : adresse web « https:// museodelarrozdevalencia.com »"
+   },
+   {
+    "objet": "Itaboraí (BR)",
+    "detail": "« Padaria Lady Day » : adresse web « @ladyday_ita »"
+   },
+   {
+    "objet": "Muleba (TZ)",
+    "detail": "« New Rehema Lodge » : adresse web « Self contained room 10,000 TSh »"
+   },
+   {
+    "objet": "Noosa Heads (AU)",
+    "detail": "« Costa Nova Apartments » : adresse web « www.costa ova.com.au »"
+   },
+   {
+    "objet": "Minato City (JP)",
+    "detail": "« バー センティフォリア » : adresse web « no »"
+   },
+   {
+    "objet": "Kafrul (BD)",
+    "detail": "« GGG » : adresse web « dhhs »"
+   },
+   {
+    "objet": "Megion (RU)",
+    "detail": "« Городская детская больница «Жемчужинка» » : adresse web « детимегион.рф »"
+   },
+   {
+    "objet": "Rio Pequeno (BR)",
+    "detail": "« Droga Raia » : adresse web « ttps://www.drogaraia.com.br/storelocator/search/result/?query_text=corifeu »"
+   },
+   {
+    "objet": "Varaždin (HR)",
+    "detail": "« P'alapassion » : adresse web « info@palapassion.com »"
+   },
+   {
+    "objet": "Al Bīrah (PS)",
+    "detail": "« الدكتور سامر السلايمه » : adresse web « samersalaymeh »"
+   },
+   {
+    "objet": "Vladikavkaz (RU)",
+    "detail": "« Офтальма » : adresse web « офтальма.рф »"
+   },
+   {
+    "objet": "Oakwood (US)",
+    "detail": "« Francine's Garden » : adresse web « ttps://oakwoodohio.gov/francines-garden/ »"
+   },
+   {
+    "objet": "Reims (FR)",
+    "detail": "« Pharmacie des Aquarelles » : adresse web « https.//www.pharmacie-des aquarelles.fr »"
+   },
+   {
+    "objet": "Varsovie (PL)",
+    "detail": "« Bałkańska Dusza » : adresse web « bałkanskadusza.eu »"
+   },
+   {
+    "objet": "Guararema (BR)",
+    "detail": "« Roça e poesia » : adresse web « rocaepoesia@gmail.com »"
+   },
+   {
+    "objet": "Qoroq (IR)",
+    "detail": "« ساندویچ سرد تپل و مپل » : adresse web « @topolmopol.sari »"
+   },
+   {
+    "objet": "Chiyoda (JP)",
+    "detail": "« バー センティフォリア » : adresse web « no »"
+   },
+   {
+    "objet": "Conway (US)",
+    "detail": "« C3 Coffee Bar » : adresse web « httphttps://c3coffeeco.com/s://c3coffeeco.com/ »"
+   },
+   {
+    "objet": "Dali Old Town (CN)",
+    "detail": "« 兰林阁酒店 » : adresse web « http://landscape hotel.com »"
+   },
+   {
+    "objet": "Krasnodar (RU)",
+    "detail": "« Wunschpunschcoffee. Варим чудеса » : adresse web « http://@wunschpunschcoffee »"
+   },
+   {
+    "objet": "Krasnodar (RU)",
+    "detail": "« Веранда кофе » : adresse web « +79892359253 »"
+   },
+   {
+    "objet": "Benfica (PT)",
+    "detail": "« Telepizza » : adresse web « 214  928 671 »"
+   },
+   {
+    "objet": "Méchouar-Kasba (MA)",
+    "detail": "« Riad Smara » : adresse web « riyadsmara@gmail.com »"
+   },
+   {
+    "objet": "Dartmouth (CA)",
+    "detail": "« Made In The Maritimes Artisan Boutique » : adresse web « https://madeinthemaritimes »"
+   },
+   {
+    "objet": "Jardim Sao Luis (BR)",
+    "detail": "« Salhô Gastronomia » : adresse web « http:// www.salho.com.br »"
+   },
+   {
+    "objet": "Machiya (JP)",
+    "detail": "« 松屋 » : adresse web « http://www.matsuyafoods.co.jp/; http://www.bikkuriya.com/page_restaurant.html »"
+   },
+   {
+    "objet": "South Horizons (HK)",
+    "detail": "« Africa Coffee & Tea » : adresse web « https://africacoffeeandtea com »"
+   },
+   {
+    "objet": "Gasteiz / Vitoria (ES)",
+    "detail": "« Logune Rooms » : adresse web « info@logunerooms.com »"
+   },
+   {
+    "objet": "Acushnet (US)",
+    "detail": "« Falmouth Road Race » : adresse web « hhttps://falmouthroadrace.com/ »"
+   },
+   {
+    "objet": "Kowloon (HK)",
+    "detail": "« Africa Coffee & Tea » : adresse web « https://africacoffeeandtea com »"
+   },
+   {
+    "objet": "Sumida (JP)",
+    "detail": "« 松屋 » : adresse web « http://www.matsuyafoods.co.jp/; http://www.bikkuriya.com/page_restaurant.html »"
+   },
+   {
+    "objet": "Matsue (JP)",
+    "detail": "« ホテルKitatono » : adresse web « http://www.kitatono com »"
+   },
+   {
+    "objet": "Tremembé (BR)",
+    "detail": "« Drogasil » : adresse web « atendimento@drogasil.com.br »"
+   },
+   {
+    "objet": "Albal (ES)",
+    "detail": "« Museu de l'Arròs de València » : adresse web « https:// museodelarrozdevalencia.com »"
+   },
+   {
+    "objet": "Bitche (FR)",
+    "detail": "« Klein Katzenkopf » : adresse web « http://gallica.bnf.fr/ark:/12148/btv1b10223996p/f1.item.r=karte lützelstein »"
+   },
+   {
+    "objet": "Le Caire (EG)",
+    "detail": "« المصطبه » : adresse web « Bedoesam950@gmail.com »"
+   },
+   {
+    "objet": "Le Caire (EG)",
+    "detail": "« مركز د. ماجد العزب للعلاج الطبيعي » : adresse web « http://Dr Maged Azab IPT@facebook.com »"
+   },
+   {
+    "objet": "Alcochete (PT)",
+    "detail": "« Rangla Punjab 2 » : adresse web « http://www ranglapunjab.pt »"
+   },
+   {
+    "objet": "Bang Khae Nuea (TH)",
+    "detail": "« ศศิรักษ์คลินิกเวชกรรม » : adresse web « facebook/sasirakclinic »"
+   },
+   {
+    "objet": "San Juan (PR)",
+    "detail": "« San Juan MRI & CT » : adresse web « info@sanjuanmri.net »"
+   },
+   {
+    "objet": "Bairro do Loreto (PT)",
+    "detail": "« Taberna do Aires » : adresse web « +351 917 331 543; +351 932 875 665 »"
+   },
+   {
+    "objet": "Seosan (KR)",
+    "detail": "« 카페클라체 » : adresse web « +82 41-920-0441 »"
+   },
+   {
+    "objet": "Seosan (KR)",
+    "detail": "« 온석커피 » : adresse web « https://instagram/com/bun830 »"
+   },
+   {
+    "objet": "Moscavide e Portela (PT)",
+    "detail": "« Além-Tejo » : adresse web « alem-tejo@sapo.pt »"
+   },
+   {
+    "objet": "Ap Lei Chau Estate (HK)",
+    "detail": "« Africa Coffee & Tea » : adresse web « https://africacoffeeandtea com »"
+   },
+   {
+    "objet": "Vinhomes Royal City (VN)",
+    "detail": "« KFC » : adresse web « ttps://kfcvietnam.com.vn »"
+   },
+   {
+    "objet": "Ilford (GB)",
+    "detail": "« Beks Zone » : adresse web « 1073055 »"
+   },
+   {
+    "objet": "Gorbitz (DE)",
+    "detail": "« Zahnärztliche Praxisgemeinschaft Reif & Schröder » : adresse web « www.claudia-reif.de; https://www.zahnarzt-schr%C3%B6der.com »"
+   },
+   {
+    "objet": "Valence (ES)",
+    "detail": "« Museu de l'Arròs de València » : adresse web « https:// museodelarrozdevalencia.com »"
+   },
+   {
+    "objet": "Valence (ES)",
+    "detail": "« Cris and Paula Costa Blanca » : adresse web « qr2496.buenacarta.com;https://barcostablanca.eatbu.com/ »"
+   },
+   {
+    "objet": "Morteẕá Gerd (IR)",
+    "detail": "« کبابی و جگرکی خان دایی » : adresse web « @jigarsara_khan_daie »"
+   },
+   {
+    "objet": "Brisbane (AU)",
+    "detail": "« Libertine restaurant » : adresse web « libertine.net au »"
+   },
+   {
+    "objet": "Qui Nhon (VN)",
+    "detail": "« Bốn Mùa - Four Seasons Quy Nhơn Restaurant & Coffee » : adresse web « bonmuaquynhon »"
+   },
+   {
+    "objet": "Frankhuis (NL)",
+    "detail": "« Pavillon de Thé » : adresse web « Pavillon de Thé »"
+   },
+   {
+    "objet": "Hattem (NL)",
+    "detail": "« Pavillon de Thé » : adresse web « Pavillon de Thé »"
+   },
+   {
+    "objet": "Vaassen (NL)",
+    "detail": "« Pavillon de Thé » : adresse web « Pavillon de Thé »"
+   },
+   {
+    "objet": "Alameda (US)",
+    "detail": "« Yi Fang Tea » : adresse web « +15106716333 »"
+   },
+   {
+    "objet": "Lelystad (NL)",
+    "detail": "« Pavillon de Thé » : adresse web « Pavillon de Thé »"
+   },
+   {
+    "objet": "Hainichen (DE)",
+    "detail": "« Brücken Pizza-Kebap-Haus » : adresse web « www.brücken-pizza-kebaphaus.de »"
+   }
+  ],
+  "lieux_trop_loin": [
+   {
+    "objet": "New York (US)",
+    "detail": "« Long Path » à 160 km du centre (rayon 50 km)"
+   },
+   {
+    "objet": "Abou Dabi (AE)",
+    "detail": "« Golfe Persique » à 408 km du centre (rayon 50 km)"
+   },
+   {
+    "objet": "Lima (PE)",
+    "detail": "« Qhapaq Ñan » à 484 km du centre (rayon 50 km)"
+   },
+   {
+    "objet": "Saint-Pétersbourg (RU)",
+    "detail": "« Golfe de Finlande » à 220 km du centre (rayon 50 km)"
+   },
+   {
+    "objet": "Vienne (AT)",
+    "detail": "« Nationalpark Donau-Auen » à 27 km du centre (rayon 7.7 km)"
+   },
+   {
+    "objet": "Vienne (AT)",
+    "detail": "« Nordalpenweg 01 » à 261 km du centre (rayon 50 km)"
+   },
+   {
+    "objet": "Vienne (AT)",
+    "detail": "« Zentralalpenweg 02 » à 247 km du centre (rayon 50 km)"
+   },
+   {
+    "objet": "Vienne (AT)",
+    "detail": "« Jakobsweg Österreich » à 251 km du centre (rayon 50 km)"
+   },
+   {
+    "objet": "Vienne (AT)",
+    "detail": "« Cesta hrdinov SNP » à 228 km du centre (rayon 50 km)"
+   },
+   {
+    "objet": "Le Cap (ZA)",
+    "detail": "« Cape Floral Region Protected Areas » à 323 km du centre (rayon 11.2 km)"
+   },
+   {
+    "objet": "Pékin (CN)",
+    "detail": "« Grande Muraille » à 877 km du centre (rayon 50 km)"
+   }
+  ],
+  "questions": [
+   {
+    "objet": "meilleur restaurant de crêpes à Quimper",
+    "detail": "réponse sans « Quimper / Demander à l’IA » : Impossible de charger la fiche de cette ville pour le moment."
+   },
+   {
+    "objet": "Faut-il un visa pour Tokyo ?",
+    "detail": "réponse sans « Passeport français / Tokyo » : Impossible de charger la fiche de cette ville pour le moment."
+   },
+   {
+    "objet": "Quel temps fait-il à New York ?",
+    "detail": "réponse sans « New York » : Impossible de charger la fiche de cette ville pour le moment."
+   },
+   {
+    "objet": "Quelle monnaie au Caire ?",
+    "detail": "réponse sans « on paie en » : Impossible de charger la fiche de cette ville pour le moment."
+   },
+   {
+    "objet": "Combien coûte un repas à Lisbonne ?",
+    "detail": "réponse sans « Lisbonne / € » : Impossible de charger la fiche de cette ville pour le moment."
+   },
+   {
+    "objet": "Quelle langue parle-t-on à Prague ?",
+    "detail": "réponse sans « Prague » : Impossible de charger la fiche de cette ville pour le moment."
+   },
+   {
+    "objet": "Que voir à Rome ?",
+    "detail": "réponse sans « Rome » : Impossible de charger la fiche de cette ville pour le moment."
+   },
+   {
+    "objet": "Qui est né à Vienne ?",
+    "detail": "réponse sans « Vienne » : Impossible de charger la fiche de cette ville pour le moment."
+   },
+   {
+    "objet": "Quand partir à Marrakech ?",
+    "detail": "réponse sans « Marrakech » : Impossible de charger la fiche de cette ville pour le moment."
+   },
+   {
+    "objet": "Quelle heure est-il à Sydney ?",
+    "detail": "réponse sans « Sydney » : Impossible de charger la fiche de cette ville pour le moment."
+   },
+   {
+    "objet": "Est-ce dangereux d'aller à Bogota ?",
+    "detail": "réponse sans « sécurité » : Impossible de charger la fiche de cette ville pour le moment."
+   },
+   {
+    "objet": "Quelle est l’histoire de Kyoto ?",
+    "detail": "réponse sans « Kyoto » : Impossible de charger la fiche de cette ville pour le moment."
+   },
+   {
+    "objet": "distance Paris Rome",
+    "detail": "réponse sans « km / Rome » : Je n’ai pas pu comparer ces deux villes pour le moment. ✨ Demander à l’IA"
+   },
+   {
+    "objet": "Séville ou Malaga en avril ?",
+    "detail": "réponse sans « En avril / plus chaude|même chaleur » : Je n’ai pas pu comparer ces deux villes pour le moment. ✨ Demander à l’IA"
+   },
+   {
+    "objet": "décalage horaire entre Paris et Tokyo",
+    "detail": "réponse sans « Décalage horaire / Tokyo » : Je n’ai pas pu comparer ces deux villes pour le moment. ✨ Demander à l’IA"
+   },
+   {
+    "objet": "lever du soleil à Reykjavik en juin",
+    "detail": "réponse sans « Reykjavik|Reykjavík » : Impossible de charger la fiche de cette ville pour le moment."
+   },
+   {
+    "objet": "Que faire en 2 jours à Lisbonne ?",
+    "detail": "réponse sans « Jour 1 / Jour 2 / Lisbonne » : Impossible de charger la fiche de cette ville pour le moment."
+   }
+  ]
+ },
+ "taux_change": {
+  "USD": 1.0957,
+  "JPY": 174.81,
+  "CZK": 24.435,
+  "DKK": 7.4737,
+  "GBP": 0.83504,
+  "HUF": 369.73,
+  "PLN": 4.4678,
+  "RON": 5.3437,
+  "SEK": 11.208,
+  "CHF": 0.9157,
+  "ISK": 137.2,
+  "NOK": 10.685,
+  "TRY": 55.6474,
+  "AUD": 1.6431,
+  "BRL": 6.0246,
+  "CAD": 1.5608,
+  "CNY": 7.2912,
+  "HKD": 8.5774,
+  "IDR": 20136.83,
+  "ILS": 3.6261,
+  "INR": 101.904,
+  "KRW": 1462.65,
+  "MXN": 21.3794,
+  "MYR": 4.517,
+  "NZD": 1.999,
+  "PHP": 69.828,
+  "SGD": 1.4132,
+  "THB": 37.177,
+  "ZAR": 18.9949
+ },
+ "etat": "ok",
+ "dernier_passage": "2026-11-28T09:33:38Z"
+}
