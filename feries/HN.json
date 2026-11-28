@@ -1,0 +1,115 @@
+{
+ "date": "2026-11-21T19:14:20Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "New Year's Day"
+  },
+  {
+   "date": "2026-04-02",
+   "nom": "Maundy Thursday",
+   "nom_local": "Holy Thursday"
+  },
+  {
+   "date": "2026-04-03",
+   "nom": "Good Friday",
+   "nom_local": "Good Friday"
+  },
+  {
+   "date": "2026-04-04",
+   "nom": "Holy Saturday",
+   "nom_local": "Holy Saturday"
+  },
+  {
+   "date": "2026-04-14",
+   "nom": "America's Day",
+   "nom_local": "America's Day"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Labour Day"
+  },
+  {
+   "date": "2026-09-15",
+   "nom": "Independence Day",
+   "nom_local": "Independence Day"
+  },
+  {
+   "date": "2026-10-03",
+   "nom": "Francisco Morazán's Day/Soldier's Day",
+   "nom_local": "Francisco Morazán's Day/Soldier's Day"
+  },
+  {
+   "date": "2026-10-12",
+   "nom": "Columbus Day",
+   "nom_local": "Columbus Day"
+  },
+  {
+   "date": "2026-10-21",
+   "nom": "Army Day",
+   "nom_local": "Army Day"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Navidad"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "New Year's Day"
+  },
+  {
+   "date": "2027-03-25",
+   "nom": "Maundy Thursday",
+   "nom_local": "Holy Thursday"
+  },
+  {
+   "date": "2027-03-26",
+   "nom": "Good Friday",
+   "nom_local": "Good Friday"
+  },
+  {
+   "date": "2027-03-27",
+   "nom": "Holy Saturday",
+   "nom_local": "Holy Saturday"
+  },
+  {
+   "date": "2027-04-14",
+   "nom": "America's Day",
+   "nom_local": "America's Day"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Labour Day"
+  },
+  {
+   "date": "2027-09-15",
+   "nom": "Independence Day",
+   "nom_local": "Independence Day"
+  },
+  {
+   "date": "2027-10-03",
+   "nom": "Francisco Morazán's Day/Soldier's Day",
+   "nom_local": "Francisco Morazán's Day/Soldier's Day"
+  },
+  {
+   "date": "2027-10-12",
+   "nom": "Columbus Day",
+   "nom_local": "Columbus Day"
+  },
+  {
+   "date": "2027-10-21",
+   "nom": "Army Day",
+   "nom_local": "Army Day"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Navidad"
+  }
+ ]
+}

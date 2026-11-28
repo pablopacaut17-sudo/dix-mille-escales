@@ -1,0 +1,190 @@
+{
+ "date": "2026-11-21T19:15:57Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Año Nuevo"
+  },
+  {
+   "date": "2026-04-02",
+   "nom": "Maundy Thursday",
+   "nom_local": "Jueves Santo"
+  },
+  {
+   "date": "2026-04-03",
+   "nom": "Good Friday",
+   "nom_local": "Viernes Santo"
+  },
+  {
+   "date": "2026-04-04",
+   "nom": "Holy Saturday",
+   "nom_local": "Sábado Santo"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Día del Trabajo"
+  },
+  {
+   "date": "2026-05-10",
+   "nom": "Mother's Day",
+   "nom_local": "Día de las Madres"
+  },
+  {
+   "date": "2026-06-17",
+   "nom": "Father's Day",
+   "nom_local": "Día del Padre"
+  },
+  {
+   "date": "2026-08-06",
+   "nom": "Feast of the Divine Saviour of the World",
+   "nom_local": "Fiesta del Divino Salvador del Mundo"
+  },
+  {
+   "date": "2026-09-15",
+   "nom": "Independence Day",
+   "nom_local": "Día de la Independencia"
+  },
+  {
+   "date": "2026-11-02",
+   "nom": "All Souls' Day",
+   "nom_local": "Día de los Difuntos"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Navidad"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Día del Trabajo"
+  },
+  {
+   "date": "2027-05-03",
+   "nom": "The Day of the Cross",
+   "nom_local": "Día de la Cru"
+  },
+  {
+   "date": "2027-05-07",
+   "nom": "Soldiers' Day",
+   "nom_local": "Día del Soldado"
+  },
+  {
+   "date": "2027-05-10",
+   "nom": "Mother's Day",
+   "nom_local": "Día de las Madres"
+  },
+  {
+   "date": "2027-05-10",
+   "nom": "Father's Day",
+   "nom_local": "Día del Padre"
+  },
+  {
+   "date": "2027-08-01",
+   "nom": "August Festivals",
+   "nom_local": "Fiestas de agosto"
+  },
+  {
+   "date": "2027-08-02",
+   "nom": "August Festivals",
+   "nom_local": "Fiestas de agosto"
+  },
+  {
+   "date": "2027-08-03",
+   "nom": "August Festivals",
+   "nom_local": "Fiestas de agosto"
+  },
+  {
+   "date": "2027-08-04",
+   "nom": "August Festivals",
+   "nom_local": "Fiestas de agosto"
+  },
+  {
+   "date": "2027-08-05",
+   "nom": "August Festivals",
+   "nom_local": "Fiestas de agosto"
+  },
+  {
+   "date": "2027-08-06",
+   "nom": "August Festivals",
+   "nom_local": "Fiestas de agosto"
+  },
+  {
+   "date": "2027-08-07",
+   "nom": "August Festivals",
+   "nom_local": "Fiestas de agosto"
+  },
+  {
+   "date": "2027-09-15",
+   "nom": "Independence Day",
+   "nom_local": "Día de la Independencia"
+  },
+  {
+   "date": "2027-10-01",
+   "nom": "Children's Day",
+   "nom_local": "Día del niño"
+  },
+  {
+   "date": "2027-10-12",
+   "nom": "Ethnic Pride Day",
+   "nom_local": "Día de la raza"
+  },
+  {
+   "date": "2027-11-02",
+   "nom": "Day of the Dead",
+   "nom_local": "El día de los difuntos"
+  },
+  {
+   "date": "2027-11-07",
+   "nom": "National Pupusa Festival",
+   "nom_local": "Festival Nacional De La Pupusa"
+  },
+  {
+   "date": "2027-11-08",
+   "nom": "National Pupusa Festival",
+   "nom_local": "Festival Nacional De La Pupusa"
+  },
+  {
+   "date": "2027-11-09",
+   "nom": "National Pupusa Festival",
+   "nom_local": "Festival Nacional De La Pupusa"
+  },
+  {
+   "date": "2027-11-10",
+   "nom": "National Pupusa Festival",
+   "nom_local": "Festival Nacional De La Pupusa"
+  },
+  {
+   "date": "2027-11-11",
+   "nom": "National Pupusa Festival",
+   "nom_local": "Festival Nacional De La Pupusa"
+  },
+  {
+   "date": "2027-11-12",
+   "nom": "National Pupusa Festival",
+   "nom_local": "Festival Nacional De La Pupusa"
+  },
+  {
+   "date": "2027-11-13",
+   "nom": "National Pupusa Festival",
+   "nom_local": "Festival Nacional De La Pupusa"
+  },
+  {
+   "date": "2027-11-21",
+   "nom": "Day of the Queen of Peace",
+   "nom_local": "Dia de la Reina de la Paz"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Noche Buena"
+  },
+  {
+   "date": "2027-12-31",
+   "nom": "New Year's Eve",
+   "nom_local": "Fin de año"
+  }
+ ]
+}

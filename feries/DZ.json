@@ -1,0 +1,55 @@
+{
+ "date": "2026-11-21T19:13:47Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "New Year's Day"
+  },
+  {
+   "date": "2026-01-12",
+   "nom": "Amazigh New Year",
+   "nom_local": "Amazigh New Year"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Labour Day"
+  },
+  {
+   "date": "2026-07-05",
+   "nom": "Independence Day",
+   "nom_local": "Independence Day"
+  },
+  {
+   "date": "2026-11-01",
+   "nom": "Revolution Day",
+   "nom_local": "Revolution Day"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "New Year's Day"
+  },
+  {
+   "date": "2027-01-12",
+   "nom": "Amazigh New Year",
+   "nom_local": "Amazigh New Year"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Labour Day"
+  },
+  {
+   "date": "2027-07-05",
+   "nom": "Independence Day",
+   "nom_local": "Independence Day"
+  },
+  {
+   "date": "2027-11-01",
+   "nom": "Revolution Day",
+   "nom_local": "Revolution Day"
+  }
+ ]
+}

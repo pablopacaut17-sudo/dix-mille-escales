@@ -1,0 +1,125 @@
+{
+ "date": "2026-11-21T19:14:51Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Neijoerschdag"
+  },
+  {
+   "date": "2026-04-03",
+   "nom": "Good Friday",
+   "nom_local": "Karfreideg"
+  },
+  {
+   "date": "2026-04-06",
+   "nom": "Easter Monday",
+   "nom_local": "Ouschterméindeg"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Dag vun der Aarbecht"
+  },
+  {
+   "date": "2026-05-09",
+   "nom": "Europe Day",
+   "nom_local": "Europadag"
+  },
+  {
+   "date": "2026-05-14",
+   "nom": "Ascension Day",
+   "nom_local": "Christi Himmelfaart"
+  },
+  {
+   "date": "2026-05-25",
+   "nom": "Whit Monday",
+   "nom_local": "Péngschtméindeg"
+  },
+  {
+   "date": "2026-06-23",
+   "nom": "Sovereign's birthday",
+   "nom_local": "Groussherzogsgebuertsdag"
+  },
+  {
+   "date": "2026-08-15",
+   "nom": "Assumption Day",
+   "nom_local": "Léiffrawëschdag"
+  },
+  {
+   "date": "2026-11-01",
+   "nom": "All Saints' Day",
+   "nom_local": "Allerhellgen"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Chrëschtdag"
+  },
+  {
+   "date": "2026-12-26",
+   "nom": "St. Stephen's Day",
+   "nom_local": "Stiefesdag"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Neijoerschdag"
+  },
+  {
+   "date": "2027-03-26",
+   "nom": "Good Friday",
+   "nom_local": "Karfreideg"
+  },
+  {
+   "date": "2027-03-29",
+   "nom": "Easter Monday",
+   "nom_local": "Ouschterméindeg"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Dag vun der Aarbecht"
+  },
+  {
+   "date": "2027-05-06",
+   "nom": "Ascension Day",
+   "nom_local": "Christi Himmelfaart"
+  },
+  {
+   "date": "2027-05-09",
+   "nom": "Europe Day",
+   "nom_local": "Europadag"
+  },
+  {
+   "date": "2027-05-17",
+   "nom": "Whit Monday",
+   "nom_local": "Péngschtméindeg"
+  },
+  {
+   "date": "2027-06-23",
+   "nom": "Sovereign's birthday",
+   "nom_local": "Groussherzogsgebuertsdag"
+  },
+  {
+   "date": "2027-08-15",
+   "nom": "Assumption Day",
+   "nom_local": "Léiffrawëschdag"
+  },
+  {
+   "date": "2027-11-01",
+   "nom": "All Saints' Day",
+   "nom_local": "Allerhellgen"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Chrëschtdag"
+  },
+  {
+   "date": "2027-12-26",
+   "nom": "St. Stephen's Day",
+   "nom_local": "Stiefesdag"
+  }
+ ]
+}

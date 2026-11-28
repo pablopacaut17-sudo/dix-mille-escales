@@ -1,0 +1,145 @@
+{
+ "date": "2026-11-21T19:15:23Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Año Nuevo"
+  },
+  {
+   "date": "2026-01-09",
+   "nom": "Martyrs' Day",
+   "nom_local": "Día de los Mártires"
+  },
+  {
+   "date": "2026-02-16",
+   "nom": "Carnival Monday",
+   "nom_local": "Lunes de Carnaval"
+  },
+  {
+   "date": "2026-02-17",
+   "nom": "Carnival Tuesday",
+   "nom_local": "Martes de Carnaval"
+  },
+  {
+   "date": "2026-04-03",
+   "nom": "Good Friday",
+   "nom_local": "Viernes Santo"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Día del Trabajo"
+  },
+  {
+   "date": "2026-11-03",
+   "nom": "Separation Day",
+   "nom_local": "Separación de Panamá de Colombia"
+  },
+  {
+   "date": "2026-11-04",
+   "nom": "Flag Day",
+   "nom_local": "Día de los Símbolos Patrios"
+  },
+  {
+   "date": "2026-11-05",
+   "nom": "Consolidation of the Separation Day",
+   "nom_local": "Consolidación de la Separación de Panamá de Colombia"
+  },
+  {
+   "date": "2026-11-10",
+   "nom": "Shout in Villa de los Santos",
+   "nom_local": "Primer Grito de Independencia de la Villa de Los Santos"
+  },
+  {
+   "date": "2026-11-28",
+   "nom": "Independence Day",
+   "nom_local": "Independencia de Panamá de España"
+  },
+  {
+   "date": "2026-12-08",
+   "nom": "Mother's Day",
+   "nom_local": "Día de las Madres"
+  },
+  {
+   "date": "2026-12-21",
+   "nom": "National Day of Mourning",
+   "nom_local": "Día de Duelo Nacional"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Navidad"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Año Nuevo"
+  },
+  {
+   "date": "2027-01-09",
+   "nom": "Martyrs' Day",
+   "nom_local": "Día de los Mártires"
+  },
+  {
+   "date": "2027-02-08",
+   "nom": "Carnival Monday",
+   "nom_local": "Lunes de Carnaval"
+  },
+  {
+   "date": "2027-02-09",
+   "nom": "Carnival Tuesday",
+   "nom_local": "Martes de Carnaval"
+  },
+  {
+   "date": "2027-03-26",
+   "nom": "Good Friday",
+   "nom_local": "Viernes Santo"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Día del Trabajo"
+  },
+  {
+   "date": "2027-11-03",
+   "nom": "Separation Day",
+   "nom_local": "Separación de Panamá de Colombia"
+  },
+  {
+   "date": "2027-11-04",
+   "nom": "Flag Day",
+   "nom_local": "Día de los Símbolos Patrios"
+  },
+  {
+   "date": "2027-11-05",
+   "nom": "Consolidation of the Separation Day",
+   "nom_local": "Consolidación de la Separación de Panamá de Colombia"
+  },
+  {
+   "date": "2027-11-10",
+   "nom": "Shout in Villa de los Santos",
+   "nom_local": "Primer Grito de Independencia de la Villa de Los Santos"
+  },
+  {
+   "date": "2027-11-29",
+   "nom": "Independence Day",
+   "nom_local": "Independencia de Panamá de España"
+  },
+  {
+   "date": "2027-12-08",
+   "nom": "Mother's Day",
+   "nom_local": "Día de las Madres"
+  },
+  {
+   "date": "2027-12-20",
+   "nom": "National Day of Mourning",
+   "nom_local": "Día de Duelo Nacional"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Navidad"
+  }
+ ]
+}

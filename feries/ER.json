@@ -1,0 +1,105 @@
+{
+ "date": "2026-11-21T19:13:52Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Amet ሓዲሽ ዓመት"
+  },
+  {
+   "date": "2026-01-07",
+   "nom": "Orthodox Christmas",
+   "nom_local": "Lidet ልደት"
+  },
+  {
+   "date": "2026-01-19",
+   "nom": "Orthodox Epiphany",
+   "nom_local": "Timket ጥምቀት"
+  },
+  {
+   "date": "2026-03-08",
+   "nom": "Women's Day",
+   "nom_local": "Maelti Anesti መዓልቲ ኣነስቲ"
+  },
+  {
+   "date": "2026-04-03",
+   "nom": "Good Friday",
+   "nom_local": "Arbi Siklet ዓርቢ ስቅለት"
+  },
+  {
+   "date": "2026-04-05",
+   "nom": "Easter Sunday",
+   "nom_local": "Fasika ፋሲካ"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "May Day",
+   "nom_local": "May Day"
+  },
+  {
+   "date": "2026-05-24",
+   "nom": "Independence Day",
+   "nom_local": "Maelti Natsinet መዓልቲ ናጽነት"
+  },
+  {
+   "date": "2026-06-20",
+   "nom": "Martyrs' Day",
+   "nom_local": "Maelti Siwuat መዓልቲ ስውኣት"
+  },
+  {
+   "date": "2026-09-01",
+   "nom": "Revolution Day",
+   "nom_local": "Bahti Meskerem ባሕቲ መስከረም"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Amet ሓዲሽ ዓመት"
+  },
+  {
+   "date": "2027-01-07",
+   "nom": "Orthodox Christmas",
+   "nom_local": "Lidet ልደት"
+  },
+  {
+   "date": "2027-01-19",
+   "nom": "Orthodox Epiphany",
+   "nom_local": "Timket ጥምቀት"
+  },
+  {
+   "date": "2027-03-08",
+   "nom": "Women's Day",
+   "nom_local": "Maelti Anesti መዓልቲ ኣነስቲ"
+  },
+  {
+   "date": "2027-03-26",
+   "nom": "Good Friday",
+   "nom_local": "Arbi Siklet ዓርቢ ስቅለት"
+  },
+  {
+   "date": "2027-03-28",
+   "nom": "Easter Sunday",
+   "nom_local": "Fasika ፋሲካ"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "May Day",
+   "nom_local": "May Day"
+  },
+  {
+   "date": "2027-05-24",
+   "nom": "Independence Day",
+   "nom_local": "Maelti Natsinet መዓልቲ ናጽነት"
+  },
+  {
+   "date": "2027-06-20",
+   "nom": "Martyrs' Day",
+   "nom_local": "Maelti Siwuat መዓልቲ ስውኣት"
+  },
+  {
+   "date": "2027-09-01",
+   "nom": "Revolution Day",
+   "nom_local": "Bahti Meskerem ባሕቲ መስከረም"
+  }
+ ]
+}

@@ -1,0 +1,85 @@
+{
+ "date": "2026-11-21T19:14:24Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Tahun Baru Masehi"
+  },
+  {
+   "date": "2026-04-03",
+   "nom": "Good Friday",
+   "nom_local": "Wafat Isa Almasih"
+  },
+  {
+   "date": "2026-04-05",
+   "nom": "Easter Sunday",
+   "nom_local": "Paskah"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Hari Buruh Internasional"
+  },
+  {
+   "date": "2026-05-14",
+   "nom": "Ascension Day",
+   "nom_local": "Kenaikan Isa Almasih"
+  },
+  {
+   "date": "2026-06-01",
+   "nom": "Pancasila Day",
+   "nom_local": "Hari Lahir Pancasila"
+  },
+  {
+   "date": "2026-08-17",
+   "nom": "Independence Day",
+   "nom_local": "Hari Ulang Tahun Kemerdekaan Republik Indonesia"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Hari Raya Natal"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Tahun Baru Masehi"
+  },
+  {
+   "date": "2027-03-26",
+   "nom": "Good Friday",
+   "nom_local": "Wafat Isa Almasih"
+  },
+  {
+   "date": "2027-03-28",
+   "nom": "Easter Sunday",
+   "nom_local": "Paskah"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Hari Buruh Internasional"
+  },
+  {
+   "date": "2027-05-06",
+   "nom": "Ascension Day",
+   "nom_local": "Kenaikan Isa Almasih"
+  },
+  {
+   "date": "2027-06-01",
+   "nom": "Pancasila Day",
+   "nom_local": "Hari Lahir Pancasila"
+  },
+  {
+   "date": "2027-08-17",
+   "nom": "Independence Day",
+   "nom_local": "Hari Ulang Tahun Kemerdekaan Republik Indonesia"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Hari Raya Natal"
+  }
+ ]
+}

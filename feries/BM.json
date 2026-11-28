@@ -1,0 +1,105 @@
+{
+ "date": "2026-11-21T19:13:14Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "New Year's Day"
+  },
+  {
+   "date": "2026-04-03",
+   "nom": "Good Friday",
+   "nom_local": "Good Friday"
+  },
+  {
+   "date": "2026-05-22",
+   "nom": "Bermuda Day",
+   "nom_local": "Bermuda Day"
+  },
+  {
+   "date": "2026-06-15",
+   "nom": "National Heroes Day",
+   "nom_local": "National Heroes Day"
+  },
+  {
+   "date": "2026-07-30",
+   "nom": "Emancipation Day",
+   "nom_local": "Emancipation Day"
+  },
+  {
+   "date": "2026-07-31",
+   "nom": "Mary Prince Day",
+   "nom_local": "Mary Prince Day"
+  },
+  {
+   "date": "2026-09-07",
+   "nom": "Labour Day",
+   "nom_local": "Labour Day"
+  },
+  {
+   "date": "2026-11-11",
+   "nom": "Remembrance Day",
+   "nom_local": "Remembrance Day"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Christmas Day"
+  },
+  {
+   "date": "2026-12-28",
+   "nom": "St. Stephen's Day",
+   "nom_local": "Boxing Day"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "New Year's Day"
+  },
+  {
+   "date": "2027-03-26",
+   "nom": "Good Friday",
+   "nom_local": "Good Friday"
+  },
+  {
+   "date": "2027-05-28",
+   "nom": "Bermuda Day",
+   "nom_local": "Bermuda Day"
+  },
+  {
+   "date": "2027-06-21",
+   "nom": "National Heroes Day",
+   "nom_local": "National Heroes Day"
+  },
+  {
+   "date": "2027-07-29",
+   "nom": "Emancipation Day",
+   "nom_local": "Emancipation Day"
+  },
+  {
+   "date": "2027-07-30",
+   "nom": "Mary Prince Day",
+   "nom_local": "Mary Prince Day"
+  },
+  {
+   "date": "2027-09-06",
+   "nom": "Labour Day",
+   "nom_local": "Labour Day"
+  },
+  {
+   "date": "2027-11-11",
+   "nom": "Remembrance Day",
+   "nom_local": "Remembrance Day"
+  },
+  {
+   "date": "2027-12-27",
+   "nom": "Christmas Day",
+   "nom_local": "Christmas Day"
+  },
+  {
+   "date": "2027-12-27",
+   "nom": "St. Stephen's Day",
+   "nom_local": "Boxing Day"
+  }
+ ]
+}

@@ -1,0 +1,115 @@
+{
+ "date": "2026-11-21T19:13:16Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Nieuwjaarsdag"
+  },
+  {
+   "date": "2026-04-03",
+   "nom": "Good Friday",
+   "nom_local": "Goede Vrijdag"
+  },
+  {
+   "date": "2026-04-05",
+   "nom": "Easter Sunday",
+   "nom_local": "Pasen"
+  },
+  {
+   "date": "2026-04-06",
+   "nom": "Easter Monday",
+   "nom_local": "Paasmaandag"
+  },
+  {
+   "date": "2026-04-27",
+   "nom": "King's Birthday",
+   "nom_local": "King's Birthday"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Dag van de Arbeid"
+  },
+  {
+   "date": "2026-05-14",
+   "nom": "Ascension Day",
+   "nom_local": "Hemelvaartsdag"
+  },
+  {
+   "date": "2026-05-24",
+   "nom": "Pentecost",
+   "nom_local": "Pinksteren"
+  },
+  {
+   "date": "2026-08-03",
+   "nom": "Carnival Monday",
+   "nom_local": "Carnival Monday"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Kerstmis"
+  },
+  {
+   "date": "2026-12-26",
+   "nom": "St. Stephen's Day",
+   "nom_local": "Second Day of Christmas"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Nieuwjaarsdag"
+  },
+  {
+   "date": "2027-03-26",
+   "nom": "Good Friday",
+   "nom_local": "Goede Vrijdag"
+  },
+  {
+   "date": "2027-03-28",
+   "nom": "Easter Sunday",
+   "nom_local": "Pasen"
+  },
+  {
+   "date": "2027-03-29",
+   "nom": "Easter Monday",
+   "nom_local": "Paasmaandag"
+  },
+  {
+   "date": "2027-04-27",
+   "nom": "King's Birthday",
+   "nom_local": "King's Birthday"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Dag van de Arbeid"
+  },
+  {
+   "date": "2027-05-06",
+   "nom": "Ascension Day",
+   "nom_local": "Hemelvaartsdag"
+  },
+  {
+   "date": "2027-05-16",
+   "nom": "Pentecost",
+   "nom_local": "Pinksteren"
+  },
+  {
+   "date": "2027-08-02",
+   "nom": "Carnival Monday",
+   "nom_local": "Carnival Monday"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Kerstmis"
+  },
+  {
+   "date": "2027-12-26",
+   "nom": "St. Stephen's Day",
+   "nom_local": "Second Day of Christmas"
+  }
+ ]
+}

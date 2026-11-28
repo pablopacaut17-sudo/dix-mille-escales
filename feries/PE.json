@@ -1,0 +1,175 @@
+{
+ "date": "2026-11-21T19:15:24Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Año Nuevo"
+  },
+  {
+   "date": "2026-04-02",
+   "nom": "Maundy Thursday",
+   "nom_local": "Jueves Santo"
+  },
+  {
+   "date": "2026-04-03",
+   "nom": "Good Friday",
+   "nom_local": "Viernes Santo"
+  },
+  {
+   "date": "2026-04-05",
+   "nom": "Easter Sunday",
+   "nom_local": "Domingo Santo"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Día del Trabajo"
+  },
+  {
+   "date": "2026-06-07",
+   "nom": "Battle of Arica and Flag Day",
+   "nom_local": "Batalla de Arica y Día de la Bandera"
+  },
+  {
+   "date": "2026-06-29",
+   "nom": "Saint Peter and Saint Paul",
+   "nom_local": "Día de San Pedro y San Pablo"
+  },
+  {
+   "date": "2026-07-23",
+   "nom": "Air Force Day",
+   "nom_local": "Día de la Fuerza Aérea"
+  },
+  {
+   "date": "2026-07-28",
+   "nom": "Independence Day",
+   "nom_local": "Fiestas Patrias"
+  },
+  {
+   "date": "2026-07-29",
+   "nom": "Independence Day",
+   "nom_local": "Fiestas Patrias"
+  },
+  {
+   "date": "2026-08-06",
+   "nom": "Battle of Junin",
+   "nom_local": "Batalla de Junin"
+  },
+  {
+   "date": "2026-08-30",
+   "nom": "Santa Rosa de Lima",
+   "nom_local": "Santa Rosa de Lima"
+  },
+  {
+   "date": "2026-10-08",
+   "nom": "Battle of Angamos",
+   "nom_local": "Combate de Angamos"
+  },
+  {
+   "date": "2026-11-01",
+   "nom": "All Saints Day",
+   "nom_local": "Día de Todos los Santos"
+  },
+  {
+   "date": "2026-12-08",
+   "nom": "Immaculate Conception",
+   "nom_local": "Inmaculada Concepción"
+  },
+  {
+   "date": "2026-12-09",
+   "nom": "Battle of Ayacucho",
+   "nom_local": "Batalla de Ayacucho"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Navidad"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Año Nuevo"
+  },
+  {
+   "date": "2027-03-25",
+   "nom": "Maundy Thursday",
+   "nom_local": "Jueves Santo"
+  },
+  {
+   "date": "2027-03-26",
+   "nom": "Good Friday",
+   "nom_local": "Viernes Santo"
+  },
+  {
+   "date": "2027-03-28",
+   "nom": "Easter Sunday",
+   "nom_local": "Domingo Santo"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Día del Trabajo"
+  },
+  {
+   "date": "2027-06-07",
+   "nom": "Battle of Arica and Flag Day",
+   "nom_local": "Batalla de Arica y Día de la Bandera"
+  },
+  {
+   "date": "2027-06-29",
+   "nom": "Saint Peter and Saint Paul",
+   "nom_local": "Día de San Pedro y San Pablo"
+  },
+  {
+   "date": "2027-07-23",
+   "nom": "Air Force Day",
+   "nom_local": "Día de la Fuerza Aérea"
+  },
+  {
+   "date": "2027-07-28",
+   "nom": "Independence Day",
+   "nom_local": "Fiestas Patrias"
+  },
+  {
+   "date": "2027-07-29",
+   "nom": "Independence Day",
+   "nom_local": "Fiestas Patrias"
+  },
+  {
+   "date": "2027-08-06",
+   "nom": "Battle of Junin",
+   "nom_local": "Batalla de Junin"
+  },
+  {
+   "date": "2027-08-30",
+   "nom": "Santa Rosa de Lima",
+   "nom_local": "Santa Rosa de Lima"
+  },
+  {
+   "date": "2027-10-08",
+   "nom": "Battle of Angamos",
+   "nom_local": "Combate de Angamos"
+  },
+  {
+   "date": "2027-11-01",
+   "nom": "All Saints Day",
+   "nom_local": "Día de Todos los Santos"
+  },
+  {
+   "date": "2027-12-08",
+   "nom": "Immaculate Conception",
+   "nom_local": "Inmaculada Concepción"
+  },
+  {
+   "date": "2027-12-09",
+   "nom": "Battle of Ayacucho",
+   "nom_local": "Batalla de Ayacucho"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Navidad"
+  }
+ ]
+}

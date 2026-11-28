@@ -1,0 +1,3784 @@
+{
+ "date": "2026-11-22T15:13:00Z",
+ "source": "Wikidata (P2852)",
+ "pays": {
+  "FR": [
+   {
+    "numero": "114",
+    "services": [
+     "communauté sourde"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": []
+   },
+   {
+    "numero": "18",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "17",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "15",
+    "services": [
+     "aide médicale urgente"
+    ]
+   }
+  ],
+  "GB": [
+   {
+    "numero": "999",
+    "services": []
+   },
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "MO": [
+   {
+    "numero": "999",
+    "services": []
+   }
+  ],
+  "CN": [
+   {
+    "numero": "120",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "119",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "110",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "BR": [
+   {
+    "numero": "193",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "190",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "192",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "188",
+    "services": [
+     "soutien téléphonique"
+    ]
+   }
+  ],
+  "RU": [
+   {
+    "numero": "03",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "02",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "103",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": []
+   },
+   {
+    "numero": "101",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "102",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "01",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "CP": [
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "GU": [
+   {
+    "numero": "911",
+    "services": []
+   }
+  ],
+  "AS": [
+   {
+    "numero": "911",
+    "services": []
+   }
+  ],
+  "CA": [
+   {
+    "numero": "911",
+    "services": []
+   }
+  ],
+  "GP": [
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "MQ": [
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "YT": [
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "RE": [
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "JP": [
+   {
+    "numero": "110",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "119",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "118",
+    "services": [
+     "Garde côtière du Japon"
+    ]
+   }
+  ],
+  "TC": [
+   {
+    "numero": "911",
+    "services": []
+   }
+  ],
+  "DE": [
+   {
+    "numero": "110",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "BY": [
+   {
+    "numero": "103",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "101",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "102",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "IS": [
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "EE": [
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "SH": [
+   {
+    "numero": "999",
+    "services": []
+   }
+  ],
+  "NO": [
+   {
+    "numero": "112",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "110",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "113",
+    "services": [
+     "aide médicale urgente"
+    ]
+   }
+  ],
+  "LV": [
+   {
+    "numero": "110",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": []
+   },
+   {
+    "numero": "113",
+    "services": [
+     "aide médicale urgente"
+    ]
+   }
+  ],
+  "AW": [
+   {
+    "numero": "911",
+    "services": []
+   }
+  ],
+  "UA": [
+   {
+    "numero": "112",
+    "services": []
+   },
+   {
+    "numero": "103",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "101",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "102",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "CZ": [
+   {
+    "numero": "155",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "158",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "156",
+    "services": [
+     "police municipale"
+    ]
+   },
+   {
+    "numero": "150",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "SK": [
+   {
+    "numero": "150",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "158",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "155",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "SI": [
+   {
+    "numero": "113",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "MD": [
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "RO": [
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "BG": [
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "MK": [
+   {
+    "numero": "194",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "193",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": []
+   },
+   {
+    "numero": "192",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "AL": [
+   {
+    "numero": "128",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "127",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "129",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "GL": [
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "HR": [
+   {
+    "numero": "192",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": []
+   },
+   {
+    "numero": "93",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "94",
+    "services": [
+     "aide médicale urgente"
+    ]
+   }
+  ],
+  "BA": [
+   {
+    "numero": "122",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "124",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": []
+   },
+   {
+    "numero": "123",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "AZ": [
+   {
+    "numero": "103",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": []
+   },
+   {
+    "numero": "102",
+    "services": []
+   },
+   {
+    "numero": "101",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "AD": [
+   {
+    "numero": "112",
+    "services": []
+   },
+   {
+    "numero": "116",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "110",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "118",
+    "services": []
+   }
+  ],
+  "CY": [
+   {
+    "numero": "112",
+    "services": []
+   },
+   {
+    "numero": "1400",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "199",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "GE": [
+   {
+    "numero": "111",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "113",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "122",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "KZ": [
+   {
+    "numero": "103",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": []
+   },
+   {
+    "numero": "101",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "102",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "MT": [
+   {
+    "numero": "191",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "196",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": []
+   },
+   {
+    "numero": "199",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "MC": [
+   {
+    "numero": "17",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": []
+   },
+   {
+    "numero": "18",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "BM": [
+   {
+    "numero": "911",
+    "services": []
+   }
+  ],
+  "ME": [
+   {
+    "numero": "122",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": []
+   },
+   {
+    "numero": "124",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "123",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "VA": [
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "SM": [
+   {
+    "numero": "112",
+    "services": []
+   },
+   {
+    "numero": "115",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "113",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "118",
+    "services": [
+     "aide médicale urgente"
+    ]
+   }
+  ],
+  "CU": [
+   {
+    "numero": "106",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "104",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "105",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "BZ": [
+   {
+    "numero": "911",
+    "services": []
+   },
+   {
+    "numero": "90",
+    "services": [
+     "police",
+     "aide médicale urgente",
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "BB": [
+   {
+    "numero": "911",
+    "services": []
+   },
+   {
+    "numero": "511",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "311",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "211",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "AI": [
+   {
+    "numero": "911",
+    "services": []
+   }
+  ],
+  "GG": [
+   {
+    "numero": "999",
+    "services": []
+   },
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "CW": [
+   {
+    "numero": "911",
+    "services": []
+   }
+  ],
+  "ID": [
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "VG": [
+   {
+    "numero": "999",
+    "services": []
+   }
+  ],
+  "ZA": [
+   {
+    "numero": "112",
+    "services": [
+     "police",
+     "aide médicale urgente",
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "DZ": [
+   {
+    "numero": "1548",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "1055",
+    "services": [
+     "gendarmerie"
+    ]
+   },
+   {
+    "numero": "17",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "14",
+    "services": [
+     "aide médicale urgente",
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "UZ": [
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "CK": [
+   {
+    "numero": "996",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "998",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "999",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "IE": [
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "HU": [
+   {
+    "numero": "107",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": []
+   },
+   {
+    "numero": "104",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "105",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "CL": [
+   {
+    "numero": "133",
+    "services": [
+     "Carabiniers du Chili"
+    ]
+   },
+   {
+    "numero": "130",
+    "services": [
+     "feu de végétation"
+    ]
+   },
+   {
+    "numero": "132",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "131",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "134",
+    "services": [
+     "Service d'enquêtes de la police"
+    ]
+   }
+  ],
+  "ES": [
+   {
+    "numero": "061",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": []
+   },
+   {
+    "numero": "091",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "NL": [
+   {
+    "numero": "112",
+    "services": []
+   },
+   {
+    "numero": "911",
+    "services": []
+   }
+  ],
+  "PF": [
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "US": [
+   {
+    "numero": "911",
+    "services": []
+   }
+  ],
+  "BE": [
+   {
+    "numero": "101",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "100",
+    "services": [
+     "aide médicale urgente",
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "102",
+    "services": [
+     "Awel"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "LU": [
+   {
+    "numero": "113",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "SG": [
+   {
+    "numero": "999",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "995",
+    "services": [
+     "aide médicale urgente",
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "NC": [
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "FI": [
+   {
+    "numero": "000",
+    "services": []
+   },
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "NU": [
+   {
+    "numero": "999",
+    "services": []
+   }
+  ],
+  "PM": [
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "LI": [
+   {
+    "numero": "117",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "144",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "118",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "SE": [
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "GS": [
+   {
+    "numero": "999",
+    "services": []
+   }
+  ],
+  "DK": [
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "PL": [
+   {
+    "numero": "986",
+    "services": [
+     "police municipale"
+    ]
+   },
+   {
+    "numero": "997",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "998",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "999",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "LT": [
+   {
+    "numero": "02",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "IT": [
+   {
+    "numero": "113",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "115",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "118",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "BH": [
+   {
+    "numero": "999",
+    "services": []
+   },
+   {
+    "numero": "112",
+    "services": [
+     "police",
+     "aide médicale urgente",
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "GA": [
+   {
+    "numero": "1300",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "1722",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "18",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "GM": [
+   {
+    "numero": "118",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "116",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "GN": [
+   {
+    "numero": "117",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "18",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "GW": [
+   {
+    "numero": "121",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "180",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": []
+   },
+   {
+    "numero": "119",
+    "services": [
+     "aide médicale urgente"
+    ]
+   }
+  ],
+  "CI": [
+   {
+    "numero": "111",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "185",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "180",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "110",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "170",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "CM": [
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "CV": [
+   {
+    "numero": "130",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "132",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "131",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "LS": [
+   {
+    "numero": "112",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "115",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "114",
+    "services": [
+     "aide médicale urgente"
+    ]
+   }
+  ],
+  "LR": [
+   {
+    "numero": "911",
+    "services": []
+   },
+   {
+    "numero": "114",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "LY": [
+   {
+    "numero": "191",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "193",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "190",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "MG": [
+   {
+    "numero": "118",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "117",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "124",
+    "services": [
+     "aide médicale urgente"
+    ]
+   }
+  ],
+  "MW": [
+   {
+    "numero": "998",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "990",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "999",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "997",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "MR": [
+   {
+    "numero": "117",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "118",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "101",
+    "services": [
+     "aide médicale urgente"
+    ]
+   }
+  ],
+  "MU": [
+   {
+    "numero": "115",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "995",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "114",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "999",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "MA": [
+   {
+    "numero": "177",
+    "services": [
+     "Royal Gendarmerie"
+    ]
+   },
+   {
+    "numero": "19",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "15",
+    "services": [
+     "aide médicale urgente",
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "MZ": [
+   {
+    "numero": "117",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "119",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "198",
+    "services": [
+     "aide médicale urgente"
+    ]
+   }
+  ],
+  "NA": [
+   {
+    "numero": "10111",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "NE": [
+   {
+    "numero": "18",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "17",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "NG": [
+   {
+    "numero": "112",
+    "services": []
+   },
+   {
+    "numero": "199",
+    "services": [
+     "police",
+     "aide médicale urgente",
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "UG": [
+   {
+    "numero": "911",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "999",
+    "services": [
+     "police",
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": [
+     "police",
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "RW": [
+   {
+    "numero": "112",
+    "services": [
+     "police",
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "912",
+    "services": [
+     "aide médicale urgente"
+    ]
+   }
+  ],
+  "ST": [
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "SN": [
+   {
+    "numero": "17",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "18",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "SC": [
+   {
+    "numero": "999",
+    "services": []
+   },
+   {
+    "numero": "151",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": []
+   },
+   {
+    "numero": "133",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "SL": [
+   {
+    "numero": "019",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "999",
+    "services": [
+     "aide médicale urgente",
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "SO": [
+   {
+    "numero": "999",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "888",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "555",
+    "services": [
+     "aide médicale urgente"
+    ]
+   }
+  ],
+  "SD": [
+   {
+    "numero": "999",
+    "services": []
+   }
+  ],
+  "SZ": [
+   {
+    "numero": "933",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "999",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "977",
+    "services": [
+     "aide médicale urgente"
+    ]
+   }
+  ],
+  "KE": [
+   {
+    "numero": "112",
+    "services": [
+     "police",
+     "aide médicale urgente",
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "999",
+    "services": [
+     "police",
+     "aide médicale urgente",
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "ET": [
+   {
+    "numero": "911",
+    "services": []
+   },
+   {
+    "numero": "991",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "907",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "939",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "VI": [
+   {
+    "numero": "911",
+    "services": []
+   }
+  ],
+  "GH": [
+   {
+    "numero": "191",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "192",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "193",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "999",
+    "services": []
+   }
+  ],
+  "AM": [
+   {
+    "numero": "103",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "101",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": []
+   },
+   {
+    "numero": "102",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "RS": [
+   {
+    "numero": "92",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "194",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "93",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "193",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "94",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "192",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "AU": [
+   {
+    "numero": "000",
+    "services": []
+   },
+   {
+    "numero": "112",
+    "services": []
+   },
+   {
+    "numero": "106",
+    "services": []
+   }
+  ],
+  "AT": [
+   {
+    "numero": "120",
+    "services": [
+     "ÖAMTC"
+    ]
+   },
+   {
+    "numero": "122",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "144",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": []
+   },
+   {
+    "numero": "140",
+    "services": [
+     "secours en montagne"
+    ]
+   },
+   {
+    "numero": "123",
+    "services": [
+     "Auto-, Motor- und Radfahrerbund Österreichs"
+    ]
+   },
+   {
+    "numero": "133",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "AR": [
+   {
+    "numero": "101",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "100",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "117",
+    "services": []
+   },
+   {
+    "numero": "911",
+    "services": []
+   }
+  ],
+  "GR": [
+   {
+    "numero": "166",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "199",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": [
+     "urgence"
+    ]
+   },
+   {
+    "numero": "100",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "PE": [
+   {
+    "numero": "106",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "116",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "911",
+    "services": []
+   },
+   {
+    "numero": "117",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "111",
+    "services": []
+   },
+   {
+    "numero": "105",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "KH": [
+   {
+    "numero": "118",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "119",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "117",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "TR": [
+   {
+    "numero": "112",
+    "services": [
+     "police",
+     "pompier ou pompière",
+     "gendarmerie",
+     "Sahil güvenlik",
+     "Afet ve Acil Durum Yönetimi Başkanlığı",
+     "General Directorate of Forestry",
+     "traffic police"
+    ]
+   },
+   {
+    "numero": "177",
+    "services": [
+     "feu de végétation"
+    ]
+   }
+  ],
+  "PT": [
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "FO": [
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "AX": [
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "TL": [
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "KY": [
+   {
+    "numero": "911",
+    "services": []
+   }
+  ],
+  "TD": [
+   {
+    "numero": "18",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "17",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "NZ": [
+   {
+    "numero": "111",
+    "services": []
+   }
+  ],
+  "IN": [
+   {
+    "numero": "102",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "100",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "101",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "108",
+    "services": [
+     "urgence"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "TV": [
+   {
+    "numero": "911",
+    "services": []
+   }
+  ],
+  "TO": [
+   {
+    "numero": "928",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "911",
+    "services": []
+   },
+   {
+    "numero": "933",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "927",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "999",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "922",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "WS": [
+   {
+    "numero": "994",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "996",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "999",
+    "services": []
+   },
+   {
+    "numero": "995",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "SB": [
+   {
+    "numero": "988",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "911",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "999",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "VU": [
+   {
+    "numero": "11",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "113",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "PG": [
+   {
+    "numero": "110",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "111",
+    "services": [
+     "aide médicale urgente"
+    ]
+   }
+  ],
+  "PW": [
+   {
+    "numero": "911",
+    "services": []
+   }
+  ],
+  "NR": [
+   {
+    "numero": "110",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "111",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "FM": [
+   {
+    "numero": "111",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "911",
+    "services": []
+   }
+  ],
+  "MH": [
+   {
+    "numero": "911",
+    "services": []
+   }
+  ],
+  "KI": [
+   {
+    "numero": "195",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "999",
+    "services": []
+   },
+   {
+    "numero": "193",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "194",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "192",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "MN": [
+   {
+    "numero": "103",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "105",
+    "services": []
+   },
+   {
+    "numero": "102",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "101",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "FJ": [
+   {
+    "numero": "000",
+    "services": []
+   },
+   {
+    "numero": "919",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "911",
+    "services": []
+   }
+  ],
+  "VE": [
+   {
+    "numero": "171",
+    "services": [
+     "police",
+     "aide médicale urgente",
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "911",
+    "services": []
+   }
+  ],
+  "SR": [
+   {
+    "numero": "110",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "111",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "113",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": []
+   },
+   {
+    "numero": "115",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "PY": [
+   {
+    "numero": "911",
+    "services": []
+   }
+  ],
+  "GY": [
+   {
+    "numero": "911",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "999",
+    "services": []
+   },
+   {
+    "numero": "912",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "913",
+    "services": [
+     "aide médicale urgente"
+    ]
+   }
+  ],
+  "EC": [
+   {
+    "numero": "911",
+    "services": []
+   },
+   {
+    "numero": "102",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "131",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "101",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "CO": [
+   {
+    "numero": "123",
+    "services": []
+   }
+  ],
+  "BO": [
+   {
+    "numero": "119",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "911",
+    "services": []
+   },
+   {
+    "numero": "110",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "160",
+    "services": [
+     "aide médicale urgente"
+    ]
+   }
+  ],
+  "TT": [
+   {
+    "numero": "999",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "990",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "811",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "911",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "VC": [
+   {
+    "numero": "999",
+    "services": [
+     "police",
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "911",
+    "services": [
+     "police",
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "LC": [
+   {
+    "numero": "911",
+    "services": [
+     "aide médicale urgente",
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "999",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "KN": [
+   {
+    "numero": "911",
+    "services": []
+   }
+  ],
+  "JM": [
+   {
+    "numero": "911",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "119",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "110",
+    "services": [
+     "police",
+     "aide médicale urgente",
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "GD": [
+   {
+    "numero": "434",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "724",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "774",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "911",
+    "services": []
+   }
+  ],
+  "GT": [
+   {
+    "numero": "128",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "120",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "110",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "123",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "BS": [
+   {
+    "numero": "919",
+    "services": [
+     "police",
+     "aide médicale urgente",
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "UY": [
+   {
+    "numero": "911",
+    "services": []
+   }
+  ],
+  "AG": [
+   {
+    "numero": "911",
+    "services": [
+     "police",
+     "aide médicale urgente",
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "999",
+    "services": [
+     "police",
+     "aide médicale urgente",
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "HN": [
+   {
+    "numero": "199",
+    "services": [
+     "police",
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "198",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "DM": [
+   {
+    "numero": "999",
+    "services": []
+   }
+  ],
+  "JE": [
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "DO": [
+   {
+    "numero": "911",
+    "services": []
+   }
+  ],
+  "HT": [
+   {
+    "numero": "115",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "116",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "122",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "114",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "SV": [
+   {
+    "numero": "913",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "911",
+    "services": [
+     "police",
+     "aide médicale urgente",
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "IR": [
+   {
+    "numero": "110",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "115",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "125",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "IQ": [
+   {
+    "numero": "122",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "104",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "911",
+    "services": []
+   },
+   {
+    "numero": "115",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "EG": [
+   {
+    "numero": "122",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "180",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "123",
+    "services": [
+     "aide médicale urgente"
+    ]
+   }
+  ],
+  "CR": [
+   {
+    "numero": "911",
+    "services": []
+   },
+   {
+    "numero": "112",
+    "services": [
+     "police",
+     "aide médicale urgente",
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "IL": [
+   {
+    "numero": "101",
+    "services": [
+     "Magen David Adom"
+    ]
+   },
+   {
+    "numero": "102",
+    "services": [
+     "Service d'incendie en Israël"
+    ]
+   },
+   {
+    "numero": "100",
+    "services": [
+     "Police d'Israël"
+    ]
+   }
+  ],
+  "PA": [
+   {
+    "numero": "103",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "911",
+    "services": []
+   },
+   {
+    "numero": "104",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "YE": [
+   {
+    "numero": "199",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "JO": [
+   {
+    "numero": "911",
+    "services": []
+   }
+  ],
+  "NI": [
+   {
+    "numero": "120",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "128",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "115",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "118",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "KG": [
+   {
+    "numero": "101",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "102",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "161",
+    "services": []
+   },
+   {
+    "numero": "103",
+    "services": [
+     "aide médicale urgente"
+    ]
+   }
+  ],
+  "PK": [
+   {
+    "numero": "16",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "15",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "1122",
+    "services": [
+     "aide médicale urgente"
+    ]
+   }
+  ],
+  "QA": [
+   {
+    "numero": "112",
+    "services": [
+     "police",
+     "aide médicale urgente",
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "999",
+    "services": []
+   }
+  ],
+  "SA": [
+   {
+    "numero": "112",
+    "services": []
+   },
+   {
+    "numero": "911",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "999",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "LK": [
+   {
+    "numero": "119",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "110",
+    "services": [
+     "aide médicale urgente",
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "SY": [
+   {
+    "numero": "113",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "110",
+    "services": [
+     "aide médicale urgente"
+    ]
+   }
+  ],
+  "TJ": [
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "HK": [
+   {
+    "numero": "999",
+    "services": []
+   }
+  ],
+  "TW": [
+   {
+    "numero": "119",
+    "services": []
+   },
+   {
+    "numero": "112",
+    "services": []
+   },
+   {
+    "numero": "110",
+    "services": []
+   }
+  ],
+  "TH": [
+   {
+    "numero": "1669",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "199",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "191",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "TM": [
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "AE": [
+   {
+    "numero": "997",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": []
+   },
+   {
+    "numero": "999",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "998",
+    "services": [
+     "aide médicale urgente"
+    ]
+   }
+  ],
+  "VN": [
+   {
+    "numero": "115",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "114",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "113",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "KR": [
+   {
+    "numero": "119",
+    "services": [
+     "aide médicale urgente",
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "113",
+    "services": [
+     "contre-espionnage"
+    ]
+   }
+  ],
+  "AF": [
+   {
+    "numero": "112",
+    "services": []
+   },
+   {
+    "numero": "100",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "101",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "102",
+    "services": [
+     "aide médicale urgente"
+    ]
+   }
+  ],
+  "BD": [
+   {
+    "numero": "999",
+    "services": []
+   }
+  ],
+  "ML": [
+   {
+    "numero": "17",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": []
+   },
+   {
+    "numero": "18",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "15",
+    "services": [
+     "aide médicale urgente"
+    ]
+   }
+  ],
+  "AO": [
+   {
+    "numero": "115",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "113",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "116",
+    "services": [
+     "aide médicale urgente"
+    ]
+   }
+  ],
+  "BT": [
+   {
+    "numero": "113",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "110",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": [
+     "aide médicale urgente"
+    ]
+   }
+  ],
+  "BN": [
+   {
+    "numero": "993",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "991",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "995",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "TZ": [
+   {
+    "numero": "112",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "115",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "114",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "PH": [
+   {
+    "numero": "117",
+    "services": []
+   }
+  ],
+  "CF": [
+   {
+    "numero": "118",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "117",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "1220",
+    "services": [
+     "aide médicale urgente"
+    ]
+   }
+  ],
+  "TG": [
+   {
+    "numero": "172",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "117",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "171",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "118",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "TN": [
+   {
+    "numero": "197",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "190",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "193",
+    "services": [
+     "Garde nationale"
+    ]
+   },
+   {
+    "numero": "198",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "ZM": [
+   {
+    "numero": "991",
+    "services": []
+   },
+   {
+    "numero": "112",
+    "services": [
+     "police",
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "999",
+    "services": []
+   },
+   {
+    "numero": "992",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "993",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "911",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "ZW": [
+   {
+    "numero": "999",
+    "services": []
+   },
+   {
+    "numero": "995",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "994",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "993",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "SS": [
+   {
+    "numero": "911",
+    "services": []
+   }
+  ],
+  "BJ": [
+   {
+    "numero": "118",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "117",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "BW": [
+   {
+    "numero": "997",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "998",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "911",
+    "services": []
+   },
+   {
+    "numero": "999",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "BF": [
+   {
+    "numero": "18",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "17",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "IM": [
+   {
+    "numero": "112",
+    "services": []
+   },
+   {
+    "numero": "999",
+    "services": []
+   }
+  ],
+  "BI": [
+   {
+    "numero": "117",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "113",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "MX": [
+   {
+    "numero": "911",
+    "services": []
+   }
+  ],
+  "KM": [
+   {
+    "numero": "18",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "17",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "DJ": [
+   {
+    "numero": "18",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "19",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "17",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "GQ": [
+   {
+    "numero": "112",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "115",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "113",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "114",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "ER": [
+   {
+    "numero": "114",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "116",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "113",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "PR": [
+   {
+    "numero": "911",
+    "services": []
+   }
+  ],
+  "XK": [
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "GI": [
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "CH": [
+   {
+    "numero": "1414",
+    "services": [
+     "hélicoptère",
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "145",
+    "services": [
+     "empoisonnement"
+    ]
+   },
+   {
+    "numero": "118",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "140",
+    "services": [
+     "roadside assistance"
+    ]
+   },
+   {
+    "numero": "117",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": [
+     "secours d'urgence"
+    ]
+   },
+   {
+    "numero": "144",
+    "services": [
+     "aide médicale urgente"
+    ]
+   }
+  ],
+  "LB": [
+   {
+    "numero": "175",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "140",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "160",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "112",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "MV": [
+   {
+    "numero": "119",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "102",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "118",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "MY": [
+   {
+    "numero": "999",
+    "services": [
+     "police",
+     "aide médicale urgente",
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "MM": [
+   {
+    "numero": "199",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "192",
+    "services": [
+     "aide médicale urgente"
+    ]
+   },
+   {
+    "numero": "191",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "NP": [
+   {
+    "numero": "100",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "101",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "102",
+    "services": [
+     "aide médicale urgente"
+    ]
+   }
+  ],
+  "OM": [
+   {
+    "numero": "968",
+    "services": []
+   },
+   {
+    "numero": "112",
+    "services": [
+     "police",
+     "aide médicale urgente",
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "CG": [
+   {
+    "numero": "117",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "118",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   }
+  ],
+  "CD": [
+   {
+    "numero": "113",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "114",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "118",
+    "services": [
+     "police"
+    ]
+   }
+  ],
+  "KW": [
+   {
+    "numero": "112",
+    "services": []
+   }
+  ],
+  "LA": [
+   {
+    "numero": "190",
+    "services": [
+     "corps de sapeurs-pompiers"
+    ]
+   },
+   {
+    "numero": "191",
+    "services": [
+     "police"
+    ]
+   },
+   {
+    "numero": "195",
+    "services": [
+     "aide médicale urgente"
+    ]
+   }
+  ]
+ }
+}

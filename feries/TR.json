@@ -1,0 +1,145 @@
+{
+ "date": "2026-11-21T19:16:08Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Yılbaşı"
+  },
+  {
+   "date": "2026-03-20",
+   "nom": "Eid al-Fitr First Day",
+   "nom_local": "Ramazan Bayramı 1. Gün"
+  },
+  {
+   "date": "2026-03-21",
+   "nom": "Eid al-Fitr Second Day",
+   "nom_local": "Ramazan Bayramı 2. Gün"
+  },
+  {
+   "date": "2026-03-22",
+   "nom": "Eid al-Fitr Third Day",
+   "nom_local": "Ramazan Bayramı 3. Gün"
+  },
+  {
+   "date": "2026-04-23",
+   "nom": "National Independence & Children's Day",
+   "nom_local": "Ulusal Egemenlik ve Çocuk Bayramı"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "Labour Day",
+   "nom_local": "İşçi Bayramı"
+  },
+  {
+   "date": "2026-05-19",
+   "nom": "Atatürk Commemoration & Youth Day",
+   "nom_local": "Atatürk'ü Anma, Gençlik ve Spor Bayramı"
+  },
+  {
+   "date": "2026-05-27",
+   "nom": "Eid al-Adha First Day",
+   "nom_local": "Kurban Bayramı 1. Gün"
+  },
+  {
+   "date": "2026-05-28",
+   "nom": "Eid al-Adha Second Day",
+   "nom_local": "Kurban Bayramı 2. Gün"
+  },
+  {
+   "date": "2026-05-29",
+   "nom": "Eid al-Adha Third Day",
+   "nom_local": "Kurban Bayramı 3. Gün"
+  },
+  {
+   "date": "2026-05-30",
+   "nom": "Eid al-Adha Fourth Day",
+   "nom_local": "Kurban Bayramı 4. Gün"
+  },
+  {
+   "date": "2026-07-15",
+   "nom": "Democracy and National Unity Day",
+   "nom_local": "Demokrasi ve Millî Birlik Günü"
+  },
+  {
+   "date": "2026-08-30",
+   "nom": "Victory Day",
+   "nom_local": "Zafer Bayramı"
+  },
+  {
+   "date": "2026-10-29",
+   "nom": "Republic Day",
+   "nom_local": "Cumhuriyet Bayramı"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Yılbaşı"
+  },
+  {
+   "date": "2027-03-10",
+   "nom": "Eid al-Fitr First Day (Tentative Date)",
+   "nom_local": "Ramazan Bayramı 1. Gün (Tentative Date)"
+  },
+  {
+   "date": "2027-03-11",
+   "nom": "Eid al-Fitr Second Day (Tentative Date)",
+   "nom_local": "Ramazan Bayramı 2. Gün (Tentative Date)"
+  },
+  {
+   "date": "2027-03-12",
+   "nom": "Eid al-Fitr Third Day (Tentative Date)",
+   "nom_local": "Ramazan Bayramı 3. Gün (Tentative Date)"
+  },
+  {
+   "date": "2027-04-23",
+   "nom": "National Independence & Children's Day",
+   "nom_local": "Ulusal Egemenlik ve Çocuk Bayramı"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Labour Day",
+   "nom_local": "İşçi Bayramı"
+  },
+  {
+   "date": "2027-05-16",
+   "nom": "Eid al-Adha First Day (Tentative Date)",
+   "nom_local": "Kurban Bayramı 1. Gün (Tentative Date)"
+  },
+  {
+   "date": "2027-05-17",
+   "nom": "Eid al-Adha Second Day (Tentative Date)",
+   "nom_local": "Kurban Bayramı 2. Gün (Tentative Date)"
+  },
+  {
+   "date": "2027-05-18",
+   "nom": "Eid al-Adha Third Day (Tentative Date)",
+   "nom_local": "Kurban Bayramı 3. Gün (Tentative Date)"
+  },
+  {
+   "date": "2027-05-19",
+   "nom": "Atatürk Commemoration & Youth Day",
+   "nom_local": "Atatürk'ü Anma, Gençlik ve Spor Bayramı"
+  },
+  {
+   "date": "2027-05-19",
+   "nom": "Eid al-Adha Fourth Day (Tentative Date)",
+   "nom_local": "Kurban Bayramı 4. Gün (Tentative Date)"
+  },
+  {
+   "date": "2027-07-15",
+   "nom": "Democracy and National Unity Day",
+   "nom_local": "Demokrasi ve Millî Birlik Günü"
+  },
+  {
+   "date": "2027-08-30",
+   "nom": "Victory Day",
+   "nom_local": "Zafer Bayramı"
+  },
+  {
+   "date": "2027-10-29",
+   "nom": "Republic Day",
+   "nom_local": "Cumhuriyet Bayramı"
+  }
+ ]
+}

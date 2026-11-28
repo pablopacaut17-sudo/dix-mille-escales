@@ -1,0 +1,125 @@
+{
+ "date": "2026-11-21T19:14:07Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "New Year's Day"
+  },
+  {
+   "date": "2026-03-09",
+   "nom": "Commonwealth Day",
+   "nom_local": "Commonwealth Day"
+  },
+  {
+   "date": "2026-04-03",
+   "nom": "Good Friday",
+   "nom_local": "Good Friday"
+  },
+  {
+   "date": "2026-04-06",
+   "nom": "Easter Monday",
+   "nom_local": "Easter Monday"
+  },
+  {
+   "date": "2026-04-28",
+   "nom": "Workers' Memorial Day",
+   "nom_local": "Workers' Memorial Day"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "May Day Bank Holiday",
+   "nom_local": "May Day Bank Holiday"
+  },
+  {
+   "date": "2026-05-25",
+   "nom": "Spring Bank Holiday",
+   "nom_local": "Spring Bank Holiday"
+  },
+  {
+   "date": "2026-06-08",
+   "nom": "Queen's Birthday",
+   "nom_local": "Queen's Birthday"
+  },
+  {
+   "date": "2026-08-31",
+   "nom": "Summer Bank Holiday",
+   "nom_local": "Summer Bank Holiday"
+  },
+  {
+   "date": "2026-09-10",
+   "nom": "Gibraltar National Day",
+   "nom_local": "Gibraltar National Day"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Christmas Day"
+  },
+  {
+   "date": "2026-12-26",
+   "nom": "Boxing Day",
+   "nom_local": "St. Stephen's Day"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "New Year's Day"
+  },
+  {
+   "date": "2027-03-08",
+   "nom": "Commonwealth Day",
+   "nom_local": "Commonwealth Day"
+  },
+  {
+   "date": "2027-03-26",
+   "nom": "Good Friday",
+   "nom_local": "Good Friday"
+  },
+  {
+   "date": "2027-03-29",
+   "nom": "Easter Monday",
+   "nom_local": "Easter Monday"
+  },
+  {
+   "date": "2027-04-28",
+   "nom": "Workers' Memorial Day",
+   "nom_local": "Workers' Memorial Day"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "May Day Bank Holiday",
+   "nom_local": "May Day Bank Holiday"
+  },
+  {
+   "date": "2027-05-31",
+   "nom": "Spring Bank Holiday",
+   "nom_local": "Spring Bank Holiday"
+  },
+  {
+   "date": "2027-06-14",
+   "nom": "Queen's Birthday",
+   "nom_local": "Queen's Birthday"
+  },
+  {
+   "date": "2027-08-30",
+   "nom": "Summer Bank Holiday",
+   "nom_local": "Summer Bank Holiday"
+  },
+  {
+   "date": "2027-09-10",
+   "nom": "Gibraltar National Day",
+   "nom_local": "Gibraltar National Day"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Christmas Day"
+  },
+  {
+   "date": "2027-12-26",
+   "nom": "Boxing Day",
+   "nom_local": "St. Stephen's Day"
+  }
+ ]
+}

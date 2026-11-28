@@ -1,0 +1,115 @@
+{
+ "date": "2026-11-21T19:13:48Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Año Nuevo"
+  },
+  {
+   "date": "2026-02-16",
+   "nom": "Carnival",
+   "nom_local": "Carnaval"
+  },
+  {
+   "date": "2026-02-17",
+   "nom": "Carnival",
+   "nom_local": "Carnaval"
+  },
+  {
+   "date": "2026-04-03",
+   "nom": "Good Friday",
+   "nom_local": "Viernes Santo"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "International Workers' Day",
+   "nom_local": "Día del Trabajo"
+  },
+  {
+   "date": "2026-05-25",
+   "nom": "The Battle of Pichincha",
+   "nom_local": "Batalla de Pichincha"
+  },
+  {
+   "date": "2026-08-10",
+   "nom": "Declaration of Independence of Quito",
+   "nom_local": "Primer Grito de Independencia"
+  },
+  {
+   "date": "2026-10-09",
+   "nom": "Independence of Guayaquil",
+   "nom_local": "Independencia de Guayaquil"
+  },
+  {
+   "date": "2026-11-02",
+   "nom": "All Souls' Day",
+   "nom_local": "Día de los Difuntos, Día de Muertos"
+  },
+  {
+   "date": "2026-11-02",
+   "nom": "Independence of Cuenca",
+   "nom_local": "Independencia de Cuenca"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Día de Navidad"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Año Nuevo"
+  },
+  {
+   "date": "2027-02-08",
+   "nom": "Carnival",
+   "nom_local": "Carnaval"
+  },
+  {
+   "date": "2027-02-09",
+   "nom": "Carnival",
+   "nom_local": "Carnaval"
+  },
+  {
+   "date": "2027-03-26",
+   "nom": "Good Friday",
+   "nom_local": "Viernes Santo"
+  },
+  {
+   "date": "2027-04-30",
+   "nom": "International Workers' Day",
+   "nom_local": "Día del Trabajo"
+  },
+  {
+   "date": "2027-05-24",
+   "nom": "The Battle of Pichincha",
+   "nom_local": "Batalla de Pichincha"
+  },
+  {
+   "date": "2027-08-09",
+   "nom": "Declaration of Independence of Quito",
+   "nom_local": "Primer Grito de Independencia"
+  },
+  {
+   "date": "2027-10-08",
+   "nom": "Independence of Guayaquil",
+   "nom_local": "Independencia de Guayaquil"
+  },
+  {
+   "date": "2027-11-01",
+   "nom": "All Souls' Day",
+   "nom_local": "Día de los Difuntos, Día de Muertos"
+  },
+  {
+   "date": "2027-11-05",
+   "nom": "Independence of Cuenca",
+   "nom_local": "Independencia de Cuenca"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Día de Navidad"
+  }
+ ]
+}

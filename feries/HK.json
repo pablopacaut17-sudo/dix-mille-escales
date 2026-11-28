@@ -1,0 +1,175 @@
+{
+ "date": "2026-11-21T19:14:18Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "元旦新年"
+  },
+  {
+   "date": "2026-02-17",
+   "nom": "Lunar New Year",
+   "nom_local": "農曆年初一"
+  },
+  {
+   "date": "2026-02-18",
+   "nom": "Second day of Lunar New Year",
+   "nom_local": "農曆年初二"
+  },
+  {
+   "date": "2026-02-19",
+   "nom": "Third day of Lunar New Year",
+   "nom_local": "農曆年初三"
+  },
+  {
+   "date": "2026-04-03",
+   "nom": "Good Friday",
+   "nom_local": "耶穌受難節"
+  },
+  {
+   "date": "2026-04-04",
+   "nom": "Holy Saturday",
+   "nom_local": "耶穌受難節翌日"
+  },
+  {
+   "date": "2026-04-06",
+   "nom": "Ching Ming Festival",
+   "nom_local": "清明節"
+  },
+  {
+   "date": "2026-04-07",
+   "nom": "Easter Monday",
+   "nom_local": "復活節星期一"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "Labour Day",
+   "nom_local": "勞動節"
+  },
+  {
+   "date": "2026-05-25",
+   "nom": "Buddha's Birthday",
+   "nom_local": "佛誕"
+  },
+  {
+   "date": "2026-06-19",
+   "nom": "Dragon Boat Festival",
+   "nom_local": "端午節"
+  },
+  {
+   "date": "2026-07-01",
+   "nom": "Hong Kong Special Administrative Region Establishment Day",
+   "nom_local": "香港特別行政區成立紀念日"
+  },
+  {
+   "date": "2026-09-26",
+   "nom": "Day following the Mid-Autumn Festival",
+   "nom_local": "中秋節翌日"
+  },
+  {
+   "date": "2026-10-01",
+   "nom": "National Day",
+   "nom_local": "中華人民共和國國慶日"
+  },
+  {
+   "date": "2026-10-19",
+   "nom": "Chung Yeung Festival",
+   "nom_local": "重陽節"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "聖誕節"
+  },
+  {
+   "date": "2026-12-26",
+   "nom": "Boxing Day",
+   "nom_local": "聖誕節翌日"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "元旦新年"
+  },
+  {
+   "date": "2027-02-06",
+   "nom": "Lunar New Year",
+   "nom_local": "農曆年初一"
+  },
+  {
+   "date": "2027-02-08",
+   "nom": "Second day of Lunar New Year",
+   "nom_local": "農曆年初二"
+  },
+  {
+   "date": "2027-02-09",
+   "nom": "Third day of Lunar New Year",
+   "nom_local": "農曆年初三"
+  },
+  {
+   "date": "2027-03-26",
+   "nom": "Good Friday",
+   "nom_local": "耶穌受難節"
+  },
+  {
+   "date": "2027-03-27",
+   "nom": "Holy Saturday",
+   "nom_local": "耶穌受難節翌日"
+  },
+  {
+   "date": "2027-03-29",
+   "nom": "Easter Monday",
+   "nom_local": "復活節星期一"
+  },
+  {
+   "date": "2027-04-05",
+   "nom": "Ching Ming Festival",
+   "nom_local": "清明節"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Labour Day",
+   "nom_local": "勞動節"
+  },
+  {
+   "date": "2027-05-13",
+   "nom": "Buddha's Birthday",
+   "nom_local": "佛誕"
+  },
+  {
+   "date": "2027-06-09",
+   "nom": "Dragon Boat Festival",
+   "nom_local": "端午節"
+  },
+  {
+   "date": "2027-07-01",
+   "nom": "Hong Kong Special Administrative Region Establishment Day",
+   "nom_local": "香港特別行政區成立紀念日"
+  },
+  {
+   "date": "2027-09-16",
+   "nom": "Day following the Mid-Autumn Festival",
+   "nom_local": "中秋節翌日"
+  },
+  {
+   "date": "2027-10-01",
+   "nom": "National Day",
+   "nom_local": "中華人民共和國國慶日"
+  },
+  {
+   "date": "2027-10-08",
+   "nom": "Chung Yeung Festival",
+   "nom_local": "重陽節"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "聖誕節"
+  },
+  {
+   "date": "2027-12-27",
+   "nom": "Boxing Day",
+   "nom_local": "聖誕節翌日"
+  }
+ ]
+}

@@ -1,0 +1,1677 @@
+{
+ "date": "2026-11-22T18:00:22Z",
+ "source": "Wikidata",
+ "pays": {
+  "IE": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "FI": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "AQ": {
+   "prises": [],
+   "tension": null,
+   "frequence": null,
+   "conduite": null
+  },
+  "KE": {
+   "prises": [],
+   "tension": 240,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "GH": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "IS": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "EE": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "UA": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "MD": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "MK": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "GL": {
+   "prises": [
+    "E",
+    "K"
+   ],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "HR": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "AZ": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "CY": {
+   "prises": [],
+   "tension": 240,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "MC": {
+   "prises": [
+    "E"
+   ],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "UZ": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "KH": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "WS": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "FJ": {
+   "prises": [],
+   "tension": 240,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "PY": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "GY": {
+   "prises": [],
+   "tension": 240,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "KN": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "JM": {
+   "prises": [],
+   "tension": 116,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "GT": {
+   "prises": [],
+   "tension": 120,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "HT": {
+   "prises": [],
+   "tension": 110,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "IL": {
+   "prises": [
+    "H"
+   ],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "YE": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "JO": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "LA": {
+   "prises": [
+    "E"
+   ],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "MV": {
+   "prises": [
+    "K",
+    "L"
+   ],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "MY": {
+   "prises": [],
+   "tension": 240,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "MM": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "OM": {
+   "prises": [],
+   "tension": 240,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "QA": {
+   "prises": [],
+   "tension": 240,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "LK": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "TH": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "TM": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "VN": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "NO": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "HU": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "LU": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "DK": {
+   "prises": [
+    "E",
+    "K"
+   ],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "PL": {
+   "prises": [
+    "E"
+   ],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "LT": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "GR": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "UY": {
+   "prises": [
+    "L"
+   ],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "RU": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "DE": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "BY": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "SK": {
+   "prises": [
+    "E"
+   ],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "RO": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "BA": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "GE": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "MT": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "SM": {
+   "prises": [
+    "L"
+   ],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "CU": {
+   "prises": [],
+   "tension": 110,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "BZ": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "DZ": {
+   "prises": [
+    "E"
+   ],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "PE": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "KP": {
+   "prises": [],
+   "tension": 110,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "TD": {
+   "prises": [
+    "E"
+   ],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "NZ": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "TV": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "TO": {
+   "prises": [],
+   "tension": 240,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "SB": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "PG": {
+   "prises": [],
+   "tension": 240,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "PW": {
+   "prises": [],
+   "tension": 120,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "NR": {
+   "prises": [],
+   "tension": 240,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "MH": {
+   "prises": [],
+   "tension": null,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "SR": {
+   "prises": [],
+   "tension": 127,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "CO": {
+   "prises": [],
+   "tension": 110,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "VC": {
+   "prises": [
+    "E",
+    "K"
+   ],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "LC": {
+   "prises": [],
+   "tension": 240,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "BS": {
+   "prises": [],
+   "tension": 120,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "DO": {
+   "prises": [],
+   "tension": 110,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "SV": {
+   "prises": [],
+   "tension": 115,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "IQ": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "NI": {
+   "prises": [],
+   "tension": 120,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "LB": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "NP": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "CA": {
+   "prises": [],
+   "tension": 120,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "JP": {
+   "prises": [],
+   "tension": 100,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "ES": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "US": {
+   "prises": [],
+   "tension": 120,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "BE": {
+   "prises": [
+    "E"
+   ],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "SE": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "IT": {
+   "prises": [
+    "L"
+   ],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "CH": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "AT": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "TR": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "PT": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "NL": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "EG": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "MX": {
+   "prises": [],
+   "tension": 127,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "ET": {
+   "prises": [
+    "E",
+    "L"
+   ],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "FR": {
+   "prises": [
+    "E"
+   ],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "GB": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "CN": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "BR": {
+   "prises": [],
+   "tension": 127,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "LV": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "CZ": {
+   "prises": [
+    "E"
+   ],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "SI": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "BG": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "AL": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "AD": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "KZ": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "ME": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "VA": {
+   "prises": [],
+   "tension": null,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "BB": {
+   "prises": [],
+   "tension": 115,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "ID": {
+   "prises": [],
+   "tension": 127,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "ZA": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "CL": {
+   "prises": [
+    "L"
+   ],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "SG": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "LI": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "BH": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "AM": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "RS": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "AU": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "AR": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "TL": {
+   "prises": [
+    "E"
+   ],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "IN": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "VU": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "FM": {
+   "prises": [],
+   "tension": 120,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "TJ": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "TW": {
+   "prises": [],
+   "tension": 110,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "KR": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "AF": {
+   "prises": [],
+   "tension": 240,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "BD": {
+   "prises": [
+    "K"
+   ],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "BT": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "BN": {
+   "prises": [],
+   "tension": 240,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "PH": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "ZM": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "BJ": {
+   "prises": [
+    "E"
+   ],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "BW": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "BI": {
+   "prises": [
+    "E"
+   ],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "CD": {
+   "prises": [
+    "E"
+   ],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "GA": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "GM": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "GN": {
+   "prises": [
+    "K"
+   ],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "CI": {
+   "prises": [
+    "E"
+   ],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "CM": {
+   "prises": [
+    "E"
+   ],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "LR": {
+   "prises": [
+    "E"
+   ],
+   "tension": 120,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "LY": {
+   "prises": [
+    "L"
+   ],
+   "tension": 127,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "MG": {
+   "prises": [
+    "E",
+    "K"
+   ],
+   "tension": 127,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "MW": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "MR": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "MU": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "MZ": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "NE": {
+   "prises": [
+    "E"
+   ],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "NG": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "UG": {
+   "prises": [],
+   "tension": 240,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "ST": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "SC": {
+   "prises": [],
+   "tension": 240,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "SL": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "SZ": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "GI": {
+   "prises": [],
+   "tension": 240,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "HK": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "IM": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "MO": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "MN": {
+   "prises": [
+    "E"
+   ],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "VE": {
+   "prises": [],
+   "tension": 120,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "EC": {
+   "prises": [],
+   "tension": 120,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "SA": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "SY": {
+   "prises": [
+    "E",
+    "L"
+   ],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "KI": {
+   "prises": [],
+   "tension": 240,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "TZ": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "CF": {
+   "prises": [
+    "E"
+   ],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "TG": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "ZW": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "BF": {
+   "prises": [
+    "E"
+   ],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "GQ": {
+   "prises": [
+    "E"
+   ],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "XK": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "GF": {
+   "prises": [
+    "E"
+   ],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "FO": {
+   "prises": [
+    "E",
+    "K"
+   ],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "AX": {
+   "prises": [],
+   "tension": null,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "FK": {
+   "prises": [],
+   "tension": 240,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "GU": {
+   "prises": [],
+   "tension": 110,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "MQ": {
+   "prises": [
+    "E"
+   ],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "AW": {
+   "prises": [],
+   "tension": 127,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "VG": {
+   "prises": [],
+   "tension": 110,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "PF": {
+   "prises": [],
+   "tension": null,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "CX": {
+   "prises": [],
+   "tension": null,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "NC": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "MF": {
+   "prises": [],
+   "tension": 120,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "HM": {
+   "prises": [],
+   "tension": null,
+   "frequence": null,
+   "conduite": null
+  },
+  "DG": {
+   "prises": [],
+   "tension": null,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "SJ": {
+   "prises": [],
+   "tension": null,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "CQ": {
+   "prises": [],
+   "tension": null,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "SU": {
+   "prises": [],
+   "tension": null,
+   "frequence": null,
+   "conduite": null
+  },
+  "MP": {
+   "prises": [],
+   "tension": null,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "UM": {
+   "prises": [],
+   "tension": null,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "DD": {
+   "prises": [],
+   "tension": null,
+   "frequence": null,
+   "conduite": null
+  },
+  "RE": {
+   "prises": [
+    "E"
+   ],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "TC": {
+   "prises": [],
+   "tension": 120,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "BV": {
+   "prises": [],
+   "tension": null,
+   "frequence": null,
+   "conduite": null
+  },
+  "AN": {
+   "prises": [],
+   "tension": 127,
+   "frequence": null,
+   "conduite": null
+  },
+  "GG": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "SX": {
+   "prises": [],
+   "tension": null,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "BQ": {
+   "prises": [],
+   "tension": null,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "NF": {
+   "prises": [],
+   "tension": null,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "GS": {
+   "prises": [],
+   "tension": null,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "WF": {
+   "prises": [],
+   "tension": null,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "PN": {
+   "prises": [],
+   "tension": null,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "IO": {
+   "prises": [],
+   "tension": null,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "CP": {
+   "prises": [],
+   "tension": null,
+   "frequence": null,
+   "conduite": null
+  },
+  "SH": {
+   "prises": [],
+   "tension": null,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "AC": {
+   "prises": [],
+   "tension": null,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "TA": {
+   "prises": [],
+   "tension": null,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "BO": {
+   "prises": [],
+   "tension": 115,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "TT": {
+   "prises": [],
+   "tension": 115,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "GD": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "AG": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "HN": {
+   "prises": [],
+   "tension": 110,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "DM": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "JE": {
+   "prises": [],
+   "tension": null,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "IR": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "CR": {
+   "prises": [],
+   "tension": 120,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "PA": {
+   "prises": [],
+   "tension": 110,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "KG": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "KW": {
+   "prises": [],
+   "tension": 240,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "PK": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "AE": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "ML": {
+   "prises": [
+    "E"
+   ],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "AO": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "TN": {
+   "prises": [
+    "E"
+   ],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "SS": {
+   "prises": [],
+   "tension": null,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "KM": {
+   "prises": [
+    "E"
+   ],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "CG": {
+   "prises": [
+    "E"
+   ],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "DJ": {
+   "prises": [
+    "E"
+   ],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "ER": {
+   "prises": [
+    "L"
+   ],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "GW": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "CV": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "LS": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "MA": {
+   "prises": [
+    "E"
+   ],
+   "tension": 127,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "NA": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "RW": {
+   "prises": [
+    "E"
+   ],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "SN": {
+   "prises": [
+    "E",
+    "K"
+   ],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "SO": {
+   "prises": [],
+   "tension": 220,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "SD": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "PR": {
+   "prises": [],
+   "tension": 120,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "KY": {
+   "prises": [],
+   "tension": 120,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "EH": {
+   "prises": [],
+   "tension": null,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "VI": {
+   "prises": [],
+   "tension": 110,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "MS": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "AS": {
+   "prises": [],
+   "tension": 120,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "GP": {
+   "prises": [
+    "E"
+   ],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "YT": {
+   "prises": [],
+   "tension": null,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "BM": {
+   "prises": [],
+   "tension": 120,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "AI": {
+   "prises": [],
+   "tension": 110,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "CW": {
+   "prises": [],
+   "tension": 120,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "BL": {
+   "prises": [],
+   "tension": null,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "CK": {
+   "prises": [],
+   "tension": 240,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "NU": {
+   "prises": [],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "PM": {
+   "prises": [],
+   "tension": null,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "CC": {
+   "prises": [],
+   "tension": null,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "YU": {
+   "prises": [],
+   "tension": null,
+   "frequence": null,
+   "conduite": null
+  },
+  "TK": {
+   "prises": [],
+   "tension": null,
+   "frequence": null,
+   "conduite": "gauche"
+  },
+  "TF": {
+   "prises": [],
+   "tension": null,
+   "frequence": null,
+   "conduite": "droite"
+  },
+  "PC": {
+   "prises": [],
+   "tension": null,
+   "frequence": null,
+   "conduite": null
+  },
+  "PS": {
+   "prises": [
+    "H"
+   ],
+   "tension": 230,
+   "frequence": null,
+   "conduite": "droite"
+  }
+ }
+}

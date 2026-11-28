@@ -1,0 +1,45 @@
+{
+ "date": "2026-11-21T19:13:28Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Neujahr"
+  },
+  {
+   "date": "2026-05-14",
+   "nom": "Ascension Day",
+   "nom_local": "Auffahrt"
+  },
+  {
+   "date": "2026-08-01",
+   "nom": "Swiss National Day",
+   "nom_local": "Bundesfeier"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Weihnachten"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Neujahr"
+  },
+  {
+   "date": "2027-05-06",
+   "nom": "Ascension Day",
+   "nom_local": "Auffahrt"
+  },
+  {
+   "date": "2027-08-01",
+   "nom": "Swiss National Day",
+   "nom_local": "Bundesfeier"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Weihnachten"
+  }
+ ]
+}

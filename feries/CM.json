@@ -1,0 +1,85 @@
+{
+ "date": "2026-11-21T19:13:32Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "New Year's Day"
+  },
+  {
+   "date": "2026-02-11",
+   "nom": "Youth Day",
+   "nom_local": "Youth Day"
+  },
+  {
+   "date": "2026-04-03",
+   "nom": "Good Friday",
+   "nom_local": "Good Friday"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Labour Day"
+  },
+  {
+   "date": "2026-05-14",
+   "nom": "Ascension Day",
+   "nom_local": "Ascension Day"
+  },
+  {
+   "date": "2026-05-20",
+   "nom": "National Day",
+   "nom_local": "National Day"
+  },
+  {
+   "date": "2026-08-15",
+   "nom": "Assumption Day",
+   "nom_local": "Assumption Day"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Christmas Day"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "New Year's Day"
+  },
+  {
+   "date": "2027-02-11",
+   "nom": "Youth Day",
+   "nom_local": "Youth Day"
+  },
+  {
+   "date": "2027-03-26",
+   "nom": "Good Friday",
+   "nom_local": "Good Friday"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Labour Day"
+  },
+  {
+   "date": "2027-05-06",
+   "nom": "Ascension Day",
+   "nom_local": "Ascension Day"
+  },
+  {
+   "date": "2027-05-20",
+   "nom": "National Day",
+   "nom_local": "National Day"
+  },
+  {
+   "date": "2027-08-15",
+   "nom": "Assumption Day",
+   "nom_local": "Assumption Day"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Christmas Day"
+  }
+ ]
+}

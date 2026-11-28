@@ -1,0 +1,95 @@
+{
+ "date": "2026-11-21T19:16:03Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "New Year's Day"
+  },
+  {
+   "date": "2026-03-08",
+   "nom": "International Women's Day",
+   "nom_local": "International Women's Day"
+  },
+  {
+   "date": "2026-04-06",
+   "nom": "Easter Monday",
+   "nom_local": "Easter Monday"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Labour Day"
+  },
+  {
+   "date": "2026-08-11",
+   "nom": "Independence Day",
+   "nom_local": "Independence Day"
+  },
+  {
+   "date": "2026-11-01",
+   "nom": "All Saints' Day",
+   "nom_local": "All Saints' Day"
+  },
+  {
+   "date": "2026-11-28",
+   "nom": "Republic Day",
+   "nom_local": "Republic Day"
+  },
+  {
+   "date": "2026-12-01",
+   "nom": "Freedom and Democracy Day",
+   "nom_local": "Freedom and Democracy Day"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Christmas Day"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "New Year's Day"
+  },
+  {
+   "date": "2027-03-08",
+   "nom": "International Women's Day",
+   "nom_local": "International Women's Day"
+  },
+  {
+   "date": "2027-03-29",
+   "nom": "Easter Monday",
+   "nom_local": "Easter Monday"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Labour Day"
+  },
+  {
+   "date": "2027-08-11",
+   "nom": "Independence Day",
+   "nom_local": "Independence Day"
+  },
+  {
+   "date": "2027-11-01",
+   "nom": "All Saints' Day",
+   "nom_local": "All Saints' Day"
+  },
+  {
+   "date": "2027-11-28",
+   "nom": "Republic Day",
+   "nom_local": "Republic Day"
+  },
+  {
+   "date": "2027-12-01",
+   "nom": "Freedom and Democracy Day",
+   "nom_local": "Freedom and Democracy Day"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Christmas Day"
+  }
+ ]
+}

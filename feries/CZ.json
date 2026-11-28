@@ -1,0 +1,135 @@
+{
+ "date": "2026-11-21T19:13:41Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Den obnovy samostatného českého státu; Nový rok"
+  },
+  {
+   "date": "2026-04-03",
+   "nom": "Good Friday",
+   "nom_local": "Velký pátek"
+  },
+  {
+   "date": "2026-04-06",
+   "nom": "Easter Monday",
+   "nom_local": "Velikonoční pondělí"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Svátek práce"
+  },
+  {
+   "date": "2026-05-08",
+   "nom": "Liberation Day",
+   "nom_local": "Den vítězství"
+  },
+  {
+   "date": "2026-07-05",
+   "nom": "Saints Cyril and Methodius Day",
+   "nom_local": "Den slovanských věrozvěstů Cyrila a Metoděje"
+  },
+  {
+   "date": "2026-07-06",
+   "nom": "Jan Hus Day",
+   "nom_local": "Den upálení mistra Jana Husa"
+  },
+  {
+   "date": "2026-09-28",
+   "nom": "St. Wenceslas Day",
+   "nom_local": "Den české státnosti"
+  },
+  {
+   "date": "2026-10-28",
+   "nom": "Independent Czechoslovak State Day",
+   "nom_local": "Den vzniku samostatného československého státu"
+  },
+  {
+   "date": "2026-11-17",
+   "nom": "Struggle for Freedom and Democracy Day",
+   "nom_local": "Den boje za svobodu a demokracii a Mezinárodní den studentstva"
+  },
+  {
+   "date": "2026-12-24",
+   "nom": "Christmas Eve",
+   "nom_local": "Štědrý den"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "1. svátek vánoční"
+  },
+  {
+   "date": "2026-12-26",
+   "nom": "St. Stephen's Day",
+   "nom_local": "2. svátek vánoční"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Den obnovy samostatného českého státu; Nový rok"
+  },
+  {
+   "date": "2027-03-26",
+   "nom": "Good Friday",
+   "nom_local": "Velký pátek"
+  },
+  {
+   "date": "2027-03-29",
+   "nom": "Easter Monday",
+   "nom_local": "Velikonoční pondělí"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Svátek práce"
+  },
+  {
+   "date": "2027-05-08",
+   "nom": "Liberation Day",
+   "nom_local": "Den vítězství"
+  },
+  {
+   "date": "2027-07-05",
+   "nom": "Saints Cyril and Methodius Day",
+   "nom_local": "Den slovanských věrozvěstů Cyrila a Metoděje"
+  },
+  {
+   "date": "2027-07-06",
+   "nom": "Jan Hus Day",
+   "nom_local": "Den upálení mistra Jana Husa"
+  },
+  {
+   "date": "2027-09-28",
+   "nom": "St. Wenceslas Day",
+   "nom_local": "Den české státnosti"
+  },
+  {
+   "date": "2027-10-28",
+   "nom": "Independent Czechoslovak State Day",
+   "nom_local": "Den vzniku samostatného československého státu"
+  },
+  {
+   "date": "2027-11-17",
+   "nom": "Struggle for Freedom and Democracy Day",
+   "nom_local": "Den boje za svobodu a demokracii a Mezinárodní den studentstva"
+  },
+  {
+   "date": "2027-12-24",
+   "nom": "Christmas Eve",
+   "nom_local": "Štědrý den"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "1. svátek vánoční"
+  },
+  {
+   "date": "2027-12-26",
+   "nom": "St. Stephen's Day",
+   "nom_local": "2. svátek vánoční"
+  }
+ ]
+}

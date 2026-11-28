@@ -1,0 +1,115 @@
+{
+ "date": "2026-11-21T19:14:06Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "New Year's Day"
+  },
+  {
+   "date": "2026-01-07",
+   "nom": "Constitution Day",
+   "nom_local": "Constitution Day"
+  },
+  {
+   "date": "2026-03-06",
+   "nom": "Independence Day",
+   "nom_local": "Independence Day"
+  },
+  {
+   "date": "2026-04-03",
+   "nom": "Good Friday",
+   "nom_local": "Good Friday"
+  },
+  {
+   "date": "2026-04-06",
+   "nom": "Easter Monday",
+   "nom_local": "Easter Monday"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "May Day",
+   "nom_local": "May Day"
+  },
+  {
+   "date": "2026-07-01",
+   "nom": "Republic Day",
+   "nom_local": "Republic Day"
+  },
+  {
+   "date": "2026-09-21",
+   "nom": "Founders Day",
+   "nom_local": "Founders Day"
+  },
+  {
+   "date": "2026-12-04",
+   "nom": "Farmers' Day",
+   "nom_local": "Farmers' Day"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Christmas Day"
+  },
+  {
+   "date": "2026-12-26",
+   "nom": "Boxing Day",
+   "nom_local": "Boxing Day"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "New Year's Day"
+  },
+  {
+   "date": "2027-01-07",
+   "nom": "Constitution Day",
+   "nom_local": "Constitution Day"
+  },
+  {
+   "date": "2027-03-06",
+   "nom": "Independence Day",
+   "nom_local": "Independence Day"
+  },
+  {
+   "date": "2027-03-26",
+   "nom": "Good Friday",
+   "nom_local": "Good Friday"
+  },
+  {
+   "date": "2027-03-29",
+   "nom": "Easter Monday",
+   "nom_local": "Easter Monday"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "May Day",
+   "nom_local": "May Day"
+  },
+  {
+   "date": "2027-07-01",
+   "nom": "Republic Day",
+   "nom_local": "Republic Day"
+  },
+  {
+   "date": "2027-09-21",
+   "nom": "Founders Day",
+   "nom_local": "Founders Day"
+  },
+  {
+   "date": "2027-12-03",
+   "nom": "Farmers' Day",
+   "nom_local": "Farmers' Day"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Christmas Day"
+  },
+  {
+   "date": "2027-12-26",
+   "nom": "Boxing Day",
+   "nom_local": "Boxing Day"
+  }
+ ]
+}

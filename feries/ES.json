@@ -1,0 +1,105 @@
+{
+ "date": "2026-11-21T19:13:53Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Año Nuevo"
+  },
+  {
+   "date": "2026-01-06",
+   "nom": "Epiphany",
+   "nom_local": "Día de Reyes / Epifanía del Señor"
+  },
+  {
+   "date": "2026-04-03",
+   "nom": "Good Friday",
+   "nom_local": "Viernes Santo"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Fiesta del trabajo"
+  },
+  {
+   "date": "2026-08-15",
+   "nom": "Assumption",
+   "nom_local": "Asunción"
+  },
+  {
+   "date": "2026-10-12",
+   "nom": "National Day of Spain",
+   "nom_local": "Fiesta Nacional de España"
+  },
+  {
+   "date": "2026-11-01",
+   "nom": "All Saints Day",
+   "nom_local": "Día de todos los Santos"
+  },
+  {
+   "date": "2026-12-06",
+   "nom": "Constitution Day",
+   "nom_local": "Día de la Constitución"
+  },
+  {
+   "date": "2026-12-08",
+   "nom": "Immaculate Conception",
+   "nom_local": "Inmaculada Concepción"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Navidad"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Año Nuevo"
+  },
+  {
+   "date": "2027-01-06",
+   "nom": "Epiphany",
+   "nom_local": "Día de Reyes / Epifanía del Señor"
+  },
+  {
+   "date": "2027-03-26",
+   "nom": "Good Friday",
+   "nom_local": "Viernes Santo"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Fiesta del trabajo"
+  },
+  {
+   "date": "2027-08-15",
+   "nom": "Assumption",
+   "nom_local": "Asunción"
+  },
+  {
+   "date": "2027-10-12",
+   "nom": "National Day of Spain",
+   "nom_local": "Fiesta Nacional de España"
+  },
+  {
+   "date": "2027-11-01",
+   "nom": "All Saints Day",
+   "nom_local": "Día de todos los Santos"
+  },
+  {
+   "date": "2027-12-06",
+   "nom": "Constitution Day",
+   "nom_local": "Día de la Constitución"
+  },
+  {
+   "date": "2027-12-08",
+   "nom": "Immaculate Conception",
+   "nom_local": "Inmaculada Concepción"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Navidad"
+  }
+ ]
+}

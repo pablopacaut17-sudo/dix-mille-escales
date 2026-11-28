@@ -1,0 +1,35 @@
+{
+ "date": "2026-11-21T19:13:43Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "New Year's Day"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Labour Day"
+  },
+  {
+   "date": "2026-06-27",
+   "nom": "Independence Day",
+   "nom_local": "Independence Day"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "New Year's Day"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Labour Day"
+  },
+  {
+   "date": "2027-06-27",
+   "nom": "Independence Day",
+   "nom_local": "Independence Day"
+  }
+ ]
+}

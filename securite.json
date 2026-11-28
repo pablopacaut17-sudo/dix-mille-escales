@@ -1,0 +1,1242 @@
+{
+ "date": "2026-11-28T01:50:31Z",
+ "source": "U.S. Department of State",
+ "pays": {
+  "AF": {
+   "niveau": 4,
+   "titre": "Afghanistan - Level 4: Do Not Travel",
+   "date": "Tue, 24 Nov 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.afg.html"
+  },
+  "EG": {
+   "niveau": 2,
+   "titre": "Egypt - Level 2: Exercise Increased Caution",
+   "date": "Tue, 24 Nov 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.egy.html"
+  },
+  "DK": {
+   "niveau": 2,
+   "titre": "Denmark - Level 2: Exercise Increased Caution",
+   "date": "Mon, 23 Nov 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.dnk.html"
+  },
+  "GL": {
+   "niveau": 2,
+   "titre": "Greenland - Level 2: Exercise Increased Caution",
+   "date": "Mon, 23 Nov 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.grl.html"
+  },
+  "IR": {
+   "niveau": 4,
+   "titre": "Iran - Level 4: Do Not Travel",
+   "date": "Fri, 23 Oct 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.irn.html"
+  },
+  "SY": {
+   "niveau": 4,
+   "titre": "Syria - Level 4: Do Not Travel",
+   "date": "Fri, 23 Oct 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.syr.html"
+  },
+  "YE": {
+   "niveau": 4,
+   "titre": "Yemen - Level 4: Do Not Travel",
+   "date": "Fri, 23 Oct 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.yem.html"
+  },
+  "BH": {
+   "niveau": 3,
+   "titre": "Bahrain - Level 3: Reconsider Travel",
+   "date": "Fri, 23 Oct 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.bhr.html"
+  },
+  "JO": {
+   "niveau": 3,
+   "titre": "Jordan - Level 3: Reconsider Travel",
+   "date": "Fri, 23 Oct 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.jor.html"
+  },
+  "LB": {
+   "niveau": 4,
+   "titre": "Lebanon - Level 4: Do Not Travel",
+   "date": "Fri, 23 Oct 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.lbn.html"
+  },
+  "OM": {
+   "niveau": 3,
+   "titre": "Oman - Level 3: Reconsider Travel",
+   "date": "Fri, 23 Oct 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.omn.html"
+  },
+  "SA": {
+   "niveau": 3,
+   "titre": "Saudi Arabia - Level 3: Reconsider Travel",
+   "date": "Fri, 23 Oct 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.sau.html"
+  },
+  "KW": {
+   "niveau": 3,
+   "titre": "Kuwait - Level 3: Reconsider Travel",
+   "date": "Fri, 23 Oct 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.kwt.html"
+  },
+  "IQ": {
+   "niveau": 4,
+   "titre": "Iraq - Level 4: Do Not Travel",
+   "date": "Fri, 23 Oct 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.irq.html"
+  },
+  "AE": {
+   "niveau": 3,
+   "titre": "United Arab Emirates - Level 3: Reconsider Travel",
+   "date": "Fri, 23 Oct 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.are.html"
+  },
+  "QA": {
+   "niveau": 3,
+   "titre": "Qatar - Level 3: Reconsider Travel",
+   "date": "Fri, 23 Oct 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.qat.html"
+  },
+  "IL": {
+   "niveau": 3,
+   "titre": "Israel - Level 3: Reconsider Travel",
+   "date": "Fri, 23 Oct 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.isr.html"
+  },
+  "FR": {
+   "niveau": 2,
+   "titre": "France - Level 2: Exercise Increased Caution",
+   "date": "Wed, 21 Oct 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.fra.html"
+  },
+  "CN": {
+   "niveau": 2,
+   "titre": "China - Level 2: Exercise Increased Caution",
+   "date": "Mon, 19 Oct 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.chn.html"
+  },
+  "KE": {
+   "niveau": 3,
+   "titre": "Kenya - Level 3: Reconsider Travel",
+   "date": "Mon, 19 Oct 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.ken.html"
+  },
+  "TZ": {
+   "niveau": 2,
+   "titre": "Tanzania - Level 2: Exercise Increased Caution",
+   "date": "Fri, 16 Oct 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.tza.html"
+  },
+  "KH": {
+   "niveau": 2,
+   "titre": "Cambodia - Level 2: Exercise Increased Caution",
+   "date": "Tue, 15 Sep 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.khm.html"
+  },
+  "IT": {
+   "niveau": 2,
+   "titre": "Italy - Level 2: Exercise Increased Caution",
+   "date": "Thu, 10 Sep 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.ita.html"
+  },
+  "MK": {
+   "niveau": 1,
+   "titre": "North Macedonia - Level 1: Exercise Normal Precautions",
+   "date": "Thu, 10 Sep 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.mkd.html"
+  },
+  "CW": {
+   "niveau": 1,
+   "titre": "Curaçao - Level 1: Exercise Normal Precautions",
+   "date": "Wed, 09 Sep 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.cuw.html"
+  },
+  "GB": {
+   "niveau": 2,
+   "titre": "United Kingdom - Level 2: Exercise Increased Caution",
+   "date": "Wed, 09 Sep 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.gbr.html"
+  },
+  "SR": {
+   "niveau": 1,
+   "titre": "Suriname - Level 1: Exercise Normal Precautions",
+   "date": "Tue, 08 Sep 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.sur.html"
+  },
+  "HK": {
+   "niveau": 2,
+   "titre": "Hong Kong - Level 2: Exercise Increased Caution",
+   "date": "Fri, 04 Sep 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.hkg.html"
+  },
+  "ST": {
+   "niveau": 2,
+   "titre": "São Tomé and Príncipe - Level 2: Exercise Increased Caution",
+   "date": "Fri, 04 Sep 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.stp.html"
+  },
+  "NP": {
+   "niveau": 2,
+   "titre": "Nepal - Level 2: Exercise Increased Caution",
+   "date": "Fri, 04 Sep 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.npl.html"
+  },
+  "MA": {
+   "niveau": 2,
+   "titre": "Morocco - Level 2: Exercise Increased Caution",
+   "date": "Fri, 04 Sep 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.mar.html"
+  },
+  "PE": {
+   "niveau": 2,
+   "titre": "Peru - Level 2: Exercise Increased Caution",
+   "date": "Fri, 04 Sep 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.per.html"
+  },
+  "TJ": {
+   "niveau": 2,
+   "titre": "Tajikistan - Level 2: Exercise Increased Caution",
+   "date": "Fri, 04 Sep 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.tjk.html"
+  },
+  "BT": {
+   "niveau": 1,
+   "titre": "Bhutan - Level 1: Exercise Normal Precautions",
+   "date": "Fri, 04 Sep 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.btn.html"
+  },
+  "MO": {
+   "niveau": 3,
+   "titre": "Macau - Level 3: Reconsider Travel",
+   "date": "Fri, 04 Sep 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.mac.html"
+  },
+  "PH": {
+   "niveau": 2,
+   "titre": "Philippines - Level 2: Exercise Increased Caution",
+   "date": "Tue, 01 Sep 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.phl.html"
+  },
+  "BR": {
+   "niveau": 2,
+   "titre": "Brazil - Level 2: Exercise Increased Caution",
+   "date": "Mon, 31 Aug 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.bra.html"
+  },
+  "LY": {
+   "niveau": 4,
+   "titre": "Libya - Level 4: Do Not Travel",
+   "date": "Mon, 31 Aug 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.lby.html"
+  },
+  "UA": {
+   "niveau": 4,
+   "titre": "Ukraine - Level 4: Do Not Travel",
+   "date": "Fri, 28 Aug 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.ukr.html"
+  },
+  "RS": {
+   "niveau": 2,
+   "titre": "Serbia - Level 2: Exercise Increased Caution",
+   "date": "Thu, 27 Aug 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.srb.html"
+  },
+  "ET": {
+   "niveau": 3,
+   "titre": "Ethiopia - Level 3: Reconsider Travel",
+   "date": "Thu, 27 Aug 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.eth.html"
+  },
+  "BA": {
+   "niveau": 2,
+   "titre": "Bosnia and Herzegovina - Level 2: Exercise Increased Caution",
+   "date": "Thu, 27 Aug 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.bih.html"
+  },
+  "ME": {
+   "niveau": 1,
+   "titre": "Montenegro - Level 1: Exercise Normal Precautions",
+   "date": "Thu, 27 Aug 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.mne.html"
+  },
+  "GY": {
+   "niveau": 3,
+   "titre": "Guyana - Level 3: Reconsider Travel",
+   "date": "Wed, 26 Aug 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.guy.html"
+  },
+  "AL": {
+   "niveau": 2,
+   "titre": "Albania - Level 2: Exercise Increased Caution",
+   "date": "Wed, 26 Aug 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.alb.html"
+  },
+  "PS": {
+   "niveau": 3,
+   "titre": "The West Bank - Level 3: Reconsider Travel",
+   "date": "Wed, 26 Aug 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.xwb.html"
+  },
+  "DZ": {
+   "niveau": 2,
+   "titre": "Algeria - Level 2: Exercise Increased Caution",
+   "date": "Tue, 25 Aug 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.dza.html"
+  },
+  "HN": {
+   "niveau": 3,
+   "titre": "Honduras - Level 3: Reconsider Travel",
+   "date": "Tue, 25 Aug 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.hnd.html"
+  },
+  "XK": {
+   "niveau": 2,
+   "titre": "Kosovo - Level 2: Exercise Increased Caution",
+   "date": "Tue, 25 Aug 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.xks.html"
+  },
+  "SX": {
+   "niveau": 1,
+   "titre": "Sint Maarten - Level 1: Exercise Normal Precautions",
+   "date": "Mon, 24 Aug 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.sxm.html"
+  },
+  "TM": {
+   "niveau": 1,
+   "titre": "Turkmenistan - Level 1: Exercise Normal Precautions",
+   "date": "Fri, 21 Aug 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.tkm.html"
+  },
+  "MZ": {
+   "niveau": 2,
+   "titre": "Mozambique - Level 2: Exercise Increased Caution",
+   "date": "Fri, 21 Aug 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.moz.html"
+  },
+  "AT": {
+   "niveau": 1,
+   "titre": "Austria - Level 1: Exercise Normal Precautions",
+   "date": "Fri, 21 Aug 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.aut.html"
+  },
+  "GP": {
+   "niveau": 1,
+   "titre": "Guadeloupe - Level 1: Exercise Normal Precautions",
+   "date": "Thu, 20 Aug 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.glp.html"
+  },
+  "BL": {
+   "niveau": 1,
+   "titre": "Saint Barthelemy - Level 1: Exercise Normal Precautions",
+   "date": "Thu, 20 Aug 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.blm.html"
+  },
+  "AW": {
+   "niveau": 1,
+   "titre": "Aruba - Level 1: Exercise Normal Precautions",
+   "date": "Thu, 20 Aug 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.abw.html"
+  },
+  "MQ": {
+   "niveau": 1,
+   "titre": "Martinique - Level 1: Exercise Normal Precautions",
+   "date": "Thu, 20 Aug 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.mtq.html"
+  },
+  "PA": {
+   "niveau": 2,
+   "titre": "Panama - Level 2: Exercise Increased Caution",
+   "date": "Wed, 19 Aug 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.pan.html"
+  },
+  "PY": {
+   "niveau": 1,
+   "titre": "Paraguay - Level 1: Exercise Normal Precautions",
+   "date": "Wed, 19 Aug 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.pry.html"
+  },
+  "CL": {
+   "niveau": 2,
+   "titre": "Chile - Level 2: Exercise Increased Caution",
+   "date": "Wed, 19 Aug 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.chl.html"
+  },
+  "MR": {
+   "niveau": 3,
+   "titre": "Mauritania - Level 3: Reconsider Travel",
+   "date": "Tue, 18 Aug 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.mrt.html"
+  },
+  "LI": {
+   "niveau": 1,
+   "titre": "Liechtenstein - Level 1: Exercise Normal Precautions",
+   "date": "Tue, 18 Aug 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.lie.html"
+  },
+  "EC": {
+   "niveau": 2,
+   "titre": "Ecuador - Level 2: Exercise Increased Caution",
+   "date": "Tue, 18 Aug 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.ecu.html"
+  },
+  "BO": {
+   "niveau": 2,
+   "titre": "Bolivia - Level 2: Exercise Increased Caution",
+   "date": "Tue, 18 Aug 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.bol.html"
+  },
+  "AU": {
+   "niveau": 1,
+   "titre": "Australia - Level 1: Exercise Normal Precautions",
+   "date": "Tue, 18 Aug 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.aus.html"
+  },
+  "KZ": {
+   "niveau": 1,
+   "titre": "Kazakhstan - Level 1: Exercise Normal Precautions",
+   "date": "Tue, 18 Aug 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.kaz.html"
+  },
+  "NL": {
+   "niveau": 2,
+   "titre": "Netherlands - Level 2: Exercise Increased Caution",
+   "date": "Tue, 18 Aug 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.nld.html"
+  },
+  "CH": {
+   "niveau": 1,
+   "titre": "Switzerland  - Level 1: Exercise Normal Precautions",
+   "date": "Fri, 14 Aug 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.che.html"
+  },
+  "ES": {
+   "niveau": 2,
+   "titre": "Spain - Level 2: Exercise Increased Caution",
+   "date": "Sat, 01 Aug 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.esp.html"
+  },
+  "BD": {
+   "niveau": 2,
+   "titre": "Bangladesh - Level 2: Exercise Increased Caution",
+   "date": "Thu, 30 Jul 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.bgd.html"
+  },
+  "MN": {
+   "niveau": 1,
+   "titre": "Mongolia - Level 1: Exercise Normal Precautions",
+   "date": "Wed, 29 Jul 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.mng.html"
+  },
+  "UY": {
+   "niveau": 2,
+   "titre": "Uruguay - Level 2: Exercise Increased Caution",
+   "date": "Tue, 28 Jul 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.ury.html"
+  },
+  "BS": {
+   "niveau": 2,
+   "titre": "The Bahamas - Level 2: Exercise Increased Caution",
+   "date": "Tue, 28 Jul 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.bhs.html"
+  },
+  "LA": {
+   "niveau": 2,
+   "titre": "Laos - Level 2: Exercise Increased Caution",
+   "date": "Tue, 28 Jul 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.lao.html"
+  },
+  "BE": {
+   "niveau": 2,
+   "titre": "Belgium - Level 2: Exercise Increased Caution",
+   "date": "Thu, 23 Jul 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.bel.html"
+  },
+  "CD": {
+   "niveau": 4,
+   "titre": "Democratic Republic of the Congo - Level 4: Do Not Travel",
+   "date": "Wed, 15 Jul 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.cod.html"
+  },
+  "LC": {
+   "niveau": 2,
+   "titre": "Saint Lucia - Level 2: Exercise Increased Caution",
+   "date": "Fri, 10 Jul 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.lca.html"
+  },
+  "AR": {
+   "niveau": 1,
+   "titre": "Argentina - Level 1: Exercise Normal Precautions",
+   "date": "Fri, 10 Jul 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.arg.html"
+  },
+  "SZ": {
+   "niveau": 2,
+   "titre": "Eswatini - Level 2: Exercise Increased Caution",
+   "date": "Fri, 10 Jul 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.swz.html"
+  },
+  "HT": {
+   "niveau": 4,
+   "titre": "Haiti - Level 4: Do Not Travel",
+   "date": "Fri, 10 Jul 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.hti.html"
+  },
+  "MT": {
+   "niveau": 1,
+   "titre": "Malta - Level 1: Exercise Normal Precautions",
+   "date": "Thu, 09 Jul 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.mlt.html"
+  },
+  "NE": {
+   "niveau": 4,
+   "titre": "Niger - Level 4: Do Not Travel",
+   "date": "Thu, 09 Jul 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.ner.html"
+  },
+  "GF": {
+   "niveau": 1,
+   "titre": "French Guiana - Level 1: Exercise Normal Precautions",
+   "date": "Wed, 08 Jul 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.guf.html"
+  },
+  "VC": {
+   "niveau": 1,
+   "titre": "Saint Vincent and the Grenadines - Level 1: Exercise Normal Precautions",
+   "date": "Tue, 07 Jul 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.vct.html"
+  },
+  "TC": {
+   "niveau": 2,
+   "titre": "Turks and Caicos Islands - Level 2: Exercise Increased Caution",
+   "date": "Tue, 07 Jul 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.tca.html"
+  },
+  "GH": {
+   "niveau": 2,
+   "titre": "Ghana - Level 2: Exercise Increased Caution",
+   "date": "Tue, 07 Jul 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.gha.html"
+  },
+  "ID": {
+   "niveau": 2,
+   "titre": "Indonesia - Level 2: Exercise Increased Caution",
+   "date": "Tue, 07 Jul 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.idn.html"
+  },
+  "MD": {
+   "niveau": 2,
+   "titre": "Moldova - Level 2: Exercise Increased Caution",
+   "date": "Tue, 07 Jul 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.mda.html"
+  },
+  "WS": {
+   "niveau": 1,
+   "titre": "Samoa - Level 1: Exercise Normal Precautions",
+   "date": "Tue, 07 Jul 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.wsm.html"
+  },
+  "MS": {
+   "niveau": 1,
+   "titre": "Montserrat - Level 1: Exercise Normal Precautions",
+   "date": "Tue, 07 Jul 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.msr.html"
+  },
+  "KN": {
+   "niveau": 1,
+   "titre": "Saint Kitts and Nevis - Level 1: Exercise Normal Precautions",
+   "date": "Tue, 07 Jul 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.kna.html"
+  },
+  "TH": {
+   "niveau": 1,
+   "titre": "Thailand - Level 1: Exercise Normal Precautions",
+   "date": "Tue, 07 Jul 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.tha.html"
+  },
+  "NO": {
+   "niveau": 1,
+   "titre": "Norway - Level 1: Exercise Normal Precautions",
+   "date": "Mon, 06 Jul 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.nor.html"
+  },
+  "VE": {
+   "niveau": 3,
+   "titre": "Venezuela - Level 3: Reconsider Travel",
+   "date": "Sat, 27 Jun 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.ven.html"
+  },
+  "SV": {
+   "niveau": 1,
+   "titre": "El Salvador - Level 1: Exercise Normal Precautions",
+   "date": "Thu, 25 Jun 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.slv.html"
+  },
+  "VN": {
+   "niveau": 1,
+   "titre": "Vietnam - Level 1: Exercise Normal Precautions",
+   "date": "Wed, 24 Jun 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.vnm.html"
+  },
+  "JM": {
+   "niveau": 2,
+   "titre": "Jamaica - Level 2: Exercise Increased Caution",
+   "date": "Tue, 23 Jun 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.jam.html"
+  },
+  "LS": {
+   "niveau": 2,
+   "titre": "Lesotho - Level 2: Exercise Increased Caution",
+   "date": "Wed, 17 Jun 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.lso.html"
+  },
+  "BW": {
+   "niveau": 2,
+   "titre": "Botswana - Level 2: Exercise Increased Caution",
+   "date": "Wed, 17 Jun 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.bwa.html"
+  },
+  "PK": {
+   "niveau": 3,
+   "titre": "Pakistan - Level 3: Reconsider Travel",
+   "date": "Tue, 16 Jun 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.pak.html"
+  },
+  "NG": {
+   "niveau": 3,
+   "titre": "Nigeria - Level 3: Reconsider Travel",
+   "date": "Fri, 12 Jun 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.nga.html"
+  },
+  "TR": {
+   "niveau": 2,
+   "titre": "Turkey - Level 2: Exercise Increased Caution",
+   "date": "Tue, 09 Jun 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.tur.html"
+  },
+  "ML": {
+   "niveau": 4,
+   "titre": "Mali - Level 4: Do Not Travel",
+   "date": "Mon, 08 Jun 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.mli.html"
+  },
+  "CA": {
+   "niveau": 1,
+   "titre": "Canada - Level 1: Exercise Normal Precautions",
+   "date": "Fri, 05 Jun 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.can.html"
+  },
+  "UG": {
+   "niveau": 4,
+   "titre": "Uganda - Level 4: Do Not Travel",
+   "date": "Thu, 04 Jun 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.uga.html"
+  },
+  "RW": {
+   "niveau": 3,
+   "titre": "Rwanda - Level 3: Reconsider Travel",
+   "date": "Thu, 04 Jun 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.rwa.html"
+  },
+  "CY": {
+   "niveau": 1,
+   "titre": "Cyprus - Level 1: Exercise Normal Precautions",
+   "date": "Mon, 01 Jun 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.cyp.html"
+  },
+  "VG": {
+   "niveau": 1,
+   "titre": "British Virgin Islands - Level 1: Exercise Normal Precautions",
+   "date": "Fri, 22 May 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.vgb.html"
+  },
+  "AI": {
+   "niveau": 1,
+   "titre": "Anguilla - Level 1: Exercise Normal Precautions",
+   "date": "Fri, 22 May 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.aia.html"
+  },
+  "SO": {
+   "niveau": 4,
+   "titre": "Somalia - Level 4: Do Not Travel",
+   "date": "Thu, 21 May 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.som.html"
+  },
+  "TN": {
+   "niveau": 2,
+   "titre": "Tunisia - Level 2: Exercise Increased Caution",
+   "date": "Thu, 21 May 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.tun.html"
+  },
+  "AD": {
+   "niveau": 1,
+   "titre": "Andorra - Level 1: Exercise Normal Precautions",
+   "date": "Thu, 21 May 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.and.html"
+  },
+  "TL": {
+   "niveau": 2,
+   "titre": "Timor-Leste - Level 2: Exercise Increased Caution",
+   "date": "Thu, 21 May 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.tls.html"
+  },
+  "KY": {
+   "niveau": 1,
+   "titre": "Cayman Islands - Level 1: Exercise Normal Precautions",
+   "date": "Thu, 21 May 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.cym.html"
+  },
+  "MH": {
+   "niveau": 1,
+   "titre": "Marshall Islands - Level 1: Exercise Normal Precautions",
+   "date": "Thu, 21 May 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.mhl.html"
+  },
+  "NC": {
+   "niveau": 2,
+   "titre": "New Caledonia - Level 2: Exercise Increased Caution",
+   "date": "Thu, 21 May 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.ncl.html"
+  },
+  "DM": {
+   "niveau": 1,
+   "titre": "Dominica - Level 1: Exercise Normal Precautions",
+   "date": "Wed, 20 May 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.dma.html"
+  },
+  "AG": {
+   "niveau": 1,
+   "titre": "Antigua and Barbuda - Level 1: Exercise Normal Precautions",
+   "date": "Wed, 20 May 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.atg.html"
+  },
+  "HR": {
+   "niveau": 1,
+   "titre": "Croatia - Level 1: Exercise Normal Precautions",
+   "date": "Mon, 18 May 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.hrv.html"
+  },
+  "SE": {
+   "niveau": 2,
+   "titre": "Sweden - Level 2: Exercise Increased Caution",
+   "date": "Mon, 18 May 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.swe.html"
+  },
+  "SS": {
+   "niveau": 4,
+   "titre": "South Sudan - Level 4: Do Not Travel",
+   "date": "Sun, 17 May 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.ssd.html"
+  },
+  "SD": {
+   "niveau": 4,
+   "titre": "Sudan - Level 4: Do Not Travel",
+   "date": "Fri, 15 May 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.sdn.html"
+  },
+  "SI": {
+   "niveau": 1,
+   "titre": "Slovenia - Level 1: Exercise Normal Precautions",
+   "date": "Fri, 15 May 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.svn.html"
+  },
+  "CM": {
+   "niveau": 2,
+   "titre": "Cameroon - Level 2: Exercise Increased Caution",
+   "date": "Fri, 15 May 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.cmr.html"
+  },
+  "NA": {
+   "niveau": 2,
+   "titre": "Namibia - Level 2: Exercise Increased Caution",
+   "date": "Fri, 15 May 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.nam.html"
+  },
+  "BN": {
+   "niveau": 1,
+   "titre": "Brunei - Level 1: Exercise Normal Precautions",
+   "date": "Thu, 14 May 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.brn.html"
+  },
+  "MW": {
+   "niveau": 2,
+   "titre": "Malawi - Level 2: Exercise Increased Caution",
+   "date": "Thu, 14 May 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.mwi.html"
+  },
+  "NI": {
+   "niveau": 3,
+   "titre": "Nicaragua - Level 3: Reconsider Travel",
+   "date": "Thu, 14 May 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.nic.html"
+  },
+  "MM": {
+   "niveau": 4,
+   "titre": "Burma - Level 4: Do Not Travel",
+   "date": "Fri, 08 May 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.mmr.html"
+  },
+  "IS": {
+   "niveau": 1,
+   "titre": "Iceland - Level 1: Exercise Normal Precautions",
+   "date": "Tue, 05 May 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.isl.html"
+  },
+  "BF": {
+   "niveau": 4,
+   "titre": "Burkina Faso - Level 4: Do Not Travel",
+   "date": "Mon, 04 May 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.bfa.html"
+  },
+  "NZ": {
+   "niveau": 1,
+   "titre": "New Zealand - Level 1: Exercise Normal Precautions",
+   "date": "Wed, 29 Apr 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.nzl.html"
+  },
+  "LT": {
+   "niveau": 1,
+   "titre": "Lithuania - Level 1: Exercise Normal Precautions",
+   "date": "Tue, 28 Apr 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.ltu.html"
+  },
+  "AZ": {
+   "niveau": 3,
+   "titre": "Azerbaijan - Level 3: Reconsider Travel",
+   "date": "Tue, 28 Apr 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.aze.html"
+  },
+  "TD": {
+   "niveau": 4,
+   "titre": "Chad - Level 4: Do Not Travel",
+   "date": "Tue, 28 Apr 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.tcd.html"
+  },
+  "HU": {
+   "niveau": 1,
+   "titre": "Hungary - Level 1: Exercise Normal Precautions",
+   "date": "Wed, 15 Apr 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.hun.html"
+  },
+  "TT": {
+   "niveau": 3,
+   "titre": "Trinidad and Tobago - Level 3: Reconsider Travel",
+   "date": "Mon, 13 Apr 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.tto.html"
+  },
+  "BB": {
+   "niveau": 1,
+   "titre": "Barbados - Level 1: Exercise Normal Precautions",
+   "date": "Fri, 10 Apr 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.brb.html"
+  },
+  "BM": {
+   "niveau": 1,
+   "titre": "Bermuda - Level 1: Exercise Normal Precautions",
+   "date": "Fri, 10 Apr 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.bmu.html"
+  },
+  "LU": {
+   "niveau": 1,
+   "titre": "Luxembourg - Level 1: Exercise Normal Precautions",
+   "date": "Wed, 08 Apr 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.lux.html"
+  },
+  "CR": {
+   "niveau": 2,
+   "titre": "Costa Rica - Level 2: Exercise Increased Caution",
+   "date": "Thu, 02 Apr 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.cri.html"
+  },
+  "LV": {
+   "niveau": 1,
+   "titre": "Latvia - Level 1: Exercise Normal Precautions",
+   "date": "Wed, 01 Apr 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.lva.html"
+  },
+  "EE": {
+   "niveau": 1,
+   "titre": "Estonia - Level 1: Exercise Normal Precautions",
+   "date": "Tue, 31 Mar 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.est.html"
+  },
+  "CO": {
+   "niveau": 3,
+   "titre": "Colombia - Level 3: Reconsider Travel",
+   "date": "Tue, 31 Mar 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.col.html"
+  },
+  "GA": {
+   "niveau": 2,
+   "titre": "Gabon - Level 2: Exercise Increased Caution",
+   "date": "Mon, 30 Mar 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.gab.html"
+  },
+  "IE": {
+   "niveau": 1,
+   "titre": "Ireland - Level 1: Exercise Normal Precautions",
+   "date": "Fri, 20 Mar 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.irl.html"
+  },
+  "FI": {
+   "niveau": 1,
+   "titre": "Finland - Level 1: Exercise Normal Precautions",
+   "date": "Fri, 13 Mar 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.fin.html"
+  },
+  "GT": {
+   "niveau": 3,
+   "titre": "Guatemala - Level 3: Reconsider Travel",
+   "date": "Thu, 12 Mar 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.gtm.html"
+  },
+  "BZ": {
+   "niveau": 2,
+   "titre": "Belize - Level 2: Exercise Increased Caution",
+   "date": "Thu, 12 Mar 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.blz.html"
+  },
+  "SG": {
+   "niveau": 1,
+   "titre": "Singapore - Level 1: Exercise Normal Precautions",
+   "date": "Mon, 09 Mar 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.sgp.html"
+  },
+  "TG": {
+   "niveau": 2,
+   "titre": "Togo - Level 2: Exercise Increased Caution",
+   "date": "Mon, 09 Mar 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.tgo.html"
+  },
+  "AO": {
+   "niveau": 2,
+   "titre": "Angola - Level 2: Exercise Increased Caution",
+   "date": "Thu, 05 Mar 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.ago.html"
+  },
+  "GN": {
+   "niveau": 2,
+   "titre": "Guinea - Level 2: Exercise Increased Caution",
+   "date": "Wed, 25 Feb 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.gin.html"
+  },
+  "MY": {
+   "niveau": 1,
+   "titre": "Malaysia - Level 1: Exercise Normal Precautions",
+   "date": "Sun, 22 Feb 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.mys.html"
+  },
+  "SK": {
+   "niveau": 1,
+   "titre": "Slovakia - Level 1: Exercise Normal Precautions",
+   "date": "Thu, 12 Feb 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.svk.html"
+  },
+  "UZ": {
+   "niveau": 1,
+   "titre": "Uzbekistan - Level 1: Exercise Normal Precautions",
+   "date": "Mon, 26 Jan 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.uzb.html"
+  },
+  "GM": {
+   "niveau": 2,
+   "titre": "The Gambia - Level 2: Exercise Increased Caution",
+   "date": "Fri, 16 Jan 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.gmb.html"
+  },
+  "CF": {
+   "niveau": 4,
+   "titre": "Central African Republic - Level 4: Do Not Travel",
+   "date": "Thu, 15 Jan 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.caf.html"
+  },
+  "KM": {
+   "niveau": 2,
+   "titre": "Comoros - Level 2: Exercise Increased Caution",
+   "date": "Mon, 12 Jan 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.com.html"
+  },
+  "CZ": {
+   "niveau": 1,
+   "titre": "Czechia - Level 1: Exercise Normal Precautions",
+   "date": "Thu, 08 Jan 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.cze.html"
+  },
+  "PW": {
+   "niveau": 1,
+   "titre": "Palau - Level 1: Exercise Normal Precautions",
+   "date": "Wed, 07 Jan 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.plw.html"
+  },
+  "BJ": {
+   "niveau": 2,
+   "titre": "Benin - Level 2: Exercise Increased Caution",
+   "date": "Wed, 07 Jan 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.ben.html"
+  },
+  "GD": {
+   "niveau": 2,
+   "titre": "Grenada - Level 2: Exercise Increased Caution",
+   "date": "Mon, 05 Jan 2026",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.grd.html"
+  },
+  "RU": {
+   "niveau": 4,
+   "titre": "Russia - Level 4: Do Not Travel",
+   "date": "Mon, 29 Dec 2025",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.rus.html"
+  },
+  "BY": {
+   "niveau": 4,
+   "titre": "Belarus - Level 4: Do Not Travel",
+   "date": "Mon, 29 Dec 2025",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.blr.html"
+  },
+  "PT": {
+   "niveau": 1,
+   "titre": "Portugal - Level 1: Exercise Normal Precautions",
+   "date": "Tue, 23 Dec 2025",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.prt.html"
+  },
+  "CV": {
+   "niveau": 1,
+   "titre": "Cabo Verde - Level 1: Exercise Normal Precautions",
+   "date": "Thu, 18 Dec 2025",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.cpv.html"
+  },
+  "GW": {
+   "niveau": 3,
+   "titre": "Guinea-Bissau - Level 3: Reconsider Travel",
+   "date": "Thu, 11 Dec 2025",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.gnb.html"
+  },
+  "LR": {
+   "niveau": 2,
+   "titre": "Liberia - Level 2: Exercise Increased Caution",
+   "date": "Thu, 11 Dec 2025",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.lbr.html"
+  },
+  "SC": {
+   "niveau": 1,
+   "titre": "Seychelles - Level 1: Exercise Normal Precautions",
+   "date": "Tue, 09 Dec 2025",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.syc.html"
+  },
+  "MU": {
+   "niveau": 2,
+   "titre": "Mauritius - Level 2: Exercise Increased Caution",
+   "date": "Mon, 08 Dec 2025",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.mus.html"
+  },
+  "MG": {
+   "niveau": 2,
+   "titre": "Madagascar - Level 2: Exercise Increased Caution",
+   "date": "Fri, 05 Dec 2025",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.mdg.html"
+  },
+  "SN": {
+   "niveau": 1,
+   "titre": "Senegal - Level 1: Exercise Normal Precautions",
+   "date": "Mon, 01 Dec 2025",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.sen.html"
+  },
+  "TW": {
+   "niveau": 1,
+   "titre": "Taiwan - Level 1: Exercise Normal Precautions",
+   "date": "Tue, 25 Nov 2025",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.twn.html"
+  },
+  "GR": {
+   "niveau": 1,
+   "titre": "Greece - Level 1: Exercise Normal Precautions",
+   "date": "Thu, 23 Oct 2025",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.grc.html"
+  },
+  "RO": {
+   "niveau": 1,
+   "titre": "Romania - Level 1: Exercise Normal Precautions",
+   "date": "Tue, 14 Oct 2025",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.rou.html"
+  },
+  "LK": {
+   "niveau": 2,
+   "titre": "Sri Lanka - Level 2: Exercise Increased Caution",
+   "date": "Tue, 14 Oct 2025",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.lka.html"
+  },
+  "BG": {
+   "niveau": 1,
+   "titre": "Bulgaria - Level 1: Exercise Normal Precautions",
+   "date": "Thu, 09 Oct 2025",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.bgr.html"
+  },
+  "GQ": {
+   "niveau": 2,
+   "titre": "Equatorial Guinea - Level 2: Exercise Increased Caution",
+   "date": "Tue, 07 Oct 2025",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.gnq.html"
+  },
+  "MV": {
+   "niveau": 2,
+   "titre": "Maldives - Level 2: Exercise Increased Caution",
+   "date": "Tue, 07 Oct 2025",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.mdv.html"
+  },
+  "AQ": {
+   "niveau": 2,
+   "titre": "Antarctica - Level 2: Exercise Increased Caution",
+   "date": "Tue, 23 Sep 2025",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.ata.html"
+  },
+  "SL": {
+   "niveau": 2,
+   "titre": "Sierra Leone - Level 2: Exercise Increased Caution",
+   "date": "Mon, 15 Sep 2025",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.sle.html"
+  },
+  "AM": {
+   "niveau": 2,
+   "titre": "Armenia - Level 2: Exercise Increased Caution",
+   "date": "Fri, 05 Sep 2025",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.arm.html"
+  },
+  "IN": {
+   "niveau": 2,
+   "titre": "India - Level 2: Exercise Increased Caution",
+   "date": "Mon, 16 Jun 2025",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.ind.html"
+  },
+  "DO": {
+   "niveau": 2,
+   "titre": "Dominican Republic - Level 2: Exercise Increased Caution",
+   "date": "Thu, 12 Jun 2025",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.dom.html"
+  },
+  "PL": {
+   "niveau": 1,
+   "titre": "Poland - Level 1: Exercise Normal Precautions",
+   "date": "Thu, 05 Jun 2025",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.pol.html"
+  },
+  "KR": {
+   "niveau": 1,
+   "titre": "South Korea - Level 1: Exercise Normal Precautions",
+   "date": "Wed, 28 May 2025",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.kor.html"
+  },
+  "ZA": {
+   "niveau": 2,
+   "titre": "South Africa - Level 2: Exercise Increased Caution",
+   "date": "Tue, 27 May 2025",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.zaf.html"
+  },
+  "VU": {
+   "niveau": 1,
+   "titre": "Vanuatu - Level 1: Exercise Normal Precautions",
+   "date": "Thu, 22 May 2025",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.vut.html"
+  },
+  "JP": {
+   "niveau": 1,
+   "titre": "Japan - Level 1: Exercise Normal Precautions",
+   "date": "Thu, 15 May 2025",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.jpn.html"
+  },
+  "DE": {
+   "niveau": 2,
+   "titre": "Germany - Level 2: Exercise Increased Caution",
+   "date": "Tue, 13 May 2025",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.deu.html"
+  },
+  "CU": {
+   "niveau": 2,
+   "titre": "Cuba - Level 2: Exercise Increased Caution",
+   "date": "Wed, 07 May 2025",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.cub.html"
+  },
+  "BI": {
+   "niveau": 3,
+   "titre": "Burundi - Level 3: Reconsider Travel",
+   "date": "Tue, 29 Apr 2025",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.bdi.html"
+  },
+  "PG": {
+   "niveau": 3,
+   "titre": "Papua New Guinea - Level 3: Reconsider Travel",
+   "date": "Tue, 29 Apr 2025",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.png.html"
+  },
+  "SB": {
+   "niveau": 2,
+   "titre": "Solomon Islands - Level 2: Exercise Increased Caution",
+   "date": "Tue, 29 Apr 2025",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.slb.html"
+  },
+  "KP": {
+   "niveau": 4,
+   "titre": "North Korea - Level 4: Do Not Travel",
+   "date": "Tue, 29 Apr 2025",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.prk.html"
+  },
+  "GE": {
+   "niveau": 1,
+   "titre": "Georgia - Level 1: Exercise Normal Precautions",
+   "date": "Thu, 13 Mar 2025",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.geo.html"
+  },
+  "DJ": {
+   "niveau": 2,
+   "titre": "Djibouti - Level 2: Exercise Increased Caution",
+   "date": "Thu, 06 Mar 2025",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.dji.html"
+  },
+  "TO": {
+   "niveau": 1,
+   "titre": "Tonga - Level 1: Exercise Normal Precautions",
+   "date": "Mon, 02 Dec 2024",
+   "lien": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/tonga-travel-advisory.html"
+  },
+  "KI": {
+   "niveau": 1,
+   "titre": "Kiribati - Level 1: Exercise Normal Precautions",
+   "date": "Mon, 02 Dec 2024",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.kir.html"
+  },
+  "TV": {
+   "niveau": 1,
+   "titre": "Tuvalu - Level 1: Exercise Normal Precautions",
+   "date": "Mon, 02 Dec 2024",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.tuv.html"
+  },
+  "FJ": {
+   "niveau": 1,
+   "titre": "Fiji - Level 1: Exercise Normal Precautions",
+   "date": "Mon, 02 Dec 2024",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.fji.html"
+  },
+  "PF": {
+   "niveau": 1,
+   "titre": "French Polynesia - Level 1: Exercise Normal Precautions",
+   "date": "Mon, 02 Dec 2024",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.pyf.html"
+  },
+  "ZM": {
+   "niveau": 1,
+   "titre": "Zambia - Level 1: Exercise Normal Precautions",
+   "date": "Mon, 31 Jul 2023",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.zmb.html"
+  },
+  "ER": {
+   "niveau": 2,
+   "titre": "Eritrea - Level 2: Exercise Increased Caution",
+   "date": "Mon, 31 Jul 2023",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.eri.html"
+  },
+  "ZW": {
+   "niveau": 2,
+   "titre": "Zimbabwe - Level 2: Exercise Increased Caution",
+   "date": "Tue, 27 Jun 2023",
+   "lien": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.zwe.html"
+  }
+ }
+}

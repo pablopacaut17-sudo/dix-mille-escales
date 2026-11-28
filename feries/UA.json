@@ -1,0 +1,115 @@
+{
+ "date": "2026-11-21T19:16:12Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Новий Рік"
+  },
+  {
+   "date": "2026-03-08",
+   "nom": "International Women's Day",
+   "nom_local": "Міжнародний жіночий день"
+  },
+  {
+   "date": "2026-04-12",
+   "nom": "Easter Sunday",
+   "nom_local": "Великдень"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "International Workers' Day",
+   "nom_local": "День праці"
+  },
+  {
+   "date": "2026-05-08",
+   "nom": "Victory day over Nazism in World War II",
+   "nom_local": "День перемоги над нацизмом у Другій світовій війні"
+  },
+  {
+   "date": "2026-05-31",
+   "nom": "Pentecost",
+   "nom_local": "Трійця"
+  },
+  {
+   "date": "2026-06-28",
+   "nom": "Constitution Day",
+   "nom_local": "День Конституції"
+  },
+  {
+   "date": "2026-07-15",
+   "nom": "Statehood Day",
+   "nom_local": "День Української Державності"
+  },
+  {
+   "date": "2026-08-24",
+   "nom": "Independence Day",
+   "nom_local": "День Незалежності"
+  },
+  {
+   "date": "2026-10-01",
+   "nom": "Defender of Ukraine Day",
+   "nom_local": "День захисників і захисниць України"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Різдво Христове"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Новий Рік"
+  },
+  {
+   "date": "2027-03-08",
+   "nom": "International Women's Day",
+   "nom_local": "Міжнародний жіночий день"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "International Workers' Day",
+   "nom_local": "День праці"
+  },
+  {
+   "date": "2027-05-02",
+   "nom": "Easter Sunday",
+   "nom_local": "Великдень"
+  },
+  {
+   "date": "2027-05-08",
+   "nom": "Victory day over Nazism in World War II",
+   "nom_local": "День перемоги над нацизмом у Другій світовій війні"
+  },
+  {
+   "date": "2027-06-20",
+   "nom": "Pentecost",
+   "nom_local": "Трійця"
+  },
+  {
+   "date": "2027-06-28",
+   "nom": "Constitution Day",
+   "nom_local": "День Конституції"
+  },
+  {
+   "date": "2027-07-15",
+   "nom": "Statehood Day",
+   "nom_local": "День Української Державності"
+  },
+  {
+   "date": "2027-08-24",
+   "nom": "Independence Day",
+   "nom_local": "День Незалежності"
+  },
+  {
+   "date": "2027-10-01",
+   "nom": "Defender of Ukraine Day",
+   "nom_local": "День захисників і захисниць України"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Різдво Христове"
+  }
+ ]
+}

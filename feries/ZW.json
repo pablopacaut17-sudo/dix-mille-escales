@@ -1,0 +1,135 @@
+{
+ "date": "2026-11-21T19:16:28Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "New Year's Day"
+  },
+  {
+   "date": "2026-02-21",
+   "nom": "Robert Mugabe National Youth Day",
+   "nom_local": "Robert Mugabe National Youth Day"
+  },
+  {
+   "date": "2026-04-03",
+   "nom": "Good Friday",
+   "nom_local": "Good Friday"
+  },
+  {
+   "date": "2026-04-04",
+   "nom": "Holy Saturday",
+   "nom_local": "Easter Saturday"
+  },
+  {
+   "date": "2026-04-06",
+   "nom": "Easter Monday",
+   "nom_local": "Easter Monday"
+  },
+  {
+   "date": "2026-04-18",
+   "nom": "Independence Day",
+   "nom_local": "Independence Day"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "Worker's Day",
+   "nom_local": "Worker's Day"
+  },
+  {
+   "date": "2026-05-25",
+   "nom": "Africa Day",
+   "nom_local": "Africa Day"
+  },
+  {
+   "date": "2026-08-10",
+   "nom": "Heroes' Day",
+   "nom_local": "Heroes' Day"
+  },
+  {
+   "date": "2026-08-11",
+   "nom": "Defence Forces Day",
+   "nom_local": "Defence Forces Day"
+  },
+  {
+   "date": "2026-12-22",
+   "nom": "Unity Day",
+   "nom_local": "Unity Day"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Christmas Day"
+  },
+  {
+   "date": "2026-12-26",
+   "nom": "St. Stephen's Day",
+   "nom_local": "Boxing Day"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "New Year's Day"
+  },
+  {
+   "date": "2027-02-21",
+   "nom": "Robert Mugabe National Youth Day",
+   "nom_local": "Robert Mugabe National Youth Day"
+  },
+  {
+   "date": "2027-03-26",
+   "nom": "Good Friday",
+   "nom_local": "Good Friday"
+  },
+  {
+   "date": "2027-03-27",
+   "nom": "Holy Saturday",
+   "nom_local": "Easter Saturday"
+  },
+  {
+   "date": "2027-03-29",
+   "nom": "Easter Monday",
+   "nom_local": "Easter Monday"
+  },
+  {
+   "date": "2027-04-18",
+   "nom": "Independence Day",
+   "nom_local": "Independence Day"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Worker's Day",
+   "nom_local": "Worker's Day"
+  },
+  {
+   "date": "2027-05-25",
+   "nom": "Africa Day",
+   "nom_local": "Africa Day"
+  },
+  {
+   "date": "2027-08-09",
+   "nom": "Heroes' Day",
+   "nom_local": "Heroes' Day"
+  },
+  {
+   "date": "2027-08-10",
+   "nom": "Defence Forces Day",
+   "nom_local": "Defence Forces Day"
+  },
+  {
+   "date": "2027-12-22",
+   "nom": "Unity Day",
+   "nom_local": "Unity Day"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Christmas Day"
+  },
+  {
+   "date": "2027-12-26",
+   "nom": "St. Stephen's Day",
+   "nom_local": "Boxing Day"
+  }
+ ]
+}

@@ -1,0 +1,495 @@
+{
+ "date": "2026-11-21T19:14:52Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Jaungada diena"
+  },
+  {
+   "date": "2026-01-20",
+   "nom": "Commemoration Day of Defenders of the Barricades in 1991",
+   "nom_local": "1991. gada barikāžu aizstāvju atceres diena"
+  },
+  {
+   "date": "2026-01-26",
+   "nom": "Day of the International (de jure) Recognition of the Republic of Latvia",
+   "nom_local": "Latvijas Republikas starptautiskās (de jure) atzīšanas diena"
+  },
+  {
+   "date": "2026-02-27",
+   "nom": "World Non-Governmental Organization Day",
+   "nom_local": "Starptautisko nevalstisko organizāciju diena"
+  },
+  {
+   "date": "2026-03-02",
+   "nom": "National Partisan Armed Resistance Remembrance Day",
+   "nom_local": "Nacionālo partizānu bruņotās pretošanās atceres diena"
+  },
+  {
+   "date": "2026-03-08",
+   "nom": "International Women's Day",
+   "nom_local": "Starptautiskā sieviešu diena"
+  },
+  {
+   "date": "2026-03-17",
+   "nom": "National Resistance Movement Remembrance Day",
+   "nom_local": "Nacionālās pretošanās kustības piemiņas diena"
+  },
+  {
+   "date": "2026-03-25",
+   "nom": "Commemoration Day of Victims of Communist Terror",
+   "nom_local": "Komunistiskā genocīda upuru piemiņas diena"
+  },
+  {
+   "date": "2026-04-03",
+   "nom": "Good Friday",
+   "nom_local": "Lielā Piektdiena"
+  },
+  {
+   "date": "2026-04-05",
+   "nom": "Easter Sunday",
+   "nom_local": "Pirmās Lieldienas"
+  },
+  {
+   "date": "2026-04-06",
+   "nom": "Easter Monday",
+   "nom_local": "Otrās Lieldienas"
+  },
+  {
+   "date": "2026-04-27",
+   "nom": "Latgale Congress Day",
+   "nom_local": "Latgales kongresa diena"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Darba svētki"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "Day of the Convocation of the Constitutional Assembly of the Republic of Latvia",
+   "nom_local": "Latvijas Republikas Satversmes sapulces sasaukšanas diena"
+  },
+  {
+   "date": "2026-05-04",
+   "nom": "Day of the Restoration of Independence of the Republic of Latvia",
+   "nom_local": "Latvijas Republikas Neatkarības atjaunošanas diena"
+  },
+  {
+   "date": "2026-05-08",
+   "nom": "Day of the Defeat of Nazism and Commemoration Day of Victims of World War II",
+   "nom_local": "Nacisma sagrāves diena un Otrā pasaules kara upuru piemiņas diena"
+  },
+  {
+   "date": "2026-05-09",
+   "nom": "Europe Day",
+   "nom_local": "Eiropas diena"
+  },
+  {
+   "date": "2026-05-10",
+   "nom": "Mother's Day",
+   "nom_local": "Mātes diena"
+  },
+  {
+   "date": "2026-05-15",
+   "nom": "International Day of the Family",
+   "nom_local": "Starptautiskā ģimenes diena"
+  },
+  {
+   "date": "2026-05-17",
+   "nom": "Firefighter and Rescuer Day",
+   "nom_local": "Ugunsdzēsēju un glābēju diena"
+  },
+  {
+   "date": "2026-05-24",
+   "nom": "Pentecost",
+   "nom_local": "Vasarsvētki"
+  },
+  {
+   "date": "2026-06-01",
+   "nom": "International Day for Protection of Children",
+   "nom_local": "Starptautiskā bērnu aizsardzības diena"
+  },
+  {
+   "date": "2026-06-14",
+   "nom": "Commemoration Day of Victims of Communist Terror",
+   "nom_local": "Komunistiskā genocīda upuru piemiņas diena"
+  },
+  {
+   "date": "2026-06-17",
+   "nom": "Day of the Occupation of the Republic of Latvia",
+   "nom_local": "Latvijas Republikas okupācijas diena"
+  },
+  {
+   "date": "2026-06-21",
+   "nom": "Medical Worker Day",
+   "nom_local": "Medicīnas darbinieku diena"
+  },
+  {
+   "date": "2026-06-22",
+   "nom": "Heroes' Commemoration Day (Anniversary of the Battle of Cēsis)",
+   "nom_local": "Varoņu piemiņas diena (Cēsu kaujas atceres diena)"
+  },
+  {
+   "date": "2026-06-23",
+   "nom": "Līgo Day",
+   "nom_local": "Līgo diena"
+  },
+  {
+   "date": "2026-06-24",
+   "nom": "Jāņi Day",
+   "nom_local": "Jāņu diena"
+  },
+  {
+   "date": "2026-07-04",
+   "nom": "Commemoration Day of Genocide Against the Jews",
+   "nom_local": "Ebreju tautas genocīda upuru piemiņas diena"
+  },
+  {
+   "date": "2026-07-11",
+   "nom": "Day of the Sea Festival",
+   "nom_local": "Jūras svētku diena"
+  },
+  {
+   "date": "2026-08-11",
+   "nom": "Latvian Freedom Fighters' Remembrance Day",
+   "nom_local": "Latvijas brīvības cīnītāju piemiņas diena"
+  },
+  {
+   "date": "2026-08-21",
+   "nom": "Day of the Passing of the Constitutional Law on the Status of the Republic of Latvia as a State",
+   "nom_local": "Konstitucionālā likuma “Par Latvijas Republikas valstisko statusu” pieņemšanas diena"
+  },
+  {
+   "date": "2026-08-23",
+   "nom": "Day of Remembrance for Victims of Stalinism and Nazism",
+   "nom_local": "Staļinisma un nacisma upuru atceres diena"
+  },
+  {
+   "date": "2026-09-01",
+   "nom": "Knowledge Day",
+   "nom_local": "Zinību diena"
+  },
+  {
+   "date": "2026-09-13",
+   "nom": "Father's Day",
+   "nom_local": "Tēva diena"
+  },
+  {
+   "date": "2026-09-22",
+   "nom": "Baltic Unity Day",
+   "nom_local": "Baltu vienības diena"
+  },
+  {
+   "date": "2026-10-01",
+   "nom": "International Day of Older Persons",
+   "nom_local": "Starptautiskā senioru diena"
+  },
+  {
+   "date": "2026-10-05",
+   "nom": "Teachers' Day",
+   "nom_local": "Skolotāju diena"
+  },
+  {
+   "date": "2026-10-15",
+   "nom": "Official Language Day",
+   "nom_local": "Valsts valodas diena"
+  },
+  {
+   "date": "2026-11-07",
+   "nom": "Border Guards Day",
+   "nom_local": "Robežsargu diena"
+  },
+  {
+   "date": "2026-11-11",
+   "nom": "Lāčplēsis Day",
+   "nom_local": "Lāčplēša diena"
+  },
+  {
+   "date": "2026-11-18",
+   "nom": "Day of the Proclamation of the Republic of Latvia",
+   "nom_local": "Latvijas Republikas Proklamēšanas diena"
+  },
+  {
+   "date": "2026-11-21",
+   "nom": "Remembrance Day of the Tragedy of 21 November 2013",
+   "nom_local": "2013. gada 21. novembra traģēdijas atceres diena"
+  },
+  {
+   "date": "2026-12-05",
+   "nom": "Police Day",
+   "nom_local": "Policijas darbinieku diena"
+  },
+  {
+   "date": "2026-12-06",
+   "nom": "Commemoration Day of Victims of Genocide Against the Latvian People By the Totalitarian Communist Regime",
+   "nom_local": "Pret latviešu tautu vērstā totalitārā komunistiskā režīma genocīda upuru piemiņas diena"
+  },
+  {
+   "date": "2026-12-24",
+   "nom": "Christmas Eve",
+   "nom_local": "Ziemassvētku vakars"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Pirmie Ziemassvētki"
+  },
+  {
+   "date": "2026-12-26",
+   "nom": "Second day of Christmas",
+   "nom_local": "Otrie Ziemassvētki"
+  },
+  {
+   "date": "2026-12-31",
+   "nom": "New Year's Eve",
+   "nom_local": "Vecgada diena"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Jaungada diena"
+  },
+  {
+   "date": "2027-01-20",
+   "nom": "Commemoration Day of Defenders of the Barricades in 1991",
+   "nom_local": "1991. gada barikāžu aizstāvju atceres diena"
+  },
+  {
+   "date": "2027-01-26",
+   "nom": "Day of the International (de jure) Recognition of the Republic of Latvia",
+   "nom_local": "Latvijas Republikas starptautiskās (de jure) atzīšanas diena"
+  },
+  {
+   "date": "2027-02-27",
+   "nom": "World Non-Governmental Organization Day",
+   "nom_local": "Starptautisko nevalstisko organizāciju diena"
+  },
+  {
+   "date": "2027-03-02",
+   "nom": "National Partisan Armed Resistance Remembrance Day",
+   "nom_local": "Nacionālo partizānu bruņotās pretošanās atceres diena"
+  },
+  {
+   "date": "2027-03-08",
+   "nom": "International Women's Day",
+   "nom_local": "Starptautiskā sieviešu diena"
+  },
+  {
+   "date": "2027-03-17",
+   "nom": "National Resistance Movement Remembrance Day",
+   "nom_local": "Nacionālās pretošanās kustības piemiņas diena"
+  },
+  {
+   "date": "2027-03-25",
+   "nom": "Commemoration Day of Victims of Communist Terror",
+   "nom_local": "Komunistiskā genocīda upuru piemiņas diena"
+  },
+  {
+   "date": "2027-03-26",
+   "nom": "Good Friday",
+   "nom_local": "Lielā Piektdiena"
+  },
+  {
+   "date": "2027-03-28",
+   "nom": "Easter Sunday",
+   "nom_local": "Pirmās Lieldienas"
+  },
+  {
+   "date": "2027-03-29",
+   "nom": "Easter Monday",
+   "nom_local": "Otrās Lieldienas"
+  },
+  {
+   "date": "2027-04-27",
+   "nom": "Latgale Congress Day",
+   "nom_local": "Latgales kongresa diena"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Darba svētki"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Day of the Convocation of the Constitutional Assembly of the Republic of Latvia",
+   "nom_local": "Latvijas Republikas Satversmes sapulces sasaukšanas diena"
+  },
+  {
+   "date": "2027-05-04",
+   "nom": "Day of the Restoration of Independence of the Republic of Latvia",
+   "nom_local": "Latvijas Republikas Neatkarības atjaunošanas diena"
+  },
+  {
+   "date": "2027-05-08",
+   "nom": "Day of the Defeat of Nazism and Commemoration Day of Victims of World War II",
+   "nom_local": "Nacisma sagrāves diena un Otrā pasaules kara upuru piemiņas diena"
+  },
+  {
+   "date": "2027-05-09",
+   "nom": "Mother's Day",
+   "nom_local": "Mātes diena"
+  },
+  {
+   "date": "2027-05-09",
+   "nom": "Europe Day",
+   "nom_local": "Eiropas diena"
+  },
+  {
+   "date": "2027-05-15",
+   "nom": "International Day of the Family",
+   "nom_local": "Starptautiskā ģimenes diena"
+  },
+  {
+   "date": "2027-05-16",
+   "nom": "Pentecost",
+   "nom_local": "Vasarsvētki"
+  },
+  {
+   "date": "2027-05-17",
+   "nom": "Firefighter and Rescuer Day",
+   "nom_local": "Ugunsdzēsēju un glābēju diena"
+  },
+  {
+   "date": "2027-06-01",
+   "nom": "International Day for Protection of Children",
+   "nom_local": "Starptautiskā bērnu aizsardzības diena"
+  },
+  {
+   "date": "2027-06-14",
+   "nom": "Commemoration Day of Victims of Communist Terror",
+   "nom_local": "Komunistiskā genocīda upuru piemiņas diena"
+  },
+  {
+   "date": "2027-06-17",
+   "nom": "Day of the Occupation of the Republic of Latvia",
+   "nom_local": "Latvijas Republikas okupācijas diena"
+  },
+  {
+   "date": "2027-06-20",
+   "nom": "Medical Worker Day",
+   "nom_local": "Medicīnas darbinieku diena"
+  },
+  {
+   "date": "2027-06-22",
+   "nom": "Heroes' Commemoration Day (Anniversary of the Battle of Cēsis)",
+   "nom_local": "Varoņu piemiņas diena (Cēsu kaujas atceres diena)"
+  },
+  {
+   "date": "2027-06-23",
+   "nom": "Līgo Day",
+   "nom_local": "Līgo diena"
+  },
+  {
+   "date": "2027-06-24",
+   "nom": "Jāņi Day",
+   "nom_local": "Jāņu diena"
+  },
+  {
+   "date": "2027-07-04",
+   "nom": "Commemoration Day of Genocide Against the Jews",
+   "nom_local": "Ebreju tautas genocīda upuru piemiņas diena"
+  },
+  {
+   "date": "2027-07-10",
+   "nom": "Day of the Sea Festival",
+   "nom_local": "Jūras svētku diena"
+  },
+  {
+   "date": "2027-08-11",
+   "nom": "Latvian Freedom Fighters' Remembrance Day",
+   "nom_local": "Latvijas brīvības cīnītāju piemiņas diena"
+  },
+  {
+   "date": "2027-08-21",
+   "nom": "Day of the Passing of the Constitutional Law on the Status of the Republic of Latvia as a State",
+   "nom_local": "Konstitucionālā likuma “Par Latvijas Republikas valstisko statusu” pieņemšanas diena"
+  },
+  {
+   "date": "2027-08-23",
+   "nom": "Day of Remembrance for Victims of Stalinism and Nazism",
+   "nom_local": "Staļinisma un nacisma upuru atceres diena"
+  },
+  {
+   "date": "2027-09-01",
+   "nom": "Knowledge Day",
+   "nom_local": "Zinību diena"
+  },
+  {
+   "date": "2027-09-12",
+   "nom": "Father's Day",
+   "nom_local": "Tēva diena"
+  },
+  {
+   "date": "2027-09-22",
+   "nom": "Baltic Unity Day",
+   "nom_local": "Baltu vienības diena"
+  },
+  {
+   "date": "2027-10-01",
+   "nom": "International Day of Older Persons",
+   "nom_local": "Starptautiskā senioru diena"
+  },
+  {
+   "date": "2027-10-05",
+   "nom": "Teachers' Day",
+   "nom_local": "Skolotāju diena"
+  },
+  {
+   "date": "2027-10-15",
+   "nom": "Official Language Day",
+   "nom_local": "Valsts valodas diena"
+  },
+  {
+   "date": "2027-11-07",
+   "nom": "Border Guards Day",
+   "nom_local": "Robežsargu diena"
+  },
+  {
+   "date": "2027-11-11",
+   "nom": "Lāčplēsis Day",
+   "nom_local": "Lāčplēša diena"
+  },
+  {
+   "date": "2027-11-18",
+   "nom": "Day of the Proclamation of the Republic of Latvia",
+   "nom_local": "Latvijas Republikas Proklamēšanas diena"
+  },
+  {
+   "date": "2027-11-21",
+   "nom": "Remembrance Day of the Tragedy of 21 November 2013",
+   "nom_local": "2013. gada 21. novembra traģēdijas atceres diena"
+  },
+  {
+   "date": "2027-12-05",
+   "nom": "Police Day",
+   "nom_local": "Policijas darbinieku diena"
+  },
+  {
+   "date": "2027-12-05",
+   "nom": "Commemoration Day of Victims of Genocide Against the Latvian People By the Totalitarian Communist Regime",
+   "nom_local": "Pret latviešu tautu vērstā totalitārā komunistiskā režīma genocīda upuru piemiņas diena"
+  },
+  {
+   "date": "2027-12-24",
+   "nom": "Christmas Eve",
+   "nom_local": "Ziemassvētku vakars"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Pirmie Ziemassvētki"
+  },
+  {
+   "date": "2027-12-26",
+   "nom": "Second day of Christmas",
+   "nom_local": "Otrie Ziemassvētki"
+  },
+  {
+   "date": "2027-12-31",
+   "nom": "New Year's Eve",
+   "nom_local": "Vecgada diena"
+  }
+ ]
+}

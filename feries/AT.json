@@ -1,0 +1,155 @@
+{
+ "date": "2026-11-21T19:12:58Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Neujahr"
+  },
+  {
+   "date": "2026-01-06",
+   "nom": "Epiphany",
+   "nom_local": "Heilige Drei Könige"
+  },
+  {
+   "date": "2026-04-05",
+   "nom": "Easter Sunday",
+   "nom_local": "Ostersonntag"
+  },
+  {
+   "date": "2026-04-06",
+   "nom": "Easter Monday",
+   "nom_local": "Ostermontag"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "National Holiday",
+   "nom_local": "Staatsfeiertag"
+  },
+  {
+   "date": "2026-05-14",
+   "nom": "Ascension Day",
+   "nom_local": "Christi Himmelfahrt"
+  },
+  {
+   "date": "2026-05-24",
+   "nom": "Pentecost",
+   "nom_local": "Pfingstsonntag"
+  },
+  {
+   "date": "2026-05-25",
+   "nom": "Whit Monday",
+   "nom_local": "Pfingstmontag"
+  },
+  {
+   "date": "2026-06-04",
+   "nom": "Corpus Christi",
+   "nom_local": "Fronleichnam"
+  },
+  {
+   "date": "2026-08-15",
+   "nom": "Assumption Day",
+   "nom_local": "Maria Himmelfahrt"
+  },
+  {
+   "date": "2026-10-26",
+   "nom": "National Holiday",
+   "nom_local": "Nationalfeiertag"
+  },
+  {
+   "date": "2026-11-01",
+   "nom": "All Saints' Day",
+   "nom_local": "Allerheiligen"
+  },
+  {
+   "date": "2026-12-08",
+   "nom": "Immaculate Conception",
+   "nom_local": "Mariä Empfängnis"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Weihnachten"
+  },
+  {
+   "date": "2026-12-26",
+   "nom": "St. Stephen's Day",
+   "nom_local": "Stefanitag"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Neujahr"
+  },
+  {
+   "date": "2027-01-06",
+   "nom": "Epiphany",
+   "nom_local": "Heilige Drei Könige"
+  },
+  {
+   "date": "2027-03-28",
+   "nom": "Easter Sunday",
+   "nom_local": "Ostersonntag"
+  },
+  {
+   "date": "2027-03-29",
+   "nom": "Easter Monday",
+   "nom_local": "Ostermontag"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "National Holiday",
+   "nom_local": "Staatsfeiertag"
+  },
+  {
+   "date": "2027-05-06",
+   "nom": "Ascension Day",
+   "nom_local": "Christi Himmelfahrt"
+  },
+  {
+   "date": "2027-05-16",
+   "nom": "Pentecost",
+   "nom_local": "Pfingstsonntag"
+  },
+  {
+   "date": "2027-05-17",
+   "nom": "Whit Monday",
+   "nom_local": "Pfingstmontag"
+  },
+  {
+   "date": "2027-05-27",
+   "nom": "Corpus Christi",
+   "nom_local": "Fronleichnam"
+  },
+  {
+   "date": "2027-08-15",
+   "nom": "Assumption Day",
+   "nom_local": "Maria Himmelfahrt"
+  },
+  {
+   "date": "2027-10-26",
+   "nom": "National Holiday",
+   "nom_local": "Nationalfeiertag"
+  },
+  {
+   "date": "2027-11-01",
+   "nom": "All Saints' Day",
+   "nom_local": "Allerheiligen"
+  },
+  {
+   "date": "2027-12-08",
+   "nom": "Immaculate Conception",
+   "nom_local": "Mariä Empfängnis"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Weihnachten"
+  },
+  {
+   "date": "2027-12-26",
+   "nom": "St. Stephen's Day",
+   "nom_local": "Stefanitag"
+  }
+ ]
+}

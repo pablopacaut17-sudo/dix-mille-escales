@@ -1,0 +1,95 @@
+{
+ "date": "2026-11-21T19:13:36Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "Triumph of the Revolution",
+   "nom_local": "Triunfo de la Revolución"
+  },
+  {
+   "date": "2026-01-02",
+   "nom": "Victory of Fidel Castro",
+   "nom_local": "Día de Victoria de las Fuerzas Armadas"
+  },
+  {
+   "date": "2026-04-03",
+   "nom": "Good Friday",
+   "nom_local": "Good Friday"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Día de los trabajadores"
+  },
+  {
+   "date": "2026-07-25",
+   "nom": "Day before the Commemoration of the Assault of the Moncada garrison",
+   "nom_local": "Conmemoración del asalto a Moncada"
+  },
+  {
+   "date": "2026-07-26",
+   "nom": "Commemoration of the Assault of the Moncada garrison",
+   "nom_local": "Día de la Rebeldía Nacional"
+  },
+  {
+   "date": "2026-07-27",
+   "nom": "Day after the Commemoration of the Assault of the Moncada garrison",
+   "nom_local": "Conmemoración del asalto a Moncada"
+  },
+  {
+   "date": "2026-10-10",
+   "nom": "Independence Day",
+   "nom_local": "Día de la Independencia"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Navidad"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "Triumph of the Revolution",
+   "nom_local": "Triunfo de la Revolución"
+  },
+  {
+   "date": "2027-01-02",
+   "nom": "Victory of Fidel Castro",
+   "nom_local": "Día de Victoria de las Fuerzas Armadas"
+  },
+  {
+   "date": "2027-03-26",
+   "nom": "Good Friday",
+   "nom_local": "Good Friday"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Día de los trabajadores"
+  },
+  {
+   "date": "2027-07-25",
+   "nom": "Day before the Commemoration of the Assault of the Moncada garrison",
+   "nom_local": "Conmemoración del asalto a Moncada"
+  },
+  {
+   "date": "2027-07-26",
+   "nom": "Commemoration of the Assault of the Moncada garrison",
+   "nom_local": "Día de la Rebeldía Nacional"
+  },
+  {
+   "date": "2027-07-27",
+   "nom": "Day after the Commemoration of the Assault of the Moncada garrison",
+   "nom_local": "Conmemoración del asalto a Moncada"
+  },
+  {
+   "date": "2027-10-10",
+   "nom": "Independence Day",
+   "nom_local": "Día de la Independencia"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Navidad"
+  }
+ ]
+}

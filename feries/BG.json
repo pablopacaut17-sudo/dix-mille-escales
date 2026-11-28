@@ -1,0 +1,150 @@
+{
+ "date": "2026-11-21T19:13:08Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Нова година"
+  },
+  {
+   "date": "2026-01-02",
+   "nom": "Currency change day",
+   "nom_local": "Ден на валутната смяна"
+  },
+  {
+   "date": "2026-03-03",
+   "nom": "Liberation Day",
+   "nom_local": "Ден на oсвобождението на България от Oсманско робство"
+  },
+  {
+   "date": "2026-04-10",
+   "nom": "Good Friday",
+   "nom_local": "Разпети петък"
+  },
+  {
+   "date": "2026-04-11",
+   "nom": "Holy Saturday",
+   "nom_local": "Велика събота"
+  },
+  {
+   "date": "2026-04-12",
+   "nom": "Easter Sunday",
+   "nom_local": "Великден"
+  },
+  {
+   "date": "2026-04-13",
+   "nom": "Easter Monday",
+   "nom_local": "Велики понеделник"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "International Workers' Day",
+   "nom_local": "Ден на труда и на международната работническа солидарност"
+  },
+  {
+   "date": "2026-05-06",
+   "nom": "Saint George's Day",
+   "nom_local": "Гергьовден, ден на храбростта и Българската армия"
+  },
+  {
+   "date": "2026-05-25",
+   "nom": "Saints Cyril and Methodius Day",
+   "nom_local": "Ден на Българската просвета и култура и на славянската писменост"
+  },
+  {
+   "date": "2026-09-07",
+   "nom": "Unification Day",
+   "nom_local": "Ден на съединението"
+  },
+  {
+   "date": "2026-09-22",
+   "nom": "Independence Day",
+   "nom_local": "Ден на независимостта на България"
+  },
+  {
+   "date": "2026-12-24",
+   "nom": "Christmas Eve",
+   "nom_local": "Бъдни вечер"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Рождество Христово"
+  },
+  {
+   "date": "2026-12-26",
+   "nom": "Second day of Christmas",
+   "nom_local": "Рождество Христово"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Нова година"
+  },
+  {
+   "date": "2027-03-03",
+   "nom": "Liberation Day",
+   "nom_local": "Ден на oсвобождението на България от Oсманско робство"
+  },
+  {
+   "date": "2027-04-30",
+   "nom": "Good Friday",
+   "nom_local": "Разпети петък"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "International Workers' Day",
+   "nom_local": "Ден на труда и на международната работническа солидарност"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Holy Saturday",
+   "nom_local": "Велика събота"
+  },
+  {
+   "date": "2027-05-02",
+   "nom": "Easter Sunday",
+   "nom_local": "Великден"
+  },
+  {
+   "date": "2027-05-03",
+   "nom": "Easter Monday",
+   "nom_local": "Велики понеделник"
+  },
+  {
+   "date": "2027-05-06",
+   "nom": "Saint George's Day",
+   "nom_local": "Гергьовден, ден на храбростта и Българската армия"
+  },
+  {
+   "date": "2027-05-24",
+   "nom": "Saints Cyril and Methodius Day",
+   "nom_local": "Ден на Българската просвета и култура и на славянската писменост"
+  },
+  {
+   "date": "2027-09-06",
+   "nom": "Unification Day",
+   "nom_local": "Ден на съединението"
+  },
+  {
+   "date": "2027-09-22",
+   "nom": "Independence Day",
+   "nom_local": "Ден на независимостта на България"
+  },
+  {
+   "date": "2027-12-24",
+   "nom": "Christmas Eve",
+   "nom_local": "Бъдни вечер"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Рождество Христово"
+  },
+  {
+   "date": "2027-12-27",
+   "nom": "Second day of Christmas",
+   "nom_local": "Рождество Христово"
+  }
+ ]
+}

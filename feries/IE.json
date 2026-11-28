@@ -1,0 +1,115 @@
+{
+ "date": "2026-11-21T19:14:25Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Lá Caille"
+  },
+  {
+   "date": "2026-02-02",
+   "nom": "Saint Brigid's Day",
+   "nom_local": "Lá Fhéile Bríde"
+  },
+  {
+   "date": "2026-03-17",
+   "nom": "Saint Patrick's Day",
+   "nom_local": "Lá Fhéile Pádraig"
+  },
+  {
+   "date": "2026-04-03",
+   "nom": "Good Friday",
+   "nom_local": "Aoine an Chéasta"
+  },
+  {
+   "date": "2026-04-06",
+   "nom": "Easter Monday",
+   "nom_local": "Luan Cásca"
+  },
+  {
+   "date": "2026-05-04",
+   "nom": "May Day",
+   "nom_local": "Lá Bealtaine"
+  },
+  {
+   "date": "2026-06-01",
+   "nom": "June Holiday",
+   "nom_local": "Lá Saoire i mí an Mheithimh"
+  },
+  {
+   "date": "2026-08-03",
+   "nom": "August Holiday",
+   "nom_local": "Lá Saoire i mí Lúnasa"
+  },
+  {
+   "date": "2026-10-26",
+   "nom": "October Holiday",
+   "nom_local": "Lá Saoire i mí Dheireadh Fómhair"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Lá Nollag"
+  },
+  {
+   "date": "2026-12-26",
+   "nom": "St. Stephen's Day",
+   "nom_local": "Lá Fhéile Stiofáin"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Lá Caille"
+  },
+  {
+   "date": "2027-02-01",
+   "nom": "Saint Brigid's Day",
+   "nom_local": "Lá Fhéile Bríde"
+  },
+  {
+   "date": "2027-03-17",
+   "nom": "Saint Patrick's Day",
+   "nom_local": "Lá Fhéile Pádraig"
+  },
+  {
+   "date": "2027-03-26",
+   "nom": "Good Friday",
+   "nom_local": "Aoine an Chéasta"
+  },
+  {
+   "date": "2027-03-29",
+   "nom": "Easter Monday",
+   "nom_local": "Luan Cásca"
+  },
+  {
+   "date": "2027-05-03",
+   "nom": "May Day",
+   "nom_local": "Lá Bealtaine"
+  },
+  {
+   "date": "2027-06-07",
+   "nom": "June Holiday",
+   "nom_local": "Lá Saoire i mí an Mheithimh"
+  },
+  {
+   "date": "2027-08-02",
+   "nom": "August Holiday",
+   "nom_local": "Lá Saoire i mí Lúnasa"
+  },
+  {
+   "date": "2027-10-25",
+   "nom": "October Holiday",
+   "nom_local": "Lá Saoire i mí Dheireadh Fómhair"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Lá Nollag"
+  },
+  {
+   "date": "2027-12-26",
+   "nom": "St. Stephen's Day",
+   "nom_local": "Lá Fhéile Stiofáin"
+  }
+ ]
+}

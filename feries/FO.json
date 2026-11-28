@@ -1,0 +1,175 @@
+{
+ "date": "2026-11-21T19:13:57Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Nýggjársdagur"
+  },
+  {
+   "date": "2026-04-02",
+   "nom": "Maundy Thursday",
+   "nom_local": "Skírhósdagur"
+  },
+  {
+   "date": "2026-04-03",
+   "nom": "Good Friday",
+   "nom_local": "Langifríggjadagur"
+  },
+  {
+   "date": "2026-04-05",
+   "nom": "Easter Sunday",
+   "nom_local": "Páskadagur"
+  },
+  {
+   "date": "2026-04-06",
+   "nom": "Easter Monday",
+   "nom_local": "2. Páskadagur"
+  },
+  {
+   "date": "2026-04-25",
+   "nom": "National Flag Day",
+   "nom_local": "Flaggdagur"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "General Prayer Day",
+   "nom_local": "Dýri biðidagur"
+  },
+  {
+   "date": "2026-05-14",
+   "nom": "Ascension Day",
+   "nom_local": "Kristi himmalsferðar dagur"
+  },
+  {
+   "date": "2026-05-24",
+   "nom": "Pentecost",
+   "nom_local": "Hvítasunnudagur"
+  },
+  {
+   "date": "2026-05-25",
+   "nom": "Whit Monday",
+   "nom_local": "2. Hvítasunnudagur"
+  },
+  {
+   "date": "2026-06-05",
+   "nom": "Constitution Day",
+   "nom_local": "Grundlógardagur Danmarkar"
+  },
+  {
+   "date": "2026-07-28",
+   "nom": "Saint Olav's Eve",
+   "nom_local": "Ólavsøkuaftan"
+  },
+  {
+   "date": "2026-07-29",
+   "nom": "Saint Olav's Day",
+   "nom_local": "Ólavsøkudagur"
+  },
+  {
+   "date": "2026-12-24",
+   "nom": "Christmas Eve",
+   "nom_local": "Jólaaftanskvøld"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Jóladagur"
+  },
+  {
+   "date": "2026-12-26",
+   "nom": "St. Stephen's Day",
+   "nom_local": "2. Jóladagur"
+  },
+  {
+   "date": "2026-12-31",
+   "nom": "New Year's Eve",
+   "nom_local": "Nýggjársaftan"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Nýggjársdagur"
+  },
+  {
+   "date": "2027-03-25",
+   "nom": "Maundy Thursday",
+   "nom_local": "Skírhósdagur"
+  },
+  {
+   "date": "2027-03-26",
+   "nom": "Good Friday",
+   "nom_local": "Langifríggjadagur"
+  },
+  {
+   "date": "2027-03-28",
+   "nom": "Easter Sunday",
+   "nom_local": "Páskadagur"
+  },
+  {
+   "date": "2027-03-29",
+   "nom": "Easter Monday",
+   "nom_local": "2. Páskadagur"
+  },
+  {
+   "date": "2027-04-23",
+   "nom": "General Prayer Day",
+   "nom_local": "Dýri biðidagur"
+  },
+  {
+   "date": "2027-04-25",
+   "nom": "National Flag Day",
+   "nom_local": "Flaggdagur"
+  },
+  {
+   "date": "2027-05-06",
+   "nom": "Ascension Day",
+   "nom_local": "Kristi himmalsferðar dagur"
+  },
+  {
+   "date": "2027-05-16",
+   "nom": "Pentecost",
+   "nom_local": "Hvítasunnudagur"
+  },
+  {
+   "date": "2027-05-17",
+   "nom": "Whit Monday",
+   "nom_local": "2. Hvítasunnudagur"
+  },
+  {
+   "date": "2027-06-05",
+   "nom": "Constitution Day",
+   "nom_local": "Grundlógardagur Danmarkar"
+  },
+  {
+   "date": "2027-07-28",
+   "nom": "Saint Olav's Eve",
+   "nom_local": "Ólavsøkuaftan"
+  },
+  {
+   "date": "2027-07-29",
+   "nom": "Saint Olav's Day",
+   "nom_local": "Ólavsøkudagur"
+  },
+  {
+   "date": "2027-12-24",
+   "nom": "Christmas Eve",
+   "nom_local": "Jólaaftanskvøld"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Jóladagur"
+  },
+  {
+   "date": "2027-12-26",
+   "nom": "St. Stephen's Day",
+   "nom_local": "2. Jóladagur"
+  },
+  {
+   "date": "2027-12-31",
+   "nom": "New Year's Eve",
+   "nom_local": "Nýggjársaftan"
+  }
+ ]
+}

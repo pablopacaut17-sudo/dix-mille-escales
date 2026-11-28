@@ -1,0 +1,175 @@
+{
+ "date": "2026-11-21T19:13:39Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Πρωτοχρονιά"
+  },
+  {
+   "date": "2026-01-06",
+   "nom": "Epiphany",
+   "nom_local": "Θεοφάνεια"
+  },
+  {
+   "date": "2026-02-23",
+   "nom": "Green Monday",
+   "nom_local": "Καθαρή Δευτέρα"
+  },
+  {
+   "date": "2026-03-25",
+   "nom": "Greek Independence Day",
+   "nom_local": "Επέτειος Ελληνικής Ανεξαρτησίας"
+  },
+  {
+   "date": "2026-04-01",
+   "nom": "Cyprus National Day",
+   "nom_local": "Κυπριακή Εθνική Επέτειος"
+  },
+  {
+   "date": "2026-04-10",
+   "nom": "Good Friday",
+   "nom_local": "Μεγάλη Παρασκευή"
+  },
+  {
+   "date": "2026-04-13",
+   "nom": "Easter Monday",
+   "nom_local": "Δευτέρα της Διακαινησίμου"
+  },
+  {
+   "date": "2026-04-14",
+   "nom": "Easter Tuesday",
+   "nom_local": "Τρίτη της Διακαινησίμου"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Πρωτομαγιά"
+  },
+  {
+   "date": "2026-05-31",
+   "nom": "Pentecost",
+   "nom_local": "Αγίου Πνεύματος"
+  },
+  {
+   "date": "2026-06-01",
+   "nom": "Whit Monday",
+   "nom_local": "Δευτέρα Πεντηκοστής"
+  },
+  {
+   "date": "2026-08-15",
+   "nom": "Assumption of the Virgin Mary",
+   "nom_local": "Η Κοίμησις της Θεοτόκου"
+  },
+  {
+   "date": "2026-10-01",
+   "nom": "Cyprus Independence Day",
+   "nom_local": "Επέτειος Κυπριακής Ανεξαρτησίας"
+  },
+  {
+   "date": "2026-10-28",
+   "nom": "Ohi Day",
+   "nom_local": "Το Όχι"
+  },
+  {
+   "date": "2026-12-24",
+   "nom": "Christmas Eve",
+   "nom_local": "Παραμονή Χριστουγέννων"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Χριστούγεννα"
+  },
+  {
+   "date": "2026-12-26",
+   "nom": "St. Stephen's Day",
+   "nom_local": "Δεύτερη μέρα των Χριστουγέννων"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Πρωτοχρονιά"
+  },
+  {
+   "date": "2027-01-06",
+   "nom": "Epiphany",
+   "nom_local": "Θεοφάνεια"
+  },
+  {
+   "date": "2027-03-15",
+   "nom": "Green Monday",
+   "nom_local": "Καθαρή Δευτέρα"
+  },
+  {
+   "date": "2027-03-25",
+   "nom": "Greek Independence Day",
+   "nom_local": "Επέτειος Ελληνικής Ανεξαρτησίας"
+  },
+  {
+   "date": "2027-04-01",
+   "nom": "Cyprus National Day",
+   "nom_local": "Κυπριακή Εθνική Επέτειος"
+  },
+  {
+   "date": "2027-04-30",
+   "nom": "Good Friday",
+   "nom_local": "Μεγάλη Παρασκευή"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Πρωτομαγιά"
+  },
+  {
+   "date": "2027-05-03",
+   "nom": "Easter Monday",
+   "nom_local": "Δευτέρα της Διακαινησίμου"
+  },
+  {
+   "date": "2027-05-04",
+   "nom": "Easter Tuesday",
+   "nom_local": "Τρίτη της Διακαινησίμου"
+  },
+  {
+   "date": "2027-06-20",
+   "nom": "Pentecost",
+   "nom_local": "Αγίου Πνεύματος"
+  },
+  {
+   "date": "2027-06-21",
+   "nom": "Whit Monday",
+   "nom_local": "Δευτέρα Πεντηκοστής"
+  },
+  {
+   "date": "2027-08-15",
+   "nom": "Assumption of the Virgin Mary",
+   "nom_local": "Η Κοίμησις της Θεοτόκου"
+  },
+  {
+   "date": "2027-10-01",
+   "nom": "Cyprus Independence Day",
+   "nom_local": "Επέτειος Κυπριακής Ανεξαρτησίας"
+  },
+  {
+   "date": "2027-10-28",
+   "nom": "Ohi Day",
+   "nom_local": "Το Όχι"
+  },
+  {
+   "date": "2027-12-24",
+   "nom": "Christmas Eve",
+   "nom_local": "Παραμονή Χριστουγέννων"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Χριστούγεννα"
+  },
+  {
+   "date": "2027-12-26",
+   "nom": "St. Stephen's Day",
+   "nom_local": "Δεύτερη μέρα των Χριστουγέννων"
+  }
+ ]
+}

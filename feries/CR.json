@@ -1,0 +1,115 @@
+{
+ "date": "2026-11-21T19:13:35Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Año Nuevo"
+  },
+  {
+   "date": "2026-04-02",
+   "nom": "Maundy Thursday",
+   "nom_local": "Jueves Santo"
+  },
+  {
+   "date": "2026-04-03",
+   "nom": "Good Friday",
+   "nom_local": "Viernes Santo"
+  },
+  {
+   "date": "2026-04-11",
+   "nom": "Juan Santamaría Day",
+   "nom_local": "Día de Juan Santamaría"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Día Internacional del Trabajo"
+  },
+  {
+   "date": "2026-07-25",
+   "nom": "Annexation of the Party of Nicoya to Costa Rica",
+   "nom_local": "Anexión del Partido de Nicoya a Costa Rica"
+  },
+  {
+   "date": "2026-08-02",
+   "nom": "Feast of Our Lady of the Angels",
+   "nom_local": "Fiesta de Nuestra Señora de los Ángeles"
+  },
+  {
+   "date": "2026-08-15",
+   "nom": "Mother's Day",
+   "nom_local": "Día de la Madre"
+  },
+  {
+   "date": "2026-09-15",
+   "nom": "Independence Day",
+   "nom_local": "Día de la Independencia"
+  },
+  {
+   "date": "2026-12-01",
+   "nom": "Army Abolition Day",
+   "nom_local": "Día de la Abolición del Ejército"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Navidad"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Año Nuevo"
+  },
+  {
+   "date": "2027-03-25",
+   "nom": "Maundy Thursday",
+   "nom_local": "Jueves Santo"
+  },
+  {
+   "date": "2027-03-26",
+   "nom": "Good Friday",
+   "nom_local": "Viernes Santo"
+  },
+  {
+   "date": "2027-04-11",
+   "nom": "Juan Santamaría Day",
+   "nom_local": "Día de Juan Santamaría"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Día Internacional del Trabajo"
+  },
+  {
+   "date": "2027-07-25",
+   "nom": "Annexation of the Party of Nicoya to Costa Rica",
+   "nom_local": "Anexión del Partido de Nicoya a Costa Rica"
+  },
+  {
+   "date": "2027-08-02",
+   "nom": "Feast of Our Lady of the Angels",
+   "nom_local": "Fiesta de Nuestra Señora de los Ángeles"
+  },
+  {
+   "date": "2027-08-15",
+   "nom": "Mother's Day",
+   "nom_local": "Día de la Madre"
+  },
+  {
+   "date": "2027-09-15",
+   "nom": "Independence Day",
+   "nom_local": "Día de la Independencia"
+  },
+  {
+   "date": "2027-12-01",
+   "nom": "Army Abolition Day",
+   "nom_local": "Día de la Abolición del Ejército"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Navidad"
+  }
+ ]
+}

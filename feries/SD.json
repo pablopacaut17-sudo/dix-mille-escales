@@ -1,0 +1,45 @@
+{
+ "date": "2026-11-21T19:15:43Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "Independence Day",
+   "nom_local": "Independence Day"
+  },
+  {
+   "date": "2026-01-07",
+   "nom": "Coptic Christmas",
+   "nom_local": "Coptic Christmas"
+  },
+  {
+   "date": "2026-04-12",
+   "nom": "Easter Sunday",
+   "nom_local": "Coptic Easter Sunday"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Christmas Day"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "Independence Day",
+   "nom_local": "Independence Day"
+  },
+  {
+   "date": "2027-01-07",
+   "nom": "Coptic Christmas",
+   "nom_local": "Coptic Christmas"
+  },
+  {
+   "date": "2027-05-02",
+   "nom": "Easter Sunday",
+   "nom_local": "Coptic Easter Sunday"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Christmas Day"
+  }
+ ]
+}

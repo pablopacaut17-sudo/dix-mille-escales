@@ -1,0 +1,75 @@
+{
+ "date": "2026-11-21T19:14:11Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "New Year's Day"
+  },
+  {
+   "date": "2026-04-06",
+   "nom": "Easter Monday",
+   "nom_local": "Easter Monday"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Labour Day"
+  },
+  {
+   "date": "2026-05-25",
+   "nom": "Africa Day",
+   "nom_local": "Africa Day"
+  },
+  {
+   "date": "2026-08-15",
+   "nom": "Assumption Day",
+   "nom_local": "Assumption Day"
+  },
+  {
+   "date": "2026-10-02",
+   "nom": "Independence Day",
+   "nom_local": "Independence Day"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Christmas Day"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "New Year's Day"
+  },
+  {
+   "date": "2027-03-29",
+   "nom": "Easter Monday",
+   "nom_local": "Easter Monday"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Labour Day"
+  },
+  {
+   "date": "2027-05-25",
+   "nom": "Africa Day",
+   "nom_local": "Africa Day"
+  },
+  {
+   "date": "2027-08-15",
+   "nom": "Assumption Day",
+   "nom_local": "Assumption Day"
+  },
+  {
+   "date": "2027-10-02",
+   "nom": "Independence Day",
+   "nom_local": "Independence Day"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Christmas Day"
+  }
+ ]
+}

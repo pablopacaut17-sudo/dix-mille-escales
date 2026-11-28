@@ -1,0 +1,85 @@
+{
+ "date": "2026-11-21T19:13:23Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "New Year's Day"
+  },
+  {
+   "date": "2026-04-03",
+   "nom": "Good Friday",
+   "nom_local": "Good Friday"
+  },
+  {
+   "date": "2026-05-18",
+   "nom": "Victoria Day",
+   "nom_local": "Victoria Day"
+  },
+  {
+   "date": "2026-07-01",
+   "nom": "Canada Day",
+   "nom_local": "Canada Day"
+  },
+  {
+   "date": "2026-09-07",
+   "nom": "Labour Day",
+   "nom_local": "Labour Day"
+  },
+  {
+   "date": "2026-09-30",
+   "nom": "National Day for Truth and Reconciliation",
+   "nom_local": "National Day for Truth and Reconciliation"
+  },
+  {
+   "date": "2026-10-12",
+   "nom": "Thanksgiving",
+   "nom_local": "Thanksgiving"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Christmas Day"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "New Year's Day"
+  },
+  {
+   "date": "2027-03-26",
+   "nom": "Good Friday",
+   "nom_local": "Good Friday"
+  },
+  {
+   "date": "2027-05-24",
+   "nom": "Victoria Day",
+   "nom_local": "Victoria Day"
+  },
+  {
+   "date": "2027-07-01",
+   "nom": "Canada Day",
+   "nom_local": "Canada Day"
+  },
+  {
+   "date": "2027-09-06",
+   "nom": "Labour Day",
+   "nom_local": "Labour Day"
+  },
+  {
+   "date": "2027-09-30",
+   "nom": "National Day for Truth and Reconciliation",
+   "nom_local": "National Day for Truth and Reconciliation"
+  },
+  {
+   "date": "2027-10-11",
+   "nom": "Thanksgiving",
+   "nom_local": "Thanksgiving"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Christmas Day"
+  }
+ ]
+}

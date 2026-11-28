@@ -1,0 +1,155 @@
+{
+ "date": "2026-11-21T19:15:18Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Año Nuevo"
+  },
+  {
+   "date": "2026-01-18",
+   "nom": "Birthday of Rubén Darío",
+   "nom_local": "Natalicio de Rubén Darío"
+  },
+  {
+   "date": "2026-02-01",
+   "nom": "Air Force Day",
+   "nom_local": "Día de la Fuerza Aérea"
+  },
+  {
+   "date": "2026-02-02",
+   "nom": "National Day of Reconciliation and Peace",
+   "nom_local": "Día Nacional de la Reconciliación y la Paz"
+  },
+  {
+   "date": "2026-02-21",
+   "nom": "Anniversary of the Death of Augusto C. Sandino",
+   "nom_local": "Paso a la Inmortalidad del General Augusto C. Sandino"
+  },
+  {
+   "date": "2026-04-02",
+   "nom": "Maundy Thursday",
+   "nom_local": "Jueves Santo"
+  },
+  {
+   "date": "2026-04-03",
+   "nom": "Good Friday",
+   "nom_local": "Viernes Santo"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Día Internacional de los Trabajadores"
+  },
+  {
+   "date": "2026-05-27",
+   "nom": "Army Day",
+   "nom_local": "Día del Ejército"
+  },
+  {
+   "date": "2026-05-30",
+   "nom": "Mother's Day",
+   "nom_local": "Día de las Madres"
+  },
+  {
+   "date": "2026-07-19",
+   "nom": "Liberation Day",
+   "nom_local": "Día de la Revolución Popular Sandinista"
+  },
+  {
+   "date": "2026-09-14",
+   "nom": "Battle of San Jacinto",
+   "nom_local": "Batalla de San Jacinto"
+  },
+  {
+   "date": "2026-09-15",
+   "nom": "Independence Day",
+   "nom_local": "Día de la Independencia"
+  },
+  {
+   "date": "2026-10-12",
+   "nom": "Indigenous Resistance Day",
+   "nom_local": "Día de la Resistencia Indígena"
+  },
+  {
+   "date": "2026-11-08",
+   "nom": "Anniversary of the Death of Carlos Fonseca",
+   "nom_local": "Paso a la Inmortalidad del Comandante Carlos Fonseca Amador"
+  },
+  {
+   "date": "2026-12-08",
+   "nom": "Immaculate Conception",
+   "nom_local": "Día de la Purísima Concepción"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Navidad"
+  },
+  {
+   "date": "2026-12-31",
+   "nom": "New Year's Eve",
+   "nom_local": "Fin de Año"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "New Year's Day"
+  },
+  {
+   "date": "2027-02-01",
+   "nom": "Air Force Day",
+   "nom_local": "Air Force Day"
+  },
+  {
+   "date": "2027-04-01",
+   "nom": "Holy Thursday",
+   "nom_local": "Holy Thursday"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Labour Day"
+  },
+  {
+   "date": "2027-05-27",
+   "nom": "Army Day",
+   "nom_local": "Army Day"
+  },
+  {
+   "date": "2027-07-19",
+   "nom": "Liberation Day",
+   "nom_local": "Liberation Day"
+  },
+  {
+   "date": "2027-09-14",
+   "nom": "Battle of San Jacinto",
+   "nom_local": "Battle of San Jacinto"
+  },
+  {
+   "date": "2027-09-15",
+   "nom": "Independence Day",
+   "nom_local": "Independence Day"
+  },
+  {
+   "date": "2027-10-12",
+   "nom": "Indigenous Resistance Day",
+   "nom_local": "Indigenous Resistance Day"
+  },
+  {
+   "date": "2027-12-08",
+   "nom": "Immaculate Conception",
+   "nom_local": "Immaculate Conception"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Christmas Day"
+  },
+  {
+   "date": "2027-12-31",
+   "nom": "New Year's Eve",
+   "nom_local": "New Year's Eve"
+  }
+ ]
+}

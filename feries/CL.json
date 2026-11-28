@@ -1,0 +1,170 @@
+{
+ "date": "2026-11-21T19:13:31Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Año Nuevo"
+  },
+  {
+   "date": "2026-04-03",
+   "nom": "Good Friday",
+   "nom_local": "Viernes Santo"
+  },
+  {
+   "date": "2026-04-04",
+   "nom": "Holy Saturday",
+   "nom_local": "Sábado Santo"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Día del Trabajo"
+  },
+  {
+   "date": "2026-05-21",
+   "nom": "Navy Day",
+   "nom_local": "Día de las Glorias Navales"
+  },
+  {
+   "date": "2026-06-21",
+   "nom": "National Day of Indigenous Peoples",
+   "nom_local": "Día Nacional de los Pueblos Indígenas"
+  },
+  {
+   "date": "2026-06-29",
+   "nom": "Saint Peter and Saint Paul",
+   "nom_local": "San Pedro y San Pablo"
+  },
+  {
+   "date": "2026-07-16",
+   "nom": "Our Lady of Mount Carmel",
+   "nom_local": "Virgen del Carmen"
+  },
+  {
+   "date": "2026-08-15",
+   "nom": "Assumption of Mary",
+   "nom_local": "Asunción de la Virgen"
+  },
+  {
+   "date": "2026-09-18",
+   "nom": "National holiday",
+   "nom_local": "Fiestas Patrias"
+  },
+  {
+   "date": "2026-09-19",
+   "nom": "Army Day",
+   "nom_local": "Día de las Glorias del Ejército"
+  },
+  {
+   "date": "2026-10-12",
+   "nom": "Columbus Day",
+   "nom_local": "Día del Descubrimiento de Dos Mundos"
+  },
+  {
+   "date": "2026-10-31",
+   "nom": "Reformation Day",
+   "nom_local": "Día Nacional de las Iglesias Evangélicas y Protestantes"
+  },
+  {
+   "date": "2026-11-01",
+   "nom": "All Saints Day",
+   "nom_local": "Día de Todos los Santos"
+  },
+  {
+   "date": "2026-12-08",
+   "nom": "Immaculate Conception",
+   "nom_local": "Inmaculada Concepción"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Navidad / Natividad del Señor"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Año Nuevo"
+  },
+  {
+   "date": "2027-03-26",
+   "nom": "Good Friday",
+   "nom_local": "Viernes Santo"
+  },
+  {
+   "date": "2027-03-27",
+   "nom": "Holy Saturday",
+   "nom_local": "Sábado Santo"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Día Nacional del Trabajo"
+  },
+  {
+   "date": "2027-05-21",
+   "nom": "Navy Day",
+   "nom_local": "Día de las Glorias Navales"
+  },
+  {
+   "date": "2027-06-21",
+   "nom": "National Day of Indigenous Peoples",
+   "nom_local": "Día Nacional de los Pueblos Indígenas"
+  },
+  {
+   "date": "2027-06-28",
+   "nom": "Saint Peter and Saint Paul",
+   "nom_local": "San Pedro y San Pablo"
+  },
+  {
+   "date": "2027-07-16",
+   "nom": "Our Lady of Mount Carmel",
+   "nom_local": "Día de la Virgen del Carmen"
+  },
+  {
+   "date": "2027-08-15",
+   "nom": "Assumption of Mary",
+   "nom_local": "Asunción de la Virgen"
+  },
+  {
+   "date": "2027-09-17",
+   "nom": "Additional National Holiday",
+   "nom_local": "Feriado adicional de Fiestas Patrias"
+  },
+  {
+   "date": "2027-09-18",
+   "nom": "National holiday",
+   "nom_local": "Independencia Nacional"
+  },
+  {
+   "date": "2027-09-19",
+   "nom": "Army Day",
+   "nom_local": "Día de las Glorias del Ejército"
+  },
+  {
+   "date": "2027-10-11",
+   "nom": "Columbus Day",
+   "nom_local": "Encuentro de Dos Mundos"
+  },
+  {
+   "date": "2027-10-31",
+   "nom": "Reformation Day",
+   "nom_local": "Día Nacional de las Iglesias Evangélicas y Protestantes"
+  },
+  {
+   "date": "2027-11-01",
+   "nom": "All Saints Day",
+   "nom_local": "Día de Todos los Santos"
+  },
+  {
+   "date": "2027-12-08",
+   "nom": "Immaculate Conception",
+   "nom_local": "Inmaculada Concepción"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Navidad / Natividad del Señor"
+  }
+ ]
+}

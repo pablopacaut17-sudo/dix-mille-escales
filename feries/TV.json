@@ -1,0 +1,115 @@
+{
+ "date": "2026-11-21T19:16:10Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Tausaga Fou"
+  },
+  {
+   "date": "2026-03-09",
+   "nom": "Commonwealth Day",
+   "nom_local": "Commonwealth Day"
+  },
+  {
+   "date": "2026-04-03",
+   "nom": "Good Friday",
+   "nom_local": "Good Friday"
+  },
+  {
+   "date": "2026-04-06",
+   "nom": "Easter Monday",
+   "nom_local": "Easter Monday"
+  },
+  {
+   "date": "2026-05-11",
+   "nom": "Gospel Day",
+   "nom_local": "Te Aso o te Tala Lei"
+  },
+  {
+   "date": "2026-05-11",
+   "nom": "King's Official Birthday",
+   "nom_local": "King's Official Birthday"
+  },
+  {
+   "date": "2026-08-03",
+   "nom": "National Children's Day",
+   "nom_local": "Aso Tamaliki"
+  },
+  {
+   "date": "2026-10-01",
+   "nom": "Tuvalu Day",
+   "nom_local": "Tuvalu Day"
+  },
+  {
+   "date": "2026-10-02",
+   "nom": "Tuvalu Day Holiday",
+   "nom_local": "Tuvalu Day Holiday"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Kilisimasi"
+  },
+  {
+   "date": "2026-12-26",
+   "nom": "St. Stephen's Day",
+   "nom_local": "Boxing Day"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Tausaga Fou"
+  },
+  {
+   "date": "2027-03-08",
+   "nom": "Commonwealth Day",
+   "nom_local": "Commonwealth Day"
+  },
+  {
+   "date": "2027-03-26",
+   "nom": "Good Friday",
+   "nom_local": "Good Friday"
+  },
+  {
+   "date": "2027-03-29",
+   "nom": "Easter Monday",
+   "nom_local": "Easter Monday"
+  },
+  {
+   "date": "2027-05-10",
+   "nom": "Gospel Day",
+   "nom_local": "Te Aso o te Tala Lei"
+  },
+  {
+   "date": "2027-05-10",
+   "nom": "King's Official Birthday",
+   "nom_local": "King's Official Birthday"
+  },
+  {
+   "date": "2027-08-02",
+   "nom": "National Children's Day",
+   "nom_local": "Aso Tamaliki"
+  },
+  {
+   "date": "2027-10-01",
+   "nom": "Tuvalu Day",
+   "nom_local": "Tuvalu Day"
+  },
+  {
+   "date": "2027-10-02",
+   "nom": "Tuvalu Day Holiday",
+   "nom_local": "Tuvalu Day Holiday"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Kilisimasi"
+  },
+  {
+   "date": "2027-12-26",
+   "nom": "St. Stephen's Day",
+   "nom_local": "Boxing Day"
+  }
+ ]
+}

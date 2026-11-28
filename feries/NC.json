@@ -1,0 +1,135 @@
+{
+ "date": "2026-11-21T19:15:15Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "New Year's Day"
+  },
+  {
+   "date": "2026-04-03",
+   "nom": "Good Friday",
+   "nom_local": "Good Friday"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Labour Day"
+  },
+  {
+   "date": "2026-05-08",
+   "nom": "Victory Day",
+   "nom_local": "Victory Day"
+  },
+  {
+   "date": "2026-05-14",
+   "nom": "Ascension Day",
+   "nom_local": "Ascension Day"
+  },
+  {
+   "date": "2026-05-25",
+   "nom": "Whit Monday",
+   "nom_local": "Whit Monday"
+  },
+  {
+   "date": "2026-07-14",
+   "nom": "French National Day",
+   "nom_local": "French National Day"
+  },
+  {
+   "date": "2026-08-15",
+   "nom": "Assumption Day",
+   "nom_local": "Assumption Day"
+  },
+  {
+   "date": "2026-09-24",
+   "nom": "New Caledonia Day",
+   "nom_local": "New Caledonia Day"
+  },
+  {
+   "date": "2026-11-01",
+   "nom": "All Saints' Day",
+   "nom_local": "All Saints' Day"
+  },
+  {
+   "date": "2026-11-11",
+   "nom": "Armistice Day",
+   "nom_local": "Armistice Day"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Christmas Day"
+  },
+  {
+   "date": "2026-12-31",
+   "nom": "New Year's Eve",
+   "nom_local": "New Year's Eve"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "New Year's Day"
+  },
+  {
+   "date": "2027-03-26",
+   "nom": "Good Friday",
+   "nom_local": "Good Friday"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Labour Day"
+  },
+  {
+   "date": "2027-05-06",
+   "nom": "Ascension Day",
+   "nom_local": "Ascension Day"
+  },
+  {
+   "date": "2027-05-08",
+   "nom": "Victory Day",
+   "nom_local": "Victory Day"
+  },
+  {
+   "date": "2027-05-17",
+   "nom": "Whit Monday",
+   "nom_local": "Whit Monday"
+  },
+  {
+   "date": "2027-07-14",
+   "nom": "French National Day",
+   "nom_local": "French National Day"
+  },
+  {
+   "date": "2027-08-15",
+   "nom": "Assumption Day",
+   "nom_local": "Assumption Day"
+  },
+  {
+   "date": "2027-09-24",
+   "nom": "New Caledonia Day",
+   "nom_local": "New Caledonia Day"
+  },
+  {
+   "date": "2027-11-01",
+   "nom": "All Saints' Day",
+   "nom_local": "All Saints' Day"
+  },
+  {
+   "date": "2027-11-11",
+   "nom": "Armistice Day",
+   "nom_local": "Armistice Day"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Christmas Day"
+  },
+  {
+   "date": "2027-12-31",
+   "nom": "New Year's Eve",
+   "nom_local": "New Year's Eve"
+  }
+ ]
+}

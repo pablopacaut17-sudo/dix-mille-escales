@@ -1,0 +1,195 @@
+{
+ "date": "2026-11-21T19:13:34Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Año Nuevo"
+  },
+  {
+   "date": "2026-01-12",
+   "nom": "Epiphany",
+   "nom_local": "Día de los Reyes Magos"
+  },
+  {
+   "date": "2026-03-23",
+   "nom": "Saint Joseph's Day",
+   "nom_local": "Día de San José"
+  },
+  {
+   "date": "2026-04-02",
+   "nom": "Maundy Thursday",
+   "nom_local": "Jueves Santo"
+  },
+  {
+   "date": "2026-04-03",
+   "nom": "Good Friday",
+   "nom_local": "Viernes Santo"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Primero de Mayo"
+  },
+  {
+   "date": "2026-05-18",
+   "nom": "Ascension Day",
+   "nom_local": "Ascensión del señor"
+  },
+  {
+   "date": "2026-06-08",
+   "nom": "Corpus Christi",
+   "nom_local": "Corpus Christi"
+  },
+  {
+   "date": "2026-06-15",
+   "nom": "Sacred Heart",
+   "nom_local": "Sagrado Corazón"
+  },
+  {
+   "date": "2026-06-29",
+   "nom": "Saint Peter and Saint Paul",
+   "nom_local": "San Pedro y San Pablo"
+  },
+  {
+   "date": "2026-07-13",
+   "nom": "Our Lady of Chiquinquirá Day",
+   "nom_local": "Día de la Virgen de Chiquinquirá"
+  },
+  {
+   "date": "2026-07-20",
+   "nom": "Declaration of Independence",
+   "nom_local": "Declaracion de la Independencia de Colombia"
+  },
+  {
+   "date": "2026-08-07",
+   "nom": "Battle of Boyacá",
+   "nom_local": "Batalla de Boyacá"
+  },
+  {
+   "date": "2026-08-17",
+   "nom": "Assumption of Mary",
+   "nom_local": "La Asunción"
+  },
+  {
+   "date": "2026-10-12",
+   "nom": "Columbus Day",
+   "nom_local": "Día de la Raza"
+  },
+  {
+   "date": "2026-11-02",
+   "nom": "All Saints’ Day",
+   "nom_local": "Dia de los Santos"
+  },
+  {
+   "date": "2026-11-16",
+   "nom": "Independence of Cartagena",
+   "nom_local": "Independencia de Cartagena"
+  },
+  {
+   "date": "2026-12-08",
+   "nom": "Immaculate Conception",
+   "nom_local": "La Inmaculada Concepción"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Navidad"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Año Nuevo"
+  },
+  {
+   "date": "2027-01-11",
+   "nom": "Epiphany",
+   "nom_local": "Día de los Reyes Magos"
+  },
+  {
+   "date": "2027-03-22",
+   "nom": "Saint Joseph's Day",
+   "nom_local": "Día de San José"
+  },
+  {
+   "date": "2027-03-25",
+   "nom": "Maundy Thursday",
+   "nom_local": "Jueves Santo"
+  },
+  {
+   "date": "2027-03-26",
+   "nom": "Good Friday",
+   "nom_local": "Viernes Santo"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Primero de Mayo"
+  },
+  {
+   "date": "2027-05-10",
+   "nom": "Ascension Day",
+   "nom_local": "Ascensión del señor"
+  },
+  {
+   "date": "2027-05-31",
+   "nom": "Corpus Christi",
+   "nom_local": "Corpus Christi"
+  },
+  {
+   "date": "2027-06-07",
+   "nom": "Sacred Heart",
+   "nom_local": "Sagrado Corazón"
+  },
+  {
+   "date": "2027-07-05",
+   "nom": "Saint Peter and Saint Paul",
+   "nom_local": "San Pedro y San Pablo"
+  },
+  {
+   "date": "2027-07-12",
+   "nom": "Our Lady of Chiquinquirá Day",
+   "nom_local": "Día de la Virgen de Chiquinquirá"
+  },
+  {
+   "date": "2027-07-20",
+   "nom": "Declaration of Independence",
+   "nom_local": "Declaracion de la Independencia de Colombia"
+  },
+  {
+   "date": "2027-08-07",
+   "nom": "Battle of Boyacá",
+   "nom_local": "Batalla de Boyacá"
+  },
+  {
+   "date": "2027-08-16",
+   "nom": "Assumption of Mary",
+   "nom_local": "La Asunción"
+  },
+  {
+   "date": "2027-10-18",
+   "nom": "Columbus Day",
+   "nom_local": "Día de la Raza"
+  },
+  {
+   "date": "2027-11-01",
+   "nom": "All Saints’ Day",
+   "nom_local": "Dia de los Santos"
+  },
+  {
+   "date": "2027-11-15",
+   "nom": "Independence of Cartagena",
+   "nom_local": "Independencia de Cartagena"
+  },
+  {
+   "date": "2027-12-08",
+   "nom": "Immaculate Conception",
+   "nom_local": "La Inmaculada Concepción"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Navidad"
+  }
+ ]
+}

@@ -1,0 +1,180 @@
+{
+ "date": "2026-11-21T19:14:03Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "ახალი წელი"
+  },
+  {
+   "date": "2026-01-02",
+   "nom": "New Year's Day",
+   "nom_local": "ახალი წელი"
+  },
+  {
+   "date": "2026-01-07",
+   "nom": "Christmas Day (Orthodox)",
+   "nom_local": "ქრისტეშობა"
+  },
+  {
+   "date": "2026-01-19",
+   "nom": "Epiphany (Orthodox)",
+   "nom_local": "ნათლისღება"
+  },
+  {
+   "date": "2026-03-03",
+   "nom": "Mother's Day",
+   "nom_local": "დედის დღე"
+  },
+  {
+   "date": "2026-03-08",
+   "nom": "International Women's Day",
+   "nom_local": "ქალთა საერთაშორისო დღე"
+  },
+  {
+   "date": "2026-04-09",
+   "nom": "National Unity Day",
+   "nom_local": "ეროვნული ერთიანობის დღე"
+  },
+  {
+   "date": "2026-04-10",
+   "nom": "Good Friday",
+   "nom_local": "ძველი პარასკევი"
+  },
+  {
+   "date": "2026-04-11",
+   "nom": "Holy Saturday",
+   "nom_local": "დიდი შაბათი"
+  },
+  {
+   "date": "2026-04-12",
+   "nom": "Easter Sunday",
+   "nom_local": "აღდგომის კვირა"
+  },
+  {
+   "date": "2026-04-13",
+   "nom": "Easter Monday",
+   "nom_local": "აღდგომის ორშაბათი"
+  },
+  {
+   "date": "2026-05-09",
+   "nom": "Day of Victory over Fascism",
+   "nom_local": "ფაშიზმზე გამარჯვების დღე"
+  },
+  {
+   "date": "2026-05-12",
+   "nom": "Saint Andrew the First-Called Day",
+   "nom_local": "წმინდა მოციქულის ანდრია პირველწოდებულის საქართველოში შემოსვლის დღე"
+  },
+  {
+   "date": "2026-05-17",
+   "nom": "Day of Family Sanctity and Respect for Parents",
+   "nom_local": "ოჯახის სიწმინდისა და მშობლების პატივისცემის დღე"
+  },
+  {
+   "date": "2026-05-26",
+   "nom": "Independence Day",
+   "nom_local": "დამოუკიდებლობის დღე"
+  },
+  {
+   "date": "2026-08-28",
+   "nom": "Saint Mary's Day",
+   "nom_local": "მარიამობა"
+  },
+  {
+   "date": "2026-10-14",
+   "nom": "Day of Svetitskhoveli Cathedra",
+   "nom_local": "სვეტიცხოვლობა"
+  },
+  {
+   "date": "2026-11-23",
+   "nom": "Saint George's Day",
+   "nom_local": "გიორგობა"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "ახალი წელი"
+  },
+  {
+   "date": "2027-01-02",
+   "nom": "New Year's Day",
+   "nom_local": "ახალი წელი"
+  },
+  {
+   "date": "2027-01-07",
+   "nom": "Christmas Day (Orthodox)",
+   "nom_local": "ქრისტეშობა"
+  },
+  {
+   "date": "2027-01-19",
+   "nom": "Epiphany (Orthodox)",
+   "nom_local": "ნათლისღება"
+  },
+  {
+   "date": "2027-03-03",
+   "nom": "Mother's Day",
+   "nom_local": "დედის დღე"
+  },
+  {
+   "date": "2027-03-08",
+   "nom": "International Women's Day",
+   "nom_local": "ქალთა საერთაშორისო დღე"
+  },
+  {
+   "date": "2027-04-09",
+   "nom": "National Unity Day",
+   "nom_local": "ეროვნული ერთიანობის დღე"
+  },
+  {
+   "date": "2027-04-30",
+   "nom": "Good Friday",
+   "nom_local": "ძველი პარასკევი"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Holy Saturday",
+   "nom_local": "დიდი შაბათი"
+  },
+  {
+   "date": "2027-05-02",
+   "nom": "Easter Sunday",
+   "nom_local": "აღდგომის კვირა"
+  },
+  {
+   "date": "2027-05-03",
+   "nom": "Easter Monday",
+   "nom_local": "აღდგომის ორშაბათი"
+  },
+  {
+   "date": "2027-05-09",
+   "nom": "Day of Victory over Fascism",
+   "nom_local": "ფაშიზმზე გამარჯვების დღე"
+  },
+  {
+   "date": "2027-05-12",
+   "nom": "Saint Andrew the First-Called Day",
+   "nom_local": "წმინდა მოციქულის ანდრია პირველწოდებულის საქართველოში შემოსვლის დღე"
+  },
+  {
+   "date": "2027-05-26",
+   "nom": "Independence Day",
+   "nom_local": "დამოუკიდებლობის დღე"
+  },
+  {
+   "date": "2027-08-28",
+   "nom": "Saint Mary's Day",
+   "nom_local": "მარიამობა"
+  },
+  {
+   "date": "2027-10-14",
+   "nom": "Day of Svetitskhoveli Cathedra",
+   "nom_local": "სვეტიცხოვლობა"
+  },
+  {
+   "date": "2027-11-23",
+   "nom": "Saint George's Day",
+   "nom_local": "გიორგობა"
+  }
+ ]
+}

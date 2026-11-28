@@ -1,0 +1,105 @@
+{
+ "date": "2026-11-21T19:16:00Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "New Year's Day"
+  },
+  {
+   "date": "2026-04-03",
+   "nom": "Good Friday",
+   "nom_local": "Good Friday"
+  },
+  {
+   "date": "2026-04-06",
+   "nom": "Easter Monday",
+   "nom_local": "Easter Monday"
+  },
+  {
+   "date": "2026-04-20",
+   "nom": "King's Birthday",
+   "nom_local": "King's Birthday"
+  },
+  {
+   "date": "2026-04-25",
+   "nom": "National Flag Day",
+   "nom_local": "National Flag Day"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "Workers' Day",
+   "nom_local": "Workers' Day"
+  },
+  {
+   "date": "2026-05-14",
+   "nom": "Ascension Day",
+   "nom_local": "Ascension Day"
+  },
+  {
+   "date": "2026-09-07",
+   "nom": "Independence Day",
+   "nom_local": "Independence Day"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Christmas Day"
+  },
+  {
+   "date": "2026-12-26",
+   "nom": "St. Stephen's Day",
+   "nom_local": "Boxing Day"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "New Year's Day"
+  },
+  {
+   "date": "2027-03-26",
+   "nom": "Good Friday",
+   "nom_local": "Good Friday"
+  },
+  {
+   "date": "2027-03-29",
+   "nom": "Easter Monday",
+   "nom_local": "Easter Monday"
+  },
+  {
+   "date": "2027-04-19",
+   "nom": "King's Birthday",
+   "nom_local": "King's Birthday"
+  },
+  {
+   "date": "2027-04-26",
+   "nom": "National Flag Day",
+   "nom_local": "National Flag Day"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Workers' Day",
+   "nom_local": "Workers' Day"
+  },
+  {
+   "date": "2027-05-06",
+   "nom": "Ascension Day",
+   "nom_local": "Ascension Day"
+  },
+  {
+   "date": "2027-09-06",
+   "nom": "Independence Day",
+   "nom_local": "Independence Day"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Christmas Day"
+  },
+  {
+   "date": "2027-12-26",
+   "nom": "St. Stephen's Day",
+   "nom_local": "Boxing Day"
+  }
+ ]
+}

@@ -1,0 +1,85 @@
+{
+ "date": "2026-11-21T19:16:06Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "رأس السنة الميلادية"
+  },
+  {
+   "date": "2026-03-20",
+   "nom": "Independence Day",
+   "nom_local": "عيد الاستقلال"
+  },
+  {
+   "date": "2026-04-09",
+   "nom": "Martyrs' Day",
+   "nom_local": "عيد الشهداء"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "Labour Day",
+   "nom_local": "عيد الشغل"
+  },
+  {
+   "date": "2026-07-25",
+   "nom": "Republic Day",
+   "nom_local": "عيد الجمهورية"
+  },
+  {
+   "date": "2026-08-13",
+   "nom": "Women's Day",
+   "nom_local": "عيد المرأة"
+  },
+  {
+   "date": "2026-10-15",
+   "nom": "Evacuation Day",
+   "nom_local": "عيد الجلاء"
+  },
+  {
+   "date": "2026-12-17",
+   "nom": "Revolution Day",
+   "nom_local": "عيد الثورة"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "رأس السنة الميلادية"
+  },
+  {
+   "date": "2027-03-20",
+   "nom": "Independence Day",
+   "nom_local": "عيد الاستقلال"
+  },
+  {
+   "date": "2027-04-09",
+   "nom": "Martyrs' Day",
+   "nom_local": "عيد الشهداء"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Labour Day",
+   "nom_local": "عيد الشغل"
+  },
+  {
+   "date": "2027-07-25",
+   "nom": "Republic Day",
+   "nom_local": "عيد الجمهورية"
+  },
+  {
+   "date": "2027-08-13",
+   "nom": "Women's Day",
+   "nom_local": "عيد المرأة"
+  },
+  {
+   "date": "2027-10-15",
+   "nom": "Evacuation Day",
+   "nom_local": "عيد الجلاء"
+  },
+  {
+   "date": "2027-12-17",
+   "nom": "Revolution Day",
+   "nom_local": "عيد الثورة"
+  }
+ ]
+}

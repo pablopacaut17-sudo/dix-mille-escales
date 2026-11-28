@@ -1,0 +1,125 @@
+{
+ "date": "2026-11-21T19:15:34Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "New Year's Day"
+  },
+  {
+   "date": "2026-03-01",
+   "nom": "Heroes' day",
+   "nom_local": "Dia de los héroes"
+  },
+  {
+   "date": "2026-04-02",
+   "nom": "Maundy Thursday",
+   "nom_local": "Jueves Santo"
+  },
+  {
+   "date": "2026-04-03",
+   "nom": "Good Friday",
+   "nom_local": "Viernes Santo"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Día de los Trabajadores"
+  },
+  {
+   "date": "2026-05-14",
+   "nom": "Paraguayan Independence",
+   "nom_local": "Independencia"
+  },
+  {
+   "date": "2026-05-15",
+   "nom": "Paraguayan Independence",
+   "nom_local": "Independencia"
+  },
+  {
+   "date": "2026-06-12",
+   "nom": "Chaco Armistice",
+   "nom_local": "Dia de la Paz del Chaco"
+  },
+  {
+   "date": "2026-08-15",
+   "nom": "Founding of Asunción",
+   "nom_local": "Fundación de Asunción"
+  },
+  {
+   "date": "2026-09-29",
+   "nom": "Boqueron Battle Victory Day",
+   "nom_local": "Victoria de Boquerón"
+  },
+  {
+   "date": "2026-12-08",
+   "nom": "Virgin of Caacupe",
+   "nom_local": "Virgen de Caacupé"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Día de Navidad"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "New Year's Day"
+  },
+  {
+   "date": "2027-03-01",
+   "nom": "Heroes' day",
+   "nom_local": "Dia de los héroes"
+  },
+  {
+   "date": "2027-03-25",
+   "nom": "Maundy Thursday",
+   "nom_local": "Jueves Santo"
+  },
+  {
+   "date": "2027-03-26",
+   "nom": "Good Friday",
+   "nom_local": "Viernes Santo"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Día de los Trabajadores"
+  },
+  {
+   "date": "2027-05-14",
+   "nom": "Paraguayan Independence",
+   "nom_local": "Independencia"
+  },
+  {
+   "date": "2027-05-15",
+   "nom": "Paraguayan Independence",
+   "nom_local": "Independencia"
+  },
+  {
+   "date": "2027-06-12",
+   "nom": "Chaco Armistice",
+   "nom_local": "Dia de la Paz del Chaco"
+  },
+  {
+   "date": "2027-08-15",
+   "nom": "Founding of Asunción",
+   "nom_local": "Fundación de Asunción"
+  },
+  {
+   "date": "2027-09-29",
+   "nom": "Boqueron Battle Victory Day",
+   "nom_local": "Victoria de Boquerón"
+  },
+  {
+   "date": "2027-12-08",
+   "nom": "Virgin of Caacupe",
+   "nom_local": "Virgen de Caacupé"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Día de Navidad"
+  }
+ ]
+}

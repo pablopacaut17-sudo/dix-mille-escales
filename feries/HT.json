@@ -1,0 +1,205 @@
+{
+ "date": "2026-11-21T19:14:22Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Jour de l'an"
+  },
+  {
+   "date": "2026-01-02",
+   "nom": "Ancestry Day",
+   "nom_local": "Jour des Aieux"
+  },
+  {
+   "date": "2026-01-06",
+   "nom": "Epiphany",
+   "nom_local": "Le Jour des Rois"
+  },
+  {
+   "date": "2026-02-16",
+   "nom": "Carnival",
+   "nom_local": "Carnaval"
+  },
+  {
+   "date": "2026-02-17",
+   "nom": "Carnival",
+   "nom_local": "Carnaval"
+  },
+  {
+   "date": "2026-02-18",
+   "nom": "Ash Wednesday",
+   "nom_local": "Mercredi Des Cendres"
+  },
+  {
+   "date": "2026-04-02",
+   "nom": "Maundy Thursday",
+   "nom_local": "Jeudi saint"
+  },
+  {
+   "date": "2026-04-03",
+   "nom": "Good Friday",
+   "nom_local": "Vendredi saint"
+  },
+  {
+   "date": "2026-04-05",
+   "nom": "Easter Sunday",
+   "nom_local": "Pâques"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "Labour and Agriculture Day",
+   "nom_local": "Fête du Travail / Fête des Travailleurs"
+  },
+  {
+   "date": "2026-05-14",
+   "nom": "Ascension Day",
+   "nom_local": "Ascension"
+  },
+  {
+   "date": "2026-05-18",
+   "nom": "Flag and Universities Day",
+   "nom_local": "Jour du Drapeau et de l'Université"
+  },
+  {
+   "date": "2026-06-04",
+   "nom": "Corpus Christi",
+   "nom_local": "Fête-Dieu"
+  },
+  {
+   "date": "2026-08-15",
+   "nom": "Assumption of Mary",
+   "nom_local": "L'Assomption de Marie"
+  },
+  {
+   "date": "2026-10-17",
+   "nom": "Dessalines Day",
+   "nom_local": "Anniversaire de la mort de Dessalines"
+  },
+  {
+   "date": "2026-11-01",
+   "nom": "All Saints Day",
+   "nom_local": "La Toussaint"
+  },
+  {
+   "date": "2026-11-02",
+   "nom": "All Souls' Day",
+   "nom_local": "Jour des Morts"
+  },
+  {
+   "date": "2026-11-18",
+   "nom": "Battle of Vertières Day",
+   "nom_local": "Vertières"
+  },
+  {
+   "date": "2026-12-05",
+   "nom": "Discovery Day",
+   "nom_local": "Découverte d'Haïti"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Noël"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Jour de l'an"
+  },
+  {
+   "date": "2027-01-02",
+   "nom": "Ancestry Day",
+   "nom_local": "Jour des Aieux"
+  },
+  {
+   "date": "2027-01-06",
+   "nom": "Epiphany",
+   "nom_local": "Le Jour des Rois"
+  },
+  {
+   "date": "2027-02-08",
+   "nom": "Carnival",
+   "nom_local": "Carnaval"
+  },
+  {
+   "date": "2027-02-09",
+   "nom": "Carnival",
+   "nom_local": "Carnaval"
+  },
+  {
+   "date": "2027-02-10",
+   "nom": "Ash Wednesday",
+   "nom_local": "Mercredi Des Cendres"
+  },
+  {
+   "date": "2027-03-25",
+   "nom": "Maundy Thursday",
+   "nom_local": "Jeudi saint"
+  },
+  {
+   "date": "2027-03-26",
+   "nom": "Good Friday",
+   "nom_local": "Vendredi saint"
+  },
+  {
+   "date": "2027-03-28",
+   "nom": "Easter Sunday",
+   "nom_local": "Pâques"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Labour and Agriculture Day",
+   "nom_local": "Fête du Travail / Fête des Travailleurs"
+  },
+  {
+   "date": "2027-05-06",
+   "nom": "Ascension Day",
+   "nom_local": "Ascension"
+  },
+  {
+   "date": "2027-05-18",
+   "nom": "Flag and Universities Day",
+   "nom_local": "Jour du Drapeau et de l'Université"
+  },
+  {
+   "date": "2027-05-27",
+   "nom": "Corpus Christi",
+   "nom_local": "Fête-Dieu"
+  },
+  {
+   "date": "2027-08-15",
+   "nom": "Assumption of Mary",
+   "nom_local": "L'Assomption de Marie"
+  },
+  {
+   "date": "2027-10-17",
+   "nom": "Dessalines Day",
+   "nom_local": "Anniversaire de la mort de Dessalines"
+  },
+  {
+   "date": "2027-11-01",
+   "nom": "All Saints Day",
+   "nom_local": "La Toussaint"
+  },
+  {
+   "date": "2027-11-02",
+   "nom": "All Souls' Day",
+   "nom_local": "Jour des Morts"
+  },
+  {
+   "date": "2027-11-18",
+   "nom": "Battle of Vertières Day",
+   "nom_local": "Vertières"
+  },
+  {
+   "date": "2027-12-05",
+   "nom": "Discovery Day",
+   "nom_local": "Découverte d'Haïti"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Noël"
+  }
+ ]
+}

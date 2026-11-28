@@ -1,0 +1,55 @@
+{
+ "date": "2026-11-21T19:14:53Z",
+ "jours": [
+  {
+   "date": "2026-02-17",
+   "nom": "Revolution Day",
+   "nom_local": "يوم ثورة 17 فبراير"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "Labour Day",
+   "nom_local": "عيد العمال"
+  },
+  {
+   "date": "2026-09-16",
+   "nom": "Martyrs' Day",
+   "nom_local": "يوم الشهيد"
+  },
+  {
+   "date": "2026-10-23",
+   "nom": "Liberation Day",
+   "nom_local": "يوم التحرير"
+  },
+  {
+   "date": "2026-12-24",
+   "nom": "Independence Day",
+   "nom_local": "عيد الاستقلال"
+  },
+  {
+   "date": "2027-02-17",
+   "nom": "Revolution Day",
+   "nom_local": "يوم ثورة 17 فبراير"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Labour Day",
+   "nom_local": "عيد العمال"
+  },
+  {
+   "date": "2027-09-16",
+   "nom": "Martyrs' Day",
+   "nom_local": "يوم الشهيد"
+  },
+  {
+   "date": "2027-10-23",
+   "nom": "Liberation Day",
+   "nom_local": "يوم التحرير"
+  },
+  {
+   "date": "2027-12-24",
+   "nom": "Independence Day",
+   "nom_local": "عيد الاستقلال"
+  }
+ ]
+}

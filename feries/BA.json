@@ -1,0 +1,45 @@
+{
+ "date": "2026-11-21T19:13:03Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Nova Godina"
+  },
+  {
+   "date": "2026-01-02",
+   "nom": "New Year's Day",
+   "nom_local": "Nova Godina"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "May Day / International Workers' Day",
+   "nom_local": "Praznik rada"
+  },
+  {
+   "date": "2026-05-02",
+   "nom": "May Day / International Workers' Day",
+   "nom_local": "Praznik rada"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Nova Godina"
+  },
+  {
+   "date": "2027-01-02",
+   "nom": "New Year's Day",
+   "nom_local": "Nova Godina"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "May Day / International Workers' Day",
+   "nom_local": "Praznik rada"
+  },
+  {
+   "date": "2027-05-02",
+   "nom": "May Day / International Workers' Day",
+   "nom_local": "Praznik rada"
+  }
+ ]
+}

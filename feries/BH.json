@@ -1,0 +1,55 @@
+{
+ "date": "2026-11-21T19:13:09Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "رأس السنة الميلادية"
+  },
+  {
+   "date": "2026-02-22",
+   "nom": "Sports Day",
+   "nom_local": "اليوم الرياضي"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "Labour Day",
+   "nom_local": "يوم العمال"
+  },
+  {
+   "date": "2026-12-16",
+   "nom": "National Day",
+   "nom_local": "اليوم الوطني"
+  },
+  {
+   "date": "2026-12-17",
+   "nom": "National Day",
+   "nom_local": "اليوم الوطني"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "رأس السنة الميلادية"
+  },
+  {
+   "date": "2027-02-22",
+   "nom": "Sports Day",
+   "nom_local": "اليوم الرياضي"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Labour Day",
+   "nom_local": "يوم العمال"
+  },
+  {
+   "date": "2027-12-16",
+   "nom": "National Day",
+   "nom_local": "اليوم الوطني"
+  },
+  {
+   "date": "2027-12-17",
+   "nom": "National Day",
+   "nom_local": "اليوم الوطني"
+  }
+ ]
+}

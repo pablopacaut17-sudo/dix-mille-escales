@@ -1,0 +1,115 @@
+{
+ "date": "2026-11-21T19:15:00Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "New Year's Day"
+  },
+  {
+   "date": "2026-03-01",
+   "nom": "Remembrance Day",
+   "nom_local": "Remembrance Day"
+  },
+  {
+   "date": "2026-04-03",
+   "nom": "Good Friday",
+   "nom_local": "Good Friday"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "Constitution Day",
+   "nom_local": "Constitution Day"
+  },
+  {
+   "date": "2026-07-03",
+   "nom": "Fishermen's Day",
+   "nom_local": "Fishermen's Day"
+  },
+  {
+   "date": "2026-09-04",
+   "nom": "Labour Day",
+   "nom_local": "Labor Day"
+  },
+  {
+   "date": "2026-09-25",
+   "nom": "Manit Day",
+   "nom_local": "Manit Day"
+  },
+  {
+   "date": "2026-11-17",
+   "nom": "Presidents' Day",
+   "nom_local": "Presidents' Day"
+  },
+  {
+   "date": "2026-12-04",
+   "nom": "Gospel Day",
+   "nom_local": "Gospel Day"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Christmas Day"
+  },
+  {
+   "date": "2026-12-31",
+   "nom": "New Year's Eve",
+   "nom_local": "New Year's Eve"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "New Year's Day"
+  },
+  {
+   "date": "2027-03-01",
+   "nom": "Remembrance Day",
+   "nom_local": "Remembrance Day"
+  },
+  {
+   "date": "2027-03-26",
+   "nom": "Good Friday",
+   "nom_local": "Good Friday"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Constitution Day",
+   "nom_local": "Constitution Day"
+  },
+  {
+   "date": "2027-07-02",
+   "nom": "Fishermen's Day",
+   "nom_local": "Fishermen's Day"
+  },
+  {
+   "date": "2027-09-03",
+   "nom": "Labour Day",
+   "nom_local": "Labor Day"
+  },
+  {
+   "date": "2027-09-24",
+   "nom": "Manit Day",
+   "nom_local": "Manit Day"
+  },
+  {
+   "date": "2027-11-17",
+   "nom": "Presidents' Day",
+   "nom_local": "Presidents' Day"
+  },
+  {
+   "date": "2027-12-03",
+   "nom": "Gospel Day",
+   "nom_local": "Gospel Day"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Christmas Day"
+  },
+  {
+   "date": "2027-12-31",
+   "nom": "New Year's Eve",
+   "nom_local": "New Year's Eve"
+  }
+ ]
+}

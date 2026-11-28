@@ -1,0 +1,165 @@
+{
+ "date": "2026-11-21T19:12:57Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Año Nuevo"
+  },
+  {
+   "date": "2026-02-16",
+   "nom": "Carnival",
+   "nom_local": "Carnaval"
+  },
+  {
+   "date": "2026-02-17",
+   "nom": "Carnival",
+   "nom_local": "Carnaval"
+  },
+  {
+   "date": "2026-03-24",
+   "nom": "Day of Remembrance for Truth and Justice",
+   "nom_local": "Día Nacional de la Memoria por la Verdad y la Justicia"
+  },
+  {
+   "date": "2026-04-02",
+   "nom": "Day of the Veterans and Fallen of the Malvinas War",
+   "nom_local": "Día del Veterano y de los Caídos en la Guerra de Malvinas"
+  },
+  {
+   "date": "2026-04-03",
+   "nom": "Good Friday",
+   "nom_local": "Viernes Santo"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Día del Trabajador"
+  },
+  {
+   "date": "2026-05-25",
+   "nom": "May Revolution",
+   "nom_local": "Día de la Revolución de Mayo"
+  },
+  {
+   "date": "2026-06-15",
+   "nom": "Anniversary of the Passing of General Martín Miguel de Güemes",
+   "nom_local": "Paso a la Inmortalidad del General Martín Miguel de Güemes"
+  },
+  {
+   "date": "2026-06-20",
+   "nom": "General Manuel Belgrano Memorial Day",
+   "nom_local": "Paso a la Inmortalidad del General Manuel Belgrano"
+  },
+  {
+   "date": "2026-07-09",
+   "nom": "Independence Day",
+   "nom_local": "Día de la Independencia"
+  },
+  {
+   "date": "2026-08-17",
+   "nom": "General José de San Martín Memorial Day",
+   "nom_local": "Paso a la Inmortalidad del General José de San Martín"
+  },
+  {
+   "date": "2026-10-12",
+   "nom": "Day of Respect for Cultural Diversity",
+   "nom_local": "Día del Respeto a la Diversidad Cultural"
+  },
+  {
+   "date": "2026-11-23",
+   "nom": "National Sovereignty Day",
+   "nom_local": "Día de la Soberanía Nacional"
+  },
+  {
+   "date": "2026-12-08",
+   "nom": "Immaculate Conception Day",
+   "nom_local": "Día de la Inmaculada Concepción de María"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Navidad"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Año Nuevo"
+  },
+  {
+   "date": "2027-02-08",
+   "nom": "Carnival",
+   "nom_local": "Carnaval"
+  },
+  {
+   "date": "2027-02-09",
+   "nom": "Carnival",
+   "nom_local": "Carnaval"
+  },
+  {
+   "date": "2027-03-24",
+   "nom": "Day of Remembrance for Truth and Justice",
+   "nom_local": "Día Nacional de la Memoria por la Verdad y la Justicia"
+  },
+  {
+   "date": "2027-03-26",
+   "nom": "Good Friday",
+   "nom_local": "Viernes Santo"
+  },
+  {
+   "date": "2027-04-02",
+   "nom": "Day of the Veterans and Fallen of the Malvinas War",
+   "nom_local": "Día del Veterano y de los Caídos en la Guerra de Malvinas"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Día del Trabajador"
+  },
+  {
+   "date": "2027-05-25",
+   "nom": "May Revolution",
+   "nom_local": "Día de la Revolución de Mayo"
+  },
+  {
+   "date": "2027-06-21",
+   "nom": "Anniversary of the Passing of General Martín Miguel de Güemes",
+   "nom_local": "Paso a la Inmortalidad del General Martín Miguel de Güemes"
+  },
+  {
+   "date": "2027-06-20",
+   "nom": "General Manuel Belgrano Memorial Day",
+   "nom_local": "Paso a la Inmortalidad del General Manuel Belgrano"
+  },
+  {
+   "date": "2027-07-09",
+   "nom": "Independence Day",
+   "nom_local": "Día de la Independencia"
+  },
+  {
+   "date": "2027-08-16",
+   "nom": "General José de San Martín Memorial Day",
+   "nom_local": "Paso a la Inmortalidad del General José de San Martín"
+  },
+  {
+   "date": "2027-10-11",
+   "nom": "Day of Respect for Cultural Diversity",
+   "nom_local": "Día del Respeto a la Diversidad Cultural"
+  },
+  {
+   "date": "2027-11-20",
+   "nom": "National Sovereignty Day",
+   "nom_local": "Día de la Soberanía Nacional"
+  },
+  {
+   "date": "2027-12-08",
+   "nom": "Immaculate Conception Day",
+   "nom_local": "Día de la Inmaculada Concepción de María"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Navidad"
+  }
+ ]
+}

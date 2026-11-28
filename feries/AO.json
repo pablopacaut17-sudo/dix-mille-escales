@@ -1,0 +1,155 @@
+{
+ "date": "2026-11-21T19:12:56Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Dia de Ano Novo"
+  },
+  {
+   "date": "2026-01-02",
+   "nom": "New Year's Day (Ponte)",
+   "nom_local": "Dia de Ano Novo (Ponte)"
+  },
+  {
+   "date": "2026-02-04",
+   "nom": "Liberation Day",
+   "nom_local": "Dia da Libertação"
+  },
+  {
+   "date": "2026-02-16",
+   "nom": "Carnival",
+   "nom_local": "Carnaval"
+  },
+  {
+   "date": "2026-03-08",
+   "nom": "International Women's Day",
+   "nom_local": "Dia Internacional da Mulher"
+  },
+  {
+   "date": "2026-03-23",
+   "nom": "Day of the Liberation of Southern Africa",
+   "nom_local": "Dia da Libertação da África Austral"
+  },
+  {
+   "date": "2026-04-03",
+   "nom": "Good Friday",
+   "nom_local": "Sexta Feira Santa"
+  },
+  {
+   "date": "2026-04-04",
+   "nom": "Peace Day",
+   "nom_local": "Dia da Paz"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Dia do Trabalhador"
+  },
+  {
+   "date": "2026-09-17",
+   "nom": "National Heroes' Day",
+   "nom_local": "Dia do Fundador da Nação e do Herói Nacional"
+  },
+  {
+   "date": "2026-09-18",
+   "nom": "National Heroes' Day (Ponte)",
+   "nom_local": "Dia do Fundador da Nação e do Herói Nacional (Ponte)"
+  },
+  {
+   "date": "2026-11-02",
+   "nom": "All Souls' Day",
+   "nom_local": "Dia de Finados"
+  },
+  {
+   "date": "2026-11-11",
+   "nom": "Independence Day",
+   "nom_local": "Dia da Independência"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Dia de Natal"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Dia de Ano Novo"
+  },
+  {
+   "date": "2027-02-04",
+   "nom": "Liberation Day",
+   "nom_local": "Dia da Libertação"
+  },
+  {
+   "date": "2027-02-05",
+   "nom": "Liberation Day (Ponte)",
+   "nom_local": "Dia da Libertação (Ponte)"
+  },
+  {
+   "date": "2027-02-08",
+   "nom": "Carnival",
+   "nom_local": "Carnaval"
+  },
+  {
+   "date": "2027-03-08",
+   "nom": "International Women's Day",
+   "nom_local": "Dia Internacional da Mulher"
+  },
+  {
+   "date": "2027-03-22",
+   "nom": "Day of the Liberation of Southern Africa (Ponte)",
+   "nom_local": "Dia da Libertação da África Austral (Ponte)"
+  },
+  {
+   "date": "2027-03-23",
+   "nom": "Day of the Liberation of Southern Africa",
+   "nom_local": "Dia da Libertação da África Austral"
+  },
+  {
+   "date": "2027-03-26",
+   "nom": "Good Friday",
+   "nom_local": "Sexta Feira Santa"
+  },
+  {
+   "date": "2027-04-04",
+   "nom": "Peace Day",
+   "nom_local": "Dia da Paz"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Dia do Trabalhador"
+  },
+  {
+   "date": "2027-09-17",
+   "nom": "National Heroes' Day",
+   "nom_local": "Dia do Fundador da Nação e do Herói Nacional"
+  },
+  {
+   "date": "2027-11-01",
+   "nom": "All Souls' Day (Ponte)",
+   "nom_local": "Dia de Finados (Ponte)"
+  },
+  {
+   "date": "2027-11-02",
+   "nom": "All Souls' Day",
+   "nom_local": "Dia de Finados"
+  },
+  {
+   "date": "2027-11-11",
+   "nom": "Independence Day",
+   "nom_local": "Dia da Independência"
+  },
+  {
+   "date": "2027-11-12",
+   "nom": "Independence Day (Ponte)",
+   "nom_local": "Dia da Independência (Ponte)"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Dia de Natal"
+  }
+ ]
+}

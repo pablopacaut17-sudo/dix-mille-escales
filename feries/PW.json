@@ -1,0 +1,115 @@
+{
+ "date": "2026-11-21T19:15:33Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "New Year's Day"
+  },
+  {
+   "date": "2026-03-15",
+   "nom": "Youth Day",
+   "nom_local": "Youth Day"
+  },
+  {
+   "date": "2026-05-05",
+   "nom": "Senior Citizens Day",
+   "nom_local": "Senior Citizens Day"
+  },
+  {
+   "date": "2026-06-01",
+   "nom": "President's Day",
+   "nom_local": "President's Day"
+  },
+  {
+   "date": "2026-07-09",
+   "nom": "Constitution Day",
+   "nom_local": "Constitution Day"
+  },
+  {
+   "date": "2026-09-07",
+   "nom": "Labour Day",
+   "nom_local": "Labour Day"
+  },
+  {
+   "date": "2026-10-01",
+   "nom": "Independence Day",
+   "nom_local": "Independence Day"
+  },
+  {
+   "date": "2026-10-24",
+   "nom": "United Nations Day",
+   "nom_local": "United Nations Day"
+  },
+  {
+   "date": "2026-11-26",
+   "nom": "Thanksgiving Day",
+   "nom_local": "Thanksgiving Day"
+  },
+  {
+   "date": "2026-11-27",
+   "nom": "Family Day",
+   "nom_local": "Family Day"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Christmas Day"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "New Year's Day"
+  },
+  {
+   "date": "2027-03-15",
+   "nom": "Youth Day",
+   "nom_local": "Youth Day"
+  },
+  {
+   "date": "2027-05-05",
+   "nom": "Senior Citizens Day",
+   "nom_local": "Senior Citizens Day"
+  },
+  {
+   "date": "2027-06-01",
+   "nom": "President's Day",
+   "nom_local": "President's Day"
+  },
+  {
+   "date": "2027-07-09",
+   "nom": "Constitution Day",
+   "nom_local": "Constitution Day"
+  },
+  {
+   "date": "2027-09-06",
+   "nom": "Labour Day",
+   "nom_local": "Labour Day"
+  },
+  {
+   "date": "2027-10-01",
+   "nom": "Independence Day",
+   "nom_local": "Independence Day"
+  },
+  {
+   "date": "2027-10-24",
+   "nom": "United Nations Day",
+   "nom_local": "United Nations Day"
+  },
+  {
+   "date": "2027-11-25",
+   "nom": "Thanksgiving Day",
+   "nom_local": "Thanksgiving Day"
+  },
+  {
+   "date": "2027-11-26",
+   "nom": "Family Day",
+   "nom_local": "Family Day"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Christmas Day"
+  }
+ ]
+}

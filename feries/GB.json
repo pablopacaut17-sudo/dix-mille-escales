@@ -1,0 +1,55 @@
+{
+ "date": "2026-11-21T19:14:01Z",
+ "jours": [
+  {
+   "date": "2026-04-03",
+   "nom": "Good Friday",
+   "nom_local": "Good Friday"
+  },
+  {
+   "date": "2026-05-04",
+   "nom": "Early May Bank Holiday",
+   "nom_local": "Early May Bank Holiday"
+  },
+  {
+   "date": "2026-05-25",
+   "nom": "Spring Bank Holiday",
+   "nom_local": "Spring Bank Holiday"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Christmas Day"
+  },
+  {
+   "date": "2026-12-28",
+   "nom": "St. Stephen's Day",
+   "nom_local": "Boxing Day"
+  },
+  {
+   "date": "2027-03-26",
+   "nom": "Good Friday",
+   "nom_local": "Good Friday"
+  },
+  {
+   "date": "2027-05-03",
+   "nom": "Early May Bank Holiday",
+   "nom_local": "Early May Bank Holiday"
+  },
+  {
+   "date": "2027-05-31",
+   "nom": "Spring Bank Holiday",
+   "nom_local": "Spring Bank Holiday"
+  },
+  {
+   "date": "2027-12-27",
+   "nom": "Christmas Day",
+   "nom_local": "Christmas Day"
+  },
+  {
+   "date": "2027-12-28",
+   "nom": "St. Stephen's Day",
+   "nom_local": "Boxing Day"
+  }
+ ]
+}

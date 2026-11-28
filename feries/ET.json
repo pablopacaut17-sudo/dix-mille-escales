@@ -1,0 +1,105 @@
+{
+ "date": "2026-11-21T19:13:54Z",
+ "jours": [
+  {
+   "date": "2026-01-07",
+   "nom": "Christmas Day (Orthodox)",
+   "nom_local": "ልደተ-ለእግዚእነ/ ገና"
+  },
+  {
+   "date": "2026-01-19",
+   "nom": "Epiphany (Orthodox)",
+   "nom_local": "ጥምቀት"
+  },
+  {
+   "date": "2026-03-02",
+   "nom": "Adwa Victory Day",
+   "nom_local": "የዓድዋ ድል በዓል"
+  },
+  {
+   "date": "2026-04-10",
+   "nom": "Good Friday",
+   "nom_local": "ስቅለት"
+  },
+  {
+   "date": "2026-04-12",
+   "nom": "Easter Sunday",
+   "nom_local": "ብርሃነ-ትንሣኤ/ፋሲካ"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "International Workers' Day",
+   "nom_local": "ዓለም አቀፍ የሠራተኞች ቀን"
+  },
+  {
+   "date": "2026-05-05",
+   "nom": "Ethiopian Patriots' Victory Day",
+   "nom_local": "የአርበኞች ቀን"
+  },
+  {
+   "date": "2026-05-28",
+   "nom": "Downfall of the Derg",
+   "nom_local": "ደርግ የወደቀበት ቀን"
+  },
+  {
+   "date": "2026-09-11",
+   "nom": "Enkutatash",
+   "nom_local": "እንቁጣጣሽ/የዘመን መለወጫ/አዲስ አመት"
+  },
+  {
+   "date": "2026-09-27",
+   "nom": "Meskel (Orthodox)",
+   "nom_local": "መስቀል"
+  },
+  {
+   "date": "2027-01-07",
+   "nom": "Christmas Day (Orthodox)",
+   "nom_local": "ልደተ-ለእግዚእነ/ ገና"
+  },
+  {
+   "date": "2027-01-19",
+   "nom": "Epiphany (Orthodox)",
+   "nom_local": "ጥምቀት"
+  },
+  {
+   "date": "2027-03-02",
+   "nom": "Adwa Victory Day",
+   "nom_local": "የዓድዋ ድል በዓል"
+  },
+  {
+   "date": "2027-04-30",
+   "nom": "Good Friday",
+   "nom_local": "ስቅለት"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "International Workers' Day",
+   "nom_local": "ዓለም አቀፍ የሠራተኞች ቀን"
+  },
+  {
+   "date": "2027-05-02",
+   "nom": "Easter Sunday",
+   "nom_local": "ብርሃነ-ትንሣኤ/ፋሲካ"
+  },
+  {
+   "date": "2027-05-05",
+   "nom": "Ethiopian Patriots' Victory Day",
+   "nom_local": "የአርበኞች ቀን"
+  },
+  {
+   "date": "2027-05-28",
+   "nom": "Downfall of the Derg",
+   "nom_local": "ደርግ የወደቀበት ቀን"
+  },
+  {
+   "date": "2027-09-11",
+   "nom": "Enkutatash",
+   "nom_local": "እንቁጣጣሽ/የዘመን መለወጫ/አዲስ አመት"
+  },
+  {
+   "date": "2027-09-27",
+   "nom": "Meskel (Orthodox)",
+   "nom_local": "መስቀል"
+  }
+ ]
+}

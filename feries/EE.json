@@ -1,0 +1,125 @@
+{
+ "date": "2026-11-21T19:13:49Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "uusaasta"
+  },
+  {
+   "date": "2026-02-24",
+   "nom": "Independence Day",
+   "nom_local": "iseseisvuspäev"
+  },
+  {
+   "date": "2026-04-03",
+   "nom": "Good Friday",
+   "nom_local": "suur reede"
+  },
+  {
+   "date": "2026-04-05",
+   "nom": "Easter Sunday",
+   "nom_local": "ülestõusmispühade 1. püha"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "Spring Day",
+   "nom_local": "kevadpüha"
+  },
+  {
+   "date": "2026-05-24",
+   "nom": "Pentecost",
+   "nom_local": "nelipühade 1. püha"
+  },
+  {
+   "date": "2026-06-23",
+   "nom": "Victory Day",
+   "nom_local": "võidupüha and jaanilaupäev"
+  },
+  {
+   "date": "2026-06-24",
+   "nom": "Midsummer Day",
+   "nom_local": "jaanipäev"
+  },
+  {
+   "date": "2026-08-20",
+   "nom": "Day of Restoration of Independence",
+   "nom_local": "taasiseseisvumispäev"
+  },
+  {
+   "date": "2026-12-24",
+   "nom": "Christmas Eve",
+   "nom_local": "jõululaupäev"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "esimene jõulupüha"
+  },
+  {
+   "date": "2026-12-26",
+   "nom": "St. Stephen's Day",
+   "nom_local": "teine jõulupüha"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "uusaasta"
+  },
+  {
+   "date": "2027-02-24",
+   "nom": "Independence Day",
+   "nom_local": "iseseisvuspäev"
+  },
+  {
+   "date": "2027-03-26",
+   "nom": "Good Friday",
+   "nom_local": "suur reede"
+  },
+  {
+   "date": "2027-03-28",
+   "nom": "Easter Sunday",
+   "nom_local": "ülestõusmispühade 1. püha"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Spring Day",
+   "nom_local": "kevadpüha"
+  },
+  {
+   "date": "2027-05-16",
+   "nom": "Pentecost",
+   "nom_local": "nelipühade 1. püha"
+  },
+  {
+   "date": "2027-06-23",
+   "nom": "Victory Day",
+   "nom_local": "võidupüha and jaanilaupäev"
+  },
+  {
+   "date": "2027-06-24",
+   "nom": "Midsummer Day",
+   "nom_local": "jaanipäev"
+  },
+  {
+   "date": "2027-08-20",
+   "nom": "Day of Restoration of Independence",
+   "nom_local": "taasiseseisvumispäev"
+  },
+  {
+   "date": "2027-12-24",
+   "nom": "Christmas Eve",
+   "nom_local": "jõululaupäev"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "esimene jõulupüha"
+  },
+  {
+   "date": "2027-12-26",
+   "nom": "St. Stephen's Day",
+   "nom_local": "teine jõulupüha"
+  }
+ ]
+}

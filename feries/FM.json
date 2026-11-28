@@ -1,0 +1,85 @@
+{
+ "date": "2026-11-21T19:13:56Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "New Year's Day"
+  },
+  {
+   "date": "2026-03-31",
+   "nom": "Culture Day",
+   "nom_local": "Culture Day"
+  },
+  {
+   "date": "2026-05-11",
+   "nom": "Constitution Day",
+   "nom_local": "Constitution Day"
+  },
+  {
+   "date": "2026-10-23",
+   "nom": "United Nations Day",
+   "nom_local": "United Nations Day"
+  },
+  {
+   "date": "2026-11-03",
+   "nom": "Independence Day",
+   "nom_local": "Independence Day"
+  },
+  {
+   "date": "2026-11-11",
+   "nom": "Veterans Day",
+   "nom_local": "Veterans Day"
+  },
+  {
+   "date": "2026-11-23",
+   "nom": "Presidents Day",
+   "nom_local": "Presidents Day"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Christmas Day"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "New Year's Day"
+  },
+  {
+   "date": "2027-03-31",
+   "nom": "Culture Day",
+   "nom_local": "Culture Day"
+  },
+  {
+   "date": "2027-05-10",
+   "nom": "Constitution Day",
+   "nom_local": "Constitution Day"
+  },
+  {
+   "date": "2027-10-25",
+   "nom": "United Nations Day",
+   "nom_local": "United Nations Day"
+  },
+  {
+   "date": "2027-11-03",
+   "nom": "Independence Day",
+   "nom_local": "Independence Day"
+  },
+  {
+   "date": "2027-11-11",
+   "nom": "Veterans Day",
+   "nom_local": "Veterans Day"
+  },
+  {
+   "date": "2027-11-23",
+   "nom": "Presidents Day",
+   "nom_local": "Presidents Day"
+  },
+  {
+   "date": "2027-12-24",
+   "nom": "Christmas Day",
+   "nom_local": "Christmas Day"
+  }
+ ]
+}

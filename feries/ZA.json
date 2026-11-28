@@ -1,0 +1,130 @@
+{
+ "date": "2026-11-21T19:16:26Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "New Year's Day"
+  },
+  {
+   "date": "2026-03-21",
+   "nom": "Human Rights Day",
+   "nom_local": "Human Rights Day"
+  },
+  {
+   "date": "2026-04-03",
+   "nom": "Good Friday",
+   "nom_local": "Good Friday"
+  },
+  {
+   "date": "2026-04-06",
+   "nom": "Family Day",
+   "nom_local": "Family Day"
+  },
+  {
+   "date": "2026-04-27",
+   "nom": "Freedom Day",
+   "nom_local": "Freedom Day"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "Workers' Day",
+   "nom_local": "Workers' Day"
+  },
+  {
+   "date": "2026-06-16",
+   "nom": "Youth Day",
+   "nom_local": "Youth Day"
+  },
+  {
+   "date": "2026-08-10",
+   "nom": "National Women's Day",
+   "nom_local": "National Women's Day"
+  },
+  {
+   "date": "2026-09-24",
+   "nom": "Heritage Day",
+   "nom_local": "Heritage Day"
+  },
+  {
+   "date": "2026-11-04",
+   "nom": "Election Day",
+   "nom_local": "Election Day"
+  },
+  {
+   "date": "2026-12-16",
+   "nom": "Day of Reconciliation",
+   "nom_local": "Day of Reconciliation"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Christmas Day"
+  },
+  {
+   "date": "2026-12-26",
+   "nom": "Day of Goodwill",
+   "nom_local": "St. Stephen's Day"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "New Year's Day"
+  },
+  {
+   "date": "2027-03-22",
+   "nom": "Human Rights Day",
+   "nom_local": "Human Rights Day"
+  },
+  {
+   "date": "2027-03-26",
+   "nom": "Good Friday",
+   "nom_local": "Good Friday"
+  },
+  {
+   "date": "2027-03-29",
+   "nom": "Family Day",
+   "nom_local": "Family Day"
+  },
+  {
+   "date": "2027-04-27",
+   "nom": "Freedom Day",
+   "nom_local": "Freedom Day"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Workers' Day",
+   "nom_local": "Workers' Day"
+  },
+  {
+   "date": "2027-06-16",
+   "nom": "Youth Day",
+   "nom_local": "Youth Day"
+  },
+  {
+   "date": "2027-08-09",
+   "nom": "National Women's Day",
+   "nom_local": "National Women's Day"
+  },
+  {
+   "date": "2027-09-24",
+   "nom": "Heritage Day",
+   "nom_local": "Heritage Day"
+  },
+  {
+   "date": "2027-12-16",
+   "nom": "Day of Reconciliation",
+   "nom_local": "Day of Reconciliation"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Christmas Day"
+  },
+  {
+   "date": "2027-12-27",
+   "nom": "Day of Goodwill",
+   "nom_local": "St. Stephen's Day"
+  }
+ ]
+}

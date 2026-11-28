@@ -1,0 +1,65 @@
+{
+ "date": "2026-11-21T19:13:33Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "元旦"
+  },
+  {
+   "date": "2026-02-17",
+   "nom": "Chinese New Year (Spring Festival)",
+   "nom_local": "春节"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "Labour Day",
+   "nom_local": "劳动节"
+  },
+  {
+   "date": "2026-06-19",
+   "nom": "Dragon Boat Festival",
+   "nom_local": "端午节"
+  },
+  {
+   "date": "2026-09-25",
+   "nom": "Mid-Autumn Festival",
+   "nom_local": "中秋节"
+  },
+  {
+   "date": "2026-10-01",
+   "nom": "National Day",
+   "nom_local": "国庆节"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "元旦"
+  },
+  {
+   "date": "2027-02-06",
+   "nom": "Chinese New Year (Spring Festival)",
+   "nom_local": "春节"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Labour Day",
+   "nom_local": "劳动节"
+  },
+  {
+   "date": "2027-06-09",
+   "nom": "Dragon Boat Festival",
+   "nom_local": "端午节"
+  },
+  {
+   "date": "2027-09-15",
+   "nom": "Mid-Autumn Festival",
+   "nom_local": "中秋节"
+  },
+  {
+   "date": "2027-10-01",
+   "nom": "National Day",
+   "nom_local": "国庆节"
+  }
+ ]
+}

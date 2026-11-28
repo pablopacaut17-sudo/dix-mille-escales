@@ -1,0 +1,125 @@
+{
+ "date": "2026-11-21T19:13:15Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Año Nuevo"
+  },
+  {
+   "date": "2026-02-02",
+   "nom": "Feast of the Virgin of Candelaria",
+   "nom_local": "Fiesta de la Virgen de Candelaria"
+  },
+  {
+   "date": "2026-02-16",
+   "nom": "Carnival",
+   "nom_local": "Feriado por Carnaval"
+  },
+  {
+   "date": "2026-02-17",
+   "nom": "Carnival",
+   "nom_local": "Feriado por Carnaval"
+  },
+  {
+   "date": "2026-04-03",
+   "nom": "Good Friday",
+   "nom_local": "Viernes Santo"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Dia del trabajo"
+  },
+  {
+   "date": "2026-06-04",
+   "nom": "Corpus Christi",
+   "nom_local": "Corpus Christi"
+  },
+  {
+   "date": "2026-06-21",
+   "nom": "Andean New Year",
+   "nom_local": "Año Nuevo Andino"
+  },
+  {
+   "date": "2026-08-02",
+   "nom": "Agrarian Reform Day",
+   "nom_local": "Día de la Revolución Agraria"
+  },
+  {
+   "date": "2026-08-06",
+   "nom": "Independence Day",
+   "nom_local": "Dia de la Patria"
+  },
+  {
+   "date": "2026-11-02",
+   "nom": "All Saints' Day",
+   "nom_local": "Todos Santos"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Navidad"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Año Nuevo"
+  },
+  {
+   "date": "2027-02-02",
+   "nom": "Feast of the Virgin of Candelaria",
+   "nom_local": "Fiesta de la Virgen de Candelaria"
+  },
+  {
+   "date": "2027-02-08",
+   "nom": "Carnival",
+   "nom_local": "Feriado por Carnaval"
+  },
+  {
+   "date": "2027-02-09",
+   "nom": "Carnival",
+   "nom_local": "Feriado por Carnaval"
+  },
+  {
+   "date": "2027-03-26",
+   "nom": "Good Friday",
+   "nom_local": "Viernes Santo"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Dia del trabajo"
+  },
+  {
+   "date": "2027-05-27",
+   "nom": "Corpus Christi",
+   "nom_local": "Corpus Christi"
+  },
+  {
+   "date": "2027-06-21",
+   "nom": "Andean New Year",
+   "nom_local": "Año Nuevo Andino"
+  },
+  {
+   "date": "2027-08-02",
+   "nom": "Agrarian Reform Day",
+   "nom_local": "Día de la Revolución Agraria"
+  },
+  {
+   "date": "2027-08-06",
+   "nom": "Independence Day",
+   "nom_local": "Dia de la Patria"
+  },
+  {
+   "date": "2027-11-02",
+   "nom": "All Saints' Day",
+   "nom_local": "Todos Santos"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Navidad"
+  }
+ ]
+}

@@ -1,0 +1,185 @@
+{
+ "date": "2026-11-21T19:15:27Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Bagong Taon"
+  },
+  {
+   "date": "2026-02-17",
+   "nom": "Chinese New Year",
+   "nom_local": "Chinese New Year"
+  },
+  {
+   "date": "2026-04-02",
+   "nom": "Maundy Thursday",
+   "nom_local": "Huwebes Santo"
+  },
+  {
+   "date": "2026-04-03",
+   "nom": "Good Friday",
+   "nom_local": "Biyernes Santo"
+  },
+  {
+   "date": "2026-04-04",
+   "nom": "Holy Saturday",
+   "nom_local": "Sabado de Gloria"
+  },
+  {
+   "date": "2026-04-09",
+   "nom": "Day of Valor",
+   "nom_local": "Araw ng Kagitingan"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Araw ng Paggawa"
+  },
+  {
+   "date": "2026-06-12",
+   "nom": "Independence Day",
+   "nom_local": "Araw ng Kalayaan"
+  },
+  {
+   "date": "2026-08-21",
+   "nom": "Ninoy Aquino Day",
+   "nom_local": "Araw ng Kamatayan ni Senador Benigno Simeon \"Ninoy\" Aquino Jr."
+  },
+  {
+   "date": "2026-08-31",
+   "nom": "National Heroes Day",
+   "nom_local": "Araw ng mga Bayani"
+  },
+  {
+   "date": "2026-10-31",
+   "nom": "All Saints' Day Eve",
+   "nom_local": "All Saints' Day Eve"
+  },
+  {
+   "date": "2026-11-01",
+   "nom": "All Saints' Day",
+   "nom_local": "Araw ng mga Santo"
+  },
+  {
+   "date": "2026-11-30",
+   "nom": "Bonifacio Day",
+   "nom_local": "Araw ni Gat Andres Bonifacio"
+  },
+  {
+   "date": "2026-12-08",
+   "nom": "Feast of the Immaculate Conception of Mary",
+   "nom_local": "Kapistahan ng Immaculada Concepcion"
+  },
+  {
+   "date": "2026-12-24",
+   "nom": "Christmas Eve",
+   "nom_local": "Christmas Eve"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Araw ng Pasko"
+  },
+  {
+   "date": "2026-12-30",
+   "nom": "Rizal Day",
+   "nom_local": "Araw ng Kamatayan ni Dr. Jose Rizal"
+  },
+  {
+   "date": "2026-12-31",
+   "nom": "Last Day of The Year",
+   "nom_local": "Huling Araw ng Taon"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Bagong Taon"
+  },
+  {
+   "date": "2027-02-06",
+   "nom": "Chinese New Year",
+   "nom_local": "Chinese New Year"
+  },
+  {
+   "date": "2027-03-25",
+   "nom": "Maundy Thursday",
+   "nom_local": "Huwebes Santo"
+  },
+  {
+   "date": "2027-03-26",
+   "nom": "Good Friday",
+   "nom_local": "Biyernes Santo"
+  },
+  {
+   "date": "2027-03-27",
+   "nom": "Holy Saturday",
+   "nom_local": "Sabado de Gloria"
+  },
+  {
+   "date": "2027-04-09",
+   "nom": "Day of Valor",
+   "nom_local": "Araw ng Kagitingan"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Araw ng Paggawa"
+  },
+  {
+   "date": "2027-06-12",
+   "nom": "Independence Day",
+   "nom_local": "Araw ng Kalayaan"
+  },
+  {
+   "date": "2027-08-21",
+   "nom": "Ninoy Aquino Day",
+   "nom_local": "Araw ng Kamatayan ni Senador Benigno Simeon \"Ninoy\" Aquino Jr."
+  },
+  {
+   "date": "2027-08-30",
+   "nom": "National Heroes Day",
+   "nom_local": "Araw ng mga Bayani"
+  },
+  {
+   "date": "2027-10-31",
+   "nom": "All Saints' Day Eve",
+   "nom_local": "All Saints' Day Eve"
+  },
+  {
+   "date": "2027-11-01",
+   "nom": "All Saints' Day",
+   "nom_local": "Araw ng mga Santo"
+  },
+  {
+   "date": "2027-11-30",
+   "nom": "Bonifacio Day",
+   "nom_local": "Araw ni Gat Andres Bonifacio"
+  },
+  {
+   "date": "2027-12-08",
+   "nom": "Feast of the Immaculate Conception of Mary",
+   "nom_local": "Kapistahan ng Immaculada Concepcion"
+  },
+  {
+   "date": "2027-12-24",
+   "nom": "Christmas Eve",
+   "nom_local": "Christmas Eve"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Araw ng Pasko"
+  },
+  {
+   "date": "2027-12-30",
+   "nom": "Rizal Day",
+   "nom_local": "Araw ng Kamatayan ni Dr. Jose Rizal"
+  },
+  {
+   "date": "2027-12-31",
+   "nom": "Last Day of The Year",
+   "nom_local": "Huling Araw ng Taon"
+  }
+ ]
+}

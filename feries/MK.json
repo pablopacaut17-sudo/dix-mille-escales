@@ -1,0 +1,125 @@
+{
+ "date": "2026-11-21T19:15:01Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Нова Година, Nova Godina"
+  },
+  {
+   "date": "2026-01-07",
+   "nom": "Christmas Day (Orthodox)",
+   "nom_local": "Прв ден Божик, Prv den Božik"
+  },
+  {
+   "date": "2026-04-10",
+   "nom": "Good Friday",
+   "nom_local": "Велики Петок, Veliki Petok"
+  },
+  {
+   "date": "2026-04-12",
+   "nom": "Easter Sunday",
+   "nom_local": "Прв ден Велигден, Prv den Veligden"
+  },
+  {
+   "date": "2026-04-13",
+   "nom": "Easter Monday",
+   "nom_local": "Втор ден Велигден, Vtor den Veligden"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Ден на трудот, Den na trudot"
+  },
+  {
+   "date": "2026-05-24",
+   "nom": "Saints Cyril and Methodius Day",
+   "nom_local": "Св. Кирил и Методиј, Ден на сèсловенските просветители"
+  },
+  {
+   "date": "2026-08-02",
+   "nom": "Day of the Republic",
+   "nom_local": "Ден на Републиката, Den na Republikata"
+  },
+  {
+   "date": "2026-09-08",
+   "nom": "Independence Day",
+   "nom_local": "Ден на независноста, Den na nezavisnosta"
+  },
+  {
+   "date": "2026-10-11",
+   "nom": "Revolution Day",
+   "nom_local": "Ден на востанието, Den na vostanieto"
+  },
+  {
+   "date": "2026-10-23",
+   "nom": "Day of the Macedonian Revolutionary Struggle",
+   "nom_local": "Ден на македонската револуционерна борба,Den na makedonskata revolucionarna borba"
+  },
+  {
+   "date": "2026-12-08",
+   "nom": "Saint Clement of Ohrid Day",
+   "nom_local": "Св. Климент Охридски, Sv. Kliment Ohridski"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Нова Година, Nova Godina"
+  },
+  {
+   "date": "2027-01-07",
+   "nom": "Christmas Day (Orthodox)",
+   "nom_local": "Прв ден Божик, Prv den Božik"
+  },
+  {
+   "date": "2027-04-30",
+   "nom": "Good Friday",
+   "nom_local": "Велики Петок, Veliki Petok"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Ден на трудот, Den na trudot"
+  },
+  {
+   "date": "2027-05-02",
+   "nom": "Easter Sunday",
+   "nom_local": "Прв ден Велигден, Prv den Veligden"
+  },
+  {
+   "date": "2027-05-03",
+   "nom": "Easter Monday",
+   "nom_local": "Втор ден Велигден, Vtor den Veligden"
+  },
+  {
+   "date": "2027-05-24",
+   "nom": "Saints Cyril and Methodius Day",
+   "nom_local": "Св. Кирил и Методиј, Ден на сèсловенските просветители"
+  },
+  {
+   "date": "2027-08-02",
+   "nom": "Day of the Republic",
+   "nom_local": "Ден на Републиката, Den na Republikata"
+  },
+  {
+   "date": "2027-09-08",
+   "nom": "Independence Day",
+   "nom_local": "Ден на независноста, Den na nezavisnosta"
+  },
+  {
+   "date": "2027-10-11",
+   "nom": "Revolution Day",
+   "nom_local": "Ден на востанието, Den na vostanieto"
+  },
+  {
+   "date": "2027-10-23",
+   "nom": "Day of the Macedonian Revolutionary Struggle",
+   "nom_local": "Ден на македонската револуционерна борба,Den na makedonskata revolucionarna borba"
+  },
+  {
+   "date": "2027-12-08",
+   "nom": "Saint Clement of Ohrid Day",
+   "nom_local": "Св. Климент Охридски, Sv. Kliment Ohridski"
+  }
+ ]
+}

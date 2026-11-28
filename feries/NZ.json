@@ -1,0 +1,115 @@
+{
+ "date": "2026-11-21T19:15:21Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "New Year's Day"
+  },
+  {
+   "date": "2026-01-02",
+   "nom": "Day after New Year's Day",
+   "nom_local": "Day after New Year's Day"
+  },
+  {
+   "date": "2026-02-06",
+   "nom": "Waitangi Day",
+   "nom_local": "Waitangi Day"
+  },
+  {
+   "date": "2026-04-03",
+   "nom": "Good Friday",
+   "nom_local": "Good Friday"
+  },
+  {
+   "date": "2026-04-06",
+   "nom": "Easter Monday",
+   "nom_local": "Easter Monday"
+  },
+  {
+   "date": "2026-04-27",
+   "nom": "Anzac Day",
+   "nom_local": "Anzac Day"
+  },
+  {
+   "date": "2026-06-01",
+   "nom": "King's Birthday",
+   "nom_local": "King's Birthday"
+  },
+  {
+   "date": "2026-07-10",
+   "nom": "Matariki",
+   "nom_local": "Matariki"
+  },
+  {
+   "date": "2026-10-26",
+   "nom": "Labour Day",
+   "nom_local": "Labour Day"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Christmas Day"
+  },
+  {
+   "date": "2026-12-28",
+   "nom": "Boxing Day",
+   "nom_local": "Boxing Day"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "New Year's Day"
+  },
+  {
+   "date": "2027-01-04",
+   "nom": "Day after New Year's Day",
+   "nom_local": "Day after New Year's Day"
+  },
+  {
+   "date": "2027-02-08",
+   "nom": "Waitangi Day",
+   "nom_local": "Waitangi Day"
+  },
+  {
+   "date": "2027-03-26",
+   "nom": "Good Friday",
+   "nom_local": "Good Friday"
+  },
+  {
+   "date": "2027-03-29",
+   "nom": "Easter Monday",
+   "nom_local": "Easter Monday"
+  },
+  {
+   "date": "2027-04-26",
+   "nom": "Anzac Day",
+   "nom_local": "Anzac Day"
+  },
+  {
+   "date": "2027-06-07",
+   "nom": "King's Birthday",
+   "nom_local": "King's Birthday"
+  },
+  {
+   "date": "2027-06-25",
+   "nom": "Matariki",
+   "nom_local": "Matariki"
+  },
+  {
+   "date": "2027-10-25",
+   "nom": "Labour Day",
+   "nom_local": "Labour Day"
+  },
+  {
+   "date": "2027-12-27",
+   "nom": "Christmas Day",
+   "nom_local": "Christmas Day"
+  },
+  {
+   "date": "2027-12-28",
+   "nom": "Boxing Day",
+   "nom_local": "Boxing Day"
+  }
+ ]
+}

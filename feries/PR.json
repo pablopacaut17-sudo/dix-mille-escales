@@ -1,0 +1,215 @@
+{
+ "date": "2026-11-21T19:15:31Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Día de Año Nuevo"
+  },
+  {
+   "date": "2026-01-06",
+   "nom": "Three Kings Day / Epiphany",
+   "nom_local": "Día de Reyes"
+  },
+  {
+   "date": "2026-01-12",
+   "nom": "Birthday of Eugenio María de Hostos",
+   "nom_local": "Natalicio de Eugenio María de Hostos"
+  },
+  {
+   "date": "2026-01-19",
+   "nom": "Martin Luther King, Jr. Day",
+   "nom_local": "Natalicio de Martin Luther King, Jr."
+  },
+  {
+   "date": "2026-02-16",
+   "nom": "Presidents' Day",
+   "nom_local": "Día de los Presidentes"
+  },
+  {
+   "date": "2026-02-18",
+   "nom": "Birthday of Luis Muñoz Marín",
+   "nom_local": "Natalicio de Luis Muñoz Marín"
+  },
+  {
+   "date": "2026-03-22",
+   "nom": "Emancipation Day",
+   "nom_local": "Día de la Abolición de Esclavitud"
+  },
+  {
+   "date": "2026-04-03",
+   "nom": "Good Friday",
+   "nom_local": "Viernes Santo"
+  },
+  {
+   "date": "2026-04-20",
+   "nom": "Birthday of José de Diego",
+   "nom_local": "Natalicio de José de Diego"
+  },
+  {
+   "date": "2026-05-25",
+   "nom": "Memorial Day",
+   "nom_local": "Recordación de los Muertos de la Guerra"
+  },
+  {
+   "date": "2026-07-03",
+   "nom": "Independence Day",
+   "nom_local": "Día de la Independencia de los Estados Unidos"
+  },
+  {
+   "date": "2026-07-20",
+   "nom": "Birthday of Don Luis Muñoz Rivera",
+   "nom_local": "Natalicio de Don Luis Muñoz Rivera"
+  },
+  {
+   "date": "2026-07-25",
+   "nom": "Puerto Rico Constitution Day",
+   "nom_local": "Constitución de Puerto Rico"
+  },
+  {
+   "date": "2026-07-27",
+   "nom": "Birthday of Dr. José Celso Barbosa",
+   "nom_local": "Natalicio de Dr. José Celso Barbosa"
+  },
+  {
+   "date": "2026-09-07",
+   "nom": "Labour Day",
+   "nom_local": "Día del Trabajo"
+  },
+  {
+   "date": "2026-10-12",
+   "nom": "Columbus Day",
+   "nom_local": "Día de la Raza / Descubrimiento de América"
+  },
+  {
+   "date": "2026-11-11",
+   "nom": "Veterans Day",
+   "nom_local": "Día del Veterano / Día del Armisticio"
+  },
+  {
+   "date": "2026-11-19",
+   "nom": "Discovery of Puerto Rico",
+   "nom_local": "Día del Descubrimiento de Puerto Rico"
+  },
+  {
+   "date": "2026-11-26",
+   "nom": "Thanksgiving Day",
+   "nom_local": "Día de Acción de Gracias"
+  },
+  {
+   "date": "2026-12-24",
+   "nom": "Christmas Eve",
+   "nom_local": "Noche Buena"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Navidad"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Día de Año Nuevo"
+  },
+  {
+   "date": "2027-01-06",
+   "nom": "Three Kings Day / Epiphany",
+   "nom_local": "Día de Reyes"
+  },
+  {
+   "date": "2027-01-11",
+   "nom": "Birthday of Eugenio María de Hostos",
+   "nom_local": "Natalicio de Eugenio María de Hostos"
+  },
+  {
+   "date": "2027-01-18",
+   "nom": "Martin Luther King, Jr. Day",
+   "nom_local": "Natalicio de Martin Luther King, Jr."
+  },
+  {
+   "date": "2027-02-15",
+   "nom": "Presidents' Day",
+   "nom_local": "Día de los Presidentes"
+  },
+  {
+   "date": "2027-02-18",
+   "nom": "Birthday of Luis Muñoz Marín",
+   "nom_local": "Natalicio de Luis Muñoz Marín"
+  },
+  {
+   "date": "2027-03-22",
+   "nom": "Emancipation Day",
+   "nom_local": "Día de la Abolición de Esclavitud"
+  },
+  {
+   "date": "2027-03-26",
+   "nom": "Good Friday",
+   "nom_local": "Viernes Santo"
+  },
+  {
+   "date": "2027-04-19",
+   "nom": "Birthday of José de Diego",
+   "nom_local": "Natalicio de José de Diego"
+  },
+  {
+   "date": "2027-05-31",
+   "nom": "Memorial Day",
+   "nom_local": "Recordación de los Muertos de la Guerra"
+  },
+  {
+   "date": "2027-07-05",
+   "nom": "Independence Day",
+   "nom_local": "Día de la Independencia de los Estados Unidos"
+  },
+  {
+   "date": "2027-07-19",
+   "nom": "Birthday of Don Luis Muñoz Rivera",
+   "nom_local": "Natalicio de Don Luis Muñoz Rivera"
+  },
+  {
+   "date": "2027-07-25",
+   "nom": "Puerto Rico Constitution Day",
+   "nom_local": "Constitución de Puerto Rico"
+  },
+  {
+   "date": "2027-07-27",
+   "nom": "Birthday of Dr. José Celso Barbosa",
+   "nom_local": "Natalicio de Dr. José Celso Barbosa"
+  },
+  {
+   "date": "2027-09-06",
+   "nom": "Labour Day",
+   "nom_local": "Día del Trabajo"
+  },
+  {
+   "date": "2027-10-11",
+   "nom": "Columbus Day",
+   "nom_local": "Día de la Raza / Descubrimiento de América"
+  },
+  {
+   "date": "2027-11-11",
+   "nom": "Veterans Day",
+   "nom_local": "Día del Veterano / Día del Armisticio"
+  },
+  {
+   "date": "2027-11-19",
+   "nom": "Discovery of Puerto Rico",
+   "nom_local": "Día del Descubrimiento de Puerto Rico"
+  },
+  {
+   "date": "2027-11-25",
+   "nom": "Thanksgiving Day",
+   "nom_local": "Día de Acción de Gracias"
+  },
+  {
+   "date": "2027-12-24",
+   "nom": "Christmas Eve",
+   "nom_local": "Noche Buena"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Navidad"
+  }
+ ]
+}

@@ -1,0 +1,145 @@
+{
+ "date": "2026-11-21T19:13:44Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Nytårsdag"
+  },
+  {
+   "date": "2026-04-02",
+   "nom": "Maundy Thursday",
+   "nom_local": "Skærtorsdag"
+  },
+  {
+   "date": "2026-04-03",
+   "nom": "Good Friday",
+   "nom_local": "Langfredag"
+  },
+  {
+   "date": "2026-04-05",
+   "nom": "Easter Sunday",
+   "nom_local": "Påskedag"
+  },
+  {
+   "date": "2026-04-06",
+   "nom": "Easter Monday",
+   "nom_local": "2. Påskedag"
+  },
+  {
+   "date": "2026-05-14",
+   "nom": "Ascension Day",
+   "nom_local": "Kristi Himmelfartsdag"
+  },
+  {
+   "date": "2026-05-15",
+   "nom": "Bank closing day",
+   "nom_local": "Banklukkedag"
+  },
+  {
+   "date": "2026-05-24",
+   "nom": "Pentecost",
+   "nom_local": "Pinsedag"
+  },
+  {
+   "date": "2026-05-25",
+   "nom": "Whit Monday",
+   "nom_local": "2. Pinsedag"
+  },
+  {
+   "date": "2026-06-05",
+   "nom": "Constitution Day",
+   "nom_local": "Grundlovsdag"
+  },
+  {
+   "date": "2026-12-24",
+   "nom": "Christmas Eve",
+   "nom_local": "Juleaftensdag"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Juledag / 1. juledag"
+  },
+  {
+   "date": "2026-12-26",
+   "nom": "St. Stephen's Day",
+   "nom_local": "2. juledag"
+  },
+  {
+   "date": "2026-12-31",
+   "nom": "New Year's Eve",
+   "nom_local": "Nytårsaftensdag"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Nytårsdag"
+  },
+  {
+   "date": "2027-03-25",
+   "nom": "Maundy Thursday",
+   "nom_local": "Skærtorsdag"
+  },
+  {
+   "date": "2027-03-26",
+   "nom": "Good Friday",
+   "nom_local": "Langfredag"
+  },
+  {
+   "date": "2027-03-28",
+   "nom": "Easter Sunday",
+   "nom_local": "Påskedag"
+  },
+  {
+   "date": "2027-03-29",
+   "nom": "Easter Monday",
+   "nom_local": "2. Påskedag"
+  },
+  {
+   "date": "2027-05-06",
+   "nom": "Ascension Day",
+   "nom_local": "Kristi Himmelfartsdag"
+  },
+  {
+   "date": "2027-05-07",
+   "nom": "Bank closing day",
+   "nom_local": "Banklukkedag"
+  },
+  {
+   "date": "2027-05-16",
+   "nom": "Pentecost",
+   "nom_local": "Pinsedag"
+  },
+  {
+   "date": "2027-05-17",
+   "nom": "Whit Monday",
+   "nom_local": "2. Pinsedag"
+  },
+  {
+   "date": "2027-06-05",
+   "nom": "Constitution Day",
+   "nom_local": "Grundlovsdag"
+  },
+  {
+   "date": "2027-12-24",
+   "nom": "Christmas Eve",
+   "nom_local": "Juleaftensdag"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Juledag / 1. juledag"
+  },
+  {
+   "date": "2027-12-26",
+   "nom": "St. Stephen's Day",
+   "nom_local": "2. juledag"
+  },
+  {
+   "date": "2027-12-31",
+   "nom": "New Year's Eve",
+   "nom_local": "Nytårsaftensdag"
+  }
+ ]
+}

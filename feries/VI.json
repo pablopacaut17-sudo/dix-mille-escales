@@ -1,0 +1,185 @@
+{
+ "date": "2026-11-21T19:16:20Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "New Year's Day"
+  },
+  {
+   "date": "2026-01-06",
+   "nom": "Epiphany",
+   "nom_local": "Three Kings Day"
+  },
+  {
+   "date": "2026-01-19",
+   "nom": "Martin Luther King, Jr. Day",
+   "nom_local": "Martin Luther King, Jr. Day"
+  },
+  {
+   "date": "2026-02-16",
+   "nom": "Presidents Day",
+   "nom_local": "President's Day"
+  },
+  {
+   "date": "2026-03-31",
+   "nom": "Transfer Day",
+   "nom_local": "Transfer Day"
+  },
+  {
+   "date": "2026-04-02",
+   "nom": "Maundy Thursday",
+   "nom_local": "Holy Thursday"
+  },
+  {
+   "date": "2026-04-03",
+   "nom": "Good Friday",
+   "nom_local": "Good Friday"
+  },
+  {
+   "date": "2026-04-06",
+   "nom": "Easter Monday",
+   "nom_local": "Easter Monday"
+  },
+  {
+   "date": "2026-05-25",
+   "nom": "Memorial Day",
+   "nom_local": "Memorial Day"
+  },
+  {
+   "date": "2026-06-19",
+   "nom": "Juneteenth National Independence Day",
+   "nom_local": "Juneteenth National Independence Day"
+  },
+  {
+   "date": "2026-07-03",
+   "nom": "Emancipation Day",
+   "nom_local": "Emancipation Day"
+  },
+  {
+   "date": "2026-07-03",
+   "nom": "Independence Day",
+   "nom_local": "Independence Day"
+  },
+  {
+   "date": "2026-09-07",
+   "nom": "Labour Day",
+   "nom_local": "Labor Day"
+  },
+  {
+   "date": "2026-10-12",
+   "nom": "Columbus Day",
+   "nom_local": "Virgin Islands–Puerto Rico Friendship Day & Columbus Day"
+  },
+  {
+   "date": "2026-11-11",
+   "nom": "Veterans Day",
+   "nom_local": "Veterans Day"
+  },
+  {
+   "date": "2026-11-26",
+   "nom": "Thanksgiving Day",
+   "nom_local": "Thanksgiving Day"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Christmas Day",
+   "nom_local": "Christmas Day"
+  },
+  {
+   "date": "2026-12-26",
+   "nom": "St. Stephen's Day",
+   "nom_local": "Second Day of Christmas"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "New Year's Day"
+  },
+  {
+   "date": "2027-01-06",
+   "nom": "Epiphany",
+   "nom_local": "Three Kings Day"
+  },
+  {
+   "date": "2027-01-18",
+   "nom": "Martin Luther King, Jr. Day",
+   "nom_local": "Martin Luther King, Jr. Day"
+  },
+  {
+   "date": "2027-02-15",
+   "nom": "Presidents Day",
+   "nom_local": "President's Day"
+  },
+  {
+   "date": "2027-03-25",
+   "nom": "Maundy Thursday",
+   "nom_local": "Holy Thursday"
+  },
+  {
+   "date": "2027-03-26",
+   "nom": "Good Friday",
+   "nom_local": "Good Friday"
+  },
+  {
+   "date": "2027-03-29",
+   "nom": "Easter Monday",
+   "nom_local": "Easter Monday"
+  },
+  {
+   "date": "2027-03-31",
+   "nom": "Transfer Day",
+   "nom_local": "Transfer Day"
+  },
+  {
+   "date": "2027-05-31",
+   "nom": "Memorial Day",
+   "nom_local": "Memorial Day"
+  },
+  {
+   "date": "2027-06-18",
+   "nom": "Juneteenth National Independence Day",
+   "nom_local": "Juneteenth National Independence Day"
+  },
+  {
+   "date": "2027-07-03",
+   "nom": "Emancipation Day",
+   "nom_local": "Emancipation Day"
+  },
+  {
+   "date": "2027-07-05",
+   "nom": "Independence Day",
+   "nom_local": "Independence Day"
+  },
+  {
+   "date": "2027-09-06",
+   "nom": "Labour Day",
+   "nom_local": "Labor Day"
+  },
+  {
+   "date": "2027-10-11",
+   "nom": "Columbus Day",
+   "nom_local": "Virgin Islands–Puerto Rico Friendship Day & Columbus Day"
+  },
+  {
+   "date": "2027-11-11",
+   "nom": "Veterans Day",
+   "nom_local": "Veterans Day"
+  },
+  {
+   "date": "2027-11-25",
+   "nom": "Thanksgiving Day",
+   "nom_local": "Thanksgiving Day"
+  },
+  {
+   "date": "2027-12-24",
+   "nom": "Christmas Day",
+   "nom_local": "Christmas Day"
+  },
+  {
+   "date": "2027-12-26",
+   "nom": "St. Stephen's Day",
+   "nom_local": "Second Day of Christmas"
+  }
+ ]
+}

@@ -1,0 +1,105 @@
+{
+ "date": "2026-11-21T19:13:21Z",
+ "jours": [
+  {
+   "date": "2026-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Новы год"
+  },
+  {
+   "date": "2026-01-02",
+   "nom": "New Year's Day",
+   "nom_local": "Новы год"
+  },
+  {
+   "date": "2026-01-07",
+   "nom": "Christmas Day (Orthodox)",
+   "nom_local": "Каляды праваслаўныя"
+  },
+  {
+   "date": "2026-03-08",
+   "nom": "International Women's Day",
+   "nom_local": "Мiжнародны жаночы дзень"
+  },
+  {
+   "date": "2026-04-21",
+   "nom": "Commemoration Day",
+   "nom_local": "Радунiца"
+  },
+  {
+   "date": "2026-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Дзень працы"
+  },
+  {
+   "date": "2026-05-09",
+   "nom": "Victory Day",
+   "nom_local": "Дзень Перамогi"
+  },
+  {
+   "date": "2026-07-03",
+   "nom": "Independence Day",
+   "nom_local": "Дзень Незалежнасцi"
+  },
+  {
+   "date": "2026-11-07",
+   "nom": "October Revolution Day",
+   "nom_local": "Дзень Кастрычніцкай рэвалюцыі"
+  },
+  {
+   "date": "2026-12-25",
+   "nom": "Catholic Christmas Day",
+   "nom_local": "Каляды каталiцкiя"
+  },
+  {
+   "date": "2027-01-01",
+   "nom": "New Year's Day",
+   "nom_local": "Новы год"
+  },
+  {
+   "date": "2027-01-02",
+   "nom": "New Year's Day",
+   "nom_local": "Новы год"
+  },
+  {
+   "date": "2027-01-07",
+   "nom": "Christmas Day (Orthodox)",
+   "nom_local": "Каляды праваслаўныя"
+  },
+  {
+   "date": "2027-03-08",
+   "nom": "International Women's Day",
+   "nom_local": "Мiжнародны жаночы дзень"
+  },
+  {
+   "date": "2027-05-01",
+   "nom": "Labour Day",
+   "nom_local": "Дзень працы"
+  },
+  {
+   "date": "2027-05-09",
+   "nom": "Victory Day",
+   "nom_local": "Дзень Перамогi"
+  },
+  {
+   "date": "2027-05-11",
+   "nom": "Commemoration Day",
+   "nom_local": "Радунiца"
+  },
+  {
+   "date": "2027-07-03",
+   "nom": "Independence Day",
+   "nom_local": "Дзень Незалежнасцi"
+  },
+  {
+   "date": "2027-11-07",
+   "nom": "October Revolution Day",
+   "nom_local": "Дзень Кастрычніцкай рэвалюцыі"
+  },
+  {
+   "date": "2027-12-25",
+   "nom": "Catholic Christmas Day",
+   "nom_local": "Каляды каталiцкiя"
+  }
+ ]
+}
