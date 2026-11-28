@@ -102,7 +102,7 @@
       h += sec('quand-partir', 'Quand partir', '<p class="lead">' + (best.length ? 'Les mois les plus agréables : ' + best.join(', ') + '.' : 'Aucun mois n’est à la fois tempéré et sec : choisissez selon la chaleur et la pluie que vous tolérez.') + '</p>'
         + '<div class="climat" aria-hidden="true">' + d.climat.map(function (m, i) { return '<div class="m ' + (best.indexOf(MOIS[i]) > -1 ? 'ideal' : '') + '"><span class="v">' + Math.round(m.tmax) + '°</span><span class="b" style="height:' + Math.max(4, Math.round((m.tmax - bas) / ((tmax - bas) || 1) * 100)) + '%"></span><span class="p" style="height:' + Math.min(100, Math.round(m.pluie_mm / 3)) + '%"></span><span class="l">' + MC[i] + '</span></div>'; }).join('') + '</div>'
         + '<details class="more"><summary>Voir le tableau mois par mois</summary><div class="table-scroll"><table><thead><tr><th>Mois</th><th>Max.</th><th>Min.</th><th>Pluie</th><th>Jours de pluie</th></tr></thead><tbody>'
-        + d.climat.map(function (m, i) { return '<tr><td>' + MOIS[i] + '</td><td>' + Math.round(m.tmax) + '°</td><td>' + Math.round(m.tmin) + '°</td><td>' + m.pluie_mm + ' mm</td><td>' + m.jours_pluie + '</td></tr>'; }).join('') + '</tbody></table></div></details>');
+        + d.climat.map(function (m, i) { return '<tr><td>' + MOIS[i] + '</td><td>' + Math.round(m.tmax) + '°</td><td>' + Math.round(m.tmin) + '°</td><td>' + m.pluie_mm + ' mm</td><td>' + (m.jours_pluie != null ? m.jours_pluie : '–') + '</td></tr>'; }).join('') + '</tbody></table></div></details>');
     }
     // S'y rendre et guide Wikivoyage
     var gd = c.guide || {};

@@ -22,8 +22,16 @@ MOIS_POWER = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OC
 JOURS = [31, 28.25, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
 
+# Températures : T2M_MAX / T2M_MIN (et même T2M_MAX_AVG / T2M_MIN_AVG) sont, dans les normales POWER, les valeurs
+# EXTRÊMES du mois (Paris en juillet : 39,6 °C ; Calcutta en janvier : 3,4 °C la nuit), pas les moyennes des
+# après-midi et des nuits. Vérifié le 28/11/2026 par le chasseur d'erreurs. On calcule donc :
+#   max moyen = T2M (moyenne) + T2M_RANGE (écart moyen jour/nuit) / 2 ; min moyen = T2M - T2M_RANGE / 2
+# (Paris : 25 °C / 14 °C en juillet ; Calcutta : 24 °C / 10 °C en janvier, proches des normales des stations).
+METHODE = "T2M±T2M_RANGE/2"
+
+
 def url_power(v):
-    q = {"parameters": "T2M_MAX,T2M_MIN,PRECTOTCORR", "community": "AG", "longitude": round(v["lon"], 3),
+    q = {"parameters": "T2M,T2M_RANGE,PRECTOTCORR", "community": "AG", "longitude": round(v["lon"], 3),
          "latitude": round(v["lat"], 3), "format": "JSON"}
     return POWER + "?" + urllib.parse.urlencode(q)
 
@@ -33,12 +41,21 @@ def normales_power(rep):
     p = rep["properties"]["parameter"]
     mois = []
     for i, m in enumerate(MOIS_POWER):
-        tmax, tmin, pluie_jour = p["T2M_MAX"].get(m), p["T2M_MIN"].get(m), p["PRECTOTCORR"].get(m)
-        if tmax is None or tmax < -900:
+        moy, ecart, pluie_jour = p["T2M"].get(m), p["T2M_RANGE"].get(m), p["PRECTOTCORR"].get(m)
+        if moy is None or ecart is None or pluie_jour is None or min(moy, ecart, pluie_jour) < -900 or not 0 <= ecart <= 30:
             return None
+        tmax, tmin = moy + ecart / 2, moy - ecart / 2
         mois.append({"tmax": round(tmax, 1), "tmin": round(tmin, 1), "pluie_mm": round(max(0, pluie_jour) * JOURS[i]),
                      "jours_pluie": None, "soleil_h": None})
     return mois
+
+
+PERIODE = "2001-2025"  # période des normales POWER (message de l'API : « January 2001 - December 2025 »)
+
+
+def a_jour(f):
+    """Fichier de climat juste : archive Open-Meteo (moyennes journalières), ou NASA POWER calculé avec la bonne méthode."""
+    return f.get("source") != "NASA POWER" or f.get("methode") == METHODE
 
 
 def normales(d):  # (ancienne source Open-Meteo, plus utilisée)
@@ -98,7 +115,7 @@ def main():
         lot = []
         for v in sorted(V, key=lambda v: ({"phare": 0, "intermediaire": 1, "autre": 2}[v["niveau"]], -v["population"])):
             ancien = c.lire(f"climat/{v['id']}.json")
-            if not ancien or (c.maintenant() - datetime.fromisoformat(ancien["date"].replace("Z", "+00:00"))).days > 730:
+            if not ancien or not a_jour(ancien) or (c.maintenant() - datetime.fromisoformat(ancien["date"].replace("Z", "+00:00"))).days > 730:
                 lot.append(v)
     ok = ech = partages = appels = 0
     debut_t = time.monotonic()
@@ -110,7 +127,7 @@ def main():
             w = voisin_calcule(v)
             if w and w["id"] != v["id"]:
                 ref = c.lire(f"climat/{w['id']}.json")
-                if ref and "mois" in ref:
+                if ref and "mois" in ref and a_jour(ref):
                     c.ecrire(f"climat/{v['id']}.json", dict(ref, partage_avec=w["nom"]), compact=True)
                     partages += 1
                     continue
@@ -133,8 +150,8 @@ def main():
             if not mois:
                 ech += 1
                 continue
-        c.ecrire(f"climat/{v['id']}.json", {"date": c.horodatage(), "periode": "1991-2020" if not a.demo else "démo",
-                                             "source": "NASA POWER", "mois": mois}, compact=True)
+        c.ecrire(f"climat/{v['id']}.json", {"date": c.horodatage(), "periode": PERIODE if not a.demo else "démo",
+                                             "source": "NASA POWER", "methode": METHODE, "mois": mois}, compact=True)
         grille.setdefault((round(v["lat"] / 0.2), round(v["lon"] / 0.2)), []).append(v)
         ok += 1
         print(f"{v['nom']} : normales calculées")
