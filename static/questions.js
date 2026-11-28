@@ -509,7 +509,11 @@
     for (var i = 0; i < mots.length; i++) {
       var reste = ' ' + norm(mots.slice(i).join(' ')).replace(/[^a-z0-9 ]/g, ' ').replace(/^(l|d) /, '') + ' ', m = reste.match(MOTS_LIEUX);
       if (!m) return '';
-      if (reste.indexOf(m[1]) === 1) return mots.slice(i).join(' ').replace(/^[ldLD][’']/, '').trim();
+      if (reste.indexOf(m[1]) === 1) {
+        // « Penshaw Monument » : le nom propre qui précède le mot du lieu en fait partie
+        var k = i; while (k > 0 && /^[A-ZÀ-Ý]/.test(mots[k - 1]) && !/^(Quel|Quelle|Quels|Quelles|Combien|Comment|Quand|Le|La|Les|De|Du|Des|À|Au|Aux)$/.test(mots[k - 1])) k--;
+        return mots.slice(k).join(' ').replace(/^[ldLD][’']/, '').trim();
+      }
     }
     return '';
   }
