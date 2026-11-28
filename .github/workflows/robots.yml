@@ -308,6 +308,8 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site
+      - name: Laisser GitHub enregistrer l'archive du site (sinon « No artifacts named github-pages » au premier essai)
+        run: sleep 30
       - id: deploy
         uses: actions/deploy-pages@v4
         continue-on-error: true
