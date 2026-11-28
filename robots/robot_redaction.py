@@ -74,7 +74,7 @@ def main():
     p.add_argument("--max-villes", type=int, default=80)
     p.add_argument("--demo", action="store_true")
     a = p.parse_args()
-    cle = os.environ.get("ANTHROPIC_API_KEY")
+    cle = (os.environ.get("ANTHROPIC_API_KEY") or "").strip().strip('"').strip("'")  # espace ou guillemets collés par erreur
     if not cle and not a.demo:
         c.journal("redaction", "désactivé", raison="secret ANTHROPIC_API_KEY absent")
         print("Pas de clé ANTHROPIC_API_KEY : robot Rédaction désactivé.")
@@ -108,6 +108,10 @@ def main():
                 texte = appeler(cle, donnees)
         except Exception as e:
             print(f"{v['nom']} : échec ({e})")
+            if getattr(e, "code", None) in (401, 403):  # clé refusée : inutile d'essayer les 79 autres villes
+                c.journal("redaction", "clé refusée", erreur=f"HTTP {e.code} : la clé ANTHROPIC_API_KEY est invalide, révoquée ou mal copiée")
+                print("Clé refusée par l'API : arrêt du robot Rédaction (vérifier le secret ANTHROPIC_API_KEY).")
+                return
             ech += 1
             continue
         c.ecrire(f"redaction/{v['id']}.json", dict(texte, date=c.horodatage(), modele=MODELE))
