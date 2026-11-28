@@ -1,13 +1,8 @@
 {
- "a_verifier": [
-  {
-   "q": "Fréquentation gare de Lyon",
-   "r": "La gare de Lyon à Paris est l'une des gares les plus fréquentées d'Europe. Selon les estimations de la SNCF, elle a accueilli **environ 122,5 millions de voyageurs en 2025**, contre **113,2 millions en 2024**. Ces données ne sont pas publiées avec une marge d'erreur, mais elles restent cohérentes sur plusieurs années.\n\n- **2019** : environ 112,6 millions de voyageurs\n- **2020** : environ 55,8 millions, creux lié à la crise du Covid-19\n- **2021 à 2023** : remontée progressive, avec environ 80,0 millions en 2021, 102,0 millions en 2022 et 110,5 millions en 2023\n\nLa SNCF précise que ces chiffres sont extrapolés en Île-de-France à partir de comptages réalisés tous les trois à quatre ans, et que les billets vendus par des revendeurs tiers ne sont pas comptés. Les chiffres RATP du RER A (environ 38 millions en 2018) ne sont pas inclus dans ces totaux.\n\nPour la station de métro « Gare de Lyon » (lignes 1 et 14), la fréquentation est distincte : environ 28,6 millions d'entrées en 2021.\n\nSources : Wikipédia (Liste des gares françaises accueillant plus d'un million de voyageurs par an ; Paris-Gare-de-Lyon), GEOPIX (données SNCF Open Data).",
-   "d": "2026-11-27",
-   "slug": ""
-  }
+ "a_verifier": [],
+ "traitees": [
+  "|Fréquentation gare de Lyon"
  ],
- "traitees": [],
  "sans_reponse": [],
  "signalements": [],
  "maj": "2026-11-28T07:39:01Z"

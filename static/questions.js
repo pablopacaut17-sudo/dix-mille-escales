@@ -158,9 +158,13 @@
           var mt = motsLieu(x[0]);
           if (mt.length > 2 && GENERIQUES[mt[0]]) mt = mt.slice(1);  // « avenue des Champs-Élysées » : « Champs-Élysées » suffit
           if (!mt.length) return;
-          var s = mt.join('');
-          if ((mt.length < 2 && s.length < 6) || s.length < lg) return;
+          var s0 = mt.join('');
+          if (mt.length < 2 && s0.length < 6) return;
           if (!mt.every(function (m) { return present[m] || present[m.replace(/s$/, '')]; })) return;
+          // les mots du nom qui ne sont que le nom de la ville comptent peu : « Monument de la Paix à Washington » n'est pas le « Washington Monument »
+          var mv = {}; motsLieu(x[2]).forEach(function (m) { mv[m] = 1; });
+          var s = mt.filter(function (m) { return !mv[m]; }).join('') || s0.slice(0, 5);
+          if (s.length < lg) return;
           // à nom égal (« Gare centrale »), la ville citée dans la question l'emporte, puis le lieu le plus fréquenté
           var me = x[3] || {}, poids = (motsLieu(x[2]).every(function (m) { return present[m]; }) ? 1e12 : 0) + (me.fr || 0) + (me.vi || 0) + (me.ca || 0);
           if (s.length > lg || poids > pmax) { meilleur = x; lg = s.length; pmax = poids; }
@@ -207,6 +211,59 @@
     if (f.wikivoyage) h += '<p>Wikivoyage : « ' + E(f.wikivoyage) + ' »</p>';
     if (!f.histoire && !f.horaires && !f.adresse) h += '<p>Nous n’avons pas encore de détails sur ce lieu.</p>';
     return h + '<p><a href="https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(f.nom + ' ' + d.nom) + '" target="_blank" rel="noopener">Avis et photos</a></p>';
+  }
+  /* « Que faire en 2 jours à Lisbonne ? » : programme jour par jour à partir des lieux à voir de la fiche,
+     regroupés par proximité (un quartier par jour), avec une adresse pour manger près de chaque étape. Rien n'est stocké. */
+  var NB_JOURS = { un: 1, une: 1, deux: 2, trois: 3, quatre: 4, cinq: 5 };
+  function joursDemandes(q) {
+    var n = norm(q), m = n.match(/\b([1-5]|un|une|deux|trois|quatre|cinq) (jours?|journees?)\b/);
+    var k = m ? (NB_JOURS[m[1]] || +m[1]) : /week ?end/.test(n) ? 2 : 0;
+    if (!k || !/(faire|visiter|voir|programme|itineraire|sejour|passer|decouvrir|circuit|week ?end)/.test(n)) return 0;
+    return k;
+  }
+  function kmEntre(a, b) {
+    var r = Math.PI / 180, x = (b.lon - a.lon) * r * Math.cos((a.lat + b.lat) * r / 2), y = (b.lat - a.lat) * r;
+    return 6371 * Math.sqrt(x * x + y * y);
+  }
+  function programme(q, d, L) {
+    var k = joursDemandes(q);
+    if (!k) return null;
+    var centre = d.lat != null ? { lat: d.lat, lon: d.lon } : null;
+    var voir = L.filter(function (f) { return f.rubrique === 'voir' && f.lat != null && f.lon != null && (!centre || kmEntre(centre, f) < 12); });
+    if (voir.length < 2) return null;
+    // incontournables d'abord (Wikidata ou patrimoine mondial), puis l'ordre de la fiche (les plus renseignés)
+    voir = voir.map(function (f, i) { return [f, (f.patrimoine_mondial ? 0 : f.wikidata ? 1 : 2) * 1e4 + i]; }).sort(function (a, b) { return a[1] - b[1]; }).map(function (x) { return x[0]; });
+    var parJour = 4, choix = voir.slice(0, Math.min(voir.length, k * parJour * 2));
+    k = Math.max(1, Math.min(k, Math.floor(choix.length / 2)));
+    // un point de départ par jour : les lieux les mieux classés, assez éloignés les uns des autres
+    var germes = [];
+    choix.forEach(function (f) { if (germes.length < k && germes.every(function (g) { return kmEntre(g, f) > 1.2; })) germes.push(f); });
+    choix.forEach(function (f) { if (germes.length < k && germes.indexOf(f) < 0) germes.push(f); });
+    var jours = germes.map(function (g) { return [g]; });
+    choix.forEach(function (f) {
+      if (germes.indexOf(f) > -1) return;
+      var best = -1, dm = 1e9;
+      jours.forEach(function (j, i) { var dd = kmEntre(j[0], f); if (j.length < parJour && dd < dm) { dm = dd; best = i; } });
+      if (best > -1 && dm < 6) jours[best].push(f);
+    });
+    // dans chaque journée, on va de proche en proche
+    jours = jours.map(function (j) {
+      var reste = j.slice(1), ordre = [j[0]];
+      while (reste.length) { var der = ordre[ordre.length - 1], iMin = 0; reste.forEach(function (f, i) { if (kmEntre(der, f) < kmEntre(der, reste[iMin])) iMin = i; }); ordre.push(reste.splice(iMin, 1)[0]); }
+      return ordre;
+    });
+    var manger = L.filter(function (f) { return f.rubrique === 'manger' && f.lat != null && f.lon != null; }), pris = {};
+    var h = (k > 1 ? 'Proposition de programme sur <b>' + k + ' jours</b> ' : 'Proposition de programme pour <b>une journée</b> ') + aV(d.nom) + ', un secteur par jour pour limiter les trajets :';
+    jours.forEach(function (j, i) {
+      var tot = 0; for (var x = 1; x < j.length; x++) tot += kmEntre(j[x - 1], j[x]);
+      var mid = j[Math.floor((j.length - 1) / 2)], resto = null, dr = 1e9;
+      manger.forEach(function (f) { var dd = kmEntre(mid, f); if (!pris[f.nom] && dd < dr) { dr = dd; resto = f; } });
+      if (resto && dr < 1.5) pris[resto.nom] = 1; else resto = null;
+      h += '<p><b>' + (k > 1 ? 'Jour ' + (i + 1) : 'Le programme') + '</b> (' + (tot < 1 ? 'moins d’1 km' : 'environ ' + virg(Math.round(tot * 10) / 10) + ' km') + ' entre les étapes)</p>'
+        + liste(j, function (f) { return '<b>' + E(f.nom) + '</b>, ' + E((f.type || '').toLowerCase()) + ((f.wikidata || f.patrimoine_mondial) ? ' ★' : '') + (f.horaires ? ' · ' + E(f.horaires) : ''); })
+        + (resto ? '<p class="note">Pour manger près de là : ' + E(resto.nom) + (resto.cuisine ? ' (' + E(resto.cuisine) + ')' : '') + ', à ' + (dr < 0.1 ? 'quelques pas' : virg(Math.round(dr * 10) / 10) + ' km') + '.</p>' : '');
+    });
+    return h + '<p class="note">Programme calculé à partir des lieux de la fiche (OpenStreetMap, Wikidata), regroupés par proximité ; ★ = incontournable. Vérifiez les horaires avant de partir.</p>' + lien(d, 'voir', 'Voir tous les lieux');
   }
   /* Recherche dans tous les textes de la ville (Wikipédia, Wikivoyage) et du pays (conseils officiels) */
   function chercherTextes(q0, d) {
@@ -548,8 +605,8 @@
     }
     var villePage = b.getAttribute('data-ville') || '';
     var exemples = villePage
-      ? ['Faut-il un visa ?', 'Quel temps fait-il cette semaine ?', 'Quand partir ?', 'Combien coûte un repas ?', 'Que voir ?', 'Où manger ?', 'Que faire aux alentours ?', 'Quelle heure est-il là-bas ?', 'Est-ce dangereux ?', 'Quelle langue parle-t-on ?', 'Quelle est son histoire ?', 'Qui est né ici ?']
-      : ['Faut-il un visa pour Tokyo ?', 'Quel temps fait-il à New York ?', 'Quand partir à Marrakech ?', 'Combien coûte un repas à Lisbonne ?', 'Que voir à Rome ?', 'Quelle heure est-il à Sydney ?', 'Que faire autour de Barcelone ?', 'Quelle monnaie au Caire ?', 'Qui est né à Vienne ?', 'Quelle est l’histoire de Kyoto ?', 'Où dormir à Prague ?', 'Quel temps en avril à Bangkok ?'];
+      ? ['Faut-il un visa ?', 'Quel temps fait-il cette semaine ?', 'Quand partir ?', 'Combien coûte un repas ?', 'Que voir ?', 'Que faire en 2 jours ?', 'Où manger ?', 'Que faire aux alentours ?', 'Quelle heure est-il là-bas ?', 'Est-ce dangereux ?', 'Quelle langue parle-t-on ?', 'Quelle est son histoire ?', 'Qui est né ici ?']
+      : ['Faut-il un visa pour Tokyo ?', 'Quel temps fait-il à New York ?', 'Quand partir à Marrakech ?', 'Combien coûte un repas à Lisbonne ?', 'Que voir à Rome ?', 'Que faire en 2 jours à Lisbonne ?', 'Quelle heure est-il à Sydney ?', 'Que faire autour de Barcelone ?', 'Quelle monnaie au Caire ?', 'Qui est né à Vienne ?', 'Quelle est l’histoire de Kyoto ?', 'Où dormir à Prague ?', 'Quel temps en avril à Bangkok ?'];
     sugg.innerHTML = exemples.map(function (e) { return '<button type="button">' + E(e) + '</button>'; }).join('');
     sugg.querySelectorAll('button').forEach(function (bt) { bt.addEventListener('click', function () { input.value = bt.textContent; demander(); }); });
     if (sugg.querySelectorAll('button').length > 5) {  // sur téléphone, 5 exemples d'abord, les autres sur demande
@@ -599,6 +656,8 @@
           var tete = '<div class="q-ville">' + E(d.nom) + ' · ' + E(d.pays) + '</div><div class="q-texte">';
           chargerLieux(slug).then(function (L) {
             var f = lieuCite(q, L, d.nom);
+            var pg = programme(q, d, L);
+            if (pg) { rep.innerHTML = tete + pg + boutonIA(q, d, 1) + '</div>'; return; }
             if (f) { rep.innerHTML = tete + repLieu(f, d) + boutonIA(q, d, 1) + '</div>'; return; }
             var r_ = repondre(q, d);
             if (r_) { rep.innerHTML = tete + r_ + boutonIA(q, d, 1) + '</div>'; return; }

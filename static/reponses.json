@@ -1,1 +1,9 @@
-[]
+[
+ {
+  "ville": "",
+  "q": "Fréquentation gare de Lyon",
+  "r": "La gare de Paris-Gare-de-Lyon est la troisième gare la plus fréquentée de France, après Paris-Nord et Paris-Saint-Lazare : environ 102 millions de voyageurs en 2022 selon les données ouvertes de la SNCF. Les chiffres sont mis à jour chaque été par SNCF Gares & Connexions dans le jeu « Fréquentation en gares ». Attention : depuis 2025, la méthode de comptage a changé (correspondances et billets vendus par d'autres revendeurs mieux comptés) et les nouveaux chiffres ne sont pas comparables à ceux de 2015-2024.",
+  "source": "SNCF Gares & Connexions, « Fréquentation en gares » (data.gouv.fr, licence ODbL)",
+  "date": "28 novembre 2026"
+ }
+]
