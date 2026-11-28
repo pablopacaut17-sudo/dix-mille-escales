@@ -1,0 +1,8 @@
+{
+ "villes_redigees": 0,
+ "echecs": 80,
+ "modele": "claude-haiku-5-5",
+ "mode": "réel",
+ "etat": "partiel",
+ "dernier_passage": "2026-11-28T05:28:22Z"
+}
