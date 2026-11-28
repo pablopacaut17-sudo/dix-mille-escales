@@ -1,0 +1,39 @@
+name: Robot de contrôle (données et boîte à questions)
+
+# Chaque matin, après le passage de la nuit des robots (fini vers 2 h UTC) et avant le robot testeur (8 h UTC) :
+# relecture automatique, sans IA, des données du guide (valeurs impossibles, doublons, lieux trop loin, textes coupés,
+# dates avant J.-C., liens…) et questions types posées au site en ligne. Rapport : journal/controle.json, branche
+# « donnees-controle », lu chaque jour par le chasseur d'erreurs. Ce robot ne modifie pas le site.
+
+on:
+  schedule:
+    - cron: "20 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency: { group: robot-controle, cancel-in-progress: true }
+
+env:
+  DME_DONNEES: ${{ github.workspace }}/donnees
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  controle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Réunir les données
+        run: python3 robots/preparer.py
+      - name: Navigateur (questions types)
+        continue-on-error: true
+        run: pip install playwright && python3 -m playwright install --with-deps chromium
+      - name: Contrôler
+        run: python3 robots/robot_controle.py --duree-max 25 --site https://pablopacaut17-sudo.github.io/dix-mille-escales/
+      - name: Enregistrer
+        if: always()
+        run: python3 robots/sauver.py --branche donnees-controle --chemins journal/controle.json
