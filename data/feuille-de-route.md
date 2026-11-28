@@ -18,7 +18,7 @@ jour** (point 3, avant toute autre idée), le teste, puis le coche ici avec la d
 - [x] **« Ce que vous pouvez faire ici »** (fait le 28/11/2026) : bloc d'exemples cliquables sur l'accueil (templates/accueil.html, #mode-emploi).
 
 ## Regard du voyageur (à relire chaque matin par la tâche Amélioration)
-Se mettre à la place d'un touriste (famille, sportif, petit budget, personne âgée ou à mobilité réduite, voyage d'affaires) et se demander ce qui lui manque. Idées notées le 28/11/2026, à traiter une par une, du plus utile au moins utile :
+Chaque matin, la tâche Amélioration se met à la place d'un touriste (famille, sportif, petit budget, personne âgée ou à mobilité réduite, voyage d'affaires), ajoute ici au moins une idée nouvelle de ce qui lui manque, puis réalise la première idée non cochée (demande de Pablo du 28/11/2026 : « que le site s'améliore en continu sans que je donne les idées »). Idées notées le 28/11/2026, à traiter une par une, du plus utile au moins utile :
 - [ ] Qualité des eaux de baignade (voir plus haut).
 - [ ] Accessibilité : lieux accessibles en fauteuil (déjà dans les données : champ « fauteuil ») mis en avant, question « accessible en fauteuil à X ».
 - [ ] Avec des enfants : aires de jeux (leisure=playground), parcs, zoos, aquariums ; question « que faire avec des enfants à X ».
