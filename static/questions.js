@@ -130,7 +130,10 @@
     function m(x) { return (x < 100 ? String(Math.round(x * 10) / 10).replace('.', ',') : nb(Math.round(x))) + ' m'; }
     if (c.hauteur) p.push('hauteur ' + m(c.hauteur)); if (c.longueur) p.push('longueur ' + m(c.longueur));
     if (c.superficie && !(c.hauteur && c.superficie >= 1e4)) p.push('superficie ' + (c.superficie >= 1e6 ? String(Math.round(c.superficie / 1e4) / 100).replace('.', ',') + ' km²' : c.superficie >= 1e4 ? nb(Math.round(c.superficie / 1e4)) + ' ha' : nb(Math.round(c.superficie)) + ' m²'));
-    var dt = c.creation || c.debut || c.ouverture; if (dt) p.push('date : ' + (dt < 0 ? (-dt) + ' av. J.-C.' : dt));
+    function an(x) { return x < 0 ? (-x) + ' av. J.-C.' : String(x); }
+    var dt = c.creation || c.debut || c.ouverture;  // « tour Eiffel : construction 1887 · ouverture 1889 » plutôt qu'une « date » ambiguë
+    if (dt && c.ouverture && c.ouverture > dt && c.ouverture - dt <= 60) p.push('construction : ' + an(dt) + ' · ouverture : ' + an(c.ouverture));
+    else if (dt) p.push('date : ' + an(dt));
     if (c.architecte) p.push((c.architecte.length > 1 ? 'architectes : ' : 'architecte : ') + c.architecte.join(' et ')); if (c.style) p.push('style : ' + c.style.join(', '));
     if (c.frequentation) p.push('fréquentation : ' + nb(c.frequentation) + ' voyageurs par an' + (c.frequentation_annee ? ' (' + c.frequentation_annee + ')' : ''));
     if (c.visiteurs_an) p.push(nb(c.visiteurs_an) + ' visiteurs par an' + (c.visiteurs_annee ? ' (' + c.visiteurs_annee + ')' : ''));
@@ -146,7 +149,8 @@
   function chercherCelebre(q) {
     var mq = motsLieu(q), present = {};
     mq.forEach(function (m) { present[m] = 1; present[m.replace(/s$/, '')] = 1; });
-    var cles = mq.filter(function (m) { return m.length >= 3; }).map(function (m) { return m.slice(0, 2); })
+    // mots de 2 lettres compris (« Sa Perda Pinta », « El Capitan ») : l'index est rangé par le début du premier mot
+    var cles = mq.filter(function (m) { return m.length >= 2; }).map(function (m) { return m.slice(0, 2); })
       .filter(function (c, i, l) { return l.indexOf(c) === i; }).slice(0, 14);
     if (!cles.length) return Promise.resolve(null);
     return Promise.all(cles.map(function (c) {
@@ -158,12 +162,23 @@
           var mt = motsLieu(x[0]);
           if (mt.length > 2 && GENERIQUES[mt[0]]) mt = mt.slice(1);  // « avenue des Champs-Élysées » : « Champs-Élysées » suffit
           if (!mt.length) return;
-          var s0 = mt.join('');
-          if (mt.length < 2 && s0.length < 6) return;
           if (!mt.every(function (m) { return present[m] || present[m.replace(/s$/, '')]; })) return;
-          // les mots du nom qui ne sont que le nom de la ville comptent peu : « Monument de la Paix à Washington » n'est pas le « Washington Monument »
+          // les mots du lieu doivent venir dans le même ordre que dans la question (au plus 2 mots intercalés) :
+          // « Penshaw Monument à Washington » n'est pas le « Washington Monument »
+          var pos = -1, ordre = mt.every(function (m) {
+            for (var j = pos + 1; j < mq.length && j <= pos + 3 + (pos < 0 ? mq.length : 0); j++) {
+              if (mq[j] === m || mq[j].replace(/s$/, '') === m.replace(/s$/, '')) { pos = j; return true; }
+            }
+            return false;
+          });
+          if (!ordre) return;
+          // longueur comptée sur la forme écrite dans la question (« Saut des Cuves » ne bat pas « Saut de la Cuve ») ;
+          // les mots qui ne sont que le nom de la ville comptent peu : « Monument de la Paix à Washington » n'est pas le « Washington Monument »
+          var ecrit = function (m) { return present[m] ? m : m.replace(/s$/, ''); };
+          var s0 = mt.map(ecrit).join('');
+          if (mt.length < 2 && s0.length < 6) return;
           var mv = {}; motsLieu(x[2]).forEach(function (m) { mv[m] = 1; });
-          var s = mt.filter(function (m) { return !mv[m]; }).join('') || s0.slice(0, 5);
+          var s = mt.filter(function (m) { return !mv[m]; }).map(ecrit).join('') || s0.slice(0, 5);
           if (s.length < lg) return;
           // à nom égal (« Gare centrale »), la ville citée dans la question l'emporte, puis le lieu le plus fréquenté
           var me = x[3] || {}, poids = (motsLieu(x[2]).every(function (m) { return present[m]; }) ? 1e12 : 0) + (me.fr || 0) + (me.vi || 0) + (me.ca || 0);
@@ -331,7 +346,7 @@
       return aV(d.nom, 1) + ', on paie en <b>' + E(d.monnaie || 'monnaie locale') + '</b>' + (d.devise ? ' (' + E(d.devise) + ')' : '') + '.'
         + (d.taux ? ' Aujourd’hui, 1 € vaut environ <b>' + virg(Math.round(d.taux * 100) / 100) + ' ' + E(d.devise) + '</b> (Banque centrale européenne).' : (d.devise === 'EUR' ? ' C’est l’euro, comme en France.' : ''));
     }
-    if (a(/(langue|parle|parler)/)) return d.langues && d.langues.length ? 'Langue(s) parlée(s) ' + aV(d.nom) + ' : <b>' + E(d.langues.join(', ')) + '</b>.' : manque(d, 'les langues');
+    if (a(/(langue|parle|parler)/)) return d.langues && d.langues.length ? 'Langue(s) officielle(s) ou principale(s) du pays (' + E(d.pays) + ') : <b>' + E(d.langues.join(', ')) + '</b>. Selon la région, on n’y parle pas forcément toutes ces langues ' + aV(d.nom) + '.' : manque(d, 'les langues');
     if (a(/(indicatif|telephone)/)) return 'L’indicatif téléphonique est le <b>' + E(d.indicatif) + '</b> (' + E(d.pays) + ').';
     if (a(/capitale/)) return d.capitale === d.nom ? E(d.nom) + ' est la capitale du pays (' + E(d.pays) + ').' : 'La capitale du pays (' + E(d.pays) + ') est <b>' + E(d.capitale) + '</b>.';
     if (a(/ (maire|dirige)/)) return d.maire ? 'Le maire ' + deV(d.nom) + ' est <b>' + E(d.maire) + '</b> (source Wikidata).' : manque(d, 'le nom du maire');
@@ -498,6 +513,16 @@
     }
     return '';
   }
+  /* « hauteur de Sa Perda Pinta à Nuoro » : un nom propre autre que la ville suit le mot du chiffre → c'est un lieu,
+     pas la ville (sinon la boîte répondrait l'altitude de Nuoro). Renvoie ce nom, ou '' si c'est la ville elle-même. */
+  function nomApresChiffre(q0, d) {
+    var m = String(q0).replace(/[?!.]+\s*$/, '').match(/(?:hauteur|longueur|superficie|surface|capacit[ée]|fr[ée]quentation)\s+(?:de la|du|des|de l['’]|d['’]|de)\s*(.+?)(?:\s+(?:à|a|au|aux|en|dans)\s+.+)?$/i);
+    if (!m) return '';
+    var x = norm(m[1]).replace(/^(la|le|les|l) /, ''), vn = norm(d.nom), vl = norm(d.nom_local || '');
+    if (!x || x === vn || x === vl || x === norm(d.pays) || /^(ville|cette ville|la ville|ici)$/.test(x)) return '';
+    if (vn.indexOf(x) === 0 || x.indexOf(vn) === 0) return '';
+    return m[1].trim();
+  }
   function pasLeChiffre(ch, quoi) {
     return '<p class="q-vide">Je n’ai pas encore ' + ch[2] + ' ' + deLieu(quoi) + ' dans le guide. Plutôt que de vous répondre à côté, je vous propose de demander à l’IA.</p>';
   }
@@ -659,6 +684,8 @@
             var pg = programme(q, d, L);
             if (pg) { rep.innerHTML = tete + pg + boutonIA(q, d, 1) + '</div>'; return; }
             if (f) { rep.innerHTML = tete + repLieu(f, d) + boutonIA(q, d, 1) + '</div>'; return; }
+            var nl = ch ? nomApresChiffre(q, d) : '';
+            if (nl) { rep.innerHTML = tete + pasLeChiffre(ch, nl) + boutonIA(q, d) + '</div>'; memoireIA(rep, q, d); return; }
             var r_ = repondre(q, d);
             if (r_) { rep.innerHTML = tete + r_ + boutonIA(q, d, 1) + '</div>'; return; }
             chargerReponses().then(function (liste) {

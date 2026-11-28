@@ -74,6 +74,8 @@ def caracteristiques(claims):
             elif genre == "t" and isinstance(v, dict) and v.get("time"):
                 m_ = re.match(r"([+-])(\d+)-", v["time"])  # « -3180-00-00… » = 3180 av. J.-C. (l'ancienne lecture donnait +3180)
                 an = int(m_.group(2)) if m_ else 0
+                if v.get("precision", 9) < 8:
+                    continue  # date au siècle ou au millénaire près (« +1200 » = XIIᵉ siècle) : pas une année précise à afficher
                 if an:
                     out[cle] = an if m_.group(1) == "+" else -an
                     break

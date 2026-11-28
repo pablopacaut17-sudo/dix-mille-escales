@@ -22,9 +22,7 @@
   "monnaie": "AED",
   "monnaie_nom": "dirham des Émirats arabes unis",
   "langues": [
-   "arabe",
-   "persan",
-   "anglais"
+   "arabe"
   ],
   "indicatif": "+971",
   "superficie_km2": 82880.0
@@ -39,8 +37,7 @@
   "monnaie_nom": "afghani afghan",
   "langues": [
    "persan",
-   "pachto",
-   "ouzbek"
+   "pachto"
   ],
   "indicatif": "+93",
   "superficie_km2": 647500.0
@@ -82,8 +79,7 @@
   "monnaie": "ALL",
   "monnaie_nom": "lek albanais",
   "langues": [
-   "albanais",
-   "grec"
+   "albanais"
   ],
   "indicatif": "+355",
   "superficie_km2": 28748.0
@@ -137,9 +133,7 @@
   "monnaie": "ARS",
   "monnaie_nom": "peso argentin",
   "langues": [
-   "espagnol",
-   "anglais",
-   "italien"
+   "espagnol"
   ],
   "indicatif": "+54",
   "superficie_km2": 2766890.0
@@ -153,9 +147,7 @@
   "monnaie": "USD",
   "monnaie_nom": "dollar des États-Unis",
   "langues": [
-   "anglais",
-   "samoan",
-   "tongien"
+   "samoan"
   ],
   "indicatif": "+1-684",
   "superficie_km2": 199.0
@@ -169,9 +161,7 @@
   "monnaie": "EUR",
   "monnaie_nom": "euro",
   "langues": [
-   "allemand",
-   "croate",
-   "hongrois"
+   "allemand"
   ],
   "indicatif": "+43",
   "superficie_km2": 83858.0
@@ -200,8 +190,7 @@
   "monnaie_nom": "florin arubais",
   "langues": [
    "néerlandais",
-   "papiamento",
-   "espagnol"
+   "papiamento"
   ],
   "indicatif": "+297",
   "superficie_km2": 180.0
@@ -229,9 +218,7 @@
   "monnaie": "AZN",
   "monnaie_nom": "manat azéri",
   "langues": [
-   "azerbaïdjanais",
-   "russe",
-   "arménien"
+   "azerbaïdjanais"
   ],
   "indicatif": "+994",
   "superficie_km2": 86600.0
@@ -275,8 +262,7 @@
   "monnaie": "BDT",
   "monnaie_nom": "taka bangladeshi",
   "langues": [
-   "bengali",
-   "anglais"
+   "bengali"
   ],
   "indicatif": "+880",
   "superficie_km2": 144000.0
@@ -306,8 +292,7 @@
   "monnaie": "XOF",
   "monnaie_nom": "franc CFA (BCEAO)",
   "langues": [
-   "français",
-   "moré"
+   "français"
   ],
   "indicatif": "+226",
   "superficie_km2": 274200.0
@@ -321,9 +306,7 @@
   "monnaie": "BGN",
   "monnaie_nom": "lev bulgare",
   "langues": [
-   "bulgare",
-   "turc",
-   "romani"
+   "bulgare"
   ],
   "indicatif": "+359",
   "superficie_km2": 110910.0
@@ -337,9 +320,7 @@
   "monnaie": "BHD",
   "monnaie_nom": "dinar bahreïni",
   "langues": [
-   "arabe",
-   "anglais",
-   "persan"
+   "arabe"
   ],
   "indicatif": "+973",
   "superficie_km2": 800.0
@@ -353,8 +334,9 @@
   "monnaie": "BIF",
   "monnaie_nom": "franc burundais",
   "langues": [
+   "roundi",
    "français",
-   "roundi"
+   "anglais"
   ],
   "indicatif": "+257",
   "superficie_km2": 27830.0
@@ -396,8 +378,7 @@
   "monnaie": "BMD",
   "monnaie_nom": "dollar bermudien",
   "langues": [
-   "anglais",
-   "portugais"
+   "anglais"
   ],
   "indicatif": "+1-441",
   "superficie_km2": 53.0
@@ -411,8 +392,7 @@
   "monnaie": "BND",
   "monnaie_nom": "dollar brunéien",
   "langues": [
-   "malais",
-   "anglais"
+   "malais"
   ],
   "indicatif": "+673",
   "superficie_km2": 5770.0
@@ -442,9 +422,7 @@
   "monnaie": "USD",
   "monnaie_nom": "dollar des États-Unis",
   "langues": [
-   "néerlandais",
-   "papiamento",
-   "anglais"
+   "néerlandais"
   ],
   "indicatif": "+599",
   "superficie_km2": 328.0
@@ -458,9 +436,7 @@
   "monnaie": "BRL",
   "monnaie_nom": "réal brésilien",
   "langues": [
-   "portugais",
-   "espagnol",
-   "anglais"
+   "portugais"
   ],
   "indicatif": "+55",
   "superficie_km2": 8511965.0
@@ -544,8 +520,7 @@
   "monnaie": "BZD",
   "monnaie_nom": "dollar bélizéen",
   "langues": [
-   "anglais",
-   "espagnol"
+   "anglais"
   ],
   "indicatif": "+501",
   "superficie_km2": 22966.0
@@ -560,8 +535,7 @@
   "monnaie_nom": "dollar canadien",
   "langues": [
    "anglais",
-   "français",
-   "inuktitut"
+   "français"
   ],
   "indicatif": "+1",
   "superficie_km2": 9984670.0
@@ -575,7 +549,6 @@
   "monnaie": "AUD",
   "monnaie_nom": "dollar australien",
   "langues": [
-   "malais",
    "anglais"
   ],
   "indicatif": "+61",
@@ -590,9 +563,7 @@
   "monnaie": "CDF",
   "monnaie_nom": "franc congolais",
   "langues": [
-   "français",
-   "lingala",
-   "kikongo"
+   "français"
   ],
   "indicatif": "+243",
   "superficie_km2": 2345410.0
@@ -606,9 +577,8 @@
   "monnaie": "XAF",
   "monnaie_nom": "franc CFA (BEAC)",
   "langues": [
-   "français",
    "sango",
-   "lingala"
+   "français"
   ],
   "indicatif": "+236",
   "superficie_km2": 622984.0
@@ -622,9 +592,7 @@
   "monnaie": "XAF",
   "monnaie_nom": "franc CFA (BEAC)",
   "langues": [
-   "français",
-   "kikongo",
-   "lingala"
+   "français"
   ],
   "indicatif": "+242",
   "superficie_km2": 342000.0
@@ -668,8 +636,7 @@
   "monnaie": "NZD",
   "monnaie_nom": "dollar néo-zélandais",
   "langues": [
-   "anglais",
-   "maori"
+   "anglais"
   ],
   "indicatif": "+682",
   "superficie_km2": 240.0
@@ -697,8 +664,8 @@
   "monnaie": "XAF",
   "monnaie_nom": "franc CFA (BEAC)",
   "langues": [
-   "anglais",
-   "français"
+   "français",
+   "anglais"
   ],
   "indicatif": "+237",
   "superficie_km2": 475440.0
@@ -712,9 +679,7 @@
   "monnaie": "CNY",
   "monnaie_nom": "yuan renminbi chinois",
   "langues": [
-   "chinois",
-   "cantonais",
-   "wu"
+   "chinois"
   ],
   "indicatif": "+86",
   "superficie_km2": 9596960.0
@@ -742,8 +707,7 @@
   "monnaie": "CRC",
   "monnaie_nom": "colón costaricain",
   "langues": [
-   "espagnol",
-   "anglais"
+   "espagnol"
   ],
   "indicatif": "+506",
   "superficie_km2": 51100.0
@@ -757,8 +721,7 @@
   "monnaie": "CUP",
   "monnaie_nom": "peso cubain",
   "langues": [
-   "espagnol",
-   "papiamento"
+   "espagnol"
   ],
   "indicatif": "+53",
   "superficie_km2": 110860.0
@@ -786,8 +749,7 @@
   "monnaie": "XCG",
   "monnaie_nom": "florin caribéen",
   "langues": [
-   "néerlandais",
-   "papiamento"
+   "néerlandais"
   ],
   "indicatif": "+599",
   "superficie_km2": 444.0
@@ -801,9 +763,7 @@
   "monnaie": "AUD",
   "monnaie_nom": "dollar australien",
   "langues": [
-   "anglais",
-   "chinois",
-   "malais"
+   "anglais"
   ],
   "indicatif": "+61",
   "superficie_km2": 135.0
@@ -818,8 +778,7 @@
   "monnaie_nom": "euro",
   "langues": [
    "grec",
-   "turc",
-   "anglais"
+   "turc"
   ],
   "indicatif": "+357",
   "superficie_km2": 9250.0
@@ -833,8 +792,7 @@
   "monnaie": "CZK",
   "monnaie_nom": "couronne tchèque",
   "langues": [
-   "tchèque",
-   "slovaque"
+   "tchèque"
   ],
   "indicatif": "+420",
   "superficie_km2": 78866.0
@@ -863,8 +821,7 @@
   "monnaie_nom": "franc djiboutien",
   "langues": [
    "français",
-   "arabe",
-   "somali"
+   "arabe"
   ],
   "indicatif": "+253",
   "superficie_km2": 23000.0
@@ -878,9 +835,7 @@
   "monnaie": "DKK",
   "monnaie_nom": "couronne danoise",
   "langues": [
-   "danois",
-   "anglais",
-   "féroïen"
+   "danois"
   ],
   "indicatif": "+45",
   "superficie_km2": 43094.0
@@ -922,7 +877,8 @@
   "monnaie": "DZD",
   "monnaie_nom": "dinar algérien",
   "langues": [
-   "arabe"
+   "arabe",
+   "amazighe"
   ],
   "indicatif": "+213",
   "superficie_km2": 2381740.0
@@ -936,7 +892,8 @@
   "monnaie": "USD",
   "monnaie_nom": "dollar des États-Unis",
   "langues": [
-   "espagnol"
+   "espagnol",
+   "quechua"
   ],
   "indicatif": "+593",
   "superficie_km2": 256370.0
@@ -950,8 +907,7 @@
   "monnaie": "EUR",
   "monnaie_nom": "euro",
   "langues": [
-   "estonien",
-   "russe"
+   "estonien"
   ],
   "indicatif": "+372",
   "superficie_km2": 45226.0
@@ -965,9 +921,7 @@
   "monnaie": "EGP",
   "monnaie_nom": "livre égyptienne",
   "langues": [
-   "arabe",
-   "anglais",
-   "français"
+   "arabe"
   ],
   "indicatif": "+20",
   "superficie_km2": 1001450.0
@@ -995,9 +949,8 @@
   "monnaie": "ERN",
   "monnaie_nom": "nafka érythréen",
   "langues": [
-   "afar",
-   "arabe",
-   "tigré"
+   "anglais",
+   "arabe"
   ],
   "indicatif": "+291",
   "superficie_km2": 121320.0
@@ -1011,9 +964,7 @@
   "monnaie": "EUR",
   "monnaie_nom": "euro",
   "langues": [
-   "espagnol",
-   "catalan",
-   "galicien"
+   "espagnol"
   ],
   "indicatif": "+34",
   "superficie_km2": 504782.0
@@ -1027,9 +978,7 @@
   "monnaie": "ETB",
   "monnaie_nom": "birr éthiopien",
   "langues": [
-   "amharique",
-   "anglais",
-   "oromo"
+   "amharique"
   ],
   "indicatif": "+251",
   "superficie_km2": 1127127.0
@@ -1044,8 +993,7 @@
   "monnaie_nom": "euro",
   "langues": [
    "finnois",
-   "suédois",
-   "same d’Inari"
+   "suédois"
   ],
   "indicatif": "+358",
   "superficie_km2": 337030.0
@@ -1060,6 +1008,7 @@
   "monnaie_nom": "dollar fidjien",
   "langues": [
    "anglais",
+   "hindi fidjien",
    "fidjien"
   ],
   "indicatif": "+679",
@@ -1088,9 +1037,7 @@
   "monnaie": "USD",
   "monnaie_nom": "dollar des États-Unis",
   "langues": [
-   "anglais",
-   "chuuk",
-   "pohnpei"
+   "anglais"
   ],
   "indicatif": "+691",
   "superficie_km2": 702.0
@@ -1104,8 +1051,7 @@
   "monnaie": "DKK",
   "monnaie_nom": "couronne danoise",
   "langues": [
-   "féroïen",
-   "danois"
+   "féroïen"
   ],
   "indicatif": "+298",
   "superficie_km2": 1399.0
@@ -1119,9 +1065,7 @@
   "monnaie": "EUR",
   "monnaie_nom": "euro",
   "langues": [
-   "français",
-   "francoprovençal",
-   "breton"
+   "français"
   ],
   "indicatif": "+33",
   "superficie_km2": 547030.0
@@ -1149,9 +1093,7 @@
   "monnaie": "GBP",
   "monnaie_nom": "livre sterling",
   "langues": [
-   "anglais",
-   "gallois",
-   "gaélique écossais"
+   "anglais"
   ],
   "indicatif": "+44",
   "superficie_km2": 244820.0
@@ -1179,9 +1121,7 @@
   "monnaie": "GEL",
   "monnaie_nom": "lari géorgien",
   "langues": [
-   "géorgien",
-   "russe",
-   "arménien"
+   "géorgien"
   ],
   "indicatif": "+995",
   "superficie_km2": 69700.0
@@ -1223,9 +1163,7 @@
   "monnaie": "GHS",
   "monnaie_nom": "cédi ghanéen",
   "langues": [
-   "anglais",
-   "akan",
-   "éwé"
+   "anglais"
   ],
   "indicatif": "+233",
   "superficie_km2": 239460.0
@@ -1239,9 +1177,7 @@
   "monnaie": "GIP",
   "monnaie_nom": "livre de Gibraltar",
   "langues": [
-   "anglais",
-   "espagnol",
-   "italien"
+   "anglais"
   ],
   "indicatif": "+350",
   "superficie_km2": 6.5
@@ -1255,9 +1191,7 @@
   "monnaie": "DKK",
   "monnaie_nom": "couronne danoise",
   "langues": [
-   "groenlandais",
-   "danois",
-   "anglais"
+   "groenlandais"
   ],
   "indicatif": "+299",
   "superficie_km2": 2166086.0
@@ -1271,9 +1205,7 @@
   "monnaie": "GMD",
   "monnaie_nom": "dalasi gambien",
   "langues": [
-   "anglais",
-   "wolof",
-   "peul"
+   "anglais"
   ],
   "indicatif": "+220",
   "superficie_km2": 11300.0
@@ -1331,9 +1263,7 @@
   "monnaie": "EUR",
   "monnaie_nom": "euro",
   "langues": [
-   "grec",
-   "anglais",
-   "français"
+   "grec"
   ],
   "indicatif": "+30",
   "superficie_km2": 131940.0
@@ -1375,7 +1305,6 @@
   "monnaie": "USD",
   "monnaie_nom": "dollar des États-Unis",
   "langues": [
-   "anglais",
    "chamorro"
   ],
   "indicatif": "+1-671",
@@ -1419,7 +1348,6 @@
   "monnaie_nom": "dollar de Hong Kong",
   "langues": [
    "chinois",
-   "cantonais",
    "anglais"
   ],
   "indicatif": "+852",
@@ -1460,8 +1388,7 @@
   "monnaie": "EUR",
   "monnaie_nom": "euro",
   "langues": [
-   "croate",
-   "serbe"
+   "croate"
   ],
   "indicatif": "+385",
   "superficie_km2": 56542.0
@@ -1504,9 +1431,7 @@
   "monnaie": "IDR",
   "monnaie_nom": "roupie indonésienne",
   "langues": [
-   "indonésien",
-   "anglais",
-   "néerlandais"
+   "indonésien"
   ],
   "indicatif": "+62",
   "superficie_km2": 1919440.0
@@ -1536,8 +1461,7 @@
   "monnaie_nom": "nouveau shekel israélien",
   "langues": [
    "hébreu",
-   "arabe",
-   "anglais"
+   "arabe"
   ],
   "indicatif": "+972",
   "superficie_km2": 20770.0
@@ -1566,9 +1490,8 @@
   "monnaie": "INR",
   "monnaie_nom": "roupie indienne",
   "langues": [
-   "anglais",
    "hindi",
-   "bengali"
+   "anglais"
   ],
   "indicatif": "+91",
   "superficie_km2": 3287590.0
@@ -1596,9 +1519,7 @@
   "monnaie": "IQD",
   "monnaie_nom": "dinar irakien",
   "langues": [
-   "arabe",
-   "kurde",
-   "arménien"
+   "arabe"
   ],
   "indicatif": "+964",
   "superficie_km2": 437072.0
@@ -1612,8 +1533,7 @@
   "monnaie": "IRR",
   "monnaie_nom": "riyal iranien",
   "langues": [
-   "persan",
-   "kurde"
+   "persan"
   ],
   "indicatif": "+98",
   "superficie_km2": 1648000.0
@@ -1627,9 +1547,7 @@
   "monnaie": "ISK",
   "monnaie_nom": "couronne islandaise",
   "langues": [
-   "islandais",
-   "anglais",
-   "allemand"
+   "islandais"
   ],
   "indicatif": "+354",
   "superficie_km2": 103000.0
@@ -1643,9 +1561,7 @@
   "monnaie": "EUR",
   "monnaie_nom": "euro",
   "langues": [
-   "italien",
-   "allemand",
-   "français"
+   "italien"
   ],
   "indicatif": "+39",
   "superficie_km2": 301230.0
@@ -1659,8 +1575,7 @@
   "monnaie": "GBP",
   "monnaie_nom": "livre sterling",
   "langues": [
-   "anglais",
-   "français"
+   "anglais"
   ],
   "indicatif": "+44-1534",
   "superficie_km2": 116.0
@@ -1688,8 +1603,7 @@
   "monnaie": "JOD",
   "monnaie_nom": "dinar jordanien",
   "langues": [
-   "arabe",
-   "anglais"
+   "arabe"
   ],
   "indicatif": "+962",
   "superficie_km2": 92300.0
@@ -1717,8 +1631,8 @@
   "monnaie": "KES",
   "monnaie_nom": "shilling kényan",
   "langues": [
-   "anglais",
-   "swahili"
+   "swahili",
+   "anglais"
   ],
   "indicatif": "+254",
   "superficie_km2": 582650.0
@@ -1733,7 +1647,6 @@
   "monnaie_nom": "som kirghize",
   "langues": [
    "kirghize",
-   "ouzbek",
    "russe"
   ],
   "indicatif": "+996",
@@ -1748,9 +1661,7 @@
   "monnaie": "KHR",
   "monnaie_nom": "riel cambodgien",
   "langues": [
-   "khmer",
-   "français",
-   "anglais"
+   "khmer"
   ],
   "indicatif": "+855",
   "superficie_km2": 181040.0
@@ -1822,8 +1733,7 @@
   "monnaie": "KRW",
   "monnaie_nom": "won sud-coréen",
   "langues": [
-   "coréen",
-   "anglais"
+   "coréen"
   ],
   "indicatif": "+82",
   "superficie_km2": 98480.0
@@ -1852,8 +1762,7 @@
   "monnaie": "KWD",
   "monnaie_nom": "dinar koweïtien",
   "langues": [
-   "arabe",
-   "anglais"
+   "arabe"
   ],
   "indicatif": "+965",
   "superficie_km2": 17820.0
@@ -1881,8 +1790,8 @@
   "monnaie": "KZT",
   "monnaie_nom": "tenge kazakh",
   "langues": [
-   "kazakh",
-   "russe"
+   "russe",
+   "kazakh"
   ],
   "indicatif": "+7",
   "superficie_km2": 2717300.0
@@ -1896,9 +1805,7 @@
   "monnaie": "LAK",
   "monnaie_nom": "kip laotien",
   "langues": [
-   "lao",
-   "français",
-   "anglais"
+   "lao"
   ],
   "indicatif": "+856",
   "superficie_km2": 236800.0
@@ -1912,9 +1819,7 @@
   "monnaie": "LBP",
   "monnaie_nom": "livre libanaise",
   "langues": [
-   "arabe",
-   "français",
-   "anglais"
+   "arabe"
   ],
   "indicatif": "+961",
   "superficie_km2": 10400.0
@@ -1957,8 +1862,7 @@
   "monnaie_nom": "roupie srilankaise",
   "langues": [
    "cingalais",
-   "tamoul",
-   "anglais"
+   "tamoul"
   ],
   "indicatif": "+94",
   "superficie_km2": 65610.0
@@ -1986,9 +1890,8 @@
   "monnaie": "LSL",
   "monnaie_nom": "loti lesothan",
   "langues": [
-   "anglais",
    "sotho du Sud",
-   "zoulou"
+   "anglais"
   ],
   "indicatif": "+266",
   "superficie_km2": 30355.0
@@ -2002,9 +1905,7 @@
   "monnaie": "EUR",
   "monnaie_nom": "euro",
   "langues": [
-   "lituanien",
-   "russe",
-   "polonais"
+   "lituanien"
   ],
   "indicatif": "+370",
   "superficie_km2": 65200.0
@@ -2018,9 +1919,9 @@
   "monnaie": "EUR",
   "monnaie_nom": "euro",
   "langues": [
+   "français",
    "luxembourgeois",
-   "allemand",
-   "français"
+   "allemand"
   ],
   "indicatif": "+352",
   "superficie_km2": 2586.0
@@ -2034,9 +1935,7 @@
   "monnaie": "EUR",
   "monnaie_nom": "euro",
   "langues": [
-   "letton",
-   "russe",
-   "lituanien"
+   "letton"
   ],
   "indicatif": "+371",
   "superficie_km2": 64589.0
@@ -2050,9 +1949,7 @@
   "monnaie": "LYD",
   "monnaie_nom": "dinar libyen",
   "langues": [
-   "arabe",
-   "italien",
-   "anglais"
+   "arabe"
   ],
   "indicatif": "+218",
   "superficie_km2": 1759540.0
@@ -2067,7 +1964,7 @@
   "monnaie_nom": "dirham marocain",
   "langues": [
    "arabe",
-   "français"
+   "amazighe"
   ],
   "indicatif": "+212",
   "superficie_km2": 446550.0
@@ -2081,9 +1978,7 @@
   "monnaie": "EUR",
   "monnaie_nom": "euro",
   "langues": [
-   "français",
-   "anglais",
-   "italien"
+   "français"
   ],
   "indicatif": "+377",
   "superficie_km2": 1.95
@@ -2097,9 +1992,7 @@
   "monnaie": "MDL",
   "monnaie_nom": "leu moldave",
   "langues": [
-   "roumain",
-   "russe",
-   "gagaouze"
+   "roumain"
   ],
   "indicatif": "+373",
   "superficie_km2": 33843.0
@@ -2113,9 +2006,7 @@
   "monnaie": "EUR",
   "monnaie_nom": "euro",
   "langues": [
-   "serbe",
-   "hongrois",
-   "bosniaque"
+   "serbe"
   ],
   "indicatif": "+382",
   "superficie_km2": 14026.0
@@ -2143,8 +2034,9 @@
   "monnaie": "MGA",
   "monnaie_nom": "ariary malgache",
   "langues": [
+   "malgache",
    "français",
-   "malgache"
+   "anglais"
   ],
   "indicatif": "+261",
   "superficie_km2": 587040.0
@@ -2158,8 +2050,8 @@
   "monnaie": "USD",
   "monnaie_nom": "dollar des États-Unis",
   "langues": [
-   "marshallais",
-   "anglais"
+   "anglais",
+   "marshallais"
   ],
   "indicatif": "+692",
   "superficie_km2": 181.3
@@ -2173,9 +2065,7 @@
   "monnaie": "MKD",
   "monnaie_nom": "denar macédonien",
   "langues": [
-   "macédonien",
-   "albanais",
-   "turc"
+   "macédonien"
   ],
   "indicatif": "+389",
   "superficie_km2": 25333.0
@@ -2189,8 +2079,7 @@
   "monnaie": "XOF",
   "monnaie_nom": "franc CFA (BCEAO)",
   "langues": [
-   "français",
-   "bambara"
+   "français"
   ],
   "indicatif": "+223",
   "superficie_km2": 1240000.0
@@ -2218,8 +2107,7 @@
   "monnaie": "MNT",
   "monnaie_nom": "tugrik mongol",
   "langues": [
-   "mongol",
-   "russe"
+   "mongol"
   ],
   "indicatif": "+976",
   "superficie_km2": 1565000.0
@@ -2248,9 +2136,7 @@
   "monnaie": "USD",
   "monnaie_nom": "dollar des États-Unis",
   "langues": [
-   "filipino",
-   "tagalog",
-   "chinois"
+   "anglais"
   ],
   "indicatif": "+1-670",
   "superficie_km2": 477.0
@@ -2278,9 +2164,7 @@
   "monnaie": "MRU",
   "monnaie_nom": "ouguiya mauritanien",
   "langues": [
-   "arabe",
-   "soninké",
-   "français"
+   "arabe"
   ],
   "indicatif": "+222",
   "superficie_km2": 1030700.0
@@ -2323,9 +2207,8 @@
   "monnaie": "MUR",
   "monnaie_nom": "roupie mauricienne",
   "langues": [
-   "anglais",
-   "bhodjpouri",
-   "français"
+   "français",
+   "anglais"
   ],
   "indicatif": "+230",
   "superficie_km2": 2040.0
@@ -2339,8 +2222,7 @@
   "monnaie": "MVR",
   "monnaie_nom": "rufiyaa maldivienne",
   "langues": [
-   "maldivien",
-   "anglais"
+   "maldivien"
   ],
   "indicatif": "+960",
   "superficie_km2": 300.0
@@ -2355,8 +2237,7 @@
   "monnaie_nom": "kwacha malawite",
   "langues": [
    "chewa",
-   "yao",
-   "tumbuka"
+   "anglais"
   ],
   "indicatif": "+265",
   "superficie_km2": 118480.0
@@ -2384,9 +2265,7 @@
   "monnaie": "MYR",
   "monnaie_nom": "ringgit malais",
   "langues": [
-   "malais",
-   "anglais",
-   "chinois"
+   "malais"
   ],
   "indicatif": "+60",
   "superficie_km2": 329750.0
@@ -2400,8 +2279,7 @@
   "monnaie": "MZN",
   "monnaie_nom": "metical mozambicain",
   "langues": [
-   "portugais",
-   "macua"
+   "portugais"
   ],
   "indicatif": "+258",
   "superficie_km2": 801590.0
@@ -2415,9 +2293,7 @@
   "monnaie": "NAD",
   "monnaie_nom": "dollar namibien",
   "langues": [
-   "anglais",
-   "afrikaans",
-   "allemand"
+   "anglais"
   ],
   "indicatif": "+264",
   "superficie_km2": 825418.0
@@ -2445,9 +2321,7 @@
   "monnaie": "XOF",
   "monnaie_nom": "franc CFA (BCEAO)",
   "langues": [
-   "français",
-   "haoussa",
-   "kanouri"
+   "français"
   ],
   "indicatif": "+227",
   "superficie_km2": 1267000.0
@@ -2476,7 +2350,6 @@
   "monnaie_nom": "naira nigérian",
   "langues": [
    "anglais",
-   "haoussa",
    "yoruba"
   ],
   "indicatif": "+234",
@@ -2491,8 +2364,7 @@
   "monnaie": "NIO",
   "monnaie_nom": "córdoba oro nicaraguayen",
   "langues": [
-   "espagnol",
-   "anglais"
+   "espagnol"
   ],
   "indicatif": "+505",
   "superficie_km2": 129494.0
@@ -2506,8 +2378,7 @@
   "monnaie": "EUR",
   "monnaie_nom": "euro",
   "langues": [
-   "néerlandais",
-   "frison occidental"
+   "néerlandais"
   ],
   "indicatif": "+31",
   "superficie_km2": 41526.0
@@ -2521,9 +2392,7 @@
   "monnaie": "NOK",
   "monnaie_nom": "couronne norvégienne",
   "langues": [
-   "norvégien",
-   "norvégien bokmål",
-   "norvégien nynorsk"
+   "norvégien"
   ],
   "indicatif": "+47",
   "superficie_km2": 324220.0
@@ -2537,8 +2406,7 @@
   "monnaie": "NPR",
   "monnaie_nom": "roupie népalaise",
   "langues": [
-   "népalais",
-   "anglais"
+   "népalais"
   ],
   "indicatif": "+977",
   "superficie_km2": 140800.0
@@ -2552,8 +2420,8 @@
   "monnaie": "AUD",
   "monnaie_nom": "dollar australien",
   "langues": [
-   "nauruan",
-   "anglais"
+   "anglais",
+   "nauruan"
   ],
   "indicatif": "+674",
   "superficie_km2": 21.0
@@ -2582,7 +2450,6 @@
   "monnaie": "NZD",
   "monnaie_nom": "dollar néo-zélandais",
   "langues": [
-   "anglais",
    "maori"
   ],
   "indicatif": "+64",
@@ -2597,9 +2464,7 @@
   "monnaie": "OMR",
   "monnaie_nom": "riyal omanais",
   "langues": [
-   "arabe",
-   "anglais",
-   "baloutchi"
+   "arabe"
   ],
   "indicatif": "+968",
   "superficie_km2": 309500.0
@@ -2613,8 +2478,7 @@
   "monnaie": "PAB",
   "monnaie_nom": "balboa panaméen",
   "langues": [
-   "espagnol",
-   "anglais"
+   "espagnol"
   ],
   "indicatif": "+507",
   "superficie_km2": 78200.0
@@ -2629,8 +2493,7 @@
   "monnaie_nom": "sol péruvien",
   "langues": [
    "espagnol",
-   "quechua",
-   "aymara"
+   "quechua"
   ],
   "indicatif": "+51",
   "superficie_km2": 1285220.0
@@ -2659,9 +2522,9 @@
   "monnaie": "PGK",
   "monnaie_nom": "kina papouan-néo-guinéen",
   "langues": [
+   "tok pisin",
    "anglais",
-   "hiri motu",
-   "tok pisin"
+   "hiri motu"
   ],
   "indicatif": "+675",
   "superficie_km2": 462840.0
@@ -2675,7 +2538,6 @@
   "monnaie": "PHP",
   "monnaie_nom": "peso philippin",
   "langues": [
-   "tagalog",
    "anglais",
    "filipino"
   ],
@@ -2692,8 +2554,7 @@
   "monnaie_nom": "roupie pakistanaise",
   "langues": [
    "ourdou",
-   "anglais",
-   "pendjabi"
+   "anglais"
   ],
   "indicatif": "+92",
   "superficie_km2": 803940.0
@@ -2749,7 +2610,6 @@
   "monnaie": "USD",
   "monnaie_nom": "dollar des États-Unis",
   "langues": [
-   "anglais",
    "espagnol"
   ],
   "indicatif": "+1-787 and 1-939",
@@ -2778,8 +2638,7 @@
   "monnaie": "EUR",
   "monnaie_nom": "euro",
   "langues": [
-   "portugais",
-   "mirandais"
+   "portugais"
   ],
   "indicatif": "+351",
   "superficie_km2": 92391.0
@@ -2794,8 +2653,7 @@
   "monnaie_nom": "dollar des États-Unis",
   "langues": [
    "palau",
-   "anglais",
-   "japonais"
+   "anglais"
   ],
   "indicatif": "+680",
   "superficie_km2": 458.0
@@ -2809,8 +2667,8 @@
   "monnaie": "PYG",
   "monnaie_nom": "guaraní paraguayen",
   "langues": [
-   "espagnol",
-   "guarani"
+   "guarani",
+   "espagnol"
   ],
   "indicatif": "+595",
   "superficie_km2": 406750.0
@@ -2824,8 +2682,7 @@
   "monnaie": "QAR",
   "monnaie_nom": "riyal qatari",
   "langues": [
-   "arabe",
-   "espagnol"
+   "arabe"
   ],
   "indicatif": "+974",
   "superficie_km2": 11437.0
@@ -2853,9 +2710,7 @@
   "monnaie": "RON",
   "monnaie_nom": "leu roumain",
   "langues": [
-   "roumain",
-   "hongrois",
-   "romani"
+   "roumain"
   ],
   "indicatif": "+40",
   "superficie_km2": 237500.0
@@ -2869,9 +2724,7 @@
   "monnaie": "RSD",
   "monnaie_nom": "dinar serbe",
   "langues": [
-   "serbe",
-   "hongrois",
-   "bosniaque"
+   "serbe"
   ],
   "indicatif": "+381",
   "superficie_km2": 88361.0
@@ -2885,9 +2738,7 @@
   "monnaie": "RUB",
   "monnaie_nom": "rouble russe",
   "langues": [
-   "russe",
-   "tatar",
-   "kalmouk"
+   "russe"
   ],
   "indicatif": "+7",
   "superficie_km2": 17100000.0
@@ -2931,8 +2782,7 @@
   "monnaie": "SBD",
   "monnaie_nom": "dollar des îles Salomon",
   "langues": [
-   "anglais",
-   "tok pisin"
+   "anglais"
   ],
   "indicatif": "+677",
   "superficie_km2": 28450.0
@@ -2946,8 +2796,8 @@
   "monnaie": "SCR",
   "monnaie_nom": "roupie des Seychelles",
   "langues": [
-   "anglais",
-   "français"
+   "français",
+   "anglais"
   ],
   "indicatif": "+248",
   "superficie_km2": 455.0
@@ -2961,8 +2811,8 @@
   "monnaie": "SDG",
   "monnaie_nom": "livre soudanaise",
   "langues": [
-   "arabe",
-   "anglais"
+   "anglais",
+   "arabe"
   ],
   "indicatif": "+249",
   "superficie_km2": 1861484.0
@@ -2990,9 +2840,7 @@
   "monnaie": "SEK",
   "monnaie_nom": "couronne suédoise",
   "langues": [
-   "suédois",
-   "same du Nord",
-   "same du Sud"
+   "suédois"
   ],
   "indicatif": "+46",
   "superficie_km2": 449964.0
@@ -3007,6 +2855,7 @@
   "monnaie_nom": "dollar de Singapour",
   "langues": [
    "anglais",
+   "chinois",
    "malais",
    "tamoul"
   ],
@@ -3036,8 +2885,7 @@
   "monnaie": "EUR",
   "monnaie_nom": "euro",
   "langues": [
-   "slovène",
-   "serbo-croate"
+   "slovène"
   ],
   "indicatif": "+386",
   "superficie_km2": 20273.0
@@ -3051,8 +2899,7 @@
   "monnaie": "NOK",
   "monnaie_nom": "couronne norvégienne",
   "langues": [
-   "norvégien",
-   "russe"
+   "norvégien bokmål"
   ],
   "indicatif": "+47",
   "superficie_km2": 62049.0
@@ -3066,8 +2913,7 @@
   "monnaie": "EUR",
   "monnaie_nom": "euro",
   "langues": [
-   "slovaque",
-   "hongrois"
+   "slovaque"
   ],
   "indicatif": "+421",
   "superficie_km2": 48845.0
@@ -3081,9 +2927,7 @@
   "monnaie": "SLE",
   "monnaie_nom": "leone sierra-léonais",
   "langues": [
-   "anglais",
-   "mendé",
-   "timné"
+   "anglais"
   ],
   "indicatif": "+232",
   "superficie_km2": 71740.0
@@ -3111,8 +2955,7 @@
   "monnaie": "XOF",
   "monnaie_nom": "franc CFA (BCEAO)",
   "langues": [
-   "français",
-   "wolof"
+   "français"
   ],
   "indicatif": "+221",
   "superficie_km2": 196190.0
@@ -3127,8 +2970,7 @@
   "monnaie_nom": "shilling somalien",
   "langues": [
    "somali",
-   "arabe",
-   "italien"
+   "arabe"
   ],
   "indicatif": "+252",
   "superficie_km2": 637657.0
@@ -3142,9 +2984,7 @@
   "monnaie": "SRD",
   "monnaie_nom": "dollar surinamais",
   "langues": [
-   "néerlandais",
-   "anglais",
-   "sranan tongo"
+   "néerlandais"
   ],
   "indicatif": "+597",
   "superficie_km2": 163270.0
@@ -3186,8 +3026,8 @@
   "monnaie": "XCG",
   "monnaie_nom": "florin caribéen",
   "langues": [
-   "néerlandais",
-   "anglais"
+   "anglais",
+   "néerlandais"
   ],
   "indicatif": "+599",
   "superficie_km2": 34.0
@@ -3201,9 +3041,7 @@
   "monnaie": "SYP",
   "monnaie_nom": "livre syrienne",
   "langues": [
-   "arabe",
-   "kurde",
-   "arménien"
+   "arabe"
   ],
   "indicatif": "+963",
   "superficie_km2": 185180.0
@@ -3246,8 +3084,8 @@
   "monnaie": "XAF",
   "monnaie_nom": "franc CFA (BEAC)",
   "langues": [
-   "français",
-   "arabe"
+   "arabe",
+   "français"
   ],
   "indicatif": "+235",
   "superficie_km2": 1284000.0
@@ -3275,9 +3113,7 @@
   "monnaie": "XOF",
   "monnaie_nom": "franc CFA (BCEAO)",
   "langues": [
-   "français",
-   "éwé",
-   "haoussa"
+   "français"
   ],
   "indicatif": "+228",
   "superficie_km2": 56785.0
@@ -3291,8 +3127,7 @@
   "monnaie": "THB",
   "monnaie_nom": "baht thaïlandais",
   "langues": [
-   "thaï",
-   "anglais"
+   "thaï"
   ],
   "indicatif": "+66",
   "superficie_km2": 514000.0
@@ -3306,8 +3141,7 @@
   "monnaie": "TJS",
   "monnaie_nom": "somoni tadjik",
   "langues": [
-   "tadjik",
-   "russe"
+   "tadjik"
   ],
   "indicatif": "+992",
   "superficie_km2": 143100.0
@@ -3337,8 +3171,7 @@
   "monnaie_nom": "dollar des États-Unis",
   "langues": [
    "tétoum",
-   "portugais",
-   "indonésien"
+   "portugais"
   ],
   "indicatif": "+670",
   "superficie_km2": 15007.0
@@ -3352,9 +3185,7 @@
   "monnaie": "TMT",
   "monnaie_nom": "nouveau manat turkmène",
   "langues": [
-   "turkmène",
-   "russe",
-   "ouzbek"
+   "turkmène"
   ],
   "indicatif": "+993",
   "superficie_km2": 488100.0
@@ -3398,9 +3229,7 @@
   "monnaie": "TRY",
   "monnaie_nom": "livre turque",
   "langues": [
-   "turc",
-   "kurde",
-   "azerbaïdjanais"
+   "turc"
   ],
   "indicatif": "+90",
   "superficie_km2": 780580.0
@@ -3414,9 +3243,7 @@
   "monnaie": "TTD",
   "monnaie_nom": "dollar de Trinité-et-Tobago",
   "langues": [
-   "anglais",
-   "français",
-   "espagnol"
+   "anglais"
   ],
   "indicatif": "+1-868",
   "superficie_km2": 5128.0
@@ -3431,8 +3258,7 @@
   "monnaie_nom": "dollar australien",
   "langues": [
    "tuvalu",
-   "anglais",
-   "samoan"
+   "anglais"
   ],
   "indicatif": "+688",
   "superficie_km2": 26.0
@@ -3463,8 +3289,7 @@
   "monnaie_nom": "shilling tanzanien",
   "langues": [
    "swahili",
-   "anglais",
-   "arabe"
+   "anglais"
   ],
   "indicatif": "+255",
   "superficie_km2": 945087.0
@@ -3478,9 +3303,7 @@
   "monnaie": "UAH",
   "monnaie_nom": "hryvnia ukrainienne",
   "langues": [
-   "ukrainien",
-   "russe",
-   "romani"
+   "ukrainien"
   ],
   "indicatif": "+380",
   "superficie_km2": 603700.0
@@ -3494,9 +3317,8 @@
   "monnaie": "UGX",
   "monnaie_nom": "shilling ougandais",
   "langues": [
-   "anglais",
-   "ganda",
-   "swahili"
+   "swahili",
+   "anglais"
   ],
   "indicatif": "+256",
   "superficie_km2": 236040.0
@@ -3524,9 +3346,7 @@
   "monnaie": "USD",
   "monnaie_nom": "dollar des États-Unis",
   "langues": [
-   "anglais",
-   "espagnol",
-   "hawaïen"
+   "anglais"
   ],
   "indicatif": "+1",
   "superficie_km2": 9629091.0
@@ -3554,9 +3374,7 @@
   "monnaie": "UZS",
   "monnaie_nom": "sum ouzbek",
   "langues": [
-   "ouzbek",
-   "russe",
-   "tadjik"
+   "ouzbek"
   ],
   "indicatif": "+998",
   "superficie_km2": 447400.0
@@ -3570,9 +3388,7 @@
   "monnaie": "EUR",
   "monnaie_nom": "euro",
   "langues": [
-   "latin",
-   "italien",
-   "français"
+   "italien"
   ],
   "indicatif": "+379",
   "superficie_km2": 0.44
@@ -3586,8 +3402,7 @@
   "monnaie": "XCD",
   "monnaie_nom": "dollar des Caraïbes orientales",
   "langues": [
-   "anglais",
-   "français"
+   "anglais"
   ],
   "indicatif": "+1-784",
   "superficie_km2": 389.0
@@ -3643,9 +3458,7 @@
   "monnaie": "VND",
   "monnaie_nom": "dông vietnamien",
   "langues": [
-   "vietnamien",
-   "anglais",
-   "français"
+   "vietnamien"
   ],
   "indicatif": "+84",
   "superficie_km2": 329560.0
@@ -3732,6 +3545,7 @@
   "monnaie": "ZAR",
   "monnaie_nom": "rand sud-africain",
   "langues": [
+   "anglais",
    "zoulou",
    "xhosa",
    "afrikaans"
@@ -3748,9 +3562,7 @@
   "monnaie": "ZMW",
   "monnaie_nom": "kwacha zambien",
   "langues": [
-   "anglais",
-   "bemba",
-   "lozi"
+   "anglais"
   ],
   "indicatif": "+260",
   "superficie_km2": 752614.0
@@ -3764,9 +3576,9 @@
   "monnaie": "ZWG",
   "monnaie_nom": "Zimbabwe Gold",
   "langues": [
-   "anglais",
    "shona",
-   "ndébélé du Sud"
+   "anglais",
+   "ndébélé du Nord"
   ],
   "indicatif": "+263",
   "superficie_km2": 390580.0

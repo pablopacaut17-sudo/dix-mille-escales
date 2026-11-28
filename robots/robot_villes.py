@@ -86,6 +86,25 @@ def construire(villes, anciennes):
     return sortie
 
 
+# Langues : GeoNames liste les langues parlées, même très minoritaires (Qatar « arabe, espagnol », Argentine « espagnol,
+# anglais, italien »), et l'Afrique du Sud y perdait l'anglais. On prend les langues officielles du CLDR (Unicode),
+# complétées à la main là où le CLDR n'en garde qu'une sur plusieurs (chasseur d'erreurs, 28/11/2026).
+LANGUES_MAIN = {"ZA": ["anglais", "zoulou", "xhosa", "afrikaans"], "MA": ["arabe", "amazighe"], "DZ": ["arabe", "amazighe"]}
+
+
+def langues_officielles(cc, fr):
+    if cc in LANGUES_MAIN:
+        return list(LANGUES_MAIN[cc])
+    from babel.languages import get_official_languages
+    codes = list(get_official_languages(cc)) or list(get_official_languages(cc, de_facto=True))
+    noms = []
+    for code in codes:
+        n = fr.languages.get(code.split("_")[0])
+        if n and n not in noms and not any(n.startswith(m + " ") for m in noms):  # « norvégien bokmål » après « norvégien »
+            noms.append(n)
+    return noms[:4]
+
+
 def pays_fr(brut):
     from babel import Locale
     fr = Locale("fr")
@@ -95,14 +114,15 @@ def pays_fr(brut):
             continue
         x = ligne.split("\t")
         cc, monnaie = x[0], x[10]
-        langues = []
-        for l in x[15].split(","):
-            n = fr.languages.get(l.split("-")[0])
-            if n and n not in langues:
-                langues.append(n)
+        langues = langues_officielles(cc, fr)
+        if not langues:  # territoire absent du CLDR : langues parlées selon GeoNames (les 3 premières)
+            for l in x[15].split(","):
+                n = fr.languages.get(l.split("-")[0])
+                if n and n not in langues:
+                    langues.append(n)
         pays[cc] = {"nom": fr.territories.get(cc, x[4]), "nom_en": x[4], "iso3": x[1], "continent": x[8], "capitale": x[5],
                     "monnaie": monnaie, "monnaie_nom": (fr.currencies.get(monnaie) or x[11]) if monnaie else "",
-                    "langues": langues[:3], "indicatif": ("+" + x[12].lstrip("+")) if x[12] else "",
+                    "langues": langues[:4], "indicatif": ("+" + x[12].lstrip("+")) if x[12] else "",
                     "superficie_km2": float(x[6]) if x[6] else None}
     return pays
 

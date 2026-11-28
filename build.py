@@ -531,6 +531,29 @@ def noms_francais(villes):
 # publication : mieux vaut ne rien afficher qu'un chiffre faux.
 BORNES = {"hauteur": (0.5, 900), "longueur": (0.05, 25_000_000), "largeur": (0.05, 2_000_000), "superficie": (1, 1e12),
           "altitude": (-450, 8849), "visiteurs_an": (1, 120_000_000), "capacite": (1, 400_000), "frequentation": (1, 2_000_000_000)}
+DOMAINE = re.compile(r"^(?:www\.)?[a-z0-9][a-z0-9-]*(?:\.[a-z0-9-]+)*\.[a-z]{2,}(?:[/?#]\S*)?$", re.I)
+AV_JC = re.compile(r"(\d{1,4})\s*(?:av\.?\s*J\.?-?C\.?|avant J(?:ésus)?\.?-?C(?:hrist)?\.?|av\. notre ère|avant notre ère)", re.I)
+PAYS_PIEDS = {"US", "PR", "GU", "VI", "AS", "MP", "UM", "LR", "MM", "GB", "CA", "BS", "BZ", "KY", "BM", "TC", "VG", "AG"}  # = robot_encyclopedie
+BIO_PERSONNE = re.compile(r"^[^.]{0,250}?(,|\)) (né|née|nés|nées) (le |à |en |vers |dans |au |\d)")
+BIO_LIEU = re.compile(r"^(musée|maison|statue|monument|mémorial|place|rue|avenue|tombe|tombeau|mausolée|église|chapelle|parc|jardin|"
+                      r"square|pont|gare|école|lycée|collège|université|stade|théâtre|bibliothèque|fontaine|buste|cimetière|villa|"
+                      r"château|palais|hôtel|centre|institut|salle)\b|museum", re.I)
+
+
+def lire_json_config(nom):
+    """Fichier du dépôt principal (data/), par exemple data/corrections.json ; {} s'il manque."""
+    try:
+        with open(os.path.join(RACINE, "data", nom), encoding="utf-8") as f:
+            return json.load(f)
+    except (OSError, ValueError):
+        return {}
+
+
+def est_biographie(h):
+    """Résumé Wikipédia d'une personne (« X, né le 2 octobre 1869 à Porbandar… »), et non d'un lieu."""
+    return isinstance(h, dict) and bool(BIO_PERSONNE.search((h.get("r") or "")[:300])) and not BIO_LIEU.search(h.get("t") or "")
+
+
 def chiffres_plausibles(f):
     """Retire d'un dictionnaire de caractéristiques les valeurs impossibles ; renvoie le nombre de valeurs retirées."""
     if not isinstance(f, dict):
@@ -574,10 +597,9 @@ def index_celebres(ctx):
             continue
         f_ = h_.get("f") or {}
         mesures = {k[:2]: f_[k] for k in ("hauteur", "longueur", "superficie", "largeur", "altitude", "visiteurs_an") if isinstance(f_.get(k), (int, float))}
-        for k in ("creation", "ouverture"):
+        for k in ("creation", "ouverture"):  # les deux : « construction 1887 · ouverture 1889 »
             if isinstance(f_.get(k), int):
                 mesures[k[:2]] = f_[k]
-                break
         if f_.get("architecte"):
             mesures["ar"] = f_["architecte"][:2]
         ph_ = f_.get("photo") or {}
@@ -626,10 +648,12 @@ def lieux_ville(chemins):
                 d = json.load(f)
         except (OSError, ValueError):
             continue
-        if LIENS_MORTS:
-            for x in d.get("lieux", []):
-                if x.get("site") in LIENS_MORTS:
-                    x["site"] = ""
+        for x in d.get("lieux", []):
+            s_ = (x.get("site") or "").strip()
+            if s_ and not s_.startswith("http") and DOMAINE.match(s_):
+                x["site"] = s_ = "https://" + s_  # « www.statemuseumpa.org » : 22 000 sites sans « https:// » qui n'étaient pas affichés
+            if LIENS_MORTS and s_ in LIENS_MORTS:
+                x["site"] = ""
         if res is None:
             res = d
             continue
@@ -650,10 +674,22 @@ def page_ville(v, ctx):
     autour = sorted([f for f in tous if f["rubrique"] == "alentours"], key=lambda f: f.get("distance_km", 0))
     meteo = lire(f"meteo/{v['id']}.json")
     enc = lire(f"encyclo/{v['id']}.json") or {}
+    if enc.get("unites") != 2 and v["pays"] in PAYS_PIEDS:
+        # Fiches d'avant la conversion des unités : altitudes en pieds et superficies en miles carrés de Wikidata
+        # affichées comme des mètres (Phoenix « 1 086 m » au lieu de 331 m). Masquées jusqu'à leur nouvelle lecture.
+        enc = {k: x for k, x in enc.items() if k not in ("altitude_m", "superficie_km2")}
+    if not -430 <= (enc.get("altitude_m") if isinstance(enc.get("altitude_m"), (int, float)) else 0) <= 5100:
+        enc = {k: x for k, x in enc.items() if k != "altitude_m"}
+    if "superficie_km2" in enc and not (isinstance(enc["superficie_km2"], (int, float)) and 0 < enc["superficie_km2"] <= 3e5):
+        enc = {k: x for k, x in enc.items() if k != "superficie_km2"}
     guide = lire_gz(f"guides/{v['id']}.json.gz") or {}
     gs = guide.get("sections", {})
     aeros = ctx["aeroports"].get(str(v["id"]), [])
     clim = (lire(f"climat/{v['id']}.json") or {})
+    if clim.get("source") == "NASA POWER" and clim.get("methode") != "T2M±T2M_RANGE/2":
+        # Anciennes normales NASA POWER : températures EXTRÊMES du mois prises pour des moyennes (Calcutta : 3 °C
+        # la nuit en janvier). Masquées jusqu'à leur nouveau calcul par robot_climat (chasseur d'erreurs, 28/11/2026).
+        clim = {}
     red = lire(f"redaction/{v['id']}.json") or {}
     alerte = ctx["securite"].get("pays", {}).get(v["pays"])
     cout = ctx["cout"].get("pays", {}).get(v["pays"])
@@ -1666,6 +1702,29 @@ def main():
         for fn in os.listdir(dh):
             if fn.endswith(".json") and not fn.startswith("_"):  # _suivi.json : dates de passage, pas des histoires
                 ctx["histoires"].update({k: x for k, x in (lire(f"histoires/{fn}") or {}).items() if isinstance(x, dict)})
+        # Biographies prises pour l'histoire d'un lieu : statue ou plaque dont l'étiquette OpenStreetMap « wikidata »
+        # désigne la personne représentée (Gandhi « haut de 1,64 m »). Retirées (chasseur d'erreurs, 28/11/2026).
+        bios = [k for k, x in ctx["histoires"].items() if est_biographie(x)]
+        for k in bios:
+            del ctx["histoires"][k]
+        print(f"Biographies de personnes écartées des histoires de lieux : {len(bios)}")
+        # Corrections locales vérifiées à la main quand Wikidata lui-même se trompe (data/corrections.json)
+        for k, corr in (lire_json_config("corrections.json").get("histoires") or {}).items():
+            if k in ctx["histoires"]:
+                f_ = ctx["histoires"][k].setdefault("f", {})
+                f_.update({c_: x for c_, x in corr.items() if not c_.startswith("_")})
+        # Dates avant Jésus-Christ enregistrées sans signe moins (Erebouni « 782 » alors que le texte dit 782 av. J.-C.)
+        n_av = 0
+        for x in ctx["histoires"].values():
+            f_ = x.get("f")
+            av_ = {int(n_) for n_ in AV_JC.findall(x.get("r") or "")} if isinstance(f_, dict) else ()
+            antique = isinstance(f_, dict) and re.search(r"av\. ?J\.?-?C|avant J[ée]sus|avant notre [èe]re|n[ée]olithique|[âa]ge du bronze|mill[ée]naire av|antiquit[ée]|pr[ée]histo|il y a (plus de )?\d[\d  ]* ans", x.get("r") or "", re.I)
+            if av_ or antique:
+                for k in ("creation", "ouverture", "debut"):
+                    # nombre suivi de « av. J.-C. » dans le texte, ou « date » postérieure à cette année pour un site antique (Skara Brae « 3180 »)
+                    if isinstance(f_.get(k), int) and (f_[k] in av_ or (antique and f_[k] > datetime.now().year)):
+                        f_[k] = -f_[k]; n_av += 1
+        print(f"Dates avant J.-C. remises au bon signe : {n_av}")
         ecartes = sum(chiffres_plausibles(x.get("f")) for x in ctx["histoires"].values())
         print(f"Chiffres aberrants écartés des histoires : {ecartes}")
     ctx["avis"] = (lire("avis.json", {}) or {}).get("villes", {})
@@ -1807,6 +1866,9 @@ def main():
     donnees = json.dumps({"c": rows, "tz": tzs, "cont": {cc: pz["continent"] for cc, pz in pays.items()}, "tot": tot},
                          ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
     accueil = open(os.path.join(RACINE, "templates", "accueil.html"), encoding="utf-8").read()
+    # La page d'accueil a sa propre tête (pas tetes()) : sans ce relais, sa boîte à questions cherchait les données des
+    # villes à l'ancienne adresse, vide depuis le déménagement vers le deuxième espace (chasseur d'erreurs, 28/11/2026).
+    accueil = accueil.replace("<head>", "<head>" + ESPACE2_JS, 1)
     ecrire("index.html", accueil.replace("__DATA__", donnees).replace("__DATE__", ctx["maj_txt"])
            .replace("__INFOS__", str(cpt["informations"])).replace("__LIEUX__", nombre(cpt["lieux"]))
            .replace("__TEXTES__", nombre(cpt["textes"])).replace("__ENRICHIES__", nombre(cpt["villes_enrichies"])))
@@ -1873,7 +1935,7 @@ def main():
                ("DATAtourisme", "https://www.datatourisme.fr/", "Sites, musées, patrimoine et agenda des villes françaises (offices de tourisme)", "Licence Ouverte 2.0"),
                ("Mobility Database", "https://mobilitydatabase.org/", "Réseaux de transport en commun et services de vélos ou trottinettes en libre-service", "Catalogue ouvert de MobilityData"),
                ("Open-Meteo, archive ERA5", "https://open-meteo.com/", "Qualité de l’air (et premières normales climatiques)", "CC BY 4.0"),
-               ("NASA POWER", "https://power.larc.nasa.gov/", "Normales climatiques mois par mois (1991-2020)", "Données ouvertes de la NASA"),
+               ("NASA POWER", "https://power.larc.nasa.gov/", "Normales climatiques mois par mois (2001-2025 ; moyenne et écart jour/nuit)", "Données ouvertes de la NASA"),
                ("Passport Index Data", "https://github.com/imorte/passport-index-data", "Visas et durées de séjour", "MIT"),
                ("U.S. Department of State", "https://travel.state.gov/", "Niveau de sécurité par pays", "Domaine public"),
                ("Banque mondiale", "https://data.worldbank.org/", "Niveau des prix par pays (PA.NUS.PPPC.RF)", "CC BY 4.0"),
@@ -1899,13 +1961,13 @@ def main():
                     with open(os.path.join(dl, fn), encoding="utf-8") as f:
                         suivi.update(json.load(f))
     noms = {"guides": "Guides (Wikivoyage)", "aeroports": "Aéroports (OurAirports)", "surveillance_etat": "Surveillance (rapport du matin)", "villes": "Liste des villes (GeoNames)", "lieux_0": "Lieux, robot 1 (OpenStreetMap)", "lieux_1": "Lieux, robot 2 (OpenStreetMap)",
-            "lieux_2": "Lieux, robot 3 (OpenStreetMap)", "lieux_3": "Lieux, robot 4 (OpenStreetMap)", "conseils": "Conseils aux voyageurs (Canada)", "pratique": "Prises, tension, conduite (Wikidata)", "langues": "Mots utiles (Wikivoyage)", "histoires": "Histoire des lieux (Wikipédia)", "avis": "Avis des lecteurs", "urgences": "Numéros d’urgence (Wikidata)", "meteo": "Météo (Open-Meteo)", "redaction": "Rédaction (IA)", "climat": "Climat (Open-Meteo ERA5)", "securite": "Sécurité (Département d’État)",
+            "lieux_2": "Lieux, robot 3 (OpenStreetMap)", "lieux_3": "Lieux, robot 4 (OpenStreetMap)", "conseils": "Conseils aux voyageurs (Canada)", "pratique": "Prises, tension, conduite (Wikidata)", "langues": "Mots utiles (Wikivoyage)", "histoires": "Histoire des lieux (Wikipédia)", "avis": "Avis des lecteurs", "urgences": "Numéros d’urgence (Wikidata)", "meteo": "Météo (Open-Meteo)", "redaction": "Rédaction (IA)", "climat": "Climat (NASA POWER)", "controle": "Contrôle automatique des données", "securite": "Sécurité (Département d’État)",
             "formalites": "Formalités (Passport Index)", "cout": "Coût de la vie (Banque mondiale)", "encyclopedie": "Encyclopédie (Wikidata, Wikipédia)", "lieux": "Lieux (OpenStreetMap)", "meteo": "Météo (Open-Meteo)", "feries": "Jours fériés (Nager.Date)", "change": "Change (BCE)", "photos": "Photos des villes (Wikimedia Commons)", "fetes": "Fêtes et festivals (Wikidata)", "reseaux": "Réseaux de transport (Mobility Database)", "datatourisme": "Offices de tourisme (DATAtourisme)"}
     lignes = ""
     for k, n in noms.items():
         j = ctx["journal"].get(k)
         if j:
-            det = ", ".join(f"{kk.replace('_', ' ')} : {vv}" for kk, vv in j.items() if kk not in ("etat", "dernier_passage"))
+            det = ", ".join(f"{kk.replace('_', ' ')} : {vv}" for kk, vv in j.items() if kk not in ("etat", "dernier_passage") and not isinstance(vv, (dict, list)))
             lignes += f'<tr><td>{n}</td><td>{E(j["etat"])}</td><td>{date_fr(j["dernier_passage"])} à {j["dernier_passage"][11:16]} UTC</td><td>{E(det)}</td></tr>'
         else:
             lignes += f'<tr><td>{n}</td><td>pas encore lancé</td><td>–</td><td></td></tr>'

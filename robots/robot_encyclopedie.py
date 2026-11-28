@@ -26,6 +26,10 @@ WIKIDATA = "https://www.wikidata.org/w/api.php"
 WIKIPEDIA = "https://fr.wikipedia.org/w/api.php"
 COMMONS = "https://commons.wikimedia.org/w/api.php"
 FREQUENCE = {"phare": 30, "intermediaire": 90, "autre": 240}
+VERSION_UNITES = 2   # fiches refaites avec la conversion des unités (28/11/2026)
+UNITES_LONGUEUR = {"Q11573": 1, "Q3710": 0.3048, "Q828224": 1000, "1": 1}          # mètre, pied, kilomètre
+UNITES_SURFACE = {"Q712226": 1, "Q25343": 1e-6, "Q35852": 0.01, "Q232291": 2.589988, "Q81292": 0.00404686, "Q857027": 9.2903e-8}
+PAYS_PIEDS = {"US", "PR", "GU", "VI", "AS", "MP", "UM", "LR", "MM", "GB", "CA", "BS", "BZ", "KY", "BM", "TC", "VG", "AG"}
 LONGUEUR = {"phare": 14000, "intermediaire": 5000, "autre": 2000}  # caractères max par section
 SECTIONS = {  # rubrique du guide -> mots qui peuvent ouvrir la section dans l'article Wikipédia
     "histoire": ("histoire", "historique"),
@@ -227,17 +231,19 @@ def traiter(v, qid):
     fondation = premier("P571")
     if fondation:
         fiche["fondation"] = date_wd(fondation)[0]
+    # Unités de Wikidata : beaucoup de villes des États-Unis ont leur altitude en pieds et leur superficie en miles carrés
+    # (Phoenix « 1 086 m » au lieu de 331 m). Unité inconnue → valeur ignorée plutôt qu'affichée fausse.
     alt = premier("P2044")
     if isinstance(alt, dict):
-        fiche["altitude_m"] = round(float(alt["amount"]))
+        k = UNITES_LONGUEUR.get(alt.get("unit", "").rsplit("/", 1)[-1])
+        if k:
+            fiche["altitude_m"] = round(float(alt["amount"]) * k)
     sup = premier("P2046")
     if isinstance(sup, dict):
-        a = float(sup["amount"])
-        if sup.get("unit", "").endswith("Q25343"):  # mètre carré
-            a /= 1e6
-        elif sup.get("unit", "").endswith("Q35852"):  # hectare
-            a /= 100
-        fiche["superficie_km2"] = round(a, 1)
+        k = UNITES_SURFACE.get(sup.get("unit", "").rsplit("/", 1)[-1])
+        if k and float(sup["amount"]) > 0:
+            fiche["superficie_km2"] = round(float(sup["amount"]) * k, 1)
+    fiche["unites"] = VERSION_UNITES
     site = premier("P856")
     if isinstance(site, str):
         fiche["site_officiel"] = site
@@ -350,6 +356,10 @@ def main():
         for v in V:
             d = suivi.get(str(v["id"]))
             retard = (t - datetime.fromisoformat(d)).days - FREQUENCE[v["niveau"]] if d else 10**6
+            if d and retard < 0 and v["pays"] in PAYS_PIEDS:  # fiche faite avant la conversion des unités : à refaire en priorité
+                ancienne = c.lire(f"encyclo/{v['id']}.json") or {}
+                if ancienne.get("unites") != VERSION_UNITES and ("altitude_m" in ancienne or "superficie_km2" in ancienne):
+                    retard = 10**5
             if retard >= 0:
                 dues.append(({"phare": 0, "intermediaire": 1, "autre": 2}[v["niveau"]], -retard, -v["population"], v))
         dues.sort(key=lambda x: x[:3])

@@ -1,0 +1,25 @@
+{
+ "_lisez_moi": "Corrections locales vérifiées à la main, appliquées par build.py quand la source ouverte (Wikidata, Wikipédia) se trompe. Clé : élément Wikidata du lieu. Les champs commençant par « _ » sont des notes (source, date).",
+ "histoires": {
+  "Q10285": {
+   "creation": 70,
+   "ouverture": 80,
+   "_note": "Colisée : construction commencée vers 70-72 sous Vespasien, inauguration en 80 sous Titus (Wikidata : 82 / 81). Vérifié le 28/11/2026."
+  },
+  "Q9202": {
+   "architecte": [
+    "Frédéric Auguste Bartholdi",
+    "Gustave Eiffel"
+   ],
+   "_note": "Statue de la Liberté : conçue par Bartholdi, structure interne d'Eiffel (Viollet-le-Duc, mort en 1879, n'a fait que les premières études). Vérifié le 28/11/2026."
+  },
+  "Q37200": {
+   "creation": -2560,
+   "_note": "Pyramide de Khéops : vers 2560 av. J.-C. (Wikidata : 2560 sans signe moins). Vérifié le 28/11/2026."
+  },
+  "Q43473": {
+   "creation": 1113,
+   "_note": "Angkor Vat : construction commencée sous Suryavarman II (règne à partir de 1113), achevée vers 1150 ; Wikidata donne « XIIe siècle », lu à tort comme l'année 1200. Vérifié le 28/11/2026."
+  }
+ }
+}
