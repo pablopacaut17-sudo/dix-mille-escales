@@ -36,8 +36,18 @@ ALIAS = """SELECT ?i ?a WHERE { VALUES ?i { %s } ?i skos:altLabel ?a FILTER(LANG
 
 
 def sparql(requete):
-    brut = c.http(SPARQL, donnees=urllib.parse.urlencode({"query": requete, "format": "json"}).encode(), delai=30, timeout=90)
-    return json.loads(brut)["results"]["bindings"] if brut else None
+    """Réponse de Wikidata, ou None. Une réponse coupée en route (gros pays, serveur surchargé) n'est pas du JSON valide :
+    on réessaie une fois, puis on passe au pays suivant au lieu d'arrêter tout le robot (incident du 28/11/2026)."""
+    for essai in range(2):
+        brut = c.http(SPARQL, donnees=urllib.parse.urlencode({"query": requete, "format": "json"}).encode(), delai=30, timeout=90)
+        if not brut:
+            return None
+        try:
+            return json.loads(brut)["results"]["bindings"]
+        except (ValueError, KeyError, TypeError):
+            print("  réponse incomplète de Wikidata" + (", nouvel essai" if essai == 0 else ""))
+            time.sleep(20)
+    return None
 
 
 def grille(villes):

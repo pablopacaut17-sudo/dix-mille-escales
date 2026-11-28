@@ -1515,10 +1515,10 @@ def page_conseils(cc, nomp, cv):
 # build.py prépare dans espace2/ une copie des gros fichiers des villes ; robots.yml l'envoie sur la branche « espace2 »
 # de ce dépôt, et le dépôt pablopacaut17-sudo.github.io la publie (workflow publier-dme-donnees.yml).
 # Le navigateur lit d'abord le deuxième espace, puis l'ancienne adresse si besoin (voir ESPACE2_JS dans tetes()).
-# Étape 1 (27/11/2026) : copie seulement. Étape 2, une fois la copie vérifiée en ligne : DEPLACER = True retire ces fichiers
-# du site principal, qui maigrit d'autant.
+# Étape 1 (27/11/2026) : copie seulement. Étape 2 (28/11/2026, copie vérifiée en ligne) : les fichiers sont retirés du site
+# principal, qui passe d'environ 730 Mo à 130 Mo. ESPACE2_DEPLACER=0 (variable d'environnement) revient à l'étape 1.
 ESPACE2_URL = "https://pablopacaut17-sudo.github.io/dme-donnees/"
-ESPACE2_DEPLACER = os.environ.get("ESPACE2_DEPLACER", "") == "1"
+ESPACE2_DEPLACER = os.environ.get("ESPACE2_DEPLACER", "1") == "1"
 ESPACE2_MAX = 950 * 1024 * 1024
 
 
@@ -1732,7 +1732,11 @@ def main():
         for x in ctx["aeroports"].get(str(v["id"]), []):
             try:
                 mun = (x[4] if len(x) > 4 else "") or ""
-                cle_ = (0 if mun and (mun == v.get("nom_local") or mun == v["nom"] or mun in v.get("alts", [])) else 1, float(x[2]), -v["population"])
+                d_ = float(x[2])
+                # La ville que l'aéroport dessert : la plus peuplée compte davantage que la plus proche (Roissy-CDG → Paris et non
+                # Villepinte) ; un nom de commune identique à la ville desservie l'emporte.
+                poids_ = (v.get("population") or 0) / (1 + d_ / 10) ** 2 * (10 if mun and (mun == v.get("nom_local") or mun == v["nom"] or mun in v.get("alts", [])) else 1)
+                cle_ = (-poids_, d_)
             except Exception:
                 continue
             if x[0] and cle_[1] <= 60 and (x[0] not in par_code or cle_ < par_code[x[0]][0]):

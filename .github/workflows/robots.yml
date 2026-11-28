@@ -235,8 +235,8 @@ jobs:
         run: python3 robots/robot_chiffres.py --duree-max 60
       - name: Liens cassés (sites web des lieux)
         continue-on-error: true
-        timeout-minutes: 50
-        run: python3 robots/robot_liens.py --max 4000 --duree-max 40
+        timeout-minutes: 55
+        run: python3 robots/robot_liens.py --max 12000 --duree-max 45
       - name: Photos des villes (Wikimedia Commons)
         continue-on-error: true
         run: python3 robots/robot_photos.py --max-villes ${{ vars.MAX_PHOTOS || 4000 }} --duree-max 80
