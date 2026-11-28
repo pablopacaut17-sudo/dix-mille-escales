@@ -126,11 +126,13 @@
           + (items.length > 8 ? '<button type="button" class="tout-voir" data-rub="' + rb[0] + '" data-n="' + items.length + '">Voir les ' + nb(items.length) + ' adresses, avec recherche et filtres</button>' : ''));
       });
     }
+    try {
     var ESS = [['plages', 'Plages et baignade'], ['marches', 'Marchés'], ['randonnees', 'Sentiers de randonnée'], ['sport', 'Sport (magasins, salles, piscines, vélos)'], ['quartiers', 'Quartiers']].filter(function (x) { return d[x[0]] && d[x[0]].length; });
     if (ESS.length) h += sec('essentiels', 'Plages, marchés, randonnées, sport et quartiers', ESS.map(function (x) {
       var n = d['nb_' + x[0]] || d[x[0]].length;
       return '<p class="lead"><b>' + x[1] + '</b> (' + nb(n) + ') : ' + d[x[0]].slice(0, 15).map(function (f) { return E(f.nom) + (x[0] === 'sport' && f.type ? ' <span class="d">(' + E(f.type.toLowerCase()) + ')</span>' : '') + (f.distance_km > 3 && f.direction ? ' <span class="d">(' + String(f.distance_km).replace('.', ',') + ' km ' + E(f.direction) + ')</span>' : ''); }).join(', ') + (n > 15 ? ' …' : '') + '</p>';
     }).join('') + '<p class="note">Source : OpenStreetMap (contributeurs, ODbL).</p>');
+    } catch (e3) {}
     if (!tous.length) {
       h += sec('lieux', 'Lieux, adresses et visites', '<p class="empty">Les robots n’ont pas encore exploré ' + E(d.nom) + ' : monuments, restaurants, hôtels et boutiques apparaîtront ici après leur passage.</p>');
     }
@@ -192,12 +194,15 @@
     if (c.wikipedia && c.wikipedia.url) h += '<p class="note">Textes repris de l’article <a href="' + E(c.wikipedia.url) + '" rel="noopener" target="_blank">' + E(c.wikipedia.titre) + '</a> de Wikipédia (licence CC BY-SA 4.0). Lieux : © contributeurs OpenStreetMap.</p>';
     h += '<p class="note" style="margin-top:2rem">Fiche mise à jour le ' + E(d.maj) + '.</p>';
     zone.innerHTML = h;
-    if (window.DME_initVivant) window.DME_initVivant(zone);
-    if (window.DME_lierBoutons) window.DME_lierBoutons(zone);
-    if (window.DME_lierCarte) window.DME_lierCarte(zone);
+    try { if (window.DME_initVivant) window.DME_initVivant(zone); } catch (e_) { console.log('DME_initVivant', e_); }
+    try { if (window.DME_lierBoutons) window.DME_lierBoutons(zone); } catch (e_) { console.log('DME_lierBoutons', e_); }
+    try { if (window.DME_lierCarte) window.DME_lierCarte(zone); } catch (e_) { console.log('DME_lierCarte', e_); }
     zone.dataset.pret = '1';
-    if (window.DME_onglets) window.DME_onglets();
-  }).catch(function () {
-    zone.innerHTML = '<p class="empty">Cette fiche n’a pas pu être chargée. Votre navigateur est peut-être trop ancien : essayez une version récente de Chrome, Firefox, Safari ou Edge.</p>';
+    try { if (window.DME_onglets) window.DME_onglets(); } catch (e_) { console.log('DME_onglets', e_); }
+  }).catch(function (er) {
+    var msg = String(er && er.message || er || '');
+    var ancien = !('DecompressionStream' in window) || /ancien/.test(msg);
+    zone.innerHTML = '<p class="empty">' + (ancien ? 'Cette fiche n’a pas pu être chargée. Votre navigateur est peut-être trop ancien : essayez une version récente de Chrome, Firefox, Safari ou Edge.'
+      : 'Cette fiche n’a pas pu être chargée (connexion interrompue ou mise à jour du site en cours). <a href="javascript:location.reload()">Réessayer</a>') + '</p><p class="note">Détail technique : ' + E(msg.slice(0, 160)) + '</p>';
   });
 })();
