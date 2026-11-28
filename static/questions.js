@@ -216,12 +216,44 @@
     });
     return meilleur;
   }
+  /* « Mo-Sa 09:30-19:00; Su off » → « lun.-sam. 9 h 30-19 h ; dim. fermé » */
+  function heuresFr(t) {
+    var J = { Mo: 'lun.', Tu: 'mar.', We: 'mer.', Th: 'jeu.', Fr: 'ven.', Sa: 'sam.', Su: 'dim.', PH: 'jours fériés' };
+    return String(t).replace(/\b(Mo|Tu|We|Th|Fr|Sa|Su|PH)\b/g, function (m) { return J[m]; })
+      .replace(/\b0?(\d{1,2}):(\d\d)\b/g, function (m, hh, mm) { return +hh + ' h' + (mm === '00' ? '' : ' ' + mm); })
+      .replace(/\boff\b|\bclosed\b/g, 'fermé').replace(/24\/7/, '24 h sur 24, 7 jours sur 7').replace(/;\s*/g, ' ; ').replace(/,(?=\S)/g, ', ');
+  }
+  /* « Dans un rayon de 1 km autour de mon hôtel X / du centre / de moi : quoi faire, manger, commerces ? »
+     Lieux de la fiche (OpenStreetMap) à vol d'oiseau du point choisi, rangés par rubrique. Rien n'est envoyé ni gardé. */
+  function rayonQ(q0) {
+    var qn = ' ' + norm(q0) + ' ';
+    if (!/(rayon|autour d|a moins de|a proximite|pres de (mon|l hotel|notre|chez)|proche de (mon|l hotel|notre)|a cote de (mon|l hotel|notre)|a pied de)/.test(qn)) return null;
+    var m = qn.match(/(\d+(?:[.,]\d+)?)\s*(km|kilometres?|m|metres?)\b/), km = 1;
+    if (m) { km = parseFloat(m[1].replace(',', '.')); if (/^m/.test(m[2])) km = km / 1000; }
+    return Math.max(0.1, Math.min(km, 10));
+  }
+  function distKm(a, b, c, e) { var t = Math.PI / 180, x = Math.sin((c - a) * t / 2), y = Math.sin((e - b) * t / 2); return 12742 * Math.asin(Math.sqrt(x * x + Math.cos(a * t) * Math.cos(c * t) * y * y)); }
+  function autourDe(q0, d, L, lat, lon, nomCentre, km) {
+    var qn = ' ' + norm(q0) + ' ', R = [['voir', 'À voir'], ['manger', 'Manger et boire'], ['acheter', 'Commerces et marchés'], ['faire', 'Activités et sport'], ['bouger', 'Transports'], ['sante', 'Santé']];
+    var veut = R.filter(function (r) { return ({ voir: /(voir|visiter|monument|musee|faire)/, manger: /(manger|restaurant|resto|boire|bar|cafe|dejeuner|diner)/, acheter: /(commerce|magasin|boutique|acheter|shopping|courses|marche|supermarche)/, faire: /(faire|activite|sport|loisir)/, bouger: /(gare|metro|bus|transport|tram)/, sante: /(pharmacie|medecin|hopital|sante)/ })[r[0]].test(qn); });
+    if (!veut.length) veut = R.slice(0, 4);
+    var proches = (L || []).filter(function (f) { return f.lat != null && f.rubrique !== 'alentours'; }).map(function (f) { return [distKm(lat, lon, f.lat, f.lon), f]; }).filter(function (x) { return x[0] <= km && x[0] > 0.005; }).sort(function (a, b) { return a[0] - b[0]; });
+    var txtKm = km < 1 ? Math.round(km * 1000) + ' m' : virg(km) + ' km';
+    var h = '<p>Dans un rayon de <b>' + txtKm + '</b> autour ' + (nomCentre ? (/^[aeiouyhéèêàâîôû]/i.test(nomCentre) ? 'd’' : 'de ') + '<b>' + E(nomCentre) + '</b>' : 'du centre ' + deV(d.nom)) + ' (à vol d’oiseau) :</p>', n = 0;
+    veut.forEach(function (r) {
+      var l = proches.filter(function (x) { return x[1].rubrique === r[0]; });
+      if (!l.length) return; n += l.length;
+      h += '<p><b>' + r[1] + '</b> (' + l.length + ')</p>' + liste(l.slice(0, 8), function (x) { var mt = Math.round(x[0] * 1000 / 10) * 10; return '<b>' + E(x[1].nom) + '</b>, ' + E((x[1].type || '').toLowerCase()) + ' · ' + (mt < 1000 ? mt + ' m' : virg(Math.round(x[0] * 10) / 10) + ' km') + ' (≈ ' + Math.max(1, Math.round(x[0] * 13)) + ' min à pied)' + (x[1].horaires ? ' · ' + E(heuresFr(x[1].horaires)) : ''); });
+    });
+    if (!n) h += '<p>Aucune adresse recensée dans ce rayon pour le moment. Essayez un rayon plus grand (« dans un rayon de 2 km »).</p>';
+    return h + '<p class="note">Adresses OpenStreetMap de la fiche ; temps à pied estimés (≈ 4,5 km/h). Vérifiez les horaires.</p>';
+  }
   function repLieu(f, d) {
     var h = '<b>' + E(f.nom) + '</b> · ' + E(f.type) + ((f.wikidata || f.patrimoine_mondial) ? ' · ★ incontournable' : '');
     if (f.histoire && f.histoire.f) h += '<p>' + E(carac(f.histoire.f)) + '</p>';
     if (f.histoire && f.histoire.r) h += '<p>' + E(f.histoire.r) + '</p>';
     if (f.adresse) h += '<p>Adresse : ' + E(f.adresse) + '</p>';
-    if (f.horaires) h += '<p>Horaires : ' + E(f.horaires) + '</p>';
+    if (f.horaires) h += '<p>Horaires (OpenStreetMap, à vérifier) : ' + E(heuresFr(f.horaires)) + '</p>';
     if (f.distance_km) h += '<p>À ' + String(f.distance_km).replace('.', ',') + ' km ' + E(f.direction || '') + ' ' + deV(d.nom) + '.</p>';
     if (f.wikivoyage) h += '<p>Wikivoyage : « ' + E(f.wikivoyage) + ' »</p>';
     if (!f.histoire && !f.horaires && !f.adresse) h += '<p>Nous n’avons pas encore de détails sur ce lieu.</p>';
@@ -354,7 +386,7 @@
     if (a(/(superficie|surface|km2)/)) return d.superficie_km2 ? E(d.nom) + ' s’étend sur <b>' + virg(d.superficie_km2) + ' km²</b>.' : manque(d, 'la superficie');
     if (a(/jumel/)) return d.jumelages ? E(d.nom) + ' est jumelée avec : ' + E(d.jumelages.join(', ')) + '.' : manque(d, 'les jumelages');
     if (a(/(ne a | nee | nes a|celebr|personnalit|connu)/)) return d.personnalites ? 'Personnalités nées ' + aV(d.nom) + ' :' + liste(d.personnalites, function (p) { return '<b>' + E(p.nom) + '</b>' + (p.description ? ', ' + E(p.description) : ''); }) + lien(d, 'personnalites', 'Voir la liste') : manque(d, 'les personnalités');
-    if (a(/(unesco|patrimoine)/)) return d.unesco && d.unesco.length ? 'Inscrit au patrimoine mondial de l’UNESCO ' + aV(d.nom) + ' :' + liste(d.unesco, E) : 'Aucun site du patrimoine mondial n’est recensé dans ' + E(d.nom) + ' même.' + (d.alentours && d.alentours.some(function (x) { return x.patrimoine_mondial; }) ? ' Il y en a aux alentours :' + liste(d.alentours.filter(function (x) { return x.patrimoine_mondial; }), function (x) { return E(x.nom) + ' (' + virg(x.km) + ' km ' + E(x.direction) + ')'; }) : '');
+    if (a(/(unesco|patrimoine)/)) return d.unesco && d.unesco.length ? 'Inscrit au patrimoine mondial de l’UNESCO ' + aV(d.nom) + ' :' + liste(d.unesco_details || d.unesco.map(function (n) { return { nom: n }; }), function (u) { return (u.lien ? '<a href="' + E(u.lien) + '" target="_blank" rel="noopener">' + E(u.nom) + '</a>' : '<b>' + E(u.nom) + '</b>') + (u.annee ? ', inscrit en ' + u.annee : '') + (u.criteres && u.criteres.length ? ' (critères ' + u.criteres.join(', ') + ')' : ''); }) : 'Aucun site du patrimoine mondial n’est recensé dans ' + E(d.nom) + ' même.' + (d.alentours && d.alentours.some(function (x) { return x.patrimoine_mondial; }) ? ' Il y en a aux alentours :' + liste(d.alentours.filter(function (x) { return x.patrimoine_mondial; }), function (x) { return E(x.nom) + ' (' + virg(x.km) + ' km ' + E(x.direction) + ')'; }) : '');
     if (a(/(histoire|historique|fonde|fondation|origine|passe |ancien)/)) {
       if (!d.histoire && !d.fondation && !d.evenements) return manque(d, 'l’histoire');
       return (d.fondation ? '<b>Fondation : ' + E(d.fondation) + '.</b> ' : '') + (d.histoire ? '<p>' + E(d.histoire) + '</p>' : '')
@@ -383,6 +415,8 @@
       var g = a(/(specialit|plat |gastronom|cuisine locale)/) && d.gastronomie ? '<p>' + E(d.gastronomie) + '</p>' : '';
       return g + (d.manger ? 'Où manger et boire ' + aV(d.nom) + ' (' + cpt(d.nb_manger, 'adresse recensée', 'adresses recensées') + ') :' + liste(d.manger, function (x) { return '<b>' + E(x.nom) + '</b>, ' + E(x.type.toLowerCase()) + (x.cuisine ? ', cuisine ' + E(x.cuisine) : ''); }) + lien(d, 'manger', 'Voir toutes les adresses') : (g || manque(d, 'les restaurants')));
     }
+    var ESSQ = [[/(marche|marches|halle)\b/, 'marches', 'Marchés'], [/(randonn|rando\b|trek|sentier|balade a pied)/, 'randonnees', 'Sentiers de randonnée'], [/(quartier)/, 'quartiers', 'Quartiers'], [/(magasin de sport|sportif|salle de sport|fitness|musculation|piscine|nager|natation|escalade|grimpe|velo|footing|courir|running|jogging|decathlon)/, 'sport', 'Pour les sportifs'], [/(plage|baignade|se baigner)/, 'plages', 'Plages et baignade']];
+    for (var iq = 0; iq < ESSQ.length; iq++) if (a(ESSQ[iq][0]) && d[ESSQ[iq][1]] && d[ESSQ[iq][1]].length) { var lq = d[ESSQ[iq][1]]; return ESSQ[iq][2] + ' ' + aV(d.nom) + ' (' + (d['nb_' + ESSQ[iq][1]] || lq.length) + ' recensés par OpenStreetMap) :' + liste(lq.slice(0, 12), function (x) { return '<b>' + E(x.nom) + '</b>' + (ESSQ[iq][1] === 'sport' && x.type ? ', ' + E(x.type.toLowerCase()) : '') + (x.distance_km > 3 && x.direction ? ', ' + virg(x.distance_km) + ' km ' + E(x.direction) : ''); }); }
     if (a(/(activite|plage|baign|surf|ski|golf|sport|loisir|que faire|enfant)/)) return d.faire ? 'Activités ' + aV(d.nom) + ' :' + liste(d.faire, function (x) { return '<b>' + E(x.nom) + '</b>, ' + E(x.type.toLowerCase()); }) + lien(d, 'faire', 'Voir toutes les activités') : (d.voir ? 'Pas encore d’activités recensées, mais voici quoi voir :' + liste(d.voir.slice(0, 6), function (x) { return '<b>' + E(x.nom) + '</b>, ' + E(x.type.toLowerCase()); }) : manque(d, 'les activités'));
     if (a(/(voir|visiter|monument|musee|incontournable|site|interessant|decouvrir)/)) return d.voir ? 'À voir ' + aV(d.nom) + ' (' + cpt(d.nb_voir, 'lieu recensé', 'lieux recensés') + ') :' + liste(d.voir, function (x) { return '<b>' + E(x.nom) + '</b>, ' + E(x.type.toLowerCase()); }) + lien(d, 'voir', 'Voir tous les lieux') : manque(d, 'les lieux à visiter');
     if (a(/(conseil|astuce|eviter|erreur|avis|recommand|programme|itineraire)/)) return d.avis ? (d.avis.accroche ? '<p>' + E(d.avis.accroche) + '</p>' : '') + (d.avis.conseils ? 'Conseils :' + liste(d.avis.conseils.slice(0, 6), E) : '') + (d.avis.a_eviter ? 'À éviter :' + liste(d.avis.a_eviter, E) : '') + lien(d, 'avis', 'Lire notre avis') : manque(d, 'nos conseils');
@@ -657,7 +691,7 @@
           var aLe = !ch || (cel[3] || {})[ch[0]] != null || (ch[0] === 'cr' && (cel[3] || {}).ou != null);
           rep.innerHTML = repCelebre(cel) + (aLe ? boutonIA(q, {}, 1) : pasLeChiffre(ch, cel[0]) + boutonIA(q, {})); if (!aLe) memoireIA(rep, q, {}); return;
         }
-        var dv = COMPARE.test((' ' + norm(q) + ' ').replace(/^ ou /, ' ')) ? deuxVilles(q) : null;
+        var dv = !rayonQ(q) && COMPARE.test((' ' + norm(q) + ' ').replace(/^ ou /, ' ')) ? deuxVilles(q) : null;
         if (dv) {
           charger(dv[0][1], function (a) { charger(dv[1][1], function (b) {
             var h = a && b ? comparer(a, b, q) : '';
@@ -687,6 +721,16 @@
             var f = lieuCite(q, L, d.nom);
             var pg = programme(q, d, L);
             if (pg) { rep.innerHTML = tete + pg + boutonIA(q, d, 1) + '</div>'; return; }
+            var rk = rayonQ(q);
+            if (rk && / (moi|ici|je suis|ou je suis|ma position) /.test(' ' + norm(q) + ' ') && navigator.geolocation) {
+              rep.innerHTML = tete + '<p>Recherche de votre position…</p></div>';
+              navigator.geolocation.getCurrentPosition(function (p) {
+                var loin = distKm(p.coords.latitude, p.coords.longitude, d.lat, d.lon) > 40;
+                rep.innerHTML = tete + (loin ? '<p>Vous semblez loin ' + deV(d.nom) + ' : voici les adresses autour de son centre.</p>' + autourDe(q, d, L, d.lat, d.lon, '', rk) : autourDe(q, d, L, p.coords.latitude, p.coords.longitude, 'votre position', rk)) + '</div>';
+              }, function () { rep.innerHTML = tete + '<p>Position non disponible : voici les adresses autour du centre.</p>' + autourDe(q, d, L, d.lat, d.lon, '', rk) + '</div>'; }, { timeout: 10000, maximumAge: 300000 });
+              return;
+            }
+            if (rk) { rep.innerHTML = tete + autourDe(q, d, L, f ? f.lat : d.lat, f ? f.lon : d.lon, f ? f.nom : '', rk) + boutonIA(q, d, 1) + '</div>'; return; }
             if (f) { rep.innerHTML = tete + repLieu(f, d) + boutonIA(q, d, 1) + '</div>'; return; }
             var nl = ch ? nomApresChiffre(q, d) : '';
             if (nl) { rep.innerHTML = tete + pasLeChiffre(ch, nl) + boutonIA(q, d) + '</div>'; memoireIA(rep, q, d); return; }

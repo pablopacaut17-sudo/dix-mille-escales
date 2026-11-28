@@ -209,6 +209,26 @@ h2.sec{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,4vw,2.7
     <div class="stats" id="stats"></div>
   </section>
 
+  <section class="block" id="mode-emploi">
+    <h2 class="sec">Ce que vous pouvez faire ici</h2>
+    <p class="lead">Tapez votre question en français, comme à un ami. Touchez un exemple pour l’essayer.</p>
+    <ul class="me-liste">
+      <li><b>Découvrir une ville</b> parmi 69 441 : monuments, restaurants, hôtels, histoire, photos. <button type="button" data-ex="Que voir à Lisbonne ?">Que voir à Lisbonne ?</button></li>
+      <li><b>Choisir la bonne période</b> : météo de la semaine, climat mois par mois, heures de soleil. <button type="button" data-ex="Quel temps à Rome en avril ?">Quel temps à Rome en avril ?</button></li>
+      <li><b>Préparer les papiers</b> : visa, sécurité, numéros d’urgence, monnaie, prises, langue. <button type="button" data-ex="Faut-il un visa pour Tokyo ?">Faut-il un visa pour Tokyo ?</button></li>
+      <li><b>Avoir un programme jour par jour</b>, de 1 à 5 jours. <button type="button" data-ex="Que faire en 2 jours à Barcelone ?">Que faire en 2 jours à Barcelone ?</button></li>
+      <li><b>Voir ce qu’il y a autour de votre hôtel</b> (ou de vous) : manger, commerces, activités, avec les minutes à pied. <button type="button" data-ex="Restaurants et commerces dans un rayon de 1 km autour du centre de Bordeaux">Dans un rayon de 1 km à Bordeaux</button></li>
+      <li><b>Plages, marchés, randonnées, sport et quartiers</b>. <button type="button" data-ex="Randonnées à Grenoble">Randonnées à Grenoble</button> <button type="button" data-ex="Magasin de sport à Lyon">Magasin de sport à Lyon</button></li>
+      <li><b>Connaître les horaires d’un lieu</b>. <button type="button" data-ex="Horaires du musée du Louvre à Paris">Horaires du Louvre</button></li>
+      <li><b>Comparer deux villes</b> : distance, vol, décalage, climat. <button type="button" data-ex="Séville ou Malaga en mai ?">Séville ou Malaga en mai ?</button></li>
+      <li><b>Patrimoine mondial de l’UNESCO</b>, jours fériés, fêtes, personnalités. <button type="button" data-ex="Sites UNESCO à Rome">Sites UNESCO à Rome</button></li>
+      <li><b>Outils</b> : <a href="itineraire/">itinéraire en plusieurs étapes</a>, <a href="ou-partir/">où partir selon vos envies</a>, <a href="comparer/">comparateur</a>, <a href="outils/#convertisseur">convertisseur de monnaie</a>, <a href="carnet/">carnet de voyage</a> (lisible sans connexion).</li>
+      <li><b>Les avions</b> : horaires d’un aéroport, une compagnie et sa carte des destinations, un avion par son immatriculation, sur notre site jumeau <a href="https://pablopacaut17-sudo.github.io/cotes-et-routes/#accueil">Cotes &amp; Routes</a>.</li>
+    </ul>
+    <style>.me-liste{list-style:none;padding:0;margin:0;display:grid;gap:.55em}.me-liste li{line-height:1.5}.me-liste button{font:inherit;font-size:.9em;margin:.15em .3em 0 0;padding:.2em .7em;border-radius:1em;border:1px solid currentColor;background:transparent;color:var(--sea,#2F6F7E);cursor:pointer}.me-liste button:focus-visible{outline:2px solid;outline-offset:2px}</style>
+    <script>document.querySelectorAll('#mode-emploi [data-ex]').forEach(function(b){b.addEventListener('click',function(){var i=document.getElementById('question'),f=i&&i.form;if(!i)return;i.value=b.getAttribute('data-ex');document.getElementById('questions').scrollIntoView({behavior:'smooth',block:'start'});if(f.requestSubmit)f.requestSubmit();else f.dispatchEvent(new Event('submit',{cancelable:true}));});});</script>
+  </section>
+
   <section class="block" id="outils">
     <h2 class="sec">Préparer son voyage</h2>
     <p class="lead">Des outils gratuits, calculés à partir des données de toutes les villes du guide.</p>

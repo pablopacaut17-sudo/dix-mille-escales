@@ -25,12 +25,15 @@ DELAI_REQUETE = 240  # secondes accordées au serveur pour une requête ; au-del
 FREQUENCE = {"phare": 7, "intermediaire": 30, "autre": 120}
 PAUSE = {"phare": 8, "intermediaire": 6, "autre": 2}  # secondes entre deux villes (politesse envers Overpass)
 CIBLES = {
-    "amenity": ("restaurant|cafe|bar|pub|fast_food|ice_cream|marketplace|bus_station|ferry_terminal|hospital|clinic|pharmacy|doctors|dentist", None),
+    "amenity": ("restaurant|cafe|bar|pub|fast_food|ice_cream|marketplace|bus_station|ferry_terminal|hospital|clinic|pharmacy|doctors|dentist|bicycle_rental", None),
     "railway": ("station", None),
     "tourism": ("hotel|hostel|guest_house|museum|attraction|viewpoint|gallery|zoo|aquarium", None),
     "historic": ("monument|castle|memorial|ruins|archaeological_site|fort", None),
-    "leisure": ("park|garden|nature_reserve", None),
-    "shop": ("books|wine|deli|bakery|pastry|craft|art|antiques|gift|chocolate", None),
+    "leisure": ("park|garden|nature_reserve|sports_centre|fitness_centre|swimming_pool|stadium", None),
+    "sport": ("climbing", None),  # murs et salles d’escalade
+    "shop": ("books|wine|deli|bakery|pastry|craft|art|antiques|gift|chocolate|sports|outdoor|bicycle", None),
+    "place": ("suburb|neighbourhood|quarter", None),  # quartiers : nom + coordonnées seulement (compacts)
+    "route": ("hiking", None),  # sentiers de randonnée qui passent par la ville (même sans fiche Wikidata)
 }
 # Activités, cherchées dans le cercle urbain et aux alentours
 ACTIVITES = {
@@ -67,10 +70,15 @@ TYPE = {"restaurant": ("Restaurant", "manger"), "cafe": ("Café", "manger"), "ba
         "cave_entrance": ("Grotte", "voir"), "bay": ("Baie", "voir"), "cliff": ("Falaise", "voir"), "volcano": ("Volcan", "voir"),
         "glacier": ("Glacier", "voir"), "national_park": ("Parc national", "voir"), "protected_area": ("Espace naturel protégé", "voir"),
         "hiking": ("Sentier de randonnée", "faire"),
+        "sports": ("Magasin de sport", "acheter"), "outdoor": ("Magasin d’outdoor (randonnée, camping)", "acheter"),
+        "bicycle": ("Magasin de vélos", "acheter"), "sports_centre": ("Centre sportif", "faire"),
+        "fitness_centre": ("Salle de sport", "faire"), "swimming_pool": ("Piscine", "faire"), "stadium": ("Stade", "faire"),
+        "climbing": ("Escalade", "faire"), "bicycle_rental": ("Location de vélos", "bouger"),
+        "suburb": ("Quartier", "quartiers"), "neighbourhood": ("Quartier", "quartiers"), "quarter": ("Quartier", "quartiers"),
         "hospital": ("Hôpital", "sante"), "clinic": ("Clinique", "sante"), "pharmacy": ("Pharmacie", "sante"),
         "doctors": ("Médecin", "sante"), "dentist": ("Dentiste", "sante"),
         "station": ("Gare ou station", "bouger"), "bus_station": ("Gare routière", "bouger"), "ferry_terminal": ("Terminal de ferry", "bouger")}
-CLES = ("amenity", "tourism", "historic", "leisure", "shop", "natural", "landuse", "boundary", "route", "railway")
+CLES = ("amenity", "tourism", "historic", "leisure", "shop", "natural", "landuse", "boundary", "route", "railway", "place", "sport")
 DIRECTIONS = ["au nord", "au nord-est", "à l’est", "au sud-est", "au sud", "au sud-ouest", "à l’ouest", "au nord-ouest"]
 CUISINES = {"portuguese": "portugaise", "seafood": "fruits de mer", "fish": "poisson", "italian": "italienne",
             "pizza": "pizza", "burger": "burgers", "japanese": "japonaise", "sushi": "sushis", "chinese": "chinoise",
@@ -161,6 +169,8 @@ def normaliser(el, date, v=None, alentours=False):
     lon = el["lon"] if "lon" in el else el.get("center", {}).get("lon")
     if not cle or not nom or lat is None:
         return None
+    if t.get("access") in ("private", "no", "customers") and cle in ("swimming_pool", "sports_centre", "fitness_centre", "climbing", "stadium"):
+        return None  # piscines d'hôtel ou privées, clubs fermés : inutiles au voyageur
     type_, rubrique = TYPE[cle]
     if cle == "station":  # distinguer les vraies gares des stations de métro et de tram
         st_ = t.get("station", "")

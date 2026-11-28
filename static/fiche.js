@@ -125,7 +125,13 @@
         h += sec(rb[0], rb[1], '<p class="lead">' + rb[2] + ' ' + nb(total) + ' adresse' + (total > 1 ? 's' : '') + '.</p><ul class="places">' + items.slice(0, 8).map(lieu).join('') + '</ul>'
           + (items.length > 8 ? '<button type="button" class="tout-voir" data-rub="' + rb[0] + '" data-n="' + items.length + '">Voir les ' + nb(items.length) + ' adresses, avec recherche et filtres</button>' : ''));
       });
-    } else {
+    }
+    var ESS = [['plages', 'Plages et baignade'], ['marches', 'Marchés'], ['randonnees', 'Sentiers de randonnée'], ['sport', 'Sport (magasins, salles, piscines, vélos)'], ['quartiers', 'Quartiers']].filter(function (x) { return d[x[0]] && d[x[0]].length; });
+    if (ESS.length) h += sec('essentiels', 'Plages, marchés, randonnées, sport et quartiers', ESS.map(function (x) {
+      var n = d['nb_' + x[0]] || d[x[0]].length;
+      return '<p class="lead"><b>' + x[1] + '</b> (' + nb(n) + ') : ' + d[x[0]].slice(0, 15).map(function (f) { return E(f.nom) + (x[0] === 'sport' && f.type ? ' <span class="d">(' + E(f.type.toLowerCase()) + ')</span>' : '') + (f.distance_km > 3 && f.direction ? ' <span class="d">(' + String(f.distance_km).replace('.', ',') + ' km ' + E(f.direction) + ')</span>' : ''); }).join(', ') + (n > 15 ? ' …' : '') + '</p>';
+    }).join('') + '<p class="note">Source : OpenStreetMap (contributeurs, ODbL).</p>');
+    if (!tous.length) {
       h += sec('lieux', 'Lieux, adresses et visites', '<p class="empty">Les robots n’ont pas encore exploré ' + E(d.nom) + ' : monuments, restaurants, hôtels et boutiques apparaîtront ici après leur passage.</p>');
     }
     // Conseils officiels aux voyageurs
@@ -176,7 +182,7 @@
     if (d.formalites) h += sec('formalites', 'Formalités et sécurité', '<div class="table-scroll"><table><tbody>' + Object.keys(d.formalites).map(function (k) { return '<tr><td>' + E(k) + '</td><td>' + E(d.formalites[k]) + '</td></tr>'; }).join('') + '</tbody></table></div>'
       + (d.securite ? '<p class="alerte" style="--a:#2F7D6D"><b>Niveau de sécurité : ' + d.securite.niveau + ' sur 4, ' + E(d.securite.libelle.toLowerCase()) + '.</b></p>' : '')
       + '<p class="note">Vérifiez toujours avant de partir sur les <a href="https://www.diplomatie.gouv.fr/fr/conseils-aux-voyageurs/conseils-par-pays-destination/" rel="noopener" target="_blank">Conseils aux voyageurs</a>.</p>');
-    if ((d.unesco && d.unesco.length) || txt.patrimoine) h += sec('patrimoine', 'Patrimoine', (d.unesco && d.unesco.length ? '<p class="lead">Patrimoine mondial de l’UNESCO :</p><ul class="unesco">' + d.unesco.map(function (u) { return '<li>' + E(u) + '</li>'; }).join('') + '</ul>' : '') + (txt.patrimoine ? prose(txt.patrimoine) : ''));
+    if ((d.unesco && d.unesco.length) || txt.patrimoine) h += sec('patrimoine', 'Patrimoine', (d.unesco && d.unesco.length ? '<p class="lead">Patrimoine mondial de l’UNESCO :</p><ul class="unesco">' + (d.unesco_details || d.unesco.map(function (n) { return { nom: n }; })).map(function (u) { var det = [u.annee ? 'inscrit en ' + u.annee : '', u.criteres && u.criteres.length ? 'critères ' + u.criteres.map(function (c) { return '(' + c + ')'; }).join(', ') : ''].filter(Boolean).join(' ; '); return '<li>' + (u.lien ? '<a href="' + E(u.lien) + '" rel="noopener" target="_blank">' + E(u.nom) + '</a>' : E(u.nom)) + (det ? ' <span class="d">(' + E(det) + ')</span>' : '') + '</li>'; }).join('') + '</ul>' : '') + (txt.patrimoine ? prose(txt.patrimoine) : ''));
     if (txt.gastronomie) h += sec('gastronomie', 'Gastronomie', prose(txt.gastronomie));
     [['geographie', 'Géographie'], ['culture', 'Culture'], ['economie', 'Économie'], ['sport', 'Sport'], ['transports', 'Transports']].forEach(function (x) { if (txt[x[0]]) h += sec(x[0], x[1], prose(txt[x[0]])); });
     if (d.jumelages) h += sec('jumelages', 'Villes jumelées', '<p class="lead">' + E(d.jumelages.join(', ')) + '.</p>');

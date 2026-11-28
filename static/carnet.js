@@ -4,6 +4,18 @@
   function garder(c) { try { localStorage.setItem('dme-carnet', JSON.stringify(c)); } catch (e) {} }
   function E(t) { return String(t == null ? '' : t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   var root = document.body.getAttribute('data-root') || '../../';
+  // Carnet hors connexion : le petit service worker (sw.js, à la racine) garde les fiches du carnet dans le navigateur.
+  var SW = 'serviceWorker' in navigator && location.protocol === 'https:';
+  if (SW) try { navigator.serviceWorker.register(root + 'sw.js'); } catch (e) {}
+  function horsLigne(msg) {
+    if (!SW) return;
+    navigator.serviceWorker.ready.then(function (r) { if (r.active) r.active.postMessage(msg); }).catch(function () {});
+  }
+  function fichiers(s) {
+    var b = new URL(root + 'villes/' + s + '/', location.href).href, e2 = 'https://pablopacaut17-sudo.github.io/dme-donnees/villes/' + s + '/';
+    var st = ['style.css', 'app.js', 'fiche.js', 'questions.js', 'lieux.js', 'onglets.js', 'carte.js', 'carnet.js', 'nav.js', 'langue.js'].map(function (f) { return new URL(root + 'static/' + f, location.href).href; });
+    return [b, b + 'index.html', b + 'donnees.json.gz', b + 'lieux.json.gz', e2 + 'donnees.json.gz', e2 + 'lieux.json.gz', new URL(root + 'carnet/', location.href).href].concat(st);
+  }
 
   // 1. Boutons sur une fiche de ville
   var h1 = document.querySelector('h1.city');
@@ -18,7 +30,7 @@
     bg.onclick = function () {
       var c = lire(); c.villes = c.villes || [];
       var i = c.villes.findIndex(function (x) { return x.slug === slug; });
-      if (i > -1) c.villes.splice(i, 1); else c.villes.unshift({ slug: slug, nom: nom, date: new Date().toISOString().slice(0, 10) });
+      if (i > -1) { c.villes.splice(i, 1); horsLigne({ oublier: slug }); } else { c.villes.unshift({ slug: slug, nom: nom, date: new Date().toISOString().slice(0, 10) }); horsLigne({ garder: fichiers(slug) }); }
       garder(c); maj();
     };
     box.querySelector('.carnet-itin').onclick = function () {
@@ -33,7 +45,7 @@
   if (!page) return;
   function rendre() {
     var c = lire(), v = c.villes || [], it = c.itineraires || [];
-    page.innerHTML = '<h2>Mes villes (' + v.length + ')</h2>' + (v.length ? '<ul class="o-liste">' + v.map(function (x, i) {
+    page.innerHTML = '<h2>Mes villes (' + v.length + ')</h2>' + (SW && v.length ? '<p class="note">Les fiches de vos villes restent lisibles sans connexion, sur cet appareil (ouvrez cette page une fois avec du réseau pour les mettre à jour).</p>' : '') + (v.length ? '<ul class="o-liste">' + v.map(function (x, i) {
       return '<li><a href="' + root + 'villes/' + x.slug + '/"><b>' + E(x.nom) + '</b></a><small>gardée le ' + E(x.date) + '</small><button type="button" data-v="' + i + '">Retirer</button></li>'; }).join('') + '</ul>'
       + '<p><a class="btn-lien" href="' + root + 'itineraire/" id="carnet-vers-itin">Faire un itinéraire avec ces villes</a> · <a class="btn-lien" href="' + root + 'comparer/#v=' + v.slice(0, 4).map(function (x) { return x.slug; }).join(',') + '">Les comparer</a></p>'
       : '<p class="o-vide">Aucune ville gardée. Sur une fiche, cliquez sur « Garder dans mon carnet ».</p>')
@@ -56,4 +68,5 @@
     page.querySelector('#carnet-vider').onclick = function () { if (confirm('Effacer tout le carnet de cet appareil ?')) { garder({}); rendre(); } };
   }
   rendre();
+  if (SW) { var cv = (lire().villes || []).slice(0, 30); cv.forEach(function (x) { horsLigne({ garder: fichiers(x.slug) }); }); }
 })();

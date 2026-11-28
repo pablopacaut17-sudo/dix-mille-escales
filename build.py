@@ -670,7 +670,28 @@ def page_ville(v, ctx):
     cont = CONTINENTS.get(pays.get("continent", ""), "")
     rubs = lieux_ville(ctx["lieux"].get(v["id"]))
     tous = rubs["lieux"] if rubs else []
+    quartiers = sorted([f for f in tous if f["rubrique"] == "quartiers"], key=lambda f: (f.get("distance_km", 99), f["nom"]))
+    tous = [f for f in tous if f["rubrique"] != "quartiers"]  # les quartiers ne sont pas des adresses : liste compacte à part
     lieux = [f for f in tous if f["rubrique"] != "alentours"]
+    essentiels = {}
+    essentiels["_types_sport"] = ("Magasin de sport", "Magasin d’outdoor (randonnée, camping)", "Magasin de vélos", "Centre sportif",
+                                  "Salle de sport", "Piscine", "Escalade", "Location de vélos")
+    for cle_, types_q in (("plages", ("Plage", "Plage aménagée", "Baignade")), ("marches", ("Marché",)),
+                          ("randonnees", ("Sentier de randonnée",)),
+                          ("sport", ("Magasin de sport", "Magasin d’outdoor (randonnée, camping)", "Magasin de vélos", "Centre sportif",
+                                     "Salle de sport", "Piscine", "Escalade", "Location de vélos", "Stade", "Golf", "Patinoire"))):
+        l_ = sorted([f for f in tous if f["type"] in types_q], key=lambda f: (not f.get("wikidata"), f.get("distance_km", 0), f["nom"]))
+        vus_ = set()
+        l_ = [f for f in l_ if not (f["nom"].lower() in vus_ or vus_.add(f["nom"].lower()))]
+        if l_:
+            essentiels[cle_] = [{k: f[k] for k in ("nom", "type", "lat", "lon", "distance_km", "direction") if f.get(k) not in (None, "")}
+                             for f in l_[:20]]
+            essentiels["nb_" + cle_] = len(l_)
+    if quartiers:
+        vus_ = set()
+        q_ = [f for f in quartiers if not (f["nom"].lower() in vus_ or vus_.add(f["nom"].lower()))]
+        essentiels["quartiers"] = [{"nom": f["nom"], "lat": f["lat"], "lon": f["lon"]} for f in q_[:60]]
+        essentiels["nb_quartiers"] = len(q_)
     autour = sorted([f for f in tous if f["rubrique"] == "alentours"], key=lambda f: f.get("distance_km", 0))
     meteo = lire(f"meteo/{v['id']}.json")
     enc = lire(f"encyclo/{v['id']}.json") or {}
@@ -1006,11 +1027,21 @@ def page_ville(v, ctx):
     if sec_sante:
         corps.append(sec_sante)
 
+    # Plages, marchés, randonnées et quartiers (listes compactes, OpenStreetMap)
+    blocs_q = []
+    for cle_, titre_ in (("plages", "Plages et baignade"), ("marches", "Marchés"), ("randonnees", "Sentiers de randonnée"), ("sport", "Sport (magasins, salles, piscines, vélos)"), ("quartiers", "Quartiers")):
+        if essentiels.get(cle_):
+            n_ = essentiels["nb_" + cle_]
+            blocs_q.append(f'<p class="lead"><b>{titre_}</b> ({n_}) : ' + ", ".join(E(x["nom"]) for x in essentiels[cle_][:15]) + (" …" if n_ > 15 else "") + "</p>")
+    if blocs_q:
+        corps.append('<section class="block" id="essentiels"><h2>Plages, marchés, randonnées, sport et quartiers</h2>' + "".join(blocs_q)
+                     + '<p class="note">Source : OpenStreetMap (contributeurs, ODbL).</p></section>')
+
     # Patrimoine
     if enc.get("unesco") or "patrimoine" in wps:
         h = '<section class="block" id="patrimoine"><h2>Patrimoine</h2>'
         if enc.get("unesco"):
-            h += '<p class="lead">Inscrit au patrimoine mondial de l’UNESCO :</p><ul class="unesco">' + "".join(f"<li>{E(x)}</li>" for x in enc["unesco"]) + "</ul>"
+            h += '<p class="lead">Inscrit au patrimoine mondial de l’UNESCO :</p><ul class="unesco">' + "".join(unesco_li(x) for x in (enc.get("unesco_details") or [{"nom": n} for n in enc["unesco"]])) + "</ul>"
         if "patrimoine" in wps:
             h += texte_html(wps["patrimoine"]["texte"])
         corps.append(h + "</section>")
@@ -1068,7 +1099,7 @@ def page_ville(v, ctx):
                "monnaie": pays.get("monnaie_nom", ""), "devise": devise, "taux": ctx["change"].get("taux", {}).get(devise),
                "langues": pays.get("langues", []), "indicatif": pays.get("indicatif", ""), "capitale": capitale,
                "infos": total_infos, "maj": ctx["date_txt"]}
-    for k in ("fondation", "altitude_m", "superficie_km2", "maire", "surnoms", "eaux", "anciens_noms", "unesco", "site_officiel", "description"):
+    for k in ("fondation", "altitude_m", "superficie_km2", "maire", "surnoms", "eaux", "anciens_noms", "unesco", "unesco_details", "site_officiel", "description"):
         if enc.get(k):
             donnees[k] = enc[k]
     if enc.get("jumelages"):
@@ -1107,6 +1138,7 @@ def page_ville(v, ctx):
         if t:
             donnees[rub] = t
             donnees["nb_" + rub] = sum(1 for f in lieux if f["rubrique"] == rub)
+    donnees.update({k: x for k, x in essentiels.items() if not k.startswith("_")})
     if autour:
         donnees["alentours"] = [{"nom": f["nom"], "type": f["type"], "km": f["distance_km"], "direction": f["direction"],
                                  "patrimoine_mondial": f.get("patrimoine_mondial", False)} for f in autour[:10]]
@@ -1153,7 +1185,10 @@ def page_ville(v, ctx):
         export = [{k: f[k] for k in cles if f.get(k)} for f in sorted(tous, key=lambda f: (f["rubrique"], -f["infos"], f["nom"]))]
         plafond = {"phare": 600, "intermediaire": 60, "autre": 15}[v["niveau"]]  # adresses par rubrique (poids du site)
         gardes = {}
-        export = [f for f in export if gardes.setdefault(f["rubrique"], []).append(1) or len(gardes[f["rubrique"]]) <= plafond]
+        # Les adresses de sport (magasins, salles, piscines, vélos) ont leur propre quota de 30 : elles ne chassent pas les autres
+        sport_ = set(essentiels.get("_types_sport", ()))
+        export = [f for f in export if gardes.setdefault("sport" if f.get("type") in sport_ else f["rubrique"], []).append(1)
+                  or len(gardes["sport" if f.get("type") in sport_ else f["rubrique"]]) <= (max(plafond, 30) if f.get("type") in sport_ else plafond)]
         ecrire_gz(f"villes/{v['slug']}/lieux.json.gz", {"date": rubs["date"], "rayon_km": rubs.get("rayon_km"),
                                                          "rayon_alentours_km": rubs.get("rayon_alentours_km"), "lieux": export})
     # Ligne compacte pour les outils (itinéraire, « où partir », comparateur)
@@ -1459,6 +1494,19 @@ TITRES_CONSEILS = [("avertissements", "Niveau de risque et zones à éviter"), (
                    ("entree_sortie", "Entrée et sortie (règles pour les voyageurs canadiens)"), ("aide", "Services d’urgence et aide sur place")]
 COULEURS_NIVEAU = {0: "#2F7D6D", 1: "#C99A00", 2: "#D9822B", 3: "#B5485D"}
 
+
+
+def unesco_li(u):
+    """Un site UNESCO : nom, année d’inscription, critères et lien vers la fiche officielle (whc.unesco.org)."""
+    det = []
+    if u.get("annee"):
+        det.append(f"inscrit en {u['annee']}")
+    if u.get("criteres"):
+        det.append("critères " + ", ".join(f"({c})" for c in u["criteres"]))
+    nom = E(u["nom"])
+    if u.get("lien"):
+        nom = f'<a href="{E(u["lien"])}" rel="noopener" target="_blank">{nom}</a>'
+    return f"<li>{nom}" + (f' <span class="d">({E(" ; ".join(det))})</span>' if det else "") + "</li>"
 
 def slug_fd(nom):
     """Adresse probable de la fiche du ministère français (diplomatie.gouv.fr) pour un pays."""
@@ -1785,6 +1833,7 @@ def main():
     if os.path.isdir(SITE):
         shutil.rmtree(SITE)
     shutil.copytree(os.path.join(RACINE, "static"), os.path.join(SITE, "static"))
+    shutil.copy2(os.path.join(RACINE, "static", "sw.js"), os.path.join(SITE, "sw.js"))  # carnet hors connexion : à la racine (portée du site)
     ecrire("static/leger.js", script_leger())
 
     # Index de recherche

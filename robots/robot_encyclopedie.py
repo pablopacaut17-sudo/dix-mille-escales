@@ -281,9 +281,36 @@ def traiter(v, qid):
                                  key=lambda x: (x["an"] is None, x["an"] or 0))[:40]
 
     # Patrimoine mondial et personnalités (requêtes SPARQL légères, limitées)
-    r = sparql('SELECT DISTINCT ?s ?sLabel WHERE { ?s wdt:P1435 wd:Q9259 ; wdt:P131 wd:%s . '
-               'SERVICE wikibase:label { bd:serviceParam wikibase:language "fr,en". } } LIMIT 20' % qid)
-    fiche["unesco"] = sorted({x["sLabel"]["value"] for x in (r or []) if not re.match(r"Q\d+$", x["sLabel"]["value"])})
+    # Détail : année d'inscription (qualificatif P580), critères (P2614), identifiant UNESCO (P757 -> whc.unesco.org)
+    r = sparql('SELECT ?s ?sLabel (SAMPLE(?d) AS ?debut) (SAMPLE(?w) AS ?whc) (GROUP_CONCAT(DISTINCT ?cl; separator="|") AS ?crit) '
+               'WHERE { ?s p:P1435 ?st . ?st ps:P1435 wd:Q9259 . ?s wdt:P131 wd:%s . OPTIONAL { ?st pq:P580 ?d } '
+               'OPTIONAL { ?s wdt:P757 ?w } OPTIONAL { ?s wdt:P2614 ?c . ?c rdfs:label ?cl FILTER(LANG(?cl) = "en") } '
+               'SERVICE wikibase:label { bd:serviceParam wikibase:language "fr,en". ?s rdfs:label ?sLabel } } '
+               'GROUP BY ?s ?sLabel LIMIT 20' % qid)
+    details = []
+    for x in (r or []):
+        nom = x.get("sLabel", {}).get("value", "")
+        if not nom or re.match(r"Q\d+$", nom):
+            continue
+        an = x.get("debut", {}).get("value", "")[:5].lstrip("+")[:4]
+        whc = re.sub(r"[^0-9]", "", x.get("whc", {}).get("value", "").split("-")[0])
+        crit = sorted({m.lower() for c in x.get("crit", {}).get("value", "").split("|")
+                       for m in re.findall(r"\(([ivx]+)\)", c, re.I)},
+                      key=lambda m: ["i", "ii", "iii", "iv", "v", "vi", "vii", "viii", "ix", "x"].index(m)
+                      if m in ["i", "ii", "iii", "iv", "v", "vi", "vii", "viii", "ix", "x"] else 99)
+        details.append({"nom": nom, "annee": an if an.isdigit() else "", "criteres": crit,
+                        "lien": f"https://whc.unesco.org/fr/list/{whc}" if whc else ""})
+    if r is None:  # requête détaillée refusée ou trop lente : version simple, comme avant
+        r = sparql('SELECT DISTINCT ?s ?sLabel WHERE { ?s wdt:P1435 wd:Q9259 ; wdt:P131 wd:%s . '
+                   'SERVICE wikibase:label { bd:serviceParam wikibase:language "fr,en". } } LIMIT 20' % qid)
+        details = [{"nom": x["sLabel"]["value"], "annee": "", "criteres": [], "lien": ""}
+                   for x in (r or []) if not re.match(r"Q\d+$", x["sLabel"]["value"])]
+    vus = {}
+    for d_ in details:
+        vus.setdefault(d_["nom"], d_)
+    fiche["unesco"] = sorted(vus)
+    if any(d_["annee"] or d_["lien"] for d_ in vus.values()):
+        fiche["unesco_details"] = [vus[n] for n in sorted(vus)]
     if v["niveau"] in ("phare", "intermediaire"):
         r = sparql('SELECT ?p ?pLabel ?d ?naissance ?liens WHERE { ?p wdt:P19 wd:%s ; wikibase:sitelinks ?liens . '
                    'OPTIONAL { ?p wdt:P569 ?naissance } OPTIONAL { ?p schema:description ?d FILTER(LANG(?d) = "fr") } '
