@@ -1556,6 +1556,7 @@ def page_conseils(cc, nomp, cv):
 ESPACE2_URL = "https://pablopacaut17-sudo.github.io/dme-donnees/"
 ESPACE2_DEPLACER = os.environ.get("ESPACE2_DEPLACER", "1") == "1"
 ESPACE2_MAX = 950 * 1024 * 1024
+VILLES_ALLEGER = []  # villes (avec leur niveau), renseignées par main() avant preparer_espace2
 
 
 def preparer_espace2(cpt):
@@ -1589,6 +1590,11 @@ def preparer_espace2(cpt):
             poids += os.path.getsize(src)
             if ESPACE2_DEPLACER:
                 os.remove(src)
+    os.makedirs(dossier, exist_ok=True)
+    if poids > ESPACE2_MAX and VILLES_ALLEGER:  # deuxième espace plein lui aussi : réduction en tout dernier recours, signalée
+        poids, mesure = alleger(VILLES_ALLEGER, poids, racine=dossier)
+        cpt["allegement_espace2"] = mesure
+        print(f"Deuxième espace au-delà de 950 Mo : allègement en dernier recours ({mesure}).")
     with open(os.path.join(dossier, "version.txt"), "w") as f:
         f.write(datetime.now().strftime("%Y-%m-%d %H:%M") + "\n")
     cpt["espace2"] = {"fichiers": noms, "nombre": n, "taille_mo": round(poids / 1024 / 1024), "deplace": ESPACE2_DEPLACER}
@@ -1596,12 +1602,13 @@ def preparer_espace2(cpt):
           + (" déplacés hors du site principal." if ESPACE2_DEPLACER else " copiés (le site principal les garde encore)."))
 
 
-def taille_site():
-    return sum(os.path.getsize(os.path.join(r, f)) for r, _, fs in os.walk(SITE) for f in fs)
+def taille_site(racine=None):
+    return sum(os.path.getsize(os.path.join(r, f)) for r, _, fs in os.walk(racine or SITE) for f in fs)
 
 
-def alleger(villes, taille):
-    """Si le site dépasse 950 Mo, il s'allège tout seul pour rester sous la limite de 1 Go de GitHub Pages :
+def alleger(villes, taille, racine=None):
+    """Dernier recours (depuis le 28/11/2026, les gros fichiers des villes sont DÉPLACÉS vers le deuxième espace au lieu
+    d'être réduits, voir preparer_espace2). Si un espace (site principal, ou deuxième espace avec racine=) dépasse 950 Mo, il s'allège tout seul pour rester sous la limite de 1 Go de GitHub Pages :
     on réduit pas à pas le nombre d'adresses dans les fichiers téléchargés (petites villes, puis grandes villes),
     jusqu'à repasser sous 900 Mo. Les pages et les autres informations ne changent pas."""
     cible = 900 * 1024 * 1024
@@ -1611,7 +1618,7 @@ def alleger(villes, taille):
     for niv, plafond in etapes:
         if taille <= cible:
             break
-        base = os.path.join(SITE, "villes")
+        base = os.path.join(racine or SITE, "villes")
         for slug in os.listdir(base):
             if niveau.get(slug) != niv:
                 continue
@@ -1629,7 +1636,7 @@ def alleger(villes, taille):
                 d["lieux"] = garde
                 with open(p, "wb") as f:
                     f.write(gzip.compress(json.dumps(d, ensure_ascii=False, separators=(",", ":")).encode(), 9, mtime=0))
-        taille = taille_site()
+        taille = taille_site(racine)
         mesure = f"{plafond} adresses par rubrique pour les villes de niveau « {niv} »"
         print(f"  allègement : {mesure} → {taille / 1024 / 1024:.0f} Mo")
     return taille, mesure
@@ -2011,6 +2018,7 @@ def main():
         ecrire("robots.txt", "User-agent: *\nAllow: /\n")
 
     index_celebres(ctx)
+    VILLES_ALLEGER[:] = villes
     preparer_espace2(cpt)
     taille = taille_site()
     print(f"Taille du site : {taille / 1024 / 1024:.0f} Mo sur 1 024 Mo autorisés par GitHub Pages.")
