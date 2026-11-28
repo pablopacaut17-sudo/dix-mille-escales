@@ -248,6 +248,29 @@
     if (!n) h += '<p>Aucune adresse recensée dans ce rayon pour le moment. Essayez un rayon plus grand (« dans un rayon de 2 km »).</p>';
     return h + '<p class="note">Adresses OpenStreetMap de la fiche ; temps à pied estimés (≈ 4,5 km/h). Vérifiez les horaires.</p>';
   }
+  /* Plage : conditions du moment (Open-Meteo, CC BY 4.0) : eau, vagues, vent, UV. Les drapeaux de baignade
+     et les alertes officielles ne sont pas en données ouvertes : on le dit, avec le lien officiel. */
+  function plageDirect(f, d) {
+    var ll = 'latitude=' + f.lat + '&longitude=' + f.lon;
+    var mer = fetch('https://marine-api.open-meteo.com/v1/marine?' + ll + '&current=wave_height,sea_surface_temperature&timezone=auto').then(function (r) { return r.ok ? r.json() : {}; }).catch(function () { return {}; });
+    var air = fetch('https://api.open-meteo.com/v1/forecast?' + ll + '&current=temperature_2m,wind_speed_10m,wind_gusts_10m&daily=uv_index_max&forecast_days=1&timezone=auto&wind_speed_unit=kmh').then(function (r) { return r.ok ? r.json() : {}; }).catch(function () { return {}; });
+    return Promise.all([mer, air]).then(function (x) {
+      var m = x[0].current || {}, a = x[1].current || {}, uv = x[1].daily && x[1].daily.uv_index_max ? x[1].daily.uv_index_max[0] : null, l = [], alerte = [];
+      if (m.sea_surface_temperature != null) l.push('Eau : <b>' + virg(Math.round(m.sea_surface_temperature * 10) / 10) + ' °C</b>');
+      if (m.wave_height != null) l.push('Vagues : <b>' + virg(Math.round(m.wave_height * 10) / 10) + ' m</b>');
+      if (a.temperature_2m != null) l.push('Air : <b>' + Math.round(a.temperature_2m) + ' °C</b>');
+      if (a.wind_speed_10m != null) l.push('Vent : <b>' + Math.round(a.wind_speed_10m) + ' km/h</b>' + (a.wind_gusts_10m != null ? ' (rafales ' + Math.round(a.wind_gusts_10m) + ' km/h)' : ''));
+      if (uv != null) l.push('UV max du jour : <b>' + Math.round(uv) + '</b>');
+      if (m.wave_height >= 1.5) alerte.push('mer agitée (vagues de ' + virg(Math.round(m.wave_height * 10) / 10) + ' m) : courants et rouleaux possibles, ne vous baignez que sur une plage surveillée');
+      if (a.wind_gusts_10m >= 50) alerte.push('vent fort : risque d’être emporté au large avec un matelas ou un paddle');
+      if (m.sea_surface_temperature != null && m.sea_surface_temperature < 16) alerte.push('eau froide : risque de choc thermique, entrez progressivement');
+      if (uv >= 8) alerte.push('UV très élevés : protection solaire indispensable');
+      if (!l.length) return '<p>Conditions du moment indisponibles pour cette plage.</p>';
+      var off = d.cc === 'FR' ? 'la <a href="https://vigilance.meteofrance.fr/" target="_blank" rel="noopener">vigilance Météo-France</a>' : 'les <a href="https://meteoalarm.org/" target="_blank" rel="noopener">alertes officielles (MeteoAlarm)</a>';
+      return '<p><b>En ce moment</b> : ' + l.join(' · ') + '.</p>' + (alerte.length ? '<p class="alerte">Attention : ' + alerte.join(' ; ') + '.</p>' : '')
+        + '<p class="note">Prévisions Open-Meteo (CC BY 4.0), pas une autorisation de baignade : le drapeau (vert, orange, rouge) et les consignes du poste de secours font foi ; voir aussi ' + off + '.</p>';
+    });
+  }
   function repLieu(f, d) {
     var h = '<b>' + E(f.nom) + '</b> · ' + E(f.type) + ((f.wikidata || f.patrimoine_mondial) ? ' · ★ incontournable' : '');
     if (f.histoire && f.histoire.f) h += '<p>' + E(carac(f.histoire.f)) + '</p>';
@@ -731,7 +754,11 @@
               return;
             }
             if (rk) { rep.innerHTML = tete + autourDe(q, d, L, f ? f.lat : d.lat, f ? f.lon : d.lon, f ? f.nom : '', rk) + boutonIA(q, d, 1) + '</div>'; return; }
-            if (f) { rep.innerHTML = tete + repLieu(f, d) + boutonIA(q, d, 1) + '</div>'; return; }
+            if (f) {
+              rep.innerHTML = tete + repLieu(f, d) + (/^(Plage|Plage aménagée|Baignade)$/.test(f.type) ? '<div class="q-plage"><p>Conditions en ce moment…</p></div>' : '') + boutonIA(q, d, 1) + '</div>';
+              var zp = rep.querySelector('.q-plage'); if (zp) plageDirect(f, d).then(function (h) { zp.innerHTML = h; });
+              return;
+            }
             var nl = ch ? nomApresChiffre(q, d) : '';
             if (nl) { rep.innerHTML = tete + pasLeChiffre(ch, nl) + boutonIA(q, d) + '</div>'; memoireIA(rep, q, d); return; }
             var r_ = repondre(q, d);
