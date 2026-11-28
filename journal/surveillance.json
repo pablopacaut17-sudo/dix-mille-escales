@@ -1,0 +1,79 @@
+{
+ "dernier_rapport": "2026-11-28T08:11:46Z",
+ "problemes": 1,
+ "historique": [
+  {
+   "date": "2026-11-22",
+   "informations": 10241984,
+   "villes_enrichies": 10565,
+   "lieux": 504458
+  },
+  {
+   "date": "2026-11-23",
+   "informations": 102757257,
+   "villes_enrichies": 56250,
+   "lieux": 11672505
+  },
+  {
+   "date": "2026-11-23",
+   "informations": 105521232,
+   "villes_enrichies": 58372,
+   "lieux": 11771073
+  },
+  {
+   "date": "2026-11-23",
+   "informations": 113760172,
+   "villes_enrichies": 62421,
+   "lieux": 12825643
+  },
+  {
+   "date": "2026-11-23",
+   "informations": 116009013,
+   "villes_enrichies": 63674,
+   "lieux": 13114087
+  },
+  {
+   "date": "2026-11-24",
+   "informations": 143220148,
+   "villes_enrichies": 67576,
+   "lieux": 16330377
+  },
+  {
+   "date": "2026-11-24",
+   "informations": 143220148,
+   "villes_enrichies": 67576,
+   "lieux": 16330377
+  },
+  {
+   "date": "2026-11-25",
+   "informations": 143245407,
+   "villes_enrichies": 67789,
+   "lieux": 16330377
+  },
+  {
+   "date": "2026-11-26",
+   "informations": 143268736,
+   "villes_enrichies": 68054,
+   "lieux": 16330377
+  },
+  {
+   "date": "2026-11-26",
+   "informations": 151327601,
+   "villes_enrichies": 68054,
+   "lieux": 16330377
+  },
+  {
+   "date": "2026-11-27",
+   "informations": 151354691,
+   "villes_enrichies": 68344,
+   "lieux": 16330377
+  },
+  {
+   "date": "2026-11-28",
+   "informations": 151755144,
+   "villes_enrichies": 68610,
+   "lieux": 16330377
+  }
+ ],
+ "derniere_relance": "2026-11-28"
+}
