@@ -1,0 +1,39 @@
+{
+ "fichiers_lus": 18,
+ "fichiers": 18,
+ "villes": 2102,
+ "sites": 25283,
+ "evenements": 9026,
+ "lignes": 455334,
+ "colonnes": [
+  "Nom_du_POI",
+  "Categories_de_POI",
+  "Latitude",
+  "Longitude",
+  "Adresse_postale",
+  "Code_postal_et_commune",
+  "Periodes_regroupees",
+  "Covid19_mesures_specifiques",
+  "Createur_de_la_donnee",
+  "SIT_diffuseur",
+  "Date_de_mise_a_jour",
+  "Contacts_du_POI",
+  "Classements_du_POI",
+  "Description",
+  "URI_ID_du_POI"
+ ],
+ "correspondance": {
+  "nom": "Nom_du_POI",
+  "types": "Categories_de_POI",
+  "lat": "Latitude",
+  "lon": "Longitude",
+  "adresse": "Adresse_postale",
+  "commune": "Code_postal_et_commune",
+  "desc": "Description",
+  "site": "Contacts_du_POI",
+  "periodes": "Periodes_regroupees"
+ },
+ "mode": "réel",
+ "etat": "ok",
+ "dernier_passage": "2026-11-28T08:14:21Z"
+}
